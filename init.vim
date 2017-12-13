@@ -92,14 +92,13 @@ set autoread                               " 文件在Vim之外修改过，自�
 
 " about theme {
 if !g:MAC
-  set background=dark
   set termguicolors
 endif
-set background=dark
 "let ayucolor="dark"
 "colorscheme ayu
 colorscheme dracula
 set laststatus=2
+set background=dark
 " }
 
 try
