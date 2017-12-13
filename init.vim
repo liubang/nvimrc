@@ -43,8 +43,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/unite.vim'
 	Plug 'terryma/vim-multiple-cursors'
   Plug 'scrooloose/nerdtree'
+  Plug 'dracula/vim'
 call plug#end()
-
 
 " smart default
 syntax on
@@ -95,8 +95,10 @@ if !g:MAC
   set background=dark
   set termguicolors
 endif
-let ayucolor="dark"
-colorscheme ayu
+set background=dark
+"let ayucolor="dark"
+"colorscheme ayu
+colorscheme dracula
 set laststatus=2
 " }
 
