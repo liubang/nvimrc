@@ -82,6 +82,24 @@ nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 
+" Open shell in vim
+if has('nvim')
+	map <Leader>' :terminal<CR>
+else
+	map <Leader>' :shell<CR>
+endif
+
+" Quit normal mode
+nnoremap <Leader>q  :q<CR>
+nnoremap <Leader>Q  :qa!<CR>
+" Bash like
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Delete>
+" Quit visual mode
+vnoremap v <Esc>
+
+" easymotion {
 map <Leader><Leader> <Plug>(easymotion-prefix)
 " Consistent with spacemacs
 " <Leader>f{char} to move to {char}
@@ -95,4 +113,5 @@ nmap <Leader>jl <Plug>(easymotion-overwin-line)
 " Jump to word
 map  <Leader>jw <Plug>(easymotion-bd-w)
 nmap <Leader>jw <Plug>(easymotion-overwin-w)
+" }
 
