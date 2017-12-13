@@ -26,10 +26,12 @@ call plug#begin('~/.vim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-surround'
 	Plug 'Shougo/unite.vim'
+	Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 
 " smart default
+syntax on
 set shortmess=atOI
 set ignorecase
 set smartcase 
@@ -76,7 +78,10 @@ let ayucolor="dark"
 colorscheme ayu
 set laststatus=2
 
-execute 'source '.g:lbvim_home.'/startify.vim'
+try
+	execute 'source '.g:lbvim_home.'/startify.vim'
+catch
+endtry
 
 " vim-startify {
 let g:startify_custom_header = g:vim#startify#header
