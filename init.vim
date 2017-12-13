@@ -34,14 +34,14 @@ call s:lbvimbegin()
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
   Plug 'ayu-theme/ayu-vim'
-	Plug 'liuchengxu/eleline.vim'
+  Plug 'liuchengxu/eleline.vim'
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
-	Plug 'easymotion/vim-easymotion'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'tpope/vim-surround'
-	Plug 'Shougo/unite.vim'
-	Plug 'terryma/vim-multiple-cursors'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-surround'
+  Plug 'Shougo/unite.vim'
+  Plug 'terryma/vim-multiple-cursors'
   Plug 'scrooloose/nerdtree'
   Plug 'dracula/vim'
 call plug#end()
@@ -103,7 +103,7 @@ set laststatus=2
 " }
 
 try
-	execute 'source '.g:lbvim_home.'/startify.vim'
+  execute 'source '.g:lbvim_home.'/startify.vim'
 catch
 endtry
 
@@ -119,9 +119,9 @@ let g:maplocalleader="\<Space>"
 
 " Open shell in vim
 if has('nvim')
-	map <Leader>' :terminal<CR>
+  map <Leader>' :terminal<CR>
 else
-	map <Leader>' :shell<CR>
+  map <Leader>' :shell<CR>
 endif
 
 " Quit normal mode
