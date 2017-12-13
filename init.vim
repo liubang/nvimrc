@@ -16,6 +16,20 @@ if g:WINDOWS
 endif
 set runtimepath+=$HOME/.vim.rc
 
+function! s:lbvimbegin() abort
+  let l:vim_plug_path = '~/.vim/autoload/plug.vim'
+  call s:check_vim_plug(l:vim_plug_path)
+endfunction
+
+function! s:check_vim_plug(plug_path)
+  if empty(glob(a:plug_path))
+    echo '==> Downloading vim-plug ......'
+    execute '!curl -fLo ' . a:plug_path . ' --create-dirs ' .
+          \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
+endfunction
+
+call s:lbvimbegin()
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
   Plug 'ayu-theme/ayu-vim'
@@ -61,6 +75,7 @@ set linespace=0
 set pumheight=20
 set winminheight=0
 set wildmode=list:longest,full
+set backspace=2         " 在insert模式下用退格键删除
 set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundaries
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -71,12 +86,17 @@ set wildignore+=*\\tmp\\*,*.exe            " Windows
 set cursorline
 set fileformats=unix,dos,mac
 set fillchars=vert:│,stl:\ ,stlnc:\        " 在被分割窗口之间显示空白
+set autoread                               " 文件在Vim之外修改过，自动重新读入
 
-set background=dark
-set termguicolors
+" about theme {
+if !g:MAC
+  set background=dark
+  set termguicolors
+endif
 let ayucolor="dark"
 colorscheme ayu
 set laststatus=2
+" }
 
 try
 	execute 'source '.g:lbvim_home.'/startify.vim'
