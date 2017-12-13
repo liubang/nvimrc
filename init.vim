@@ -30,6 +30,7 @@ function! s:check_vim_plug(plug_path)
 endfunction
 
 call s:lbvimbegin()
+
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
   Plug 'ayu-theme/ayu-vim'
@@ -41,6 +42,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'Shougo/unite.vim'
 	Plug 'terryma/vim-multiple-cursors'
+  Plug 'scrooloose/nerdtree'
 call plug#end()
 
 
@@ -144,5 +146,25 @@ nmap <Leader>jl <Plug>(easymotion-overwin-line)
 " Jump to word
 map  <Leader>jw <Plug>(easymotion-bd-w)
 nmap <Leader>jw <Plug>(easymotion-overwin-w)
+" }
+
+" nerdtree {
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+" ❯
+let g:NERDTreeDirArrowExpandable = "\u276f" 
+" ▽
+let g:NERDTreeDirArrowCollapsible = "\u25bd"
+let g:NERDTreeIgnore=[
+              \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
+              \ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
+              \ ]
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+nnoremap <F4> :NERDTreeToggle<CR>
+inoremap <F4> <ESC>:NERDTreeToggle<CR>
+nnoremap <Leader>ft :NERDTreeToggle<CR>
+nnoremap <Leader>fd :NERDTreeFind<CR>
 " }
 
