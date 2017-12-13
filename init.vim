@@ -21,6 +21,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
 	Plug 'easymotion/vim-easymotion'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'tpope/vim-surround'
+	Plug 'Shougo/unite.vim'
 call plug#end()
 
 
