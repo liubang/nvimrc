@@ -19,6 +19,7 @@ set runtimepath+=$HOME/.vim.rc
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
   Plug 'ayu-theme/ayu-vim'
+	Plug 'liuchengxu/eleline.vim'
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
 	Plug 'easymotion/vim-easymotion'
@@ -73,6 +74,7 @@ set background=dark
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
+set laststatus=2
 
 execute 'source '.g:lbvim_home.'/startify.vim'
 
