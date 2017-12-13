@@ -5,6 +5,7 @@
 scriptencoding utf-8
 
 let g:lbvim_version = '0.1'
+let g:lbvim_home = $HOME.'/.vim.rc'
 
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
@@ -73,7 +74,7 @@ set termguicolors
 let ayucolor="dark"
 colorscheme ayu
 
-execute 'source startify.vim'
+execute 'source '.g:lbvim_home.'/startify.vim'
 
 " vim-startify {
 let g:startify_custom_header = g:vim#startify#header
