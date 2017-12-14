@@ -90,6 +90,7 @@ set autoread                               " 文件在Vim之外修改过，自�
 
 " about theme {
 colorscheme yadracula
+set t_Co=256
 set laststatus=2
 set background=dark
 " }
@@ -189,4 +190,3 @@ nnoremap <Leader>fd :NERDTreeFind<CR>
 " }
 
 
-autocmd ColorScheme dracula highlight Normal ctermbg=235
