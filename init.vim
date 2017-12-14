@@ -100,6 +100,7 @@ set cursorline
 set fileformats=unix,dos,mac
 set fillchars=vert:\|,stl:\ ,stlnc:\       " 在被分割窗口之间显示空白
 set autoread                               " 文件在Vim之外修改过，自动重新读入
+set colorcolumn=120
 " }}}
 
 " about theme {{{
@@ -228,3 +229,5 @@ nnoremap <Leader>w? :Windows<CR>
 nnoremap <Leader>f? :Files ~<CR>
 nnoremap <Leader>ff :Files<CR>
 " }}}
+
+"hi CursorLine cterm=underline ctermbg=NONE ctermfg=NONE
