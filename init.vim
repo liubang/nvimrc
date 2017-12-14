@@ -29,7 +29,13 @@ function! s:check_vim_plug(plug_path)
   endif
 endfunction
 
-call s:lbvimbegin()
+augroup	lbvimStart
+	call s:lbvimbegin()
+	autocmd VimEnter *
+  	\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  	\|   PlugInstall --sync | q
+  	\| endif
+augroup END
 
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
