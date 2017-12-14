@@ -33,17 +33,16 @@ call s:lbvimbegin()
 
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
-  Plug 'ayu-theme/ayu-vim'
   Plug 'liuchengxu/eleline.vim'
-  Plug 'SirVer/ultisnips'
-  Plug 'iliubang/vim-snippets'
   Plug 'easymotion/vim-easymotion'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
   Plug 'Shougo/unite.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'scrooloose/nerdtree'
-  Plug 'dracula/vim'
+  Plug 'SirVer/ultisnips'
+  Plug 'iliubang/vim-snippets'
+	Plug 'iliubang/yadracula'
 call plug#end()
 
 " smart default
@@ -66,7 +65,6 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set mousehide
-set t_Co=256
 set ruler
 set showcmd
 set showmode
@@ -87,16 +85,11 @@ set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
 set wildignore+=*\\tmp\\*,*.exe            " Windows
 set cursorline
 set fileformats=unix,dos,mac
-set fillchars=vert:│,stl:\ ,stlnc:\        " 在被分割窗口之间显示空白
+set fillchars=vert:\|,stl:\ ,stlnc:\       " 在被分割窗口之间显示空白
 set autoread                               " 文件在Vim之外修改过，自动重新读入
 
 " about theme {
-if !g:MAC
-  set termguicolors
-endif
-"let ayucolor="dark"
-"colorscheme ayu
-colorscheme dracula
+colorscheme yadracula
 set laststatus=2
 set background=dark
 " }
@@ -195,3 +188,5 @@ nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
 " }
 
+
+autocmd ColorScheme dracula highlight Normal ctermbg=235
