@@ -58,7 +58,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
 call plug#end()
 
-" smart default
+" smart default {{{
 syntax on
 set shortmess=atOI
 set ignorecase
@@ -100,53 +100,63 @@ set cursorline
 set fileformats=unix,dos,mac
 set fillchars=vert:\|,stl:\ ,stlnc:\       " 在被分割窗口之间显示空白
 set autoread                               " 文件在Vim之外修改过，自动重新读入
+" }}}
 
-" about theme {
+" about theme {{{
 colorscheme yadracula
 set t_Co=256
 set laststatus=2
 set background=dark
-" }
+" }}}
 
 try
   execute 'source '.g:lbvim_home.'/startify.vim'
 catch
 endtry
 
-" vim-startify {
+" vim-startify {{{
 let g:startify_custom_header = g:vim#startify#header
 let g:startify_list_order = g:vim#startify#order
 let g:startify_change_to_vcs_root = 1
-" }
+" }}}
 
 nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 
-" Open shell in vim
+" Open shell in vim {{{
 if has('nvim')
   map <Leader>' :terminal<CR>
 else
   map <Leader>' :shell<CR>
 endif
+" }}}
 
-" Quit normal mode
+" Quit normal mode {{{
 nnoremap <Leader>q  :q<CR>
 nnoremap <Leader>Q  :qa!<CR>
-" Bash like
+" }}}
+
+" Bash like {{{
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-d> <Delete>
-" Quit visual mode
+" }}}
+
+" Quit visual mode {{{
 vnoremap v <Esc>
-" buffer
+" }}}
+
+" buffer {{{
 nnoremap <Leader>bp :bprevious<CR>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bf :bfirst<CR>
 nnoremap <Leader>bl :blast<CR>
 nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>bk :bw<CR>
-" window
+" }}}
+
+" window {{{
 nnoremap <Leader>ww <C-W>w
 nnoremap <Leader>wr <C-W>r
 nnoremap <Leader>wd <C-W>c
@@ -165,8 +175,9 @@ nnoremap <Leader>w- <C-W>s
 nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
 nnoremap <Leader>w2 <C-W>v
+" }}}
 
-" easymotion {
+" easymotion {{{
 map <Leader><Leader> <Plug>(easymotion-prefix)
 " Consistent with spacemacs
 " <Leader>f{char} to move to {char}
@@ -180,9 +191,9 @@ nmap <Leader>jl <Plug>(easymotion-overwin-line)
 " Jump to word
 map  <Leader>jw <Plug>(easymotion-bd-w)
 nmap <Leader>jw <Plug>(easymotion-overwin-w)
-" }
+" }}}
 
-" nerdtree {
+" nerdtree {{{
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
 " ❯
@@ -190,17 +201,16 @@ let g:NERDTreeDirArrowExpandable = "\u276f"
 " ▽
 let g:NERDTreeDirArrowCollapsible = "\u25bd"
 let g:NERDTreeIgnore=[
-              \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
-              \ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
-              \ ]
+			\ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
+			\ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
+			\ ]
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
-" }
+" }}}
 
 " fzf {{{
 let $LANG = 'en_US'
@@ -218,5 +228,3 @@ nnoremap <Leader>w? :Windows<CR>
 nnoremap <Leader>f? :Files ~<CR>
 nnoremap <Leader>ff :Files<CR>
 " }}}
-
-
