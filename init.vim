@@ -49,6 +49,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
   Plug 'iliubang/yadracula'
+
+	" table mode
+	Plug 'dhruvasagar/vim-table-mode'
+
+	" fuzzy search
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+	Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " smart default
@@ -194,5 +201,22 @@ inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
 " }
+
+" fzf {{{
+let $LANG = 'en_US'
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+nmap <Leader>? <plug>(fzf-maps-n)
+xmap <Leader>? <plug>(fzf-maps-x)
+omap <Leader>? <plug>(fzf-maps-o)
+nnoremap <Leader>ag :Ag<CR>
+nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>b? :Buffers<CR>
+nnoremap <Leader>w? :Windows<CR>
+nnoremap <Leader>f? :Files ~<CR>
+nnoremap <Leader>ff :Files<CR>
+" }}}
 
 
