@@ -32,9 +32,9 @@ endfunction
 augroup	lbvimStart
 	call s:lbvimbegin()
 	autocmd VimEnter *
-  	\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  	\|   PlugInstall --sync | q
-  	\| endif
+		\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+		\|   PlugInstall --sync | q
+		\| endif
 augroup END
 
 call plug#begin('~/.vim/plugged')
@@ -48,7 +48,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
-	Plug 'iliubang/yadracula'
+  Plug 'iliubang/yadracula'
 call plug#end()
 
 " smart default
