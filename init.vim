@@ -25,16 +25,16 @@ function! s:check_vim_plug(plug_path)
   if empty(glob(a:plug_path))
     echo '==> Downloading vim-plug ......'
     execute '!curl -fLo ' . a:plug_path . ' --create-dirs ' .
-          \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+      \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
 endfunction
 
 augroup	lbvimStart
-	call s:lbvimbegin()
-	autocmd VimEnter *
-		\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-		\|   PlugInstall --sync | q
-		\| endif
+  call s:lbvimbegin()
+  autocmd VimEnter *
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \|   PlugInstall --sync | q
+    \| endif
 augroup END
 
 call plug#begin('~/.vim/plugged')
@@ -50,12 +50,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'iliubang/vim-snippets'
   Plug 'iliubang/yadracula'
 
-	" table mode
-	Plug 'dhruvasagar/vim-table-mode'
+  " table mode
+  Plug 'dhruvasagar/vim-table-mode'
 
-	" fuzzy search
+  " fuzzy search
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-	Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " smart default
