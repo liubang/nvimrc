@@ -20,6 +20,7 @@ vim +PlugInstall +qa
 The `<leader>` key is mapped to '\<Space>'.
 
 
+```
 | Command    | Description                  |
 |------------+------------------------------|
 | <leader>ff | search files in current path |
@@ -27,3 +28,4 @@ The `<leader>` key is mapped to '\<Space>'.
 | <leader>ft | toggle nerdtree              |
 | F4         | toggle nerdtree              |
 | <leader>tm | toggle vim table mode        |
+```
