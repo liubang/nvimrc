@@ -63,8 +63,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
   Plug 'junegunn/fzf.vim'
 
-	" current word
-	Plug 'dominikduda/vim_current_word'
+  " current word
+  Plug 'dominikduda/vim_current_word'
 call plug#end()
 
 " smart default {{{
