@@ -2,6 +2,7 @@
 my private vim configuration.
 
 
+![screenshot](./screenshot/1.png)
 ![screenshot](./screenshot/2.png)
 
 
