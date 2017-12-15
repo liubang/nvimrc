@@ -45,9 +45,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'Shougo/unite.vim'
   Plug 'terryma/vim-multiple-cursors'
+
+	" nerdtree
   Plug 'scrooloose/nerdtree'
+
+	" snippets
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
+
 	" theme
   Plug 'iliubang/yadracula'
 
