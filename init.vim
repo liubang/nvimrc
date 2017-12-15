@@ -48,7 +48,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
-  Plug 'iliubang/yadracula'
+	" theme
+  "Plug 'iliubang/yadracula'
+	Plug 'morhetz/gruvbox'
 
   " table mode
   Plug 'dhruvasagar/vim-table-mode'
@@ -107,10 +109,12 @@ set colorcolumn=120
 " }}}
 
 " about theme {{{
-colorscheme yadracula
+"colorscheme yadracula
 set t_Co=256
 set laststatus=2
 set background=dark
+colorscheme gruvbox 
+let g:gruvbox_contrast='hard'
 " }}}
 
 try
