@@ -49,8 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
 	" theme
-  "Plug 'iliubang/yadracula'
-	Plug 'morhetz/gruvbox'
+  Plug 'iliubang/yadracula'
 
   " table mode
   Plug 'dhruvasagar/vim-table-mode'
@@ -109,12 +108,12 @@ set colorcolumn=120
 " }}}
 
 " about theme {{{
-"colorscheme yadracula
 set t_Co=256
 set laststatus=2
 set background=dark
-colorscheme gruvbox 
-let g:gruvbox_contrast='hard'
+colorscheme yadracula
+let g:yadracula_contrast='hard'
+let g:yadracula_contrast_dark='hard'
 " }}}
 
 try
@@ -237,4 +236,3 @@ nnoremap <Leader>f? :Files ~<CR>
 nnoremap <Leader>ff :Files<CR>
 " }}}
 
-"hi CursorLine cterm=underline ctermbg=NONE ctermfg=NONE
