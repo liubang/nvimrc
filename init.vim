@@ -208,10 +208,8 @@ nmap <Leader>jw <Plug>(easymotion-overwin-w)
 " nerdtree {{{
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
-" ❯
-let g:NERDTreeDirArrowExpandable = "\u276f" 
-" ▽
-let g:NERDTreeDirArrowCollapsible = "\u25bd"
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeIgnore=[
 			\ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
 			\ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
