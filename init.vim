@@ -46,17 +46,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/unite.vim'
   Plug 'terryma/vim-multiple-cursors'
 
-	" nerdtree
+  " nerdtree
   Plug 'scrooloose/nerdtree'
 
   " comment
   Plug 'scrooloose/nerdcommenter'
 
-	" snippets
+  " snippets
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
 
-	" theme
+  " theme
   Plug 'iliubang/yadracula'
 
   " table mode
