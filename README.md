@@ -20,17 +20,24 @@ vim +PlugInstall +qa
 
 The `<leader>` key is mapped to '\<Space>'.
 
+### Main shortcut keys
 
 ```
-| Command    | Description                  |
-|------------+------------------------------|
-| <leader>ff | search files in current path |
-| <leader>f? | search files in root path    |
-| <leader>ft | toggle nerdtree              |
-| F4         | toggle nerdtree              |
-| <leader>tm | toggle vim table mode        |
+| Command          | Description                                                         |
+|------------------+---------------------------------------------------------------------|
+| <leader>ff       | Search files in current path                                        |
+| <leader>f?       | Search files in root path                                           |
+| <leader>ft       | Toggle nerdtree                                                     |
+| F4               | Toggle nerdtree                                                     |
+| <leader>tm       | Toggle vim table mode                                               |
+| <leader>cc       | Comment out the current line or text selected in visual mode        |
+| <leader>cu       | Uncomments the selected line(s)                                     |
+| <leader>cn       | Same as cc but forces nesting                                       |
+| <leader>c<space> | Toggles the comment state of the selected line(s)                   |
+| <leader>cm       | Comments the given lines using only one set of multipart delimiters |
 ```
 
+## Plugins
 
 ### nerdtree
 
@@ -91,3 +98,7 @@ A.......Zoom (maximize/minimize) the NERDTree window.............|NERDTree-A|
 ------------------------------------------------------------------------------
                                                                   *NERDTree-o*
 ```
+
+### nerdcommenter
+
+@see: [https://github.com/scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
