@@ -49,6 +49,9 @@ call plug#begin('~/.vim/plugged')
 	" nerdtree
   Plug 'scrooloose/nerdtree'
 
+  " comment
+  Plug 'scrooloose/nerdcommenter'
+
 	" snippets
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
@@ -222,6 +225,11 @@ nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
+" }}}
+
+" {{{ nerdcommenter
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
 " }}}
 
 " fzf {{{
