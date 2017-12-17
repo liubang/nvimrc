@@ -101,4 +101,4 @@ A.......Zoom (maximize/minimize) the NERDTree window.............|NERDTree-A|
 
 ### nerdcommenter
 
-@see: [https://github.com/scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+@See: [https://github.com/scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
