@@ -113,6 +113,10 @@ set fileformats=unix,dos,mac
 set fillchars=vert:\|,stl:\ ,stlnc:\       " 在被分割窗口之间显示空白
 set autoread                               " 文件在Vim之外修改过，自动重新读入
 set colorcolumn=120
+" Enable folding
+set foldmethod=marker
+set foldcolumn=0 
+" set foldlevel=99
 " }}}
 
 " about theme {{{
