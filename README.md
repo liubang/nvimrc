@@ -9,7 +9,7 @@ my private vim configuration.
 ## Install 
 
 
-Install vim with python3 support.
+Install vim with python3 and lua support.
 
 For Mac OS X:
 
