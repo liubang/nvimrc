@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
   Plug 'Shougo/unite.vim'
+  Plug 'Shougo/neocomplete.vim'
   Plug 'terryma/vim-multiple-cursors'
 
   " nerdtree
@@ -261,6 +262,17 @@ nnoremap <Leader>f? :Files ~<CR>
 nnoremap <Leader>ff :Files<CR>
 " }}}
 
+" neocomplete {{{
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+" }}}
+
 " UltiSnips {{{
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
@@ -270,4 +282,5 @@ let g:UltiSnipsListSnippets = '<C-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 " }}}
+
 
