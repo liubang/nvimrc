@@ -117,6 +117,8 @@ set norelativenumber
 "set colorcolumn=120
 set nocursorcolumn
 " Enable folding
+" 快捷键：z+a, 打开或关闭当前折叠;  z+m, 关闭所有折叠;  z+r, 打开所有折叠
+" set nofoldenable  "启动vim时候关闭折叠
 set foldmethod=marker
 set foldcolumn=0 
 " set foldlevel=99

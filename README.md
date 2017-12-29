@@ -35,6 +35,11 @@ The `<leader>` key is mapped to '\<Space>'.
 | <leader>cn       | Same as cc but forces nesting                                       |
 | <leader>c<space> | Toggles the comment state of the selected line(s)                   |
 | <leader>cm       | Comments the given lines using only one set of multipart delimiters |
+| zc               | Fold code                                                           |
+| zo               | Unfold the code                                                     |
+| za               | Toggle the folding state of code                                    |
+| zm               | Unfold all                                                          |
+| zr               | Fold all                                                            |
 ```
 
 ## Plugins
