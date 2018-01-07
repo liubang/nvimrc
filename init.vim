@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/neocomplete.vim'
+  Plug 'davidhalter/jedi-vim'
   Plug 'terryma/vim-multiple-cursors'
 
   " nerdtree
@@ -271,6 +272,19 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" }}}
+
+" jedi-vim {{{ 
+let g:neocomplete#enable_auto_select = 0
+let g:jedi#popup_select_first=0
+set completeopt=longest,menuone
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\)\w*'
+let g:jedi#show_call_signatures = "0"   " 补全时不弹出函数的参数列表框
 " }}}
 
 " UltiSnips {{{
