@@ -44,31 +44,29 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
   Plug 'Shougo/unite.vim'
-  Plug 'Shougo/neocomplete.vim'
-  Plug 'davidhalter/jedi-vim'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-clang'
+  Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 	Plug 'ervandew/supertab'
   Plug 'terryma/vim-multiple-cursors'
-
   " nerdtree
   Plug 'scrooloose/nerdtree'
-
   " comment
   Plug 'scrooloose/nerdcommenter'
-
   " snippets
   Plug 'SirVer/ultisnips'
   Plug 'iliubang/vim-snippets'
-
   " theme
   Plug 'iliubang/yadracula'
-
   " table mode
   Plug 'dhruvasagar/vim-table-mode'
-
   " fuzzy search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
   Plug 'junegunn/fzf.vim'
-
   " current word
   Plug 'dominikduda/vim_current_word'
 call plug#end()
@@ -226,8 +224,6 @@ nmap <Leader>jw <Plug>(easymotion-overwin-w)
 " nerdtree {{{
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
-"let g:NERDTreeDirArrowExpandable = '▸'
-"let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let g:NERDTreeIgnore=[
@@ -264,35 +260,16 @@ nnoremap <Leader>f? :Files ~<CR>
 nnoremap <Leader>ff :Files<CR>
 " }}}
 
-" neocomplete {{{
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-	\ 'default'		: '',
-	\ 'vimshell' 	: $HOME.'/.vimshell_hist',
-	\ 'scheme' 		: $HOME.'/.gosh_completions',
-	\ 'python' 		: '~/.vim/dict/python.dict',
-	\ 'c' 				: '~/.vim/dict/c.dict',
-	\ 'cpp' 			: '~/.vim/dict/cpp.dict',
-	\ }
+" deoplete {{{
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 " }}}
 
 " jedi-vim {{{ 
-let g:neocomplete#enable_auto_select = 0
-let g:jedi#popup_select_first=0
+let g:jedi#popup_select_first=1
 set completeopt=longest,menuone
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
-if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-endif
 " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\)\w*'
 let g:jedi#show_call_signatures = "0"   " 补全时不弹出函数的参数列表框
 " }}}
@@ -301,14 +278,21 @@ let g:jedi#show_call_signatures = "0"   " 补全时不弹出函数的参数列�
 let g:SuperTabDefaultCompletionType = "<c-n>"
 " }}}
 
+" clang {{{
+let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
+let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
+let g:deoplete#sources#clang#executable="/usr/bin/clang"
+" }}}
+
+" php {{{
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
+let g:phpcd_php_cli_executable = '/opt/app/php-7.2/bin/php'
+" }}}
+
 " UltiSnips {{{
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsUsePythonVersion = 3
-"let g:UltiSnipsExpandTrigger = '<Tab>'
-"let g:UltiSnipsListSnippets = '<C-Tab>'
-"let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-"let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 " }}}
-
-
