@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/neocomplete.vim'
   Plug 'davidhalter/jedi-vim'
+	Plug 'ervandew/supertab'
   Plug 'terryma/vim-multiple-cursors'
 
   " nerdtree
@@ -272,6 +273,15 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+	\ 'default'		: '',
+	\ 'vimshell' 	: $HOME.'/.vimshell_hist',
+	\ 'scheme' 		: $HOME.'/.gosh_completions',
+	\ 'python' 		: '~/.vim/dict/python.dict',
+	\ 'c' 				: '~/.vim/dict/c.dict',
+	\ 'cpp' 			: '~/.vim/dict/cpp.dict',
+	\ }
 " }}}
 
 " jedi-vim {{{ 
@@ -287,14 +297,18 @@ endif
 let g:jedi#show_call_signatures = "0"   " 补全时不弹出函数的参数列表框
 " }}}
 
+" supertab {{{
+let g:SuperTabDefaultCompletionType = "<c-n>"
+" }}}
+
 " UltiSnips {{{
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
 let g:UltiSnipsUsePythonVersion = 3
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsListSnippets = '<C-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+"let g:UltiSnipsExpandTrigger = '<Tab>'
+"let g:UltiSnipsListSnippets = '<C-Tab>'
+"let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+"let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 " }}}
 
 
