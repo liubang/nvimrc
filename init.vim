@@ -16,60 +16,54 @@ if g:WINDOWS
 endif
 set runtimepath+=$HOME/.vim.rc
 
-function! s:lbvimbegin() abort
-  let l:vim_plug_path = '~/.vim/autoload/plug.vim'
-  call s:check_vim_plug(l:vim_plug_path)
-endfunction
-
-function! s:check_vim_plug(plug_path)
-  if empty(glob(a:plug_path))
-    echo '==> Downloading vim-plug ......'
-    execute '!curl -fLo ' . a:plug_path . ' --create-dirs ' .
-      \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-endfunction
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-augroup	lbvimStart
-  call s:lbvimbegin()
-  autocmd VimEnter *
-    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \|   PlugInstall --sync | q
-    \| endif
-augroup END
+if &compatible
+  set nocompatible
+endif
 
-call plug#begin('~/.vim/plugged')
-  Plug 'mhinz/vim-startify'
-  Plug 'liuchengxu/eleline.vim'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'tpope/vim-surround'
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-  Plug 'zchee/deoplete-jedi'
-"  Plug 'zchee/deoplete-clang'
-  Plug 'tweekmonster/deoplete-clang2'
-  Plug 'ervandew/supertab'
-  Plug 'terryma/vim-multiple-cursors'
-  " nerdtree
-  Plug 'scrooloose/nerdtree'
-  " comment
-  Plug 'scrooloose/nerdcommenter'
-  " snippets
-  Plug 'SirVer/ultisnips'
-  Plug 'iliubang/vim-snippets'
-  " theme
-  Plug 'iliubang/yadracula'
-  " table mode
-  Plug 'dhruvasagar/vim-table-mode'
-  " fuzzy search
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-  Plug 'junegunn/fzf.vim'
-  " current word
-  Plug 'dominikduda/vim_current_word'
-call plug#end()
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir) 
+  call dein#add(s:dein_repo_dir)
+  call dein#add('Shougo/deoplete.nvim', {'on_i': 1})
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call dein#add('mhinz/vim-startify')
+  call dein#add('liuchengxu/eleline.vim')
+  call dein#add('easymotion/vim-easymotion', {'on_i': 0})
+  call dein#add('jiangmiao/auto-pairs', {'on_i': 1})
+  call dein#add('tpope/vim-surround', {'on_i': 1})
+  call dein#add('Shougo/unite.vim', {'on_i': 1})
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('zchee/deoplete-jedi', {'on_ft': ['py']})
+  call dein#add('tweekmonster/deoplete-clang2', {'on_ft': ['c', 'cpp']})
+  call dein#add('ervandew/supertab')
+  call dein#add('terryma/vim-multiple-cursors', {'on_i': 1})
+  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+  call dein#add('scrooloose/nerdcommenter', {'on_cmd': ['NERDComComment', 'NERDComNestedComment', 'NERDComToggleComment']})
+  call dein#add('SirVer/ultisnips', {'on_i': 1})
+  call dein#add('iliubang/vim-snippets', {'on_i': 1})
+  call dein#add('iliubang/yadracula')
+  call dein#add('dhruvasagar/vim-table-mode', {'on_cmd' : ['TableModeToggle', 'TableModeEnable']})
+  call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
+  call dein#add('junegunn/fzf.vim', {'on_cmd': 'FZF'})
+  call dein#add('dominikduda/vim_current_word', {'on_i': 0})
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " smart default {{{
 syntax on
@@ -256,8 +250,8 @@ nnoremap <Leader>ag :Ag<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>b? :Buffers<CR>
 nnoremap <Leader>w? :Windows<CR>
-nnoremap <Leader>f? :Files ~<CR>
-nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>f? :FZF ~<CR>
+nnoremap <Leader>ff :FZF<CR>
 " }}}
 
 " deoplete {{{
