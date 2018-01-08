@@ -275,12 +275,20 @@ let g:jedi#show_call_signatures = "0"   " 补全时不弹出函数的参数列�
 
 " supertab {{{
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabCrMapping = 1
 " }}}
 
 " clang {{{
-let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
+if g:MAC 
+  let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+  let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
+  let g:deoplete#sources#clang#executable="/usr/bin/clang"
+endif
+if g:LINUX
+  let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+  let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
+  let g:deoplete#sources#clang#executable="/usr/bin/clang"
+endif
 let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
-let g:deoplete#sources#clang#executable="/usr/bin/clang"
 " }}}
 
