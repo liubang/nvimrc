@@ -50,7 +50,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'zchee/deoplete-jedi'
   Plug 'zchee/deoplete-clang'
-  Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 	Plug 'ervandew/supertab'
   Plug 'terryma/vim-multiple-cursors'
   " nerdtree
@@ -285,14 +284,3 @@ let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'ob
 let g:deoplete#sources#clang#executable="/usr/bin/clang"
 " }}}
 
-" php {{{
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-let g:phpcd_php_cli_executable = '/opt/app/php-7.2/bin/php'
-" }}}
-
-" UltiSnips {{{
-let g:UltiSnipsSnippetDirectories=['UltiSnips']
-let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
-let g:UltiSnipsUsePythonVersion = 3
-" }}}
