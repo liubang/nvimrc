@@ -49,7 +49,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'zchee/deoplete-jedi'
-  Plug 'zchee/deoplete-clang'
+"  Plug 'zchee/deoplete-clang'
+  Plug 'tweekmonster/deoplete-clang2'
 	Plug 'ervandew/supertab'
   Plug 'terryma/vim-multiple-cursors'
   " nerdtree
@@ -280,13 +281,11 @@ let g:SuperTabCrMapping = 1
 
 " clang {{{
 if g:MAC 
-  let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-  let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
-  let g:deoplete#sources#clang#executable="/usr/bin/clang"
+  let g:deoplete#sources#clang#flags = ['-I/usr/include', '-I/usr/include/c++/4.2.1', '-I/usr/local/opt/llvm/lib/clang/5.0.1/include']
+  let g:deoplete#sources#clang#executable = "/usr/bin/clang"
 endif
 if g:LINUX
-  let g:deoplete#sources#clang#libclang_path="/usr/lib/llvm-4.0/lib/libclang.so.1"
-  let g:deoplete#sources#clang#clang_header="/usr/lib/llvm-4.0/lib/clang"
+  let g:deoplete#sources#clang#flags = ['-I/usr/include', '-I/usr/include/c++/7.2.0', '-I/usr/include/clang/4.0.1/include']
   let g:deoplete#sources#clang#executable="/usr/bin/clang"
 endif
 let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
