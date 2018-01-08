@@ -285,8 +285,8 @@ if g:MAC
   let g:deoplete#sources#clang#executable="/usr/bin/clang"
 endif
 if g:LINUX
-  let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-  let g:deoplete#sources#clang#clang_header="/usr/local/opt/llvm/lib/clang"
+  let g:deoplete#sources#clang#libclang_path="/usr/lib/llvm-4.0/lib/libclang.so.1"
+  let g:deoplete#sources#clang#clang_header="/usr/lib/llvm-4.0/lib/clang"
   let g:deoplete#sources#clang#executable="/usr/bin/clang"
 endif
 let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
