@@ -22,7 +22,7 @@ if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+  execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 if &compatible
@@ -84,6 +84,9 @@ set number
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+set autoindent
+set smartindent
+set cindent
 set mousehide
 set ruler
 set showcmd
