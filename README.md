@@ -59,7 +59,6 @@ Then install vim configuration.
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim.rc
 ln -s ~/.vim.rc/init.vim ~/.vimrc
-vim +PlugInstall +qa
 ```
 
 ## Usage

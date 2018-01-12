@@ -4,7 +4,7 @@
 
 scriptencoding utf-8
 
-let g:lbvim_version = '0.1'
+let g:lbvim_version = '0.2'
 let g:lbvim_home = $HOME.'/.vim.rc'
 
 let g:MAC = has('macunix')
