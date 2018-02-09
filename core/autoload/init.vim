@@ -4,6 +4,8 @@
 
 scriptencoding utf-8
 
+let g:dot_customfile = $HOME.'/.vim.custom'
+
 function! init#begin() abort
     " Download vim-plug if unavailable
     if !g:WINDOWS
@@ -12,10 +14,14 @@ function! init#begin() abort
     call defaults#better#init()
     call defaults#startify#init()
     call defaults#keybindings#init()
+    call s:check_custom_file()
     " Specify a directory for plugins
     " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
     call plug#begin('~/.vim/plugged')
+    if exists('*CustomPlug')
+        call CustomPlug()
+    endif
 endfunction
 
 function! init#end() abort
@@ -24,6 +30,15 @@ function! init#end() abort
     call s:check_custom_plug()
     call defaults#theme#init()
     call defaults#packages#init()
+    if exists('*CustomConfig')
+        call CustomConfig()
+    endif
+endfunction
+
+function! s:check_custom_file()
+    if filereadable(expand(g:dot_customfile))
+        execute 'source ' . g:dot_customfile
+    endif
 endfunction
 
 function! s:check_vim_plug()
