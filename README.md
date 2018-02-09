@@ -55,10 +55,30 @@ make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
 
 Then install vim configuration.
 
-
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim.rc
 ln -s ~/.vim.rc/init.vim ~/.vimrc
+```
+
+## Custom configuration
+
+```shell
+cp ~/.vim.rc/vim.custom.template ~/.vim.custom
+```
+
+example:
+
+```viml
+function! CustomPlug()
+    Plug 'sickill/vim-monokai'
+endfunction
+
+function! CustomConfig()
+    set t_Co=256
+    set laststatus=2
+    set background=dark
+    colorscheme monokai
+endfunction
 ```
 
 ## Usage
