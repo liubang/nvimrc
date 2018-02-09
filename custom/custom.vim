@@ -7,5 +7,5 @@ function! CustomPlug()
 endfunction
 
 function! CustomConfig()
-    
+
 endfunction
