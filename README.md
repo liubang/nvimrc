@@ -5,7 +5,6 @@ my private vim configuration.
 ![screenshot](./screenshot/1.png)
 ![screenshot](./screenshot/2.png)
 
-
 ## Install 
 
 Enable Python3 interface with pip:
@@ -13,7 +12,6 @@ Enable Python3 interface with pip:
 ```shell
 pip3 install neovim
 ```
-
 
 Install vim with python3 and lua support.
 
