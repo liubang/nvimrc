@@ -28,9 +28,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'Shougo/unite.vim', { 'on': [] }
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+" Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
-Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
+" Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
 Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
