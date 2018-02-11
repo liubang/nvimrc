@@ -15,30 +15,17 @@ if g:WINDOWS
 endif
 set runtimepath+=$HOME/.vim.rc/core
 
-call init#begin()
+call core#begin()
 
-Plug 'Shougo/deoplete.nvim'
-if !has('nvim')
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'mhinz/vim-startify'
-Plug 'liuchengxu/eleline.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'zchee/deoplete-jedi', {'for': ['python']}
-" Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
-Plug 'ervandew/supertab'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'iliubang/yadracula'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'dominikduda/vim_current_word'
+Component 'startify'
+Component 'editor'
+Component 'deoplete'
+Component 'fzf'
+Component 'jedi'
+Component 'table'
+Component 'unite'
+Component 'nerdtree'
+Component 'nerdcommenter'
+Component 'theme'
 
-call init#end()
+call core#end()

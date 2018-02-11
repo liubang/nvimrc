@@ -4,35 +4,59 @@
 
 scriptencoding utf-8
 
-let g:dot_customfile = $HOME.'/.vim.custom'
+let g:dot_customfile = $HOME . '/.vim.custom'
+let g:components_dir = g:lbvim_home . '/core/autoload/components'
+let g:components_loaded = []
 
-function! init#begin() abort
-    " Download vim-plug if unavailable
+function! core#begin() abort
     if !g:WINDOWS
         call s:check_vim_plug()
     endif
+    call s:define_command()
     call defaults#better#init()
-    call defaults#startify#init()
-    call defaults#keybindings#init()
     call s:check_custom_file()
-    " Specify a directory for plugins
-    " - For Neovim: ~/.local/share/nvim/plugged
-    " - Avoid using standard Vim directory names like 'plugin'
-    call plug#begin('~/.vim/plugged')
-    if exists('*CustomPlug')
-        call CustomPlug()
-    endif
 endfunction
 
-function! init#end() abort
-    " Initialize plugin system
-    call plug#end()
-    call s:check_custom_plug()
-    call defaults#theme#init()
-    call defaults#packages#init()
+function! core#end() abort
+    " regist all plugs
+    call s:register_plugs()
+    call s:register_configs()
     if exists('*CustomConfig')
         call CustomConfig()
     endif
+endfunction
+
+function! s:define_command()
+  command! -nargs=+ -bar Component  call s:component(<args>)
+endfunction
+
+function! s:component(name, ...)
+    if index(g:components_loaded, a:name) == -1
+        call add(g:components_loaded, a:name)
+    endif
+endfunction
+
+function! s:register_plugs()
+    call plug#begin('~/.vim/plugged')
+
+    for l:component in g:components_loaded
+        let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
+        execute 'source ' . l:component_package
+    endfor
+
+    if exists('*CustomPlug')
+        call CustomPlug()
+    endif
+
+    call plug#end()
+    call s:check_custom_plug()
+endfunction
+
+function! s:register_configs()
+    for l:component in g:components_loaded
+        let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
+        execute 'source ' . l:component_config
+    endfor
 endfunction
 
 function! s:check_custom_file()

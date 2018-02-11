@@ -1,11 +1,4 @@
-" Maintainer: liubang <https://github.com/iliubang>
-" Version: 0.1
-" vim: et ts=2 sts=2 sw=2
-
-scriptencoding utf-8
-
-function! defaults#startify#init()
-    let g:vim#startify#header = [
+let g:vim#startify#header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',
                             \'      ┴─┘┴└─┘└─┘┴ ┴┘└┘└─┘ ',
@@ -14,7 +7,7 @@ function! defaults#startify#init()
                             \'        Site: https://iliubang.github.io     ',
                             \'     Version: ' . g:lbvim_version,
                             \	]
-    let g:vim#startify#order = [
+let g:vim#startify#order = [
                 \ ['   Recent Files:'],
                 \ 'files',
                 \ ['   Project:'],
@@ -26,7 +19,7 @@ function! defaults#startify#init()
                 \ ['   Commands:'],
                 \ 'commands',
                 \ ]
-
-endfunction
-
-
+                
+let g:startify_custom_header = g:vim#startify#header
+let g:startify_list_order = g:vim#startify#order
+let g:startify_change_to_vcs_root = 1
