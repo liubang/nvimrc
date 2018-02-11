@@ -27,8 +27,8 @@ Plug 'liuchengxu/eleline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'Shougo/unite.vim', { 'on': [] }
-" Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
 " Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
 Plug 'ervandew/supertab'

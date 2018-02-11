@@ -5,6 +5,7 @@ scriptencoding utf-8
 
 function! defaults#packages#init()
   call s:set_vim_startify()
+  call s:set_Unite()
   call s:set_nerdtree()
   call s:set_nerdcommenter()
   call s:set_fzf()
@@ -19,6 +20,14 @@ function! s:set_vim_startify()
   let g:startify_custom_header = g:vim#startify#header
   let g:startify_list_order = g:vim#startify#order
   let g:startify_change_to_vcs_root = 1
+endfunction
+" }}}
+
+" Unite {{{
+function! s:set_Unite() 
+  nnoremap <C-p> :Unite file_rec/async<cr>
+  nnoremap <Leader>/ :Unite grep:.<cr>
+  nnoremap <Leader>s :Unite -quick-match buffer<cr>
 endfunction
 " }}}
 
