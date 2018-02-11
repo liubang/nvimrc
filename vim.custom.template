@@ -3,6 +3,7 @@
 " vim: et ts=2 sts=2 sw=2
 
 function! CustomPlug()
+    " Component 'better'
     " Plug 'Rip-Rip/clang_complete'
 endfunction
 

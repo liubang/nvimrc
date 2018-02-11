@@ -68,6 +68,9 @@ example:
 
 ```viml
 function! CustomPlug()
+    " add a component
+    Component 'better'
+    " or add a plugin
     Plug 'sickill/vim-monokai'
 endfunction
 

@@ -13,7 +13,6 @@ function! core#begin() abort
         call s:check_vim_plug()
     endif
     call s:define_command()
-    call defaults#better#init()
     call s:check_custom_file()
 endfunction
 

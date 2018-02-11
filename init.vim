@@ -17,6 +17,7 @@ set runtimepath+=$HOME/.vim.rc/core
 
 call core#begin()
 
+Component 'better'
 Component 'deoplete'
 Component 'unite'
 Component 'startify'
