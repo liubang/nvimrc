@@ -1,7 +1,3 @@
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabCrMapping = 1
-
-
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims=1
 " Use compact syntax for prettified multi-line comments

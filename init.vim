@@ -18,13 +18,13 @@ set runtimepath+=$HOME/.vim.rc/core
 call core#begin()
 
 Component 'better'
-Component 'deoplete'
+Component 'completor'
 Component 'startify'
 Component 'editor'
 Component 'fzf'
-Component 'jedi'
 Component 'table'
 Component 'nerdtree'
 Component 'theme'
+Component 'python'
 
 call core#end()
