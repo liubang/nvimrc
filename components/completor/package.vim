@@ -11,7 +11,8 @@ else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'ervandew/supertab'
-  Plug 'SirVer/ultisnips'
-  Plug 'iliubang/vim-snippets'
 endif
+
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'iliubang/vim-snippets'
