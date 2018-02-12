@@ -1,7 +1,12 @@
 let $LANG = 'en_US'
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
 
 nmap <Leader>? <plug>(fzf-maps-n)
 xmap <Leader>? <plug>(fzf-maps-x)
@@ -10,5 +15,5 @@ nnoremap <Leader>ag :Ag<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>b? :Buffers<CR>
 nnoremap <Leader>w? :Windows<CR>
-nnoremap <Leader>f? :FZF ~<CR>
+nnoremap <Leader>f? :FZF ~<CR>:
 nnoremap <Leader>ff :FZF<CR>

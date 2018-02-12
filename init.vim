@@ -19,14 +19,13 @@ call core#begin()
 
 Component 'better'
 Component 'deoplete'
-Component 'unite'
+" Component 'unite'
 Component 'startify'
 Component 'editor'
 Component 'fzf'
 Component 'jedi'
 Component 'table'
 Component 'nerdtree'
-Component 'nerdcommenter'
 Component 'theme'
 
 call core#end()

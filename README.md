@@ -8,6 +8,20 @@ my private vim configuration.
 
 ## Install 
 
+Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
+
+For Mac OS X:
+
+```shell
+brew install the_silver_searcher
+```
+
+For Ubuntu
+
+```shell
+sudo apt-get install silversearcher-ag
+```
+
 Enable Python3 interface with pip:
 
 ```shell
