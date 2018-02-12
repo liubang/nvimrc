@@ -22,13 +22,13 @@ For Ubuntu
 sudo apt-get install silversearcher-ag
 ```
 
-## For vim8
-
-Enable Python3 interface with pip:
+Install pip modules for your neovim python3
 
 ```shell
-pip3 install neovim
+pip3 install --user neovim jedi psutil setproctitle
 ```
+
+## For vim8
 
 Install vim8 with python3 and lua support.
 
@@ -70,14 +70,12 @@ make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
 
 Then install configuration.
 
-**For vim8**
-
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim/init.vim ~/.vimrc
 ```
 
-**For neivim**
+## For neivim
 
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
