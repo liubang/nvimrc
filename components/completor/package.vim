@@ -5,4 +5,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'SirVer/ultisnips'
+Plug 'iliubang/vim-snippets'
 Plug 'ervandew/supertab'
