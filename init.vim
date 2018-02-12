@@ -26,5 +26,6 @@ Component 'table'
 Component 'nerdtree'
 Component 'theme'
 Component 'python'
+" Component 'clang'
 
 call core#end()

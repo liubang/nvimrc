@@ -1,1 +1,3 @@
-Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
+if g:lbvim_isnvim
+    Plug 'roxma/ncm-clang'
+endif
