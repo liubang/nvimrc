@@ -100,4 +100,5 @@ nnoremap <Leader>w? :Windows<CR>
 nnoremap <Leader>f? :FZF ~<CR>:
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>bl :FZFLines<CR>
+nnoremap <C-p> :FZF<CR>
 " }}}
