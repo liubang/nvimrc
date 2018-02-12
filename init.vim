@@ -4,7 +4,7 @@
 
 scriptencoding utf-8
 let g:lbvim_version = '0.2'
-let g:lbvim_home = $HOME.'/.vim.rc'
+let g:lbvim_home = $HOME.'/.vim'
 let g:lbvim_isnvim = has('nvim')
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
@@ -13,7 +13,7 @@ let g:WINDOWS = has('win32') || has('win64')
 if g:WINDOWS
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
-set runtimepath+=$HOME/.vim.rc/core
+set runtimepath+=$HOME/.vim/core
 
 call core#begin()
 

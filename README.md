@@ -1,12 +1,12 @@
 # vimrc
-my private vim configuration.
 
+Configuration for neovim/vim8.
 
 ![screenshot](./screenshot/1.png)
 ![screenshot](./screenshot/2.png)
 ![screenshot](./screenshot/3.png)
 
-## Install 
+## Dependences 
 
 Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
 
@@ -22,13 +22,15 @@ For Ubuntu
 sudo apt-get install silversearcher-ag
 ```
 
+## For vim8
+
 Enable Python3 interface with pip:
 
 ```shell
 pip3 install neovim
 ```
 
-Install vim with python3 and lua support.
+Install vim8 with python3 and lua support.
 
 For Mac OS X:
 
@@ -66,11 +68,20 @@ cd vim
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
 ```
 
-Then install vim configuration.
+Then install configuration.
+
+**For vim8**
 
 ```shell
-git clone https://github.com/iliubang/vimrc.git ~/.vim.rc
-ln -s ~/.vim.rc/init.vim ~/.vimrc
+git clone https://github.com/iliubang/vimrc.git ~/.vim
+ln -s ~/.vim/init.vim ~/.vimrc
+```
+
+**For neivim**
+
+```shell
+git clone https://github.com/iliubang/vimrc.git ~/.vim
+ln -s ~/.vim .config/nvim
 ```
 
 ## Custom configuration
