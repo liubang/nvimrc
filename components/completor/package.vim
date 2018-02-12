@@ -1,4 +1,4 @@
-if has('nvim')
+if g:lbvim_isnvim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
