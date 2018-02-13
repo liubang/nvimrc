@@ -56,6 +56,8 @@ set foldcolumn=0
 set noerrorbells
 set novisualbell
 
+set guicursor=n-v-c:hor20,i:ver50
+
 
 nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
