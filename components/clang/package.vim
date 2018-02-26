@@ -1,3 +1,4 @@
 if g:lbvim_isnvim
-    Plug 'roxma/ncm-clang'
+"    Plug 'roxma/ncm-clang'
 endif
+Plug 'rhysd/vim-clang-format'

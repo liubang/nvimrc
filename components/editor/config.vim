@@ -26,3 +26,4 @@ nmap <Leader>jl <Plug>(easymotion-overwin-line)
 map  <Leader>jw <Plug>(easymotion-bd-w)
 nmap <Leader>jw <Plug>(easymotion-overwin-w)
 " }}}
+
