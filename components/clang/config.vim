@@ -3,6 +3,7 @@ else
 endif
 
 " {{{ clang-format
+let g:clang_format#detect_style_file = 1
 " vim-clang-format does nothing when .clang-format is not found.
 let g:clang_format#enable_fallback_style = 0
 " map to <Leader>cf in C++ code
