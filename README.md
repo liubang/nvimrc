@@ -2,7 +2,7 @@
 
 Configuration for neovim/vim8.
 
-![screenshot](./screenshot/1.png)
+![screenshot](./screenshot/s1.jpg)
 ![screenshot](./screenshot/2.png)
 ![screenshot](./screenshot/3.png)
 
