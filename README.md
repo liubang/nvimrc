@@ -115,13 +115,13 @@ The `<leader>` key is mapped to '\<Space>'.
 
 ### Main shortcut keys
 
-```
 | Command          | Description                                                         |
-|------------------+---------------------------------------------------------------------|
+|------------------|---------------------------------------------------------------------|
 | <leader>ff       | Search files in current path                                        |
 | <leader>f?       | Search files in root path                                           |
 | <leader>ft       | Toggle nerdtree                                                     |
 | F4               | Toggle nerdtree                                                     |
+| F3               | Toggle tagbar                                                       |
 | <leader>tm       | Toggle vim table mode                                               |
 | <leader>cc       | Comment out the current line or text selected in visual mode        |
 | <leader>cu       | Uncomments the selected line(s)                                     |
@@ -133,7 +133,6 @@ The `<leader>` key is mapped to '\<Space>'.
 | za               | Toggle the folding state of code                                    |
 | zm               | Unfold all                                                          |
 | zr               | Fold all                                                            |
-```
 
 ## Plugins
 
