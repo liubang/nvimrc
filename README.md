@@ -14,12 +14,13 @@ For Mac OS X:
 
 ```shell
 brew install the_silver_searcher
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 ```
 
 For Ubuntu
 
 ```shell
-sudo apt-get install silversearcher-ag
+sudo apt-get install silversearcher-ag ctags
 ```
 
 Install pip modules for your neovim python3

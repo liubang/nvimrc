@@ -27,7 +27,6 @@ map  <Leader>jw <Plug>(easymotion-bd-w)
 nmap <Leader>jw <Plug>(easymotion-overwin-w)
 " }}}
 
-
 " {{{ vim-buftabline
 let g:buftabline_show = 2
 let g:buftabline_numbers = 2
@@ -42,4 +41,26 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
+" }}}
+
+" {{{ tagbar
+nmap <F3> :TagbarToggle<CR>
+nnoremap <Leader>tb :TagbarToggle<CR>
+" }}}
+
+" {{{ NERDTree
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeIgnore=[
+    \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
+    \ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
+    \ ]
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <F4> :NERDTreeToggle<CR>
+inoremap <F4> <ESC>:NERDTreeToggle<CR>
+nnoremap <Leader>ft :NERDTreeToggle<CR>
+nnoremap <Leader>fd :NERDTreeFind<CR>
 " }}}
