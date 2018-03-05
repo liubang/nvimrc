@@ -8,28 +8,41 @@ Configuration for neovim/vim8.
 
 ## Dependences 
 
-Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
+**Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)**
 
-For Mac OS X:
+For Mac OS X
 
 ```shell
 brew install the_silver_searcher
+```
+
+For Ubuntu
+
+```shell
+sudo apt-get install silversearcher-ag 
+```
+
+**Install ctags**
+
+For Mac OS X
+
+```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 ```
 
 For Ubuntu
 
 ```shell
-sudo apt-get install silversearcher-ag ctags
+sudo apt-get install ctags
 ```
 
-Install pip modules for your neovim python3
+**Install pip modules for your neovim python3**
 
 ```shell
 pip3 install --user neovim jedi psutil setproctitle
 ```
 
-## For vim8
+## vim8
 
 Install vim8 with python3 and lua support.
 
@@ -76,7 +89,7 @@ git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim/init.vim ~/.vimrc
 ```
 
-## For neivim
+## neivim
 
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
