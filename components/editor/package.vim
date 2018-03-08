@@ -6,4 +6,4 @@ Plug 'dominikduda/vim_current_word'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-buftabline'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
