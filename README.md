@@ -80,6 +80,7 @@ cd vim
             --enable-cscope \
             --prefix=/usr/local
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
+sudo make install 
 ```
 
 Then install configuration.
