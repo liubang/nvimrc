@@ -60,7 +60,7 @@ Install dependencies
 sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev clang\
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-    python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git
+    python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git -y
 ```
 
 Compile and install
@@ -83,14 +83,20 @@ make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
 sudo make install 
 ```
 
-Then install configuration.
+Then install configuration
 
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim/init.vim ~/.vimrc
 ```
 
-## neivim
+## neovim
+
+Install neovim
+
+@See [https://github.com/neovim/neovim/wiki/Installing-Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+
+Install configuration
 
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
