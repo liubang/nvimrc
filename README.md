@@ -33,7 +33,7 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 For Ubuntu
 
 ```shell
-sudo apt-get install ctags
+sudo apt install exuberant-ctags
 ```
 
 **Install pip modules for your neovim python3**
