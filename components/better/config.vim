@@ -58,7 +58,6 @@ set novisualbell
 
 "set guicursor=n-v-c:hor20,i:ver50
 
-
 nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
