@@ -100,7 +100,7 @@ Install configuration
 
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
-ln -s ~/.vim .config/nvim
+ln -s ~/.vim ~/.config/nvim
 ```
 
 ## Custom configuration
