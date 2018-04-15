@@ -1,5 +1,7 @@
 # vimrc
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/iliubang/vimrc/blob/master/LICENSE)
+
 Configuration for neovim/vim8.
 
 ![screenshot](./screenshot/s1.jpg)
