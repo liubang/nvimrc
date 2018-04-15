@@ -19,6 +19,7 @@ set softtabstop=4
 set autoindent
 set smartindent
 set cindent
+set expandtab
 set mousehide
 set ruler
 set showcmd
