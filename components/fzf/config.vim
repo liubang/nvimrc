@@ -97,8 +97,35 @@ xmap <Leader>? <plug>(fzf-maps-x)
 omap <Leader>? <plug>(fzf-maps-o)
 nnoremap <Leader>ag :Ag<CR>
 nnoremap <Leader>w? :Windows<CR>
-nnoremap <Leader>f? :FZF ~<CR>:
-nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>f? :Files ~<CR>:
+nnoremap <Leader>ff :Files<CR>
+nnoremap <leader>br :Buffer<cr>
 nnoremap <Leader>bl :FZFLines<CR>
-nnoremap <C-p> :FZF<CR>
+nnoremap <leader>bt :BTags<cr>
+nnoremap <leader>ht :Helptags<cr>
+nnoremap <C-p> :Files<CR>
+" search current word with Ag
+nnoremap <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
+
+" add preview window, you can optionally install coderay for syntax-highlighting
+" when you aren't in fullscreen, press '?' to display it
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(<q-args>,
+      \                 "--hidden",
+      \                 <bang>0 ? fzf#vim#with_preview('up:75%')
+      \                         : fzf#vim#with_preview('right:50%:wrap:hidden', '?'),
+      \                 <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>,
+      \                    <bang>0 ? fzf#vim#with_preview('up:75%')
+      \                            : fzf#vim#with_preview('right:50%:wrap:hidden', '?'),
+      \                    <bang>0)
+
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)

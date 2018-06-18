@@ -1,4 +1,8 @@
 syntax on
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set shortmess=atOI
 set ignorecase
 set smartcase 
@@ -33,9 +37,6 @@ set winminheight=0
 set wildmode=list:longest,full
 set backspace=2         " 在insert模式下用退格键删除
 set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundaries
-set termencoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
 set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
 set wildignore+=*\\tmp\\*,*.exe            " Windows
