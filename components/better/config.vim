@@ -96,6 +96,10 @@ nnoremap <Leader>bk :bw<CR>
 " }}}
 
 " window {{{
+" To make vsplit put the new buffer on the right of the current buffer
+set splitright
+" To make split put the new buffer below the current buffer
+set splitbelow
 nnoremap <Leader>ww <C-W>w
 nnoremap <Leader>wr <C-W>r
 nnoremap <Leader>wd <C-W>c
