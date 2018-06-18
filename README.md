@@ -1,6 +1,7 @@
 # vimrc
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/iliubang/vimrc/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/iliubang/vimrc.svg)](https://github.com/iliubang/vimrc/releases)
 
 Configuration for neovim/vim8.
 
