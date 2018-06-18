@@ -3,7 +3,7 @@
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
-let g:lbvim_version = '0.3'
+let g:lbvim_version = '0.4-dev'
 let g:lbvim_home = $HOME.'/.vim'
 let g:lbvim_isnvim = has('nvim')
 let g:MAC = has('macunix')
@@ -24,6 +24,7 @@ Component 'editor'
 Component 'fzf'
 Component 'table'
 Component 'theme'
+Component 'go'
 Component 'python'
 Component 'clang'
 
