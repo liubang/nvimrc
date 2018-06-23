@@ -106,6 +106,25 @@ git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim ~/.config/nvim
 ```
 
+## Components
+
+**Internal components**
+
+- better
+- completor
+- startify
+- editor
+- theme
+- fzf
+
+**Optional components**
+
+- table
+- go
+- python
+- clang
+- latex
+
 ## Custom configuration
 
 ```shell
@@ -117,7 +136,10 @@ example:
 ```viml
 function! CustomPlug()
     " add a component
-    Component 'better'
+    Component 'go'
+    Component 'python'
+    Component 'clang'
+    Component 'latex'
     " or add a plugin
     Plug 'sickill/vim-monokai'
 endfunction
