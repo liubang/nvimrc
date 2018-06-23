@@ -1,18 +1,8 @@
-" if g:lbvim_isnvim
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-if g:lbvim_isnvim
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'roxma/nvim-completion-manager'
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'Shougo/deoplete.nvim', has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
+Plug 'roxma/nvim-yarp', has('nvim') ? { 'on' : [] } : {}
+Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
 
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
