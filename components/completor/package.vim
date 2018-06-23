@@ -6,7 +6,8 @@
 "   Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 if g:lbvim_isnvim
-  Plug 'roxma/nvim-completion-manager'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+ " Plug 'roxma/nvim-completion-manager'
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
