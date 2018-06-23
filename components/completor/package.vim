@@ -1,8 +1,8 @@
 Plug 'Shougo/deoplete.nvim', has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
-Plug 'roxma/nvim-yarp', has('nvim') ? { 'on' : [] } : {}
-Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
-" Plug 'Shougo/neco-vim'
-" Plug 'Shougo/neco-syntax'
+if !g:lbvim_isnvim
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
