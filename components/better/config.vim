@@ -64,6 +64,8 @@ nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 
+:let g:netrw_dirhistmax = 0
+
 " Open shell in vim {{{
 if has('nvim')
     map <Leader>' :terminal<CR>
