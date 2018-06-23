@@ -1,0 +1,1 @@
+Plug 'lervag/vimtex'

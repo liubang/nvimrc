@@ -27,5 +27,6 @@ Component 'theme'
 Component 'go'
 Component 'python'
 Component 'clang'
+Component 'latex'
 
 call core#end()
