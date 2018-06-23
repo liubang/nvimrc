@@ -15,6 +15,9 @@ if g:WINDOWS
 endif
 set runtimepath+=$HOME/.vim/core
 
+let g:lbvim_plug_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/plugged' : $HOME . '/.vim/plugged/'
+let g:lbvim_plug_path = g:lbvim_isnvim ? $HOME . '/.config/nvim/autoload/plug.vim' : $HOME . '/.vim/autoload/plug.vim'
+
 call core#begin()
 
 Component 'better'
@@ -24,9 +27,9 @@ Component 'editor'
 Component 'fzf'
 Component 'table'
 Component 'theme'
-Component 'go'
-Component 'python'
-Component 'clang'
-Component 'latex'
+"Component 'go'
+"Component 'python'
+"Component 'clang'
+"Component 'latex'
 
 call core#end()

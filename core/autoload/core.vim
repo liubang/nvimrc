@@ -20,6 +20,7 @@ function! core#end() abort
     " regist all plugs
     call s:register_plugs()
     call s:register_configs()
+
     if exists('*CustomConfig')
         call CustomConfig()
     endif
@@ -36,16 +37,16 @@ function! s:component(name, ...)
 endfunction
 
 function! s:register_plugs()
-    call plug#begin('~/.vim/plugged')
+    call plug#begin(g:lbvim_plug_home)
+
+    if exists('*CustomPlug')
+        call CustomPlug()
+    endif
 
     for l:component in g:components_loaded
         let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
         execute 'source ' . l:component_package
     endfor
-
-    if exists('*CustomPlug')
-        call CustomPlug()
-    endif
 
     call plug#end()
     call s:check_custom_plug()
@@ -65,9 +66,9 @@ function! s:check_custom_file()
 endfunction
 
 function! s:check_vim_plug()
-    if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if empty(glob(g:lbvim_plug_path))
+        silent '!curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
+            \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 endfunction
