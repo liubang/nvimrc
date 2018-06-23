@@ -9,21 +9,21 @@ let g:components_dir = g:lbvim_home . '/components'
 let g:components_loaded = []
 
 function! core#begin() abort
-    if !g:WINDOWS
-        call s:check_vim_plug()
-    endif
-    call s:define_command()
-    call s:check_custom_file()
+  if !g:WINDOWS
+    call s:check_vim_plug()
+  endif
+  call s:define_command()
+  call s:check_custom_file()
 endfunction
 
 function! core#end() abort
-    " regist all plugs
-    call s:register_plugs()
-    call s:register_configs()
+  " regist all plugs
+  call s:register_plugs()
+  call s:register_configs()
 
-    if exists('*CustomConfig')
-        call CustomConfig()
-    endif
+  if exists('*CustomConfig')
+    call CustomConfig()
+  endif
 endfunction
 
 function! s:define_command()
@@ -31,46 +31,46 @@ function! s:define_command()
 endfunction
 
 function! s:component(name, ...)
-    if index(g:components_loaded, a:name) == -1
-        call add(g:components_loaded, a:name)
-    endif
+  if index(g:components_loaded, a:name) == -1
+    call add(g:components_loaded, a:name)
+  endif
 endfunction
 
 function! s:register_plugs()
-    call plug#begin(g:lbvim_plug_home)
+  call plug#begin(g:lbvim_plug_home)
 
-    if exists('*CustomPlug')
-        call CustomPlug()
-    endif
+  if exists('*CustomPlug')
+    call CustomPlug()
+  endif
 
-    for l:component in g:components_loaded
-        let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
-        execute 'source ' . l:component_package
-    endfor
+  for l:component in g:components_loaded
+    let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
+    execute 'source ' . l:component_package
+  endfor
 
-    call plug#end()
-    call s:check_custom_plug()
+  call plug#end()
+  call s:check_custom_plug()
 endfunction
 
 function! s:register_configs()
-    for l:component in g:components_loaded
-        let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
-        execute 'source ' . l:component_config
-    endfor
+  for l:component in g:components_loaded
+    let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
+    execute 'source ' . l:component_config
+  endfor
 endfunction
 
 function! s:check_custom_file()
-    if filereadable(expand(g:dot_customfile))
-        execute 'source ' . g:dot_customfile
-    endif
+  if filereadable(expand(g:dot_customfile))
+    execute 'source ' . g:dot_customfile
+  endif
 endfunction
 
 function! s:check_vim_plug()
-    if empty(glob(g:lbvim_plug_path))
-        silent '!curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
-            \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
+  if empty(glob(g:lbvim_plug_path))
+    silent '!curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
+        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
 endfunction
 
 function! s:check_custom_plug()
