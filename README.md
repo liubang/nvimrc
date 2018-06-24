@@ -106,6 +106,12 @@ git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim ~/.config/nvim
 ```
 
+## Update
+
+```shell
+cd ~/.vim && git pull
+```
+
 ## Components
 
 **Internal components**
