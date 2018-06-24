@@ -52,7 +52,7 @@ Install vim8 with python3 and lua support.
 For Mac OS X:
 
 ```shell
-brew install vim --with-python3 --with-lua --override-system-vim
+brew install vim --with-python3 --with-lua --override-system-vim --with-client-server
 ```
 
 For Linux/Unix:
