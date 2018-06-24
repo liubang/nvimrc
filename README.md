@@ -128,7 +128,7 @@ ln -s ~/.vim ~/.config/nvim
 ## Custom configuration
 
 ```shell
-cp ~/.vim.rc/vim.custom.template ~/.vim.custom
+cp ~/.vim/vim.custom.template ~/.vim.custom
 ```
 
 example:
