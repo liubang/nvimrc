@@ -191,7 +191,14 @@ The `<leader>` key is mapped to '\<Space>'.
 
 @See: [https://github.com/scrooloose/nerdtree/blob/master/doc/NERDTree.txt](https://github.com/scrooloose/nerdtree/blob/master/doc/NERDTree.txt)
 
-
 ### nerdcommenter
 
 @See: [https://github.com/scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+
+### vimtex
+
+@See: [https://github.com/lervag/vimtex/wiki/Usage](https://github.com/lervag/vimtex/wiki/Usage)
+
+### vim-go
+
+@See: [https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt](https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt)
