@@ -10,7 +10,7 @@ set scrolljump=5
 set scrolloff=3
 set hidden
 set history=100
-set nowrap
+set wrap
 set hlsearch
 set nowritebackup
 set noundofile
