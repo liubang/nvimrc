@@ -127,6 +127,7 @@ cd ~/.vim && git pull
 
 - table
 - go
+- php
 - python
 - clang
 - latex
