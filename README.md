@@ -203,3 +203,7 @@ The `<leader>` key is mapped to '\<Space>'.
 ### vim-go
 
 @See: [https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt](https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt)
+
+### phpcd.vim
+
+@See: [https://github.com/lvht/phpcd.vim](https://github.com/lvht/phpcd.vim)
