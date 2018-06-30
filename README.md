@@ -207,3 +207,7 @@ The `<leader>` key is mapped to '\<Space>'.
 ### phpcd.vim
 
 @See: [https://github.com/lvht/phpcd.vim](https://github.com/lvht/phpcd.vim)
+
+### deoplete-clangx
+
+@See: [https://github.com/Shougo/deoplete-clangx](https://github.com/Shougo/deoplete-clangx)

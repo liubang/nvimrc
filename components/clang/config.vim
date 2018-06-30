@@ -1,7 +1,3 @@
-if g:lbvim_isnvim
-else
-endif
-
 " {{{ clang-format
 let g:clang_format#detect_style_file = 1
 " vim-clang-format does nothing when .clang-format is not found.
@@ -14,3 +10,10 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 " }}}
+
+if !exists('g:neoinclude#exts')
+  let g:neoinclude#exts = {}
+endif
+let g:neoinclude#exts.cpp = ['', 'h', 'hpp', 'hxx']
+let g:neoinclude#exts.c = ['', 'h', 'hpp', 'hxx']
+

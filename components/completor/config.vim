@@ -17,14 +17,25 @@ try
         \ 'tex' : g:vimtex#re#deoplete,
         \})
 catch
-
 endtry
+
+if !g:lbvim_isnvim
+  if has('python')
+    set pyxversion=2
+  elseif has('python3')
+    set pyxversion=3
+  endif
+endif
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabCrMapping = 1
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
-let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
-let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsSnippetsDir = g:lbvim_plug_home . 'vim-snippets/UltiSnips'
+if has('python')
+  let g:UltiSnipsUsePythonVersion = 2
+elseif has('python3')
+  let g:UltiSnipsUsePythonVersion = 3
+endif
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsListSnippets = '<C-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
