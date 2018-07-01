@@ -12,22 +12,31 @@ let g:NERDCommentEmptyLines = 1
 nnoremap <C-\/> :NERDComToggleComment<cr>
 
 " easymotion {{{
-map <Leader><Leader> <Plug>(easymotion-prefix)
-" Consistent with spacemacs
-" <Leader>f{char} to move to {char}
-map  <Leader>jj <Plug>(easymotion-bd-f)
-nmap <Leader>jj <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap <Leader>jJ <Plug>(easymotion-overwin-f2)
-" Jump to line
-map <Leader>jl <Plug>(easymotion-bd-jk)
-nmap <Leader>jl <Plug>(easymotion-overwin-line)
-" Jump to word
-map  <Leader>jw <Plug>(easymotion-bd-w)
-nmap <Leader>jw <Plug>(easymotion-overwin-w)
+" map <Leader><Leader> <Plug>(easymotion-prefix)
+map <Leader>ll <Plug>(easymotion-lineforward)
+map <Leader>jj <Plug>(easymotion-j)
+map <Leader>kk <Plug>(easymotion-k)
+map <Leader>hh <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+" Move to word
+map  <Leader>ww <Plug>(easymotion-bd-w)
+nmap <Leader>ww <Plug>(easymotion-overwin-w)
 " }}}
 
 " {{{ vim-buftabline
+set hidden
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+
 let g:buftabline_show = 2
 let g:buftabline_numbers = 2
 
