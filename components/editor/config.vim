@@ -54,7 +54,11 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 " {{{ tagbar
 nmap <F3> :TagbarToggle<CR>
-nnoremap <Leader>tb :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
+" Jump to Tagbar window if already open
+nnoremap <leader>tj :TagbarOpen j<CR>
+" Close the Tagbar window if it is open
+nnoremap <leader>tc :TagbarClose<CR>
 " }}}
 
 " {{{ NERDTree
