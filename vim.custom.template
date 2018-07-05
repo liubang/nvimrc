@@ -3,7 +3,11 @@
 " vim: et ts=2 sts=2 sw=2 ft=vim
 
 function! CustomPlug()
-    " Component 'better'
+    Component 'go'
+    Component 'php'
+    Component 'clang'
+    Component 'latex'
+    Component 'python'
     " Plug 'Rip-Rip/clang_complete'
 endfunction
 

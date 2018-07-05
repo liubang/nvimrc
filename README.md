@@ -144,11 +144,12 @@ example:
 function! CustomPlug()
     " add a component
     Component 'go'
+    Component 'php'
     Component 'python'
     Component 'clang'
     Component 'latex'
     " or add a plugin
-    Plug 'sickill/vim-monokai'
+    " Plug 'sickill/vim-monokai'
 endfunction
 
 function! CustomConfig()
