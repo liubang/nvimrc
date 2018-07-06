@@ -39,7 +39,7 @@ For Ubuntu
 sudo apt install exuberant-ctags
 ```
 
-**Install pip modules for your neovim python3**
+**Install pip modules**
 
 ```shell
 pip3 install --user neovim jedi psutil setproctitle

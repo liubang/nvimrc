@@ -1,1 +1,1 @@
-setlocal cindent tabstop=4 shiftwidth=4 softtabstop=4
+setlocal expandtab cindent tabstop=4 shiftwidth=4 softtabstop=4
