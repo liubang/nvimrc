@@ -1,7 +1,9 @@
-Plug 'Shougo/deoplete.nvim', has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
 if !g:lbvim_isnvim
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
+else
+  Plug 'Shougo/deoplete.nvim'
 endif
 
 Plug 'ervandew/supertab'
