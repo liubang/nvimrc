@@ -37,7 +37,8 @@ if has('python')
 elseif has('python3')
   let g:UltiSnipsUsePythonVersion = 3
 endif
-let g:UltiSnipsExpandTrigger = '<C-k>'
+"let g:UltiSnipsExpandTrigger = '<C-k>'
+let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsListSnippets = '<C-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
