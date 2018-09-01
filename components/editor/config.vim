@@ -52,6 +52,7 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
 " {{{ tagbar
+let g:tagbar_iconchars = ['+', '-']
 nmap <F3> :TagbarToggle<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
@@ -75,4 +76,16 @@ nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
+" }}}
+
+" {{{ vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}}
+
+" {{{ indentLine
+let g:indentLine_char = '¦'
+let g:indentLine_enabled = 0
 " }}}

@@ -125,7 +125,7 @@ cd ~/.vim && git pull
 
 **Optional components**
 
-- table
+- markdown
 - go
 - php
 - python
@@ -138,7 +138,7 @@ cd ~/.vim && git pull
 cp ~/.vim/vim.custom.template ~/.vim.custom
 ```
 
-example:
+**example:**
 
 ```viml
 function! CustomPlug()
@@ -162,7 +162,7 @@ endfunction
 
 ## Usage
 
-**About Leader Key**
+**About Leader Key:**
 
 The `<leader>` key is mapped to '\<Space>'.
 
@@ -175,7 +175,7 @@ The `<leader>` key is mapped to '\<Space>'.
 | <leader>ft       | Toggle nerdtree                                                     |
 | F4               | Toggle nerdtree                                                     |
 | F3               | Toggle tagbar                                                       |
-| <leader>tm       | Toggle vim table mode                                               |
+| <leader>tf       | Format the table under the cursor                                   |
 | <leader>cc       | Comment out the current line or text selected in visual mode        |
 | <leader>cu       | Uncomments the selected line(s)                                     |
 | <leader>cn       | Same as cc but forces nesting                                       |

@@ -6,4 +6,7 @@ Plug 'dominikduda/vim_current_word'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-buftabline'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'junegunn/vim-easy-align'
+Plug 'Yggdroot/indentLine'
+Plug 'lfv89/vim-interestingwords'
