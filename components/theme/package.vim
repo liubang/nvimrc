@@ -1,2 +1,2 @@
 Plug 'iliubang/yadracula'
-Plug 'iliubang/eleline.vim'
+Plug 'liuchengxu/eleline.vim'
