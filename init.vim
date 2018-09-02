@@ -26,10 +26,5 @@ Component 'startify'
 Component 'editor'
 Component 'fzf'
 Component 'theme'
-"Component 'table'
-"Component 'go'
-"Component 'python'
-"Component 'clang'
-"Component 'latex'
 
 call core#end()

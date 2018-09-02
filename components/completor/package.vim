@@ -9,3 +9,6 @@ endif
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'iliubang/vim-snippets'
+
+" for viml
+Plug 'Shougo/neco-vim', { 'for': 'vim' }
