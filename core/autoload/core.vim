@@ -67,7 +67,7 @@ endfunction
 
 function! s:check_vim_plug()
   if empty(glob(g:lbvim_plug_path))
-    silent '!curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
+    execute 'silent !curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
