@@ -9,4 +9,5 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
-Plug 'lfv89/vim-interestingwords'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'tpope/vim-eunuch'
