@@ -9,5 +9,12 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" Vim sugar for the UNIX shell commands that need it the most. Features include:
 Plug 'tpope/vim-eunuch'
+" textobj
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java', 'php'] }
+Plug 'sgur/vim-textobj-parameter'
+

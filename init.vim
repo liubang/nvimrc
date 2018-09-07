@@ -26,6 +26,7 @@ Component 'better'
 Component 'completor'
 Component 'startify'
 Component 'editor'
+Component 'tags'
 Component 'fzf'
 Component 'theme'
 
