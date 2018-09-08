@@ -37,3 +37,5 @@ let g:gutentags_auto_add_gtags_cscope = 0
 
 nmap <Leader>mc :GutentagsUpdate<CR>
 nmap <Leader>mg :GutentagsUpdate!<CR>
+
+let g:gutentags_plus_nomap = 0

@@ -3,7 +3,7 @@
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
-let g:lbvim_version = '0.5'
+let g:lbvim_version = '0.6-dev'
 let g:lbvim_isnvim = has('nvim')
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
