@@ -8,6 +8,7 @@ let g:lbvim_isnvim = has('nvim')
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
 let g:WINDOWS = has('win32') || has('win64')
+let g:TMUX = !empty($TMUX)
 
 let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim/'
 let g:lbvim_plug_home = g:lbvim_home . 'plugged/'
@@ -29,5 +30,7 @@ Component 'editor'
 Component 'tags'
 Component 'fzf'
 Component 'theme'
+Component 'tmux'
+Component 'git'
 
 call core#end()
