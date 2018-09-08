@@ -52,7 +52,7 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
 " {{{ tagbar
-let g:tagbar_iconchars = ['+', '-']
+let g:tagbar_iconchars = ['+', '~']
 nmap <F3> :TagbarToggle<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
@@ -65,7 +65,7 @@ nnoremap <leader>tc :TagbarClose<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowCollapsible = '~'
 let g:NERDTreeIgnore=[
     \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
     \ '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$',
