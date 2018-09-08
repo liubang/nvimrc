@@ -123,3 +123,7 @@ nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
 nnoremap <Leader>w2 <C-W>v
 " }}}
+
+" {{{ copy from vim to system clipboard
+set clipboard+=unnamedplus
+" }}}
