@@ -35,7 +35,32 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 0
 
+" create tags
 nmap <Leader>mc :GutentagsUpdate<CR>
-nmap <Leader>mg :GutentagsUpdate!<CR>
+nmap <Leader>mu :GutentagsUpdate!<CR>
 
 let g:gutentags_plus_nomap = 0
+
+" preview tag
+nmap <Leader>mt :PreviewTag<CR>
+" Preview the function signature circularly in the command line
+nmap <Leader>ms :PreviewSignature<CR>
+" Close the preview window
+nmap <Leader>mq :PreviewClose<CR>
+
+if has('autocmd')
+  function! s:quickfix_keymap()
+    if &buftype != 'quickfix'
+      return
+    endif
+    nmap <silent><buffer> p :PreviewQuickfix<CR>
+    nmap <silent><buffer> c :PreviewClose<CR>
+    nmap <silent><buffer> q :close<CR>
+    setlocal nonumber
+  endfunc
+  
+  augroup TagQuickfix
+    autocmd!
+    autocmd FileType qf call s:quickfix_keymap()
+  augroup END
+endif
