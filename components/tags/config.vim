@@ -16,6 +16,11 @@ endif
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
 
@@ -29,11 +34,6 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 0
-
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
 
 nmap <Leader>mc :GutentagsUpdate<CR>
 nmap <Leader>mg :GutentagsUpdate!<CR>
