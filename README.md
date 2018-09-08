@@ -25,18 +25,20 @@ For Ubuntu
 sudo apt-get install silversearcher-ag 
 ```
 
-**Install ctags**
+**Install ctags/gtags**
 
 For Mac OS X
 
 ```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew install global --with-ctags
 ```
 
 For Ubuntu
 
 ```shell
 sudo apt install exuberant-ctags
+sudo apt install global
 ```
 
 **Install pip modules**
