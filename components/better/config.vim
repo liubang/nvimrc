@@ -57,6 +57,7 @@ set foldcolumn=0
 " 禁用报警声和图标
 set noerrorbells
 set novisualbell
+set t_vb=
 
 " 设置光标为unserscore
 " set guicursor=n-v-c:hor20,i:ver50
@@ -65,10 +66,24 @@ nnoremap <Space> <NOP>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 
-:let g:netrw_dirhistmax = 0
+let g:netrw_dirhistmax = 0
+
+" https://github.com/wsdjeg/vim-galore-zh_cn#%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8%E5%BD%93%E5%89%8D%E8%A1%8C
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+
+" 防止水平滑动的时候失去选择
+xnoremap <  <gv
+xnoremap >  >gv
+
+" https://github.com/wsdjeg/vim-galore-zh_cn#%E8%81%AA%E6%98%8E%E5%9C%B0%E4%BD%BF%E7%94%A8-n-%E5%92%8C-n
+nnoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+
+" let loaded_matchparen = 1
 
 " Open shell in vim {{{
-if has('nvim')
+if g:lbvim_isnvim
     map <Leader>' :terminal<CR>
 else
     map <Leader>' :shell<CR>

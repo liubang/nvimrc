@@ -19,3 +19,6 @@ Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
 Plug 'sgur/vim-textobj-parameter'
 " asyncrun
 Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'

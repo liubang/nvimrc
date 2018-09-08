@@ -5,6 +5,8 @@
 scriptencoding utf-8
 let g:lbvim_version = '0.6-dev'
 let g:lbvim_isnvim = has('nvim')
+let g:has_python = has('python')
+let g:has_python3 = has('python3')
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
 let g:WINDOWS = has('win32') || has('win64')
@@ -13,8 +15,6 @@ let g:TMUX = !empty($TMUX)
 let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim/'
 let g:lbvim_plug_home = g:lbvim_home . 'plugged/'
 let g:lbvim_plug_path = g:lbvim_home . 'autoload/plug.vim'
-" let g:lbvim_plug_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/plugged/' : $HOME . '/.vim/plugged/'
-" let g:lbvim_plug_path = g:lbvim_isnvim ? $HOME . '/.config/nvim/autoload/plug.vim' : $HOME . '/.vim/autoload/plug.vim'
 
 if g:WINDOWS
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -30,7 +30,5 @@ Component 'editor'
 Component 'tags'
 Component 'fzf'
 Component 'theme'
-Component 'tmux'
-Component 'git'
 
 call core#end()

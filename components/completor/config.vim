@@ -21,9 +21,9 @@ catch
 endtry
 
 if !g:lbvim_isnvim
-  if has('python')
+  if g:has_python
     set pyxversion=2
-  elseif has('python3')
+  elseif g:has_python3
     set pyxversion=3
   endif
 endif
@@ -32,9 +32,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabCrMapping = 1
 
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
-if has('python')
+if g:has_python
   let g:UltiSnipsUsePythonVersion = 2
-elseif has('python3')
+elseif g:has_python3
   let g:UltiSnipsUsePythonVersion = 3
 endif
 "let g:UltiSnipsExpandTrigger = '<C-k>'

@@ -124,9 +124,7 @@ cd ~/.vim && git pull
 - editor
 - theme
 - fzf
-- tmux
 - tags
-- git
 
 **Optional components**
 
@@ -136,7 +134,6 @@ cd ~/.vim && git pull
 - python
 - clang
 - latex
-- emoji
 
 ## Custom configuration
 
