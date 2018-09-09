@@ -9,7 +9,7 @@ let g:has_python = has('python')
 let g:has_python3 = has('python3')
 let g:MAC = has('macunix')
 let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
-let g:WINDOWS = has('win32') || has('win64')
+let g:WINDOWS = has('win32') || has('win64') || has('win16') || has('win95')
 let g:TMUX = !empty($TMUX)
 
 let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim/'
