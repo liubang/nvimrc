@@ -120,7 +120,6 @@ cd ~/.vim && git pull
 
 - better
 - completor
-- startify
 - editor
 - theme
 - fzf
