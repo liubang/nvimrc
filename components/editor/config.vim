@@ -89,3 +89,7 @@ nmap ga <Plug>(EasyAlign)
 let g:indentLine_char = '¦'
 let g:indentLine_enabled = 0
 " }}}
+
+" {{{ asyncrun
+let g:asyncrun_open = 8
+" }}}
