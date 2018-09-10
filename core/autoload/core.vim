@@ -45,7 +45,10 @@ function! s:register_plugs()
 
   for l:component in g:components_loaded
     let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
-    execute 'source ' . l:component_package
+    try
+      execute 'source ' . l:component_package
+    catch
+    endtry
   endfor
 
   call plug#end()
@@ -55,7 +58,10 @@ endfunction
 function! s:register_configs()
   for l:component in g:components_loaded
     let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
-    execute 'source ' . l:component_config
+    try
+      execute 'source ' . l:component_config
+    catch
+    endtry
   endfor
 endfunction
 
