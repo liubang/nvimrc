@@ -1,3 +1,3 @@
 " {{{ vim-markdown
-nmap <Leader>tf : TableFormat<CR>
+autocmd FileType markdown,md nmap <Leader>tf : TableFormat<CR>
 " }}}
