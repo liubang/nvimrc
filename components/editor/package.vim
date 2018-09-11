@@ -22,3 +22,5 @@ Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+" vim-caser
+Plug 'arthurxavierx/vim-caser'
