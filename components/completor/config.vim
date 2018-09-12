@@ -1,6 +1,7 @@
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
 let g:neosnippet#enable_completed_snippet = 1
+set completeopt-=preview
 
 " Define the input_patterns mapping so that it can be configured
 if !exists('g:deoplete#omni#input_patterns')
@@ -17,7 +18,6 @@ try
         \ 'tex' : g:vimtex#re#deoplete,
         \})
 catch
-
 endtry
 
 if !g:lbvim_isnvim
