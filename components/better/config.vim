@@ -80,7 +80,7 @@ xnoremap >  >gv
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:< 
+set listchars=tab:\|\ ,trail:·,extends:»,precedes:«,eol:¬
 set list
 
 " let loaded_matchparen = 1
