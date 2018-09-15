@@ -6,7 +6,7 @@ function! s:tags_init()
   " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
   let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project', '.tags']
   " 开启高级命令
-  let g:gutentags_define_advanced_commands = 1
+  " let g:gutentags_define_advanced_commands = 1
 
   " 同时开启 ctags 和 gtags 支持：
   let g:gutentags_modules = []
