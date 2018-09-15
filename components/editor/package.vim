@@ -3,9 +3,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dominikduda/vim_current_word'
-Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-buftabline'
 Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 Plug 'Yggdroot/indentLine'
