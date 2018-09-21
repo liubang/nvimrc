@@ -26,8 +26,8 @@ call core#begin()
 Component 'better'
 Component 'completor'
 Component 'editor'
-Component 'tags'
 Component 'fzf'
 Component 'theme'
+Component 'tags'
 
 call core#end()
