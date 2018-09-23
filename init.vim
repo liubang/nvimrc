@@ -3,6 +3,11 @@
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
+
+if &compatible
+ set nocompatible
+endif
+
 let g:lbvim_version = '0.6-dev'
 let g:lbvim_isnvim = has('nvim')
 let g:has_python = has('python')
