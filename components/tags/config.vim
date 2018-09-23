@@ -2,6 +2,7 @@
 "  init tags
 "----------------------------------------------------------------------
 function! s:tags_init()
+
   " let g:gutentags_trace = 1
 
   " let $GTAGSLABEL = 'native-pygments'

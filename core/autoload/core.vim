@@ -46,8 +46,9 @@ function! s:register_plugs()
   for l:component in g:components_loaded
     let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
     try
-      execute 'source ' . l:component_package
+      execute 'so ' . l:component_package
     catch
+      return utils#err(v:exception, l:component_package)
     endtry
   endfor
 
@@ -59,15 +60,16 @@ function! s:register_configs()
   for l:component in g:components_loaded
     let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
     try
-      execute 'source ' . l:component_config
+      execute 'so ' . l:component_config
     catch
+      return utils#err(v:exception, l:component_config)
     endtry
   endfor
 endfunction
 
 function! s:check_custom_file()
   if filereadable(expand(g:dot_customfile))
-    execute 'source ' . g:dot_customfile
+    execute 'so ' . g:dot_customfile
   endif
 endfunction
 
