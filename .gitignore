@@ -2,4 +2,3 @@ custom/*
 .vim
 doc
 plugged
-autoload
