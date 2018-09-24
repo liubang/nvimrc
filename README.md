@@ -146,13 +146,13 @@ cp ~/.vim/vim.custom.template ~/.vim.custom
 ```viml
 function! CustomPlug()
     " add a component
-    Component 'go'
-    Component 'php'
-    Component 'python'
-    Component 'clang'
-    Component 'latex'
+    CM 'go'
+    CM 'php'
+    CM 'python'
+    CM 'clang'
+    CM 'latex'
     " or add a plugin
-    " Plug 'sickill/vim-monokai'
+    " MMP 'sickill/vim-monokai'
 endfunction
 
 function! CustomConfig()

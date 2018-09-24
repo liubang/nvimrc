@@ -1,3 +1,3 @@
-Plug 'iliubang/yadracula'
-Plug 'liuchengxu/eleline.vim'
-Plug 'mhinz/vim-startify'
+MMP 'iliubang/yadracula'
+MMP 'liuchengxu/eleline.vim'
+MMP 'mhinz/vim-startify'

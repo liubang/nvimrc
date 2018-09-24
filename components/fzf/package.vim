@@ -1,2 +1,2 @@
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+MMP 'junegunn/fzf.vim'

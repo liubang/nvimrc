@@ -1,24 +1,24 @@
-Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'dominikduda/vim_current_word'
-Plug 'ap/vim-buftabline'
-Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
-Plug 'Yggdroot/indentLine'
+MMP 'easymotion/vim-easymotion'
+MMP 'jiangmiao/auto-pairs'
+MMP 'tpope/vim-surround'
+MMP 'terryma/vim-multiple-cursors'
+MMP 'dominikduda/vim_current_word'
+MMP 'ap/vim-buftabline'
+MMP 'majutsushi/tagbar'
+MMP 'scrooloose/nerdcommenter'
+MMP 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+MMP 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+MMP 'Yggdroot/indentLine'
 " Vim sugar for the UNIX shell commands that need it the most. Features include:
-Plug 'tpope/vim-eunuch'
+MMP 'tpope/vim-eunuch'
 " textobj
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
-Plug 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
+MMP 'kana/vim-textobj-user'
+MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
+MMP 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
 " asyncrun
-Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
+MMP 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 " git
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
+MMP 'tpope/vim-fugitive'
+MMP 'junegunn/gv.vim'
 " vim-caser
-" Plug 'arthurxavierx/vim-caser'
+" MMP 'arthurxavierx/vim-caser'

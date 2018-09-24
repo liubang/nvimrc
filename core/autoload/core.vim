@@ -27,7 +27,8 @@ function! core#end() abort
 endfunction
 
 function! s:define_command()
-  command! -nargs=+ -bar Component  call s:component(<args>)
+  command! -nargs=+ -bar MMP call plug#(<args>)
+  command! -nargs=+ -bar CM call s:component(<args>)
 endfunction
 
 function! s:component(name, ...)

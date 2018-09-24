@@ -1,1 +1,1 @@
-Plug 'lervag/vimtex', {'for': 'tex'}
+MMP 'lervag/vimtex', {'for': 'tex'}

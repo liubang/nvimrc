@@ -1,3 +1,3 @@
-Plug 'godlygeek/tabular', { 'for': ['markdown', 'md'] }
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
-Plug 'fszymanski/deoplete-emoji', { 'for': ['markdown', 'gitcommit'] }
+MMP 'godlygeek/tabular', { 'for': ['markdown', 'md'] }
+MMP 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
+MMP 'fszymanski/deoplete-emoji', { 'for': ['markdown', 'gitcommit'] }

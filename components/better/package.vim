@@ -1,4 +1,4 @@
 if g:TMUX
-  Plug 'tmux-plugins/vim-tmux-focus-events'
-  Plug 'roxma/vim-tmux-clipboard'
+  MMP 'tmux-plugins/vim-tmux-focus-events'
+  MMP 'roxma/vim-tmux-clipboard'
 endif

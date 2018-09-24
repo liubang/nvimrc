@@ -1,7 +1,7 @@
 " Filetype: python
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'kalekundert/vim-coiled-snake', { 'for': 'python' }  " Folding
-Plug 'tweekmonster/braceless.vim', { 'for': 'python' }    " Indents
-Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' } " Text objects and motions
+MMP 'davidhalter/jedi-vim', { 'for': 'python' }
+MMP 'zchee/deoplete-jedi', { 'for': 'python' }
+MMP 'vim-python/python-syntax', { 'for': 'python' }
+MMP 'kalekundert/vim-coiled-snake', { 'for': 'python' }  " Folding
+MMP 'tweekmonster/braceless.vim', { 'for': 'python' }    " Indents
+MMP 'jeetsukumaran/vim-pythonsense', { 'for': 'python' } " Text objects and motions

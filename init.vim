@@ -28,11 +28,11 @@ set runtimepath+=$HOME/.vim/core
 
 call core#begin()
 
-Component 'better'
-Component 'completor'
-Component 'editor'
-Component 'fzf'
-Component 'theme'
-Component 'tags'
+CM 'better'
+CM 'completor'
+CM 'editor'
+CM 'fzf'
+CM 'theme'
+CM 'tags'
 
 call core#end()
