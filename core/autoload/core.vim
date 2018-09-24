@@ -5,7 +5,6 @@
 scriptencoding utf-8
 
 let g:dot_customfile = $HOME . '/.vim.custom'
-let g:components_dir = g:lbvim_home . '/components'
 let g:components_loaded = []
 
 function! core#begin() abort
