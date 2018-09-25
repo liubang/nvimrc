@@ -17,23 +17,26 @@ let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
 let g:WINDOWS = has('win32') || has('win64') || has('win16') || has('win95')
 let g:TMUX = !empty($TMUX)
 
-let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim/'
-let g:lbvim_plug_home = g:lbvim_home . 'plugged/'
-let g:lbvim_plug_path = g:lbvim_home . 'autoload/plug.vim'
+let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim'
+let g:lbvim_plug_home = g:lbvim_home . '/plugged/'
+let g:lbvim_plug_path = g:lbvim_home . '/core/autoload/plug.vim'
 let g:components_dir = g:lbvim_home . '/com'
 
 if g:WINDOWS
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
-set runtimepath+=$HOME/.vim/core
+
+if g:lbvim_isnvim
+  set runtimepath+=$HOME/.config/nvim/core
+else
+  set runtimepath+=$HOME/.vim/core
+endif
 
 call core#begin()
-
-CM 'better'
-CM 'completor'
-CM 'editor'
-CM 'fzf'
-CM 'theme'
-CM 'tags'
-
+  CM 'better'
+  CM 'completor'
+  CM 'editor'
+  CM 'fzf'
+  CM 'theme'
+  CM 'tags'
 call core#end()
