@@ -3,6 +3,8 @@
 "----------------------------------------------------------------------
 function! s:tags_init()
 
+  " call gutentags#setup_gutentags()
+
   " let g:gutentags_trace = 1
 
   " let $GTAGSLABEL = 'native-pygments'

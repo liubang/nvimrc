@@ -17,7 +17,7 @@ let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
 let g:WINDOWS = has('win32') || has('win64') || has('win16') || has('win95')
 let g:TMUX = !empty($TMUX)
 
-let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim/' : $HOME . '/.vim'
+let g:lbvim_home = g:lbvim_isnvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'
 let g:lbvim_plug_home = g:lbvim_home . '/plugged/'
 let g:lbvim_plug_path = g:lbvim_home . '/core/autoload/plug.vim'
 let g:components_dir = g:lbvim_home . '/com'
