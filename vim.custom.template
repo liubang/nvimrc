@@ -8,7 +8,7 @@ function! CustomPlug()
   CM 'clang'
   CM 'latex'
   CM 'python'
-  " Plug 'Rip-Rip/clang_complete'
+  " MMP 'Rip-Rip/clang_complete'
 endfunction
 
 function! CustomConfig()
