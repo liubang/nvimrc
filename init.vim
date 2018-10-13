@@ -34,9 +34,10 @@ endif
 
 call core#begin()
   CM 'better'
+  CM 'theme'
   CM 'completor'
   CM 'editor'
   CM 'fzf'
-  CM 'theme'
   CM 'tags'
+  CM 'docker'
 call core#end()
