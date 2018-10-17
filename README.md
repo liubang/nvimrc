@@ -32,6 +32,7 @@ For Mac OS X
 ```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install global --with-ctags
+ctags -f ~/.cache/tags/.tags -R --c++-kinds=+p --fields=+iaS --extras=+q /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
 ```
 
 For Ubuntu
@@ -40,6 +41,7 @@ For Ubuntu
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags && ./autogen.sh && ./configure && make && sudo make install
 sudo apt install global
+ctags -f ~/.cache/tags/.tags -R --c++-kinds=+p --fields=+iaS --extras=+q /usr/include
 ```
 
 **Install pip modules**
