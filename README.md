@@ -32,7 +32,7 @@ For Mac OS X
 ```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install global --with-ctags
-ctags -f ~/.cache/tags/.tags -R --c++-kinds=+p --fields=+iaS --extras=+q /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+ctags -f ~/.cache/tags/.tags -R --c++-kinds=+p --fields=+iaS --extras=+q /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers
 ```
 
 For Ubuntu
