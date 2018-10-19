@@ -14,10 +14,6 @@ try
   call deoplete#custom#option('ignore_sources', {'_': ['around']})
   call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
   call deoplete#custom#source('UltiSnips', 'rank', 1000)
-  call deoplete#custom#var('omni', 'input_patterns', {
-        \ 'tex' : g:vimtex#re#deoplete,
-        \ 'r': '[^. *\t]\.\w*',
-        \})
 catch
   let s:path = expand('<sfile>')
   call utils#err(v:exception, s:path)
