@@ -126,3 +126,7 @@ call textobj#user#plugin('line', {
 \ })
 
 " }}}
+
+" {{{ AsyncRun
+nnoremap <Leader>ar :AsyncRun<Space>
+" }}}
