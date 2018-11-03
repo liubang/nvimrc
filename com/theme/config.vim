@@ -25,7 +25,19 @@ if (empty($TMUX))
   endif
 endif
 
+" status line
 set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
 set background=dark
 colorscheme onedark
 " colorscheme yadracula
@@ -39,7 +51,7 @@ let g:vim#startify#header = [
                             \'      ┴─┘┴└─┘└─┘┴ ┴┘└┘└─┘ ',
                             \'													',
                             \'      Author: liubang <it.liubang@gmail.com> ',
-                            \'        Site: https://iliubang.github.io     ',
+                            \'        Site: https://iliubang.cn            ',
                             \'     Version: ' . g:lbvim_version,
                             \	]
 let g:vim#startify#order = [
@@ -58,3 +70,5 @@ let g:vim#startify#order = [
 let g:startify_custom_header = g:vim#startify#header
 let g:startify_list_order = g:vim#startify#order
 let g:startify_change_to_vcs_root = 1
+
+
