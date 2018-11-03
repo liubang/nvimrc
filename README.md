@@ -13,7 +13,7 @@ Configuration for neovim/vim8.
 
 **Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)**
 
-For Mac OS X
+For Mac OS X (Recommend iTerm2)
 
 ```shell
 brew install the_silver_searcher
