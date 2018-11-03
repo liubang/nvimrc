@@ -57,6 +57,28 @@ function! s:tags_init()
   nmap <Leader>ms :PreviewSignature<CR>
   " Close the preview window
   nmap <Leader>mq :PreviewClose<CR>
+
+  " disable the default keymaps 
+  let g:gutentags_plus_nomap = 1
+  " Find symbol (reference) under cursor
+  noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
+  " Find symbol definition under cursor
+  noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
+  " Functions called by this function
+  noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
+  " Functions calling this function
+  noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
+  " Find text string under cursor
+  noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
+  " Find egrep pattern under cursor
+  noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
+  " Find file name under cursor
+  noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+  " Find files #including the file name under cursor
+  noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+  " Find places where current symbol is assigned
+  noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
+
 endfunc
 
 "----------------------------------------------------------------------

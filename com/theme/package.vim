@@ -1,3 +1,5 @@
-MMP 'iliubang/yadracula'
+" MMP 'iliubang/yadracula'
 MMP 'liuchengxu/eleline.vim'
 MMP 'mhinz/vim-startify'
+MMP 'joshdick/onedark.vim'
+MMP 'sheerun/vim-polyglot'
