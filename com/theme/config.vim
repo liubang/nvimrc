@@ -25,7 +25,9 @@ if (empty($TMUX))
   endif
 endif
 
-" status line
+" 总是显示行号
+set number
+" 总是显示状态栏
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'onedark',
