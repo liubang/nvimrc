@@ -17,11 +17,13 @@ if (empty($TMUX))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
   if (has("termguicolors"))
+  " fix bug for vim
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
     set termguicolors
+  else
+    set t_Co=256
   endif
 endif
 
@@ -30,7 +32,7 @@ set number
 " 总是显示状态栏
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -47,30 +49,22 @@ colorscheme onedark
 " let g:yadracula_contrast_dark='hard'
 
 " startify
-let g:vim#startify#header = [
+let g:startify_custom_header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',
                             \'      ┴─┘┴└─┘└─┘┴ ┴┘└┘└─┘ ',
-                            \'													',
+                            \'                          ',
                             \'      Author: liubang <it.liubang@gmail.com> ',
                             \'        Site: https://iliubang.cn            ',
                             \'     Version: ' . g:lbvim_version,
-                            \	]
-let g:vim#startify#order = [
-                \ ['   Recent Files:'],
-                \ 'files',
-                \ ['   Project:'],
-                \ 'dir',
-                \ ['   Sessions:'],
-                \ 'sessions',
-                \ ['   Bookmarks:'],
-                \ 'bookmarks',
-                \ ['   Commands:'],
-                \ 'commands',
-                \ ]
-                
-let g:startify_custom_header = g:vim#startify#header
-let g:startify_list_order = g:vim#startify#order
+                            \ ]
+
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+
 let g:startify_change_to_vcs_root = 1
-
-
