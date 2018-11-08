@@ -22,3 +22,5 @@ MMP 'tpope/vim-fugitive'
 MMP 'junegunn/gv.vim'
 " vim-caser
 " MMP 'arthurxavierx/vim-caser'
+" MMP 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }

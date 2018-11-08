@@ -130,3 +130,11 @@ call textobj#user#plugin('line', {
 " {{{ AsyncRun
 nnoremap <Leader>ar :AsyncRun<Space>
 " }}}
+
+" {{{ undotree
+nnoremap <Leader>ut :MundoToggle<CR>
+let g:mundo_width = 40
+let g:mundo_preview_height = 30
+let g:mundo_right = 1
+let g:mundo_tree_statusline = "undo tree"
+" }}}
