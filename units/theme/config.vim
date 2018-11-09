@@ -1,14 +1,3 @@
-" if has("termguicolors")
-  " fix bug for vim
-  " set t_8f=^[[38;2;%lu;%lu;%lum
-  " set t_8b=^[[48;2;%lu;%lu;%lum
-
-  " enable true color
-  " set termguicolors
-" else
-  " set t_Co=256
-" endif
-
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -39,7 +28,7 @@ set number
 " 总是显示状态栏
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -49,11 +38,10 @@ let g:lightline = {
       \ },
       \ }
 
+colorscheme gruvbox
 set background=dark
-colorscheme onedark
-" colorscheme yadracula
-" let g:yadracula_contrast='hard'
-" let g:yadracula_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
+" colorscheme onedark
 
 " startify
 let g:startify_custom_header = [

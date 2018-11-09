@@ -2,5 +2,6 @@
 " MMP 'liuchengxu/eleline.vim'
 MMP 'itchyny/lightline.vim'
 MMP 'mhinz/vim-startify'
-MMP 'joshdick/onedark.vim'
+MMP 'morhetz/gruvbox'
+" MMP 'joshdick/onedark.vim'
 MMP 'sheerun/vim-polyglot'
