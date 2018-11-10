@@ -41,6 +41,7 @@ let g:lightline = {
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_indent_guides=1
 " colorscheme onedark
 
 " startify
