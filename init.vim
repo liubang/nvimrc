@@ -15,7 +15,7 @@ if &compatible
  set nocompatible
 endif
 
-let g:lbvim_version = '0.6-dev'
+let g:lbvim_version = '0.6'
 let g:lbvim_isnvim = has('nvim')
 let g:has_python = has('python')
 let g:has_python3 = has('python3')
