@@ -3,7 +3,7 @@ MMP 'jiangmiao/auto-pairs'
 MMP 'tpope/vim-surround'
 MMP 'terryma/vim-multiple-cursors'
 MMP 'dominikduda/vim_current_word'
-MMP 'ap/vim-buftabline'
+" MMP 'ap/vim-buftabline'
 MMP 'majutsushi/tagbar'
 MMP 'scrooloose/nerdcommenter'
 MMP 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }

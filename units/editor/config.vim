@@ -11,46 +11,6 @@ let g:NERDCommentEmptyLines = 1
 
 nnoremap <C-\/> :NERDComToggleComment<cr>
 
-" easymotion {{{
-" map <Leader><Leader> <Plug>(easymotion-prefix)
-map <Leader>ll <Plug>(easymotion-lineforward)
-map <Leader>jj <Plug>(easymotion-j)
-map <Leader>kk <Plug>(easymotion-k)
-map <Leader>hh <Plug>(easymotion-linebackward)
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-
-" map  / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
-" map  n <Plug>(easymotion-next)
-" map  N <Plug>(easymotion-prev)
-
-" nmap s <Plug>(easymotion-s2)
-
-" Move to word
-map  <Leader>ww <Plug>(easymotion-bd-w)
-nmap <Leader>ww <Plug>(easymotion-overwin-w)
-" }}}
-
-" {{{ vim-buftabline
-set hidden
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
-
-let g:buftabline_show = 2
-let g:buftabline_numbers = 2
-
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
-" }}}
-
 " {{{ tagbar
 let g:tagbar_iconchars = ['*', '~']
 nmap <F3> :TagbarToggle<CR>

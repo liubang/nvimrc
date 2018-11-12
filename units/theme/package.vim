@@ -1,7 +1,7 @@
 " MMP 'iliubang/yadracula'
 " MMP 'liuchengxu/eleline.vim'
 MMP 'itchyny/lightline.vim'
+MMP 'mgee/lightline-bufferline'
 MMP 'mhinz/vim-startify'
 MMP 'morhetz/gruvbox'
-" MMP 'joshdick/onedark.vim'
 MMP 'sheerun/vim-polyglot'
