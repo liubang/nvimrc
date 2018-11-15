@@ -6,7 +6,6 @@ if empty($TMUX)
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
-
   if has("termguicolors")
     " fix bug for vim
     set t_8f=^[[38;2;%lu;%lu;%lum
@@ -25,13 +24,19 @@ endif
 
 " 总是显示行号
 set number
-let g:airline_theme= 'gruvbox'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_extensions = ['branch', 'tabline']
 
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tab_nr_type = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
+" https://blog.csdn.net/zlianzhuang/article/details/79419836
+let g:airline#extensions#tagbar#enabled = 0
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
