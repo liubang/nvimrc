@@ -29,7 +29,4 @@ endfunc
 "----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
-augroup GoGroup
-  autocmd!
-  autocmd FileType go call s:init()
-augroup END
+autocmd FileType go call s:init()

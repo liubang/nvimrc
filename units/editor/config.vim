@@ -33,7 +33,7 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 
 " {{{ tagbar
 let g:tagbar_iconchars = ['*', '~']
-nmap <F3> :TagbarToggle<CR>
+nnoremap <F3> :TagbarToggle<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
 nnoremap <leader>tj :TagbarOpen j<CR>
@@ -53,7 +53,6 @@ let g:NERDTreeIgnore=[
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <F4> :NERDTreeToggle<CR>
-inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
 " }}}
@@ -72,10 +71,6 @@ let g:indentLine_color_tty_light = 7 " (default: 4)
 let g:indentLine_color_dark = 1 " (default: 2)
 let g:indentLine_char = '|'
 let g:indentLine_enabled = 0
-" }}}
-
-" {{{ asyncrun
-let g:asyncrun_open = 8
 " }}}
 
 " {{{ vim-textobj-user
@@ -112,6 +107,32 @@ call textobj#user#plugin('line', {
 
 " {{{ AsyncRun
 nnoremap <Leader>ar :AsyncRun<Space>
+let g:asyncrun_open = 10
+let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
+function! s:def_command()
+  command! -bang -nargs=0 Cmake
+    \ :AsyncRun -cwd=<root> cmake . <cr>
+
+  command! -bang -nargs=0 Run 
+    \ :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+
+  command! -bang -nargs=0 MakeTest
+    \ :AsyncRun -cwd=<root> -raw make test <cr>
+
+  command! -bang -nargs=0 Make
+    \ :AsyncRun -cwd=<root> -raw make test <cr>
+
+  command! -bang -nargs=0 MakeRun
+    \ :AsyncRun -cwd=<root> -raw make run <cr>
+
+  command! -bang -nargs=0 Build
+    \ :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+endfunc
+
+autocmd FileType c,cpp call s:def_command()
+
 " }}}
 
 " {{{ undotree

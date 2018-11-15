@@ -49,7 +49,4 @@ endfun
 "----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
-augroup LatexGroup
-  autocmd!
-  autocmd FileType plaintex,latex,tex call s:init()
-augroup END
+autocmd FileType plaintex,latex,tex call s:init()
