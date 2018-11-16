@@ -109,26 +109,27 @@ call textobj#user#plugin('line', {
 nnoremap <Leader>ar :AsyncRun<Space>
 let g:asyncrun_open = 10
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
-nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 
 function! s:def_command()
   command! -bang -nargs=0 Cmake
-    \ :AsyncRun -cwd=<root> cmake . <cr>
+    \ :AsyncRun -cwd=<root> cmake . <CR>
 
   command! -bang -nargs=0 Run 
-    \ :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+    \ :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
 
   command! -bang -nargs=0 MakeTest
-    \ :AsyncRun -cwd=<root> -raw make test <cr>
+    \ :AsyncRun -cwd=<root> -raw make test <CR>
 
   command! -bang -nargs=0 Make
-    \ :AsyncRun -cwd=<root> -raw make test <cr>
+    \ :AsyncRun -cwd=<root> -raw make <CR>
 
   command! -bang -nargs=0 MakeRun
-    \ :AsyncRun -cwd=<root> -raw make run <cr>
+    \ :AsyncRun -cwd=<root> -raw make run <CR>
 
   command! -bang -nargs=0 Build
-    \ :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
+
 endfunc
 
 autocmd FileType c,cpp call s:def_command()
