@@ -113,23 +113,22 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 
 function! s:def_command()
   command! -bang -nargs=0 Cmake
-    \ :AsyncRun -cwd=<root> cmake . <CR>
+    \ :AsyncRun -cwd=<root> cmake .
 
   command! -bang -nargs=0 Run 
-    \ :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
+    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 
   command! -bang -nargs=0 MakeTest
-    \ :AsyncRun -cwd=<root> -raw make test <CR>
+    \ :AsyncRun -cwd=<root> -raw make test
 
-  command! -bang -nargs=0 Make
-    \ :AsyncRun -cwd=<root> -raw make <CR>
+  command! -bang -nargs=? Make
+    \ :AsyncRun -cwd=<root> -raw make <args>
 
   command! -bang -nargs=0 MakeRun
-    \ :AsyncRun -cwd=<root> -raw make run <CR>
+    \ :AsyncRun -cwd=<root> -raw make run
 
   command! -bang -nargs=0 Build
-    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
-
+    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 endfunc
 
 autocmd FileType c,cpp call s:def_command()
