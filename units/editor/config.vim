@@ -237,7 +237,6 @@ function! s:def_command()
 endfunc
 
 autocmd FileType c,cpp call s:def_command()
-
 " }}}
 
 " {{{ undotree
