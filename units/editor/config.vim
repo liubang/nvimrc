@@ -18,35 +18,35 @@ endfunc
 " guess comment
 "-----------------------------------------------------------------------
 function! s:comment()
-	let l:ext = expand('%:e')
-	if &filetype == 'vim'
-		return '"'
-	elseif index(['c', 'cpp', 'h', 'hpp', 'hh', 'cc', 'cxx', 'php'], l:ext) >= 0
-		return '//'
-	elseif index(['m', 'mm', 'java', 'go', 'delphi', 'pascal'], l:ext) >= 0
-		return '//'
-	elseif index(['coffee', 'as'], l:ext) >= 0
-		return '//'
-	elseif index(['c', 'cpp', 'rust', 'go', 'javascript', 'php'], &filetype) >= 0
-		return '//'
-	elseif index(['coffee'], &filetype) >= 0
-		return '//'
-	elseif index(['sh', 'bash', 'python', 'perl', 'zsh'], $filetype) >= 0
-		return '#'
-	elseif index(['make', 'ruby', 'text'], $filetype) >= 0
-		return '#'
-	elseif index(['py', 'sh', 'pl', 'rb'], l:ext) >= 0
-		return '#'
-	elseif index(['asm', 's'], l:ext) >= 0
-		return ';'
-	elseif index(['asm'], &filetype) >= 0
-		return ';'
-	elseif index(['sql', 'lua'], l:ext) >= 0
-		return '--'
-	elseif index(['basic'], &filetype) >= 0
-		return "'"
-	endif
-	return "#"
+  let l:ext = expand('%:e')
+  if &filetype == 'vim'
+    return '"'
+  elseif index(['c', 'cpp', 'h', 'hpp', 'hh', 'cc', 'cxx', 'php'], l:ext) >= 0
+    return '//'
+  elseif index(['m', 'mm', 'java', 'go', 'delphi', 'pascal'], l:ext) >= 0
+    return '//'
+  elseif index(['coffee', 'as'], l:ext) >= 0
+    return '//'
+  elseif index(['c', 'cpp', 'rust', 'go', 'javascript', 'php'], &filetype) >= 0
+    return '//'
+  elseif index(['coffee'], &filetype) >= 0
+    return '//'
+  elseif index(['sh', 'bash', 'python', 'perl', 'zsh'], $filetype) >= 0
+    return '#'
+  elseif index(['make', 'ruby', 'text'], $filetype) >= 0
+    return '#'
+  elseif index(['py', 'sh', 'pl', 'rb'], l:ext) >= 0
+    return '#'
+  elseif index(['asm', 's'], l:ext) >= 0
+    return ';'
+  elseif index(['asm'], &filetype) >= 0
+    return ';'
+  elseif index(['sql', 'lua'], l:ext) >= 0
+    return '--'
+  elseif index(['basic'], &filetype) >= 0
+    return "'"
+  endif
+  return "#"
 endfunc
 
 "-----------------------------------------------------------------------
