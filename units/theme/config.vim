@@ -1,3 +1,12 @@
+"======================================================================
+"
+" config.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 10:37:45
+"
+"======================================================================
+
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -24,29 +33,6 @@ endif
 
 " 总是显示行号
 set number
-" let g:airline_theme = 'gruvbox'
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#formatter = 'default'
-" let g:airline_extensions = ['branch', 'tabline']
-
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
-" let g:airline#extensions#tabline#tab_nr_type = 0
-" let g:airline#extensions#tabline#show_tab_nr = 0
-" let g:airline#extensions#tabline#show_tab_type = 0
-" let g:airline#extensions#tabline#buffer_nr_show = 0
-" https://blog.csdn.net/zlianzhuang/article/details/79419836
-" let g:airline#extensions#tagbar#enabled = 0
-" nmap <leader>1 <Plug>AirlineSelectTab1
-" nmap <leader>2 <Plug>AirlineSelectTab2
-" nmap <leader>3 <Plug>AirlineSelectTab3
-" nmap <leader>4 <Plug>AirlineSelectTab4
-" nmap <leader>5 <Plug>AirlineSelectTab5
-" nmap <leader>6 <Plug>AirlineSelectTab6
-" nmap <leader>7 <Plug>AirlineSelectTab7
-" nmap <leader>8 <Plug>AirlineSelectTab8
-" nmap <leader>9 <Plug>AirlineSelectTab9
-
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
@@ -84,7 +70,6 @@ colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_indent_guides=1
-" colorscheme onedark
 
 " startify
 let g:startify_custom_header = [

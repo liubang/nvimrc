@@ -1,3 +1,12 @@
+"======================================================================
+"
+" config.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 10:36:05
+"
+"======================================================================
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3

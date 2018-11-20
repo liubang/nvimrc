@@ -1,3 +1,12 @@
+"======================================================================
+"
+" config.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 10:36:32
+"
+"======================================================================
+
 let $LANG = 'en_US'
 " This is the default extra key bindings
 let g:fzf_action = {

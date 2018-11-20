@@ -3,9 +3,7 @@ MMP 'jiangmiao/auto-pairs'
 MMP 'tpope/vim-surround'
 MMP 'terryma/vim-multiple-cursors'
 MMP 'dominikduda/vim_current_word'
-" MMP 'ap/vim-buftabline'
 MMP 'majutsushi/tagbar'
-MMP 'scrooloose/nerdcommenter'
 MMP 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 MMP 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 MMP 'Yggdroot/indentLine'
@@ -20,7 +18,4 @@ MMP 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 " git
 MMP 'tpope/vim-fugitive'
 MMP 'junegunn/gv.vim'
-" vim-caser
-" MMP 'arthurxavierx/vim-caser'
-" MMP 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
