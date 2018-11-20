@@ -1,3 +1,12 @@
+"======================================================================
+"
+" init.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 13:01:42
+"
+"======================================================================
+
 " Maintainer: liubang <https://github.com/iliubang>
 " Version: 0.1
 " vim: et ts=2 sts=2 sw=2
@@ -15,7 +24,7 @@ if &compatible
  set nocompatible
 endif
 
-let g:lbvim_version = '0.6'
+let g:lbvim_version = '0.7-dev'
 let g:lbvim_isnvim = has('nvim')
 let g:has_python = has('python')
 let g:has_python3 = has('python3')

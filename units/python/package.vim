@@ -1,3 +1,11 @@
+"======================================================================
+"
+" package.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 13:01:19
+"
+"======================================================================
 " Filetype: python
 MMP 'davidhalter/jedi-vim', { 'for': 'python' }
 MMP 'zchee/deoplete-jedi', { 'for': 'python' }

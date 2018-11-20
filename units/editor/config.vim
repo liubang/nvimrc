@@ -110,10 +110,10 @@ function! <SID>snip_copyright(author)
   call append(0, l:text)
 endfunc
 
-command! -bang -buffer -nargs=1 LComment
+command! -bang -nargs=1 LComment
       \ :call <SID>snip_comment_block('<args>')
 
-command! -bang -buffer -nargs=0 LCopyRight
+command! -bang -nargs=0 LCopyRight
       \ :call <SID>snip_copyright('liubang')
 
 " easymotion {{{

@@ -1,3 +1,11 @@
+"======================================================================
+"
+" package.vim - 
+"
+" Created by liubang on 2018/11/20
+" Last Modified: 2018/11/20 13:00:38
+"
+"======================================================================
 MMP 'easymotion/vim-easymotion'
 MMP 'jiangmiao/auto-pairs'
 MMP 'tpope/vim-surround'
