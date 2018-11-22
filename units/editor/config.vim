@@ -211,32 +211,42 @@ call textobj#user#plugin('line', {
 " }}}
 
 " {{{ AsyncRun
-nnoremap <Leader>ar :AsyncRun<Space>
 let g:asyncrun_open = 10
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 
-function! s:def_command()
+command! -bang -nargs=1 GitCommit
+      \ :AsyncRun -cwd=<root> -raw git add . && git commit -m <q-args> && git push origin
+
+nnoremap <Leader>gc :GitCommit<Space>
+nnoremap <Leader>ar :AsyncRun<Space>
+
+
+"----------------------------------------------------------------------
+" define c,cpp build command
+"----------------------------------------------------------------------
+function! s:def_cpp_build_command()
   command! -bang -nargs=0 Cmake
-    \ :AsyncRun -cwd=<root> cmake .
+        \ :AsyncRun -cwd=<root> cmake .
 
   command! -bang -nargs=0 Run 
-    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 
   command! -bang -nargs=0 MakeTest
-    \ :AsyncRun -cwd=<root> -raw make test
+        \ :AsyncRun -cwd=<root> -raw make test
 
   command! -bang -nargs=? Make
-    \ :AsyncRun -cwd=<root> -raw make <args>
+        \ :AsyncRun -cwd=<root> -raw make <args>
 
   command! -bang -nargs=0 MakeRun
-    \ :AsyncRun -cwd=<root> -raw make run
+        \ :AsyncRun -cwd=<root> -raw make run
 
   command! -bang -nargs=0 Build
-    \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-endfunc
+        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 
-autocmd FileType c,cpp call s:def_command()
+endfunc
+autocmd FileType c,cpp call s:def_cpp_build_command()
+
 " }}}
 
 " {{{ undotree
