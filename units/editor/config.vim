@@ -153,7 +153,7 @@ let g:NERDTreeDirArrowExpandable = '*'
 let g:NERDTreeDirArrowCollapsible = '~'
 let g:NERDTreeIgnore=[
     \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
-    \ '^\.hg$', '^\.svn$', '\.bzr$',
+    \ '^\.hg$', '^\.svn$', '\.bzr$', '\.git$'
     \ ]
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
