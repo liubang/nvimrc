@@ -28,10 +28,10 @@ catch
   call utils#err(v:exception, s:path)
 endtry
 
-if !g:lbvim_isnvim
-  if g:has_python
+if !g:IS_NVIM
+  if g:HAS_PYTHON
     set pyxversion=2
-  elseif g:has_python3
+  elseif g:HAS_PYTHON3
     set pyxversion=3
   endif
 endif
@@ -40,9 +40,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabCrMapping = 1
 
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
-if g:has_python
+if g:HAS_PYTHON
   let g:UltiSnipsUsePythonVersion = 2
-elseif g:has_python3
+elseif g:HAS_PYTHON3
   let g:UltiSnipsUsePythonVersion = 3
 endif
 "let g:UltiSnipsExpandTrigger = '<C-k>'

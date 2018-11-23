@@ -139,7 +139,7 @@ nnoremap <expr> N  'nN'[v:searchforward]
 " let loaded_matchparen = 1
 
 " Open shell in vim {{{
-if g:lbvim_isnvim
+if g:IS_NVIM
     map <Leader>' :terminal<CR>
 else
     map <Leader>' :shell<CR>

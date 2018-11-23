@@ -6,7 +6,7 @@
 " Last Modified: 2018/11/20 13:00:19
 "
 "======================================================================
-if g:TMUX
+if g:HAS_TMUX
   MMP 'tmux-plugins/vim-tmux-focus-events'
   MMP 'roxma/vim-tmux-clipboard'
 endif

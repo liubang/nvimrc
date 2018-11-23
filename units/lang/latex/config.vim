@@ -31,7 +31,7 @@ function! s:init()
   " let g:vimtex_view_automatic = 0
   " let g:vimtex_view_forward_search_on_start = 0
 
-  if g:lbvim_isnvim
+  if g:IS_NVIM
     let g:vimtex_compiler_progname = 'nvr'
   endif
 

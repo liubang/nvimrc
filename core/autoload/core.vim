@@ -17,7 +17,7 @@ let g:dot_customfile = $HOME . '/.vim.custom'
 let g:components_loaded = []
 
 function! core#begin() abort
-  if !g:WINDOWS
+  if !g:IS_WINDOWS
     call s:check_vim_plug()
   endif
   call s:define_command()
