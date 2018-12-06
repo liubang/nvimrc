@@ -7,6 +7,9 @@
 "
 "======================================================================
 
+let g:python3_host_skip_check = 1
+let g:python3_host_prog = 'python3'
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
@@ -50,4 +53,3 @@ let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsListSnippets = '<C-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-
