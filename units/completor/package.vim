@@ -15,7 +15,7 @@ else
   MMP 'Shougo/deoplete.nvim'
 endif
 
-MMP 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" MMP 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 MMP 'ervandew/supertab'
 MMP 'SirVer/ultisnips'
 MMP 'iliubang/vim-snippets'
