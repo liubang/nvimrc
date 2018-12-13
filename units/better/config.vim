@@ -90,6 +90,9 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
+" 利用通配符进行缓冲区跳转
+set wildmenu
+set wildmode=longest:list,full
 
 "----------------------------------------------------------------------
 " 文件搜索和补全时忽略下面扩展名
