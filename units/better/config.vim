@@ -73,8 +73,11 @@ set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
 set wildignore+=*\\tmp\\*,*.exe            " Windows
 set cursorline
 set fileformats=unix,dos,mac
-set fillchars=vert:\|,stl:\ ,stlnc:\       " 在被分割窗口之间显示空白
-set autoread                               " 文件在Vim之外修改过，自动重新读入
+set showbreak=↪
+set fillchars=vert:│,fold:─
+" set fillchars=vert:\|,stl:\ ,stlnc:\        " 在被分割窗口之间显示空白
+set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+set autoread                                  " 文件在Vim之外修改过，自动重新读入
 set synmaxcol=200
 set norelativenumber
 "set colorcolumn=120

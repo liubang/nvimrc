@@ -52,6 +52,7 @@ let g:lightline.tabline          = {'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 set laststatus=2   " 总是显示状态栏
+
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
@@ -91,3 +92,67 @@ let g:startify_lists = [
           \ ]
 
 let g:startify_change_to_vcs_root = 1
+
+" Plugin: NERDTree icons and highlights {{{
+" ---------------------------------------------------------
+let g:NERDTreeIndicatorMapCustom = {
+	\ 'Modified':  '·',
+	\ 'Staged':    '‧',
+	\ 'Untracked': '?',
+	\ 'Renamed':   '≫',
+	\ 'Unmerged':  '≠',
+	\ 'Deleted':   '✃',
+	\ 'Dirty':     '⁖',
+	\ 'Clean':     '✓',
+	\ 'Unknown':   '⁇'
+	\ }
+
+let g:NERDTreeDirArrowExpandable = '▷'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+highlight! NERDTreeOpenable ctermfg=132 guifg=#B05E87
+highlight! def link NERDTreeClosable NERDTreeOpenable
+
+highlight! NERDTreeFile ctermfg=246 guifg=#999999
+highlight! NERDTreeExecFile ctermfg=246 guifg=#999999
+
+highlight! clear NERDTreeFlags
+highlight! NERDTreeFlags ctermfg=234 guifg=#1d1f21
+highlight! NERDTreeCWD ctermfg=240 guifg=#777777
+
+highlight! NERDTreeGitStatusModified ctermfg=1 guifg=#D370A3
+highlight! NERDTreeGitStatusStaged ctermfg=10 guifg=#A3D572
+highlight! NERDTreeGitStatusUntracked ctermfg=12 guifg=#98CBFE
+highlight! def link NERDTreeGitStatusRenamed Title
+highlight! def link NERDTreeGitStatusUnmerged Label
+highlight! def link NERDTreeGitStatusDirDirty Constant
+highlight! def link NERDTreeGitStatusDirClean DiffAdd
+highlight! def link NERDTreeGitStatusUnknown Comment
+
+function! s:NERDTreeHighlight()
+	for l:name in keys(g:NERDTreeIndicatorMapCustom)
+		let l:icon = g:NERDTreeIndicatorMapCustom[l:name]
+		if empty(l:icon)
+			continue
+		endif
+		let l:prefix = index(['Dirty', 'Clean'], l:name) > -1 ? 'Dir' : ''
+		let l:hiname = escape('NERDTreeGitStatus'.l:prefix.l:name, '~')
+		execute 'syntax match '.l:hiname.' #'.l:icon.'# containedin=NERDTreeFlags'
+	endfor
+
+	syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeFlags
+	syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeFlags
+	" setlocal conceallevel=3
+	" setlocal concealcursor=nvic
+endfunction
+
+augroup nerdtree-highlights
+	autocmd!
+	autocmd FileType nerdtree call s:NERDTreeHighlight()
+augroup END
+"}}}
+
+" {{{ tagbar
+let g:tagbar_iconchars = ['▷', '◢']
+" }}}
+

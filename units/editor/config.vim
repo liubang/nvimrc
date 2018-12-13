@@ -137,7 +137,7 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 " }}}
 
 " {{{ tagbar
-let g:tagbar_iconchars = ['*', '~']
+" let g:tagbar_iconchars = ['*', '~']
 nnoremap <F3> :TagbarToggle<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
@@ -147,10 +147,22 @@ nnoremap <leader>tc :TagbarClose<CR>
 " }}}
 
 " {{{ NERDTree
+
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize = 25
+let g:NERDTreeCascadeOpenSingleChildDir = 1
+let g:NERDTreeCascadeSingleChildDir = 0
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeRespectWildIgnore = 0
+let g:NERDTreeAutoDeleteBuffer = 0
+let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeHijackNetrw = 1
+
+
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeDirArrowExpandable = '*'
-let g:NERDTreeDirArrowCollapsible = '~'
+" let g:NERDTreeDirArrowExpandable = '*'
+" let g:NERDTreeDirArrowCollapsible = '~'
 let g:NERDTreeIgnore=[
     \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
     \ '^\.hg$', '^\.svn$', '\.bzr$', '\.git$'
@@ -214,13 +226,12 @@ call textobj#user#plugin('line', {
 let g:asyncrun_open = 10
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
+nnoremap <Leader>ar :AsyncRun<Space>
 
 command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git add . && git commit -m <q-args> && git push origin
 
 nnoremap <Leader>gc :GitCommit<Space>
-nnoremap <Leader>ar :AsyncRun<Space>
-
 
 "----------------------------------------------------------------------
 " define c,cpp build command
@@ -246,7 +257,6 @@ function! s:def_cpp_build_command()
 
 endfunc
 autocmd FileType c,cpp call s:def_cpp_build_command()
-
 " }}}
 
 " {{{ undotree
