@@ -46,23 +46,22 @@ function! s:component(name, ...)
 endfunction
 
 function! s:register_plugs()
-  call plug#begin(g:lbvim_plug_home)
+  silent! if plug#begin(g:lbvim_plug_home)
+    if exists('*CustomPlug')
+      call CustomPlug()
+    endif
 
-  if exists('*CustomPlug')
-    call CustomPlug()
+    for l:component in g:components_loaded
+      let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
+      try
+        execute 'so ' . l:component_package
+      catch
+        return utils#err(v:exception, l:component_package)
+      endtry
+    endfor
+    call plug#end()
+    call s:check_custom_plug()
   endif
-
-  for l:component in g:components_loaded
-    let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
-    try
-      execute 'so ' . l:component_package
-    catch
-      return utils#err(v:exception, l:component_package)
-    endtry
-  endfor
-
-  call plug#end()
-  call s:check_custom_plug()
 endfunction
 
 function! s:register_configs()
