@@ -49,9 +49,6 @@ else
   set runtimepath+=$HOME/.vim/core
 endif
 
-set wildmenu
-set wildmode=longest:list,full
-
 call core#begin()
   CM 'better'
   CM 'theme'
