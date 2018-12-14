@@ -51,9 +51,7 @@ call deoplete#custom#source('buffer',        'mark', '<buf>')
 call deoplete#custom#source('tmux-complete', 'mark', '<tmux>')
 call deoplete#custom#source('syntax',        'mark', '<syntax>')
 call deoplete#custom#source('member',        'mark', '<member>')
-call deoplete#custom#source('UltiSnips',     'mark', '<UltiSnips>')
 
-call deoplete#custom#source('UltiSnips',     'rank', 670)
 call deoplete#custom#source('phpcd',         'rank', 660)
 call deoplete#custom#source('go',            'rank', 650)
 call deoplete#custom#source('vim',           'rank', 640)
@@ -104,3 +102,5 @@ let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsListSnippets = '<C-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+" 指定UltiSnips python的docstring风格, sphinx, google, numpy
+let g:ultisnips_python_style = 'sphinx'
