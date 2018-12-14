@@ -7,6 +7,15 @@
 "
 "======================================================================
 
+" Get <SID>
+function! s:SID()
+	if ! exists('s:sid')
+		let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+	endif
+	return s:sid
+endfunction
+let s:SNR = '<SNR>'.s:SID().'_'
+
 "-----------------------------------------------------------------------
 " insert before current line
 "-----------------------------------------------------------------------
@@ -154,24 +163,47 @@ let g:NERDTreeCascadeOpenSingleChildDir = 1
 let g:NERDTreeCascadeSingleChildDir = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeRespectWildIgnore = 0
-let g:NERDTreeAutoDeleteBuffer = 0
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeHijackNetrw = 1
-
-
-let g:NERDTreeShowHidden=1
+" 删除文件自动删除对应的buffer
 let g:NERDTreeAutoDeleteBuffer=1
-" let g:NERDTreeDirArrowExpandable = '*'
-" let g:NERDTreeDirArrowCollapsible = '~'
-let g:NERDTreeIgnore=[
-    \ '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$',
-    \ '^\.hg$', '^\.svn$', '\.bzr$', '\.git$'
-    \ ]
+let NERDTreeIgnore = [
+			\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+			\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+	\ ]
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <F4> :NERDTreeToggle<CR>
 nnoremap <Leader>ft :NERDTreeToggle<CR>
 nnoremap <Leader>fd :NERDTreeFind<CR>
+
+" Create a new file or dir in path
+autocmd VimEnter * call NERDTreeAddKeyMap({
+	\ 'key': 'N',
+	\ 'callback': s:SNR.'create_in_path',
+	\ 'quickhelpText': 'Create file or dir',
+	\ 'scope': 'Node' })
+
+function! s:create_in_path(node)
+	if a:node.path.isDirectory && ! a:node.isOpen
+		call a:node.parent.putCursorHere(0, 0)
+	endif
+
+	call NERDTreeAddNode()
+endfunction
+
+autocmd VimEnter * call NERDTreeAddKeyMap({
+	\ 'key': 'yy',
+	\ 'callback': s:SNR.'yank_path',
+	\ 'quickhelpText': 'yank current node',
+	\ 'scope': 'Node' })
+
+function! s:yank_path(node)
+	let l:path = a:node.path.str()
+	call setreg('*', l:path)
+	echomsg 'Yank node: '.l:path
+endfunction
+
 " }}}
 
 " {{{ vim-easy-align

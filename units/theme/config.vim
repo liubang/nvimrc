@@ -7,6 +7,7 @@
 "
 "======================================================================
 
+" {{{ color mode 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -17,8 +18,10 @@ if g:HAS_TMUX
   endif
   if g:HAS_GUICOLORS
     " fix bug for vim
-    set t_8f=^[[38;2;%lu;%lu;%lum
-    set t_8b=^[[48;2;%lu;%lu;%lum
+    if !g:IS_NVIM
+      set t_8f=^[[38;2;%lu;%lu;%lum
+      set t_8b=^[[48;2;%lu;%lu;%lum
+    endif
     set termguicolors
   else
     set t_Co=256
@@ -30,7 +33,9 @@ if g:HAS_TMUX
 else
   set ttimeoutlen=20
 endif
+" }}}
 
+" {{{ lightline & tabline
 " 总是显示行号
 set number
 let g:lightline = {
@@ -65,14 +70,16 @@ nmap <Leader>7 <Plug>lightline#bufferline#go(7)
 nmap <Leader>8 <Plug>lightline#bufferline#go(8)
 nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+""" }}}
 
-" theme
+" {{{ theme
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_indent_guides=1
+" }}}
 
-" startify
+"{{{ startify
 let g:startify_custom_header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',
@@ -92,6 +99,14 @@ let g:startify_lists = [
           \ ]
 
 let g:startify_change_to_vcs_root = 1
+" }}}
+
+"{{{ default
+set showbreak=↪
+set fillchars=vert:│,fold:─
+set list
+set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+"}}}
 
 " Plugin: NERDTree icons and highlights {{{
 " ---------------------------------------------------------

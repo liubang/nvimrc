@@ -52,8 +52,6 @@ set matchtime=2
 set lazyredraw
 " 错误格式
 set errorformat+=[%f:%l]\ ->\ %m,[%f:%l]:%m
-" 设置分隔符可视
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
 " 如遇Unicode值大于255的文本，不必等到空格再折行
 set formatoptions+=m
 " 合并两行中文时，不在中间加空格
@@ -73,10 +71,6 @@ set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
 set wildignore+=*\\tmp\\*,*.exe            " Windows
 set cursorline
 set fileformats=unix,dos,mac
-set showbreak=↪
-set fillchars=vert:│,fold:─
-" set fillchars=vert:\|,stl:\ ,stlnc:\        " 在被分割窗口之间显示空白
-set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 set autoread                                  " 文件在Vim之外修改过，自动重新读入
 set synmaxcol=200
 set norelativenumber
@@ -139,8 +133,6 @@ xnoremap >  >gv
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
-" set listchars=tab:\|\ ,trail:·,extends:»,precedes:«,eol:¬
-" set list
 
 " let loaded_matchparen = 1
 
