@@ -8,8 +8,8 @@
 "======================================================================
 
 function! s:init_key()
-  nmap <Leader> tf: TableFormat<CR>
-  nmap <Leader> mp: MarkdownPreview<CR>
+  nmap <silent><Leader>tf :TableFormat<CR>
+  nmap <silent><Leader>mp :MarkdownPreview<CR>
 endfunc
 
 " {{{ vim-markdown

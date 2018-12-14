@@ -147,12 +147,12 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 
 " {{{ tagbar
 " let g:tagbar_iconchars = ['*', '~']
-nnoremap <F3> :TagbarToggle<CR>
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <silent><F3> :TagbarToggle<CR>
+nnoremap <silent><leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
-nnoremap <leader>tj :TagbarOpen j<CR>
+nnoremap <silent><leader>tj :TagbarOpen j<CR>
 " Close the Tagbar window if it is open
-nnoremap <leader>tc :TagbarClose<CR>
+nnoremap <silent><leader>tc :TagbarClose<CR>
 " }}}
 
 " {{{ NERDTree
@@ -173,9 +173,9 @@ let NERDTreeIgnore = [
 	\ ]
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap <F4> :NERDTreeToggle<CR>
-nnoremap <Leader>ft :NERDTreeToggle<CR>
-nnoremap <Leader>fd :NERDTreeFind<CR>
+nnoremap <silent><F4> :NERDTreeToggle<CR>
+nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
+nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 
 " Create a new file or dir in path
 autocmd VimEnter * call NERDTreeAddKeyMap({
@@ -292,7 +292,7 @@ autocmd FileType c,cpp call s:def_cpp_build_command()
 " }}}
 
 " {{{ undotree
-nnoremap <Leader>ut :MundoToggle<CR>
+nnoremap <silent><Leader>ut :MundoToggle<CR>
 let g:mundo_width = 40
 let g:mundo_preview_height = 30
 let g:mundo_right = 1
