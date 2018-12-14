@@ -145,8 +145,8 @@ endif
 " }}}
 
 " Quit normal mode {{{
-nnoremap <Leader>q  :q<CR>
-nnoremap <Leader>Q  :qa!<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :qa!<CR>
 " }}}
 
 " Bash like {{{
