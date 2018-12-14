@@ -12,10 +12,9 @@ MMP 'tpope/vim-surround'
 MMP 'terryma/vim-multiple-cursors'
 MMP 'dominikduda/vim_current_word'
 MMP 'majutsushi/tagbar'
-" MMP 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 MMP 'scrooloose/nerdtree'
 MMP 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
-MMP 'Yggdroot/indentLine'
+" MMP 'Yggdroot/indentLine'
 " Vim sugar for the UNIX shell commands that need it the most. Features include:
 MMP 'tpope/vim-eunuch'
 " textobj

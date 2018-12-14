@@ -75,6 +75,7 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 """ }}}
 
 " {{{ theme
+
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
@@ -107,22 +108,22 @@ let g:startify_change_to_vcs_root = 1
 set showbreak=↪
 set fillchars=vert:│,fold:─
 set list
-set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+set listchars=tab:\|\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 "}}}
 
 " Plugin: NERDTree icons and highlights {{{
 " ---------------------------------------------------------
 let g:NERDTreeIndicatorMapCustom = {
-	\ 'Modified':  '·',
-	\ 'Staged':    '‧',
-	\ 'Untracked': '?',
-	\ 'Renamed':   '≫',
-	\ 'Unmerged':  '≠',
-	\ 'Deleted':   '✃',
-	\ 'Dirty':     '⁖',
-	\ 'Clean':     '✓',
-	\ 'Unknown':   '⁇'
-	\ }
+  \ 'Modified':  '·',
+  \ 'Staged':    '‧',
+  \ 'Untracked': '?',
+  \ 'Renamed':   '≫',
+  \ 'Unmerged':  '≠',
+  \ 'Deleted':   '✃',
+  \ 'Dirty':     '⁖',
+  \ 'Clean':     '✓',
+  \ 'Unknown':   '⁇'
+  \ }
 
 let g:NERDTreeDirArrowExpandable = '▷'
 let g:NERDTreeDirArrowCollapsible = '▼'
@@ -147,29 +148,28 @@ highlight! def link NERDTreeGitStatusDirClean DiffAdd
 highlight! def link NERDTreeGitStatusUnknown Comment
 
 function! s:NERDTreeHighlight()
-	for l:name in keys(g:NERDTreeIndicatorMapCustom)
-		let l:icon = g:NERDTreeIndicatorMapCustom[l:name]
-		if empty(l:icon)
-			continue
-		endif
-		let l:prefix = index(['Dirty', 'Clean'], l:name) > -1 ? 'Dir' : ''
-		let l:hiname = escape('NERDTreeGitStatus'.l:prefix.l:name, '~')
-		execute 'syntax match '.l:hiname.' #'.l:icon.'# containedin=NERDTreeFlags'
-	endfor
+  for l:name in keys(g:NERDTreeIndicatorMapCustom)
+    let l:icon = g:NERDTreeIndicatorMapCustom[l:name]
+    if empty(l:icon)
+      continue
+    endif
+    let l:prefix = index(['Dirty', 'Clean'], l:name) > -1 ? 'Dir' : ''
+    let l:hiname = escape('NERDTreeGitStatus'.l:prefix.l:name, '~')
+    execute 'syntax match '.l:hiname.' #'.l:icon.'# containedin=NERDTreeFlags'
+  endfor
 
-	syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeFlags
-	syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeFlags
-	" setlocal conceallevel=3
-	" setlocal concealcursor=nvic
+  syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeFlags
+  syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeFlags
+  " setlocal conceallevel=3
+  " setlocal concealcursor=nvic
 endfunction
 
 augroup nerdtree-highlights
-	autocmd!
-	autocmd FileType nerdtree call s:NERDTreeHighlight()
+  autocmd!
+  autocmd FileType nerdtree call s:NERDTreeHighlight()
 augroup END
 "}}}
 
 " {{{ tagbar
 let g:tagbar_iconchars = ['▷', '◢']
 " }}}
-
