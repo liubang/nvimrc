@@ -5,10 +5,8 @@
 
 Configuration for neovim/vim8.
 
-![screenshot](https://hackmd.iliubang.cn/uploads/upload_5bf7e07885fb15c7b3f264d95b166c13.png)
-![screenshot](https://hackmd.iliubang.cn/uploads/upload_a04922596a5a1e5bf6f0e20324450d7b.png)
-![screenshot](https://hackmd.iliubang.cn/uploads/upload_2d60852181f5783450697e81fcb44ac0.png)
-![screenshot](https://hackmd.iliubang.cn/uploads/upload_2173545d45a1c62a1e52699934ec2f75.png)
+![screenshot](https://user-images.githubusercontent.com/13254917/49992550-5bdf5700-ffbf-11e8-88e1-707b727f42ad.jpg)
+![screenshot](https://user-images.githubusercontent.com/13254917/49992716-d27c5480-ffbf-11e8-91e1-5f92d65bedb0.png)
 
 ## Dependences 
 
