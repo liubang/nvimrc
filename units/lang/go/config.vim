@@ -26,10 +26,10 @@ function! s:init()
   nmap <leader>gm :cprevious<CR>
   nmap <leader>ga :cclose<CR>
   nmap <leader>gc :GoDecls<CR>
-  nmap <leader>gb  <Plug>(go-build)
-  nmap <leader>gr  <Plug>(go-run)
-  nmap <leader>gt  <Plug>(go-test)
-  nmap <leader>gd  <Plug>(go-def)
+  nmap <leader>gb <Plug>(go-build)
+  nmap <leader>gr <Plug>(go-run)
+  nmap <leader>gt <Plug>(go-test)
+  nmap <leader>gd <Plug>(go-def)
   nmap <leader>rt <Plug>(go-run-tab)
   nmap <Leader>rs <Plug>(go-run-split)
   nmap <Leader>rv <Plug>(go-run-vertical)
