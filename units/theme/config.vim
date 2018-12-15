@@ -58,9 +58,9 @@ let g:lightline#bufferline#modified     = '*'
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
-set laststatus=2   " 总是显示状态栏
+silent! set laststatus=2   " 总是显示状态栏
 
-set showtabline=2  " Show tabline
+silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
@@ -109,6 +109,9 @@ set showbreak=↪
 set fillchars=vert:│,fold:─
 set list
 set listchars=tab:\|\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+" Show trailing white space
+" hi ExtraWhitespace guifg=#FF2626 gui=underline ctermfg=124 cterm=underline
+" match ExtraWhitespace /\s\+$/
 "}}}
 
 " Plugin: NERDTree icons and highlights {{{
@@ -125,8 +128,13 @@ let g:NERDTreeIndicatorMapCustom = {
   \ 'Unknown':   '⁇'
   \ }
 
-let g:NERDTreeDirArrowExpandable = '▷'
-let g:NERDTreeDirArrowCollapsible = '▼'
+" let g:NERDTreeDirArrowExpandable = '▷'
+" let g:NERDTreeDirArrowCollapsible = '▼'
+" ❯
+" let g:NERDTreeDirArrowExpandable = "\u276f"
+" ○ ●
+let g:NERDTreeDirArrowExpandable = "\u25cb"
+let g:NERDTreeDirArrowCollapsible = "\u25cf"
 
 highlight! NERDTreeOpenable ctermfg=132 guifg=#B05E87
 highlight! def link NERDTreeClosable NERDTreeOpenable
@@ -171,5 +179,8 @@ augroup END
 "}}}
 
 " {{{ tagbar
-let g:tagbar_iconchars = ['▷', '◢']
+let g:NERDTreeDirArrowExpandable = "\u25cb"
+let g:NERDTreeDirArrowCollapsible = "\u25cf"
+" let g:tagbar_iconchars = ['▷', '◢']
+let g:tagbar_iconchars = ["\u25cb", "\u25cf"]
 " }}}

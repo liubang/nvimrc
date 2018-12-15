@@ -156,29 +156,41 @@ nnoremap <silent><leader>tc :TagbarClose<CR>
 " }}}
 
 " {{{ NERDTree
-
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize = 25
-let g:NERDTreeCascadeOpenSingleChildDir = 1
-let g:NERDTreeCascadeSingleChildDir = 0
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeRespectWildIgnore = 0
-let g:NERDTreeQuitOnOpen = 0
-let g:NERDTreeHijackNetrw = 1
-" 删除文件自动删除对应的buffer
-let g:NERDTreeAutoDeleteBuffer=1
-let NERDTreeIgnore = [
-			\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
-			\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
-	\ ]
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <silent><F4> :NERDTreeToggle<CR>
 nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
 nnoremap <silent><Leader>fd :NERDTreeFind<CR>
 
+function! s:nerdtree_init()
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeWinSize = 25
+  let g:NERDTreeCascadeOpenSingleChildDir = 1
+  let g:NERDTreeCascadeSingleChildDir = 0
+  let g:NERDTreeShowHidden = 1
+  let g:NERDTreeRespectWildIgnore = 0
+  let g:NERDTreeQuitOnOpen = 0
+  let g:NERDTreeHijackNetrw = 1
+  " 删除文件自动删除对应的buffer
+  let g:NERDTreeAutoDeleteBuffer=1
+  let NERDTreeIgnore = [
+        \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+        \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+    \ ]
+  " close vim if the only window left open is a NERDTree
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endfunc
+
+augroup loadNerdtree
+  autocmd!
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,BufNew *
+              \  if isdirectory(expand('<amatch>'))
+              \|   call plug#load('nerdtree')
+              \|   call nerdtree#checkForBrowse(expand("<amatch>"))
+              \| endif
+augroup END
+
 " Create a new file or dir in path
-autocmd VimEnter * call NERDTreeAddKeyMap({
+autocmd! User nerdtree call NERDTreeAddKeyMap({
 	\ 'key': 'N',
 	\ 'callback': s:SNR.'create_in_path',
 	\ 'quickhelpText': 'Create file or dir',
@@ -192,7 +204,7 @@ function! s:create_in_path(node)
 	call NERDTreeAddNode()
 endfunction
 
-autocmd VimEnter * call NERDTreeAddKeyMap({
+autocmd! User nerdtree call NERDTreeAddKeyMap({
 	\ 'key': 'yy',
 	\ 'callback': s:SNR.'yank_path',
 	\ 'quickhelpText': 'yank current node',
@@ -261,7 +273,7 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 nnoremap <Leader>ar :AsyncRun<Space>
 
 command! -bang -nargs=1 GitCommit
-      \ :AsyncRun -cwd=<root> -raw git add . && git commit -m <q-args> && git push origin
+      \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 
 nnoremap <Leader>gc :GitCommit<Space>
 
