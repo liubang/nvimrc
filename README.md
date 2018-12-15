@@ -119,7 +119,7 @@ cd ~/.vim && git pull
 
 **Internal components**
 
-- better
+- vim
 - completor
 - editor
 - theme

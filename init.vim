@@ -50,7 +50,7 @@ else
 endif
 
 call core#begin()
-  CM 'better'
+  CM 'vim'
   CM 'theme'
   CM 'completor'
   CM 'editor'
