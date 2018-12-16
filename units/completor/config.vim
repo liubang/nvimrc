@@ -174,7 +174,7 @@ nnoremap <silent> <Leader>bl :Lines<CR>
 nnoremap <silent> <leader>bt :BTags<CR>
 nnoremap <silent> <leader>ht :Helptags<CR>
 " https://github.com/junegunn/fzf/issues/453
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 " search current word with Ag
 nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
