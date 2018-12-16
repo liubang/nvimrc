@@ -78,7 +78,7 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 colorscheme gruvbox
 set background=dark
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_indent_guides=1
 " }}}
 
