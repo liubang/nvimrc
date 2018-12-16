@@ -169,8 +169,10 @@ function! s:nerdtree_init()
   let g:NERDTreeRespectWildIgnore = 0
   let g:NERDTreeQuitOnOpen = 0
   let g:NERDTreeHijackNetrw = 1
+  " 显示隐藏文件
+  let g:NERDTreeHidden = 1
   " 删除文件自动删除对应的buffer
-  let g:NERDTreeAutoDeleteBuffer=1
+  let g:NERDTreeAutoDeleteBuffer = 1
   let NERDTreeIgnore = [
         \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
         \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',

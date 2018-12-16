@@ -169,11 +169,12 @@ nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 nnoremap <silent> <Leader>w? :Windows<CR>
 nnoremap <silent> <Leader>f? :Files ~<CR>:
 nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <leader>bb :Buffer<cr>
+nnoremap <silent> <leader>bb :Buffer<CR>
 nnoremap <silent> <Leader>bl :Lines<CR>
-nnoremap <silent> <leader>bt :BTags<cr>
-nnoremap <silent> <leader>ht :Helptags<cr>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>bt :BTags<CR>
+nnoremap <silent> <leader>ht :Helptags<CR>
+" https://github.com/junegunn/fzf/issues/453
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 " search current word with Ag
 nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
