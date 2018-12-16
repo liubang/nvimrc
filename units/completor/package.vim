@@ -19,6 +19,12 @@ endif
 MMP 'ervandew/supertab'
 MMP 'SirVer/ultisnips'
 MMP 'iliubang/vim-snippets'
-
 " for viml
 MMP 'Shougo/neco-vim', { 'for': 'vim' }
+
+
+"----------------------------------------------------------------------
+" fzf 
+"----------------------------------------------------------------------
+MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+MMP 'junegunn/fzf.vim'

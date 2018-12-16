@@ -54,7 +54,6 @@ call core#begin()
   CM 'theme'
   CM 'completor'
   CM 'editor'
-  CM 'fzf'
   CM 'tags'
   CM 'docker'
 call core#end()

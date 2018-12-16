@@ -123,7 +123,6 @@ cd ~/.vim && git pull
 - completor
 - editor
 - theme
-- fzf
 - tags
 
 **Optional components**

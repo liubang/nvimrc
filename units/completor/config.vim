@@ -7,9 +7,38 @@
 "
 "======================================================================
 
-let g:python3_host_skip_check = 1
-let g:python3_host_prog = 'python3'
+if !g:IS_NVIM
+  if g:HAS_PYTHON
+    set pyxversion=2
+  elseif g:HAS_PYTHON3
+    set pyxversion=3
+  endif
+endif
 
+" {{{ snips 
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabCrMapping = 1
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
+
+if g:HAS_PYTHON
+  let g:python_host_skip_check = 1
+  let g:python_host_prog = 'python'
+  let g:UltiSnipsUsePythonVersion = 2
+elseif g:HAS_PYTHON3
+  let g:python3_host_skip_check = 1
+  let g:python3_host_prog = 'python3'
+  let g:UltiSnipsUsePythonVersion = 3
+endif
+
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsListSnippets = '<C-Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+" 指定UltiSnips python的docstring风格, sphinx, google, numpy
+let g:ultisnips_python_style = 'sphinx'
+" }}}
+
+" {{{ deoplete 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#sources#syntax#min_keyword_length = 3
@@ -72,35 +101,81 @@ call deoplete#custom#source('syntax',        'rank', 200)
 " call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
 call deoplete#custom#source('_', 'converters', [
-	\ 'converter_remove_paren',
-	\ 'converter_remove_overlap',
-	\ 'converter_truncate_abbr',
-	\ 'converter_truncate_menu',
-	\ 'converter_auto_delimiter',
-	\ ])
+      \ 'converter_remove_paren',
+      \ 'converter_remove_overlap',
+      \ 'converter_truncate_abbr',
+      \ 'converter_truncate_menu',
+      \ 'converter_auto_delimiter',
+      \ ])
 
-if !g:IS_NVIM
-  if g:HAS_PYTHON
-    set pyxversion=2
-  elseif g:HAS_PYTHON3
-    set pyxversion=3
-  endif
-endif
+" }}}
 
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabCrMapping = 1
+" {{{ fzf
+" Hide statusline of terminal buffer
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-let g:UltiSnipsSnippetDirectories=['UltiSnips']
-if g:HAS_PYTHON
-  let g:UltiSnipsUsePythonVersion = 2
-elseif g:HAS_PYTHON3
-  let g:UltiSnipsUsePythonVersion = 3
-endif
+" This is the default extra key bindings
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
-"let g:UltiSnipsExpandTrigger = '<C-k>'
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsListSnippets = '<C-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-" 指定UltiSnips python的docstring风格, sphinx, google, numpy
-let g:ultisnips_python_style = 'sphinx'
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_colors ={ 
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+function! s:plug_help_sink(line)
+  let dir = g:plugs[a:line].dir
+  for pat in ['doc/*.txt', 'README.md']
+    let match = get(split(globpath(dir, pat), "\n"), 0, '')
+    if len(match)
+      execute 'tabedit' match
+      return
+    endif
+  endfor
+  tabnew
+  execute 'Explore' dir
+endfunction
+
+command! PlugHelp call fzf#run(fzf#wrap({
+      \ 'source': sort(keys(g:plugs)),
+      \ 'sink':   function('s:plug_help_sink')}))
+
+" {{{ keybindings
+nmap <silent><Leader>? <plug>(fzf-maps-n)
+xmap <silent><Leader>? <plug>(fzf-maps-x)
+omap <silent><Leader>? <plug>(fzf-maps-o)
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
+nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
+nnoremap <silent> <Leader>w? :Windows<CR>
+nnoremap <silent> <Leader>f? :Files ~<CR>:
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <leader>bb :Buffer<cr>
+nnoremap <silent> <Leader>bl :Lines<CR>
+nnoremap <silent> <leader>bt :BTags<cr>
+nnoremap <silent> <leader>ht :Helptags<cr>
+nnoremap <silent> <C-p> :Files<CR>
+" search current word with Ag
+nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
+" }}}
+
+"}}}
