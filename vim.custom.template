@@ -3,11 +3,11 @@
 " vim: et ts=2 sts=2 sw=2 ft=vim
 
 function! CustomPlug()
-  CM 'go'
-  CM 'php'
-  CM 'clang'
-  CM 'latex'
-  CM 'python'
+  CM 'lang/go'
+  CM 'lang/php'
+  CM 'lang/clang'
+  CM 'lang/latex'
+  CM 'lang/python'
   " MMP 'Rip-Rip/clang_complete'
 endfunction
 
