@@ -21,6 +21,7 @@ function! s:init()
   let g:go_decls_includes = 'func,type'
   let g:go_decls_mode = 'fzf'
   let g:go_term_mode = "vsplit"
+  let g:go_term_width = 60
   " key 
   nmap <leader>gn :cnext<CR>
   nmap <leader>gm :cprevious<CR>
