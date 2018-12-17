@@ -7,12 +7,15 @@
 "
 "======================================================================
 
-" Get <SID>
+
+"----------------------------------------------------------------------
+" get sid 
+"----------------------------------------------------------------------
 function! s:SID()
-	if ! exists('s:sid')
-		let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
-	endif
-	return s:sid
+  if ! exists('s:sid')
+    let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+  endif
+  return s:sid
 endfunction
 let s:SNR = '<SNR>'.s:SID().'_'
 
@@ -21,7 +24,7 @@ let s:SNR = '<SNR>'.s:SID().'_'
 "-----------------------------------------------------------------------
 function! s:snip(text)
   call append(line('.') - 1, a:text)
-endfunc
+endfunction
 
 "-----------------------------------------------------------------------
 " guess comment
@@ -56,7 +59,7 @@ function! s:comment()
     return "'"
   endif
   return "#"
-endfunc
+endfunction
 
 "-----------------------------------------------------------------------
 " comment bar
@@ -67,7 +70,7 @@ function! s:comment_bar(repeat, limit)
     let l:comment .= a:repeat
   endwhile
   return l:comment
-endfunc
+endfunction
 
 "-----------------------------------------------------------------------
 " comment block
@@ -82,7 +85,7 @@ function! <SID>snip_comment_block(repeat)
   call s:snip(l:complete)
   call s:snip(l:comment . ' ')
   call s:snip(l:complete)
-endfunc
+endfunction
 
 "-----------------------------------------------------------------------
 " copyright
@@ -117,7 +120,7 @@ function! <SID>snip_copyright(author)
   let l:text += [l:c]
   let l:text += [l:complete]
   call append(0, l:text)
-endfunc
+endfunction
 
 command! -bang -nargs=1 LComment
       \ :call <SID>snip_comment_block('<args>')
@@ -169,17 +172,29 @@ function! s:nerdtree_init()
   let g:NERDTreeRespectWildIgnore = 0
   let g:NERDTreeQuitOnOpen = 0
   let g:NERDTreeHijackNetrw = 1
-  " 显示隐藏文件
-  let g:NERDTreeHidden = 1
   " 删除文件自动删除对应的buffer
   let g:NERDTreeAutoDeleteBuffer = 1
-  let NERDTreeIgnore = [
-        \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+  let g:NERDTreeIgnore = [
+        \ '\.git$', '\.github', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
         \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
     \ ]
   " close vim if the only window left open is a NERDTree
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 endfunc
+
+" Create a new file or dir in path
+function! s:create_in_path(node)
+  if a:node.path.isDirectory && ! a:node.isOpen
+    call a:node.parent.putCursorHere(0, 0)
+  endif
+  call NERDTreeAddNode()
+endfunction
+
+function! s:yank_path(node)
+  let l:path = a:node.path.str()
+  call setreg('*', l:path)
+  echomsg 'Yank node: '.l:path
+endfunction
 
 augroup loadNerdtree
   autocmd!
@@ -189,34 +204,20 @@ augroup loadNerdtree
               \|   call plug#load('nerdtree')
               \|   call nerdtree#checkForBrowse(expand("<amatch>"))
               \| endif
+
+  autocmd! User nerdtree 
+        \  call s:nerdtree_init()
+        \| call NERDTreeAddKeyMap({
+        \   'key': 'N',
+        \   'callback': s:SNR.'create_in_path',
+        \   'quickhelpText': 'Create file or dir',
+        \   'scope': 'Node' })
+        \| call NERDTreeAddKeyMap({
+        \   'key': 'yy',
+        \   'callback': s:SNR.'yank_path',
+        \   'quickhelpText': 'yank current node',
+        \   'scope': 'Node' })
 augroup END
-
-" Create a new file or dir in path
-autocmd! User nerdtree call NERDTreeAddKeyMap({
-	\ 'key': 'N',
-	\ 'callback': s:SNR.'create_in_path',
-	\ 'quickhelpText': 'Create file or dir',
-	\ 'scope': 'Node' })
-
-function! s:create_in_path(node)
-	if a:node.path.isDirectory && ! a:node.isOpen
-		call a:node.parent.putCursorHere(0, 0)
-	endif
-
-	call NERDTreeAddNode()
-endfunction
-
-autocmd! User nerdtree call NERDTreeAddKeyMap({
-	\ 'key': 'yy',
-	\ 'callback': s:SNR.'yank_path',
-	\ 'quickhelpText': 'yank current node',
-	\ 'scope': 'Node' })
-
-function! s:yank_path(node)
-	let l:path = a:node.path.str()
-	call setreg('*', l:path)
-	echomsg 'Yank node: '.l:path
-endfunction
 
 " }}}
 
@@ -225,15 +226,6 @@ endfunction
 xmap <Leader>ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap <Leader>ga <Plug>(EasyAlign)
-" }}}
-
-" {{{ indentLine
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#504945'
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
-let g:indentLine_char = '|'
-let g:indentLine_enabled = 0
 " }}}
 
 " {{{ vim-textobj-user
@@ -274,6 +266,7 @@ let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
 nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 nnoremap <Leader>ar :AsyncRun<Space>
 
+" for git
 command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 
@@ -300,9 +293,24 @@ function! s:def_cpp_build_command()
 
   command! -bang -nargs=0 Build
         \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+endfunction
 
-endfunc
-autocmd FileType c,cpp call s:def_cpp_build_command()
+"----------------------------------------------------------------------
+" define php build command 
+"----------------------------------------------------------------------
+function! s:def_php_build_command()
+  command! -bang -nargs=0 Run
+        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw php $(VIM_FILEPATH)
+
+  command! -bang -nargs=0 Build
+        \ :AsyncRun -cwd=<root> -raw composer --optimize-autoloader update
+endfunction
+
+augroup RegBuildCmd
+  autocmd!
+  autocmd FileType c,cpp call s:def_cpp_build_command()
+  autocmd FileType php call s:def_php_build_command()
+augroup END
 " }}}
 
 " {{{ undotree
