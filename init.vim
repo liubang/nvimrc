@@ -55,5 +55,4 @@ call core#begin()
   CM 'completor'
   CM 'editor'
   CM 'tags'
-  CM 'docker'
 call core#end()
