@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/iliubang/vimrc.svg)](https://github.com/iliubang/vimrc/releases)
 
-Configuration for neovim/vim8.
+Configuration for neovim/vim8 :rose:.
 
 ![screenshot](https://user-images.githubusercontent.com/13254917/49992550-5bdf5700-ffbf-11e8-88e1-707b727f42ad.jpg)
 ![screenshot](https://user-images.githubusercontent.com/13254917/49992716-d27c5480-ffbf-11e8-91e1-5f92d65bedb0.png)
@@ -45,7 +45,7 @@ ctags -f ~/.cache/tags/.tags -R --c++-kinds=+px --c-kinds=+px --fields=+niazS --
 **Install pip modules**
 
 ```shell
-pip3 install --user neovim jedi psutil setproctitle
+pip3 install --user neovim jedi psutil setproctitle neovim-remote
 ```
 
 ## vim8
@@ -128,6 +128,7 @@ cd ~/.vim && git pull
 **Optional components**
 
 - markdown
+- docker
 - go
 - php
 - python
@@ -153,6 +154,7 @@ function! ModuleInit()
   CM 'lang/lisp'
   CM 'lang/lua'
   CM 'markdown'
+  CM 'docker'
 endfunction
 
 function! CustomPlug()

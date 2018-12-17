@@ -14,7 +14,7 @@
 scriptencoding utf-8
 
 " 防止重复加载
-if get(s:, 'loaded', 0) != 0
+if get(s:, 'loaded', 0) != 0 || v:version < 800
 	finish
 else
 	let s:loaded = 1
@@ -34,10 +34,10 @@ let g:IS_MAC = has('macunix')
 let g:IS_LINUX = has('unix') && !has('macunix') && !has('win32unix')
 let g:IS_WINDOWS = has('win32') || has('win64') || has('win16') || has('win95')
 
-let g:lbvim_home = g:IS_NVIM ? $HOME . '/.config/nvim' : $HOME . '/.vim'
-let g:lbvim_plug_home = g:lbvim_home . '/plugged/'
-let g:lbvim_plug_path = g:lbvim_home . '/core/autoload/plug.vim'
-let g:components_dir = g:lbvim_home . '/units'
+let g:vim_home = g:IS_NVIM ? $HOME . '/.config/nvim' : $HOME . '/.vim'
+let g:vim_plug_home = g:vim_home . '/plugged/'
+let g:vim_plug_path = g:vim_home . '/core/autoload/plug.vim'
+let g:components_dir = g:vim_home . '/units'
 
 if g:IS_WINDOWS
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -52,8 +52,7 @@ endif
 call core#begin()
   CM 'vim'
   CM 'theme'
-  CM 'completor'
   CM 'editor'
+  CM 'completor'
   CM 'tags'
-  CM 'docker'
 call core#end()
