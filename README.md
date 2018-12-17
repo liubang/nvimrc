@@ -45,7 +45,7 @@ ctags -f ~/.cache/tags/.tags -R --c++-kinds=+px --c-kinds=+px --fields=+niazS --
 **Install pip modules**
 
 ```shell
-pip3 install --user neovim jedi psutil setproctitle
+pip3 install --user neovim jedi psutil setproctitle neovim-remote
 ```
 
 ## vim8
