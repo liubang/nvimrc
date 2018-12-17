@@ -143,22 +143,24 @@ cp ~/.vim/vim.custom.template ~/.vim.custom
 **example:**
 
 ```viml
+" init module
+function! ModuleInit()
+  CM 'lang/php'
+  CM 'lang/go'
+  CM 'lang/clang'
+  CM 'lang/latex'
+  CM 'lang/python'
+  CM 'lang/lisp'
+  CM 'lang/lua'
+  CM 'markdown'
+endfunction
+
 function! CustomPlug()
-    " add a component
-    CM 'go'
-    CM 'php'
-    CM 'python'
-    CM 'clang'
-    CM 'latex'
-    " or add a plugin
-    " MMP 'sickill/vim-monokai'
+  " MMP 'dracula/vim', { 'as': 'dracula' }
 endfunction
 
 function! CustomConfig()
-    set t_Co=256
-    set laststatus=2
-    set background=dark
-    colorscheme monokai
+  " color dracula
 endfunction
 ```
 

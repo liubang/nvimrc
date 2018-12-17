@@ -2,15 +2,22 @@
 " Version: 0.1
 " vim: et ts=2 sts=2 sw=2 ft=vim
 
-function! CustomPlug()
-  CM 'lang/go'
+" init module
+function! ModuleInit()
   CM 'lang/php'
+  CM 'lang/go'
   CM 'lang/clang'
   CM 'lang/latex'
   CM 'lang/python'
-  " MMP 'Rip-Rip/clang_complete'
+  CM 'lang/lisp'
+  CM 'lang/lua'
+  CM 'markdown'
+endfunction
+
+function! CustomPlug()
+  " MMP 'dracula/vim', { 'as': 'dracula' }
 endfunction
 
 function! CustomConfig()
-
+  " color dracula
 endfunction

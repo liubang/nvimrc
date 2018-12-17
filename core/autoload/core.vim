@@ -47,8 +47,9 @@ endfunction
 
 function! s:register_plugs()
   silent! if plug#begin(g:lbvim_plug_home)
-    if exists('*CustomPlug')
-      call CustomPlug()
+    " module init
+    if exists('*ModuleInit')
+      call ModuleInit()
     endif
 
     for l:component in g:components_loaded
@@ -59,6 +60,11 @@ function! s:register_plugs()
         return utils#err(v:exception, l:component_package)
       endtry
     endfor
+
+    if exists('*CustomPlug')
+      call CustomPlug()
+    endif
+
     call plug#end()
     call s:check_custom_plug()
   endif
