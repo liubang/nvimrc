@@ -91,6 +91,9 @@ set t_vb=
 set wildmenu
 set wildmode=longest:list,full
 
+" 禁止自动切换目录
+set noautochdir
+
 "----------------------------------------------------------------------
 " 文件搜索和补全时忽略下面扩展名
 "----------------------------------------------------------------------
@@ -113,15 +116,32 @@ set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
 set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
 set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 
+" 將g:netrw_dirhistmax設置為零，netrw將不保存歷史記錄或書籤
+let g:netrw_dirhistmax = 0
+
 " 设置光标为unserscore
 " set guicursor=n-v-c:hor20,i:ver50
-nnoremap <Space> <NOP>
+
+" Release keymappings prefixes
+nnoremap <Space> <Nop>
+xnoremap <Space> <Nop>
+nnoremap ,       <Nop>
+xnoremap ,       <Nop>
+nnoremap ;       <Nop>
+xnoremap ;       <Nop>
+nnoremap m       <Nop>
+xnoremap m       <Nop>
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 
-let g:netrw_dirhistmax = 0
+" Use tab for indenting
+vnoremap <silent> <Tab> >gv|
+vnoremap <silent> <S-Tab> <gv
+nmap <silent> <Tab>   >>_
+nmap <silent> <S-Tab> <<_
 
 " https://github.com/wsdjeg/vim-galore-zh_cn#%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8%E5%BD%93%E5%89%8D%E8%A1%8C
+" e -> exchange
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
@@ -133,6 +153,23 @@ xnoremap >  >gv
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
+" Allow misspellings
+cnoreabbrev qw wq
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev Qa qa
+cnoreabbrev Bd bd
+cnoreabbrev bD bd
+
+" Yank buffer's absolute path to X11 clipboard
+nnoremap <silent> <Leader>y :let @+=expand("%")<CR>:echo 'Relative path copied to clipboard.'<CR>
+nnoremap <silent> <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied to clipboard.'<CR>
+
+" Drag current line/s vertically and auto-indent
+" vnoremap <silent> mk :m-2<CR>gv=gv
+" vnoremap <silent> mj :m'>+<CR>gv=gv
+" noremap <silent> mk :m-2<CR>
+" noremap <silent> mj :m+<CR>
 
 " let loaded_matchparen = 1
 
@@ -164,8 +201,8 @@ nnoremap <Leader>bp :bprevious<CR>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bf :bfirst<CR>
 nnoremap <Leader>bl :blast<CR>
-nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>bk :bw<CR>
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bk :bwipout<CR>
 " }}}
 
 " window {{{
@@ -220,26 +257,6 @@ autocmd BufEnter * :syntax sync maxlines=200
 autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) | endif
 " }}}
 
-" Allow misspellings
-cnoreabbrev qw wq
-cnoreabbrev Wq wq
-cnoreabbrev WQ wq
-cnoreabbrev Qa qa
-cnoreabbrev Bd bd
-cnoreabbrev bD bd
-
-" Use tab for indenting
-vnoremap <Tab> >gv|
-vnoremap <S-Tab> <gv
-nmap <Tab>   >>_
-nmap <S-Tab> <<_
-
-" Yank buffer's absolute path to X11 clipboard
-nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Relative path copied to clipboard.'<CR>
-nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied to clipboard.'<CR>
-
-" Drag current line/s vertically and auto-indent
-vnoremap mk :m-2<CR>gv=gv
-vnoremap mj :m'>+<CR>gv=gv
-noremap  mk :m-2<CR>
-noremap  mj :m+<CR>
+" {{{ command
+command! FormatJSON %!python3 -c "import json, sys, collections; print(json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2))"
+" }}}
