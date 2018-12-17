@@ -220,3 +220,26 @@ autocmd BufEnter * :syntax sync maxlines=200
 autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) | endif
 " }}}
 
+" Allow misspellings
+cnoreabbrev qw wq
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev Qa qa
+cnoreabbrev Bd bd
+cnoreabbrev bD bd
+
+" Use tab for indenting
+vnoremap <Tab> >gv|
+vnoremap <S-Tab> <gv
+nmap <Tab>   >>_
+nmap <S-Tab> <<_
+
+" Yank buffer's absolute path to X11 clipboard
+nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Relative path copied to clipboard.'<CR>
+nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied to clipboard.'<CR>
+
+" Drag current line/s vertically and auto-indent
+vnoremap mk :m-2<CR>gv=gv
+vnoremap mj :m'>+<CR>gv=gv
+noremap  mk :m-2<CR>
+noremap  mj :m+<CR>

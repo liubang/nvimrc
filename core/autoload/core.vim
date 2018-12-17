@@ -46,7 +46,7 @@ function! s:component(name, ...)
 endfunction
 
 function! s:register_plugs()
-  silent! if plug#begin(g:lbvim_plug_home)
+  silent! if plug#begin(g:vim_plug_home)
     " module init
     if exists('*ModuleInit')
       call ModuleInit()
@@ -88,8 +88,8 @@ function! s:check_custom_file()
 endfunction
 
 function! s:check_vim_plug()
-  if empty(glob(g:lbvim_plug_path))
-    execute 'silent !curl -fLo ' . g:lbvim_plug_path . ' --create-dirs ' .
+  if empty(glob(g:vim_plug_path))
+    execute 'silent !curl -fLo ' . g:vim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
