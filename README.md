@@ -128,6 +128,7 @@ cd ~/.vim && git pull
 **Optional components**
 
 - markdown
+- docker
 - go
 - php
 - python
@@ -153,6 +154,7 @@ function! ModuleInit()
   CM 'lang/lisp'
   CM 'lang/lua'
   CM 'markdown'
+  CM 'docker'
 endfunction
 
 function! CustomPlug()

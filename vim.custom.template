@@ -4,6 +4,8 @@
 
 " init module
 function! ModuleInit()
+  CM 'markdown'
+  CM 'docker'
   CM 'lang/php'
   CM 'lang/go'
   CM 'lang/clang'
@@ -11,7 +13,6 @@ function! ModuleInit()
   CM 'lang/python'
   CM 'lang/lisp'
   CM 'lang/lua'
-  CM 'markdown'
 endfunction
 
 function! CustomPlug()
