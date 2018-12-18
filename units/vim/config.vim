@@ -258,5 +258,6 @@ autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) 
 " }}}
 
 " {{{ command
-command! FormatJSON %!python3 -c "import json, sys, collections; print(json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2))"
+command! -nargs=0 -bang FormatJSON %!python3 -c "import json, sys, collections; print(json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2))"
+command! -nargs=0 -bang CleanBuffer call utils#clean_buffers()
 " }}}

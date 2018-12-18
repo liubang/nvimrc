@@ -36,3 +36,14 @@ function! utils#buffer_empty()
     silent! execute 'bdelete ' . l:current
   endif
 endfunction
+
+"----------------------------------------------------------------------
+" 删除所有未显示且无修改的缓冲区 
+"----------------------------------------------------------------------
+function! utils#clean_buffers()
+  for bufNr in filter(range(1, bufnr('$')),
+        \ 'buflisted(v:val) && !bufloaded(v:val)')
+    execute bufNr . 'bdelete'
+  endfor
+endfunction
+

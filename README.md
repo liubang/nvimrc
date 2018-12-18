@@ -7,6 +7,26 @@ Configuration for neovim/vim8 :rose:.
 ![screenshot](https://user-images.githubusercontent.com/13254917/49992550-5bdf5700-ffbf-11e8-88e1-707b727f42ad.jpg)
 ![screenshot](https://user-images.githubusercontent.com/13254917/49992716-d27c5480-ffbf-11e8-91e1-5f92d65bedb0.png)
 
+<!-- vim-markdown-toc GFM -->
+
+* [Dependences](#dependences)
+* [vim8](#vim8)
+* [neovim](#neovim)
+* [Update](#update)
+* [Components](#components)
+* [Custom configuration](#custom-configuration)
+* [Usage](#usage)
+    * [Main shortcut keys](#main-shortcut-keys)
+* [Plugins](#plugins)
+    * [nerdtree](#nerdtree)
+    * [nerdcommenter](#nerdcommenter)
+    * [vimtex](#vimtex)
+    * [vim-go](#vim-go)
+    * [phpcd.vim](#phpcdvim)
+    * [deoplete-clangx](#deoplete-clangx)
+
+<!-- vim-markdown-toc -->
+
 ## Dependences 
 
 **Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)**
