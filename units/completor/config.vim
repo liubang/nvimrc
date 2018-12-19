@@ -55,12 +55,12 @@ endif
 call deoplete#custom#option('refresh_always', v:false)
 call deoplete#custom#option('camel_case', v:false)
 call deoplete#custom#option('ignore_case', v:true)
-call deoplete#custom#option('smart_case', v:true)
+call deoplete#custom#option('smart_case', v:false)
 call deoplete#custom#option('on_insert_enter', v:true)
 call deoplete#custom#option('on_text_changed_i', v:true)
 call deoplete#custom#option('min_pattern_length', 1)
 call deoplete#custom#option('num_processes', 10)
-call deoplete#custom#option('max_list', 10000)
+call deoplete#custom#option('max_list', 30)
 call deoplete#custom#option('skip_chars', ['(', ')', '<', '>'])
 
 let g:deoplete#sources = get(g:, 'deoplete#sources', {})
@@ -70,11 +70,12 @@ call deoplete#custom#source('omni',          'mark', '<omni>')
 call deoplete#custom#source('flow',          'mark', '<flow>')
 call deoplete#custom#source('phpcd',         'mark', '<php>')
 call deoplete#custom#source('tern',          'mark', '<tern>')
+call deoplete#custom#source('clangx',        'mark', '<clang>')
 call deoplete#custom#source('go',            'mark', '<go>')
 call deoplete#custom#source('jedi',          'mark', '<jedi>')
 call deoplete#custom#source('vim',           'mark', '<vim>')
 call deoplete#custom#source('neosnippet',    'mark', '<snip>')
-call deoplete#custom#source('tag',           'mark', '<tag>')
+call deoplete#custom#source('ultisnips',     'mark', '<us>')
 call deoplete#custom#source('around',        'mark', '<around>')
 call deoplete#custom#source('buffer',        'mark', '<buf>')
 call deoplete#custom#source('tmux-complete', 'mark', '<tmux>')
@@ -87,28 +88,28 @@ call deoplete#custom#source('phpcd',         'rank', 660)
 call deoplete#custom#source('go',            'rank', 650)
 call deoplete#custom#source('vim',           'rank', 640)
 call deoplete#custom#source('flow',          'rank', 630)
-call deoplete#custom#source('TernJS',        'rank', 620)
 call deoplete#custom#source('jedi',          'rank', 610)
+call deoplete#custom#source('clangx',        'rank', 605)
 call deoplete#custom#source('omni',          'rank', 600)
 call deoplete#custom#source('neosnippet',    'rank', 510)
+call deoplete#custom#source('ultisnips',     'rank', 505)
 call deoplete#custom#source('member',        'rank', 500)
 call deoplete#custom#source('file_include',  'rank', 420)
 call deoplete#custom#source('file',          'rank', 410)
-call deoplete#custom#source('tag',           'rank', 400)
 call deoplete#custom#source('around',        'rank', 330)
 call deoplete#custom#source('buffer',        'rank', 320)
-call deoplete#custom#source('dictionary',    'rank', 310)
-call deoplete#custom#source('tmux-complete', 'rank', 300)
+" call deoplete#custom#source('dictionary',    'rank', 310)
+" call deoplete#custom#source('tmux-complete', 'rank', 300)
 call deoplete#custom#source('syntax',        'rank', 200)
-" call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
-call deoplete#custom#source('_', 'converters', [
-      \ 'converter_remove_paren',
-      \ 'converter_remove_overlap',
-      \ 'converter_truncate_abbr',
-      \ 'converter_truncate_menu',
-      \ 'converter_auto_delimiter',
-      \ ])
+" call deoplete#custom#source('_', 'converters', [
+"       \ 'converter_remove_paren',
+"       \ 'converter_remove_overlap',
+"       \ 'converter_truncate_abbr',
+"       \ 'converter_truncate_menu',
+"       \ 'converter_auto_delimiter',
+"       \ ])
 
 " }}}
 
