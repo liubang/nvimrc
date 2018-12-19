@@ -66,50 +66,77 @@ call deoplete#custom#option('skip_chars', ['(', ')', '<', '>'])
 let g:deoplete#sources = get(g:, 'deoplete#sources', {})
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 
-call deoplete#custom#source('omni',          'mark', '<omni>')
-call deoplete#custom#source('flow',          'mark', '<flow>')
-call deoplete#custom#source('phpcd',         'mark', '<php>')
-call deoplete#custom#source('tern',          'mark', '<tern>')
-call deoplete#custom#source('clangx',        'mark', '<clang>')
-call deoplete#custom#source('go',            'mark', '<go>')
-call deoplete#custom#source('jedi',          'mark', '<jedi>')
-call deoplete#custom#source('vim',           'mark', '<vim>')
-call deoplete#custom#source('neosnippet',    'mark', '<snip>')
-call deoplete#custom#source('ultisnips',     'mark', '<us>')
-call deoplete#custom#source('around',        'mark', '<around>')
-call deoplete#custom#source('buffer',        'mark', '<buf>')
-call deoplete#custom#source('tmux-complete', 'mark', '<tmux>')
-call deoplete#custom#source('syntax',        'mark', '<syntax>')
-call deoplete#custom#source('member',        'mark', '<member>')
-call deoplete#custom#source('emoji',         'mark', '<emoji>')
-
-call deoplete#custom#source('emoji',         'rank', 670)
-call deoplete#custom#source('phpcd',         'rank', 660)
-call deoplete#custom#source('go',            'rank', 650)
-call deoplete#custom#source('vim',           'rank', 640)
-call deoplete#custom#source('flow',          'rank', 630)
-call deoplete#custom#source('jedi',          'rank', 610)
-call deoplete#custom#source('clangx',        'rank', 605)
-call deoplete#custom#source('omni',          'rank', 600)
-call deoplete#custom#source('neosnippet',    'rank', 510)
-call deoplete#custom#source('ultisnips',     'rank', 505)
-call deoplete#custom#source('member',        'rank', 500)
-call deoplete#custom#source('file_include',  'rank', 420)
-call deoplete#custom#source('file',          'rank', 410)
-call deoplete#custom#source('around',        'rank', 330)
-call deoplete#custom#source('buffer',        'rank', 320)
-" call deoplete#custom#source('dictionary',    'rank', 310)
-" call deoplete#custom#source('tmux-complete', 'rank', 300)
-call deoplete#custom#source('syntax',        'rank', 200)
+" Disable the candidates in Comment/String syntaxes.
 call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
-" call deoplete#custom#source('_', 'converters', [
-"       \ 'converter_remove_paren',
-"       \ 'converter_remove_overlap',
-"       \ 'converter_truncate_abbr',
-"       \ 'converter_truncate_menu',
-"       \ 'converter_auto_delimiter',
-"       \ ])
+" tag, disabled.
+call deoplete#custom#source('tag',           'mark', '<tag>')
+call deoplete#custom#source('tag',           'filetypes', ['xxxxx'])
+
+" emoji, don't show emoji mark
+call deoplete#custom#source('emoji',         'mark', '')
+call deoplete#custom#source('emoji',         'rank', 400)
+call deoplete#custom#source('emoji',         'filetypes', ['markdown'])
+
+" phpcd
+call deoplete#custom#source('phpcd',         'mark', '<php>')
+call deoplete#custom#source('phpcd',         'rank', 400)
+call deoplete#custom#source('phpcd',         'filetypes', ['php'])
+
+" golang
+call deoplete#custom#source('go',            'mark', '<go>')
+call deoplete#custom#source('go',            'rank', 400)
+call deoplete#custom#source('go',            'filetypes', ['go'])
+
+" vim
+call deoplete#custom#source('vim',           'mark', '<vim>')
+call deoplete#custom#source('vim',           'rank', 400)
+call deoplete#custom#source('vim',           'filetypes', ['vim'])
+
+" python
+call deoplete#custom#source('jedi',          'mark', '<jedi>')
+call deoplete#custom#source('jedi',          'rank', 400)
+call deoplete#custom#source('jedi',          'filetypes', ['py'])
+
+" clang
+call deoplete#custom#source('clangx',        'mark', '<clang>')
+call deoplete#custom#source('clangx',        'rank', 400)
+call deoplete#custom#source('clangx',        'filetypes', ['c', 'cpp', 'h', 'hpp'])
+
+call deoplete#custom#source('omni',          'mark', '<omni>')
+call deoplete#custom#source('omni',          'rank', 370)
+
+call deoplete#custom#source('ultisnips',     'mark', '<us>')
+call deoplete#custom#source('ultisnips',     'rank', 360)
+
+call deoplete#custom#source('member',        'mark', '<member>')
+call deoplete#custom#source('member',        'rank', 350)
+
+call deoplete#custom#source('file',          'mark', '<file>')
+call deoplete#custom#source('file',          'rank', 340)
+
+call deoplete#custom#source('around',        'mark', '<around>')
+call deoplete#custom#source('around',        'rank', 330)
+
+call deoplete#custom#source('buffer',        'mark', '<buf>')
+call deoplete#custom#source('buffer',        'rank', 320)
+
+call deoplete#custom#source('dictionary',    'mark', '<dic>')
+call deoplete#custom#source('dictionary',    'rank', 310)
+
+call deoplete#custom#source('tmux-complete', 'mark', '<tmux>')
+call deoplete#custom#source('tmux-complete', 'rank', 300)
+
+call deoplete#custom#source('syntax',        'mark', '<syntax>')
+call deoplete#custom#source('syntax',        'rank', 200)
+
+call deoplete#custom#source('_', 'converters', [
+     \ 'converter_remove_paren',
+     \ 'converter_remove_overlap',
+     \ 'converter_truncate_abbr',
+     \ 'converter_truncate_menu',
+     \ 'converter_auto_delimiter',
+     \ ])
 
 " }}}
 
