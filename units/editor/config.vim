@@ -223,9 +223,9 @@ augroup END
 
 " {{{ vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <Leader>ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <Leader>ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 " }}}
 
 " {{{ vim-textobj-user
