@@ -194,19 +194,18 @@ nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
 nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
 nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 nnoremap <silent> <Leader>w? :Windows<CR>
 nnoremap <silent> <Leader>f? :Files ~<CR>:
 nnoremap <silent> <Leader>ff :Files<CR>
 nnoremap <silent> <leader>bb :Buffer<CR>
-nnoremap <silent> <Leader>bl :Lines<CR>
+nnoremap <silent> <Leader>bl :BLines<CR>
 nnoremap <silent> <leader>bt :BTags<CR>
 nnoremap <silent> <leader>ht :Helptags<CR>
 " https://github.com/junegunn/fzf/issues/453
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 " search current word with Ag
-nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
+" nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
 
 "}}}
