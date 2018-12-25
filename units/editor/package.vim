@@ -8,7 +8,6 @@
 "======================================================================
 MMP 'easymotion/vim-easymotion'
 MMP 'jiangmiao/auto-pairs'
-MMP 'terryma/vim-multiple-cursors'
 MMP 'dominikduda/vim_current_word'
 MMP 'majutsushi/tagbar'
 MMP 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
