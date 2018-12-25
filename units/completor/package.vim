@@ -16,7 +16,6 @@ else
 endif
 
 " MMP 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-MMP 'ervandew/supertab'
 MMP 'SirVer/ultisnips'
 MMP 'iliubang/vim-snippets'
 " for viml

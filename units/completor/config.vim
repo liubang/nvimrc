@@ -16,8 +16,6 @@ if !g:IS_NVIM
 endif
 
 " {{{ snips 
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabCrMapping = 1
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
 
 if g:HAS_PYTHON

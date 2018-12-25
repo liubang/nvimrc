@@ -62,16 +62,16 @@ silent! set laststatus=2   " 总是显示状态栏
 
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+nmap <silent> <expr> <Leader>1 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
+nmap <silent> <expr> <Leader>2 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
+nmap <silent> <expr> <Leader>3 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
+nmap <silent> <expr> <Leader>4 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
+nmap <silent> <expr> <Leader>5 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
+nmap <silent> <expr> <Leader>6 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
+nmap <silent> <expr> <Leader>7 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
+nmap <silent> <expr> <Leader>8 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
+nmap <silent> <expr> <Leader>9 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
+nmap <silent> <expr> <Leader>0 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
 """ }}}
 
 " {{{ theme
