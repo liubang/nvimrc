@@ -128,6 +128,13 @@ command! -bang -nargs=1 LComment
 command! -bang -nargs=0 LCopyRight
       \ :call <SID>snip_copyright('liubang')
 
+" {{{ vim_current_word
+let g:vim_current_word#enabled = 1
+let g:vim_current_word#highlight_twins = 1
+let g:vim_current_word#highlight_current_word = 0
+let g:vim_current_word#highlight_only_in_focused_window = 1
+" }}}
+
 " easymotion {{{
 " map <Leader><Leader> <Plug>(easymotion-prefix)
 map <Leader>ll <Plug>(easymotion-lineforward)
