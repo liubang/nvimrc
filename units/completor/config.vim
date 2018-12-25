@@ -65,7 +65,7 @@ let g:deoplete#sources = get(g:, 'deoplete#sources', {})
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 
 " Disable the candidates in Comment/String syntaxes.
-call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+" call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
 " tag, disabled.
 call deoplete#custom#source('tag',           'mark', '<tag>')
