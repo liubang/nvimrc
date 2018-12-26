@@ -128,6 +128,10 @@ command! -bang -nargs=1 LComment
 command! -bang -nargs=0 LCopyRight
       \ :call <SID>snip_copyright('liubang')
 
+" {{{ vim-after-object 
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+" }}}
+
 " {{{ vim_current_word
 let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_twins = 1

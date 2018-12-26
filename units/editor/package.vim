@@ -19,4 +19,5 @@ MMP 'tpope/vim-surround'
 MMP 'tpope/vim-fugitive'
 MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
 MMP 'junegunn/gv.vim'
+MMP 'junegunn/vim-after-object'
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
