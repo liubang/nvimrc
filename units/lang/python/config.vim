@@ -36,7 +36,6 @@ endfun
 augroup PythonGroup
   autocmd!
   autocmd FileType python call s:init()
-  autocmd User BracelessInit iunmap <cr>
   autocmd FileType python BracelessEnable +indent
 augroup END
 

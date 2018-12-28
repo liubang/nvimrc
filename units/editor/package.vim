@@ -21,3 +21,6 @@ MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
 MMP 'junegunn/gv.vim'
 MMP 'junegunn/vim-after-object'
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
+
+MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
+MMP 'metakirby5/codi.vim', { 'on': 'Codi' }

@@ -331,3 +331,9 @@ let g:mundo_preview_height = 30
 let g:mundo_right = 1
 let g:mundo_tree_statusline = "undo tree"
 " }}}
+
+" {{{ vinarise.vim
+let g:vinarise_enable_auto_detect = 0
+nmap <silent><Leader>hx :Vinarise<CR>
+" }}}
+
