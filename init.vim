@@ -28,11 +28,12 @@ let g:LBVIM_VERSION = '0.7-dev'
 let g:IS_NVIM = has('nvim')
 let g:HAS_PYTHON = has('python')
 let g:HAS_PYTHON3 = has('python3')
+let g:HAS_PYTHONX = has('pythonx')
 let g:HAS_TMUX = !empty($TMUX)
 let g:HAS_GUICOLORS = has("termguicolors")
 let g:IS_MAC = has('macunix')
 let g:IS_LINUX = has('unix') && !has('macunix') && !has('win32unix')
-let g:IS_WINDOWS = has('win32') || has('win64') || has('win16') || has('win95')
+let g:IS_WINDOWS = has('win32') || has('win64') 
 
 let g:vim_home = g:IS_NVIM ? $HOME . '/.config/nvim' : $HOME . '/.vim'
 let g:vim_plug_home = g:vim_home . '/plugged/'
@@ -50,9 +51,9 @@ else
 endif
 
 call core#begin()
-  CM 'vim'
-  CM 'theme'
-  CM 'editor'
-  CM 'completor'
-  CM 'tags'
+  CCM 'vim'
+  CCM 'theme'
+  CCM 'editor'
+  CCM 'completor'
+  CCM 'tags'
 call core#end()

@@ -128,6 +128,76 @@ command! -bang -nargs=1 LComment
 command! -bang -nargs=0 LCopyRight
       \ :call <SID>snip_copyright('liubang')
 
+" {{{ fzf
+" Hide statusline of terminal buffer
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" This is the default extra key bindings
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
+
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_colors ={ 
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+function! s:plug_help_sink(line)
+  let dir = g:plugs[a:line].dir
+  for pat in ['doc/*.txt', 'README.md']
+    let match = get(split(globpath(dir, pat), "\n"), 0, '')
+    if len(match)
+      execute 'tabedit' match
+      return
+    endif
+  endfor
+  tabnew
+  execute 'Explore' dir
+endfunction
+
+command! PlugHelp call fzf#run(fzf#wrap({
+      \ 'source': sort(keys(g:plugs)),
+      \ 'sink':   function('s:plug_help_sink')}))
+
+" {{{ keybindings
+nmap <silent><Leader>? <plug>(fzf-maps-n)
+xmap <silent><Leader>? <plug>(fzf-maps-x)
+omap <silent><Leader>? <plug>(fzf-maps-o)
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
+nnoremap <silent> <Leader>w? :Windows<CR>
+nnoremap <silent> <Leader>f? :Files ~<CR>:
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <leader>bb :Buffer<CR>
+nnoremap <silent> <Leader>bl :BLines<CR>
+nnoremap <silent> <leader>bt :BTags<CR>
+nnoremap <silent> <leader>ht :Helptags<CR>
+" https://github.com/junegunn/fzf/issues/453
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+" search current word with Ag
+" nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
+" }}}
+
+"}}}
+
 " {{{ vim-after-object 
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 " }}}

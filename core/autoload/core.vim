@@ -36,13 +36,22 @@ endfunction
 
 function! s:define_command()
   command! -nargs=+ -bar MMP call plug#(<args>)
-  command! -nargs=+ -bar CM call s:component(<args>)
+  command! -nargs=+ -bar CCM call s:core_component(<args>)
+  command! -nargs=+ -bar CUM call s:user_component(<args>)
 endfunction
 
 function! s:component(name, ...)
   if index(g:components_loaded, a:name) == -1
     call add(g:components_loaded, a:name)
   endif
+endfunction
+
+function! s:core_component(name, ...)
+  call s:component('core/' . a:name)
+endfunction
+
+function! s:user_component(name, ...)
+  call s:component('user/' . a:name)
 endfunction
 
 function! s:register_plugs()

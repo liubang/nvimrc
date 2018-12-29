@@ -166,15 +166,15 @@ cp ~/.vim/vim.custom.template ~/.vim.custom
 ```viml
 " init module
 function! ModuleInit()
-  CM 'lang/php'
-  CM 'lang/go'
-  CM 'lang/clang'
-  CM 'lang/latex'
-  CM 'lang/python'
-  CM 'lang/lisp'
-  CM 'lang/lua'
-  CM 'markdown'
-  CM 'docker'
+  CUM 'lang/php'
+  CUM 'lang/go'
+  CUM 'lang/clang'
+  CUM 'lang/latex'
+  CUM 'lang/python'
+  CUM 'lang/lisp'
+  CUM 'lang/lua'
+  CUM 'markdown'
+  CUM 'docker'
 endfunction
 
 function! CustomPlug()

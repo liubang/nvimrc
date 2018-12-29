@@ -10,3 +10,6 @@ if g:HAS_TMUX
   MMP 'tmux-plugins/vim-tmux-focus-events'
   MMP 'roxma/vim-tmux-clipboard'
 endif
+
+" for viml
+MMP 'Shougo/neco-vim', { 'for': 'vim' }

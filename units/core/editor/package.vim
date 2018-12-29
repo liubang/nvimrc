@@ -24,3 +24,7 @@ MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 MMP 'metakirby5/codi.vim', { 'on': 'Codi' }
+
+" fzf
+MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+MMP 'junegunn/fzf.vim'
