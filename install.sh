@@ -23,7 +23,7 @@ fi
 pip3 install --user neovim jedi psutil setproctitle neovim-remote
 
 if [ "$(uname)" == "Darwin" ]; then
-    brew install the_silver_searcher
+    brew install the_silver_searcher neovim
     brew install --HEAD universal-ctags/universal-ctags/universal-ctags
     brew install global --with-ctags
     ctags -f ~/.cache/tags/.tags -R \
@@ -38,7 +38,7 @@ else
     source /etc/os-release
     case $ID in
         debian|ubuntu|devuan)
-            sudo apt-get install silversearcher-ag global git
+            sudo apt-get install silversearcher-ag global git neovim -y
             cd /tmp && git clone https://github.com/universal-ctags/ctags.git
             cd ctags && ./autogen.sh && ./configure && make && sudo make install
             ctags -f ~/.cache/tags/.tags -R \
