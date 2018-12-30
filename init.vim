@@ -24,40 +24,26 @@ if &compatible
  set nocompatible
 endif
 
-let g:python_host_skip_check=1
-let g:python3_host_skip_check=1
-let g:python3_host_prog = 'python3'
+let g:lbvim = {
+      \ 'version': '0.7-dev',
+      \ 'os': {
+      \     'mac': has('macunix'),
+      \     'linux': has('unix') && !has('macunix') && !has('win32unix'),
+      \ },
+      \ 'tmux': !empty($TMUX),
+      \ 'nvim': has('nvim'),
+      \ 'termguicolors': has('termguicolors'),
+      \ }
 
-let g:HAS_PYTHON3 = has('python3')
-if !g:HAS_PYTHON3 
-  echohl ErrorMsg
-  echom 'Please reinstall your vim/nvim with supporting for python3.'
-  echohl None
-  finish
-endif
+let g:lbvim.home = g:lbvim.nvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'
+let g:lbvim.plugin_home = g:lbvim.home . '/plugged/'
+let g:lbvim.vim_plug_path = g:lbvim.home . '/core/autoload/plug.vim'
+let g:lbvim.components_dir = g:lbvim.home . '/units'
 
-let g:LBVIM_VERSION = '0.7-dev'
-let g:IS_NVIM = has('nvim')
-let g:HAS_TMUX = !empty($TMUX)
-let g:HAS_GUICOLORS = has("termguicolors")
-let g:IS_MAC = has('macunix')
-let g:IS_LINUX = has('unix') && !has('macunix') && !has('win32unix')
-
-let g:vim_home = g:IS_NVIM ? $HOME . '/.config/nvim' : $HOME . '/.vim'
-let g:vim_plug_home = g:vim_home . '/plugged/'
-let g:vim_plug_path = g:vim_home . '/core/autoload/plug.vim'
-let g:components_dir = g:vim_home . '/units'
-
-if g:IS_NVIM
+if g:lbvim.nvim
   set runtimepath+=$HOME/.config/nvim/core
 else
   set runtimepath+=$HOME/.vim/core
 endif
 
-call core#begin()
-  CCM 'vim'
-  CCM 'theme'
-  CCM 'editor'
-  CCM 'completor'
-  CCM 'tags'
-call core#end()
+call boot#run()

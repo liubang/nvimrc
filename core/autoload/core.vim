@@ -53,14 +53,14 @@ function! s:optional_component(name, ...)
 endfunction
 
 function! s:register_plugs()
-  silent! if plug#begin(g:vim_plug_home)
+  silent! if plug#begin(g:lbvim.plugin_home)
     " module init
     if exists('*ModuleInit')
       call ModuleInit()
     endif
 
     for l:component in g:components_loaded
-      let l:component_package = g:components_dir . '/' . l:component . '/package.vim'
+      let l:component_package = g:lbvim.components_dir . '/' . l:component . '/package.vim'
       try
         execute 'so ' . l:component_package
       catch
@@ -79,7 +79,7 @@ endfunction
 
 function! s:register_configs()
   for l:component in g:components_loaded
-    let l:component_config = g:components_dir . '/' . l:component . '/config.vim'
+    let l:component_config = g:lbvim.components_dir . '/' . l:component . '/config.vim'
     try
       execute 'so ' . l:component_config
     catch
@@ -95,8 +95,8 @@ function! s:check_custom_file()
 endfunction
 
 function! s:check_vim_plug()
-  if empty(glob(g:vim_plug_path))
-    execute 'silent !curl -fLo ' . g:vim_plug_path . ' --create-dirs ' .
+  if empty(glob(g:lbvim.vim_plug_path))
+    execute 'silent !curl -fLo ' . g:lbvim.vim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif

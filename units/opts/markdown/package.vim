@@ -8,7 +8,7 @@
 "======================================================================
 MMP 'fszymanski/deoplete-emoji', { 'for': ['markdown', 'gitcommit'] }
 MMP 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
-if g:IS_NVIM
+if g:lbvim.nvim
   MMP 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 else 
   MMP 'iamcco/mathjax-support-for-mkdp', { 'for': ['markdown'] }

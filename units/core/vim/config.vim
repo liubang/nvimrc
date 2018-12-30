@@ -174,7 +174,7 @@ nnoremap <silent> <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied
 " let loaded_matchparen = 1
 
 " Open shell in vim {{{
-if g:IS_NVIM
+if g:lbvim.nvim
     map <Leader>' :terminal<CR>
 else
     map <Leader>' :shell<CR>

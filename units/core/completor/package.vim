@@ -7,7 +7,7 @@
 "
 "======================================================================
 
-if !g:IS_NVIM
+if !g:lbvim.nvim
   MMP 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   MMP 'roxma/nvim-yarp'
   MMP 'roxma/vim-hug-neovim-rpc'

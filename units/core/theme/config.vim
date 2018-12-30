@@ -13,14 +13,14 @@ let g:polyglot_disabled = ['latex']
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if g:HAS_TMUX
-  if g:IS_NVIM
+if g:lbvim.tmux
+  if g:lbvim.nvim
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
-  if g:HAS_GUICOLORS
+  if g:lbvim.termguicolors
     " fix bug for vim
-    if !g:IS_NVIM
+    if !g:lbvim.nvim
       set t_8f=^[[38;2;%lu;%lu;%lum
       set t_8b=^[[48;2;%lu;%lu;%lum
     endif
@@ -90,7 +90,7 @@ let g:startify_custom_header = [
                             \'                          ',
                             \'      Author: liubang <it.liubang@gmail.com> ',
                             \'        Site: https://iliubang.cn            ',
-                            \'     Version: ' . g:LBVIM_VERSION,
+                            \'     Version: ' . g:lbvim.version,
                             \ ]
 
 let g:startify_lists = [
