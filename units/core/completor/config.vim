@@ -12,9 +12,6 @@ if !g:IS_NVIM
 endif
 
 " {{{ snips 
-let g:python3_host_skip_check = 1
-let g:python3_host_prog = 'python3'
-
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
