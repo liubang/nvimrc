@@ -43,16 +43,11 @@ let g:HAS_TMUX = !empty($TMUX)
 let g:HAS_GUICOLORS = has("termguicolors")
 let g:IS_MAC = has('macunix')
 let g:IS_LINUX = has('unix') && !has('macunix') && !has('win32unix')
-let g:IS_WINDOWS = has('win32') || has('win64') 
 
 let g:vim_home = g:IS_NVIM ? $HOME . '/.config/nvim' : $HOME . '/.vim'
 let g:vim_plug_home = g:vim_home . '/plugged/'
 let g:vim_plug_path = g:vim_home . '/core/autoload/plug.vim'
 let g:components_dir = g:vim_home . '/units'
-
-if g:IS_WINDOWS
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
 
 if g:IS_NVIM
   set runtimepath+=$HOME/.config/nvim/core
