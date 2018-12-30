@@ -24,11 +24,21 @@ if &compatible
  set nocompatible
 endif
 
+let g:python_host_skip_check=1
+let g:python3_host_skip_check=1
+let g:python3_host_prog = 'python3'
+
+let g:HAS_PYTHON3 = has('python3')
+
+if !g:HAS_PYTHON3 
+  echohl ErrorMsg
+  echom 'Please reinstall your vim/nvim with supporting for python3.'
+  echohl None
+  finish
+endif
+
 let g:LBVIM_VERSION = '0.7-dev'
 let g:IS_NVIM = has('nvim')
-let g:HAS_PYTHON = has('python')
-let g:HAS_PYTHON3 = has('python3')
-let g:HAS_PYTHONX = has('pythonx')
 let g:HAS_TMUX = !empty($TMUX)
 let g:HAS_GUICOLORS = has("termguicolors")
 let g:IS_MAC = has('macunix')

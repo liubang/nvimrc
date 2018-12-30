@@ -37,7 +37,7 @@ endfunction
 function! s:define_command()
   command! -nargs=+ -bar MMP call plug#(<args>)
   command! -nargs=+ -bar CCM call s:core_component(<args>)
-  command! -nargs=+ -bar CUM call s:user_component(<args>)
+  command! -nargs=+ -bar COM call s:optional_component(<args>)
 endfunction
 
 function! s:component(name, ...)
@@ -50,8 +50,8 @@ function! s:core_component(name, ...)
   call s:component('core/' . a:name)
 endfunction
 
-function! s:user_component(name, ...)
-  call s:component('user/' . a:name)
+function! s:optional_component(name, ...)
+  call s:component('opts/' . a:name)
 endfunction
 
 function! s:register_plugs()

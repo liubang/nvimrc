@@ -4,15 +4,15 @@
 
 " init module
 function! ModuleInit()
-  CM 'markdown'
-  CM 'docker'
-  CM 'lang/php'
-  CM 'lang/go'
-  CM 'lang/clang'
-  CM 'lang/latex'
-  CM 'lang/python'
-  CM 'lang/lisp'
-  CM 'lang/lua'
+  COM 'markdown'
+  COM 'docker'
+  COM 'lang/php'
+  COM 'lang/go'
+  COM 'lang/clang'
+  COM 'lang/latex'
+  COM 'lang/python'
+  COM 'lang/lisp'
+  COM 'lang/lua'
 endfunction
 
 function! CustomPlug()

@@ -8,21 +8,12 @@
 "======================================================================
 
 if !g:IS_NVIM
-  if g:HAS_PYTHON
-    set pyxversion=2
-  elseif g:HAS_PYTHON3
-    set pyxversion=3
-  endif
+  set pyxversion=3
 endif
 
 " {{{ snips 
-if g:HAS_PYTHON
-  let g:python_host_skip_check = 1
-  let g:python_host_prog = 'python'
-elseif g:HAS_PYTHON3
-  let g:python3_host_skip_check = 1
-  let g:python3_host_prog = 'python3'
-endif
+let g:python3_host_skip_check = 1
+let g:python3_host_prog = 'python3'
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
