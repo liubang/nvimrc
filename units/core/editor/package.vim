@@ -6,7 +6,15 @@
 " Last Modified: 2018/11/20 13:00:38
 "
 "======================================================================
-MMP 'easymotion/vim-easymotion'
+MMP 'easymotion/vim-easymotion', { 'on': [
+      \ '<Plug>(easymotion-lineforward)',
+      \ '<Plug>(easymotion-j)',
+      \ '<Plug>(easymotion-k)',
+      \ '<Plug>(easymotion-linebackward)',
+      \ '<Plug>(easymotion-bd-w)',
+      \ '<Plug>(easymotion-overwin-w)'
+      \ ] }
+
 MMP 'jiangmiao/auto-pairs'
 MMP 'dominikduda/vim_current_word'
 MMP 'majutsushi/tagbar'
@@ -17,9 +25,10 @@ MMP 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
 MMP 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 MMP 'tpope/vim-surround'
 MMP 'tpope/vim-fugitive'
+
 MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
-MMP 'junegunn/gv.vim'
-MMP 'junegunn/vim-after-object'
+MMP 'junegunn/gv.vim', { 'on': 'GV' }
+
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }

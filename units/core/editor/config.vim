@@ -181,7 +181,7 @@ command! PlugHelp call fzf#run(fzf#wrap({
 nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>ag :Ag <CR>
 nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
 nnoremap <silent> <Leader>w? :Windows<CR>
 nnoremap <silent> <Leader>f? :Files ~<CR>:
@@ -198,10 +198,6 @@ nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : ''
 
 "}}}
 
-" {{{ vim-after-object 
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
-" }}}
-
 " {{{ vim_current_word
 let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_twins = 1
@@ -211,11 +207,11 @@ let g:vim_current_word#highlight_only_in_focused_window = 1
 
 " easymotion {{{
 " map <Leader><Leader> <Plug>(easymotion-prefix)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 map <Leader>ll <Plug>(easymotion-lineforward)
 map <Leader>jj <Plug>(easymotion-j)
 map <Leader>kk <Plug>(easymotion-k)
 map <Leader>hh <Plug>(easymotion-linebackward)
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
 " map  / <Plug>(easymotion-sn)
 " omap / <Plug>(easymotion-tn)
@@ -330,6 +326,7 @@ function! CurrentLineI()
   \ : 0
 endfunction
 
+" Define al to select the current line, and define il to select the current line without indentation:
 call textobj#user#plugin('line', {
 \   '-': {
 \     'select-a-function': 'CurrentLineA',
@@ -339,6 +336,14 @@ call textobj#user#plugin('line', {
 \   },
 \ })
 
+" Define aP to select a PHP code with <?php and ?>, and define iP to select a PHP code without <?php and ?>:
+call textobj#user#plugin('php', {
+\   'code': {
+\     'pattern': ['<?php\>', '?>'],
+\     'select-a': 'aP',
+\     'select-i': 'iP',
+\   },
+\ })
 " }}}
 
 " {{{ AsyncRun
