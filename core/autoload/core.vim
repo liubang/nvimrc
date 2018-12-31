@@ -13,7 +13,6 @@
 
 scriptencoding utf-8
 
-let g:dot_customfile = $HOME . '/.vim.custom'
 let g:components_loaded = []
 
 function! core#begin() abort
@@ -89,8 +88,9 @@ function! s:register_configs()
 endfunction
 
 function! s:check_custom_file()
-  if filereadable(expand(g:dot_customfile))
-    execute 'so ' . g:dot_customfile
+  let a:dot_customfile = $HOME . '/.vim.custom'
+  if filereadable(expand(a:dot_customfile))
+    execute 'so ' . a:dot_customfile
   endif
 endfunction
 
