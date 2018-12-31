@@ -13,7 +13,15 @@
 
 scriptencoding utf-8
 
-let g:components_loaded = []
+let g:lbvim.components_loaded = []
+let g:lbvim.plugins = []
+let s:plugin_options = {}
+let s:type = {
+      \ 'string': type(''),
+      \ 'list': type([]),
+      \ 'dict': type({}),
+      \ 'function': type(function('call'))
+      \ }
 
 function! core#begin() abort
   call s:check_vim_plug()
@@ -32,14 +40,32 @@ function! core#end() abort
 endfunction
 
 function! s:define_command()
-  command! -nargs=+ -bar MMP call plug#(<args>)
+  command! -nargs=+ -bar MMP call s:my_plugin(<args>)
   command! -nargs=+ -bar CCM call s:core_component(<args>)
   command! -nargs=+ -bar COM call s:optional_component(<args>)
 endfunction
 
+function! s:my_plugin(plugin, ...) abort
+  if index(g:lbvim.plugins, a:plugin) < 0
+    if a:0 == 1
+      call plug#(a:plugin, a:1)
+      if has_key(a:1, 'defer')
+        let l:defer = a:1.defer
+        if type(l:defer) == s:type.dict
+          if has_key(l:defer, 'delay') && has_key(l:defer, 'callback')
+            call timer_start(l:defer.delay, l:defer.callback)
+          endif
+        endif
+      endif
+    else
+      call plug#(a:plugin, "")
+    endif
+  endif
+endfunction
+
 function! s:component(name, ...)
-  if index(g:components_loaded, a:name) == -1
-    call add(g:components_loaded, a:name)
+  if index(g:lbvim.components_loaded, a:name) == -1
+    call add(g:lbvim.components_loaded, a:name)
   endif
 endfunction
 
@@ -58,7 +84,7 @@ function! s:register_plugs()
       call ModuleInit()
     endif
 
-    for l:component in g:components_loaded
+    for l:component in g:lbvim.components_loaded
       let l:component_package = g:lbvim.components_dir . '/' . l:component . '/package.vim'
       try
         execute 'so ' . l:component_package
@@ -77,7 +103,7 @@ function! s:register_plugs()
 endfunction
 
 function! s:register_configs()
-  for l:component in g:components_loaded
+  for l:component in g:lbvim.components_loaded
     let l:component_config = g:lbvim.components_dir . '/' . l:component . '/config.vim'
     try
       execute 'so ' . l:component_config

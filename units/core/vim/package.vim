@@ -7,8 +7,10 @@
 "
 "======================================================================
 if g:lbvim.tmux
-  MMP 'tmux-plugins/vim-tmux-focus-events'
-  MMP 'roxma/vim-tmux-clipboard'
+  " {{{ defer#tmux
+  MMP 'tmux-plugins/vim-tmux-focus-events', { 'on': [] }
+  MMP 'roxma/vim-tmux-clipboard', { 'on': [], 'defer': {'delay': 600, 'callback': 'defer#tmux'} }
+  " }}}
 endif
 
 " for viml

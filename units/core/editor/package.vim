@@ -15,25 +15,34 @@ MMP 'easymotion/vim-easymotion', { 'on': [
       \ '<Plug>(easymotion-overwin-w)'
       \ ] }
 
-MMP 'jiangmiao/auto-pairs'
-MMP 'dominikduda/vim_current_word'
-MMP 'majutsushi/tagbar'
+MMP 'jiangmiao/auto-pairs', { 'on': [] }
+augroup lbvimAutoPairs
+  autocmd!
+  autocmd CursorHold,CursorHoldI,InsertEnter, * call plug#load('auto-pairs') 
+        \ | call AutoPairsTryInit() 
+        \ | autocmd! lbvimAutoPairs
+augroup END
+
+MMP 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 MMP 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 MMP 'kana/vim-textobj-user'
 MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
 MMP 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
-MMP 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
-MMP 'tpope/vim-surround'
-MMP 'tpope/vim-fugitive'
+MMP 'skywind3000/asyncrun.vim', { 'on': ['AsyncRun', 'AsyncRun!'] }
 
 MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
 MMP 'junegunn/gv.vim', { 'on': 'GV' }
-
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
-
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 MMP 'metakirby5/codi.vim', { 'on': 'Codi' }
 
 " fzf
 MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-MMP 'junegunn/fzf.vim'
+
+" {{{ defer#editor 
+MMP 'junegunn/fzf.vim', { 'on': [] }
+MMP 'tpope/vim-surround', { 'on': [] }
+MMP 'dominikduda/vim_current_word', { 'on': [] }
+MMP 'tpope/vim-fugitive', { 'on': [] , 'defer': {'delay': 400, 'callback': 'defer#editor'}}
+" }}}
+

@@ -229,6 +229,8 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 
 " {{{ tagbar
 " let g:tagbar_iconchars = ['*', '~']
+let g:tagbar_sort = 0
+let g:tagbar_autofocus = 1
 nnoremap <silent><F3> :TagbarToggle<CR>
 nnoremap <silent><leader>tb :TagbarToggle<CR>
 " Jump to Tagbar window if already open
