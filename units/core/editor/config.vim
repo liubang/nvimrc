@@ -181,17 +181,19 @@ command! PlugHelp call fzf#run(fzf#wrap({
 nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
-nnoremap <silent> <Leader>ag :Ag <CR>
-nnoremap <silent> <Leader>AG :Ag <C-R><C-A><CR>
-nnoremap <silent> <Leader>w? :Windows<CR>
-nnoremap <silent> <Leader>f? :Files ~<CR>:
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <leader>bb :Buffer<CR>
-nnoremap <silent> <Leader>bl :BLines<CR>
-nnoremap <silent> <leader>bt :BTags<CR>
-nnoremap <silent> <leader>ht :Helptags<CR>
+
 " https://github.com/junegunn/fzf/issues/453
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<cr>"
+nnoremap <silent> <expr> <Leader>Ag (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<c-r>\<c-w>\<cr>"
+nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Files\<cr>"
+nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
+nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
+nnoremap <silent> <expr> <Leader>bl (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":BLines\<cr>"
+nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":BTags\<cr>"
+nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
+nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
+
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":FZF\<cr>"
 " search current word with Ag
 " nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
