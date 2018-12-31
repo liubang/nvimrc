@@ -10,13 +10,20 @@
 
 set -eo 
 
+exit 1
+
 if [ ! -n `which python3` ]; then
-    error "Please install python3"
+    echo "Please install python3"
     exit 1
 fi
 
 if [ ! -n `which pip3` ]; then
-    error "Please install pip3"
+    echo "Please install pip3"
+    exit 1
+fi
+
+if [ ! -n `which composer` ]; then
+    echo "Please install composer"
     exit 1
 fi
 
@@ -69,3 +76,4 @@ if [ -d "~/.config" ]; then
 fi
 
 ln -s ~/.vim ~/.config/nvim
+cp ~/.vim/vim.custom.template  ~/.vim.custom
