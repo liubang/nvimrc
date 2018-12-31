@@ -7,6 +7,7 @@
 "
 "======================================================================
 
+" 打印错误信息
 function! utils#err(msg, f)
   echohl ErrorMsg
   echom '[vim-core] ' . a:msg . ' on file ' . a:f
@@ -37,9 +38,7 @@ function! utils#buffer_empty()
   endif
 endfunction
 
-"----------------------------------------------------------------------
 " 删除所有未显示且无修改的缓冲区 
-"----------------------------------------------------------------------
 function! utils#clean_buffers()
   for bufNr in filter(range(1, bufnr('$')),
         \ 'buflisted(v:val) && !bufloaded(v:val)')
