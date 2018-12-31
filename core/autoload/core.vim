@@ -56,6 +56,17 @@ function! s:my_plugin(plugin, ...) abort
             call timer_start(l:defer.delay, l:defer.callback)
           endif
         endif
+      elseif has_key(a:1, 'on_event')
+        if type(a:1.on_event) == s:type.list
+          let l:group = 'load/' . a:plugin
+          let l:plugin_name = split(a:plugin, '/')[1]
+          let l:events = join(a:1.on_event, ',')
+          let l:load_call = printf("call plug#load('%s')", l:plugin_name)
+          execute 'augroup' l:group
+          autocmd!
+          execute 'autocmd' l:events '*' l:load_call '|' 'autocmd!' l:group
+          execute 'augroup END'
+        endif
       endif
     else
       call plug#(a:plugin, "")

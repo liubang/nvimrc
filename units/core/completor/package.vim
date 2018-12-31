@@ -7,16 +7,13 @@
 "
 "======================================================================
 
-if !g:lbvim.nvim
+if g:lbvim.nvim
   MMP 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  MMP 'Shougo/deoplete.nvim'
   MMP 'roxma/nvim-yarp'
   MMP 'roxma/vim-hug-neovim-rpc'
-else
-  MMP 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
-" MMP 'SirVer/ultisnips'
-" MMP 'iliubang/vim-snippets'
-MMP 'Shougo/neosnippet.vim'
-MMP 'Shougo/neosnippet-snippets'
-
+MMP 'Shougo/neosnippet.vim', { 'on': [] , 'on_event': ['InsertEnter']}
+MMP 'Shougo/neosnippet-snippets', { 'on': [] , 'on_event': ['InsertEnter']}
