@@ -40,6 +40,23 @@ endif
 " {{{ lightline & tabline
 " 总是显示行号
 set number
+
+function! s:SID()
+  if ! exists('s:sid')
+    let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+  endif
+  return s:sid
+endfunction
+let s:SNR = '<SNR>'.s:SID().'_'
+
+function! s:LightlineFilename()
+  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ &filetype ==# 'startify' ? 'startify' :
+        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
@@ -47,7 +64,8 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'filename': s:SNR . 'LightlineFilename'
       \ },
       \ }
 
