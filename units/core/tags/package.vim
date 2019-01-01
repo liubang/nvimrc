@@ -8,4 +8,4 @@
 "======================================================================
 MMP 'ludovicchabant/vim-gutentags', {'for': ['c', 'cpp', 'objc']}
 MMP 'skywind3000/gutentags_plus', {'for': ['c', 'cpp', 'objc']}
-MMP 'skywind3000/vim-preview', { 'on': [], 'defer': {'delay': 500, 'callback': 'defer#vimpreview'}}
+MMP 'skywind3000/vim-preview', { 'on': [], 'defer': {'delay': 800, 'callback': 'defer#vimpreview'}}

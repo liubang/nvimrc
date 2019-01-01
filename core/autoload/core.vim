@@ -108,7 +108,7 @@ function! s:register_plugs()
     endif
 
     call plug#end()
-    call s:check_custom_plug()
+    call timer_start(1500, 'utils#check_custom_plug')
   endif
 endfunction
 
@@ -132,20 +132,8 @@ endfunction
 
 function! s:check_vim_plug()
   if empty(glob(g:lbvim.vim_plug_path))
-    execute 'silent !curl -fLo ' . g:lbvim.vim_plug_path . ' --create-dirs ' .
+    echo "==> Downloading vim-plug......"
+    execute '!curl -fLo ' . g:lbvim.vim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
-endfunction
-
-function! s:check_custom_plug()
-  " https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
-  augroup checkPlug
-    autocmd!
-    autocmd VimEnter *
-      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-      \|   echom 'Some plugins need to install the missing plugins first!'
-      \|   PlugInstall --sync | q
-      \| endif
-  augroup END
 endfunction

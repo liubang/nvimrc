@@ -46,3 +46,20 @@ function! utils#clean_buffers()
   endfor
 endfunction
 
+function! utils#check_custom_plug(...) abort
+  let l:missing = filter(values(g:plugs), '!isdirectory(v:val.dir)')
+  if len(l:missing)
+    echom 'Some plugins need to install the missing plugins first!'
+    PlugInstall --sync | q
+  endif
+
+  " https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
+  " augroup checkPlug
+  "   autocmd!
+  "   autocmd VimEnter *
+  "     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  "     \|   echom 'Some plugins need to install the missing plugins first!'
+  "     \|   PlugInstall --sync | q
+  "     \| endif
+  " augroup END
+endfunction

@@ -43,6 +43,6 @@ MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 MMP 'junegunn/fzf.vim', { 'on': [] }
 MMP 'tpope/vim-surround', { 'on': [] }
 MMP 'dominikduda/vim_current_word', { 'on': [] }
-MMP 'tpope/vim-fugitive', { 'on': [] , 'defer': {'delay': 400, 'callback': 'defer#editor'}}
+MMP 'tpope/vim-fugitive', { 'on': [] , 'defer': {'delay': 500, 'callback': 'defer#editor'}}
 " }}}
 

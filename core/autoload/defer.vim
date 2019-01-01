@@ -13,17 +13,22 @@ function! s:load(...)
   endfor
 endfunction
 
-" 400
+" 500
 function! defer#editor(timer) abort
   call s:load('fzf.vim', 'vim-surround', 'vim_current_word', 'vim-fugitive')
-endfunction
-
-" 500
-function! defer#vimpreview(timer) abort
-  call s:load('vim-preview')
 endfunction
 
 " 600
 function! defer#tmux(timer) abort
   call s:load('vim-tmux-focus-events', 'vim-tmux-clipboard')
+endfunction
+
+" 700
+function! defer#bufferline(timer) abort
+  call s:load('lightline-bufferline')
+endfunction
+
+" 800
+function! defer#vimpreview(timer) abort
+  call s:load('vim-preview')
 endfunction
