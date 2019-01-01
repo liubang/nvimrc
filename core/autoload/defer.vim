@@ -15,10 +15,7 @@ endfunction
 
 " 400
 function! defer#editor(timer) abort
-  call s:load('fzf.vim')
-  call s:load('vim-surround')
-  call s:load('vim_current_word')
-  call s:load('vim-fugitive')
+  call s:load('fzf.vim', 'vim-surround', 'vim_current_word', 'vim-fugitive')
 endfunction
 
 " 500
@@ -28,6 +25,5 @@ endfunction
 
 " 600
 function! defer#tmux(timer) abort
-  call s:load('vim-tmux-focus-events')
-  call s:load('vim-tmux-clipboard')
+  call s:load('vim-tmux-focus-events', 'vim-tmux-clipboard')
 endfunction

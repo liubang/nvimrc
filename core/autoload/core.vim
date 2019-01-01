@@ -15,7 +15,6 @@ scriptencoding utf-8
 
 let g:lbvim.components_loaded = []
 let g:lbvim.plugins = []
-let s:plugin_options = {}
 let s:type = {
       \ 'string': type(''),
       \ 'list': type([]),
