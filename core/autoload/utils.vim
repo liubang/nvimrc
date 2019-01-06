@@ -9,6 +9,7 @@
 
 " 打印错误信息
 function! utils#err(msg, f)
+  redraw! | echo | redraw!
   echohl ErrorMsg
   echom '[vim-core] ' . a:msg . ' on file ' . a:f
   echohl None
@@ -52,14 +53,14 @@ function! utils#check_custom_plug(...) abort
     echom 'Some plugins need to install the missing plugins first!'
     PlugInstall --sync | q
   endif
+endfunction
 
-  " https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
-  " augroup checkPlug
-  "   autocmd!
-  "   autocmd VimEnter *
-  "     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  "     \|   echom 'Some plugins need to install the missing plugins first!'
-  "     \|   PlugInstall --sync | q
-  "     \| endif
-  " augroup END
+" string 
+function! utils#string_replace(text, old, new)
+  let data = split(a:text, a:old, 1);
+  return join(data, a:new)
+endfunction
+
+function! utils#string_strip(text)
+	return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
