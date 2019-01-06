@@ -351,7 +351,7 @@ call textobj#user#plugin('php', {
 " }}}
 
 " {{{ AsyncRun
-let g:asyncrun_open = 10
+let g:asyncrun_open = 15
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 nnoremap <Leader>ar :AsyncRun<Space>
