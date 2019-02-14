@@ -24,8 +24,8 @@ function! defer#tmux(timer) abort
 endfunction
 
 " 700
-function! defer#bufferline(timer) abort
-  call s:load('lightline-bufferline')
+function! defer#theme(timer) abort
+  call s:load('lightline-bufferline', 'vim-highlightedyank')
 endfunction
 
 " 800
