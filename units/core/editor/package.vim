@@ -23,7 +23,8 @@ augroup lbvimAutoPairs
         \ | autocmd! lbvimAutoPairs
 augroup END
 
-MMP 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" MMP 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 MMP 'kana/vim-textobj-user'
 MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
@@ -35,6 +36,9 @@ MMP 'junegunn/gv.vim', { 'on': 'GV' }
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 MMP 'metakirby5/codi.vim', { 'on': 'Codi' }
+
+" multi cursors
+MMP 'mg979/vim-visual-multi'
 
 " fzf
 MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
