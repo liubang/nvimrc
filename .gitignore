@@ -3,3 +3,4 @@ custom/*
 doc
 plugged
 core/autoload/plug.vim
+cache/*
