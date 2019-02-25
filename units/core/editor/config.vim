@@ -227,16 +227,38 @@ map  <Leader>ww <Plug>(easymotion-bd-w)
 nmap <Leader>ww <Plug>(easymotion-overwin-w)
 " }}}
 
-" {{{ tagbar
-" let g:tagbar_iconchars = ['*', '~']
-let g:tagbar_sort = 0
-let g:tagbar_autofocus = 1
-nnoremap <silent><F3> :TagbarToggle<CR>
-nnoremap <silent><leader>tb :TagbarToggle<CR>
-" Jump to Tagbar window if already open
-nnoremap <silent><leader>tj :TagbarOpen j<CR>
-" Close the Tagbar window if it is open
-nnoremap <silent><leader>tc :TagbarClose<CR>
+" {{{ leaderf
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+
+let g:Lf_WildIgnore = {
+      \ 'dir': ['.svn','.git','.hg'],
+      \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+      \ }
+
+let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
+let g:Lf_MruMaxFiles = 2048
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_ShortcutF = '<c-p>'
+let g:Lf_ShortcutB = '<m-n>'
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+
+let g:Lf_NormalMap = {
+    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<cr>']],
+    \ "Mru": [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<cr>']],
+    \ "Tag": [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<cr>']],
+    \ "BufTag": [["<ESC>", ':exec g:Lf_py "bufTagExplManager.quit()"<cr>']],
+    \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
+    \ }
+
+nnoremap <silent><F3> :LeaderfFunction!<CR>
+nnoremap <silent><leader>lf :LeaderfFunction!<CR>
 " }}}
 
 " {{{ NERDTree
