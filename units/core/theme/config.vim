@@ -93,9 +93,8 @@ nmap <silent> <expr> <Leader>0 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : ''
 """ }}}
 
 " {{{ theme
-
-colorscheme gruvbox
 set background=dark
+colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_indent_guides=1
 " }}}

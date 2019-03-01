@@ -231,7 +231,7 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_CacheDirectory = g:lbvim.cache_dir
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 
@@ -259,6 +259,7 @@ let g:Lf_NormalMap = {
 
 nnoremap <silent><F3> :LeaderfFunction!<CR>
 nnoremap <silent><leader>lf :LeaderfFunction!<CR>
+nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
 " }}}
 
 " {{{ NERDTree

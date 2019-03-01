@@ -39,6 +39,7 @@ let g:lbvim.home = g:lbvim.nvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'
 let g:lbvim.plugin_home = g:lbvim.home . '/plugged/'
 let g:lbvim.vim_plug_path = g:lbvim.home . '/core/autoload/plug.vim'
 let g:lbvim.components_dir = g:lbvim.home . '/units'
+let g:lbvim.cache_dir = g:lbvim.home . '/cache'
 
 if g:lbvim.nvim
   set runtimepath+=$HOME/.config/nvim/core
