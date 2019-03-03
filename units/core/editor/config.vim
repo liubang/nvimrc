@@ -234,6 +234,7 @@ let g:Lf_WindowHeight = 0.30
 let g:Lf_CacheDirectory = g:lbvim.cache_dir
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'one'
 
 let g:Lf_WildIgnore = {
       \ 'dir': ['.svn','.git','.hg'],
