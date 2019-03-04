@@ -12,4 +12,4 @@ MMP 'mgee/lightline-bufferline', { 'on': [], 'defer': {'delay': 700, 'callback':
 MMP 'itchyny/lightline.vim'
 MMP 'mhinz/vim-startify'
 MMP 'morhetz/gruvbox'
-MMP 'junegunn/seoul256.vim'
+MMP 'iliubang/seoul256.vim'
