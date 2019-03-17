@@ -183,17 +183,17 @@ xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
 
 " https://github.com/junegunn/fzf/issues/453
-nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<cr>"
-nnoremap <silent> <expr> <Leader>Ag (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<c-r>\<c-w>\<cr>"
-nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Files\<cr>"
-nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
-nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
-nnoremap <silent> <expr> <Leader>bl (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":BLines\<cr>"
-nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":BTags\<cr>"
-nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
-nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
+nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<cr>"
+nnoremap <silent> <expr> <Leader>Ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<c-r>\<c-w>\<cr>"
+nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files\<cr>"
+nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
+nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
+nnoremap <silent> <expr> <Leader>bl (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":BLines\<cr>"
+nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":BTags\<cr>"
+nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
+nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
 
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '') . ":FZF\<cr>"
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":FZF\<cr>"
 " search current word with Ag
 " nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}
@@ -264,8 +264,8 @@ nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
 " }}}
 
 " {{{ Defx
-nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0<CR>
-nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0<CR>
+nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0 -buffer-name=Defx_tree<CR>
+nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0 -buffer-name=Defx_tree<CR>
 
 augroup vfinit
   au!
