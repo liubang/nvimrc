@@ -263,134 +263,100 @@ nnoremap <silent><leader>lf :LeaderfFunction!<CR>
 nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
 " }}}
 
-" {{{ NERDTree
-nnoremap <silent><F4> :NERDTreeToggle<CR>
-nnoremap <silent><Leader>ft :NERDTreeToggle<CR>
-nnoremap <silent><Leader>fd :NERDTreeFind<CR>
-
-function! s:nerdtree_init()
-  let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeWinSize = 25
-  let g:NERDTreeCascadeOpenSingleChildDir = 1
-  let g:NERDTreeCascadeSingleChildDir = 0
-  let g:NERDTreeShowHidden = 1
-  let g:NERDTreeRespectWildIgnore = 0
-  let g:NERDTreeQuitOnOpen = 0
-  let g:NERDTreeHijackNetrw = 1
-  " 删除文件自动删除对应的buffer
-  let g:NERDTreeAutoDeleteBuffer = 1
-  let g:NERDTreeIgnore = [
-        \ '\.git$', '\.github', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
-        \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
-    \ ]
-  " close vim if the only window left open is a NERDTree
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-endfunc
-
-" Create a new file or dir in path
-function! s:create_in_path(node)
-  if a:node.path.isDirectory && ! a:node.isOpen
-    call a:node.parent.putCursorHere(0, 0)
-  endif
-  call NERDTreeAddNode()
-endfunction
-
-function! s:yank_path(node)
-  let l:path = a:node.path.str()
-  call setreg('*', l:path)
-  echomsg 'Yank node: '.l:path
-endfunction
-
-augroup loadNerdtree
-  autocmd!
-  autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,BufNew *
-              \  if isdirectory(expand('<amatch>'))
-              \|   call plug#load('nerdtree')
-              \|   call nerdtree#checkForBrowse(expand("<amatch>"))
-              \| endif
-
-  autocmd! User nerdtree 
-        \  call s:nerdtree_init()
-        \| call NERDTreeAddKeyMap({
-        \   'key': 'N',
-        \   'callback': s:SNR.'create_in_path',
-        \   'quickhelpText': 'Create file or dir',
-        \   'scope': 'Node' })
-        \| call NERDTreeAddKeyMap({
-        \   'key': 'yy',
-        \   'callback': s:SNR.'yank_path',
-        \   'quickhelpText': 'yank current node',
-        \   'scope': 'Node' })
-augroup END
-" }}}
-
 " {{{ Defx
-nnoremap <silent><leader>df :Defx -split=floating -winwidth=30 -direction=topleft -toggle -buffer-name=Defx_buf<CR>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
+nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0<CR>
+nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0<CR>
+
+augroup vfinit
+  au!
+  autocmd FileType defx call s:defx_init()
+  " auto close last defx windows
+  autocmd BufEnter * nested if
+        \ (!has('vim_starting') && winnr('$') == 1
+        \ && &filetype ==# 'defx') |
+        \ call s:close_last_vimfiler_windows() | endif
+augroup END
+
+" in this function, we should check if shell terminal still exists,
+" then close the terminal job before close vimfiler
+function! s:close_last_vimfiler_windows() abort
+  call SpaceVim#layers#shell#close_terminal()
+  q
+endfunction
+
+function! s:defx_init()
+    call defx#custom#column('filename', {
+          \ 'directory_icon': "\u25cb",
+          \ 'opened_icon': "\u25cf",
+          \ })
+
+    setl nonumber
+    setl norelativenumber
+    setl listchars=
+
     " Define mappings
     nnoremap <silent><buffer><expr> <CR>
-    \ defx#do_action('open')
+          \ defx#do_action('open')
     nnoremap <silent><buffer><expr> c
-    \ defx#do_action('copy')
+          \ defx#do_action('copy')
     nnoremap <silent><buffer><expr> m
-    \ defx#do_action('move')
+          \ defx#do_action('move')
     nnoremap <silent><buffer><expr> p
-    \ defx#do_action('paste')
+          \ defx#do_action('paste')
     nnoremap <silent><buffer><expr> l
-    \ defx#do_action('open')
+          \ defx#do_action('open')
     nnoremap <silent><buffer><expr> E
-    \ defx#do_action('open', 'vsplit')
+          \ defx#do_action('open', 'vsplit')
     nnoremap <silent><buffer><expr> P
-    \ defx#do_action('open', 'pedit')
+          \ defx#do_action('open', 'pedit')
     nnoremap <silent><buffer><expr> o
-    \ defx#do_action('open_or_close_tree')
+          \ defx#is_directory() ?
+          \ defx#do_action('open_or_close_tree') : defx#do_action('open')
     nnoremap <silent><buffer><expr> K
-    \ defx#do_action('new_directory')
+          \ defx#do_action('new_directory')
     nnoremap <silent><buffer><expr> N
-    \ defx#do_action('new_file')
+          \ defx#do_action('new_file')
     nnoremap <silent><buffer><expr> M
-    \ defx#do_action('new_multiple_files')
+          \ defx#do_action('new_multiple_files')
     nnoremap <silent><buffer><expr> C
-    \ defx#do_action('toggle_columns',
-    \                'mark:filename:type:size:time')
+          \ defx#do_action('toggle_columns',
+          \                'mark:filename:type:size:time')
     nnoremap <silent><buffer><expr> S
-    \ defx#do_action('toggle_sort', 'time')
+          \ defx#do_action('toggle_sort', 'time')
     nnoremap <silent><buffer><expr> d
-    \ defx#do_action('remove')
+          \ defx#do_action('remove')
     nnoremap <silent><buffer><expr> r
-    \ defx#do_action('rename')
+          \ defx#do_action('rename')
     nnoremap <silent><buffer><expr> !
-    \ defx#do_action('execute_command')
+          \ defx#do_action('execute_command')
     nnoremap <silent><buffer><expr> x
-    \ defx#do_action('execute_system')
+          \ defx#do_action('execute_system')
     nnoremap <silent><buffer><expr> yy
-    \ defx#do_action('yank_path')
+          \ defx#do_action('yank_path')
     nnoremap <silent><buffer><expr> .
-    \ defx#do_action('toggle_ignored_files')
+          \ defx#do_action('toggle_ignored_files')
     nnoremap <silent><buffer><expr> ;
-    \ defx#do_action('repeat')
+          \ defx#do_action('repeat')
     nnoremap <silent><buffer><expr> h
-    \ defx#do_action('cd', ['..'])
+          \ defx#do_action('cd', ['..'])
     nnoremap <silent><buffer><expr> ~
-    \ defx#do_action('cd')
+          \ defx#do_action('cd')
     nnoremap <silent><buffer><expr> q
-    \ defx#do_action('quit')
+          \ defx#do_action('quit')
     nnoremap <silent><buffer><expr> <Space>
-    \ defx#do_action('toggle_select') . 'j'
+          \ defx#do_action('toggle_select') . 'j'
     nnoremap <silent><buffer><expr> *
-    \ defx#do_action('toggle_select_all')
+          \ defx#do_action('toggle_select_all')
     nnoremap <silent><buffer><expr> j
-    \ line('.') == line('$') ? 'gg' : 'j'
+          \ line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent><buffer><expr> k
-    \ line('.') == 1 ? 'G' : 'k'
+          \ line('.') == 1 ? 'G' : 'k'
     nnoremap <silent><buffer><expr> <C-l>
-    \ defx#do_action('redraw')
+          \ defx#do_action('redraw')
     nnoremap <silent><buffer><expr> <C-g>
-    \ defx#do_action('print')
+          \ defx#do_action('print')
     nnoremap <silent><buffer><expr> cd
-    \ defx#do_action('change_vim_cwd')
+          \ defx#do_action('change_vim_cwd')
   endfunction
 " }}}
 

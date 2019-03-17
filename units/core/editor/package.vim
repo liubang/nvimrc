@@ -26,7 +26,6 @@ augroup END
 " MMP 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
-MMP 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins', 'on': ['Defx'] }
 MMP 'kana/vim-textobj-user'
 MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
