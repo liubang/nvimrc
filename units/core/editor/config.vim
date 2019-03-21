@@ -264,8 +264,8 @@ nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
 " }}}
 
 " {{{ Defx
-nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0 -buffer-name=Defx_tree<CR>
-nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show_ignored_files=0 -buffer-name=Defx_tree<CR>
+nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=true -resume=true -show-ignored-files=false -buffer-name=Defx_tree -root-marker=<CR>
+nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=true -resume=true -show-ignored-files=false -buffer-name=Defx_tree -root-marker=<CR>
 
 augroup vfinit
   au!
@@ -286,8 +286,9 @@ endfunction
 
 function! s:defx_init()
     call defx#custom#column('filename', {
-          \ 'directory_icon': "\u25cb",
-          \ 'opened_icon': "\u25cf",
+          \ 'opened_icon': "\u25cb",
+          \ 'directory_icon': "\u25cf",
+          \ 'root_icon': "+",
           \ })
 
     setl nonumber
