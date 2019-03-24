@@ -11,8 +11,9 @@
 " init
 "----------------------------------------------------------------------
 function! s:init()
+  set conceallevel=1
   let g:tex_stylish = 1
-  let g:tex_conceal = ''
+  let g:tex_conceal = 'abdmg'
   let g:tex_flavor = "tex"
   let g:tex_isk='48-57,a-z,A-Z,192-255,:'
 
@@ -23,12 +24,13 @@ function! s:init()
   let g:vimtex_toc_fold = 1
   let g:vimtex_toc_hotkeys = {'enabled' : 1}
   let g:vimtex_format_enabled = 1
-  " https://github.com/zegervdv/homebrew-zathura
-  " brew install xdotool
-  " let g:vimtex_view_method = 'zathura'
+  let g:vimtex_quickfix_mode=0
   let g:vimtex_imaps_leader = '\|'
   let g:vimtex_complete_img_use_tail = 1
-  " let g:vimtex_view_automatic = 0
+  let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+  let g:vimtex_view_general_options = '-r @line @pdf @tex'
+  let g:vimtex_view_general_options_latexmk = '-r'
+  let g:vimtex_view_automatic = 1
   " let g:vimtex_view_forward_search_on_start = 0
   if g:lbvim.nvim
     let g:vimtex_compiler_progname = 'nvr'

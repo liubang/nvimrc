@@ -264,8 +264,9 @@ nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
 " }}}
 
 " {{{ Defx
-nnoremap <silent><F4> :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=true -resume=true -show-ignored-files=false -buffer-name=Defx_tree -root-marker=<CR>
-nnoremap <silent><Leader>ft :Defx -split=vertical -winwidth=30 -direction=topleft -toggle=true -resume=true -show-ignored-files=false -buffer-name=Defx_tree -root-marker=<CR>
+let g:defx_options = "-split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show-ignored-files=0 -buffer-name=Defx_tree -root-marker="
+nnoremap <silent><expr><F4> ":Defx " . g:defx_options . "\<cr>"
+nnoremap <silent><expr><Leader>ft ":Defx " . g:defx_options . "\<cr>"
 
 augroup vfinit
   au!
