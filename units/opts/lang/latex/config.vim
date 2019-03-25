@@ -42,6 +42,6 @@ endfun
 "----------------------------------------------------------------------
 augroup LatexGroup
   autocmd!
-  autocmd FileType plaintex,latex set filetype=tex
+  autocmd FileType plaintex,latex,tex set filetype=tex
   autocmd FileType plaintex,latex,tex call s:init()
 augroup END

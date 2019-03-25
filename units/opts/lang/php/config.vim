@@ -24,12 +24,24 @@ function! s:init()
 endfunc
 
 "----------------------------------------------------------------------
+" define php build command 
+"----------------------------------------------------------------------
+function! s:def_php_build_command()
+  command! -bang -nargs=0 Run
+        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw php $(VIM_FILEPATH)
+
+  command! -bang -nargs=0 Build
+        \ :AsyncRun -cwd=<root> -raw composer --optimize-autoloader update
+endfunction
+
+"----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
 augroup PhpGroup
   autocmd!
-  autocmd FileType php call s:init()
-  autocmd FileType php call s:config_deoplete_for_php()
+  autocmd FileType php call s:init() 
+        \| call s:config_deoplete_for_php()
+        \| call s:def_php_build_command()
   autocmd BufRead *.phpt setlocal ft=php
   autocmd BufRead *.phtml setlocal ft=html
 augroup END

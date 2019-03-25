@@ -421,46 +421,6 @@ command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 
 nnoremap <Leader>gc :GitCommit<Space>
-
-"----------------------------------------------------------------------
-" define c,cpp build command
-"----------------------------------------------------------------------
-function! s:def_cpp_build_command()
-  command! -bang -nargs=0 Cmake
-        \ :AsyncRun -cwd=<root> cmake .
-
-  command! -bang -nargs=0 Run 
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
-  command! -bang -nargs=0 MakeTest
-        \ :AsyncRun -cwd=<root> -raw make test
-
-  command! -bang -nargs=? Make
-        \ :AsyncRun -cwd=<root> -raw make <args>
-
-  command! -bang -nargs=0 MakeRun
-        \ :AsyncRun -cwd=<root> -raw make run
-
-  command! -bang -nargs=0 Build
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-endfunction
-
-"----------------------------------------------------------------------
-" define php build command 
-"----------------------------------------------------------------------
-function! s:def_php_build_command()
-  command! -bang -nargs=0 Run
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw php $(VIM_FILEPATH)
-
-  command! -bang -nargs=0 Build
-        \ :AsyncRun -cwd=<root> -raw composer --optimize-autoloader update
-endfunction
-
-augroup RegBuildCmd
-  autocmd!
-  autocmd FileType c,cpp call s:def_cpp_build_command()
-  autocmd FileType php call s:def_php_build_command()
-augroup END
 " }}}
 
 " {{{ undotree
