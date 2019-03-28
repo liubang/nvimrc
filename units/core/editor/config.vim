@@ -126,7 +126,7 @@ command! -bang -nargs=1 LComment
       \ :call <SID>snip_comment_block('<args>')
 
 command! -bang -nargs=0 LCopyRight
-      \ :call <SID>snip_copyright('liubang')
+      \ :call <SID>snip_copyright(g:lbvim.author)
 
 " {{{ fzf
 " Hide statusline of terminal buffer
@@ -258,9 +258,13 @@ let g:Lf_NormalMap = {
     \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
     \ }
 
-nnoremap <silent><F3> :LeaderfFunction!<CR>
-nnoremap <silent><leader>lf :LeaderfFunction!<CR>
-nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
+function! s:leaderf_keymap()
+  nnoremap <silent><F3> :LeaderfFunction!<CR>
+  nnoremap <silent><leader>lf :LeaderfFunction!<CR>
+  nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
+endfunction
+
+autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:leaderf_keymap()
 " }}}
 
 " {{{ Defx

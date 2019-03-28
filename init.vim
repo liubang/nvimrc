@@ -26,6 +26,7 @@ endif
 
 let g:lbvim = {
       \ 'version': '0.8-dev',
+      \ 'author': 'liubang',
       \ 'os': {
       \     'mac': has('macunix'),
       \     'linux': has('unix') && !has('macunix') && !has('win32unix'),

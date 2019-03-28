@@ -64,3 +64,7 @@ endfunction
 function! utils#string_strip(text)
 	return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
+
+function! utils#map(mode, a:lhs, a:rhs) abort
+
+endfunction
