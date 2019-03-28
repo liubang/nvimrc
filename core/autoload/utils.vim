@@ -65,6 +65,8 @@ function! utils#string_strip(text)
 	return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
-function! utils#map(mode, a:lhs, a:rhs) abort
-
+function! utils#map(mode, lhs, rhs, ...) abort
+  if (empty(maparg(a:lhs, a:mode)) || a:0 > 0)
+    silent execute a:mode . 'map <silent><nowait><buffer>' a:lhs a:rhs
+  endif
 endfunction
