@@ -37,6 +37,7 @@ let g:lbvim = {
       \ }
 
 let g:lbvim.home = g:lbvim.nvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'
+let g:lbvim.core = g:lbvim.home . '/core'
 let g:lbvim.plugin_home = g:lbvim.home . '/plugged/'
 let g:lbvim.vim_plug_path = g:lbvim.home . '/core/autoload/plug.vim'
 let g:lbvim.components_dir = g:lbvim.home . '/units'
