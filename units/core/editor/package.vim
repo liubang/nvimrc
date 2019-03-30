@@ -36,7 +36,6 @@ MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
 MMP 'junegunn/gv.vim', { 'on': 'GV' }
 MMP 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
-MMP 'metakirby5/codi.vim', { 'on': 'Codi' }
 
 " multi cursors
 MMP 'mg979/vim-visual-multi'
