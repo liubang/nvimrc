@@ -23,5 +23,6 @@ function! boot#run() abort
     CCM 'editor'
     CCM 'completor'
     CCM 'tags'
+    COM 'misk'
   call core#end()
 endfunction
