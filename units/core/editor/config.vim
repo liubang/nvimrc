@@ -315,7 +315,7 @@ function! s:defx_init()
 
     " Define mappings
     nnoremap <silent><buffer><expr> <CR>
-          \ defx#do_action('open')
+          \ defx#do_action('drop')
     nnoremap <silent><buffer><expr> c
           \ defx#do_action('copy')
     nnoremap <silent><buffer><expr> m
