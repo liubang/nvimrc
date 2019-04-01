@@ -267,6 +267,12 @@ endfunction
 autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:leaderf_keymap()
 " }}}
 
+" {{{ Vista
+let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_icon_indent = ["\u25cb ", "\u25cf "]
+let g:vista_echo_cursor = 0
+" }}}
+
 " {{{ Defx
 let g:defx_options = "-split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show-ignored-files=0 -buffer-name=Defx_tree -root-marker="
 nnoremap <silent><expr><F4> ":Defx " . g:defx_options . "\<cr>"
