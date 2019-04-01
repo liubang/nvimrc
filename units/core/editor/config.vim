@@ -258,19 +258,26 @@ let g:Lf_NormalMap = {
     \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
     \ }
 
-function! s:leaderf_keymap()
-  nnoremap <silent><F3> :LeaderfFunction!<CR>
-  nnoremap <silent><leader>lf :LeaderfFunction!<CR>
-  nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
-endfunction
+" function! s:leaderf_keymap()
+"   nnoremap <silent><F3> :LeaderfFunction!<CR>
+"   nnoremap <silent><leader>lf :LeaderfFunction!<CR>
+"   nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
+" endfunction
 
-autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:leaderf_keymap()
+" autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:leaderf_keymap()
 " }}}
 
 " {{{ Vista
 let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_icon_indent = ["\u25cb ", "\u25cf "]
 let g:vista_echo_cursor = 0
+
+function! s:vista_keymap()
+  nnoremap <silent><leader><F3> :Vista!!<CR>
+  nnoremap <silent><leader>tl :Vista!!<CR>
+endfunction
+
+autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_keymap()
 " }}}
 
 " {{{ Defx
