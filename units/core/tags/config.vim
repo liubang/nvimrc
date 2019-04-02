@@ -63,27 +63,27 @@ let g:gutentags_plus_nomap = 1
 "----------------------------------------------------------------------
 function! s:tags_keymapping()
   " create tags
-  call utils#map("n", "<leader>mc", ":GutentagsUpdate<cr>")
-  call utils#map("n", "<leader>mu", ":GutentagsUpdate!<cr>")
+  call utils#map("nnore", "<leader>mc", ":GutentagsUpdate<cr>")
+  call utils#map("nnore", "<leader>mu", ":GutentagsUpdate!<cr>")
   " preview tag
-  call utils#map("n", "<leader>mt", ":PreviewTag<cr>")
+  call utils#map("nnore", "<leader>mt", ":PreviewTag<cr>")
   " Preview the function signature circularly in the command line
-  call utils#map("n", "<leader>ms", ":PreviewSignature<cr>")
+  call utils#map("nnore", "<leader>ms", ":PreviewSignature<cr>")
   " Close the preview window
-  call utils#map("n", "<leader>mq", ":PreviewClose<cr>")
+  call utils#map("nnore", "<leader>mq", ":PreviewClose<cr>")
 
   " Find symbol (reference) under cursor
-  call utils#map("n", "<leader>cs", ":GscopeFind s <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>cs", ":GscopeFind s <c-r><c-w><cr>")
   " Find symbol definition under cursor
-  call utils#map("n", "<leader>cg", ":GscopeFind g <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>cg", ":GscopeFind g <c-r><c-w><cr>")
   " Functions called by this function
-  call utils#map("n", "<leader>cd", ":GscopeFind d <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>cd", ":GscopeFind d <c-r><c-w><cr>")
   " Functions calling this function
-  call utils#map("n", "<leader>cc", ":GscopeFind c <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>cc", ":GscopeFind c <c-r><c-w><cr>")
   " Find text string under cursor
-  call utils#map("n", "<leader>ct", ":GscopeFind t <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>ct", ":GscopeFind t <c-r><c-w><cr>")
   " Find egrep pattern under cursor
-  call utils#map("n", "<leader>ce", ":GscopeFind e <c-r><c-w><cr>")
+  call utils#map("nnore", "<leader>ce", ":GscopeFind e <c-r><c-w><cr>")
 endfunction
 
 "----------------------------------------------------------------------
@@ -94,9 +94,9 @@ if has('autocmd')
     if &buftype != 'quickfix'
       return
     endif
-    call utils#map("n", "p", ":PreviewQuickfix<cr>")
-    call utils#map("n", "c", ":PreviewClose<cr>")
-    call utils#map("n", "q", ":close<cr>")
+    call utils#map("nnore", "p", ":PreviewQuickfix<cr>")
+    call utils#map("nnore", "c", ":PreviewClose<cr>")
+    call utils#map("nnore", "q", ":close<cr>")
     setlocal nonumber
   endfunc
 

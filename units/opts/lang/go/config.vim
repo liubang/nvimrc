@@ -24,10 +24,10 @@ function! s:init()
   let g:go_term_width = 60
 
   " key mapping
-  call utils#map("n", "<leader>gn", ":cnext")
-  call utils#map("n", "<leader>gm", ":cprevious")
-  call utils#map("n", "<leader>ga", ":cclose")
-  call utils#map("n", "<leader>gc", ":GoDecls")
+  call utils#map("nnore", "<leader>gn", ":cnext")
+  call utils#map("nnore", "<leader>gm", ":cprevious")
+  call utils#map("nnore", "<leader>ga", ":cclose")
+  call utils#map("nnore", "<leader>gc", ":GoDecls")
   call utils#map("n", "<leader>gb", "<plug>(go-build)")
   call utils#map("n", "<leader>gr", "<plug>(go-run)")
   call utils#map("n", "<leader>gt", "<plug>(go-test)")
