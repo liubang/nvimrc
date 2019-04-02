@@ -18,30 +18,18 @@ endfunc
 "----------------------------------------------------------------------
 " init
 "----------------------------------------------------------------------
-function! s:init()
+function! s:php_highlight()
   highlight link phpDocTags phpDefine
   highlight link phpDocParam phpType
 endfunc
-
-"----------------------------------------------------------------------
-" define php build command 
-"----------------------------------------------------------------------
-function! s:def_php_build_command()
-  command! -bang -nargs=0 Run
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw php $(VIM_FILEPATH)
-
-  command! -bang -nargs=0 Build
-        \ :AsyncRun -cwd=<root> -raw composer --optimize-autoloader update
-endfunction
 
 "----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
 augroup PhpGroup
   autocmd!
-  autocmd FileType php call s:init() 
+  autocmd FileType php call s:php_highlight() 
         \| call s:config_deoplete_for_php()
-        \| call s:def_php_build_command()
   autocmd BufRead *.phpt setlocal ft=php
   autocmd BufRead *.phtml setlocal ft=html
 augroup END

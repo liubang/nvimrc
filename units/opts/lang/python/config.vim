@@ -35,7 +35,6 @@ endfun
 "----------------------------------------------------------------------
 augroup PythonGroup
   autocmd!
-  autocmd FileType python call s:init()
-  autocmd FileType python BracelessEnable +indent
+  autocmd FileType python call s:init() | BracelessEnable +indent
 augroup END
 
