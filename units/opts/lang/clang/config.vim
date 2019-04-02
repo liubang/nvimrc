@@ -54,12 +54,6 @@ function! s:def_cpp_build_command()
 
   command! -bang -nargs=0 MakeRun
         \ :AsyncRun -cwd=<root> -raw make run
-
-  command! -bang -nargs=0 Build
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
-  command! -bang -nargs=? BuildArgs
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc <args> "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 endfunction
 
 "----------------------------------------------------------------------
@@ -67,7 +61,7 @@ endfunction
 "----------------------------------------------------------------------
 augroup ClangGroup
   autocmd!
-  autocmd FileType c,cpp,objc call s:clang_format_key_bind() 
+  autocmd FileType c,cpp call s:clang_format_key_bind() 
         \| call s:def_cpp_build_command()
         \| call s:set_neoinclude_exts()
         \| call s:setup_cpp_enhanced_highlight()
