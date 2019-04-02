@@ -6,13 +6,13 @@
 function! ModuleInit()
   COM 'markdown'
   COM 'docker'
-  COM 'lang/php'
-  COM 'lang/go'
-  COM 'lang/clang'
-  COM 'lang/latex'
-  COM 'lang/python'
-  COM 'lang/lisp'
-  COM 'lang/lua'
+  COM 'php'
+  COM 'go'
+  COM 'clang'
+  COM 'latex'
+  COM 'python'
+  COM 'lisp'
+  COM 'lua'
 endfunction
 
 function! CustomPlug()

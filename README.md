@@ -166,13 +166,13 @@ cp ~/.vim/vim.custom.template ~/.vim.custom
 ```viml
 " init module
 function! ModuleInit()
-  CUM 'lang/php'
-  CUM 'lang/go'
-  CUM 'lang/clang'
-  CUM 'lang/latex'
-  CUM 'lang/python'
-  CUM 'lang/lisp'
-  CUM 'lang/lua'
+  CUM 'php'
+  CUM 'go'
+  CUM 'clang'
+  CUM 'latex'
+  CUM 'python'
+  CUM 'lisp'
+  CUM 'lua'
   CUM 'markdown'
   CUM 'docker'
 endfunction
