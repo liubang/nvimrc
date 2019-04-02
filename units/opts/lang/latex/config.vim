@@ -64,10 +64,10 @@ endif
 " mappings
 "----------------------------------------------------------------------
 function! s:vimtex_key_mapping()
-  call utils#map('n', '<leader>to', '<plug>(vimtex-compile)')
-  call utils#map('n', '<leader>tc', '<plug>(vimtex-clean-full)')
-  call utils#map('n', '<leader>tt', '<plug>(vimtex-toc-toggle)')
-  call utils#map('n', '<leader>tv', '<plug>(vimtex-view)')
+  nmap <silent><buffer><leader>to <plug>(vimtex-compile)
+  nmap <silent><buffer><leader>tc <plug>(vimtex-clean-full)
+  nmap <silent><buffer><leader>tt <plug>(vimtex-toc-toggle)
+  nmap <silent><buffer><leader>tv <plug>(vimtex-view)
 endfunction
 
 "----------------------------------------------------------------------

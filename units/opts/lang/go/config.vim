@@ -24,18 +24,17 @@ function! s:init()
   let g:go_term_width = 60
 
   " key mapping
-  call utils#map("nnore", "<leader>gn", ":cnext")
-  call utils#map("nnore", "<leader>gm", ":cprevious")
-  call utils#map("nnore", "<leader>ga", ":cclose")
-  call utils#map("nnore", "<leader>gc", ":GoDecls")
-  call utils#map("n", "<leader>gb", "<plug>(go-build)")
-  call utils#map("n", "<leader>gr", "<plug>(go-run)")
-  call utils#map("n", "<leader>gt", "<plug>(go-test)")
-  call utils#map("n", "<leader>gd", "<plug>(go-def)")
-  call utils#map("n", "<leader>rt", "<plug>(go-run-tab)")
-  call utils#map("n", "<leader>rs", "<plug>(go-run-split)")
-  call utils#map("n", "<leader>rv", "<plug>(go-run-vertical)")
-
+  nnoremap <silent><buffer><leader>gn :cnext<cr>
+  nnoremap <silent><buffer><leader>gm :cprevious<cr>
+  nnoremap <silent><buffer><leader>ga :cclose<cr>
+  nnoremap <silent><buffer><leader>gc :GoDecls<cr>
+  nmap <silent><buffer><leader>gb <plug>(go-build)
+  nmap <silent><buffer><leader>gr <plug>(go-run)
+  nmap <silent><buffer><leader>gt <plug>(go-test)
+  nmap <silent><buffer><leader>gd <plug>(go-def)
+  nmap <silent><buffer><leader>rt <plug>(go-run-tab)
+  nmap <silent><buffer><leader>rs <plug>(go-run-split)
+  nmap <silent><buffer><leader>rv <plug>(go-run-vertical)
 endfunction
 
 "----------------------------------------------------------------------

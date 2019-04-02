@@ -64,10 +64,3 @@ endfunction
 function! utils#string_strip(text)
   return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
-
-function! utils#map(mode, lhs, rhs, ...) abort
-  let force = a:0 > 0 ? a:1 : 0
-  if (empty(maparg(a:lhs, a:mode)) || force)
-    silent execute a:mode . 'map <silent><buffer>' a:lhs a:rhs
-  endif
-endfunction

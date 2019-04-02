@@ -13,9 +13,9 @@
 function! s:clang_format_key_bind()
   let g:clang_format#detect_style_file = 1
   let g:clang_format#enable_fallback_style = 1
-  call utils#map("nnore", "<leader>cf", ":<c-u>ClangFormat<cr>", 1)
-  call utils#map("vnore", "<leader>cf", ":ClangFormat<cr>", 1)
-  call utils#map("nnore", "<leader>C", ":ClangFormatAutoToggle<cr>", 1)
+  nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
+  vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
+  nnoremap <silent><buffer><leader>C :ClangFormatAutoToggle<cr>
 endfunc
 
 "----------------------------------------------------------------------
