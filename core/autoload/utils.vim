@@ -62,11 +62,12 @@ function! utils#string_replace(text, old, new)
 endfunction
 
 function! utils#string_strip(text)
-	return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
+  return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
 function! utils#map(mode, lhs, rhs, ...) abort
-  if (empty(maparg(a:lhs, a:mode)) || a:0 > 0)
-    silent execute a:mode . 'map <silent><nowait><buffer>' a:lhs a:rhs
+  let force = a:0 > 0 ? a:1 : 0
+  if (empty(maparg(a:lhs, a:mode)) || force)
+    silent execute a:mode . 'noremap <silent><nowait><buffer>' a:lhs a:rhs
   endif
 endfunction

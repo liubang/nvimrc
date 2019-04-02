@@ -13,11 +13,9 @@
 function! s:clang_format_key_bind()
   let g:clang_format#detect_style_file = 1
   let g:clang_format#enable_fallback_style = 1
-  " map to <Leader>cf in C++ code
-  nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  vnoremap <buffer><Leader>cf :ClangFormat<CR>
-  " Toggle auto formatting:
-  nmap <Leader>C :ClangFormatAutoToggle<CR>
+  call utils#map("n", "<leader>cf", ":<c-u>ClangFormat<cr>", 1)
+  call utils#map("v", "<leader>cf", ":ClangFormat<cr>", 1)
+  call utils#map("n", "<leader>C", ":ClangFormatAutoToggle<cr>", 1)
 endfunc
 
 "----------------------------------------------------------------------
