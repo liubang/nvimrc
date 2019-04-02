@@ -49,7 +49,7 @@ For Mac OS X
 
 ```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-brew install global --with-ctags
+brew install global
 ctags -f ~/.cache/tags/.tags -R --c++-kinds=+px --c-kinds=+px --output-format=e-ctags --fields=+niazS --extras=+q /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Versions/A/Headers /usr/local/include 
 ```
 

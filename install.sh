@@ -32,7 +32,7 @@ pip3 install --user neovim jedi psutil setproctitle neovim-remote
 if [ "$(uname)" == "Darwin" ]; then
     brew install the_silver_searcher neovim
     brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-    brew install global --with-ctags
+    brew install global
     ctags -f ~/.cache/tags/.tags -R \
         --c++-kinds=+px \
         --c-kinds=+px \
