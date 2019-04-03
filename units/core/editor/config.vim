@@ -322,8 +322,6 @@ function! s:defx_init()
           \ defx#do_action('move')
     nnoremap <silent><buffer><expr> p
           \ defx#do_action('paste')
-    nnoremap <silent><buffer><expr> l
-          \ defx#do_action('open')
     nnoremap <silent><buffer><expr> E
           \ defx#do_action('open', 'vsplit')
     nnoremap <silent><buffer><expr> P
