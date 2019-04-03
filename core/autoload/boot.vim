@@ -21,7 +21,8 @@ function! boot#run() abort
     CCM 'vim'
     CCM 'theme'
     CCM 'editor'
-    CCM 'completor'
+    "CCM 'completor'
+    CCM 'lsp' 
     CCM 'tags'
   call core#end()
 endfunction
