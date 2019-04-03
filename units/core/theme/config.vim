@@ -7,8 +7,6 @@
 "
 "======================================================================
 
-let g:polyglot_disabled = ['latex']
-
 " {{{ color mode 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -38,8 +36,6 @@ endif
 " }}}
 
 " {{{ lightline & tabline
-" 总是显示行号
-set number
 
 function! s:SID()
   if ! exists('s:sid')
@@ -126,6 +122,8 @@ let g:startify_change_to_vcs_root = 1
 " }}}
 
 "{{{ default
+" 总是显示行号
+set number
 set showbreak=↪
 set fillchars=vert:│,fold:─
 set list
