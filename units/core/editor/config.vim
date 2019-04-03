@@ -333,11 +333,6 @@ function! s:defx_init()
           \ defx#do_action('new_directory')
     nnoremap <silent><buffer><expr> N
           \ defx#do_action('new_file')
-    nnoremap <silent><buffer><expr> M
-          \ defx#do_action('new_multiple_files')
-    nnoremap <silent><buffer><expr> C
-          \ defx#do_action('toggle_columns',
-          \                'mark:filename:type:size:time')
     nnoremap <silent><buffer><expr> S
           \ defx#do_action('toggle_sort', 'time')
     nnoremap <silent><buffer><expr> d
@@ -352,18 +347,16 @@ function! s:defx_init()
           \ defx#do_action('yank_path')
     nnoremap <silent><buffer><expr> .
           \ defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> ;
-          \ defx#do_action('repeat')
-    nnoremap <silent><buffer><expr> h
-          \ defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> ~
-          \ defx#do_action('cd')
-    nnoremap <silent><buffer><expr> q
-          \ defx#do_action('quit')
-    nnoremap <silent><buffer><expr> <Space>
+    nnoremap <silent><buffer><expr> <Space><Space>
           \ defx#do_action('toggle_select') . 'j'
     nnoremap <silent><buffer><expr> *
           \ defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> ~
+          \ defx#do_action('cd')
+    nnoremap <silent><buffer><expr> h
+          \ defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> l
+          \ defx#do_action('change_vim_cwd')
     nnoremap <silent><buffer><expr> j
           \ line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent><buffer><expr> k
@@ -372,8 +365,8 @@ function! s:defx_init()
           \ defx#do_action('redraw')
     nnoremap <silent><buffer><expr> <C-g>
           \ defx#do_action('print')
-    nnoremap <silent><buffer><expr> cd
-          \ defx#do_action('change_vim_cwd')
+    nnoremap <silent><buffer><expr> q
+          \ defx#do_action('quit')
   endfunction
 " }}}
 
