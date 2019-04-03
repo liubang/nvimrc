@@ -50,10 +50,10 @@ endfunction
 let s:SNR = '<SNR>'.s:SID().'_'
 
 function! s:LightlineFilename()
-  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-        \ &filetype ==# 'startify' ? 'startify' :
+  return &filetype      ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype     ==# 'unite' ? unite#get_status_string() :
+        \ &filetype     ==# 'vimshell' ? vimshell#get_status_string() :
+        \ &filetype     ==# 'startify' ? 'startify' :
         \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 endfunction
 
@@ -73,9 +73,11 @@ let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#modified     = '*'
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [[]]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.tabline                 = {'left': [['buffers']], 'right': [[]]}
+let g:lightline.separator               = {'left': "\ue0b1", 'right': "\ue0b3"}
+let g:lightline.subseparator            = {'left': "\ue0b1", 'right': "\ue0b3"}
+let g:lightline.component_expand        = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type          = {'buffers': 'tabsel'}
 silent! set laststatus=2   " 总是显示状态栏
 
 silent! set showtabline=2  " Show tabline
