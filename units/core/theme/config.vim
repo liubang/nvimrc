@@ -54,7 +54,7 @@ function! s:LightlineFilename()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -91,12 +91,15 @@ nmap <silent> <expr> <Leader>0 (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : ''
 """ }}}
 
 " {{{ theme
+syntax on
 set background=dark
-" colorscheme gruvbox
-let g:seoul256_background = 236
-colorscheme seoul256
-let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_termcolors = 256
 let g:gruvbox_invert_indent_guides=1
+let g:gruvbox_improved_strings = 1
+colorscheme gruvbox
+" let g:seoul256_background = 236
+" colorscheme seoul256
 " }}}
 
 "{{{ startify

@@ -11,5 +11,5 @@ MMP 'machakann/vim-highlightedyank'
 MMP 'mgee/lightline-bufferline', { 'on': [], 'defer': {'delay': 700, 'callback': 'defer#theme'} }
 MMP 'iliubang/lightline.vim'
 MMP 'mhinz/vim-startify'
-" MMP 'morhetz/gruvbox'
+MMP 'morhetz/gruvbox'
 MMP 'iliubang/seoul256.vim'
