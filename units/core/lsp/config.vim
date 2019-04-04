@@ -30,11 +30,6 @@ let g:coc_language_servers = {
       \   'args': ['-c', g:lbvim.components_dir . '/core/lsp/config.yaml'],
       \   'filetypes': ['vim', 'markdown', 'eruby'],
       \ },
-      \ 'typescript': {
-      \   'command': 'typescript-language-server',
-      \   'args': ['--stdio'],
-      \   'filetypes': ['typescript'],
-      \ },
       \ 'purescript': {
       \   'command': 'purescript-language-server',
       \   'args': ['--stdio'],
@@ -67,5 +62,13 @@ let g:coc_snippet_next = '<tab>'
 
 augroup lsp_group
   autocmd!
-  autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml', 'coc-python')
+  autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) 
+        \| call coc#add_extension('coc-json', 
+                                 \'coc-snippets', 
+                                 \'coc-css', 
+                                 \'coc-html', 
+                                 \'coc-yaml', 
+                                 \'coc-python', 
+                                 \'coc-vetur',
+                                 \'coc-tsserver')
 augroup END
