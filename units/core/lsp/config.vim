@@ -14,6 +14,10 @@ let s:coc_language_servers = {
       \   'filetypes': ['sh'],
       \   'ignoredRootPaths': ['~'],
       \ },
+      \ 'lua': {
+      \   'command': 'lua-lsp',
+      \   'filetypes': ['lua'],
+      \ },
       \ 'efm': {
       \   'command': 'efm-langserver',
       \   'args': ['-c', g:lbvim.components_dir . '/core/lsp/config.yaml'],
