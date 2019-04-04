@@ -10,6 +10,11 @@ let g:coc_language_servers = {
       \   'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
       \   'filetypes': ['go'],
       \ },
+      \ 'php': {
+      \   'command': 'node',
+      \   'args': ['/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
+      \   'filetypes': ['php'],
+      \ },
       \ 'sh': {
       \   'command': 'bash-language-server',
       \   'args': ['start'],
