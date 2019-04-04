@@ -45,12 +45,14 @@ let g:coc_language_servers = {
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nmap <silent><leader>gd <Plug>(coc-definition)
+nmap <silent><leader>gD <Plug>(coc-declaration)
+nmap <silent><leader>gi <Plug>(coc-implementation)
+nmap <silent><leader>gr <Plug>(coc-references)
+nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
+nmap <silent><leader>rn <Plug>(coc-rename)
 
-" Use <C-l> for trigger snippet expand.
 imap <C-k> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-n>'
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
