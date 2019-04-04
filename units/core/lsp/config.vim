@@ -1,4 +1,4 @@
-let s:coc_language_servers = {
+let g:coc_language_servers = {
       \ 'clangd': {
       \   'command': 'ccls',
       \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
@@ -6,6 +6,8 @@ let s:coc_language_servers = {
       \ },
       \ 'golang': {
       \   'command': 'gopls',
+      \   'args': [],
+      \   'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
       \   'filetypes': ['go'],
       \ },
       \ 'sh': {
@@ -60,5 +62,5 @@ let g:coc_snippet_next = '<tab>'
 
 augroup lsp_group
   autocmd!
-  autocmd! User CocNvimInit call coc#config("languageserver", s:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml', 'coc-phpls')
+  autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml')
 augroup END

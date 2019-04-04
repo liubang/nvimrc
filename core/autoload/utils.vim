@@ -64,3 +64,9 @@ endfunction
 function! utils#string_strip(text)
   return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
+
+function! utils#lsp_register(name, config)
+  if type(a:config) == type({}) && type(a:name) == type("")
+    g:coc_language_servers[a:name] = config;
+  endif
+endfunction
