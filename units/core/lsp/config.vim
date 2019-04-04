@@ -1,8 +1,8 @@
 let s:coc_language_servers = {
       \ 'clangd': {
-      \   'command': 'clangd',
+      \   'command': 'ccls',
       \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-      \   'rootPatterns': ['compile_flags.txt', 'compile_commands.json', '.vim/', '.git/', '.hg/'], 
+      \   'rootPatterns': ['.ccls', 'compile_commands.json', '.vim/', '.git/', '.hg/'], 
       \ },
       \ 'golang': {
       \   'command': 'gopls',
@@ -13,10 +13,6 @@ let s:coc_language_servers = {
       \   'args': ['start'],
       \   'filetypes': ['sh'],
       \   'ignoredRootPaths': ['~'],
-      \ },
-      \ 'python': {
-      \   'command': 'pyls',
-      \   'filetypes': ['python'],
       \ },
       \ 'typescript': {
       \   'command': 'typescript-language-server',
@@ -59,5 +55,5 @@ let g:coc_snippet_next = '<tab>'
 
 augroup lsp_group
   autocmd!
-  autocmd! User CocNvimInit call coc#config("languageserver", s:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets')
+  autocmd! User CocNvimInit call coc#config("languageserver", s:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml')
 augroup END
