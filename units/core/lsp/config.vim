@@ -15,7 +15,7 @@ let g:coc_language_servers = {
       \   'args': ['/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
       \   'filetypes': ['php'],
       \ },
-      \ 'sh': {
+      \ 'bash': {
       \   'command': 'bash-language-server',
       \   'args': ['start'],
       \   'filetypes': ['sh'],
@@ -29,6 +29,11 @@ let g:coc_language_servers = {
       \   'command': 'efm-langserver',
       \   'args': ['-c', g:lbvim.components_dir . '/core/lsp/config.yaml'],
       \   'filetypes': ['vim', 'markdown', 'eruby'],
+      \ },
+      \ 'dockerfile': {
+      \   'command': 'docker-langserver',
+      \   'args': ['--stdio'],
+      \   'filetypes': ['dockerfile'],
       \ },
       \ 'purescript': {
       \   'command': 'purescript-language-server',
