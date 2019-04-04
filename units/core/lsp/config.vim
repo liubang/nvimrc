@@ -14,6 +14,11 @@ let s:coc_language_servers = {
       \   'filetypes': ['sh'],
       \   'ignoredRootPaths': ['~'],
       \ },
+      \ 'efm': {
+      \   'command': 'efm-langserver',
+      \   'args': ['-c', g:lbvim.components_dir . '/core/lsp/config.yaml'],
+      \   'filetypes': ['vim', 'markdown', 'eruby'],
+      \ },
       \ 'typescript': {
       \   'command': 'typescript-language-server',
       \   'args': ['--stdio'],
@@ -24,10 +29,6 @@ let s:coc_language_servers = {
       \   'args': ['--stdio'],
       \   'filetypes': ['purescript'],
       \ },
-      \ 'vue': {
-      \   'command': 'vls',
-      \   'filetypes': ['vue'],
-      \ }
       \ }
 
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -55,5 +56,5 @@ let g:coc_snippet_next = '<tab>'
 
 augroup lsp_group
   autocmd!
-  autocmd! User CocNvimInit call coc#config("languageserver", s:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml')
+  autocmd! User CocNvimInit call coc#config("languageserver", s:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml', 'coc-phpls')
 augroup END
