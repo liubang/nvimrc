@@ -67,5 +67,5 @@ let g:coc_snippet_next = '<tab>'
 
 augroup lsp_group
   autocmd!
-  autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml')
+  autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) | call coc#add_extension('coc-json', 'coc-snippets', 'coc-css', 'coc-html', 'coc-yaml', 'coc-python')
 augroup END
