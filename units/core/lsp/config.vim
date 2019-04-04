@@ -1,11 +1,8 @@
 let g:coc_language_servers = {
-      \ 'ccls': {
-      \   'command': 'ccls',
+      \ 'clangd': {
+      \   'command': 'clangd',
       \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-      \   'rootPatterns': ['.ccls', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
-      \   'initializationOptions': {
-      \     'cache': {'directory': '.ccls-cache'}
-      \   }
+      \   'rootPatterns': ['compile_flags.txt', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
       \ },
       \ 'golang': {
       \   'command': 'gopls',
