@@ -234,6 +234,7 @@ let g:gruvbox_termcolors = 256
 let g:gruvbox_invert_indent_guides=1
 let g:gruvbox_improved_strings = 1
 colorscheme gruvbox
+hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 " let g:seoul256_background = 236
 " colorscheme seoul256
 " }}}
@@ -266,9 +267,9 @@ set number
 set showbreak=↪
 set fillchars=vert:│,fold:─
 set list
-set listchars=tab:\|\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+" "set listchars=tab:\|\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 " Show trailing white space
 " hi ExtraWhitespace guifg=#FF2626 gui=underline ctermfg=124 cterm=underline
 " match ExtraWhitespace /\s\+$/
 "}}}
-
