@@ -6,7 +6,6 @@
 " Last Modified: 2018/11/20 13:01:09
 "
 "======================================================================
-MMP 'fszymanski/deoplete-emoji', { 'for': ['markdown', 'gitcommit'] }
 MMP 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
 if g:lbvim.nvim
   MMP 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}

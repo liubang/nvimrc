@@ -1,41 +1,3 @@
-let g:coc_language_servers = {
-      \ 'clangd': {
-      \   'command': 'clangd',
-      \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-      \   'rootPatterns': ['compile_flags.txt', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
-      \ },
-      \ 'php': {
-      \   'command': 'node',
-      \   'args': ['/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
-      \   'filetypes': ['php'],
-      \ },
-      \ 'bash': {
-      \   'command': 'bash-language-server',
-      \   'args': ['start'],
-      \   'filetypes': ['sh'],
-      \   'ignoredRootPaths': ['~'],
-      \ },
-      \ 'lua': {
-      \   'command': 'lua-lsp',
-      \   'filetypes': ['lua'],
-      \ },
-      \ 'efm': {
-      \   'command': 'efm-langserver',
-      \   'args': ['-c', g:lbvim.components_dir . '/core/lsp/config.yaml'],
-      \   'filetypes': ['vim', 'markdown', 'eruby'],
-      \ },
-      \ 'dockerfile': {
-      \   'command': 'docker-langserver',
-      \   'args': ['--stdio'],
-      \   'filetypes': ['dockerfile'],
-      \ },
-      \ 'purescript': {
-      \   'command': 'purescript-language-server',
-      \   'args': ['--stdio'],
-      \   'filetypes': ['purescript'],
-      \ },
-      \ }
-
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 let g:coc_status_error_sign = '•'
@@ -82,7 +44,6 @@ augroup lsp_group
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  "call coc#config("languageserver", g:coc_language_servers) 
   autocmd User CocNvimInit call coc#add_extension('coc-word',
                                                  \'coc-json',
                                                  \'coc-highlight',

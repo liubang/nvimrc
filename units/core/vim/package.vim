@@ -8,10 +8,8 @@
 "======================================================================
 if g:lbvim.tmux
   " {{{ defer#tmux
-  MMP 'tmux-plugins/vim-tmux-focus-events', { 'on': [] }
-  MMP 'roxma/vim-tmux-clipboard', { 'on': [], 'defer': {'delay': 600, 'callback': 'defer#tmux'} }
+  MMP 'tmux-plugins/vim-tmux-focus-events'
+  MMP 'roxma/vim-tmux-clipboard'
+  "MMP 'roxma/vim-tmux-clipboard', { 'on': [], 'defer': {'delay': 600, 'callback': 'defer#tmux'} }
   " }}}
 endif
-
-" for viml
-MMP 'Shougo/neco-vim', { 'for': 'vim' }

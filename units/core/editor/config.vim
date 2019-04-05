@@ -7,18 +7,6 @@
 "
 "======================================================================
 
-
-"----------------------------------------------------------------------
-" get sid 
-"----------------------------------------------------------------------
-function! s:SID()
-  if ! exists('s:sid')
-    let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
-  endif
-  return s:sid
-endfunction
-let s:SNR = '<SNR>'.s:SID().'_'
-
 "-----------------------------------------------------------------------
 " insert before current line
 "-----------------------------------------------------------------------
@@ -141,41 +129,97 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit' }
 
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_colors ={ 
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', '#3a3a3a'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+let g:fzf_commits_log_options = '--graph --color=always
+  \ --format="%C(yellow)%h%C(red)%d%C(reset)
+  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
 
-function! s:plug_help_sink(line)
-  let dir = g:plugs[a:line].dir
-  for pat in ['doc/*.txt', 'README.md']
-    let match = get(split(globpath(dir, pat), "\n"), 0, '')
-    if len(match)
-      execute 'tabedit' match
-      return
-    endif
-  endfor
-  tabnew
-  execute 'Explore' dir
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+else
+  let s:sname = expand('<sfile>')
+  call utils#err("Please install ripgrep!", s:sname)
+endif
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, 'number', 'no')
+
+  let height = float2nr(&lines/2)
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  "let width = &columns
+  let row = float2nr(&lines / 3)
+  let col = float2nr((&columns - width) / 3)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': row,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height':height,
+        \ }
+  let win =  nvim_open_win(buf, v:true, opts)
+  call setwinvar(win, '&number', 0)
+  call setwinvar(win, '&relativenumber', 0)
 endfunction
 
-command! PlugHelp call fzf#run(fzf#wrap({
-      \ 'source': sort(keys(g:plugs)),
-      \ 'sink':   function('s:plug_help_sink')}))
+" Files + devicons
+function! MyFzf()
+  let l:fzf_files_options = ' --preview "rougify {2..-1} | head -'.&lines.'"'
+
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(item)
+    let l:pos = stridx(a:item, ' ')
+    let l:file_path = a:item[pos+1:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'down':    '40%' ,
+        \ 'window': 'call FloatingFZF()'})
+endfunction
+
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+
+"command! -bang -nargs=? -complete=dir Files
+"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " {{{ keybindings
 nmap <silent><Leader>? <plug>(fzf-maps-n)
@@ -185,7 +229,7 @@ omap <silent><Leader>? <plug>(fzf-maps-o)
 " https://github.com/junegunn/fzf/issues/453
 nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<cr>"
 nnoremap <silent> <expr> <Leader>Ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<c-r>\<c-w>\<cr>"
-nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files\<cr>"
+nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
 nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
 nnoremap <silent> <expr> <Leader>bl (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":BLines\<cr>"
@@ -193,7 +237,7 @@ nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
 
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":FZF\<cr>"
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
 " search current word with Ag
 " nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
 " }}}

@@ -15,16 +15,14 @@ MMP 'easymotion/vim-easymotion', { 'on': [
       \ '<Plug>(easymotion-overwin-w)'
       \ ] }
 
-MMP 'jiangmiao/auto-pairs', { 'on': [] }
-augroup lbvimAutoPairs
-  autocmd!
-  autocmd CursorHold,CursorHoldI,InsertEnter, * call plug#load('auto-pairs') 
-        \ | call AutoPairsTryInit() 
-        \ | autocmd! lbvimAutoPairs
-augroup END
+" MMP 'jiangmiao/auto-pairs', { 'on': [] }
+" augroup lbvimAutoPairs
+"   autocmd!
+"   autocmd CursorHold,CursorHoldI,InsertEnter, * call plug#load('auto-pairs') 
+"         \ | call AutoPairsTryInit() 
+"         \ | autocmd! lbvimAutoPairs
+" augroup END
 
-" MMP 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-" MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
 MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins', 'on': ['Defx'] }

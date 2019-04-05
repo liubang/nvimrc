@@ -19,19 +19,6 @@ function! s:clang_format_key_bind()
 endfunc
 
 "----------------------------------------------------------------------
-" neoinclude
-"----------------------------------------------------------------------
-function! s:set_neoinclude_exts()
-  if 0
-    if !exists('g:neoinclude#exts')
-      let g:neoinclude#exts = {}
-    endif
-    let g:neoinclude#exts.cpp = ['', 'h', 'hpp', 'hxx']
-    let g:neoinclude#exts.c = ['', 'h', 'hpp', 'hxx']
-  endif
-endfunc
-
-"----------------------------------------------------------------------
 " cpp_enhanced_highlight
 "----------------------------------------------------------------------
 function! s:setup_cpp_enhanced_highlight()
@@ -65,7 +52,6 @@ augroup ClangGroup
   autocmd!
   autocmd FileType c,cpp call s:clang_format_key_bind() 
         \| call s:def_cpp_build_command()
-        \| call s:set_neoinclude_exts()
         \| call s:setup_cpp_enhanced_highlight()
 augroup END
 
