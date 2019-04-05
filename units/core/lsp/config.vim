@@ -4,12 +4,6 @@ let g:coc_language_servers = {
       \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
       \   'rootPatterns': ['compile_flags.txt', 'compile_commands.json', '.vim/', '.git/', '.hg/'],
       \ },
-      \ 'golang': {
-      \   'command': 'gopls',
-      \   'args': [],
-      \   'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
-      \   'filetypes': ['go'],
-      \ },
       \ 'php': {
       \   'command': 'node',
       \   'args': ['/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
@@ -75,7 +69,8 @@ augroup lsp_group
                                  \'coc-css', 
                                  \'coc-html', 
                                  \'coc-yaml', 
-                                 \'coc-python', 
+                                 \'coc-python',
+                                 \'coc-gocode',
                                  \'coc-vetur',
                                  \'coc-tsserver')
 augroup END
