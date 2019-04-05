@@ -186,7 +186,12 @@ function! MyFzf()
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
+    " for performance
+    if len(l:files) > 1000
+      return l:files
+    else
+      return s:prepend_icon(l:files)
+    endif
   endfunction
 
   function! s:prepend_icon(candidates)
