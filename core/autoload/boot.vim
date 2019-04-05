@@ -7,6 +7,10 @@
 "
 "======================================================================
 
+if !exists('g:lbvim.use_lsp')
+  let g:lbvim.use_lsp = 1
+endif
+
 function! boot#run() abort
   let g:python_host_skip_check=1
   let g:python3_host_skip_check=1
@@ -19,11 +23,19 @@ function! boot#run() abort
 
   " core components
   call core#begin()
-    CCM 'vim'
-    CCM 'theme'
-    CCM 'editor'
+
+  CCM 'vim'
+  CCM 'theme'
+  CCM 'editor'
+  if g:lbvim.use_lsp
     CCM 'lsp' 
-    " CCM 'completor'
-    " CCM 'tags'
+  else
+    CCM 'deoplete'
+    CCM 'tags'
+    CCM 'php'
+    CCM 'python'
+    CCM 'latex'
+  endif
+
   call core#end()
 endfunction

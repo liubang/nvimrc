@@ -7,4 +7,9 @@
 "
 "======================================================================
 MMP 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-MMP 'justinmk/vim-syntax-extra',{'for': ['c', 'cpp', 'lex', 'yacc']}
+if !g:lbvim.use_lsp
+  MMP 'Shougo/neoinclude.vim', { 'for': ['c', 'cpp'] }
+  MMP 'Shougo/deoplete-clangx', { 'for': ['c', 'cpp'] }
+  MMP 'rhysd/vim-llvm', { 'for': ['c', 'cpp'] }
+  MMP 'justinmk/vim-syntax-extra',{'for': ['c', 'cpp', 'lex', 'yacc']}
+endif

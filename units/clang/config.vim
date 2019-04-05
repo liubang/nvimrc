@@ -46,6 +46,17 @@ function! s:def_cpp_build_command()
 endfunction
 
 "----------------------------------------------------------------------
+" neoinclude
+"----------------------------------------------------------------------
+function! s:set_neoinclude_exts()
+  if !exists('g:neoinclude#exts')
+    let g:neoinclude#exts = {}
+  endif
+  let g:neoinclude#exts.cpp = ['', 'h', 'hpp', 'hxx']
+  let g:neoinclude#exts.c = ['', 'h', 'hpp', 'hxx']
+endfunc
+
+"----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
 augroup ClangGroup
