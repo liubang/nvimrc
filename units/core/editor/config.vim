@@ -218,10 +218,6 @@ let $FZF_DEFAULT_OPTS='--layout=reverse'
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
 
-"command! -bang -nargs=? -complete=dir Files
-"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-" {{{ keybindings
 nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
@@ -237,10 +233,7 @@ nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
 
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
-" search current word with Ag
-" nnoremap <silent> <leader>wc :let @/=expand('<cword>')<cr> :Ag <C-r>/<cr><a-a>
-" }}}
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":FZF\<cr>"
 
 "}}}
 

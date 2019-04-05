@@ -1,2 +1,1 @@
-au BufNewFile,BufRead *.log set filetype=log
-
+autocmd BufNewFile,BufRead *.log set filetype=log
