@@ -81,9 +81,9 @@ endfunction
 function! s:register_plugs()
   silent! if plug#begin(g:lbvim.plugin_home)
     " module init
-    if exists('*ModuleInit')
-      call ModuleInit()
-    endif
+    " if exists('*ModuleInit')
+    "  call ModuleInit()
+    " endif
 
     for l:component in g:lbvim.components_loaded
       let l:component_package = g:lbvim.components_dir . '/' . l:component . '/package.vim'

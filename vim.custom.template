@@ -2,19 +2,6 @@
 " Version: 0.1
 " vim: et ts=2 sts=2 sw=2 ft=vim
 
-" init module
-function! ModuleInit()
-  COM 'markdown'
-  COM 'docker'
-  COM 'php'
-  COM 'go'
-  COM 'clang'
-  COM 'latex'
-  COM 'python'
-  COM 'lisp'
-  COM 'lua'
-endfunction
-
 function! CustomPlug()
   " MMP 'dracula/vim', { 'as': 'dracula' }
 endfunction
