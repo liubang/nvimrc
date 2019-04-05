@@ -9,6 +9,7 @@
 
 MMP 'machakann/vim-highlightedyank'
 MMP 'mgee/lightline-bufferline', { 'on': [], 'defer': {'delay': 700, 'callback': 'defer#theme'} }
+MMP 'ryanoasis/vim-devicons'
 MMP 'iliubang/lightline.vim'
 MMP 'mhinz/vim-startify'
 MMP 'morhetz/gruvbox'
