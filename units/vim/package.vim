@@ -7,9 +7,10 @@
 "
 "======================================================================
 if g:lbvim.tmux
-  " {{{ defer#tmux
   MMP 'tmux-plugins/vim-tmux-focus-events'
   MMP 'roxma/vim-tmux-clipboard'
-  "MMP 'roxma/vim-tmux-clipboard', { 'on': [], 'defer': {'delay': 600, 'callback': 'defer#tmux'} }
-  " }}}
+endif
+
+if g:lbvim.use_lsp
+  autocmd FileType vim let b:coc_pairs_disabled = ['"']
 endif

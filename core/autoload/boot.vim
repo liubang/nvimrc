@@ -27,15 +27,18 @@ function! boot#run() abort
   CCM 'vim'
   CCM 'theme'
   CCM 'editor'
+  CCM 'tools'
   if g:lbvim.use_lsp
     CCM 'lsp' 
   else
     CCM 'deoplete'
-    CCM 'tags'
-    CCM 'php'
-    CCM 'python'
-    CCM 'latex'
   endif
+  CCM 'tags'
+  CCM 'php'
+  CCM 'python'
+  CCM 'latex'
+  CCM 'clang'
+  CCM 'markdown'
 
   call core#end()
 endfunction

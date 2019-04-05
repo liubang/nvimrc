@@ -6,4 +6,7 @@
 " Last Modified: 2018/11/20 13:00:33
 "
 "======================================================================
-MMP 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
+
+if !g:lbvim.use_lsp
+  MMP 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
+endif

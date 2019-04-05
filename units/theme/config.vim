@@ -76,8 +76,8 @@ let g:lightline = {
       \   'fileformat': 'LightLineFileformat',
       \ },
       \ 'component_type': {'buffers': 'tabsel'},
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
+      \ 'separator': { 'left': "\uE0B8", 'right': "\uE0B2"},
+      \ 'subseparator': { 'left': "\uE0B9", 'right': "\uE0B3"}
       \ }
 
 function! LightlineMode()
@@ -240,6 +240,7 @@ hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 " }}}
 
 "{{{ startify
+let g:webdevicons_enable_startify = 1
 let g:startify_custom_header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',
@@ -250,15 +251,9 @@ let g:startify_custom_header = [
                             \'     Version: ' . g:lbvim.version,
                             \ ]
 
-let g:startify_lists = [
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
-
-let g:startify_change_to_vcs_root = 1
+function! StartifyEntryFormat()
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
 " }}}
 
 "{{{ default

@@ -6,4 +6,7 @@
 " Last Modified: 2018/11/20 13:00:59
 "
 "======================================================================
-MMP 'lervag/vimtex', {'for': 'tex'}
+
+if !lbvim.use_lsp
+  MMP 'lervag/vimtex', {'for': 'tex'}
+endif

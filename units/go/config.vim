@@ -40,4 +40,7 @@ endfunction
 "----------------------------------------------------------------------
 " events
 "----------------------------------------------------------------------
-autocmd FileType go call s:init()
+
+if !g:lbvim.use_lsp
+  autocmd FileType go call s:init()
+endif

@@ -7,6 +7,8 @@
 "
 "======================================================================
 
+if !g:lbvim.use_lsp
+
 "----------------------------------------------------------------------
 "  init tags
 "----------------------------------------------------------------------
@@ -112,3 +114,5 @@ augroup Tags
   autocmd!
   autocmd FileType c,cpp,objc call gutentags#setup_gutentags() | call s:tags_keymapping()
 augroup END
+
+endif

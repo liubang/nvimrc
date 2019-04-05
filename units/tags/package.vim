@@ -6,6 +6,9 @@
 " Last Modified: 2018/11/20 13:01:28
 "
 "======================================================================
-MMP 'ludovicchabant/vim-gutentags', {'for': ['c', 'cpp', 'objc']}
-MMP 'skywind3000/gutentags_plus', {'for': ['c', 'cpp', 'objc']}
-MMP 'skywind3000/vim-preview', { 'on': [], 'defer': {'delay': 800, 'callback': 'defer#vimpreview'}}
+
+if !g:lbvim.use_lsp
+  MMP 'ludovicchabant/vim-gutentags', {'for': ['c', 'cpp', 'objc']}
+  MMP 'skywind3000/gutentags_plus', {'for': ['c', 'cpp', 'objc']}
+  MMP 'skywind3000/vim-preview', { 'on': [], 'defer': {'delay': 130, 'callback': 'defer#vimpreview'}}
+endif
