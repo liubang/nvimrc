@@ -61,7 +61,8 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'filename': s:SNR . 'LightlineFilename'
+      \   'cocstatus': 'coc#status',
+      \   'filename': s:SNR . 'LightlineFilename',
       \ },
       \ }
 

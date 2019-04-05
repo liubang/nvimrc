@@ -61,16 +61,28 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 augroup lsp_group
   autocmd!
   autocmd! User CocNvimInit call coc#config("languageserver", g:coc_language_servers) 
-        \| call coc#add_extension('coc-json', 
-                                 \'coc-snippets', 
-                                 \'coc-css', 
-                                 \'coc-html', 
-                                 \'coc-yaml', 
+        \| call coc#add_extension('coc-word',
+                                 \'coc-json',
+                                 \'coc-highlight',
+                                 \'coc-snippets',
+                                 \'coc-emmet',
+                                 \'coc-css',
+                                 \'coc-tailwindcss',
+                                 \'coc-html',
+                                 \'coc-vetur',
+                                 \'coc-yaml',
                                  \'coc-python',
                                  \'coc-gocode',
                                  \'coc-vetur',
-                                 \'coc-tsserver')
+                                 \'coc-tsserver',
+                                 \'coc-emoji')
 augroup END
