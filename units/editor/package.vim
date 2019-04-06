@@ -43,9 +43,9 @@ MMP 'mg979/vim-visual-multi'
 MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " {{{ defer#editor 
-MMP 'junegunn/fzf.vim', { 'on': [] }
-MMP 'tpope/vim-surround', { 'on': [] }
-MMP 'dominikduda/vim_current_word', { 'on': [] }
-MMP 'tpope/vim-fugitive', { 'on': [] , 'defer': {'delay': 100, 'callback': 'defer#editor'}}
+MMP 'junegunn/fzf.vim'
+MMP 'tpope/vim-surround'
+MMP 'dominikduda/vim_current_word'
+MMP 'tpope/vim-fugitive'
 " }}}
 

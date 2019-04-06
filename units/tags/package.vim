@@ -10,5 +10,5 @@
 if !g:lbvim.use_lsp
   MMP 'ludovicchabant/vim-gutentags', {'for': ['c', 'cpp', 'objc']}
   MMP 'skywind3000/gutentags_plus', {'for': ['c', 'cpp', 'objc']}
-  MMP 'skywind3000/vim-preview', { 'on': [], 'defer': {'delay': 130, 'callback': 'defer#vimpreview'}}
+  MMP 'skywind3000/vim-preview'
 endif

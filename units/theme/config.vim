@@ -76,8 +76,10 @@ let g:lightline = {
       \   'fileformat': 'LightLineFileformat',
       \ },
       \ 'component_type': {'buffers': 'tabsel'},
-      \ 'separator': { 'left': "\uE0B8", 'right': "\uE0B2"},
-      \ 'subseparator': { 'left': "\uE0B9", 'right': "\uE0B3"}
+      \ 'tabline_separator': { 'left': "\uE0B8", 'right': "\uE0B2"},
+      \ 'tabline_subseparator': { 'left': "\uE0B9", 'right': "\uE0B3"},
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
 
 function! LightlineMode()
