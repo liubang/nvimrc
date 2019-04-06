@@ -12,9 +12,16 @@ if !exists('g:lbvim.use_lsp')
 endif
 
 function! boot#run() abort
-  let g:python_host_skip_check=1
-  let g:python3_host_skip_check=1
-  let g:python3_host_prog = 'python3'
+  if !empty($PYTHON_HOST_PROG)
+    let g:python_host_skip_check=1
+    let g:python_host_prog  = $PYTHON_HOST_PROG
+  endif
+
+  if !empty($PYTHON3_HOST_PROG)
+    let g:python3_host_skip_check=1
+    let g:python3_host_prog = $PYTHON3_HOST_PROG
+  endif
+
   let g:coc_language_servers = {}
 
   if !has('python3')
