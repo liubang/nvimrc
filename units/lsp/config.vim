@@ -3,9 +3,6 @@ let g:coc_snippet_prev = '<S-TAB>'
 let g:coc_status_error_sign = '•'
 let g:coc_status_warning_sign = '•'
 
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent><leader>gd <Plug>(coc-definition)
 nmap <silent><leader>gD <Plug>(coc-declaration)
 nmap <silent><leader>gi <Plug>(coc-implementation)
@@ -21,9 +18,19 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+" tab:
+"   1. select autocomplete
+"   2. trigger autocomplete
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -55,6 +62,7 @@ augroup lsp_group
                                                  \'coc-vetur',
                                                  \'coc-yaml',
                                                  \'coc-python',
+                                                 \'coc-java',
                                                  \'coc-gocode',
                                                  \'coc-vetur',
                                                  \'coc-tsserver',

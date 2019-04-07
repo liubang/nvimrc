@@ -486,3 +486,7 @@ let g:vinarise_enable_auto_detect = 0
 nmap <silent><Leader>hx :Vinarise<CR>
 " }}}
 
+" {{{ vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+" }}}

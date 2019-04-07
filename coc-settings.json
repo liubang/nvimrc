@@ -1,14 +1,27 @@
 {
-  "suggest.triggerAfterInsertEnter": true,
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.formatOnType": true,
+  "coc.source.word.filetypes": ["markdown", "gitcommit", "log", "txt"],
+  // suggest
   "suggest.timeout": 500,
   "suggest.noselect": false,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.triggerCompletionWait": 50,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.detailMaxLength": 30,
+  "suggest.removeDuplicatedLowerPriority": false,
   "suggest.detailField": "abbr",
   "suggest.snippetIndicator": "🌟",
-  "suggest.triggerCompletionWait": 50,
   "suggest.echodocSupport": true,
-  "coc.preferences.formatOnType": true,
-  "diagnostic.errorSign": "😡",
-  "diagnostic.warningSign": "🤔",
+  // diagnostic
+  "diagnostic.infoSign": "ღ",
+  "diagnostic.hintSign": "ஐ",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.errorSign": "✖",
+  "diagnostic.enable": true,
+  "diagnostic.signOffset": 100,
+  "diagnostic.highlightOffset": 100,
+  "diagnostic.refreshOnInsertMode": true,
   //tslint
   "tslint.autoFixOnSave": true,
   "prettier.eslintIntegration": true,
@@ -16,6 +29,8 @@
   "prettier.stylelintIntegration": true,
   //python
   "python.autoComplete.addBrackets": true,
+  // java
+  "java.jdt.ls.home": "/opt/app/jdtls",
   // eslint
   "eslint.filetypes": [
     "javascript",
@@ -102,4 +117,5 @@
       ]
     }
   }
+  // vim:ft=jsonc
 }
