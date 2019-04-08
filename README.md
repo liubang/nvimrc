@@ -64,6 +64,9 @@ go get github.com/mattn/efm-langserver/cmd/efm-langserver
 # for php
 npm install -g intelephense
 
+# for golang
+go get -u -v github.com/saibing/bingo
+
 # for lua
 luarocks install --server=http://luarocks.org/dev lua-lsp
 
