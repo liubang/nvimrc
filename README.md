@@ -23,6 +23,23 @@ For Ubuntu
 sudo apt-get install silversearcher-ag ripgrep
 ```
 
+**Install ctags/gtags**
+
+For Max OS Xbox
+
+```shell
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew install global
+```
+
+For Ubuntu
+
+```shell
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags && ./autogen.sh && ./configure && make && sudo make install
+sudo apt install global
+```
+
 **Install pip modules**
 
 ```shell
