@@ -7,6 +7,7 @@
 "
 "======================================================================
 
+" {{{ comment
 "-----------------------------------------------------------------------
 " insert before current line
 "-----------------------------------------------------------------------
@@ -116,6 +117,8 @@ command! -bang -nargs=1 LComment
 command! -bang -nargs=0 LCopyRight
       \ :call <SID>snip_copyright(g:lbvim.author)
 
+" }}}
+
 " {{{ fzf
 " Hide statusline of terminal buffer
 autocmd! FileType fzf
@@ -182,7 +185,8 @@ endfunction
 
 " Files + devicons
 function! MyFzf()
-  let l:fzf_files_options = ' --preview "rougify {2..-1} | head -'.&lines.'"'
+  "let l:fzf_files_options = ' --preview "rougify {2..-1} | head -'.&lines.'"'
+  let l:fzf_files_options = ''
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
@@ -215,13 +219,8 @@ function! MyFzf()
         \ 'source': <sid>files(),
         \ 'sink':   function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
-        \ 'down':    '40%' ,
-        \ 'window': 'call FloatingFZF()'})
+        \ 'down':    '40%'})
 endfunction
-
-let $FZF_DEFAULT_OPTS='--layout=reverse'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
 
 nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
