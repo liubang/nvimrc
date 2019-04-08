@@ -63,7 +63,6 @@ augroup lsp_group
                                                  \'coc-yaml',
                                                  \'coc-python',
                                                  \'coc-java',
-                                                 \'coc-gocode',
                                                  \'coc-vetur',
                                                  \'coc-tsserver',
                                                  \'coc-emoji',

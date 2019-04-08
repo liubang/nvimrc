@@ -1,7 +1,12 @@
 {
   "coc.preferences.snippets.enable": true,
   "coc.preferences.formatOnType": true,
-  "coc.source.word.filetypes": ["markdown", "gitcommit", "log", "txt"],
+  "coc.source.word.filetypes": [
+    "markdown",
+    "gitcommit",
+    "log",
+    "txt"
+  ],
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": false,
@@ -61,6 +66,21 @@
           "directory": "/tmp/ccls"
         }
       }
+    },
+    "golang": {
+      "command": "bingo",
+      "args": [
+        "--diagnostics-style=instant"
+      ],
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ]
     },
     "php": {
       "command": "node",
