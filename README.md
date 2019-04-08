@@ -25,7 +25,7 @@ sudo apt-get install silversearcher-ag ripgrep
 
 **Install ctags/gtags**
 
-For Max OS Xbox
+For Max OS X
 
 ```shell
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
