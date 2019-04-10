@@ -90,6 +90,12 @@ curl -fSL http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest
 tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls --strip-components=1
 ```
 
+**Install lombok**
+
+```shell
+curl -fSL https://projectlombok.org/downloads/lombok.jar -o /opt/app/jar/lombok.jar
+```
+
 ## neovim
 
 Install neovim
