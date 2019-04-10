@@ -3,9 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/iliubang/vimrc.svg)](https://github.com/iliubang/vimrc/releases)
 
 Configuration for neovim :rose:.
-
-![screenshot](https://user-images.githubusercontent.com/13254917/49992550-5bdf5700-ffbf-11e8-88e1-707b727f42ad.jpg)
-![screenshot](https://user-images.githubusercontent.com/13254917/49992716-d27c5480-ffbf-11e8-91e1-5f92d65bedb0.png)
+![screenshot](https://user-images.githubusercontent.com/13254917/55855557-6fc84d80-5b9a-11e9-8763-6df3b28ed4aa.png)
 
 ## Dependences 
 
