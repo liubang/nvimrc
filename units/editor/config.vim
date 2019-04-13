@@ -246,6 +246,7 @@ let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_twins = 1
 let g:vim_current_word#highlight_current_word = 0
 let g:vim_current_word#highlight_only_in_focused_window = 1
+autocmd FileType defx :let b:vim_current_word_disabled_in_this_buffer = 1
 " }}}
 
 " easymotion {{{
@@ -322,32 +323,42 @@ autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_k
 " }}}
 
 " {{{ Defx
-let g:defx_options = "-split=vertical -winwidth=30 -direction=topleft -toggle=1 -resume=1 -show-ignored-files=0 -buffer-name=Defx_tree -root-marker="
-nnoremap <silent><expr><F4> ":Defx " . g:defx_options . "\<cr>"
-nnoremap <silent><expr><Leader>ft ":Defx " . g:defx_options . "\<cr>"
+call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'leftabove',
+      \ 'show_ignored_files': 0,
+      \ 'buffer_name': 'Defx_tree',
+      \ 'toggle': 1,
+      \ 'resume': 1
+      \ })
+
+nnoremap <silent><Leader>ft :Defx <CR>
 
 augroup vfinit
   au!
   autocmd FileType defx call s:defx_init()
-  " auto close last defx windows
+  " auto close last defx window
   autocmd BufEnter * nested if
         \ (!has('vim_starting') && winnr('$') == 1
         \ && &filetype ==# 'defx') |
         \ call s:close_last_vimfiler_windows() | endif
 augroup END
 
-" in this function, we should check if shell terminal still exists,
-" then close the terminal job before close vimfiler
 function! s:close_last_vimfiler_windows() abort
-  call SpaceVim#layers#shell#close_terminal()
+  call utils#close_terminal()
   q
 endfunction
 
 function! s:defx_init()
+    call defx#custom#column('mark', {
+          \ 'readonly_icon': '',
+          \ 'selected_icon': '',
+          \ })
+
     call defx#custom#column('filename', {
-          \ 'opened_icon': "\u25cb",
-          \ 'directory_icon': "\u25cf",
-          \ 'root_icon': "+",
+          \ 'directory_icon': '',
+          \ 'opened_icon': '',
           \ })
 
     setl nonumber

@@ -70,3 +70,11 @@ function! utils#lsp_register(name, config)
     g:coc_language_servers[a:name] = config;
   endif
 endfunction
+
+function! utils#close_terminal() abort
+  for terminal_bufnr in s:open_terminals_buffers
+    if bufexists(terminal_bufnr)
+      exe 'silent bd!' . terminal_bufnr
+    endif
+  endfor
+endfunction
