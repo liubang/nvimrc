@@ -9,6 +9,7 @@ nmap <silent><leader>gi <Plug>(coc-implementation)
 nmap <silent><leader>gr <Plug>(coc-references)
 nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
 nmap <silent><leader>rn <Plug>(coc-rename)
+nmap <silent><leader>fm :Format<CR>
 
 imap <C-k> <Plug>(coc-snippets-expand)
 
