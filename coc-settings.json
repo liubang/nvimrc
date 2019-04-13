@@ -37,6 +37,8 @@
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",
   "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
+  "java.import.gradle.enabled": true,
+  "java.import.maven.enabled": true,
   // eslint
   "eslint.filetypes": [
     "javascript",
@@ -136,6 +138,14 @@
       "filetypes": [
         "purescript"
       ]
+    },
+    "xml": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"
+      ],
+      "filetypes": ["xml"]
     }
   }
   // vim:ft=jsonc

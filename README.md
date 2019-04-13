@@ -74,6 +74,9 @@ luarocks install --server=http://luarocks.org/dev lua-lsp
 brew install ccls
 
 # or on linux see  https://github.com/MaskRay/ccls/wiki/Build#system-specific-notes
+
+# xml
+curl -fSL https://github.com/angelozerr/lsp4xml/releases/download/0.3.0/org.eclipse.lsp4xml-0.3.0-uber.jar /opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar
 ```
 
 **Install nerd-fonts**
