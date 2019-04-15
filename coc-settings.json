@@ -86,9 +86,8 @@
       ]
     },
     "php": {
-      "command": "node",
+      "command": "intelephense",
       "args": [
-        "/usr/local/lib/node_modules/intelephense/lib/intelephense.js",
         "--stdio"
       ],
       "filetypes": [
