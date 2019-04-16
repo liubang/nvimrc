@@ -76,7 +76,7 @@ brew install ccls
 # or on linux see  https://github.com/MaskRay/ccls/wiki/Build#system-specific-notes
 
 # xml
-curl -fSL https://github.com/angelozerr/lsp4xml/releases/download/0.3.0/org.eclipse.lsp4xml-0.3.0-uber.jar /opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar
+curl -fSL https://github.com/angelozerr/lsp4xml/releases/download/0.3.0/org.eclipse.lsp4xml-0.3.0-uber.jar -o /opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar
 ```
 
 **Install nerd-fonts**
@@ -89,7 +89,7 @@ Recommend AnonymousPro.
 
 ```shell
 curl -fSL http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -o /opt/app/jdt-language-server-latest.tar.gz
-tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls --strip-components=1
+tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls 
 ```
 
 **Install lombok**
