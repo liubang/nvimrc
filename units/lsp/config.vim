@@ -65,6 +65,7 @@ augroup lsp_group
                                                  \'coc-python',
                                                  \'coc-java',
                                                  \'coc-vetur',
+                                                 \'coc-rls',
                                                  \'coc-tsserver',
                                                  \'coc-emoji',
                                                  \'coc-pairs')

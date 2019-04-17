@@ -98,6 +98,12 @@ tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls
 curl -fSL https://projectlombok.org/downloads/lombok.jar -o /opt/app/jar/lombok.jar
 ```
 
+**install rust**
+
+```shell
+curl https://sh.rustup.rs -sSf | sh
+```
+
 ## neovim
 
 Install neovim
