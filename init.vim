@@ -25,7 +25,7 @@ if &compatible
 endif
 
 let g:lbvim = {
-      \ 'version': '0.8-dev',
+      \ 'version': '1.0',
       \ 'author': 'liubang',
       \ 'os': {
       \     'mac': has('macunix'),
