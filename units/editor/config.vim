@@ -311,7 +311,7 @@ let g:Lf_NormalMap = {
 
 " {{{ Vista
 let g:vista_echo_cursor_strategy = 'floating_win'
-let g:vista_icon_indent = ["\u25cb ", "\u25cf "]
+let g:vista_icon_indent = [" ", " "]
 let g:vista_echo_cursor = 0
 
 function! s:vista_keymap()
@@ -333,34 +333,28 @@ call defx#custom#option('_', {
       \ 'resume': 1
       \ })
 
-nnoremap <silent><Leader>ft :Defx <CR>
+call defx#custom#column('mark', {
+      \ 'readonly_icon': '',
+      \ 'selected_icon': '',
+      \ })
 
-augroup vfinit
-  au!
-  autocmd FileType defx call s:defx_init()
-  " auto close last defx window
-  autocmd BufEnter * nested if
-        \ (!has('vim_starting') && winnr('$') == 1
-        \ && &filetype ==# 'defx') |
-        \ call s:close_last_vimfiler_windows() | endif
-augroup END
+call defx#custom#column('icon', {
+      \ 'directory_icon': '',
+      \ 'opened_icon': '',
+      \ 'root_icon': ' ',
+      \ })
 
-function! s:close_last_vimfiler_windows() abort
-  call utils#close_terminal()
-  q
+" Open file-explorer split with tmux
+function! g:DefxTmuxExplorer(context) abort
+  if empty('$TMUX') || empty(s:explorer)
+    return
+  endif
+  let l:target = a:context['targets'][0]
+  let l:parent = fnamemodify(l:target, ':h')
+  silent execute '!tmux split-window -p 30 -c '.l:parent.' '.s:explorer
 endfunction
 
 function! s:defx_init()
-    call defx#custom#column('mark', {
-          \ 'readonly_icon': '',
-          \ 'selected_icon': '',
-          \ })
-
-    call defx#custom#column('filename', {
-          \ 'directory_icon': '',
-          \ 'opened_icon': '',
-          \ })
-
     setl nonumber
     setl norelativenumber
     setl listchars=
@@ -419,7 +413,19 @@ function! s:defx_init()
           \ defx#do_action('print')
     nnoremap <silent><buffer><expr> q
           \ defx#do_action('quit')
-  endfunction
+endfunction
+
+augroup vfinit
+  au!
+  autocmd FileType defx call s:defx_init()
+  " Close defx if it's the only buffer left in the window
+  autocmd TabLeave * if &ft == 'defx' | wincmd w | endif
+  " Close defx if it's the only buffer left in the window
+  autocmd WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
+augroup END
+
+nnoremap <silent><Leader>ft :Defx <CR>
+" nnoremap <silent><Leader>ft defx#do_action('call', 'DefxTmuxExplorer')
 " }}}
 
 " {{{ vim-easy-align
