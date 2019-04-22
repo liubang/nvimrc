@@ -71,5 +71,5 @@ augroup lsp_group
                                                  \'coc-emoji',
                                                  \'coc-pairs',
                                                  \'coc-prettier'
-                                                  )
+                                                 \ )
 augroup END
