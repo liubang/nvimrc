@@ -70,6 +70,5 @@ augroup lsp_group
                                                  \'coc-tsserver',
                                                  \'coc-emoji',
                                                  \'coc-pairs',
-                                                 \'coc-prettier',
                                                  \'coc-imselect')
 augroup END
