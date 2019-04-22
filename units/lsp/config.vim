@@ -40,10 +40,10 @@ endfunction
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 augroup lsp_group
   autocmd!
@@ -70,5 +70,6 @@ augroup lsp_group
                                                  \'coc-tsserver',
                                                  \'coc-emoji',
                                                  \'coc-pairs',
-                                                 \'coc-imselect')
+                                                 \'coc-prettier'
+                                                  )
 augroup END
