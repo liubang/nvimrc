@@ -62,6 +62,7 @@ augroup lsp_group
                                                  \'coc-tailwindcss',
                                                  \'coc-html',
                                                  \'coc-vetur',
+                                                 \'coc-angular',
                                                  \'coc-yaml',
                                                  \'coc-python',
                                                  \'coc-java',

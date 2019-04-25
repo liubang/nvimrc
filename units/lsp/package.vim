@@ -1,3 +1,3 @@
 MMP 'honza/vim-snippets'
-MMP 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+MMP 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 MMP 'neoclide/jsonc.vim'
