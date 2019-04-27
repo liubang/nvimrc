@@ -1,6 +1,7 @@
 {
   "coc.preferences.snippets.enable": true,
   "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["go"],
   "coc.source.word.filetypes": [
     "markdown",
     "gitcommit",
@@ -71,9 +72,8 @@
       }
     },
     "golang": {
-      "command": "bingo",
+      "command": "gopls",
       "args": [
-        "--diagnostics-style=instant"
       ],
       "rootPatterns": [
         "go.mod",
