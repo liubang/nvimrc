@@ -45,6 +45,9 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+" Setup keymap to open yank list like
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+
 augroup lsp_group
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -71,6 +74,7 @@ augroup lsp_group
                                                  \'coc-tsserver',
                                                  \'coc-emoji',
                                                  \'coc-pairs',
-                                                 \'coc-git'
+                                                 \'coc-git',
+                                                 \'coc-yank'
                                                  \ )
 augroup END
