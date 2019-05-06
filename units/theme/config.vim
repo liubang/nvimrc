@@ -164,20 +164,7 @@ endfunction
 autocmd User CocDiagnosticChange call lightline#update()
 
 function! LightLineGitGutter()
-  if ! exists('*GitGutterGetHunkSummary')
-        \ || ! get(g:, 'gitgutter_enabled', 0)
-        \ || winwidth('.') <= 90
-    return ''
-  endif
-  let symbols = ['+','~','-']
-  let hunks = GitGutterGetHunkSummary()
-  let ret = []
-  for i in [0, 1, 2]
-    if hunks[i] > 0
-      call add(ret, symbols[i] . hunks[i])
-    endif
-  endfor
-  return join(ret, ' ')
+  return get(b:,'coc_git_status','')
 endfunction
 
 function! LightLineFname() 
