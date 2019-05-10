@@ -72,9 +72,7 @@
       }
     },
     "golang": {
-      "command": "gopls",
-      "args": [
-      ],
+      "command": "go-langserver",
       "rootPatterns": [
         "go.mod",
         ".vim/",
@@ -83,7 +81,12 @@
       ],
       "filetypes": [
         "go"
-      ]
+      ],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
     },
     "php": {
       "command": "intelephense",
