@@ -7,6 +7,8 @@
 "
 "======================================================================
 
+let s:current_file = expand('<sfile>:p')
+
 " {{{ comment
 "-----------------------------------------------------------------------
 " insert before current line
@@ -487,6 +489,44 @@ command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 
 nnoremap <Leader>gc :GitCommit<Space>
+
+function! s:async_build() 
+  if &filetype == 'c'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -std=c99 -Wall -O2 $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+  elseif &filetype == 'cpp'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ -std=c++11 -Wall -O2 $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+  endif
+endfunction
+
+function! s:async_build_args(args)
+  if &filetype == 'c'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+  elseif &filetype == 'cpp'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+  endif
+endfunction
+
+function! s:async_run()
+  if &filetype == 'c' || &filetype == 'cpp'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+  elseif &filetype == 'php'
+    if !executable('php')
+      call utils#err("php is not executable", s:current_file) 
+    else
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw php -f $(VIM_FILEPATH)"
+    endif
+  elseif &filetype == 'python'
+    if !executable('python')
+      call utils#err("python is not executable", s:current_file)
+    else
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH)"
+    endif
+  endif
+endfunction
+
+command! -bang -nargs=0 Build call s:async_build()
+command! -bang -nargs=? BuildArgs call s:async_build_args(<q-args>)
+command! -bang -nargs=0 Run call s:async_run()
 " }}}
 
 " {{{ undotree

@@ -32,9 +32,6 @@ function! s:def_cpp_build_command()
   command! -bang -nargs=0 Cmake
         \ :AsyncRun -cwd=<root> cmake .
 
-  command! -bang -nargs=0 Run 
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
   command! -bang -nargs=0 MakeTest
         \ :AsyncRun -cwd=<root> -raw make test
 
@@ -43,18 +40,6 @@ function! s:def_cpp_build_command()
 
   command! -bang -nargs=0 MakeRun
         \ :AsyncRun -cwd=<root> -raw make run
-
-  command! -bang -nargs=0 BuildC
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -std=c99 -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
-  command! -bang -nargs=? BuildCArgs
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc <args> "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
-  command! -bang -nargs=0 BuildCpp
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ -std=c++11 -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-
-  command! -bang -nargs=? BuildCppArgs
-        \ :AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ <args> "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
 endfunction
 
 "----------------------------------------------------------------------
