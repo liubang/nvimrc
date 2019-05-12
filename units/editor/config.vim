@@ -506,14 +506,6 @@ function! s:async_build(args)
   endif
 endfunction
 
-function! s:async_build_args(args)
-  if &filetype == 'c'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-  elseif &filetype == 'cpp'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-  endif
-endfunction
-
 function! s:async_run(args)
   if &filetype == 'c' || &filetype == 'cpp'
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT) " . a:args
