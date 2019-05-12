@@ -22,10 +22,20 @@ function! boot#run() abort
     let g:python3_host_prog = $PYTHON3_HOST_PROG
   endif
 
-  let g:coc_language_servers = {}
-
   if !has('python3')
     call  utils#err('Please reinstall your vim/nvim with supporting for python3.', 'boot.vim')
+  endif
+
+  if !empty($CFLAGS)
+    let g:lbvim.build.cflags = $CFLAGS
+  else
+    let g:lbvim.build.cflags = "-std=c99 -Wall -O2"
+  endif
+
+  if !empty($CPPFLAGS)
+    let g:lbvim.build.cppflags = $CPPFLAGS
+  else
+    let g:lbvim.build.cppflags = "-std=c++11 -Wall -O2"
   endif
 
   " core components

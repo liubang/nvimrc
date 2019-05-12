@@ -33,7 +33,8 @@ let g:lbvim = {
       \ },
       \ 'tmux': !empty($TMUX),
       \ 'nvim': has('nvim'),
-      \ 'termguicolors': has('termguicolors')
+      \ 'termguicolors': has('termguicolors'),
+      \ 'build': {}
       \ }
 
 let g:lbvim.home = g:lbvim.nvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'

@@ -490,11 +490,19 @@ command! -bang -nargs=1 GitCommit
 
 nnoremap <Leader>gc :GitCommit<Space>
 
-function! s:async_build() 
+function! s:async_build(args)
   if &filetype == 'c'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc -std=c99 -Wall -O2 $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    if empty(a:args)
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . g:lbvim.build.cflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    else
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    endif
   elseif &filetype == 'cpp'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ -std=c++11 -Wall -O2 $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    if empty(a:args)
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . g:lbvim.build.cppflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    else
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    endif
   endif
 endfunction
 
@@ -506,27 +514,28 @@ function! s:async_build_args(args)
   endif
 endfunction
 
-function! s:async_run()
+function! s:async_run(args)
   if &filetype == 'c' || &filetype == 'cpp'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT) " . a:args
   elseif &filetype == 'php'
     if !executable('php')
       call utils#err("php is not executable", s:current_file) 
     else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw php -f $(VIM_FILEPATH)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw php -f $(VIM_FILEPATH) " . a:args
     endif
   elseif &filetype == 'python'
     if !executable('python')
       call utils#err("python is not executable", s:current_file)
     else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH) " . a:args 
     endif
+  elseif &filetype == 'sh'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw sh $(VIM_FILEPATH) " . a:args
   endif
 endfunction
 
-command! -bang -nargs=0 Build call s:async_build()
-command! -bang -nargs=? BuildArgs call s:async_build_args(<q-args>)
-command! -bang -nargs=0 Run call s:async_run()
+command! -bang -nargs=? Build call s:async_build(<q-args>)
+command! -bang -nargs=? Run call s:async_run(<q-args>)
 " }}}
 
 " {{{ undotree

@@ -57,18 +57,12 @@ endfunction
 
 " string 
 function! utils#string_replace(text, old, new)
-  let data = split(a:text, a:old, 1);
+  let data = split(a:text, a:old, 1)
   return join(data, a:new)
 endfunction
 
 function! utils#string_strip(text)
   return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
-endfunction
-
-function! utils#lsp_register(name, config)
-  if type(a:config) == type({}) && type(a:name) == type("")
-    g:coc_language_servers[a:name] = config;
-  endif
 endfunction
 
 function! utils#close_terminal() abort
