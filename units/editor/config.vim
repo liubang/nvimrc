@@ -325,6 +325,7 @@ autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_k
 " }}}
 
 " {{{ Defx
+
 call defx#custom#option('_', {
       \ 'winwidth': 30,
       \ 'split': 'vertical',
@@ -345,16 +346,6 @@ call defx#custom#column('icon', {
       \ 'opened_icon': '',
       \ 'root_icon': ' ',
       \ })
-
-" Open file-explorer split with tmux
-function! g:DefxTmuxExplorer(context) abort
-  if empty('$TMUX') || empty(s:explorer)
-    return
-  endif
-  let l:target = a:context['targets'][0]
-  let l:parent = fnamemodify(l:target, ':h')
-  silent execute '!tmux split-window -p 30 -c '.l:parent.' '.s:explorer
-endfunction
 
 function! s:defx_init()
     setl nonumber
@@ -427,7 +418,7 @@ augroup vfinit
 augroup END
 
 nnoremap <silent><Leader>ft :Defx <CR>
-" nnoremap <silent><Leader>ft defx#do_action('call', 'DefxTmuxExplorer')
+" nnoremap <silent><Leader>ft defx#do_action('call', 'utils#defx_tmux_explorer')
 " }}}
 
 " {{{ vim-easy-align

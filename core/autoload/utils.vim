@@ -72,3 +72,14 @@ function! utils#close_terminal() abort
     endif
   endfor
 endfunction
+
+" Open file-explorer split with tmux
+function! utils#defx_tmux_explorer(context) abort
+  if !g:lbvim.tmux || empty(s:explorer)
+    return
+  endif
+  let l:target = a:context['targets'][0]
+  let l:parent = fnamemodify(l:target, ':h')
+  silent execute '!tmux split-window -p 30 -c '.l:parent.' '.s:explorer
+endfunction
+
