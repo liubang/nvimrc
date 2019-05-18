@@ -216,12 +216,12 @@ nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : ''
 " {{{ theme
 syntax on
 set background=dark
-let g:gruvbox_contrast_dark = 'medium'
-let g:gruvbox_termcolors = 256
-let g:gruvbox_invert_indent_guides=1
-let g:gruvbox_improved_strings = 1
-colorscheme gruvbox
+let g:gruvbox_filetype_hi_groups = 1
+let g:gruvbox_plugin_hi_groups = 1
+colorscheme gruvbox8
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
+hi default CocHighlightText  guibg=#725972 ctermbg=96
+hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
 " let g:seoul256_background = 236
 " colorscheme seoul256
 " }}}
