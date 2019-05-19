@@ -1,0 +1,21 @@
+priority -50
+
+snippet php "php tag" b
+`!p
+m = re.match('<\?php', '\n'.join(vim.current.window.buffer))
+if m:
+	snip.rv = ''
+else:
+	snip.rv = '<?php\n'
+`
+endsnippet
+
+snippet phpd "php tag wich declare" b 
+`!p
+m = re.match('<\?php\s+declare\(strict_types=[01]\);', '\n'.join(vim.current.window.buffer))
+if m:
+	snip.rv = ''
+else:
+	snip.rv = '<?php declare(strict_types=1);'
+`
+endsnippet

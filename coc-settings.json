@@ -15,15 +15,14 @@
   "suggest.triggerCompletionWait": 50,
   "suggest.maxCompleteItemCount": 20,
   "suggest.detailMaxLength": 30,
-  "suggest.removeDuplicatedLowerPriority": false,
   "suggest.detailField": "abbr",
   "suggest.snippetIndicator": "🌟",
   "suggest.echodocSupport": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "snip"
+  ],
   // diagnostic
-  "diagnostic.infoSign": "ღ",
-  "diagnostic.hintSign": "ஐ",
-  "diagnostic.warningSign": "⚠",
-  "diagnostic.errorSign": "✖",
   "diagnostic.enable": true,
   "diagnostic.signOffset": 100,
   "diagnostic.highlightOffset": 100,
