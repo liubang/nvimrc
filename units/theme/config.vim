@@ -42,23 +42,23 @@ silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'gruvbox9',
       \ 'active': {
       \   'left': [ ['homemode'],
-      \             ['fugitive', 'gitgutter'],['filename'],['cocerror'],['cocwarn']],
-      \   'right':[ ['lineinfo'],
-      \             ['percent'], ['fileformat','fileencoding'] ],
+      \             ['gitinfo'],['filename_active'],['cocstatus']],
+      \   'right':[
+      \             ['lineinfo'], ['fileformat'],['fileencoding'],['cocerror'],['cocwarn'],['cocfix']],
       \ },
       \ 'inactive': {
-      \   'left': [['homemode'], ['filename']],
-      \   'right':[['lineinfo'], ['percent']],
+      \   'left': [['homemode'], ['filename_active']],
+      \   'right':[['lineinfo']],
       \ },
       \ 'tabline': {
       \   'left': [['buffers']],
-      \   'right': [['close']],
+      \   'right': [['thinkvim']],
       \ },
       \ 'component': {
-      \   'lineinfo': ' %3l:%-2v',
+      \   'thinkvim': 'ﴔ ',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
@@ -67,10 +67,12 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'homemode': 'LightlineMode',
-      \   'fugitive': 'LightLineFugitive',
-      \   'gitgutter': 'LightLineGitGutter',
+      \   'gitinfo': 'LightLineGit',
+      \   'cocstatus': 'LightLineCocStatus',
+      \   'cocfix': 'LightlineCocFixes',
       \   'readonly': 'LightLineReadonly',
-      \   'modified': 'LightLineModified',
+      \   'filename_active'  : 'LightlineFilenameActive',
+      \   'lineinfo': 'LightlineLineinfo',
       \   'filename': 'LightLineFname',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
@@ -79,10 +81,33 @@ let g:lightline = {
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
+function! s:lightline_is_lean() abort
+  return &filetype =~? '\v^defx|mundo(diff)?$'
+endfunction
 
-function! LightlineMode()
+function! s:lightline_is_plain() abort
+  return &buftype ==? 'terminal' || &filetype =~? '\v^help|denite|defx|tagbar|vista$'
+endfunction
+
+
+function! LightlineLineinfo() abort
+  return &filetype ==? 'help'             ? ''  :
+  \      &filetype ==? 'defx'             ? ' ' :
+  \      &filetype ==? 'denite'           ? ' ' :
+  \      &filetype ==? 'tagbar'           ? ' ' :
+  \      &filetype ==? 'vista'            ? ' ' :
+  \      &filetype =~? '\v^mundo(diff)?$' ? ' ' :
+  \      s:lightline_is_lean() || s:lightline_is_plain() ? ' '  :
+  \      printf('%d:%d ☰ %d%%', line('.'), col('.'), 100*line('.')/line('$'))
+endfunction
+
+function! LightlineMode() abort
+    return s:lightline_is_lean() || s:lightline_is_plain() ? toupper(&filetype) : Lightlinemode()
+endfunction
+
+function! Lightlinemode()
   let nr = s:get_buffer_number()
-  let nmap = [ '⓿ ',  '❶ ',  '❷ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ','➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ ']
+  let nmap = [ '⓿ ',  '❶ ',  '➋ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ','➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ ']
   if nr == 0
     return ''
   endif
@@ -92,7 +117,7 @@ function! LightlineMode()
     let l:result = get(nmap, l:number % 10, l:number % 10) . l:result
     let l:number = l:number / 10
   endfor
-  return join(['🌈',l:result])
+  return join(['❐',l:result])
 endfunction
 function! s:get_buffer_number()
   let i = 0
@@ -105,16 +130,31 @@ function! s:get_buffer_number()
   return ''
 endfunction
 
-function! LightLineModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
+function! LightlineFilenameActive() abort
+  if s:lightline_is_lean()
+    return ''
   endif
+  if &buftype ==? 'terminal'
+    return has('nvim') ? b:term_title . ' (' . b:terminal_job_pid . ')' : ''
+  endif
+  if &filetype ==? 'denite'
+    return denite#get_status_sources()
+  endif
+  if &filetype ==? 'tagbar'
+    return get(g:lightline, 'fname', '')
+  endif
+  if empty(expand('%:t'))
+    return '[No Name]'
+  endif
+
+  let mo = s:lightline_modified()
+  return empty(mo) ? LightLineFname() : LightLineFname() . ' ' . mo
+endfunction
+
+function! s:lightline_modified() abort
+  return s:lightline_is_lean() || s:lightline_is_plain() ?  ''  :
+  \      &modified                                       ?  '' :
+  \      &modifiable                                     ?  ''  : '-'
 endfunction
 
 function! LightLineReadonly()
@@ -127,12 +167,27 @@ function! LightLineReadonly()
   endif
 endfunction
 
-function! LightLineFugitive()
-  if exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? ''._ : ''
-  endif
-  return ''
+function! LightLineGit()
+    let gitbranch=get(g:, 'coc_git_status', '')
+    let gitcount=get(b:, 'coc_git_status', '')
+    let gitinfo = []
+    if empty(gitbranch)
+      let gitbranch=""
+    endif
+    if empty(gitcount)
+      let gitcount=""
+    endif
+    call add(gitinfo,gitbranch)
+    call add(gitinfo,gitcount)
+    return trim(join(gitinfo,''))
+endfunction
+
+function! LightLineCocStatus() abort
+    let status=get(g:, 'coc_status', '')
+    if empty(status)
+        return ""
+    endif
+    return trim(status)
 endfunction
 
 function! LightLineCocError()
@@ -145,7 +200,7 @@ function! LightLineCocError()
   if get(info, 'error', 0)
     call add(errmsgs, error_sign . info['error'])
   endif
-  return trim(join(errmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+  return join(errmsgs, ' ')
 endfunction
 
 function! LightLineCocWarn() abort
@@ -158,17 +213,63 @@ function! LightLineCocWarn() abort
   if get(info, 'warning', 0)
     call add(warnmsgs, warning_sign . info['warning'])
   endif
- return trim(join(warnmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+ return join(warnmsgs, ' ')
 endfunction
 
-autocmd User CocDiagnosticChange call lightline#update()
-
-function! LightLineGitGutter()
-  return get(b:,'coc_git_status','')
+function! LightlineCocFixes() abort
+  let b:coc_line_fixes = get(get(b:, 'coc_quickfixes', {}), line('.'), 0)
+  return b:coc_line_fixes > 0 ? printf('%d ', b:coc_line_fixes) : ''
 endfunction
 
-function! LightLineFname() 
-  let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
+" Diagnostic's feedback {{{
+function! CocUpdateQuickFixes(error, actions) abort
+  let coc_quickfixes = {}
+  try
+    for action in a:actions
+      if action.kind ==? 'quickfix'
+        for change in action.edit.documentChanges
+          for edit in change.edits
+            let start_line = edit.range.start.line + 1
+            let end_line = edit.range.end.line + 1
+            let coc_quickfixes[start_line] = get(coc_quickfixes, start_line, 0) + 1
+            if start_line != end_line
+              let coc_quickfixes[end_line] = get(coc_quickfixes, end_line, 0) + 1
+            endif
+          endfor
+        endfor
+      endif
+    endfor
+  catch
+  endtry
+  if coc_quickfixes != get(b:, 'coc_quickfixes', {})
+    let b:coc_quickfixes = coc_quickfixes
+    call lightline#update()
+  endif
+endfunction
+
+autocmd  User CocDiagnosticChange
+\   call lightline#update()
+\|  call CocActionAsync('quickfixes', function('CocUpdateQuickFixes'))
+
+function! s:coc_fix_on_cursor_moved() abort
+  let current_line = line('.')
+  if current_line != get(b:, 'last_line', 0)
+    let b:last_line = current_line
+    if has_key(get(b:, 'coc_quickfixes', {}), current_line)
+      call lightline#update()
+    else
+      if get(b:, 'coc_line_fixes', 0) > 0
+        call lightline#update()
+      endif
+    endif
+  endif
+endfunction
+
+autocmd  CursorMoved * call s:coc_fix_on_cursor_moved()
+
+
+function! LightLineFname()
+  let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft')
   let filename = LightLineFilename()
   let ret = [filename,icon]
   if filename == ''
@@ -179,8 +280,7 @@ endfunction
 
 function! LightLineFilename()
   return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+        \ ('' != expand('%:t') ? expand('%:t') : '')
 endfunction
 
 function! LightLineFiletype()
@@ -200,7 +300,6 @@ let g:lightline#bufferline#number_map = {
       \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
       \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
 
-
 nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
 nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
 nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
@@ -213,17 +312,30 @@ nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : ''
 nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
 """ }}}
 
+""" }}}
+
 " {{{ theme
 syntax on
 set background=dark
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_plugin_hi_groups = 1
-colorscheme gruvbox8
+colorscheme gruvbox9
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 hi default CocHighlightText  guibg=#725972 ctermbg=96
 hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
-" let g:seoul256_background = 236
-" colorscheme seoul256
+"GitGutter Coc-git Highlight
+highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
+highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
+highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+" Defx Highlight
+highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
+highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
+highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
+highlight def link Defx_filename_3_Untracked Comment
+highlight def link Defx_filename_3_Unknown Comment
+highlight def link Defx_filename_3_Renamed Title
+highlight def link Defx_filename_3_Unmerged Label
 " }}}
 
 "{{{ startify
@@ -247,11 +359,8 @@ endfunction
 " 总是显示行号
 set number
 set showbreak=↪
-set fillchars=vert:│,fold:─
+set fillchars+=vert:\|  " add a bar for vertical splits
+set fcs=eob:\           " hide ~
 set list
-" "set listchars=tab:\|\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
-" Show trailing white space
-" hi ExtraWhitespace guifg=#FF2626 gui=underline ctermfg=124 cterm=underline
-" match ExtraWhitespace /\s\+$/
 "}}}

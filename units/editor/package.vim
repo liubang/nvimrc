@@ -15,14 +15,6 @@ MMP 'easymotion/vim-easymotion', { 'on': [
       \ '<Plug>(easymotion-overwin-w)'
       \ ] }
 
-" MMP 'jiangmiao/auto-pairs', { 'on': [] }
-" augroup lbvimAutoPairs
-"   autocmd!
-"   autocmd CursorHold,CursorHoldI,InsertEnter, * call plug#load('auto-pairs') 
-"         \ | call AutoPairsTryInit() 
-"         \ | autocmd! lbvimAutoPairs
-" augroup END
-
 MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
 MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -44,4 +36,3 @@ MMP 'tpope/vim-surround'
 MMP 'dominikduda/vim_current_word'
 MMP 'tpope/vim-fugitive'
 MMP 'terryma/vim-expand-region'
-

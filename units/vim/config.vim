@@ -231,7 +231,24 @@ nnoremap <Leader>w2 <C-W>v
 " }}}
 
 " {{{ copy from vim to system clipboard
-set clipboard+=unnamedplus
+if has('mac')
+  let g:clipboard = {
+    \   'name': 'macOS-clipboard',
+    \   'copy': {
+    \      '+': 'pbcopy',
+    \      '*': 'pbcopy',
+    \    },
+    \   'paste': {
+    \      '+': 'pbpaste',
+    \      '*': 'pbpaste',
+    \   },
+    \   'cache_enabled': 0,
+    \ }
+endif
+
+if has('clipboard')
+  set clipboard& clipboard+=unnamedplus
+endif
 " }}}
 
 " {{{ autocmd 
