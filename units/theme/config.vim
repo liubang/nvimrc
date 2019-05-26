@@ -86,7 +86,7 @@ function! s:lightline_is_lean() abort
 endfunction
 
 function! s:lightline_is_plain() abort
-  return &buftype ==? 'terminal' || &filetype =~? '\v^help|denite|defx|tagbar|vista$'
+  return &buftype ==? 'terminal' || &filetype =~? '\v^help|denite|defx|tagbar|vista|vista_kind$'
 endfunction
 
 
@@ -96,6 +96,7 @@ function! LightlineLineinfo() abort
   \      &filetype ==? 'denite'           ? ' ' :
   \      &filetype ==? 'tagbar'           ? ' ' :
   \      &filetype ==? 'vista'            ? ' ' :
+  \      &filetype ==? 'vista_kind'       ? ' ' :
   \      &filetype =~? '\v^mundo(diff)?$' ? ' ' :
   \      s:lightline_is_lean() || s:lightline_is_plain() ? ' '  :
   \      printf('%d:%d ☰ %d%%', line('.'), col('.'), 100*line('.')/line('$'))
