@@ -271,46 +271,6 @@ map  <Leader>ww <Plug>(easymotion-bd-w)
 nmap <Leader>ww <Plug>(easymotion-overwin-w)
 " }}}
 
-" {{{ leaderf
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = g:lbvim.cache_dir
-let g:Lf_ShowRelativePath = 0
-let g:Lf_HideHelp = 1
-let g:Lf_StlColorscheme = 'one'
-
-let g:Lf_WildIgnore = {
-      \ 'dir': ['.svn','.git','.hg'],
-      \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-      \ }
-
-let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
-let g:Lf_MruMaxFiles = 2048
-let g:Lf_StlColorscheme = 'powerline'
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_ShortcutB = '<m-n>'
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-
-let g:Lf_NormalMap = {
-    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<cr>']],
-    \ "Mru": [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<cr>']],
-    \ "Tag": [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<cr>']],
-    \ "BufTag": [["<ESC>", ':exec g:Lf_py "bufTagExplManager.quit()"<cr>']],
-    \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
-    \ }
-
-" function! s:leaderf_keymap()
-"   nnoremap <silent><F3> :LeaderfFunction!<CR>
-"   nnoremap <silent><leader>lf :LeaderfFunction!<CR>
-"   nnoremap <silent><leader>lt :LeaderfBufTag!<CR>
-" endfunction
-
-" autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:leaderf_keymap()
-" }}}
-
 " {{{ Vista
 let g:vista_default_executive = 'coc'
 let g:vista_icon_indent = [" ", " "]

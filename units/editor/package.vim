@@ -15,7 +15,7 @@ MMP 'easymotion/vim-easymotion', { 'on': [
       \ '<Plug>(easymotion-overwin-w)'
       \ ] }
 
-MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
 MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 MMP 'kana/vim-textobj-user'
