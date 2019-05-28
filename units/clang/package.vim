@@ -7,6 +7,8 @@
 "
 "======================================================================
 MMP 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+MMP 'google/vim-maktaba', { 'for': ['bzl'] }
+MMP 'bazelbuild/vim-bazel', { 'for': ['bzl'] }
 if !g:lbvim.use_lsp
   MMP 'Shougo/neoinclude.vim', { 'for': ['c', 'cpp'] }
   MMP 'Shougo/deoplete-clangx', { 'for': ['c', 'cpp'] }
