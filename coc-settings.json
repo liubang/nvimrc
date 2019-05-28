@@ -1,176 +1,163 @@
 {
-	"coc.preferences.snippets.enable": true,
-	"coc.preferences.snippetStatusText": "Ⓢ ",
-	"coc.preferences.formatOnType": true,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"go"
-	],
-	"coc.source.word.filetypes": [
-		"markdown",
-		"gitcommit",
-		"log",
-		"txt"
-	],
-	// suggest
-	"suggest.timeout": 500,
-	"suggest.noselect": false,
-	"suggest.triggerAfterInsertEnter": true,
-	"suggest.triggerCompletionWait": 100,
-	"suggest.maxCompleteItemCount": 20,
-	"suggest.detailMaxLength": 30,
-	"suggest.detailField": "abbr",
-	"suggest.snippetIndicator": "🌟",
-	"suggest.echodocSupport": true,
-	"snippets.ultisnips.directories": [
-		"UltiSnips",
-		"snip"
-	],
-	// diagnostic
-	"diagnostic.enable": true,
-	"diagnostic.signOffset": 100,
-	"diagnostic.highlightOffset": 100,
-	"diagnostic.refreshOnInsertMode": true,
-	//emmet
-	"emmet.includeLanguages": {
-		"vue-html": "html",
-		"javascript": "javascriptreact"
-	},
-	// git 
-	"git.enableGutters": true,
-	"git.addedSign.hlGroup": "GitGutterAdd",
-	"git.changedSign.hlGroup": "GitGutterChange",
-	"git.removedSign.hlGroup": "GitGutterDelete",
-	"git.topRemovedSign.hlGroup": "GitGutterDelete",
-	"git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-	"git.addedSign.text": "▎",
-	"git.changedSign.text": "▎",
-	"git.removedSign.text": "▏",
-	"git.topRemovedSign.text": "▔",
-	"git.changeRemovedSign.text": "▋",
-	//tslint
-	"tslint.autoFixOnSave": true,
-	"prettier.eslintIntegration": true,
-	"prettier.tslintIntegration": true,
-	"prettier.stylelintIntegration": true,
-	//python
-	"python.autoComplete.addBrackets": true,
-	// java
-	"java.jdt.ls.home": "/opt/app/jdtls",
-	"java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
-	"java.import.gradle.enabled": true,
-	"java.import.maven.enabled": true,
-	// eslint
-	"eslint.filetypes": [
-		"javascript",
-		"javascript.jsx",
-		"javascriptreact"
-	],
-	"eslint.autoFix": true,
-	"eslint.autoFixOnSave": true,
-	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [
-				"c",
-				"cpp",
-				"hpp",
-				"objc",
-				"objcpp"
-			],
-			"rootPatterns": [
-				".ccls",
-				"compile_commands.json",
-				".vim/",
-				".git",
-				".hg/"
-			],
-			"initializationOptions": {
-				"cache": {
-					"directory": "/tmp/ccls"
-				}
-			}
-		},
-		"golang": {
-			"command": "go-langserver",
-			"rootPatterns": [
-				"go.mod",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"filetypes": [
-				"go"
-			],
-			"initializationOptions": {
-				"gocodeCompletionEnabled": true,
-				"diagnosticsEnabled": true,
-				"lintTool": "golint"
-			}
-		},
-		"php": {
-			"command": "intelephense",
-			"args": [
-				"--stdio"
-			],
-			"filetypes": [
-				"php"
-			]
-		},
-		"bash": {
-			"command": "bash-language-server",
-			"filetypes": [
-				"sh"
-			],
-			"args": [
-				"start"
-			],
-			"ignoredRootPaths": [
-				"~"
-			]
-		},
-		"lua": {
-			"command": "lua-lsp",
-			"filetypes": [
-				"lua"
-			]
-		},
-		"efm": {
-			"command": "efm-langserver",
-			"args": [],
-			"filetypes": [
-				"vim",
-				"markdown",
-				"eruby"
-			]
-		},
-		"dockerfile": {
-			"command": "docker-langserver",
-			"args": [
-				"--stdio"
-			],
-			"filetypes": [
-				"dockerfile"
-			]
-		},
-		"purescript": {
-			"command": "purescript-language-server",
-			"args": [
-				"--stdio"
-			],
-			"filetypes": [
-				"purescript"
-			]
-		},
-		"xml": {
-			"command": "java",
-			"args": [
-				"-jar",
-				"/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"
-			],
-			"filetypes": [
-				"xml"
-			]
-		}
-	}
-	// vim:ft=jsonc
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go"
+  ],
+  "coc.source.word.filetypes": [
+    "markdown",
+    "gitcommit",
+    "log",
+    "txt"
+  ],
+  // suggest
+  "suggest.timeout": 500,
+  "suggest.noselect": false,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.triggerCompletionWait": 100,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.detailMaxLength": 30,
+  "suggest.detailField": "abbr",
+  "suggest.snippetIndicator": "🌟",
+  "suggest.echodocSupport": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "snip"
+  ],
+  // diagnostic
+  "diagnostic.enable": true,
+  "diagnostic.signOffset": 100,
+  "diagnostic.highlightOffset": 100,
+  "diagnostic.refreshOnInsertMode": true,
+  //emmet
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  },
+  // git 
+  "git.enableGutters": true,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.addedSign.text": "▎",
+  "git.changedSign.text": "▎",
+  "git.removedSign.text": "▏",
+  "git.topRemovedSign.text": "▔",
+  "git.changeRemovedSign.text": "▋",
+  //python
+  "python.autoComplete.addBrackets": true,
+  // java
+  "java.jdt.ls.home": "/opt/app/jdtls",
+  "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
+  "java.import.gradle.enabled": true,
+  "java.import.maven.enabled": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "hpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
+    "golang": {
+      "command": "go-langserver",
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
+    },
+    "php": {
+      "command": "intelephense",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "php"
+      ]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "filetypes": [
+        "sh"
+      ],
+      "args": [
+        "start"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
+    },
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": [
+        "lua"
+      ]
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": [
+        "vim",
+        "markdown",
+        "eruby"
+      ]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "dockerfile"
+      ]
+    },
+    "purescript": {
+      "command": "purescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "purescript"
+      ]
+    },
+    "xml": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"
+      ],
+      "filetypes": [
+        "xml"
+      ]
+    }
+  }
+  // vim:ft=jsonc
 }
