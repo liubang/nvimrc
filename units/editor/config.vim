@@ -457,6 +457,12 @@ function! s:async_build(args)
     else
       execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
+  elseif &filetype == 'java'
+    if empty(a:args)
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw javac ${VIM_FILEPATH}"
+    else
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw javac " . a:args . " $(VIM_FILEPATH)"
+    endif
   endif
 endfunction
 
@@ -475,6 +481,8 @@ function! s:async_run(args)
     else
       execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH) " . a:args 
     endif
+  elseif &filetype == 'java'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw java $(VIM_FILENOEXT)"
   elseif &filetype == 'sh'
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw sh $(VIM_FILEPATH) " . a:args
   endif
