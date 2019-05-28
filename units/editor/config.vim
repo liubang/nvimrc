@@ -488,8 +488,19 @@ function! s:async_run(args)
   endif
 endfunction
 
+function! s:maven(opt, goal)
+  if executable('mvn')
+    execute "AsyncRun -cwd=<root> -raw mvn " . a:opt . " " . a:goal
+  else
+    call utils#err("mvn is not executable", s:current_file)
+  endif
+endfunction
+
 command! -bang -nargs=? Build call s:async_build(<q-args>)
 command! -bang -nargs=? Run call s:async_run(<q-args>)
+command! -bang -nargs=? Maven call s:maven(<q-args>, "")
+command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
+command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
 " }}}
 
 " {{{ undotree
