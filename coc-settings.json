@@ -1,9 +1,13 @@
 {
   "coc.preferences.snippets.enable": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
-  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnType": false,
   "coc.preferences.formatOnSaveFiletypes": [
-    "go"
+    "go",
+    "svg", // coc-svg support svg format
+    "dart", // diagnostic-languageserver support dart format
+    "elixir", // diagnostic-languageserver support elixir format
+    "eelixir" // diagnostic-languageserver support elixir format
   ],
   "coc.source.word.filetypes": [
     "markdown",
@@ -30,11 +34,34 @@
   "diagnostic.signOffset": 100,
   "diagnostic.highlightOffset": 100,
   "diagnostic.refreshOnInsertMode": true,
+  // diagnostic-languageserver
+  "diagnostic-languageserver.filetypes": {
+    "email": "languagetool",
+    "markdown": [
+      "write-good",
+      "markdownlint"
+    ],
+    "sh": "shellcheck",
+    "elixir": [
+      "mix_credo",
+      "mix_credo_compile"
+    ],
+    "eelixir": [
+      "mix_credo",
+      "mix_credo_compile"
+    ]
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "dart": "dartfmt",
+    "elixir": "mix_format",
+    "eelixir": "mix_format"
+  },
   //emmet
   "emmet.includeLanguages": {
     "vue-html": "html",
     "javascript": "javascriptreact"
   },
+  "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
   // git 
   "git.enableGutters": true,
   "git.addedSign.hlGroup": "GitGutterAdd",
