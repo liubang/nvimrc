@@ -5,9 +5,7 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
     "svg", // coc-svg support svg format
-    "dart", // diagnostic-languageserver support dart format
-    "elixir", // diagnostic-languageserver support elixir format
-    "eelixir" // diagnostic-languageserver support elixir format
+    "dart" // diagnostic-languageserver support dart format
   ],
   "coc.source.word.filetypes": [
     "markdown",
@@ -34,27 +32,8 @@
   "diagnostic.signOffset": 100,
   "diagnostic.highlightOffset": 100,
   "diagnostic.refreshOnInsertMode": true,
-  // diagnostic-languageserver
-  "diagnostic-languageserver.filetypes": {
-    "email": "languagetool",
-    "markdown": [
-      "write-good",
-      "markdownlint"
-    ],
-    "sh": "shellcheck",
-    "elixir": [
-      "mix_credo",
-      "mix_credo_compile"
-    ],
-    "eelixir": [
-      "mix_credo",
-      "mix_credo_compile"
-    ]
-  },
   "diagnostic-languageserver.formatFiletypes": {
     "dart": "dartfmt",
-    "elixir": "mix_format",
-    "eelixir": "mix_format"
   },
   //emmet
   "emmet.includeLanguages": {
