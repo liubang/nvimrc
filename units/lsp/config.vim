@@ -75,6 +75,9 @@ augroup lsp_group
                                                  \'coc-emoji',
                                                  \'coc-pairs',
                                                  \'coc-git',
-                                                 \'coc-yank'
+                                                 \'coc-github',
+                                                 \'coc-yank',
+                                                 \'coc-post',
+                                                 \'coc-stylelint'
                                                  \ )
 augroup END
