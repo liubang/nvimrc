@@ -48,6 +48,37 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Setup keymap to open yank list like
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
+
+let g:coc_global_extensions = ['coc-word',
+                              \'coc-json',
+                              \'coc-highlight',
+                              \'coc-snippets',
+                              \'coc-emmet',
+                              \'coc-css',
+                              \'coc-tailwindcss',
+                              \'coc-html',
+                              \'coc-vetur',
+                              \'coc-angular',
+                              \'coc-yaml',
+                              \'coc-python',
+                              \'coc-java',
+                              \'coc-vetur',
+                              \'coc-rls',
+                              \'coc-tsserver',
+                              \'coc-vimlsp',
+                              \'coc-emoji',
+                              \'coc-pairs',
+                              \'coc-git',
+                              \'coc-github',
+                              \'coc-yank',
+                              \'coc-post',
+                              \'coc-stylelint'
+                              \ ]
+
 augroup lsp_group
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -56,28 +87,4 @@ augroup lsp_group
   autocmd CursorHold * silent call CocActionAsync('highlight')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  autocmd User CocNvimInit call coc#add_extension('coc-word',
-                                                 \'coc-json',
-                                                 \'coc-highlight',
-                                                 \'coc-snippets',
-                                                 \'coc-emmet',
-                                                 \'coc-css',
-                                                 \'coc-tailwindcss',
-                                                 \'coc-html',
-                                                 \'coc-vetur',
-                                                 \'coc-angular',
-                                                 \'coc-yaml',
-                                                 \'coc-python',
-                                                 \'coc-java',
-                                                 \'coc-vetur',
-                                                 \'coc-rls',
-                                                 \'coc-tsserver',
-                                                 \'coc-emoji',
-                                                 \'coc-pairs',
-                                                 \'coc-git',
-                                                 \'coc-github',
-                                                 \'coc-yank',
-                                                 \'coc-post',
-                                                 \'coc-stylelint'
-                                                 \ )
 augroup END

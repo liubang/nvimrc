@@ -12,7 +12,7 @@ if g:lbvim.tmux
 endif
 
 if g:lbvim.use_lsp
-  MMP 'Shougo/neco-vim', { 'for': ['vim'] }
-  MMP 'neoclide/coc-neco', { 'for': ['vim'] }
+"  MMP 'Shougo/neco-vim', { 'for': ['vim'] }
+"  MMP 'neoclide/coc-neco', { 'for': ['vim'] }
   autocmd FileType vim let b:coc_pairs_disabled = ['"']
 endif
