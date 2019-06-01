@@ -215,19 +215,18 @@ nnoremap <Leader>wr <C-W>r
 nnoremap <Leader>wd <C-W>c
 nnoremap <Leader>wq <C-W>q
 nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wJ <C-W>J
 nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wK <C-W>K
 nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wH <C-W>H
 nnoremap <Leader>wl <C-W>l
-nnoremap <Leader>wH <C-W>5<
-nnoremap <Leader>wL <C-W>5>
-nnoremap <Leader>wJ :resize +5<CR>
-nnoremap <Leader>wK :resize -5<CR>
+nnoremap <Leader>wL <C-W>L
 nnoremap <Leader>w= <C-W>=
 nnoremap <Leader>ws <C-W>s
 nnoremap <Leader>w- <C-W>s
 nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
-nnoremap <Leader>w2 <C-W>v
 " }}}
 
 " {{{ copy from vim to system clipboard
