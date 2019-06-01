@@ -35,6 +35,13 @@
   "diagnostic-languageserver.formatFiletypes": {
     "dart": "dartfmt",
   },
+  // diagnostic-languageserver
+  "diagnostic-languageserver.filetypes": {
+    "markdown": [
+      "write-good"
+    ],
+    "sh": "shellcheck"
+  },
   //emmet
   "emmet.includeLanguages": {
     "vue-html": "html",

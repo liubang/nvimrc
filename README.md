@@ -106,6 +106,14 @@ curl -fSL https://projectlombok.org/downloads/lombok.jar -o /opt/app/jar/lombok.
 curl https://sh.rustup.rs -sSf | sh
 ```
 
+**install shellcheck**
+
+```shell
+brew install shellcheck
+// or for ubuntu/debian
+apt-get install shellcheck
+```
+
 ## neovim
 
 Install neovim
