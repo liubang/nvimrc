@@ -17,7 +17,7 @@
   "suggest.maxCompleteItemCount": 20,
   "suggest.detailMaxLength": 30,
   "suggest.detailField": "abbr",
-  "suggest.snippetIndicator": "🌟",
+  "suggest.snippetIndicator": " Ⓢ ",
   "suggest.echodocSupport": true,
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
@@ -62,6 +62,8 @@
     "markdown": ["write-good"],
     "sh": "shellcheck"
   },
+  // prettier
+  "prettier.statusItemText": "ⓟ ",
   //emmet
   "emmet.includeLanguages": {
     "vue-html": "html",

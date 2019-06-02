@@ -288,8 +288,8 @@ autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_k
 " }}}
 
 " {{{ Defx
-
 call defx#custom#option('_', {
+      \ 'root_marker': ':',
       \ 'winwidth': 30,
       \ 'split': 'vertical',
       \ 'direction': 'leftabove',
@@ -300,14 +300,14 @@ call defx#custom#option('_', {
       \ })
 
 call defx#custom#column('mark', {
-      \ 'readonly_icon': '',
-      \ 'selected_icon': '',
+      \ 'readonly_icon': "\uf023",
+      \ 'selected_icon': "\uf634",
       \ })
 
 call defx#custom#column('icon', {
-      \ 'directory_icon': '',
-      \ 'opened_icon': '',
-      \ 'root_icon': ' ',
+      \ 'directory_icon': "\uf413",
+      \ 'opened_icon': "\uf115",
+      \ 'root_icon': "\ufcce",
       \ })
 
 function! s:defx_init()
