@@ -320,10 +320,11 @@ syntax on
 set background=dark
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_plugin_hi_groups = 1
-colorscheme gruvbox9
+let g:gruvbox_transp_bg = 1
+colorscheme gruvbox9_hard
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
-hi default CocHighlightText  guibg=#725972 ctermbg=96
 hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
+hi default CocHighlightText  guibg=#725972 ctermbg=96
 "GitGutter Coc-git Highlight
 highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE

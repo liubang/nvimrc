@@ -45,15 +45,7 @@ function! boot#run() abort
   CCM 'theme'
   CCM 'editor'
   CCM 'tools'
-  if g:lbvim.use_lsp
-    CCM 'lsp' 
-  else
-    CCM 'deoplete'
-  endif
-  CCM 'tags'
-  CCM 'php'
-  CCM 'python'
-  CCM 'latex'
+  CCM 'lsp' 
   CCM 'clang'
   CCM 'markdown'
 

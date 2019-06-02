@@ -11,8 +11,4 @@ if g:lbvim.tmux
   MMP 'roxma/vim-tmux-clipboard'
 endif
 
-if g:lbvim.use_lsp
-"  MMP 'Shougo/neco-vim', { 'for': ['vim'] }
-"  MMP 'neoclide/coc-neco', { 'for': ['vim'] }
-  autocmd FileType vim let b:coc_pairs_disabled = ['"']
-endif
+autocmd FileType vim let b:coc_pairs_disabled = ['"']

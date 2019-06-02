@@ -12,14 +12,10 @@ if has('syntax')
   syntax on
 endif
 
-if has('multi_byte')
-  " 内部工作编码
-  set encoding=utf-8
-  " 文件默认编码
-  set fileencoding=utf-8
-  " 打开文件时自动尝试下面顺序的编码
-  set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
-endif
+set encoding=UTF-8
+set fileencoding=utf-8
+scriptencoding UTF-8
+set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
 set shortmess=atOI
 set ignorecase
 set smartcase 
