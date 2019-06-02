@@ -18,6 +18,8 @@ MMP 'easymotion/vim-easymotion', { 'on': [
 " MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
 MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
 MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+MMP 'kristijanhusak/defx-icons'
+MMP 'kristijanhusak/defx-git'
 MMP 'kana/vim-textobj-user'
 MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
 MMP 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }

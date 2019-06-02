@@ -288,97 +288,70 @@ autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_k
 " }}}
 
 " {{{ Defx
+let g:defx_icons_enable_syntax_highlight = 0
 call defx#custom#option('_', {
-      \ 'root_marker': ':',
+      \ 'columns': 'indent:git:icons:filename',
       \ 'winwidth': 30,
       \ 'split': 'vertical',
-      \ 'direction': 'leftabove',
+      \ 'direction': 'topleft',
       \ 'show_ignored_files': 0,
       \ 'buffer_name': 'Defx_tree',
       \ 'toggle': 1,
       \ 'resume': 1
       \ })
 
-call defx#custom#column('mark', {
-      \ 'readonly_icon': "\uf023",
-      \ 'selected_icon': "\uf634",
+call defx#custom#column('filename', {
+      \ 'min_width': 80,
+      \ 'max_width': 80,
       \ })
 
-call defx#custom#column('icon', {
-      \ 'directory_icon': "\uf413",
-      \ 'opened_icon': "\uf115",
-      \ 'root_icon': "\ufcce",
-      \ })
+function! s:defx_context_menu() abort
+  let l:actions = ['new_multiple_files', 'rename', 'copy', 'move', 'paste', 'remove']
+  let l:selection = confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete")
+  silent exe 'redraw'
+  return feedkeys(defx#do_action(l:actions[l:selection - 1]))
+endfunction
 
-function! s:defx_init()
-    setl nonumber
-    setl norelativenumber
-    setl listchars=
+function s:defx_toggle_tree() abort
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('drop')
+endfunction
 
-    " Define mappings
-    nnoremap <silent><buffer><expr> <CR>
-          \ defx#do_action('drop')
-    nnoremap <silent><buffer><expr> c
-          \ defx#do_action('copy')
-    nnoremap <silent><buffer><expr> m
-          \ defx#do_action('move')
-    nnoremap <silent><buffer><expr> p
-          \ defx#do_action('paste')
-    nnoremap <silent><buffer><expr> E
-          \ defx#do_action('open', 'vsplit')
-    nnoremap <silent><buffer><expr> P
-          \ defx#do_action('open', 'pedit')
-    nnoremap <silent><buffer><expr> o
-          \ defx#is_directory() ?
-          \ defx#do_action('open_or_close_tree') : defx#do_action('drop')
-    nnoremap <silent><buffer><expr> K
-          \ defx#do_action('new_directory')
-    nnoremap <silent><buffer><expr> N
-          \ defx#do_action('new_file')
-    nnoremap <silent><buffer><expr> S
-          \ defx#do_action('toggle_sort', 'time')
-    nnoremap <silent><buffer><expr> d
-          \ defx#do_action('remove')
-    nnoremap <silent><buffer><expr> r
-          \ defx#do_action('rename')
-    nnoremap <silent><buffer><expr> !
-          \ defx#do_action('execute_command')
-    nnoremap <silent><buffer><expr> x
-          \ defx#do_action('execute_system')
-    nnoremap <silent><buffer><expr> yy
-          \ defx#do_action('yank_path')
-    nnoremap <silent><buffer><expr> .
-          \ defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> <Space><Space>
-          \ defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> *
-          \ defx#do_action('toggle_select_all')
-    nnoremap <silent><buffer><expr> ~
-          \ defx#do_action('cd')
-    nnoremap <silent><buffer><expr> h
-          \ defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> l
-          \ defx#do_action('change_vim_cwd')
-    nnoremap <silent><buffer><expr> j
-          \ line('.') == line('$') ? 'gg' : 'j'
-    nnoremap <silent><buffer><expr> k
-          \ line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent><buffer><expr> <C-l>
-          \ defx#do_action('redraw')
-    nnoremap <silent><buffer><expr> <C-g>
-          \ defx#do_action('print')
-    nnoremap <silent><buffer><expr> q
-          \ defx#do_action('quit')
+function! s:defx_mappings()
+  setl nonumber
+  setl norelativenumber
+  setl listchars=
+  nnoremap <silent><buffer>m :call <sid>defx_context_menu()<CR>
+  nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
+  nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> <2-LeftMouse> <sid>defx_toggle_tree()
+  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
+  nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright vsplit')
+  nnoremap <silent><buffer><expr> R defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> U defx#do_action('multi', [['cd', '..'], 'change_vim_cwd'])
+  nnoremap <silent><buffer><expr> H defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer> J :call search('')<CR>
+  nnoremap <silent><buffer> K :call search('', 'b')<CR>
+  nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> q defx#do_action('quit')
 endfunction
 
 augroup vfinit
   au!
-  autocmd FileType defx call s:defx_init()
   " Close defx if it's the only buffer left in the window
+  autocmd FileType defx call s:defx_mappings()                                  "Defx mappings
+  " Move focus to the next window if current buffer is defx
   autocmd TabLeave * if &ft == 'defx' | wincmd w | endif
   " Close defx if it's the only buffer left in the window
   autocmd WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
 augroup END
+
 
 nnoremap <silent><Leader>ft :Defx <CR>
 " nnoremap <silent><Leader>ft defx#do_action('call', 'utils#defx_tmux_explorer')
