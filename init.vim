@@ -21,7 +21,7 @@ else
 endif
 
 if &compatible
- set nocompatible
+  set nocompatible
 endif
 
 let g:lbvim = {
