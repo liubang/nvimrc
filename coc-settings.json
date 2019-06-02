@@ -7,12 +7,8 @@
     "svg", // coc-svg support svg format
     "dart" // diagnostic-languageserver support dart format
   ],
-  "coc.source.word.filetypes": [
-    "markdown",
-    "gitcommit",
-    "log",
-    "txt"
-  ],
+  "coc.source.emoji.shortcut": "E",
+  "coc.source.word.filetypes": ["markdown", "gitcommit", "log", "txt"],
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": false,
@@ -23,23 +19,47 @@
   "suggest.detailField": "abbr",
   "suggest.snippetIndicator": "🌟",
   "suggest.echodocSupport": true,
-  "snippets.ultisnips.directories": [
-    "UltiSnips",
-    "snip"
-  ],
+  "suggest.completionItemKindLabels": {
+    "function": "\uf794",
+    "method": "\uf6a6",
+    "variable": "\uf71b",
+    "constant": "\uf8ff",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\ufa52",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf668",
+    "color": "\ue22b",
+    "property": "\ufab6",
+    "field": "\uf93d",
+    "unit": "\uf475",
+    "file": "\uf471",
+    "value": "\uf8a3",
+    "event": "\ufacd",
+    "folder": "\uf115",
+    "keyword": "\uf893",
+    "snippet": "\uf64d",
+    "operator": "\uf915",
+    "reference": "\uf87a",
+    "typeParameter": "\uf278",
+    "default": "\uf29c"
+  },
+  "snippets.ultisnips.directories": ["UltiSnips", "snip"],
   // diagnostic
   "diagnostic.enable": true,
   "diagnostic.signOffset": 100,
   "diagnostic.highlightOffset": 100,
   "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
   "diagnostic-languageserver.formatFiletypes": {
-    "dart": "dartfmt",
+    "dart": "dartfmt"
   },
   // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
-    "markdown": [
-      "write-good"
-    ],
+    "markdown": ["write-good"],
     "sh": "shellcheck"
   },
   //emmet
@@ -48,7 +68,7 @@
     "javascript": "javascriptreact"
   },
   "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
-  // git 
+  // git
   "git.enableGutters": true,
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
@@ -70,13 +90,7 @@
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "hpp",
-        "objc",
-        "objcpp"
-      ],
+      "filetypes": ["c", "cpp", "hpp", "objc", "objcpp"],
       "rootPatterns": [
         ".ccls",
         "compile_commands.json",
@@ -86,21 +100,34 @@
       ],
       "initializationOptions": {
         "cache": {
+          "format": "b",
           "directory": "/tmp/ccls"
+        },
+        "capabilities": {
+          "foldingRangeProvider": false,
+          "workspace": {
+            "workspaceFolders": {
+              "supported": false
+            }
+          }
+        },
+        "clang": {
+          "extraArgs": ["--gcc-toolchain=/usr"]
+        },
+        "completion": {
+          "detailedLabel": true
+        },
+        "index": {
+          "onChange": false,
+          "initialNoLinkage": true,
+          "threads": 2
         }
       }
     },
     "golang": {
       "command": "go-langserver",
-      "rootPatterns": [
-        "go.mod",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "filetypes": [
-        "go"
-      ],
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
       "initializationOptions": {
         "gocodeCompletionEnabled": true,
         "diagnosticsEnabled": true,
@@ -109,67 +136,38 @@
     },
     "php": {
       "command": "intelephense",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "php"
-      ]
+      "args": ["--stdio"],
+      "filetypes": ["php"]
     },
     "bash": {
       "command": "bash-language-server",
-      "filetypes": [
-        "sh"
-      ],
-      "args": [
-        "start"
-      ],
-      "ignoredRootPaths": [
-        "~"
-      ]
+      "filetypes": ["sh", "zsh"],
+      "args": ["start"],
+      "ignoredRootPaths": ["~"]
     },
     "lua": {
       "command": "lua-lsp",
-      "filetypes": [
-        "lua"
-      ]
+      "filetypes": ["lua"]
     },
     "efm": {
       "command": "efm-langserver",
       "args": [],
-      "filetypes": [
-        "vim",
-        "markdown",
-        "eruby"
-      ]
+      "filetypes": ["vim", "markdown", "eruby"]
     },
     "dockerfile": {
       "command": "docker-langserver",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "dockerfile"
-      ]
+      "args": ["--stdio"],
+      "filetypes": ["dockerfile"]
     },
     "purescript": {
       "command": "purescript-language-server",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "purescript"
-      ]
+      "args": ["--stdio"],
+      "filetypes": ["purescript"]
     },
     "xml": {
       "command": "java",
-      "args": [
-        "-jar",
-        "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"
-      ],
-      "filetypes": [
-        "xml"
-      ]
+      "args": ["-jar", "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"],
+      "filetypes": ["xml"]
     }
   }
   // vim:ft=jsonc
