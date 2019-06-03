@@ -11,6 +11,9 @@ endif
 set noshowmode
 set completeopt=noinsert,menuone,noselect
 
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
+
 " expand vue snippet
 function! s:snippet() abort
   let l:start_line = line('.')
@@ -34,23 +37,14 @@ function! s:check_back_space() abort
   return !l:col || getline('.')[l:col - 1]  =~# '\s'
 endfunction
 
-" tab:
-"   1. select autocomplete
-"   2. trigger autocomplete
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" expand snippets
-" Use <C-Space> to trigger snippet expand or refresh autocomplete items
-imap <silent> <expr> <C-Space> <SID>check_back_space() ? coc#refresh() : "\<Plug>(coc-snippets-expand)"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" use <CR> to confirm completion
+inoremap <silent><expr><cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent><leader>gd <Plug>(coc-definition)
 nmap <silent><leader>gD <Plug>(coc-declaration)
@@ -108,10 +102,9 @@ augroup coc_au
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " Use K for show documentation in preview window
   " autocmd CursorHold * call CocActionAsync('doHover')
-
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')
-
+  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   " vue
   autocmd CompleteDone *.vue call <SID>snippet()
   " highlight text color

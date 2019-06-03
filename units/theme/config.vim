@@ -47,7 +47,7 @@ let g:lightline = {
       \   'left': [ ['homemode'],
       \             ['gitinfo'],['filename_active'],['cocstatus']],
       \   'right':[
-      \             ['lineinfo'], ['fileformat'],['fileencoding'],['cocerror'],['cocwarn'],['cocfix']],
+      \             ['lineinfo'], ['fileformat'],['filencode'],['cocerror'],['cocwarn'],['cocfix']],
       \ },
       \ 'inactive': {
       \   'left': [['homemode'], ['filename_active']],
@@ -68,8 +68,9 @@ let g:lightline = {
       \ 'component_function': {
       \   'homemode': 'LightlineMode',
       \   'gitinfo': 'LightLineGit',
-      \   'cocstatus': 'LightLineCocStatus',
+      \   'cocstatus': 'CocStatusBar',
       \   'cocfix': 'LightlineCocFixes',
+      \   'filencode': 'FileEncoding',
       \   'readonly': 'LightLineReadonly',
       \   'filename_active'  : 'LightlineFilenameActive',
       \   'lineinfo': 'LightlineLineinfo',
@@ -81,6 +82,7 @@ let g:lightline = {
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
+
 function! s:lightline_is_lean() abort
   return &filetype =~? '\v^defx|mundo(diff)?$'
 endfunction
@@ -192,7 +194,7 @@ function! LightLineCocStatus() abort
 endfunction
 
 function! LightLineCocError()
-  let error_sign = get(g:, 'coc_status_error_sign', has('mac') ? '❌ ' : 'E')
+  let error_sign = get(g:, 'coc_status_error_sign', '😡')
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info)
     return ''
@@ -202,6 +204,21 @@ function! LightLineCocError()
     call add(errmsgs, error_sign . info['error'])
   endif
   return join(errmsgs, ' ')
+endfunction
+
+function! CocStatusBar() abort
+    let status=get(g:, 'coc_status', '')
+    if empty(status)
+        return ""
+    endif
+    let regstatus=substitute(status, "TSC", "Ⓣ ", "")
+    let statusbar= split(regstatus)
+    let bar=[]
+    if &filetype ==? "go"
+        let gobar ="Ⓖ "
+        call add(statusbar,gobar)
+    endif
+    return join(statusbar," ")
 endfunction
 
 function! LightLineCocWarn() abort
