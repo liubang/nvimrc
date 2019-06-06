@@ -55,10 +55,10 @@ let g:lightline = {
       \ },
       \ 'tabline': {
       \   'left': [['buffers']],
-      \   'right': [['thinkvim']],
+      \   'right': [['myvim']],
       \ },
       \ 'component': {
-      \   'thinkvim': 'ﴔ ',
+      \   'myvim': 'ﴔ ',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
@@ -211,14 +211,18 @@ function! CocStatusBar() abort
     if empty(status)
         return ""
     endif
-    let regstatus=substitute(status, "TSC", "Ⓣ ", "")
+    let regstatus=substitute(status,"TSC","Ⓣ ","")
     let statusbar= split(regstatus)
-    let bar=[]
     if &filetype ==? "go"
         let gobar ="Ⓖ "
         call add(statusbar,gobar)
     endif
-    return join(statusbar," ")
+    "return join(statusbar," ")
+    let s = join(statusbar," ")
+    if empty(s)
+        return ""
+    endif
+     return join(['❖',s])
 endfunction
 
 function! LightLineCocWarn() abort
@@ -266,25 +270,8 @@ function! CocUpdateQuickFixes(error, actions) abort
 endfunction
 
 autocmd  User CocDiagnosticChange
-\   call lightline#update()
-\|  call CocActionAsync('quickfixes', function('CocUpdateQuickFixes'))
-
-function! s:coc_fix_on_cursor_moved() abort
-  let current_line = line('.')
-  if current_line != get(b:, 'last_line', 0)
-    let b:last_line = current_line
-    if has_key(get(b:, 'coc_quickfixes', {}), current_line)
-      call lightline#update()
-    else
-      if get(b:, 'coc_line_fixes', 0) > 0
-        call lightline#update()
-      endif
-    endif
-  endif
-endfunction
-
-autocmd  CursorMoved * call s:coc_fix_on_cursor_moved()
-
+      \   call lightline#update()
+      \|  call CocActionAsync('quickfixes', function('CocUpdateQuickFixes'))
 
 function! LightLineFname()
   let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft')
