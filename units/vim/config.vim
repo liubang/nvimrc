@@ -7,11 +7,8 @@
 "
 "======================================================================
 
-if has('syntax')
-  syntax enable
-  syntax on
-endif
-
+syntax enable
+syntax on
 set encoding=UTF-8
 set fileencoding=utf-8
 scriptencoding UTF-8
@@ -37,7 +34,7 @@ set smartindent
 set cindent
 set expandtab
 set mousehide
-set ruler
+" set ruler
 set showcmd
 set showmode
 " 显示匹配的括号
@@ -94,7 +91,6 @@ set noautochdir
 " 文件搜索和补全时忽略下面扩展名
 "----------------------------------------------------------------------
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
-
 set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib "stuff to ignore when tab completing
 set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
 set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz    " MacOSX/Linux
