@@ -31,8 +31,8 @@ MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 " multi cursors
 MMP 'mg979/vim-visual-multi'
 " fzf
-MMP $ZPLUG_HOME . '/repos/junegunn/fzf'
-" MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" MMP $ZPLUG_HOME . '/repos/junegunn/fzf'
+MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 MMP 'junegunn/fzf.vim'
 MMP 'tpope/vim-surround'
 MMP 'dominikduda/vim_current_word'
