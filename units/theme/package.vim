@@ -7,6 +7,7 @@
 "
 "======================================================================
 
+MMP 'posva/vim-vue'
 MMP 'machakann/vim-highlightedyank'
 MMP 'mgee/lightline-bufferline'
 MMP 'ryanoasis/vim-devicons'
