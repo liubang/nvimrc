@@ -100,6 +100,7 @@
   "git.topRemovedSign.text": "▔",
   "git.changeRemovedSign.text": "▋",
   //python
+  "python.jediEnabled": false,
   "python.autoComplete.addBrackets": true,
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",
