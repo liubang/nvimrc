@@ -322,6 +322,9 @@ endfunction
 function! s:defx_mappings()
   setl nonumber
   setl norelativenumber
+  setl listchars=
+  setl nofoldenable
+  setl foldmethod=manual
   nnoremap <silent><buffer>m :call <sid>defx_context_menu()<CR>
   nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
   nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
