@@ -1,1 +1,1 @@
-setl listchars=
+setlocal nolist

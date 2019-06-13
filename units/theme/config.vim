@@ -364,10 +364,9 @@ endfunction
 "{{{ default
 " 总是显示行号
 set number
-set showbreak=↪
+" set showbreak=↪
 set fillchars+=vert:\|  " add a bar for vertical splits
 set fcs=eob:\           " hide ~
-set list
+set nolist
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
-  
 "}}}
