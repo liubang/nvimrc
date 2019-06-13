@@ -368,5 +368,5 @@ set number
 set fillchars+=vert:\|  " add a bar for vertical splits
 set fcs=eob:\           " hide ~
 set nolist
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+"set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 "}}}
