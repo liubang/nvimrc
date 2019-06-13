@@ -435,6 +435,8 @@ function! s:async_build(args)
     else
       execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw javac " . a:args . " $(VIM_FILEPATH)"
     endif
+  elseif &filetype == 'go'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go build " . a:args
   endif
 endfunction
 
@@ -457,6 +459,8 @@ function! s:async_run(args)
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw java $(VIM_FILENOEXT)"
   elseif &filetype == 'sh'
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw sh $(VIM_FILEPATH) " . a:args
+  elseif &filetype == 'go'
+    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go run $(VIM_FILEPATH) " . a:args
   endif
 endfunction
 
