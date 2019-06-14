@@ -145,15 +145,9 @@
       }
     },
     "golang": {
-      "command": "go-langserver",
+      "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
-        "lintTool": "golint",
-        "formatTool": "gofmt"
-      }
+      "filetypes": ["go"]
     },
     "php": {
       "command": "intelephense",
