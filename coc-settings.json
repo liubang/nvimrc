@@ -151,7 +151,8 @@
       "initializationOptions": {
         "gocodeCompletionEnabled": true,
         "diagnosticsEnabled": true,
-        "lintTool": "golint"
+        "lintTool": "golint",
+        "formatTool": "gofmt"
       }
     },
     "php": {
