@@ -63,7 +63,6 @@ set cursorline
 set fileformats=unix,dos,mac
 set autoread                                  " 文件在Vim之外修改过，自动重新读入
 set synmaxcol=200
-autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
 set norelativenumber
 set nocursorcolumn
 " 禁用报警声和图标
@@ -257,6 +256,8 @@ autocmd BufReadPost *
 
 " http://vim.wikia.com/wiki/Always_start_on_first_line_of_git_commit_message
 autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) | endif
+
+autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
 " }}}
 
 " {{{ command
