@@ -206,6 +206,13 @@ function! LightLineCocError()
   return join(errmsgs, ' ')
 endfunction
 
+function! FileEncoding()
+    if &filetype==?'defx' || &filetype==?'vista'
+        return ""
+    endif
+   return (&fenc!=#""?&fenc:&enc)
+endfunction
+
 function! CocStatusBar() abort
     let status=get(g:, 'coc_status', '')
     if empty(status)
