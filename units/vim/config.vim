@@ -244,10 +244,6 @@ endif
 " }}}
 
 " {{{ autocmd 
-
-"----------------------------------------------------------------------
-" autocmd 
-"----------------------------------------------------------------------
 autocmd FileType xml,json,text
       \ if getfsize(expand("%")) > 10000000
       \|  setlocal syntax=off
@@ -258,9 +254,6 @@ autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$")
       \|  execute "normal! g`\""
       \|endif
-
-" http://vim.wikia.com/wiki/Speed_up_Syntax_Highlighting
-autocmd BufEnter * :syntax sync maxlines=200
 
 " http://vim.wikia.com/wiki/Always_start_on_first_line_of_git_commit_message
 autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) | endif
