@@ -19,7 +19,7 @@ set smartcase
 set scrolljump=5
 set scrolloff=3
 set hidden
-set history=100
+set history=1000
 set wrap
 set hlsearch
 set nowritebackup
@@ -59,22 +59,13 @@ set winminheight=0
 set wildmode=list:longest,full
 set backspace=2         " 在insert模式下用退格键删除
 set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundaries
-set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
-set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
-set wildignore+=*\\tmp\\*,*.exe            " Windows
 set cursorline
 set fileformats=unix,dos,mac
 set autoread                                  " 文件在Vim之外修改过，自动重新读入
 set synmaxcol=200
+autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
 set norelativenumber
-"set colorcolumn=120
 set nocursorcolumn
-" Enable folding
-" 快捷键：z+a, 打开或关闭当前折叠;  z+m, 关闭所有折叠;  z+r, 打开所有折叠
-" set nofoldenable  "启动vim时候关闭折叠
-set foldmethod=marker
-set foldcolumn=0 
-" set foldlevel=99
 " 禁用报警声和图标
 set noerrorbells
 set novisualbell
@@ -86,6 +77,56 @@ set wildmode=longest:list,full
 
 " 禁止自动切换目录
 set noautochdir
+
+if has('conceal')
+	set conceallevel=3 concealcursor=niv
+endif
+
+" FastFold
+" Credits: https://github.com/Shougo/shougo-s-github
+autocmd CustGroupCmd TextChangedI,TextChanged *
+	\ if &l:foldenable && &l:foldmethod !=# 'manual' |
+	\   let b:foldmethod_save = &l:foldmethod |
+	\   let &l:foldmethod = 'manual' |
+	\ endif
+
+autocmd CustGroupCmd BufWritePost *
+	\ if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save') |
+	\   let &l:foldmethod = b:foldmethod_save |
+	\   execute 'normal! zx' |
+	\ endif
+
+if has('folding')
+	set foldenable
+  set foldcolumn=0 
+	set foldmethod=marker
+	set foldlevelstart=99
+	set foldtext=FoldText()
+endif
+
+" Improved Vim fold-text
+" See: http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
+function! FoldText()
+	" Get first non-blank line
+	let fs = v:foldstart
+	while getline(fs) =~? '^\s*$' | let fs = nextnonblank(fs + 1)
+	endwhile
+	if fs > v:foldend
+		let line = getline(v:foldstart)
+	else
+		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
+
+	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	let foldSize = 1 + v:foldend - v:foldstart
+	let foldSizeStr = ' ' . foldSize . ' lines '
+	let foldLevelStr = repeat('+--', v:foldlevel)
+	let lineCount = line('$')
+	let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
+	let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endfunction
+
 
 "----------------------------------------------------------------------
 " 文件搜索和补全时忽略下面扩展名

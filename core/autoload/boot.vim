@@ -11,6 +11,10 @@ if !exists('g:lbvim.use_lsp')
   let g:lbvim.use_lsp = 1
 endif
 
+augroup CustGroupCmd
+  autocmd!
+augroup end
+
 function! boot#run() abort
   if !empty($PYTHON_HOST_PROG)
     let g:python_host_skip_check=1
