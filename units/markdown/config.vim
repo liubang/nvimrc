@@ -7,6 +7,4 @@
 "
 "======================================================================
 
-if g:lbvim.use_lsp
-  autocmd FileType markdown let b:coc_pairs_disabled = ['`']
-endif
+autocmd FileType markdown let b:coc_pairs_disabled = ['`']

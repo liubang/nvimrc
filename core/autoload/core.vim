@@ -16,19 +16,33 @@ scriptencoding utf-8
 let g:lbvim.components_loaded = []
 let g:lbvim.plugins = []
 let s:type = {
-      \ 'string': type(''),
-      \ 'list': type([]),
-      \ 'dict': type({}),
-      \ 'function': type(function('call'))
-      \ }
+  \ 'string': type(''),
+  \ 'list': type([]),
+  \ 'dict': type({}),
+  \ 'function': type(function('call'))
+  \ }
+let s:called = {
+  \ 'begin': 0,
+  \ 'end': 0
+  \ }
 
 function! core#begin() abort
+  if s:called.begin != 0
+    return
+  else
+    let s:called.begin = 1
+  endif
   call s:check_vim_plug()
   call s:define_command()
   call s:check_custom_file()
 endfunction
 
 function! core#end() abort
+  if s:called.end != 0
+    return
+  else
+    let s:called.end = 1
+  endif
   " regist all plugs
   call s:register_plugs()
   call s:register_configs()
@@ -84,7 +98,6 @@ function! s:register_plugs()
     " if exists('*ModuleInit')
     "  call ModuleInit()
     " endif
-
     for l:component in g:lbvim.components_loaded
       let l:component_package = g:lbvim.components_dir . '/' . l:component . '/package.vim'
       try

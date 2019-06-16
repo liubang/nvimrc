@@ -7,15 +7,25 @@
 "
 "======================================================================
 
-if !exists('g:lbvim.use_lsp')
-  let g:lbvim.use_lsp = 1
-endif
+scriptencoding utf-8
 
-augroup CustGroupCmd
-  autocmd!
-augroup end
+let s:called = {
+  \ 'run': 0
+  \ }
 
 function! boot#run() abort
+  " 防止重复调用
+  if s:called.run != 0
+    echo "OK"
+    return
+  else
+    let s:called.run = 1
+  endif
+
+  augroup CustGroupCmd
+    autocmd!
+  augroup end
+
   if !empty($PYTHON_HOST_PROG)
     let g:python_host_skip_check=1
     let g:python_host_prog  = $PYTHON_HOST_PROG
@@ -44,7 +54,6 @@ function! boot#run() abort
 
   " core components
   call core#begin()
-
   CCM 'vim'
   CCM 'theme'
   CCM 'editor'
@@ -52,6 +61,5 @@ function! boot#run() abort
   CCM 'lsp' 
   CCM 'clang'
   CCM 'markdown'
-
   call core#end()
 endfunction
