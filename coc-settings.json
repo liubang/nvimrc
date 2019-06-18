@@ -144,10 +144,10 @@
         }
       }
     },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+    "dockerfile": {
+      "command": "docker-langserver",
+      "args": ["--stdio"],
+      "filetypes": ["dockerfile"]
     },
     "bash": {
       "command": "bash-language-server",
@@ -163,11 +163,6 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["vim", "markdown", "eruby"]
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "args": ["--stdio"],
-      "filetypes": ["dockerfile"]
     },
     "purescript": {
       "command": "purescript-language-server",
