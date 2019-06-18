@@ -56,10 +56,13 @@
     "typeParameter": "\uf278",
     "default": "\uf29c"
   },
+  "snippets.shortcut": "S",
   "snippets.ultisnips.directories": ["UltiSnips", "snip"],
+  "snippets.ultisnips.usePythonx": true,
+  "snippets.ultisnips.enable": true,
+  "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
   "diagnostic.enable": true,
-  "diagnostic.level": "hint",
   "diagnostic.signOffset": 100,
   "diagnostic.highlightOffset": 100,
   "diagnostic.refreshOnInsertMode": false,
@@ -99,7 +102,7 @@
   "git.removedSign.text": "▏",
   "git.topRemovedSign.text": "▔",
   "git.changeRemovedSign.text": "▋",
-  //python
+  // python
   "python.jediEnabled": false,
   "python.autoComplete.addBrackets": true,
   // java
