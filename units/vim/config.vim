@@ -262,4 +262,19 @@ autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
 
 " {{{ command
 command! -nargs=0 -bang CleanBuffer call utils#clean_buffers()
+
+function! s:new_file(args)
+  execute "tabnew " . a:args
+endfunction
+
+function! s:vs_new_file(args)
+  execute "vsplit " . a:args
+endfunction
+
+function! s:sp_new_file(args)
+  execute "split " . a:args
+endfunction
+command! -nargs=? -bang -complete=file New call s:new_file(<q-args>)
+command! -nargs=? -bang -complete=file SpNew call s:sp_new_file(<q-args>)
+command! -nargs=? -bang -complete=file VsNew call s:vs_new_file(<q-args>)
 " }}}
