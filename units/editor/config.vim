@@ -113,10 +113,10 @@ function! <SID>snip_copyright(author)
   call append(0, l:text)
 endfunction
 
-command! -bang -nargs=1 LComment
+command! -bang -nargs=1 Comment
       \ :call <SID>snip_comment_block('<args>')
 
-command! -bang -nargs=0 LCopyRight
+command! -bang -nargs=0 CopyRight
       \ :call <SID>snip_copyright(g:lbvim.author)
 
 " }}}
