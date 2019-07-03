@@ -4,3 +4,4 @@ doc
 plugged
 core/autoload/plug.vim
 cache/*
+sessions
