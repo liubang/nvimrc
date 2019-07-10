@@ -40,7 +40,7 @@ endif
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
-let g:spaceline_seperate_style= 'slant'
+let g:spaceline_seperate_style= 'none'
 
 nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(1)"
 nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(2)"
