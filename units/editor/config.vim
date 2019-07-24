@@ -482,14 +482,6 @@ command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
 command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
 " }}}
 
-" {{{ undotree
-nnoremap <silent><Leader>ut :MundoToggle<CR>
-let g:mundo_width = 40
-let g:mundo_preview_height = 30
-let g:mundo_right = 1
-let g:mundo_tree_statusline = "undo tree"
-" }}}
-
 " {{{ vinarise.vim
 let g:vinarise_enable_auto_detect = 0
 nmap <silent><Leader>hx :Vinarise<CR>
@@ -498,4 +490,8 @@ nmap <silent><Leader>hx :Vinarise<CR>
 " {{{ vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
+" }}}
+
+" {{{ vim-easygit
+let g:easygit_enable_command = 1
 " }}}
