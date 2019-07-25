@@ -182,6 +182,46 @@
       "command": "java",
       "args": ["-jar", "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"],
       "filetypes": ["xml"]
+    },
+    "dls": {
+      "command": "diagnostic-languageserver",
+      "args": ["--stdio"],
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "linters": {
+          "phpcs": {
+            "command": "./vendor/bin/phpcs",
+            "debounce": 100,
+            "rootPatterns": [
+              "composer.json",
+              "composer.lock",
+              "vendor",
+              ".git"
+            ],
+            "args": ["--standard=PSR2", "--report=emacs", "-s", "-"],
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "phpcs",
+            "formatLines": 1,
+            "formatPattern": [
+              "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)$",
+              {
+                "line": 1,
+                "column": 2,
+                "message": 4,
+                "security": 3
+              }
+            ],
+            "securities": {
+              "error": "error",
+              "warning": "warning"
+            }
+          }
+        },
+        "filetypes": {
+          "php": "phpcs"
+        }
+      }
     }
   }
   // vim:ft=jsonc

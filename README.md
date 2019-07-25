@@ -79,7 +79,14 @@ brew install ccls
 
 # xml
 curl -fSL https://github.com/angelozerr/lsp4xml/releases/download/0.3.0/org.eclipse.lsp4xml-0.3.0-uber.jar -o /opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar
+
+# diagnostic-languageserver
+yarn global add diagnostic-languageserver
 ```
+
+Install phpcs
+
+[https://github.com/squizlabs/PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 **Install nerd-fonts**
 
