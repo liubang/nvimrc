@@ -104,7 +104,7 @@
   "git.topRemovedSign.text": "▔",
   "git.changeRemovedSign.text": "▋",
   // python
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.autoComplete.addBrackets": true,
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",
@@ -167,11 +167,6 @@
     "lua": {
       "command": "lua-lsp",
       "filetypes": ["lua"]
-    },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["vim", "markdown", "eruby"]
     },
     "purescript": {
       "command": "purescript-language-server",

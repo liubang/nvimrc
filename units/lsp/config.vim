@@ -92,6 +92,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-post',
                               \'coc-stylelint',
                               \'coc-diagnostic',
+                              \'coc-texlab',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
