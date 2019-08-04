@@ -9,7 +9,7 @@
 
 MMP 'posva/vim-vue'
 MMP 'machakann/vim-highlightedyank'
-MMP 'mgee/lightline-bufferline'
+" MMP 'mgee/lightline-bufferline'
 MMP 'mhinz/vim-startify'
 MMP 'taigacute/spaceline.vim'
 MMP 'ryanoasis/vim-devicons'
