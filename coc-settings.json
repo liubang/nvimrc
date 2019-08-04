@@ -63,22 +63,21 @@
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
-  "diagnostic.enable": true,
-  "diagnostic.signOffset": 100,
-  "diagnostic.highlightOffset": 100,
-  "diagnostic.refreshOnInsertMode": false,
-  "diagnostic.refreshAfterSave": true,
-  "diagnostic.errorSign": "\uf65b",
-  "diagnostic.warningSign": "\uf421",
-  "diagnostic.infoSign": "ℹ",
-  "diagnostic.hintSign": "➤",
+  "diagnostic.infoSign":            "ღ",
+  "diagnostic.hintSign":            "ஐ",
+  "diagnostic.warningSign":         "⚠",
+  "diagnostic.errorSign":           "✖",
+  "diagnostic.enable":              true,
+  "diagnostic.signOffset":          9999999,
+  "diagnostic.highlightOffset":     9999999,
+  "diagnostic.refreshOnInsertMode": true,
   "diagnostic-languageserver.formatFiletypes": {
     "dart": "dartfmt"
   },
-  // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good"],
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "php": "phpcs"
   },
   // prettier
   "prettier.statusItemText": "ⓟ ",
@@ -89,20 +88,21 @@
   },
   "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
   // git
-  "git.enableGutters": true,
-  "git.addedSign.hlGroup": "GitGutterAdd",
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "git.addGlameToBufferVar": true,
-  "git.addGlameToVirtualText": true,
-  "git.virtualTextPrefix": " ❯❯❯ ",
-  "git.addedSign.text": "▎",
-  "git.changedSign.text": "▎",
-  "git.removedSign.text": "▏",
-  "git.topRemovedSign.text": "▔",
-  "git.changeRemovedSign.text": "▋",
+  "git.enableGutters":             true,
+  "git.signOffset":                99,
+  "git.addGlameToVirtualText":     true,
+  "git.virtualTextPrefix":         "     ",
+  "git.branchCharacter":           "\uf418",
+  "git.addedSign.text":            "▏",
+  "git.changedSign.text":          "▏",
+  "git.removedSign.text":          "▏",
+  "git.topRemovedSign.text":       "‾",
+  "git.changeRemovedSign.text":    "≃",
+  "git.addedSign.hlGroup":         "GitAddHi",
+  "git.changedSign.hlGroup":       "GitModifyHi",
+  "git.removedSign.hlGroup":       "GitDeleteHi",
+  "git.topRemovedSign.hlGroup":    "GitDeleteHi",
+  "git.changeRemovedSign.hlGroup": "GitDeleteHi",
   // python
   "python.jediEnabled": true,
   "python.autoComplete.addBrackets": true,
@@ -177,46 +177,6 @@
       "command": "java",
       "args": ["-jar", "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"],
       "filetypes": ["xml"]
-    },
-    "dls": {
-      "command": "diagnostic-languageserver",
-      "args": ["--stdio"],
-      "filetypes": ["php"],
-      "initializationOptions": {
-        "linters": {
-          "phpcs": {
-            "command": "./vendor/bin/phpcs",
-            "debounce": 100,
-            "rootPatterns": [
-              "composer.json",
-              "composer.lock",
-              "vendor",
-              ".git"
-            ],
-            "args": ["--standard=PSR2", "--report=emacs", "-s", "-"],
-            "offsetLine": 0,
-            "offsetColumn": 0,
-            "sourceName": "phpcs",
-            "formatLines": 1,
-            "formatPattern": [
-              "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)$",
-              {
-                "line": 1,
-                "column": 2,
-                "message": 4,
-                "security": 3
-              }
-            ],
-            "securities": {
-              "error": "error",
-              "warning": "warning"
-            }
-          }
-        },
-        "filetypes": {
-          "php": "phpcs"
-        }
-      }
     }
   }
   // vim:ft=jsonc

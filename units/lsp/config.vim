@@ -94,6 +94,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-stylelint',
                               \'coc-diagnostic',
                               \'coc-texlab',
+                              \'coc-tabnine',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
@@ -119,8 +120,21 @@ augroup coc_au
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+
+  " virtual text highlight
+  autocmd ColorScheme * highlight! CocCodeLens guifg=#606060 ctermfg=60
   " vue
   autocmd CompleteDone *.vue call <SID>snippet()
+  " error/warning/info/hit sign
+  autocmd ColorScheme * highlight! CocErrorSign ctermfg=Red guifg=#ea6962
+  autocmd ColorScheme * highlight! CocWarningSign ctermfg=Yellow guifg=#e3a84e
+  autocmd ColorScheme * highlight! CocInfoSign ctermfg=Blue guifg=#7dae9b
+  autocmd ColorScheme * highlight! CocHintSign ctermfg=Blue guifg=#7dae9b
+  " diff sign highlight groups
+  autocmd ColorScheme * highlight GitAddHi    guifg=#b8bb26 ctermfg=40
+  autocmd ColorScheme * highlight GitModifyHi guifg=#83a598 ctermfg=33
+  autocmd ColorScheme * highlight GitDeleteHi guifg=#f3423a ctermfg=196
+  autocmd ColorScheme * highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
   " highlight text color
   autocmd ColorScheme * highlight! CocHighlightText  guibg=#054c20 ctermbg=023
   " do not underline error/info/hit lines
