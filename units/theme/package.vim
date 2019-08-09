@@ -14,4 +14,5 @@ MMP 'mhinz/vim-startify'
 MMP 'taigacute/spaceline.vim'
 MMP 'ryanoasis/vim-devicons'
 MMP 'sainnhe/gruvbox-material'
+MMP 'StanAngeloff/php.vim', { 'for': ['php'] }
 " MMP 'taigacute/gruvbox9'
