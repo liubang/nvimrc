@@ -40,7 +40,7 @@ endif
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
-let g:spaceline_seperate_style= 'none'
+let g:spaceline_seperate_style= 'arrow-fade'
 let g:spaceline_colorscheme = 'space'
 
 nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(1)"
@@ -53,8 +53,6 @@ nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : ''
 nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(8)"
 nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(9)"
 nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(10)"
-""" }}}
-
 """ }}}
 
 " {{{ theme
