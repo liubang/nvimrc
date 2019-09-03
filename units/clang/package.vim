@@ -7,6 +7,4 @@
 "
 "======================================================================
 MMP 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-MMP 'google/vim-maktaba', { 'for': ['bzl'] }
-MMP 'bazelbuild/vim-bazel', { 'for': ['bzl'] }
 MMP 'justinmk/vim-syntax-extra',{'for': ['c', 'cpp', 'lex', 'yacc']}
