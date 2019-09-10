@@ -62,7 +62,8 @@ let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_plugin_hi_groups = 1
 let g:gruvbox_transp_bg = 1
 " colorscheme gruvbox9_hard
-colorscheme gruvbox-material-soft
+let g:gruvbox_material_background = 'soft'
+colorscheme gruvbox-material
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
 hi default CocHighlightText  guibg=#725972 ctermbg=96
