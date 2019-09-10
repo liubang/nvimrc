@@ -62,7 +62,7 @@ set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundari
 set cursorline
 set fileformats=unix,dos,mac
 set autoread                                  " 文件在Vim之外修改过，自动重新读入
-set synmaxcol=200
+" set synmaxcol=200
 set norelativenumber
 set nocursorcolumn
 " 禁用报警声和图标
