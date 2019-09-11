@@ -77,7 +77,7 @@
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good"],
     "sh": "shellcheck",
-    "php": "phpcs"
+    // "php": "phpcs"
   },
   // prettier
   "prettier.statusItemText": "ⓟ ",
