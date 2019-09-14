@@ -5,9 +5,11 @@
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.colorSupport": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
     "go",
     "svg", // coc-svg support svg format
-    "dart" // diagnostic-languageserver support dart format
+    "dart", // diagnostic-languageserver support dart format
+    "markdown"
   ],
   "coc.source.emoji.shortcut": "E",
   "coc.source.emoji.priority": 8,
@@ -63,20 +65,20 @@
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
-  "diagnostic.infoSign":            "ღ",
-  "diagnostic.hintSign":            "ஐ",
-  "diagnostic.warningSign":         "⚠",
-  "diagnostic.errorSign":           "✖",
-  "diagnostic.enable":              true,
-  "diagnostic.signOffset":          9999999,
-  "diagnostic.highlightOffset":     9999999,
+  "diagnostic.infoSign": "ღ",
+  "diagnostic.hintSign": "ஐ",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.errorSign": "✖",
+  "diagnostic.enable": true,
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.highlightOffset": 9999999,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic-languageserver.formatFiletypes": {
     "dart": "dartfmt"
   },
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good"],
-    "sh": "shellcheck",
+    "sh": "shellcheck"
     // "php": "phpcs"
   },
   // prettier
@@ -88,20 +90,20 @@
   },
   "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
   // git
-  "git.enableGutters":             true,
-  "git.signOffset":                99,
-  "git.addGlameToVirtualText":     true,
-  "git.virtualTextPrefix":         "     ",
-  "git.branchCharacter":           "\uf418",
-  "git.addedSign.text":            "▏",
-  "git.changedSign.text":          "▏",
-  "git.removedSign.text":          "▏",
-  "git.topRemovedSign.text":       "‾",
-  "git.changeRemovedSign.text":    "≃",
-  "git.addedSign.hlGroup":         "GitAddHi",
-  "git.changedSign.hlGroup":       "GitModifyHi",
-  "git.removedSign.hlGroup":       "GitDeleteHi",
-  "git.topRemovedSign.hlGroup":    "GitDeleteHi",
+  "git.enableGutters": true,
+  "git.signOffset": 99,
+  "git.addGlameToVirtualText": true,
+  "git.virtualTextPrefix": "     ",
+  "git.branchCharacter": "\uf418",
+  "git.addedSign.text": "▏",
+  "git.changedSign.text": "▏",
+  "git.removedSign.text": "▏",
+  "git.topRemovedSign.text": "‾",
+  "git.changeRemovedSign.text": "≃",
+  "git.addedSign.hlGroup": "GitAddHi",
+  "git.changedSign.hlGroup": "GitModifyHi",
+  "git.removedSign.hlGroup": "GitDeleteHi",
+  "git.topRemovedSign.hlGroup": "GitDeleteHi",
   "git.changeRemovedSign.hlGroup": "GitDeleteHi",
   // python
   "python.jediEnabled": true,
