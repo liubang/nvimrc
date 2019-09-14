@@ -94,6 +94,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-diagnostic',
                               \'coc-texlab',
                               \'coc-tabnine',
+                              \'coc-prettier',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
