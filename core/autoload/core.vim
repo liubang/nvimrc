@@ -128,9 +128,9 @@ function! s:register_configs()
 endfunction
 
 function! s:check_custom_file()
-  let a:dot_customfile = $HOME . '/.vim.custom'
-  if filereadable(expand(a:dot_customfile))
-    execute 'so ' . a:dot_customfile
+  let l:dot_customfile = $HOME . '/.vim.custom'
+  if filereadable(expand(l:dot_customfile))
+    execute 'so ' . l:dot_customfile
   endif
 endfunction
 
