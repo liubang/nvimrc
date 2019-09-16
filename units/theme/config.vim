@@ -94,6 +94,7 @@ let g:startify_custom_header = [
                             \'      Author: liubang <it.liubang@gmail.com> ',
                             \'        Site: https://iliubang.cn            ',
                             \'     Version: ' . g:lbvim.version,
+                            \'        Vim : ' . utils#get_vim_version(),
                             \ ]
 
 function! StartifyEntryFormat()

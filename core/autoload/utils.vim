@@ -83,3 +83,14 @@ function! utils#defx_tmux_explorer(context) abort
   silent execute '!tmux split-window -p 30 -c '.l:parent.' '.s:explorer
 endfunction
 
+function! utils#get_vim_version()
+  if g:lbvim.nvim
+    redir => s
+    silent! version
+    redir END
+    return 'neovim ' . matchstr(s, 'NVIM v\zs[^\n]*')
+  else 
+    return 'vim ' . v:version
+  endif
+endfunction
+
