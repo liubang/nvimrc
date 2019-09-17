@@ -275,16 +275,14 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 let g:vista_default_executive = 'coc'
 let g:vista_icon_indent = [" ", " "]
 let g:vista_echo_cursor = 0
-let g:vista_echo_cursor_strategy = 'floating_win'
+" let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_fzf_preview = ['right:50%']
+let g:vista_executive_for = {
+  \ 'markdown': 'toc'
+  \ }
 
-
-function! s:vista_keymap()
-  nnoremap <silent><leader><F3> :Vista!!<CR>
-  nnoremap <silent><leader>tl :Vista!!<CR>
-endfunction
-
-autocmd FileType c,cpp,php,java,javascript,vim,lua,python,go,lisp call s:vista_keymap()
+nnoremap <silent><leader><F3> :Vista!!<CR>
+nnoremap <silent><leader>tl :Vista!!<CR>
 " }}}
 
 " {{{ Defx
