@@ -98,19 +98,10 @@ let g:coc_global_extensions = ['coc-word',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
-function! <SID>go_package()
-  let l:filename = expand("%:h") 
-  let l:filenext = expand("%:t:r")
-  let l:fileinfo = split(l:filename, "/")
-  let l:len = len(l:fileinfo)
-  let l:package = l:fileinfo[l:len - 1]
-  call append(0, "// Package " . l:package . " provides...")
-  call append(1, "package " . l:package)
-endfunction
-
 augroup coc_au
   autocmd!
-  autocmd BufNewFile *.go exec ":call <SID>go_package()"
+  " for golang
+  autocmd BufWritePre *.go :CocCommand editor.action.organizeImport
   " Or use formatexpr for range format
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Show signature help while editing
