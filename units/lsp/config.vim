@@ -48,6 +48,7 @@ inoremap <silent><expr><cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>
 
 nmap <silent><leader>gd <Plug>(coc-definition)
 nmap <silent><leader>gD <Plug>(coc-declaration)
+nmap <silent><leader>gy <Plug>(coc-type-definition)
 nmap <silent><leader>gi <Plug>(coc-implementation)
 nmap <silent><leader>gr <Plug>(coc-references)
 nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
@@ -67,6 +68,7 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 hi NoCocUnderline cterm=None gui=None
 
+let g:go_def_mapping_enabled = 0
 let g:coc_global_extensions = ['coc-word',
                               \'coc-json',
                               \'coc-highlight',
@@ -80,7 +82,6 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-yaml',
                               \'coc-python',
                               \'coc-java',
-                              \'coc-go',
                               \'coc-vetur',
                               \'coc-rls',
                               \'coc-tsserver',
@@ -95,6 +96,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-texlab',
                               \'coc-tabnine',
                               \'coc-prettier',
+                              \'coc-sql',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 

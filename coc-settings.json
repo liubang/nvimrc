@@ -6,7 +6,6 @@
   "coc.preferences.colorSupport": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "go",
     "svg", // coc-svg support svg format
     "dart", // diagnostic-languageserver support dart format
     "markdown"
