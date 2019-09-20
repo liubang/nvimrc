@@ -24,6 +24,7 @@ syn keyword bladeTarget java_library java_binary java_test maven_jar java_fat_li
 syn keyword bladeTarget package py_binary py_library py_test
 syn keyword bladeTarget scala_library scala_test scala_fat_library sh_test
 syn keyword bladeTarget resource_library swig_library thrift_library fbthrift_library
+syn keyword bladeTarget go_binary go_library go_test
 
 " Sorted by alphabet order
 syn keyword bladeArg always_run binary_jar cmd defs deprecated deps dynamic_link embed_version

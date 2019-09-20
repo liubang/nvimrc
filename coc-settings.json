@@ -115,6 +115,7 @@
   "java.import.maven.enabled": true,
   "languageserver": {
     "ccls": {
+      //"trace.server": "verbose",
       "command": "ccls",
       "filetypes": ["c", "cpp", "hpp", "objc", "objcpp"],
       "rootPatterns": [
