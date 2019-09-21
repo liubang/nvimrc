@@ -281,8 +281,10 @@ let g:vista_executive_for = {
   \ 'markdown': 'toc'
   \ }
 
+" tab list
 nnoremap <silent><leader><F3> :Vista!!<CR>
 nnoremap <silent><leader>tl :Vista!!<CR>
+" nnoremap <silent><leader>fv :Vista finder coc<CR>
 " }}}
 
 " {{{ Defx
@@ -327,17 +329,22 @@ function! s:defx_mappings()
   nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
   nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
   nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
-  nnoremap <silent><buffer><expr> <2-LeftMouse> <sid>defx_toggle_tree()
-  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
-  nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright vsplit')
+  " split open
+	nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright split')
+  " vsplit open 
+  nnoremap <silent><buffer><expr> v defx#do_action('open', 'botright vsplit')
+  " refresh
   nnoremap <silent><buffer><expr> R defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> U defx#do_action('multi', [['cd', '..'], 'change_vim_cwd'])
+  " cd top one 
+  nnoremap <silent><buffer><expr> U defx#async_action('multi', [['cd', '..'], 'change_vim_cwd'])
+  " if is directory, then cd
+  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
+  " cd ~/
+  nnoremap <silent><buffer><expr> ~ defx#async_action('cd')
   nnoremap <silent><buffer><expr> H defx#do_action('toggle_ignored_files')
   nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
   nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer> J :call search('')<CR>
-  nnoremap <silent><buffer> K :call search('', 'b')<CR>
   nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
 endfunction
