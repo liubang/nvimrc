@@ -68,7 +68,10 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 hi NoCocUnderline cterm=None gui=None
 
+" vim-go
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
+
 let g:coc_global_extensions = ['coc-word',
                               \'coc-json',
                               \'coc-highlight',
@@ -102,8 +105,6 @@ let g:coc_global_extensions = ['coc-word',
 
 augroup coc_au
   autocmd!
-  " for golang
-  autocmd BufWritePre *.go :CocCommand editor.action.organizeImport
   " Or use formatexpr for range format
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Show signature help while editing

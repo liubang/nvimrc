@@ -127,13 +127,6 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-" This is the default extra key bindings
-let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit' }
-
-" - down / up / left / right
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', '#3a3a3a'],
@@ -230,15 +223,11 @@ omap <silent><Leader>? <plug>(fzf-maps-o)
 
 " https://github.com/junegunn/fzf/issues/453
 nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<cr>"
-nnoremap <silent> <expr> <Leader>Ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Ag\<c-r>\<c-w>\<cr>"
-nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
-nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
-nnoremap <silent> <expr> <Leader>bl (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":BLines\<cr>"
-nnoremap <silent> <expr> <Leader>bt (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":BTags\<cr>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
+nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
-
+" nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
 
 "}}}
@@ -284,7 +273,7 @@ let g:vista_executive_for = {
 " tab list
 nnoremap <silent><leader><F3> :Vista!!<CR>
 nnoremap <silent><leader>tl :Vista!!<CR>
-" nnoremap <silent><leader>fv :Vista finder coc<CR>
+nnoremap <silent><leader>vf :Vista finder coc<CR>
 " }}}
 
 " {{{ Defx
