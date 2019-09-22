@@ -43,13 +43,13 @@ function! boot#run() abort
   if !empty($CFLAGS)
     let g:lbvim.build.cflags = $CFLAGS
   else
-    let g:lbvim.build.cflags = "-std=c99 -Wall -O2"
+    let g:lbvim.build.cflags = "-std=c11 -g -Wall"
   endif
 
   if !empty($CPPFLAGS)
     let g:lbvim.build.cppflags = $CPPFLAGS
   else
-    let g:lbvim.build.cppflags = "-std=c++11 -Wall -O2"
+    let g:lbvim.build.cppflags = "-std=c++14 -g -Wall"
   endif
 
   " core components

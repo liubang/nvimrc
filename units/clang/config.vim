@@ -58,7 +58,7 @@ endfunc
 "----------------------------------------------------------------------
 augroup ClangGroup
   autocmd!
-  autocmd FileType c,cpp call s:clang_format_key_bind() 
+  autocmd FileType c,cpp,proto,objc call s:clang_format_key_bind() 
         \| call s:def_cpp_build_command()
         \| call s:setup_cpp_enhanced_highlight()
 augroup END
