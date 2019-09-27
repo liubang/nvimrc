@@ -152,9 +152,10 @@
       }
     },
     "golang": {
+      //"trace.server": "verbose"
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "rootPatterns": ["go.mod", ".git/"],
+      "filetypes": ["go"],
     },
     "dockerfile": {
       "command": "docker-langserver",
@@ -175,11 +176,6 @@
       "command": "purescript-language-server",
       "args": ["--stdio"],
       "filetypes": ["purescript"]
-    },
-    "xml": {
-      "command": "java",
-      "args": ["-jar", "/opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar"],
-      "filetypes": ["xml"]
     }
   }
   // vim:ft=jsonc

@@ -100,6 +100,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-tabnine',
                               \'coc-prettier',
                               \'coc-sql',
+                              \'coc-xml',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
