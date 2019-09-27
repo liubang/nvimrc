@@ -68,6 +68,9 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 hi NoCocUnderline cterm=None gui=None
 
+" session
+set sessionoptions+=globals
+
 " vim-go
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
