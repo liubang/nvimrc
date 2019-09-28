@@ -416,15 +416,15 @@ nnoremap <Leader>gc :GitCommit<Space>
 function! s:async_build(args)
   if &filetype == 'c'
     if empty(a:args)
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . g:lbvim.build.cflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw cc " . g:lbvim.build.cflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw gcc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw cc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
   elseif &filetype == 'cpp'
     if empty(a:args)
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . g:lbvim.build.cppflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw c++ " . g:lbvim.build.cppflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw g++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw c++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
   elseif &filetype == 'java'
     if empty(a:args)
