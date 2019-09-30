@@ -227,9 +227,7 @@ nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
-" nnoremap <silent> <expr> <Leader>ff (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
-
+nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
 "}}}
 
 " {{{ vim_current_word

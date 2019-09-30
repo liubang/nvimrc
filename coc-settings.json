@@ -115,48 +115,11 @@
   "java.import.gradle.enabled": true,
   "java.import.maven.enabled": true,
   "languageserver": {
-    "ccls": {
-      //"trace.server": "verbose",
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "hpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "format": "b",
-          "directory": "/tmp/ccls"
-        },
-        "capabilities": {
-          "foldingRangeProvider": false,
-          "workspace": {
-            "workspaceFolders": {
-              "supported": false
-            }
-          }
-        },
-        "clang": {
-          "extraArgs": ["--gcc-toolchain=/usr"]
-        },
-        "completion": {
-          "detailedLabel": true
-        },
-        "index": {
-          "onChange": false,
-          "initialNoLinkage": true,
-          "threads": 2
-        }
-      }
-    },
     "golang": {
       //"trace.server": "verbose"
       "command": "gopls",
       "rootPatterns": ["go.mod", ".git"],
-      "filetypes": ["go"],
+      "filetypes": ["go"]
     },
     "dockerfile": {
       "command": "docker-langserver",

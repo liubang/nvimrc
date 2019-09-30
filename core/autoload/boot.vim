@@ -40,6 +40,27 @@ function! boot#run() abort
     call  utils#err('Please reinstall your vim/nvim with supporting for python3.', 'boot.vim')
   endif
 
+  if g:lbvim.os.mac  
+    let g:lbvim.ccls = {}
+    if !empty($CLANG_RESOURCEDIR)
+      let g:lbvim.ccls.clang_resourcedir = $CLANG_RESOURCEDIR
+    else 
+      let g:lbvim.ccls.clang_resourcedir = "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
+    endif
+
+    if !empty($CLANG_ISYSTEM)
+      let g:lbvim.ccls.clang_isystem = $CLANG_ISYSTEM
+    else
+      let g:lbvim.ccls.clang_isystem = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
+    endif
+
+    if !empty($CLANG_INCLUDE)
+      let g:lbvim.ccls.clang_include = $CLANG_INCLUDE
+    else
+      let g:lbvim.ccls.clang_include = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
+    endif
+  endif
+
   if !empty($CFLAGS)
     let g:lbvim.build.cflags = $CFLAGS
   else

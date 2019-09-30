@@ -59,12 +59,9 @@ nmap <silent><leader>fm <Plug>(coc-format-selected)
 
 " Using CocList
 nnoremap <silent> <Space><Space> :CocList<CR>
-" Use `:Format` for format current buffer
+nnoremap <silent> <space>y       :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Format :call CocAction('format')
-" Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-" Setup keymap to open yank list like
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 
 hi NoCocUnderline cterm=None gui=None
 
@@ -107,18 +104,52 @@ let g:coc_global_extensions = ['coc-word',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
+if g:lbvim.os.mac 
+  call coc#config('languageserver', {
+    \ 'ccls': {
+    \   'command': 'ccls',
+    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
+    \   'initializationOptions': {
+    \     'cache': {'directory': '/tmp/ccls'},
+    \     'clang': {
+    \       'resourceDir': g:lbvim.ccls.clang_resourcedir,
+    \       'extraArgs': [
+    \         '-isystem',
+    \         g:lbvim.ccls.clang_isystem,
+    \         '-I',
+    \         g:lbvim.ccls.clang_include,
+    \       ]
+    \     }
+    \   }
+    \ }
+    \ })
+elseif g:lbvim.os.linux 
+  call coc#config('languageserver', {
+    \ 'ccls': {
+    \   'command': 'ccls',
+    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
+    \   'initializationOptions': {
+    \     'cache': {'directory': '/tmp/ccls'},
+    \     'clang': {
+    \       'extraArgs': [
+    \         '--gcc-toolchain=/usr'
+    \       ]
+    \     }
+    \   }
+    \ }
+    \ })
+endif
+
 augroup coc_au
   autocmd!
-  " Or use formatexpr for range format
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Show signature help while editing
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  " Use K for show documentation in preview window
-  " autocmd CursorHold * call CocActionAsync('doHover')
-  " Highlight symbol under cursor on CursorHold
+  autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd CursorHold * silent call CocActionAsync('highlight')
-  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 
+  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   " virtual text highlight
   autocmd ColorScheme * highlight! CocCodeLens guifg=#606060 ctermfg=60
   " vue
