@@ -24,7 +24,7 @@
   "coc.source.buffer.ignoreGitignore": false,
   // suggest
   "suggest.timeout": 500,
-  "suggest.noselect": false,
+  "suggest.noselect": true,
   "suggest.triggerAfterInsertEnter": true,
   "suggest.triggerCompletionWait": 100,
   "suggest.maxCompleteItemCount": 20,
@@ -157,6 +157,7 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".git"],
       "filetypes": ["go"],
+      "disableDynamicRegister": true
     },
     "dockerfile": {
       "command": "docker-langserver",
