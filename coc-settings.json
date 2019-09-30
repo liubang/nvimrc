@@ -22,6 +22,7 @@
   "coc.source.buffer.shortcut": "B",
   "coc.source.buffer.priority": 87,
   "coc.source.buffer.ignoreGitignore": false,
+  "session.saveOnVimLeave": true,
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": true,

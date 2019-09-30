@@ -101,6 +101,7 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-prettier',
                               \'coc-sql',
                               \'coc-xml',
+                              \'coc-lists',
                               \'https://github.com/xabikos/vscode-react'
                               \ ]
 
