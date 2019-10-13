@@ -111,7 +111,6 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-sql',
                               \'coc-xml',
                               \'coc-lists',
-                              \'https://github.com/xabikos/vscode-react'
                               \ ]
 
 if g:lbvim.os.mac 
