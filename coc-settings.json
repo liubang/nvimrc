@@ -121,7 +121,13 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".git"],
       "filetypes": ["go"],
-      "disableDynamicRegister": true
+      "disableDynamicRegister": true,
+      "settings": {
+        "gopls": {
+          "usePlaceholders": true,
+          "completeUnimported": false
+        }
+      }
     },
     "dockerfile": {
       "command": "docker-langserver",
@@ -137,11 +143,6 @@
     "lua": {
       "command": "lua-lsp",
       "filetypes": ["lua"]
-    },
-    "purescript": {
-      "command": "purescript-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["purescript"]
     }
   }
   // vim:ft=jsonc
