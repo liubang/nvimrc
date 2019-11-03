@@ -136,7 +136,7 @@
     },
     "bash": {
       "command": "bash-language-server",
-      "filetypes": ["sh", "zsh"],
+      "filetypes": ["sh"],
       "args": ["start"],
       "ignoredRootPaths": ["~"]
     },
