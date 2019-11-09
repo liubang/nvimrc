@@ -317,7 +317,7 @@ function! s:defx_mappings()
   nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
   nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
   " split open
-	nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright split')
+  nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright split')
   " vsplit open 
   nnoremap <silent><buffer><expr> v defx#do_action('open', 'botright vsplit')
   " refresh
@@ -472,6 +472,8 @@ command! -bang -nargs=? Run call s:async_run(<q-args>)
 command! -bang -nargs=? Maven call s:maven(<q-args>, "")
 command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
 command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
+cabbrev build <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Build" : "build"<CR>
+cabbrev run <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Run" : "run"<CR>
 " }}}
 
 " {{{ vinarise.vim
@@ -486,4 +488,12 @@ vmap V <Plug>(expand_region_shrink)
 
 " {{{ vim-easygit
 let g:easygit_enable_command = 1
+" }}}
+
+" rename  {{{
+function! SiblingFiles(A, L, P)
+  return map(split(globpath(expand("%:h") . "/", a:A . "*"), "\n"), 'fnamemodify(v:val, ":t")')
+endfunction
+command! -nargs=* -complete=customlist,SiblingFiles -bang Rename :call utils#rename("<args>", "<bang>")
+cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
 " }}}

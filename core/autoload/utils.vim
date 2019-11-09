@@ -94,3 +94,21 @@ function! utils#get_vim_version()
   endif
 endfunction
 
+function! utils#rename(name, bang) 
+  let l:curfile = expand("%:p")
+  let l:curpath = expand("%:h") . "/"
+  let v:errmsg = ""
+  silent! exe "saveas" . a:bang . " " . fnameescape(l:curpath . a:name)
+  if v:errmsg =~# '^$\|^E329'
+    let l:oldfile = l:curfile
+    let l:curfile = expand("%:p")
+    if l:curfile !=# l:oldfile && filewritable(l:curfile)
+      silent exe "bwipe! " . fnameescape(l:oldfile)
+      if delete(l:oldfile)
+        echoerr "Could not delete " . l:oldfile
+      endif
+    endif
+  else
+    echoerr v:errmsg
+  endif
+endfunction
