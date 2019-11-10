@@ -43,16 +43,27 @@ set guioptions-=e  " Don't use GUI tabline
 let g:spaceline_seperate_style= 'arrow-fade'
 let g:spaceline_colorscheme = 'space'
 
-nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(1)"
-nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(2)"
-nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(3)"
-nmap <silent> <expr> <Leader>4 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(4)"
-nmap <silent> <expr> <Leader>5 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(5)"
-nmap <silent> <expr> <Leader>6 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(6)"
-nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(7)"
-nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(8)"
-nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(9)"
-nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BufTabLine.Go(10)"
+let g:buffet_tab_icon = "\uf00a"
+let g:buffet_show_index = 1
+let g:buffet_powerline_separators = 1
+let g:buffet_use_devicons = 1
+nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(1)"
+nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(2)"
+nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(3)"
+nmap <silent> <expr> <Leader>4 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(4)"
+nmap <silent> <expr> <Leader>5 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(5)"
+nmap <silent> <expr> <Leader>6 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(6)"
+nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(7)"
+nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(8)"
+nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(9)"
+nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(10)"
+function! g:BuffetSetCustomColors()
+  hi! BuffetCurrentBuffer cterm=NONE ctermbg=214 ctermfg=239 guibg=#b8bb26 guifg=#000000
+  hi! BuffetTrunc cterm=bold ctermbg=66 ctermfg=7 guibg=#458588 guifg=#000000
+  hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=7 guibg=#504945 guifg=#000000
+  hi! BuffetActiveBuffer cterm=NONE ctermbg=239 ctermfg=7 guibg=#999999 guifg=#504945
+  hi! BuffetTab cterm=NONE ctermbg=8 ctermfg=15 guibg=#458588 guifg=#000000
+endfunction
 """ }}}
 
 " {{{ theme
@@ -80,8 +91,6 @@ highlight def link Defx_filename_3_Untracked Comment
 highlight def link Defx_filename_3_Unknown Comment
 highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
-" BufTabLine
-highlight BufTabLineCurrent ctermbg=96 guibg=#5d4d7a
 " }}}
 
 "{{{ startify

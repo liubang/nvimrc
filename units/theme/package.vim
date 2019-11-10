@@ -9,10 +9,9 @@
 
 MMP 'posva/vim-vue'
 MMP 'machakann/vim-highlightedyank'
-" MMP 'mgee/lightline-bufferline'
 MMP 'mhinz/vim-startify'
-MMP 'taigacute/spaceline.vim'
+MMP 'hardcoreplayers/spaceline.vim'
 MMP 'ryanoasis/vim-devicons'
+MMP 'bagrat/vim-buffet'
 MMP 'sainnhe/gruvbox-material', { 'branch': 'neosyn' }
 MMP 'StanAngeloff/php.vim', { 'for': ['php'] }
-" MMP 'taigacute/gruvbox9'
