@@ -11,7 +11,9 @@ Configuration for neovim :rose:.
 ## Docker
 
 ```shell
-docker run --it liubang/nvim
+cd docker
+docker build -t nvim .
+docker run --it nvim
 ```
 
 ## Dependences

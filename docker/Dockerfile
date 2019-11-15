@@ -76,7 +76,7 @@ RUN npm config set registry https://mirrors.huaweicloud.com/repository/npm/ \
     && go env -w GOPROXY=https://goproxy.cn,direct
 
 RUN git clone https://github.com/iliubang/vimrc.git ~/.vim \
-    && ln -s ~/.vim ~/.config/nvim \
-    && nvim --headless demo.go +PlugInstall +GoInstallBinaries +UpdateRemotePlugins +qall
+    && ln -s ~/.vim ~/.config/nvim  \
+    && echo "OK"
 
 ENTRYPOINT /opt/app/nvim/bin/nvim
