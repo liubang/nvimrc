@@ -8,20 +8,26 @@ Configuration for neovim :rose:.
 
 ![screenshot](https://user-images.githubusercontent.com/13254917/58614382-c7f21500-82ea-11e9-9b7a-c3b63b60eb44.png)
 
-## Dependences 
+## Docker
+
+```shell
+docker run --it liubang/nvim
+```
+
+## Dependences
 
 **Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)**
 
 For Mac OS X (Recommend iTerm2)
 
 ```shell
-brew install the_silver_searcher ripgrep
+brew install the_silver_searcher
 ```
 
 For Ubuntu
 
 ```shell
-sudo apt-get install silversearcher-ag ripgrep
+sudo apt-get install silversearcher-ag
 ```
 
 **Install ctags/gtags**
@@ -56,17 +62,8 @@ npm install -g bash-language-server
 # for purescript
 npm install -g purescript-language-server
 
-# for dockerfile 
+# for dockerfile
 npm install -g dockerfile-language-server-nodejs
-
-# for vim/eruby/markdown
-go get github.com/mattn/efm-langserver/cmd/efm-langserver
-
-# for php
-npm install -g intelephense
-
-# for golang
-go get -u -v github.com/sourcegraph/go-langserver
 
 # for lua
 luarocks install --server=http://luarocks.org/dev lua-lsp
@@ -74,14 +71,7 @@ luarocks install --server=http://luarocks.org/dev lua-lsp
 # for c/c++
 # mac
 brew install ccls
-
 # or on linux see  https://github.com/MaskRay/ccls/wiki/Build#system-specific-notes
-
-# xml
-curl -fSL https://github.com/angelozerr/lsp4xml/releases/download/0.3.0/org.eclipse.lsp4xml-0.3.0-uber.jar -o /opt/app/jar/org.eclipse.lsp4xml-0.3.0-uber.jar
-
-# diagnostic-languageserver
-yarn global add diagnostic-languageserver
 ```
 
 Install phpcs
@@ -98,7 +88,7 @@ Recommend AnonymousPro.
 
 ```shell
 curl -fSL http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -o /opt/app/jdt-language-server-latest.tar.gz
-tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls 
+tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls
 ```
 
 **Install lombok**
@@ -132,7 +122,7 @@ Install configuration
 ```shell
 git clone https://github.com/iliubang/vimrc.git ~/.vim
 ln -s ~/.vim ~/.config/nvim
-cp ~/.vim/efm-langserver.yaml ~/.config/efm-langserver/config.yaml
+nvim +PlugInstall +UpdateRemotePlugins +qall
 ```
 
 ## Update
