@@ -15,9 +15,8 @@ MMP 'easymotion/vim-easymotion', { 'on': [
       \ '<Plug>(easymotion-overwin-w)'
       \ ] }
 
-" MMP 'Yggdroot/LeaderF', { 'do': './install.sh' }
 MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
-MMP 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+MMP 'Shougo/defx.nvim'
 MMP 'kristijanhusak/defx-icons'
 MMP 'kristijanhusak/defx-git'
 MMP 'kana/vim-textobj-user'
@@ -30,7 +29,6 @@ MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 " multi cursors
 MMP 'mg979/vim-visual-multi'
 " fzf
-" MMP $ZPLUG_HOME . '/repos/junegunn/fzf'
 MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 MMP 'junegunn/fzf.vim'
 MMP 'tpope/vim-surround'
