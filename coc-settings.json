@@ -107,9 +107,6 @@
   "git.removedSign.hlGroup": "GitDeleteHi",
   "git.topRemovedSign.hlGroup": "GitDeleteHi",
   "git.changeRemovedSign.hlGroup": "GitDeleteHi",
-  // python
-  "python.jediEnabled": true,
-  "python.autoComplete.addBrackets": true,
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",
   "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
