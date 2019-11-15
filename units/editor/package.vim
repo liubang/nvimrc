@@ -35,3 +35,4 @@ MMP 'tpope/vim-surround'
 MMP 'dominikduda/vim_current_word'
 MMP 'terryma/vim-expand-region'
 MMP 'neoclide/vim-easygit'
+MMP 'Yggdroot/indentLine', { 'for': ['python', 'html', 'vim', 'lua', 'yaml'] }

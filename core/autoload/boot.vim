@@ -78,7 +78,6 @@ function! boot#run() abort
   CCM 'vim'
   CCM 'theme'
   CCM 'editor'
-  CCM 'tools'
   CCM 'lsp' 
   CCM 'clang'
   CCM 'markdown'

@@ -497,3 +497,11 @@ endfunction
 command! -nargs=* -complete=customlist,SiblingFiles -bang Rename :call utils#rename("<args>", "<bang>")
 cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
 " }}}
+
+" {{{ indentLine 
+let g:indentline_enabled = 1
+let g:indentline_char='┆'
+let g:indentLine_fileTypeExclude = ['defx', 'denite', 'startify', 'tagbar', 'vista_kind', 'fzf']
+let g:indentLine_concealcursor = 'niv'
+let g:indentLine_showFirstIndentLevel = 0
+" }}}
