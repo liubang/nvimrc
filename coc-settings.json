@@ -62,7 +62,7 @@
     "default": "\uf29c"
   },
   "snippets.shortcut": "S",
-  "snippets.ultisnips.directories": ["UltiSnips", "snip"],
+  "snippets.ultisnips.directories": ["UltiSnips", "snip", "gosnippets/UltiSnips"],
   "snippets.ultisnips.usePythonx": true,
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
