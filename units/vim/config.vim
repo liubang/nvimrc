@@ -15,7 +15,7 @@ scriptencoding UTF-8
 set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
 set completeopt=noinsert,menuone,noselect
 set shortmess=atcOI
-set signcolumn=yes
+" set signcolumn=yes
 set ignorecase
 set smartcase 
 set scrolljump=5
