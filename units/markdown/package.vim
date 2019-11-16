@@ -7,7 +7,7 @@
 "
 "======================================================================
 MMP 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
-if g:lbvim.nvim
+if g:nvg.nvim
   MMP 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 else 
   MMP 'iamcco/mathjax-support-for-mkdp', { 'for': ['markdown'] }

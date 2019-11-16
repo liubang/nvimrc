@@ -40,37 +40,37 @@ function! boot#run() abort
     call  utils#err('Please reinstall your vim/nvim with supporting for python3.', 'boot.vim')
   endif
 
-  if g:lbvim.os.mac  
-    let g:lbvim.ccls = {}
+  if g:nvg.os.mac  
+    let g:nvg.ccls = {}
     if !empty($CLANG_RESOURCEDIR)
-      let g:lbvim.ccls.clang_resourcedir = $CLANG_RESOURCEDIR
+      let g:nvg.ccls.clang_resourcedir = $CLANG_RESOURCEDIR
     else 
-      let g:lbvim.ccls.clang_resourcedir = "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
+      let g:nvg.ccls.clang_resourcedir = "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
     endif
 
     if !empty($CLANG_ISYSTEM)
-      let g:lbvim.ccls.clang_isystem = $CLANG_ISYSTEM
+      let g:nvg.ccls.clang_isystem = $CLANG_ISYSTEM
     else
-      let g:lbvim.ccls.clang_isystem = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
+      let g:nvg.ccls.clang_isystem = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
     endif
 
     if !empty($CLANG_INCLUDE)
-      let g:lbvim.ccls.clang_include = $CLANG_INCLUDE
+      let g:nvg.ccls.clang_include = $CLANG_INCLUDE
     else
-      let g:lbvim.ccls.clang_include = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
+      let g:nvg.ccls.clang_include = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
     endif
   endif
 
   if !empty($CFLAGS)
-    let g:lbvim.build.cflags = $CFLAGS
+    let g:nvg.build.cflags = $CFLAGS
   else
-    let g:lbvim.build.cflags = "-std=c11 -g -Wall"
+    let g:nvg.build.cflags = "-std=c11 -g -Wall"
   endif
 
   if !empty($CPPFLAGS)
-    let g:lbvim.build.cppflags = $CPPFLAGS
+    let g:nvg.build.cppflags = $CPPFLAGS
   else
-    let g:lbvim.build.cppflags = "-std=c++14 -g -Wall"
+    let g:nvg.build.cppflags = "-std=c++14 -g -Wall"
   endif
 
   " core components
@@ -78,8 +78,7 @@ function! boot#run() abort
   CCM 'vim'
   CCM 'theme'
   CCM 'editor'
-  CCM 'lsp' 
-  CCM 'clang'
+  CCM 'coder'
   CCM 'markdown'
   call core#end()
 endfunction

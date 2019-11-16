@@ -13,12 +13,15 @@ set encoding=UTF-8
 set fileencoding=utf-8
 scriptencoding UTF-8
 set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
-set shortmess=atOI
+set completeopt=noinsert,menuone,noselect
+set shortmess=atcOI
+set signcolumn=yes
 set ignorecase
 set smartcase 
 set scrolljump=5
 set scrolloff=3
 set hidden
+set cmdheight=1
 set history=1000
 set wrap
 set hlsearch
@@ -34,6 +37,9 @@ set smartindent
 set cindent
 set expandtab
 set mousehide
+set noshowmode
+set updatetime=300
+
 " set ruler
 set showcmd
 set showmode
@@ -54,7 +60,7 @@ set ffs=unix,dos,mac
 
 set report=0
 set linespace=0
-set pumheight=20
+set pumheight=30
 set winminheight=0
 set wildmode=list:longest,full
 set backspace=2         " 在insert模式下用退格键删除
@@ -169,7 +175,7 @@ nnoremap <silent> <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied
 " let loaded_matchparen = 1
 
 " Open shell in vim {{{
-if g:lbvim.nvim
+if g:nvg.nvim
     map <Leader>' :terminal<CR>
 else
     map <Leader>' :shell<CR>

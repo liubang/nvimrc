@@ -75,7 +75,7 @@ endfunction
 
 " Open file-explorer split with tmux
 function! utils#defx_tmux_explorer(context) abort
-  if !g:lbvim.tmux || empty(s:explorer)
+  if !g:nvg.tmux || empty(s:explorer)
     return
   endif
   let l:target = a:context['targets'][0]
@@ -84,7 +84,7 @@ function! utils#defx_tmux_explorer(context) abort
 endfunction
 
 function! utils#get_vim_version()
-  if g:lbvim.nvim
+  if g:nvg.nvim
     redir => s
     silent! version
     redir END

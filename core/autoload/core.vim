@@ -13,8 +13,8 @@
 
 scriptencoding utf-8
 
-let g:lbvim.components_loaded = []
-let g:lbvim.plugins = []
+let g:nvg.components_loaded = []
+let g:nvg.plugins = []
 let s:type = {
   \ 'string': type(''),
   \ 'list': type([]),
@@ -58,7 +58,7 @@ function! s:define_command()
 endfunction
 
 function! s:my_plugin(plugin, ...) abort
-  if index(g:lbvim.plugins, a:plugin) < 0
+  if index(g:nvg.plugins, a:plugin) < 0
     if a:0 == 1
       call plug#(a:plugin, a:1)
       if has_key(a:1, 'defer')
@@ -87,19 +87,19 @@ function! s:my_plugin(plugin, ...) abort
 endfunction
 
 function! s:component(name, ...)
-  if index(g:lbvim.components_loaded, a:name) == -1
-    call add(g:lbvim.components_loaded, a:name)
+  if index(g:nvg.components_loaded, a:name) == -1
+    call add(g:nvg.components_loaded, a:name)
   endif
 endfunction
 
 function! s:register_plugs()
-  silent! if plug#begin(g:lbvim.plugin_home)
+  silent! if plug#begin(g:nvg.plugin_home)
     " module init
     " if exists('*ModuleInit')
     "  call ModuleInit()
     " endif
-    for l:component in g:lbvim.components_loaded
-      let l:component_package = g:lbvim.components_dir . '/' . l:component . '/package.vim'
+    for l:component in g:nvg.components_loaded
+      let l:component_package = g:nvg.components_dir . '/' . l:component . '/package.vim'
       try
         execute 'so ' . l:component_package
       catch
@@ -117,8 +117,8 @@ function! s:register_plugs()
 endfunction
 
 function! s:register_configs()
-  for l:component in g:lbvim.components_loaded
-    let l:component_config = g:lbvim.components_dir . '/' . l:component . '/config.vim'
+  for l:component in g:nvg.components_loaded
+    let l:component_config = g:nvg.components_dir . '/' . l:component . '/config.vim'
     try
       execute 'so ' . l:component_config
     catch
@@ -135,9 +135,9 @@ function! s:check_custom_file()
 endfunction
 
 function! s:check_vim_plug()
-  if empty(glob(g:lbvim.vim_plug_path))
+  if empty(glob(g:nvg.vim_plug_path))
     echo "==> Downloading vim-plug......"
-    execute '!curl -fLo ' . g:lbvim.vim_plug_path . ' --create-dirs ' .
+    execute '!curl -fLo ' . g:nvg.vim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
 endfunction

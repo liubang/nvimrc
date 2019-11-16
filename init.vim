@@ -24,12 +24,13 @@ if &compatible
   set nocompatible
 endif
 
-let g:lbvim = {
+let g:nvg = {
       \ 'version': '1.0',
       \ 'author': 'liubang',
+      \ 'home': expand('<sfile>:h'),
       \ 'os': {
-      \     'mac': has('macunix'),
-      \     'linux': has('unix') && !has('macunix') && !has('win32unix'),
+      \   'mac': has('macunix'),
+      \   'linux': has('unix') && !has('macunix') && !has('win32unix'),
       \ },
       \ 'tmux': !empty($TMUX),
       \ 'nvim': has('nvim'),
@@ -37,17 +38,13 @@ let g:lbvim = {
       \ 'build': {}
       \ }
 
-let g:lbvim.home = g:lbvim.nvim ? $HOME . '/.config/nvim' : $HOME . '/.vim'
-let g:lbvim.core = g:lbvim.home . '/core'
-let g:lbvim.plugin_home = g:lbvim.home . '/plugged/'
-let g:lbvim.vim_plug_path = g:lbvim.home . '/core/autoload/plug.vim'
-let g:lbvim.components_dir = g:lbvim.home . '/units'
-let g:lbvim.cache_dir = g:lbvim.home . '/cache'
+let g:nvg.core = g:nvg.home . '/core'
+let g:nvg.plugin_home = g:nvg.home . '/plugged/'
+let g:nvg.vim_plug_path = g:nvg.home . '/core/autoload/plug.vim'
+let g:nvg.components_dir = g:nvg.home . '/units'
+let g:nvg.cache_dir = g:nvg.home . '/cache'
 
-if g:lbvim.nvim
-  set runtimepath+=$HOME/.config/nvim/core
-else
-  set runtimepath+=$HOME/.vim/core
-endif
+" runtimepath
+exec 'set rtp+=' . expand(g:nvg.core)
 
 call boot#run()
