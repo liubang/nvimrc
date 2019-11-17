@@ -15,16 +15,24 @@ scriptencoding utf-8
 
 let g:nvg.components_loaded = []
 let g:nvg.plugins = []
+let g:nvg.coder = []
 let s:type = {
   \ 'string': type(''),
   \ 'list': type([]),
   \ 'dict': type({}),
   \ 'function': type(function('call'))
   \ }
+
 let s:called = {
   \ 'begin': 0,
   \ 'end': 0
   \ }
+
+function s:coder_register(lang)
+  if index(g:nvg.coder, a:lang) < 0 
+    call add(g:nvg.coder, a:lang)    
+  endif
+endfunction
 
 function! core#begin() abort
   if s:called.begin != 0
@@ -55,6 +63,7 @@ endfunction
 function! s:define_command()
   command! -nargs=+ -bar MMP call s:my_plugin(<args>)
   command! -nargs=+ -bar CCM call s:component(<args>)
+  command! -nargs=+ -bar REG call s:coder_register(<args>)
 endfunction
 
 function! s:my_plugin(plugin, ...) abort
@@ -83,21 +92,22 @@ function! s:my_plugin(plugin, ...) abort
     else
       call plug#(a:plugin, "")
     endif
+    " add plugin
+    call add(g:nvg.plugins, a:plugin)
   endif
 endfunction
 
 function! s:component(name, ...)
-  if index(g:nvg.components_loaded, a:name) == -1
+  if index(g:nvg.components_loaded, a:name) < 0
     call add(g:nvg.components_loaded, a:name)
   endif
 endfunction
 
 function! s:register_plugs()
   silent! if plug#begin(g:nvg.plugin_home)
-    " module init
-    " if exists('*ModuleInit')
-    "  call ModuleInit()
-    " endif
+    if exists('*Init')
+      call Init()
+    endif
     for l:component in g:nvg.components_loaded
       let l:component_package = g:nvg.components_dir . '/' . l:component . '/package.vim'
       try
@@ -106,11 +116,9 @@ function! s:register_plugs()
         return utils#err(v:exception, l:component_package)
       endtry
     endfor
-
     if exists('*CustomPlug')
       call CustomPlug()
     endif
-
     call plug#end()
     call timer_start(1500, 'utils#check_custom_plug')
   endif

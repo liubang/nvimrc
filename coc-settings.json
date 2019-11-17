@@ -62,7 +62,11 @@
     "default": "\uf29c"
   },
   "snippets.shortcut": "S",
-  "snippets.ultisnips.directories": ["UltiSnips", "snip", "gosnippets/UltiSnips"],
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "snip",
+    "gosnippets/UltiSnips"
+  ],
   "snippets.ultisnips.usePythonx": true,
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
@@ -125,21 +129,6 @@
           "completeUnimported": false
         }
       }
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "args": ["--stdio"],
-      "filetypes": ["dockerfile"]
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "filetypes": ["sh"],
-      "args": ["start"],
-      "ignoredRootPaths": ["~"]
-    },
-    "lua": {
-      "command": "lua-lsp",
-      "filetypes": ["lua"]
     }
   }
   // vim:ft=jsonc

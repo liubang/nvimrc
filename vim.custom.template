@@ -2,6 +2,19 @@
 " Version: 0.1
 " vim: et ts=2 sts=2 sw=2 ft=vim
 
+" regist coder
+function! Init()
+  REG 'fe'
+  REG 'clang'
+  REG 'golang'
+  REG 'python'
+  REG 'sh'
+  REG 'java'
+  REG 'php'
+  REG 'rust'
+  REG 'docker'
+endfunction
+
 function! CustomPlug()
   " MMP 'dracula/vim', { 'as': 'dracula' }
 endfunction

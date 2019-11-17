@@ -142,6 +142,19 @@ cp ~/.vim/vim.custom.template ~/.vim.custom
 **example:**
 
 ```viml
+" regist coder
+function! Init()
+  REG 'fe'
+  REG 'clang'
+  REG 'golang'
+  REG 'python'
+  REG 'sh'
+  REG 'java'
+  REG 'php'
+  REG 'rust'
+  REG 'docker'
+endfunction
+
 function! CustomPlug()
   " MMP 'dracula/vim', { 'as': 'dracula' }
 endfunction

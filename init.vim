@@ -13,14 +13,11 @@
 
 scriptencoding utf-8
 
-" 防止重复加载
-if get(s:, 'loaded', 0) != 0 || v:version < 800
+" 只支持neovim
+if get(s:, 'loaded', 0) != 0 || v:version < 800 || !has("nvim")
   finish
 else
   let s:loaded = 1
-endif
-
-if &compatible
   set nocompatible
 endif
 

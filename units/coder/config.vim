@@ -7,97 +7,134 @@
 "
 "======================================================================
 
+function s:coder_has(lang)
+  return index(g:nvg.coder, a:lang) >= 0
+endfunction
+
 " lsp
 let g:coc_global_extensions = ['coc-word',
-                              \'coc-json',
-                              \'coc-highlight',
-                              \'coc-snippets',
-                              \'coc-emmet',
-                              \'coc-css',
-                              \'coc-tailwindcss',
-                              \'coc-html',
-                              \'coc-vetur',
-                              \'coc-angular',
-                              \'coc-yaml',
-                              \'coc-java',
-                              \'coc-rls',
-                              \'coc-tsserver',
-                              \'coc-vimlsp',
+                              \'coc-lists',
                               \'coc-emoji',
-                              \'coc-pairs',
-                              \'coc-git',
-                              \'coc-yank',
-                              \'coc-post',
-                              \'coc-stylelint',
+                              \'coc-snippets',
+                              \'coc-highlight',
+                              \'coc-prettier',
                               \'coc-diagnostic',
                               \'coc-tabnine',
-                              \'coc-prettier',
+                              \'coc-pairs',
+                              \'coc-git',
+                              \'coc-emmet',
+                              \'coc-json',
+                              \'coc-yaml',
+                              \'coc-vimlsp',
+                              \'coc-yank',
                               \'coc-sql',
-                              \'coc-xml',
-                              \'coc-lists',
                               \ ]
 
+" fe 
+if s:coder_has('fe')
+  call extend(g:coc_global_extensions, ['coc-css', 
+                                       \'coc-html', 
+                                       \'coc-tailwindcss', 
+                                       \'coc-vetur', 
+                                       \'coc-angular', 
+                                       \'coc-tsserver',
+                                       \'coc-stylelint']) 
+endif
+
+" java 
+if s:coder_has('java')
+  call extend(g:coc_global_extensions, ['coc-java', 'coc-xml'])
+endif
+
+" php 
+if s:coder_has('php')
+  call add(g:coc_global_extensions, 'coc-phpls')
+endif
+
+" rust 
+if s:coder_has('rust')
+  call add(g:coc_global_extensions, 'coc-rls')
+endif
+
+" python 
+if s:coder_has('python')
+  call add(g:coc_global_extensions, 'coc-pyright')
+endif
+
+" docker
+if s:coder_has('docker')
+  call add(g:coc_global_extensions, 'coc-docker')
+endif
+
+if s:coder_has('sh')
+  call add(g:coc_global_extensions, 'coc-sh')
+endif
+
 " c/c++
-let c_no_curly_error=1
-let g:clang_format#detect_style_file = 1
-let g:clang_format#enable_fallback_style = 1
-autocmd FileType c,cpp,proto nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
-autocmd FileType c,cpp,proto vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
-if g:nvg.os.mac 
-  call coc#config('languageserver', {
-    \ 'ccls': {
-    \   'command': 'ccls',
-    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
-    \   'initializationOptions': {
-    \     'cache': {'directory': '/tmp/ccls'},
-    \     'clang': {
-    \       'resourceDir': g:nvg.ccls.clang_resourcedir,
-    \       'extraArgs': [
-    \         '-isystem',
-    \         g:nvg.ccls.clang_isystem,
-    \         '-I',
-    \         g:nvg.ccls.clang_include,
-    \       ]
-    \     }
-    \   }
-    \ }
-    \ })
-elseif g:nvg.os.linux 
-  call coc#config('languageserver', {
-    \ 'ccls': {
-    \   'command': 'ccls',
-    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
-    \   'initializationOptions': {
-    \     'cache': {'directory': '/tmp/ccls'},
-    \     'clang': {
-    \       'extraArgs': [
-    \         '--gcc-toolchain=/usr'
-    \       ]
-    \     }
-    \   }
-    \ }
-    \ })
+if s:coder_has('clang')
+  let c_no_curly_error=1
+  let g:clang_format#detect_style_file = 1
+  let g:clang_format#enable_fallback_style = 1
+  autocmd FileType c,cpp,proto nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
+  autocmd FileType c,cpp,proto vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
+  if g:nvg.os.mac 
+    call coc#config('languageserver', {
+      \ 'ccls': {
+      \   'command': 'ccls',
+      \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+      \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
+      \   'initializationOptions': {
+      \     'cache': {'directory': '/tmp/ccls'},
+      \     'clang': {
+      \       'resourceDir': g:nvg.ccls.clang_resourcedir,
+      \       'extraArgs': [
+      \         '-isystem',
+      \         g:nvg.ccls.clang_isystem,
+      \         '-I',
+      \         g:nvg.ccls.clang_include,
+      \       ]
+      \     }
+      \   }
+      \ }
+      \ })
+  elseif g:nvg.os.linux 
+    call coc#config('languageserver', {
+      \ 'ccls': {
+      \   'command': 'ccls',
+      \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+      \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
+      \   'initializationOptions': {
+      \     'cache': {'directory': '/tmp/ccls'},
+      \     'clang': {
+      \       'extraArgs': [
+      \         '--gcc-toolchain=/usr'
+      \       ]
+      \     }
+      \   }
+      \ }
+      \ })
+  endif
 endif
 
 " vim-go
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-"disable use K to run godoc
-let g:go_doc_keywordprg_enabled = 0
-let g:go_def_mapping_enabled = 0
+if s:coder_has("golang")
+  let g:go_fmt_command = "goimports"
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_function_calls = 1
+  let g:go_highlight_function_parameters = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_build_constraints = 1
+  let g:go_highlight_generate_tags = 1
+  "disable use K to run godoc
+  let g:go_doc_keywordprg_enabled = 0
+  let g:go_def_mapping_enabled = 0
+endif
 
 " coc.nvim
 let g:coc_snippet_next = '<TAB>'
