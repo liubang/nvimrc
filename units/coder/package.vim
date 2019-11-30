@@ -15,7 +15,7 @@ MMP 'neoclide/jsonc.vim', { 'for': ['json', 'jsonc'] }
 
 " {{{ c/c++ 
 MMP 'rhysd/vim-clang-format', { 'for': ['c', 'cpp', 'proto', 'objc'] }
-MMP 'justinmk/vim-syntax-extra',{ 'for': ['c', 'cpp', 'lex', 'yacc'] }
+MMP 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp', 'lex', 'yacc'] }
 MMP 'sakhnik/nvim-gdb', { 'do': './install.sh' }
 " }}}
 

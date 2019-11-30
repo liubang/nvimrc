@@ -73,6 +73,9 @@ endif
 " c/c++
 if s:coder_has('clang')
   let c_no_curly_error=1
+  let g:cpp_experimental_simple_template_highlight = 1
+  let g:cpp_experimental_template_highlight = 0
+  let g:cpp_concepts_highlight = 0
   let g:clang_format#detect_style_file = 1
   let g:clang_format#enable_fallback_style = 1
   autocmd FileType c,cpp,proto nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
