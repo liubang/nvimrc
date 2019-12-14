@@ -98,39 +98,31 @@
   "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
   // git
   "git.enableGutters": true,
-  "git.signOffset": 99,
+  "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": true,
-  "git.virtualTextPrefix": "     ",
-  "git.branchCharacter": "\uf418",
-  "git.addedSign.text": "▏",
-  "git.changedSign.text": "▏",
+  "git.virtualTextPrefix": " ❯❯❯ ",
+  "git.branchCharacter": "\uf408",
+  "git.addedSign.text": "▎",
+  "git.changedSign.text": "▎",
   "git.removedSign.text": "▏",
-  "git.topRemovedSign.text": "‾",
+  "git.topRemovedSign.text": "▔",
   "git.changeRemovedSign.text": "≃",
-  "git.addedSign.hlGroup": "GitAddHi",
-  "git.changedSign.hlGroup": "GitModifyHi",
-  "git.removedSign.hlGroup": "GitDeleteHi",
-  "git.topRemovedSign.hlGroup": "GitDeleteHi",
-  "git.changeRemovedSign.hlGroup": "GitDeleteHi",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",
   "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
   "java.import.gradle.enabled": true,
   "java.import.maven.enabled": true,
-  "languageserver": {
-    "golang": {
-      //"trace.server": "verbose"
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".git"],
-      "filetypes": ["go"],
-      "disableDynamicRegister": true,
-      "settings": {
-        "gopls": {
-          "usePlaceholders": true,
-          "completeUnimported": false
-        }
-      }
-    }
-  }
+  // go
+  "go.goplsOptions": {
+    "usePlaceholders": true,
+    "completeUnimported": true,
+    "deepCompletion": true
+  },
+  "languageserver": {}
   // vim:ft=jsonc
 }

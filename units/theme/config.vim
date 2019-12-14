@@ -75,14 +75,17 @@ let g:gruvbox_transp_bg = 1
 " colorscheme gruvbox9_hard
 let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
+
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
 hi default CocHighlightText  guibg=#725972 ctermbg=96
+
 "GitGutter Coc-git Highlight
 highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+
 " Defx Highlight
 highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
 highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572

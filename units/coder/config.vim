@@ -119,8 +119,10 @@ if s:coder_has('clang')
   endif
 endif
 
-" vim-go
 if s:coder_has("golang")
+  " coc-go
+  call extend(g:coc_global_extensions, ['coc-go'])
+  " vim-go
   let g:go_fmt_command = "goimports"
   let g:go_highlight_types = 1
   let g:go_highlight_fields = 1
