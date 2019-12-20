@@ -402,8 +402,8 @@ call textobj#user#plugin('php', {
 
 " {{{ AsyncRun
 let g:asyncrun_open = 15
+let g:asyncrun_bell = 1
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
-nnoremap <F10> :call asyncrun#quickfix_toggle(6) <CR>
 nnoremap <Leader>ar :AsyncRun<Space>
 
 " for git
@@ -475,6 +475,8 @@ command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
 command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
 cabbrev build <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Build" : "build"<CR>
 cabbrev run <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Run" : "run"<CR>
+nmap <silent> <C-B> :Build<CR>
+nmap <silent> <C-R> :Run<CR>
 " }}}
 
 " {{{ vinarise.vim

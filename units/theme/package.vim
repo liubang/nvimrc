@@ -7,11 +7,10 @@
 "
 "======================================================================
 
-MMP 'posva/vim-vue'
+MMP 'posva/vim-vue', { 'for_coder': ['fe'] }
 MMP 'machakann/vim-highlightedyank'
 MMP 'mhinz/vim-startify'
 MMP 'hardcoreplayers/spaceline.vim'
 MMP 'ryanoasis/vim-devicons'
 MMP 'bagrat/vim-buffet'
 MMP 'sainnhe/gruvbox-material', { 'branch': 'neosyn' }
-MMP 'StanAngeloff/php.vim', { 'for': ['php'] }

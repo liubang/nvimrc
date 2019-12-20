@@ -112,3 +112,7 @@ function! utils#rename(name, bang)
     echoerr v:errmsg
   endif
 endfunction
+
+function! utils#coder_has(lang)
+  return index(g:nvg.coder, a:lang) >= 0
+endfunction

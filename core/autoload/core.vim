@@ -69,7 +69,7 @@ endfunction
 function! s:my_plugin(plugin, ...) abort
   if index(g:nvg.plugins, a:plugin) < 0
     if a:0 == 1
-      call plug#(a:plugin, a:1)
+      let l:has_coder = 1
       if has_key(a:1, 'defer')
         let l:defer = a:1.defer
         if type(l:defer) == s:type.dict
@@ -88,6 +88,19 @@ function! s:my_plugin(plugin, ...) abort
           execute 'autocmd' l:events '*' l:load_call '|' 'autocmd!' l:group
           execute 'augroup END'
         endif
+      elseif has_key(a:1, 'for_coder')
+        if type(a:1.for_coder) == s:type.list  
+          let l:has_coder = 0
+          for l:coder in a:1.for_coder
+            if utils#coder_has(l:coder) 
+              let l:has_coder = 1
+              break
+            endif
+          endfor
+        endif
+      endif
+      if l:has_coder 
+        call plug#(a:plugin, a:1)
       endif
     else
       call plug#(a:plugin, "")

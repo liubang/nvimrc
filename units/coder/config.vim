@@ -7,10 +7,6 @@
 "
 "======================================================================
 
-function s:coder_has(lang)
-  return index(g:nvg.coder, a:lang) >= 0
-endfunction
-
 " lsp
 let g:coc_global_extensions = ['coc-word',
                               \'coc-lists',
@@ -31,7 +27,7 @@ let g:coc_global_extensions = ['coc-word',
                               \ ]
 
 " fe 
-if s:coder_has('fe')
+if utils#coder_has('fe')
   call extend(g:coc_global_extensions, ['coc-css', 
                                        \'coc-html', 
                                        \'coc-tailwindcss', 
@@ -42,36 +38,36 @@ if s:coder_has('fe')
 endif
 
 " java 
-if s:coder_has('java')
+if utils#coder_has('java')
   call extend(g:coc_global_extensions, ['coc-java', 'coc-xml'])
 endif
 
 " php 
-if s:coder_has('php')
+if utils#coder_has('php')
   call add(g:coc_global_extensions, 'coc-phpls')
 endif
 
 " rust 
-if s:coder_has('rust')
+if utils#coder_has('rust')
   call add(g:coc_global_extensions, 'coc-rls')
 endif
 
 " python 
-if s:coder_has('python')
+if utils#coder_has('python')
   call add(g:coc_global_extensions, 'coc-pyright')
 endif
 
 " docker
-if s:coder_has('docker')
+if utils#coder_has('docker')
   call add(g:coc_global_extensions, 'coc-docker')
 endif
 
-if s:coder_has('sh')
+if utils#coder_has('sh')
   call add(g:coc_global_extensions, 'coc-sh')
 endif
 
 " c/c++
-if s:coder_has('clang')
+if utils#coder_has('clang')
   let c_no_curly_error=1
   let g:cpp_experimental_simple_template_highlight = 1
   let g:cpp_experimental_template_highlight = 0
@@ -119,7 +115,7 @@ if s:coder_has('clang')
   endif
 endif
 
-if s:coder_has("golang")
+if utils#coder_has("golang")
   " coc-go
   call extend(g:coc_global_extensions, ['coc-go'])
   " vim-go
