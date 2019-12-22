@@ -7,8 +7,10 @@
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "svg", // coc-svg support svg format
-    "dart", // diagnostic-languageserver support dart format
+    "svg",
+    "bzl",
+    "json",
+    "jsonc",
     "markdown"
   ],
   "coc.source.emoji.shortcut": "E",
@@ -80,14 +82,19 @@
   "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.refreshOnInsertMode": true,
+  "diagnostic-languageserver.formatters": {
+    "buildifier": {
+      "command": "buildifier",
+      "args": []
+    }
+  },
   "diagnostic-languageserver.formatFiletypes": {
-    "dart": "dartfmt"
+    "bzl": "buildifier"
   },
-  "diagnostic-languageserver.filetypes": {
-    "markdown": ["write-good"],
-    "sh": "shellcheck"
-    // "php": "phpcs"
-  },
+  "diagnostic-languageserver.linters": {},
+  "diagnostic-languageserver.filetypes": {},
+  "diagnostic-languageserver.debug": false,
+  // "diagnostic-languageserver.trace.server": "verbose",
   // prettier
   "prettier.statusItemText": "ⓟ ",
   //emmet
