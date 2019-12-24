@@ -9,6 +9,8 @@
     "css",
     "svg",
     "bzl",
+    "php",
+    "python",
     "json",
     "jsonc",
     "markdown"
@@ -25,7 +27,7 @@
   "coc.source.buffer.priority": 87,
   "coc.source.buffer.ignoreGitignore": false,
   "session.saveOnVimLeave": true,
-  "tabnine.disable_filetypes": ["sh", "json", "log", "bzl", "yaml"],
+  // "tabnine.disable_filetypes": ["sh", "json", "log", "bzl", "yaml"],
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": true,
