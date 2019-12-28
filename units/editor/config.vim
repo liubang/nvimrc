@@ -294,7 +294,7 @@ call defx#custom#column('filename', {
       \ })
 
 function! s:defx_context_menu() abort
-  let l:actions = ['new_multiple_files', 'rename', 'copy', 'move', 'paste', 'remove_trash']
+  let l:actions = ['new_multiple_files', 'rename', 'copy', 'move', 'paste', 'remove']
   let l:selection = confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete")
   silent exe 'redraw'
   return feedkeys(defx#do_action(l:actions[l:selection - 1]))

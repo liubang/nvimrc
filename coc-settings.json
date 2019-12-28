@@ -13,7 +13,9 @@
     "python",
     "json",
     "jsonc",
-    "markdown"
+    "markdown",
+    "javascript",
+    "typescript"
   ],
   "coc.source.emoji.shortcut": "E",
   "coc.source.emoji.priority": 8,
