@@ -17,17 +17,21 @@
   ],
   "coc.source.emoji.shortcut": "E",
   "coc.source.emoji.priority": 8,
-  "coc.source.word.filetypes": ["markdown", "gitcommit", "log", "txt"],
+  "coc.source.word.filetypes": ["markdown", "gitcommit", "log", "txt", "text"],
+  "coc.source.word.shortcut": "W",
   "coc.source.file.shortcut": "F",
   "coc.source.file.priority": 89,
-  "coc.source.file.ignoreHidden": false,
+  "coc.source.file.ignoreHidden": true,
   "coc.source.around.shortcut": "A",
   "coc.source.around.priority": 88,
   "coc.source.buffer.shortcut": "B",
   "coc.source.buffer.priority": 87,
   "coc.source.buffer.ignoreGitignore": false,
+  //CocList
+  "list.source.files.defaultOptions": ["--auto-preview"],
+  "list.source.outline.defaultOptions": ["--auto-preview"],
+  // session
   "session.saveOnVimLeave": true,
-  // "tabnine.disable_filetypes": ["sh", "json", "log", "bzl", "yaml"],
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": true,
@@ -36,7 +40,7 @@
   "suggest.maxCompleteItemCount": 20,
   "suggest.detailMaxLength": 30,
   "suggest.detailField": "abbr",
-  "suggest.snippetIndicator": " Ⓢ ",
+  "suggest.snippetIndicator": "",
   "suggest.echodocSupport": true,
   "suggest.removeDuplicateItems": true,
   "suggest.completionItemKindLabels": {
@@ -83,6 +87,7 @@
   "diagnostic.enable": true,
   "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
+  "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic-languageserver.formatters": {
     "buildifier": {
@@ -105,6 +110,17 @@
     "javascript": "javascriptreact"
   },
   "html.suggest.angular1": false, // angular1 is outdate, coc-angular support better
+  // calc
+  "calc.replaceOriginalExpression": false,
+  "calc.priority": 1000,
+  "calc.highlight": true,
+  // explorer
+  //"explorer.keyMappings": {
+  //  "o": "expandOrCollapse"
+  //},
+  //"explorer.width": 30,
+  //"explorer.icon.enableNerdfont": true,
+  //"explorer.icon.enableVimDevions": true,
   // git
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": true,

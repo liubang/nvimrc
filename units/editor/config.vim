@@ -276,7 +276,7 @@ nnoremap <silent><leader>vf :Vista finder coc<CR>
 " }}}
 
 " {{{ Defx
-let g:defx_icons_enable_syntax_highlight = 0
+let g:defx_icons_enable_syntax_highlight = 1
 call defx#custom#option('_', {
       \ 'columns': 'indent:git:icons:filename',
       \ 'winwidth': 30,
@@ -294,7 +294,7 @@ call defx#custom#column('filename', {
       \ })
 
 function! s:defx_context_menu() abort
-  let l:actions = ['new_multiple_files', 'rename', 'copy', 'move', 'paste', 'remove']
+  let l:actions = ['new_multiple_files', 'rename', 'copy', 'move', 'paste', 'remove_trash']
   let l:selection = confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete")
   silent exe 'redraw'
   return feedkeys(defx#do_action(l:actions[l:selection - 1]))
@@ -316,7 +316,6 @@ function! s:defx_mappings()
   nnoremap <silent><buffer>m :call <sid>defx_context_menu()<CR>
   nnoremap <silent><buffer><expr> o <sid>defx_toggle_tree()
   nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
-  nnoremap <silent><buffer><expr> <CR> <sid>defx_toggle_tree()
   " split open
   nnoremap <silent><buffer><expr> s defx#do_action('open', 'botright split')
   " vsplit open 
@@ -326,14 +325,21 @@ function! s:defx_mappings()
   " cd top one 
   nnoremap <silent><buffer><expr> U defx#async_action('multi', [['cd', '..'], 'change_vim_cwd'])
   " if is directory, then cd
-  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : 'C'
+  nnoremap <silent><buffer><expr> C defx#is_directory() ? defx#do_action('multi', ['open', 'change_vim_cwd']) : ''
   " cd ~/
   nnoremap <silent><buffer><expr> ~ defx#async_action('cd')
+  " toggle ignore files
   nnoremap <silent><buffer><expr> H defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+  " toggle select
+  nnoremap <silent><buffer><expr> <C-k> defx#do_action('toggle_select') . 'k'
+  nnoremap <silent><buffer><expr> <C-j> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> <C-a> defx#do_action('toggle_select_all')
+  " move up or down
   nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
   nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  " copy path
   nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+  " quit
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
 endfunction
 
@@ -349,7 +355,7 @@ augroup END
 
 
 nnoremap <silent><Leader>ft :Defx <CR>
-" nnoremap <silent><Leader>ft defx#do_action('call', 'utils#defx_tmux_explorer')
+" nnoremap <silent><Leader>ft :CocCommand explorer<CR>
 " }}}
 
 " {{{ vim-easy-align

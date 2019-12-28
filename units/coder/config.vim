@@ -17,18 +17,20 @@ let g:coc_global_extensions = ['coc-word',
                               \'coc-diagnostic',
                               \'coc-pairs',
                               \'coc-git',
-                              \'coc-emmet',
                               \'coc-json',
                               \'coc-yaml',
                               \'coc-vimlsp',
                               \'coc-yank',
                               \'coc-sql',
+                              \'coc-xml',
+                              \'coc-calc',
                               \ ]
 
 " fe 
 if utils#coder_has('fe')
   call extend(g:coc_global_extensions, ['coc-css', 
                                        \'coc-html', 
+                                       \'coc-emmet',
                                        \'coc-tailwindcss', 
                                        \'coc-vetur', 
                                        \'coc-angular', 
@@ -38,7 +40,7 @@ endif
 
 " java 
 if utils#coder_has('java')
-  call extend(g:coc_global_extensions, ['coc-java', 'coc-xml'])
+  call add(g:coc_global_extensions, 'coc-java')
 endif
 
 " php 
