@@ -114,13 +114,12 @@
   "calc.replaceOriginalExpression": false,
   "calc.priority": 1000,
   "calc.highlight": true,
-  // explorer
-  //"explorer.keyMappings": {
-  //  "o": "expandOrCollapse"
-  //},
-  //"explorer.width": 30,
-  //"explorer.icon.enableNerdfont": true,
-  //"explorer.icon.enableVimDevions": true,
+  // vimlsp
+  "vimlsp.indexes.runtimepath": true,
+  "vimlsp.indexes.gap": 10,
+  "vimlsp.indexes.count": 3,
+  "vimlsp.suggest.fromVimruntime": true,
+  "vimlsp.suggest.fromRuntimepath": false,
   // git
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": true,
