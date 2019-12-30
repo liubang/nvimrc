@@ -16,12 +16,6 @@ scriptencoding utf-8
 let g:nvg.components_loaded = []
 let g:nvg.plugins = []
 let g:nvg.coder = []
-let s:type = {
-  \ 'string': type(''),
-  \ 'list': type([]),
-  \ 'dict': type({}),
-  \ 'function': type(function('call'))
-  \ }
 
 let s:called = {
   \ 'begin': 0,
@@ -72,13 +66,13 @@ function! s:my_plugin(plugin, ...) abort
       let l:has_coder = 1
       if has_key(a:1, 'defer')
         let l:defer = a:1.defer
-        if type(l:defer) == s:type.dict
+        if type(l:defer) == v:t_dict
           if has_key(l:defer, 'delay') && has_key(l:defer, 'callback')
             call timer_start(l:defer.delay, l:defer.callback)
           endif
         endif
       elseif has_key(a:1, 'on_event')
-        if type(a:1.on_event) == s:type.list
+        if type(a:1.on_event) == v:t_list
           let l:group = 'load/' . a:plugin
           let l:plugin_name = split(a:plugin, '/')[1]
           let l:events = join(a:1.on_event, ',')
@@ -89,7 +83,7 @@ function! s:my_plugin(plugin, ...) abort
           execute 'augroup END'
         endif
       elseif has_key(a:1, 'for_coder')
-        if type(a:1.for_coder) == s:type.list  
+        if type(a:1.for_coder) == v:t_list
           let l:has_coder = 0
           for l:coder in a:1.for_coder
             if utils#coder_has(l:coder) 
