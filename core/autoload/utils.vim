@@ -116,3 +116,4 @@ endfunction
 function! utils#coder_has(lang)
   return index(g:nvg.coder, a:lang) >= 0
 endfunction
+

@@ -122,11 +122,6 @@ command! -bang -nargs=0 CopyRight
 " }}}
 
 " {{{ fzf
-" Hide statusline of terminal buffer
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', '#3a3a3a'],
@@ -142,9 +137,10 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:fzf_commits_log_options = '--graph --color=always
-  \ --format="%C(yellow)%h%C(red)%d%C(reset)
-  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
+if exists('*nvim_open_win')
+  let $FZF_DEFAULT_OPTS = '--layout=reverse'
+  let g:fzf_layout = { 'window': 'call win#floating()' }
+endif
 
 " ripgrep
 if executable('rg')
@@ -156,65 +152,40 @@ else
   call utils#err("Please install ripgrep!", s:sname)
 endif
 
-function! FloatingFZF()
-  let buf = nvim_create_buf(v:false, v:true)
-  call setbufvar(buf, 'number', 'no')
+function! s:files()
+  let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+  " for performance
+  if len(l:files) > 1000
+    return l:files
+  else
+    return s:prepend_icon(l:files)
+  endif
+endfunction
 
-  let height = float2nr(&lines/2)
-  let width = float2nr(&columns - (&columns * 2 / 10))
-  "let width = &columns
-  let row = float2nr(&lines / 3)
-  let col = float2nr((&columns - width) / 3)
+function! s:prepend_icon(candidates)
+  let l:result = []
+  for l:candidate in a:candidates
+    let l:filename = fnamemodify(l:candidate, ':p:t')
+    let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+    call add(l:result, printf('%s %s', l:icon, l:candidate))
+  endfor
+  return l:result
+endfunction
 
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': row,
-        \ 'col': col,
-        \ 'width': width,
-        \ 'height':height,
-        \ }
-  let win =  nvim_open_win(buf, v:true, opts)
-  call setwinvar(win, '&number', 0)
-  call setwinvar(win, '&relativenumber', 0)
+function! s:edit_file(item)
+  let l:pos = stridx(a:item, ' ')
+  let l:file_path = a:item[pos+1:-1]
+  execute 'silent e' l:file_path
 endfunction
 
 " Files + devicons
-function! MyFzf()
-  "let l:fzf_files_options = ' --preview "rougify {2..-1} | head -'.&lines.'"'
+function! s:fzf()
   let l:fzf_files_options = ''
-
-  function! s:files()
-    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    " for performance
-    if len(l:files) > 1000
-      return l:files
-    else
-      return s:prepend_icon(l:files)
-    endif
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let l:result = []
-    for l:candidate in a:candidates
-      let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-      call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
-
-    return l:result
-  endfunction
-
-  function! s:edit_file(item)
-    let l:pos = stridx(a:item, ' ')
-    let l:file_path = a:item[pos+1:-1]
-    execute 'silent e' l:file_path
-  endfunction
-
   call fzf#run({
         \ 'source': <sid>files(),
-        \ 'sink':   function('s:edit_file'),
+        \ 'sink': function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
-        \ 'down':    '40%'})
+        \ 'window': 'call win#floating()'})
 endfunction
 
 nmap <silent><Leader>? <plug>(fzf-maps-n)
@@ -227,8 +198,8 @@ nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
-nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call MyFzf()\<cr>"
-"}}}
+nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"
+" }}}
 
 " {{{ vim_current_word
 let g:vim_current_word#enabled = 1
