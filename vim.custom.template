@@ -9,10 +9,10 @@ function! Init()
   REG 'golang'
   REG 'python'
   REG 'sh'
-  REG 'java'
   REG 'php'
   REG 'rust'
   REG 'docker'
+  " REG 'java'
 endfunction
 
 function! CustomPlug()
