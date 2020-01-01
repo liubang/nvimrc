@@ -1,24 +1,16 @@
 function! win#floating() abort
-  let h = &lines - 3
-  let w = float2nr(&columns - (&columns * 2) / 10)
-  let col = float2nr((&columns - w) / 2)
-  let col_offset = &columns / 6
-  let opts = {
-    \ 'relative': 'editor',
-    \ 'row': h * 0.3,
-    \ 'col': col + col_offset, 
-    \ 'width': w * 2 / 3,
-    \ 'height': h / 2
-    \ }
-
-  let buf = nvim_create_buf(v:true, v:false)
+  let width = min([&columns - 4, max([80, &columns - 20])])
+  let height = min([&lines - 4, max([20, &lines - 10])])
+  let top = ((&lines - height) / 2) - 1
+  let left = (&columns - width) / 2
+  let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+  let buf = nvim_create_buf(v:false, v:true)
   let win = nvim_open_win(buf, v:true, opts)
-  call setwinvar(win, '&winhl', 'Normal:Pmenu')
-  setlocal 
-    \ buftype=nofile
-    \ nobuflisted
-    \ bufhidden=hide
-    \ nonumber
-    \ norelativenumber 
-    \ signcolumn=no
+  call nvim_buf_set_option(buf, 'buftype', 'nofile')
+  call nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  call nvim_buf_set_option(buf, 'modified', v:false)
+  call nvim_buf_set_option(buf, 'buflisted', v:false)
+  call nvim_win_set_option(win, 'winhl', 'Normal:Pmenu')
+  call nvim_win_set_option(win, 'number', v:false)
+  call nvim_win_set_option(win, 'relativenumber', v:false)
 endfunction

@@ -137,10 +137,10 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-if exists('*nvim_open_win')
-  let $FZF_DEFAULT_OPTS = '--layout=reverse'
-  let g:fzf_layout = { 'window': 'call win#floating()' }
-endif
+" if exists('*nvim_open_win')
+"   let $FZF_DEFAULT_OPTS = '--layout=reverse'
+"   let g:fzf_layout = { 'window': 'call win#floating()' }
+" endif
 
 " ripgrep
 if executable('rg')
@@ -154,12 +154,7 @@ endif
 
 function! s:files()
   let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-  " for performance
-  if len(l:files) > 1000
-    return l:files
-  else
-    return s:prepend_icon(l:files)
-  endif
+  return s:prepend_icon(l:files)
 endfunction
 
 function! s:prepend_icon(candidates)
@@ -185,7 +180,7 @@ function! s:fzf()
         \ 'source': <sid>files(),
         \ 'sink': function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
-        \ 'window': 'call win#floating()'})
+        \ 'down': '30%'})
 endfunction
 
 nmap <silent><Leader>? <plug>(fzf-maps-n)
