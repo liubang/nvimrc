@@ -26,7 +26,7 @@ function s:coder_register(lang)
   if index(g:nvg.coder, a:lang) < 0 
     call add(g:nvg.coder, a:lang)    
   endif
-endfunction
+endfunc
 
 function! core#begin() abort
   if s:called.begin != 0
@@ -37,7 +37,7 @@ function! core#begin() abort
   call s:check_vim_plug()
   call s:define_command()
   call s:check_custom_file()
-endfunction
+endfunc
 
 function! core#end() abort
   if s:called.end != 0
@@ -52,13 +52,13 @@ function! core#end() abort
   if exists('*CustomConfig')
     call CustomConfig()
   endif
-endfunction
+endfunc
 
 function! s:define_command()
   command! -nargs=+ -bar MMP call s:my_plugin(<args>)
   command! -nargs=+ -bar CCM call s:component(<args>)
   command! -nargs=+ -bar REG call s:coder_register(<args>)
-endfunction
+endfunc
 
 function! s:my_plugin(plugin, ...) abort
   if index(g:nvg.plugins, a:plugin) < 0
@@ -102,13 +102,13 @@ function! s:my_plugin(plugin, ...) abort
     " add plugin
     call add(g:nvg.plugins, a:plugin)
   endif
-endfunction
+endfunc
 
 function! s:component(name, ...)
   if index(g:nvg.components_loaded, a:name) < 0
     call add(g:nvg.components_loaded, a:name)
   endif
-endfunction
+endfunc
 
 function! s:register_plugs()
   silent! if plug#begin(g:nvg.plugin_home)
@@ -129,7 +129,7 @@ function! s:register_plugs()
     call plug#end()
     call timer_start(1500, 'utils#check_custom_plug')
   endif
-endfunction
+endfunc
 
 function! s:register_configs()
   for l:component in g:nvg.components_loaded
@@ -140,14 +140,14 @@ function! s:register_configs()
       return utils#err(v:exception, l:component_config)
     endtry
   endfor
-endfunction
+endfunc
 
 function! s:check_custom_file()
   let l:dot_customfile = $HOME . '/.vim.custom'
   if filereadable(expand(l:dot_customfile))
     execute 'so ' . l:dot_customfile
   endif
-endfunction
+endfunc
 
 function! s:check_vim_plug()
   if empty(glob(g:nvg.vim_plug_path))
@@ -155,4 +155,4 @@ function! s:check_vim_plug()
     execute '!curl -fLo ' . g:nvg.vim_plug_path . ' --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
-endfunction
+endfunc

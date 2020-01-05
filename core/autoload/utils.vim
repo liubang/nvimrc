@@ -13,7 +13,7 @@ function! utils#err(msg, f)
   echohl ErrorMsg
   echom '[vim-core] ' . a:msg . ' on file ' . a:f
   echohl None
-endfunction
+endfunc
 
 function! utils#wipe_hidden_buffers()
   let tpbl = []
@@ -21,7 +21,7 @@ function! utils#wipe_hidden_buffers()
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
     silent execute 'bwipeout' buf
   endfor
-endfunction
+endfunc
 
 function! utils#sweep_buffers()
   let bufs = range(1, bufnr('$'))
@@ -29,7 +29,7 @@ function! utils#sweep_buffers()
   if !empty(hidden)
     execute 'silent bdelete' join(hidden)
   endif
-endfunction
+endfunc
 
 function! utils#buffer_empty()
   let l:current = bufnr('%')
@@ -37,7 +37,7 @@ function! utils#buffer_empty()
     enew
     silent! execute 'bdelete ' . l:current
   endif
-endfunction
+endfunc
 
 " 删除所有未显示且无修改的缓冲区 
 function! utils#clean_buffers()
@@ -45,7 +45,7 @@ function! utils#clean_buffers()
         \ 'buflisted(v:val) && !bufloaded(v:val)')
     execute bufNr . 'bdelete'
   endfor
-endfunction
+endfunc
 
 function! utils#check_custom_plug(...) abort
   let l:missing = filter(values(g:plugs), '!isdirectory(v:val.dir)')
@@ -53,17 +53,17 @@ function! utils#check_custom_plug(...) abort
     echom 'Some plugins need to install the missing plugins first!'
     PlugInstall --sync | q
   endif
-endfunction
+endfunc
 
 " string 
 function! utils#string_replace(text, old, new)
   let data = split(a:text, a:old, 1)
   return join(data, a:new)
-endfunction
+endfunc
 
 function! utils#string_strip(text)
   return substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
-endfunction
+endfunc
 
 function! utils#close_terminal() abort
   for terminal_bufnr in s:open_terminals_buffers
@@ -71,7 +71,7 @@ function! utils#close_terminal() abort
       exe 'silent bd!' . terminal_bufnr
     endif
   endfor
-endfunction
+endfunc
 
 " Open file-explorer split with tmux
 function! utils#defx_tmux_explorer(context) abort
@@ -81,7 +81,7 @@ function! utils#defx_tmux_explorer(context) abort
   let l:target = a:context['targets'][0]
   let l:parent = fnamemodify(l:target, ':h')
   silent execute '!tmux split-window -p 30 -c '.l:parent.' '.s:explorer
-endfunction
+endfunc
 
 function! utils#get_vim_version()
   if g:nvg.nvim
@@ -92,7 +92,7 @@ function! utils#get_vim_version()
   else 
     return 'vim ' . v:version
   endif
-endfunction
+endfunc
 
 function! utils#rename(name, bang) 
   let l:curfile = expand("%:p")
@@ -111,9 +111,17 @@ function! utils#rename(name, bang)
   else
     echoerr v:errmsg
   endif
-endfunction
+endfunc
 
 function! utils#coder_has(lang)
   return index(g:nvg.coder, a:lang) >= 0
-endfunction
+endfunc
 
+function! utils#strip_trailing_whitespace() 
+  let _s = @/
+  let l = line('.')
+  let c = col('.')
+  execute '%s/\r$\|\s\+$//e'
+  let @/ = _s
+  call cursor(l, c)
+endfunc

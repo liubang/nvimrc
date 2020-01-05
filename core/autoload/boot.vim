@@ -81,4 +81,4 @@ function! boot#run() abort
   CCM 'coder'
   CCM 'markdown'
   call core#end()
-endfunction
+endfunc

@@ -13,4 +13,4 @@ function! win#floating() abort
   call nvim_win_set_option(win, 'winhl', 'Normal:Pmenu')
   call nvim_win_set_option(win, 'number', v:false)
   call nvim_win_set_option(win, 'relativenumber', v:false)
-endfunction
+endfunc

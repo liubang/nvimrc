@@ -144,7 +144,7 @@ let g:coc_snippet_prev = '<S-TAB>'
 function! s:check_back_space() abort
   let l:col = col('.') - 1
   return !l:col || getline('.')[l:col - 1]  =~# '\s'
-endfunction
+endfunc
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -160,7 +160,6 @@ nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
 nmap <silent><leader>rn <Plug>(coc-rename)
 vmap <silent><leader>fm <Plug>(coc-format-selected)
 nmap <silent><leader>fm <Plug>(coc-format-selected)
-nnoremap <silent> <Space><Space> :CocList<CR>
 nnoremap <silent> <space>y       :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)

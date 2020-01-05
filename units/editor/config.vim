@@ -15,7 +15,7 @@ let s:current_file = expand('<sfile>:p')
 "-----------------------------------------------------------------------
 function! s:snip(text)
   call append(line('.') - 1, a:text)
-endfunction
+endfunc
 
 "-----------------------------------------------------------------------
 " guess comment
@@ -50,7 +50,7 @@ function! s:comment()
     return "'"
   endif
   return "#"
-endfunction
+endfunc
 
 "-----------------------------------------------------------------------
 " comment bar
@@ -61,7 +61,7 @@ function! s:comment_bar(repeat, limit)
     let l:comment .= a:repeat
   endwhile
   return l:comment
-endfunction
+endfunc
 
 "-----------------------------------------------------------------------
 " comment block
@@ -76,7 +76,7 @@ function! <SID>snip_comment_block(repeat)
   call s:snip(l:complete)
   call s:snip(l:comment . ' ')
   call s:snip(l:complete)
-endfunction
+endfunc
 
 "-----------------------------------------------------------------------
 " copyright
@@ -111,7 +111,7 @@ function! <SID>snip_copyright(author)
   let l:text += [l:c]
   let l:text += [l:complete]
   call append(0, l:text)
-endfunction
+endfunc
 
 command! -bang -nargs=1 Comment
       \ :call <SID>snip_comment_block('<args>')
@@ -155,7 +155,7 @@ endif
 function! s:files()
   let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
   return s:prepend_icon(l:files)
-endfunction
+endfunc
 
 function! s:prepend_icon(candidates)
   let l:result = []
@@ -165,13 +165,13 @@ function! s:prepend_icon(candidates)
     call add(l:result, printf('%s %s', l:icon, l:candidate))
   endfor
   return l:result
-endfunction
+endfunc
 
 function! s:edit_file(item)
   let l:pos = stridx(a:item, ' ')
   let l:file_path = a:item[pos+1:-1]
   execute 'silent e' l:file_path
-endfunction
+endfunc
 
 " Files + devicons
 function! s:fzf()
@@ -181,7 +181,7 @@ function! s:fzf()
         \ 'sink': function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
         \ 'down': '30%'})
-endfunction
+endfunc
 
 nmap <silent><Leader>? <plug>(fzf-maps-n)
 xmap <silent><Leader>? <plug>(fzf-maps-x)
@@ -264,14 +264,14 @@ function! s:defx_context_menu() abort
   let l:selection = confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete")
   silent exe 'redraw'
   return feedkeys(defx#do_action(l:actions[l:selection - 1]))
-endfunction
+endfunc
 
 function s:defx_toggle_tree() abort
   if defx#is_directory()
     return defx#do_action('open_or_close_tree')
   endif
   return defx#do_action('drop')
-endfunction
+endfunc
 
 function! s:defx_mappings()
   setlocal nolist
@@ -307,7 +307,7 @@ function! s:defx_mappings()
   nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
   " quit
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
-endfunction
+endfunc
 
 augroup vfinit
   au!
@@ -338,7 +338,7 @@ function! CurrentLineA()
   normal! $
   let tail_pos = getpos('.')
   return ['v', head_pos, tail_pos]
-endfunction
+endfunc
 
 function! CurrentLineI()
   normal! ^
@@ -350,7 +350,7 @@ function! CurrentLineI()
   \ non_blank_char_exists_p
   \ ? ['v', head_pos, tail_pos]
   \ : 0
-endfunction
+endfunc
 
 " Define al to select the current line, and define il to select the current line without indentation:
 call textobj#user#plugin('line', {
@@ -406,7 +406,7 @@ function! s:async_build(args)
   elseif &filetype == 'go'
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go build " . a:args
   endif
-endfunction
+endfunc
 
 function! s:async_run(args)
   if &filetype == 'c' || &filetype == 'cpp'
@@ -430,7 +430,7 @@ function! s:async_run(args)
   elseif &filetype == 'go'
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go run $(VIM_FILEPATH) " . a:args
   endif
-endfunction
+endfunc
 
 function! s:maven(opt, goal)
   if executable('mvn')
@@ -438,7 +438,7 @@ function! s:maven(opt, goal)
   else
     call utils#err("mvn is not executable", s:current_file)
   endif
-endfunction
+endfunc
 
 command! -bang -nargs=? Build call s:async_build(<q-args>)
 command! -bang -nargs=? Run call s:async_run(<q-args>)
@@ -468,7 +468,7 @@ let g:easygit_enable_command = 1
 " rename  {{{
 function! SiblingFiles(A, L, P)
   return map(split(globpath(expand("%:h") . "/", a:A . "*"), "\n"), 'fnamemodify(v:val, ":t")')
-endfunction
+endfunc
 command! -nargs=* -complete=customlist,SiblingFiles -bang Rename :call utils#rename("<args>", "<bang>")
 cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
 " }}}
@@ -479,4 +479,55 @@ let g:indentline_char='┆'
 let g:indentLine_fileTypeExclude = ['defx', 'denite', 'startify', 'tagbar', 'vista_kind', 'fzf']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel = 0
+" }}}
+
+" {{{ quickui
+if exists('*nvim_open_win') > 0
+  call quickui#menu#reset()
+  call quickui#menu#install('&File', [
+        \ [ "&Open\t(:e)", 'call feedkeys(":e ")' ],
+        \ [ "&Save\t(:w)", 'write' ],
+        \ [ "--", ],
+        \ [ "File &Explorer", 'Defx', 'Taggle file exporer' ],
+        \ [ "Switch &Files", 'Files .' ],
+        \ [ "Switch &Buffers", 'call quickui#tools#list_buffer("e")' ],
+        \ [ "--", ],
+        \ [ "E&xit", 'qa' ],
+        \ ])
+
+  call quickui#menu#install('&Edit', [
+        \ [ "&Trailing Space", 'call utils#strip_trailing_whitespace()', '' ],
+        \ [ "&Find\t", 'Ag', '' ],
+        \ [ "F&ormat", 'Format' ],
+        \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],
+        \ ])
+
+  call quickui#menu#install('&Build', [
+        \ [ "&Compile File\tCtrl-b", 'Build' ],
+        \ [ "&E&xecute File\tCtrl-r", 'Run' ],
+        \ [ '--','' ],
+        \ [ "Clang &Format", 'ClangFormat' ],
+        \ ])
+
+  call quickui#menu#install('&Git', [
+        \ [ "View &Diff", 'Gdiffsplit' ], 
+        \ [ "Show &Log", 'Gclog' ],
+        \ [ "Git &Blame", 'Gblame' ],
+        \ ])
+
+  call quickui#menu#install('Help (&?)', [
+        \ [ "&Cheatsheet", 'help index', '' ],
+        \ [ 'T&ips', 'help tips', '' ],
+        \ [ '--','' ],
+        \ [ "&Tutorial", 'help tutor', '' ],
+        \ [ '&Quick Reference', 'help quickref', '' ],
+        \ [ '&Summary', 'help summary', '' ],
+        \ [ '--','' ],
+        \ [ "&Vim Script", 'help eval', '' ], 
+        \ [ "&Function List", 'help function-list', '' ],
+        \ ], 10000)
+  let g:quickui_color_scheme = 'gruvbox'
+  " let g:quickui_show_tip = 1
+  noremap <Space><Space> :call quickui#menu#open()<CR>
+endif
 " }}}
