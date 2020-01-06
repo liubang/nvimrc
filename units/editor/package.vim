@@ -26,7 +26,6 @@ MMP 'skywind3000/asyncrun.vim', { 'on': ['AsyncRun', 'AsyncRun!'] }
 MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
 " for git
 MMP 'tpope/vim-fugitive'
-MMP 'jreybert/vimagit'
 
 MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
 " multi cursors
