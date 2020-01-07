@@ -189,7 +189,7 @@ omap <silent><Leader>? <plug>(fzf-maps-o)
 
 " https://github.com/junegunn/fzf/issues/453
 nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Rg\<cr>"
-nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
+" nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
 nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
@@ -211,13 +211,6 @@ map <Leader>ll <Plug>(easymotion-lineforward)
 map <Leader>jj <Plug>(easymotion-j)
 map <Leader>kk <Plug>(easymotion-k)
 map <Leader>hh <Plug>(easymotion-linebackward)
-
-" map  / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
-" map  n <Plug>(easymotion-next)
-" map  N <Plug>(easymotion-prev)
-
-" nmap s <Plug>(easymotion-s2)
 
 " Move to word
 map  <Leader>ww <Plug>(easymotion-bd-w)
@@ -527,7 +520,10 @@ if exists('*nvim_open_win') > 0
         \ [ "&Function List", 'help function-list', '' ],
         \ ], 10000)
   let g:quickui_color_scheme = 'gruvbox'
+  let g:quickui_border_style = 2
   " let g:quickui_show_tip = 1
-  noremap <Space><Space> :call quickui#menu#open()<CR>
+  " tool bar open
+  noremap <silent><Leader>to :call quickui#menu#open()<CR>
+  nnoremap <silent><expr><Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call quickui#tools#list_buffer('e')\<CR>"
 endif
 " }}}
