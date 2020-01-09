@@ -7,10 +7,10 @@
 "
 "======================================================================
 
-MMP 'posva/vim-vue', { 'for_coder': ['fe'] }
-MMP 'machakann/vim-highlightedyank'
-MMP 'mhinz/vim-startify'
-MMP 'hardcoreplayers/spaceline.vim'
-MMP 'ryanoasis/vim-devicons'
-MMP 'bagrat/vim-buffet'
-MMP 'sainnhe/gruvbox-material', { 'branch': 'neosyn' }
+call dein#add('posva/vim-vue', {'on_ft': ['html', 'vue']})
+call dein#add('machakann/vim-highlightedyank')
+call dein#add('mhinz/vim-startify')
+call dein#add('hardcoreplayers/spaceline.vim')
+call dein#add('ryanoasis/vim-devicons')
+call dein#add('bagrat/vim-buffet')
+call dein#add('sainnhe/gruvbox-material', {'rev': 'neosyn'})

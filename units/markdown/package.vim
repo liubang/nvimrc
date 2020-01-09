@@ -6,10 +6,6 @@
 " Last Modified: 2018/11/20 13:01:09
 "
 "======================================================================
-MMP 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
-if g:nvg.nvim
-  MMP 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-else 
-  MMP 'iamcco/mathjax-support-for-mkdp', { 'for': ['markdown'] }
-  MMP 'iamcco/markdown-preview.vim', { 'for': ['markdown'] }
-endif
+call dein#add('mzlogin/vim-markdown-toc', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd']})
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app & yarn install' })

@@ -167,11 +167,11 @@ command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
+  autocmd FileType vim let b:coc_pairs_disabled = ['"']
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd CursorHold * silent call CocActionAsync('highlight')
-
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   " virtual text highlight
   autocmd ColorScheme * highlight! CocCodeLens guifg=#606060 ctermfg=60

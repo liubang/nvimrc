@@ -34,7 +34,7 @@ function! core#begin() abort
   else
     let s:called.begin = 1
   endif
-  call s:check_vim_plug()
+  call s:check_dein()
   call s:define_command()
   call s:check_custom_file()
 endfunc
@@ -48,60 +48,14 @@ function! core#end() abort
   " regist all plugs
   call s:register_plugs()
   call s:register_configs()
-
   if exists('*CustomConfig')
     call CustomConfig()
   endif
 endfunc
 
 function! s:define_command()
-  command! -nargs=+ -bar MMP call s:my_plugin(<args>)
   command! -nargs=+ -bar CCM call s:component(<args>)
   command! -nargs=+ -bar REG call s:coder_register(<args>)
-endfunc
-
-function! s:my_plugin(plugin, ...) abort
-  if index(g:nvg.plugins, a:plugin) < 0
-    if a:0 == 1
-      let l:has_coder = 1
-      if has_key(a:1, 'defer')
-        let l:defer = a:1.defer
-        if type(l:defer) == v:t_dict
-          if has_key(l:defer, 'delay') && has_key(l:defer, 'callback')
-            call timer_start(l:defer.delay, l:defer.callback)
-          endif
-        endif
-      elseif has_key(a:1, 'on_event')
-        if type(a:1.on_event) == v:t_list
-          let l:group = 'load/' . a:plugin
-          let l:plugin_name = split(a:plugin, '/')[1]
-          let l:events = join(a:1.on_event, ',')
-          let l:load_call = printf("call plug#load('%s')", l:plugin_name)
-          execute 'augroup' l:group
-          autocmd!
-          execute 'autocmd' l:events '*' l:load_call '|' 'autocmd!' l:group
-          execute 'augroup END'
-        endif
-      elseif has_key(a:1, 'for_coder')
-        if type(a:1.for_coder) == v:t_list
-          let l:has_coder = 0
-          for l:coder in a:1.for_coder
-            if utils#coder_has(l:coder) 
-              let l:has_coder = 1
-              break
-            endif
-          endfor
-        endif
-      endif
-      if l:has_coder 
-        call plug#(a:plugin, a:1)
-      endif
-    else
-      call plug#(a:plugin, "")
-    endif
-    " add plugin
-    call add(g:nvg.plugins, a:plugin)
-  endif
 endfunc
 
 function! s:component(name, ...)
@@ -111,7 +65,9 @@ function! s:component(name, ...)
 endfunc
 
 function! s:register_plugs()
-  silent! if plug#begin(g:nvg.plugin_home)
+  if dein#load_state(g:nvg.plugin_home) 
+    call dein#begin(g:nvg.plugin_home)
+    call dein#add('wsdjeg/dein-ui.vim')
     if exists('*Init')
       call Init()
     endif
@@ -126,9 +82,14 @@ function! s:register_plugs()
     if exists('*CustomPlug')
       call CustomPlug()
     endif
-    call plug#end()
-    call timer_start(1500, 'utils#check_custom_plug')
+    call dein#end()
+    call dein#save_state()
+    " Update or install plugins if change detected
+    if dein#check_install()
+      call dein#install()
+    endif
   endif
+  call dein#call_hook('source')
 endfunc
 
 function! s:register_configs()
@@ -149,10 +110,22 @@ function! s:check_custom_file()
   endif
 endfunc
 
-function! s:check_vim_plug()
-  if empty(glob(g:nvg.vim_plug_path))
-    echo "==> Downloading vim-plug......"
-    execute '!curl -fLo ' . g:nvg.vim_plug_path . ' --create-dirs ' .
-        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+function! s:check_dein()
+  let g:dein#auto_recache = 1
+  let g:dein#install_max_processes = 16
+  let g:dein#enable_notification = 1
+  let g:dein#install_progress_type = 'echo'
+  " Add dein to vim's runtimepath
+  if &runtimepath !~# '/dein.vim'
+    let s:dein_dir = g:nvg.plugin_home . '/repos/github.com/Shougo/dein.vim'
+    " Clone dein if first-time setup
+    if ! isdirectory(s:dein_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+      if v:shell_error
+        call utils#err('dein installation has failed! is git installed?', 'core.vim')
+      endif
+    endif
   endif
+  execute 'set runtimepath+='.substitute(
+        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endfunc

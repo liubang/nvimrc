@@ -6,37 +6,36 @@
 " Last Modified: 2018/11/20 13:00:38
 "
 "======================================================================
-MMP 'easymotion/vim-easymotion', { 'on': [
+call dein#add('easymotion/vim-easymotion', {'on_func': [ 
       \ '<Plug>(easymotion-lineforward)',
       \ '<Plug>(easymotion-j)',
       \ '<Plug>(easymotion-k)',
       \ '<Plug>(easymotion-linebackward)',
       \ '<Plug>(easymotion-bd-w)',
       \ '<Plug>(easymotion-overwin-w)'
-      \ ] }
-
-MMP 'liuchengxu/vista.vim', { 'on': ['Vista', 'Vista!', 'Vista!!'] }
-MMP 'Shougo/defx.nvim'
-MMP 'kristijanhusak/defx-icons'
-MMP 'kristijanhusak/defx-git'
-MMP 'kana/vim-textobj-user'
-MMP 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
-MMP 'sgur/vim-textobj-parameter', { 'for': ['c', 'cpp', 'vim', 'java', 'php'] }
-MMP 'skywind3000/asyncrun.vim', { 'on': ['AsyncRun', 'AsyncRun!'] }
-MMP 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign', '<Plug>(EasyAlign)' ] }
+      \ ]})
+call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
+call dein#add('Shougo/defx.nvim')
+call dein#add('kristijanhusak/defx-icons')
+call dein#add('kristijanhusak/defx-git')
+call dein#add('kana/vim-textobj-user')
+call dein#add('kana/vim-textobj-function')
+call dein#add('sgur/vim-textobj-parameter')
+call dein#add('junegunn/vim-easy-align', {'on_cmd': ['EasyAlign']})
 " for git
-MMP 'tpope/vim-fugitive'
-
-MMP 'Shougo/vinarise.vim', { 'on': 'Vinarise' }
+call dein#add('tpope/vim-fugitive')
+" binary editor
+call dein#add('Shougo/vinarise.vim', {'on_cmd': 'Vinarise'})
 " multi cursors
-MMP 'mg979/vim-visual-multi'
+call dein#add('mg979/vim-visual-multi')
 " fzf
-MMP 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-MMP 'junegunn/fzf.vim'
-MMP 'tpope/vim-surround'
-MMP 'dominikduda/vim_current_word'
-MMP 'terryma/vim-expand-region'
-MMP 'Yggdroot/indentLine', { 'for': ['python', 'html', 'vim', 'lua', 'yaml'] }
-MMP 'google/vim-maktaba'
-MMP 'bazelbuild/vim-bazel'
-MMP 'skywind3000/vim-quickui'
+call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0}) 
+call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
+call dein#add('tpope/vim-surround')
+call dein#add('dominikduda/vim_current_word')
+call dein#add('terryma/vim-expand-region')
+call dein#add('Yggdroot/indentLine', {'on_ft': ['python', 'html', 'vim', 'lua', 'yaml']})
+call dein#add('google/vim-maktaba')
+call dein#add('bazelbuild/vim-bazel')
+call dein#add('skywind3000/vim-quickui')
+call dein#add('skywind3000/asyncrun.vim', {'on_cmd': ['AsyncRun', 'AsyncRun!']})

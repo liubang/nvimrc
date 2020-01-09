@@ -37,7 +37,6 @@ let g:nvg = {
 
 let g:nvg.core = g:nvg.home . '/core'
 let g:nvg.plugin_home = g:nvg.home . '/plugged/'
-let g:nvg.vim_plug_path = g:nvg.home . '/core/autoload/plug.vim'
 let g:nvg.components_dir = g:nvg.home . '/units'
 let g:nvg.cache_dir = g:nvg.home . '/cache'
 

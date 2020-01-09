@@ -7,8 +7,7 @@
 "
 "======================================================================
 if g:nvg.tmux
-  MMP 'tmux-plugins/vim-tmux-focus-events'
-  MMP 'roxma/vim-tmux-clipboard'
+  call dein#add('tmux-plugins/vim-tmux-focus-events')
+  call dein#add('roxma/vim-tmux-clipboard')
 endif
 
-autocmd FileType vim let b:coc_pairs_disabled = ['"']

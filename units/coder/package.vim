@@ -8,19 +8,18 @@
 "======================================================================
 
 " {{{ lsp
-MMP 'honza/vim-snippets'
-MMP 'neoclide/coc.nvim', {'branch': 'release'}
-MMP 'neoclide/jsonc.vim', { 'for': ['json', 'jsonc'] }
+call dein#add('honza/vim-snippets')
+call dein#add('neoclide/coc.nvim', {'rev': 'release'})
+call dein#add('neoclide/jsonc.vim', {'on_ft': ['json', 'jsonc']})
 " }}}
 
 " {{{ c/c++ 
-MMP 'rhysd/vim-clang-format', { 'for': ['c', 'cpp', 'proto', 'objc'], 'for_coder': ['clang'] }
-MMP 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp', 'lex', 'yacc'], 'for_coder': ['clang'] }
-MMP 'sakhnik/nvim-gdb', { 'do': './install.sh', 'for_coder': ['clang'] }
+call dein#add('rhysd/vim-clang-format', {'on_ft': ['c', 'cpp', 'proto', 'objc']})
+call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'lex', 'yacc']})
+call dein#add('sakhnik/nvim-gdb', {'build': 'sh install.sh', 'on_ft': ['c', 'cpp']})
 " }}}
 
 " golang
-MMP 'fatih/vim-go', { 'for': 'go', 'for_coder': 'go' }
+call dein#add('fatih/vim-go', {'on_ft': ['go']})
 " php
-MMP 'StanAngeloff/php.vim', { 'for': ['php'], 'for_coder': ['phplll'] }
-
+call dein#add('StanAngeloff/php.vim', {'on_ft': ['php']})
