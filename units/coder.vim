@@ -1,9 +1,9 @@
 "======================================================================
 "
-" config.vim - 
+" coder.vim - 
 "
-" Created by liubang on 2019/11/17
-" Last Modified: 2019/11/17 00:22:39
+" Created by liubang on 2020/01/10
+" Last Modified: 2020/01/10 17:57:02
 "
 "======================================================================
 
@@ -167,6 +167,7 @@ command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
+  autocmd FileType markdown let b:coc_pairs_disabled = ['`']
   autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd FileType vim let b:coc_pairs_disabled = ['"']
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')

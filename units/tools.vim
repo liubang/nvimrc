@@ -1,13 +1,12 @@
 "======================================================================
 "
-" config.vim - 
+" tools.vim - 
 "
-" Created by liubang on 2018/11/20
-" Last Modified: 2018/11/20 10:33:09
+" Created by liubang on 2020/01/10
+" Last Modified: 2020/01/10 17:56:20
 "
 "======================================================================
-
-let s:current_file = expand('<sfile>:p')
+let s:scriptname = expand('<sfile>:p')
 
 " {{{ comment
 "-----------------------------------------------------------------------
@@ -411,13 +410,13 @@ function! s:async_run(args)
     execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT) " . a:args
   elseif &filetype == 'php'
     if !executable('php')
-      call utils#err("php is not executable", s:current_file) 
+      call utils#err("php is not executable", s:scriptname) 
     else
       execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw php -f $(VIM_FILEPATH) " . a:args
     endif
   elseif &filetype == 'python'
     if !executable('python')
-      call utils#err("python is not executable", s:current_file)
+      call utils#err("python is not executable", s:scriptname)
     else
       execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH) " . a:args 
     endif
@@ -434,7 +433,7 @@ function! s:maven(opt, goal)
   if executable('mvn')
     execute "AsyncRun -cwd=<root> -raw mvn " . a:opt . " " . a:goal
   else
-    call utils#err("mvn is not executable", s:current_file)
+    call utils#err("mvn is not executable", s:scriptname)
   endif
 endfunc
 
@@ -479,56 +478,3 @@ let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel = 0
 " }}}
 
-" {{{ quickui
-if exists('*nvim_open_win') > 0
-  call quickui#menu#reset()
-  call quickui#menu#install('&File', [
-        \ [ "&Open\t(:e)", 'call feedkeys(":e ")' ],
-        \ [ "&Save\t(:w)", 'write' ],
-        \ [ "--", ],
-        \ [ "File &Explorer", 'Defx', 'Taggle file exporer' ],
-        \ [ "Switch &Files", 'Files .' ],
-        \ [ "Switch &Buffers", 'call quickui#tools#list_buffer("e")' ],
-        \ [ "--", ],
-        \ [ "E&xit", 'qa' ],
-        \ ])
-
-  call quickui#menu#install('&Edit', [
-        \ [ "&Trailing Space", 'call utils#strip_trailing_whitespace()', '' ],
-        \ [ "&Find\t", 'Ag', '' ],
-        \ [ "F&ormat", 'Format' ],
-        \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],
-        \ ])
-
-  call quickui#menu#install('&Build', [
-        \ [ "&Compile File\tCtrl-b", 'Build' ],
-        \ [ "&E&xecute File\tCtrl-r", 'Run' ],
-        \ [ '--','' ],
-        \ [ "Clang &Format", 'ClangFormat' ],
-        \ ])
-
-  call quickui#menu#install('&Git', [
-        \ [ "View &Diff", 'Gdiffsplit' ], 
-        \ [ "Show &Log", 'Gclog' ],
-        \ [ "Git &Blame", 'Gblame' ],
-        \ ])
-
-  call quickui#menu#install('Help (&?)', [
-        \ [ "&Cheatsheet", 'help index', '' ],
-        \ [ 'T&ips', 'help tips', '' ],
-        \ [ '--','' ],
-        \ [ "&Tutorial", 'help tutor', '' ],
-        \ [ '&Quick Reference', 'help quickref', '' ],
-        \ [ '&Summary', 'help summary', '' ],
-        \ [ '--','' ],
-        \ [ "&Vim Script", 'help eval', '' ], 
-        \ [ "&Function List", 'help function-list', '' ],
-        \ ], 10000)
-  let g:quickui_color_scheme = 'gruvbox'
-  let g:quickui_border_style = 2
-  " let g:quickui_show_tip = 1
-  " tool bar open
-  noremap <silent><Leader>to :call quickui#menu#open()<CR>
-  nnoremap <silent><expr><Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call quickui#tools#list_buffer('e')\<CR>"
-endif
-" }}}

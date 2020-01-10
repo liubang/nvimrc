@@ -13,18 +13,14 @@
 
 scriptencoding utf-8
 
-" 只支持neovim
-if get(s:, 'loaded', 0) != 0 || v:version < 800 || !has("nvim")
+if !has('nvim') 
   finish
-else
-  let s:loaded = 1
-  set nocompatible
 endif
 
 let g:nvg = {
-      \ 'version': '1.0',
+      \ 'version': '2.0',
       \ 'author': 'liubang',
-      \ 'home': expand('<sfile>:h'),
+      \ 'home': fnamemodify(resolve(expand('<sfile>:p')), ':h'),
       \ 'os': {
       \   'mac': has('macunix'),
       \   'linux': has('unix') && !has('macunix') && !has('win32unix'),
@@ -36,11 +32,9 @@ let g:nvg = {
       \ }
 
 let g:nvg.core = g:nvg.home . '/core'
-let g:nvg.plugin_home = g:nvg.home . '/plugged/'
-let g:nvg.components_dir = g:nvg.home . '/units'
-let g:nvg.cache_dir = g:nvg.home . '/cache'
+let g:nvg.plugin_home = g:nvg.home . '/.cache/'
+let g:nvg.components_dir = g:nvg.home . '/units/'
 
 " runtimepath
 exec 'set rtp+=' . expand(g:nvg.core)
-
 call boot#run()

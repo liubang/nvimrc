@@ -1,32 +1,26 @@
 "======================================================================
 "
-" config.vim - 
+" ui.vim - 
 "
-" Created by liubang on 2018/11/20
-" Last Modified: 2018/11/20 10:37:45
+" Created by liubang on 2020/01/10
+" Last Modified: 2020/01/10 17:52:42
 "
 "======================================================================
 
 " {{{ color mode 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
 if g:nvg.tmux
-  if g:nvg.nvim
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   if g:nvg.termguicolors
     " fix bug for vim
-    if !g:nvg.nvim
-      set t_8f=^[[38;2;%lu;%lu;%lum
-      set t_8b=^[[48;2;%lu;%lu;%lum
-    endif
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
     set termguicolors
   else
     set t_Co=256
   endif
-
   if &ttimeoutlen > 60 || &ttimeoutlen <= 0
     set ttimeoutlen=60
   endif
@@ -35,8 +29,12 @@ else
 endif
 " }}}
 
-" {{{ lightline & tabline
+set number
+set fillchars+=vert:\|  " add a bar for vertical splits
+set fcs=eob:\           " hide ~
+set nolist
 
+" {{{ lightline & tabline
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
@@ -114,12 +112,63 @@ function! StartifyEntryFormat()
 endfunction
 " }}}
 
-"{{{ default
-" 总是显示行号
-set number
-" set showbreak=↪
-set fillchars+=vert:\|  " add a bar for vertical splits
-set fcs=eob:\           " hide ~
-set nolist
-"set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
-"}}}
+
+" {{{ quickui
+if exists('*nvim_open_win') > 0
+  call quickui#menu#reset()
+  call quickui#menu#install('&File', [
+        \ [ "&Open\t(:e)", 'call feedkeys(":e ")' ],
+        \ [ "&Save\t(:w)", 'write' ],
+        \ [ "--", ],
+        \ [ "File &Explorer", 'Defx', 'Taggle file exporer' ],
+        \ [ "Switch &Files", 'Files .' ],
+        \ [ "Switch &Buffers", 'call quickui#tools#list_buffer("e")' ],
+        \ [ "--", ],
+        \ [ "E&xit", 'qa' ],
+        \ ])
+
+  call quickui#menu#install('&Edit', [
+        \ [ "&Trailing Space", 'call utils#strip_trailing_whitespace()', '' ],
+        \ [ "&Find\t", 'Ag', '' ],
+        \ [ "F&ormat", 'Format' ],
+        \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],
+        \ ])
+
+  call quickui#menu#install('&Build', [
+        \ [ "&Compile File\tCtrl-b", 'Build' ],
+        \ [ "&E&xecute File\tCtrl-r", 'Run' ],
+        \ [ '--','' ],
+        \ [ "Clang &Format", 'ClangFormat' ],
+        \ ])
+
+  call quickui#menu#install('&Tools', [
+        \ [ "View &Diff", 'Gdiffsplit' ], 
+        \ [ "Show &Log", 'Gclog' ],
+        \ [ "Git &Blame", 'Gblame' ],
+        \ [ '--', '' ],
+        \ [ "List &Function", 'call quickui#tools#list_function()', '' ],
+        \ [ "Display &Messages", 'call quickui#tools#display_messages()', '' ],
+        \ [ "&Tagbar", 'Vista!!', '' ],
+        \ [ "&Choose Window/Tab", 'ChooseWin', '' ],
+        \ [ "Display Ca&lendar", 'Calendar', '' ],
+        \ ])
+
+  call quickui#menu#install('Help (&?)', [
+        \ [ "&Cheatsheet", 'help index', '' ],
+        \ [ 'T&ips', 'help tips', '' ],
+        \ [ '--','' ],
+        \ [ "&Tutorial", 'help tutor', '' ],
+        \ [ '&Quick Reference', 'help quickref', '' ],
+        \ [ '&Summary', 'help summary', '' ],
+        \ [ '--','' ],
+        \ [ "&Vim Script", 'help eval', '' ], 
+        \ [ "&Function List", 'help function-list', '' ],
+        \ ], 10000)
+  let g:quickui_color_scheme = 'gruvbox'
+  let g:quickui_border_style = 2
+  " let g:quickui_show_tip = 1
+  " tool bar open
+  noremap <silent><Leader>to :call quickui#menu#open()<CR>
+  nnoremap <silent><expr><Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call quickui#tools#list_buffer('e')\<CR>"
+endif
+" }}}

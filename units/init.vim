@@ -1,12 +1,13 @@
 "======================================================================
 "
-" config.vim - 
+" init.vim - 
 "
-" Created by liubang on 2018/11/23
-" Last Modified: 2018/11/23 18:09:06
+" Created by liubang on 2020/01/10
+" Last Modified: 2020/01/10 17:49:35
 "
 "======================================================================
 
+set nocompatible
 syntax enable
 syntax on
 set encoding=UTF-8
@@ -265,25 +266,9 @@ autocmd BufReadPost *
 
 " http://vim.wikia.com/wiki/Always_start_on_first_line_of_git_commit_message
 autocmd BufEnter * if &filetype == "gitcommit" | call setpos('.', [0, 1, 1, 0]) | endif
-
-autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
+" autocmd CustGroupCmd CursorHold *? syntax sync minlines=300
 " }}}
 
 " {{{ command
 command! -nargs=0 -bang CleanBuffer call utils#clean_buffers()
-
-function! s:new_file(args)
-  execute "tabnew " . a:args
-endfunction
-
-function! s:vs_new_file(args)
-  execute "vsplit " . a:args
-endfunction
-
-function! s:sp_new_file(args)
-  execute "split " . a:args
-endfunction
-command! -nargs=? -bang -complete=file New call s:new_file(<q-args>)
-command! -nargs=? -bang -complete=file SpNew call s:sp_new_file(<q-args>)
-command! -nargs=? -bang -complete=file VsNew call s:vs_new_file(<q-args>)
 " }}}

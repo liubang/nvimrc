@@ -1,7 +1,2 @@
-custom/*
-.vim
-doc
-plugged
-core/autoload/plug.vim
-cache/*
+.cache
 sessions
