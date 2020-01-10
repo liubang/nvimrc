@@ -167,6 +167,7 @@ command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
+  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd FileType vim let b:coc_pairs_disabled = ['"']
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')

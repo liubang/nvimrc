@@ -9,7 +9,7 @@
 
 " {{{ lsp
 call dein#add('honza/vim-snippets')
-call dein#add('neoclide/coc.nvim', {'rev': 'release'})
+call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 call dein#add('neoclide/jsonc.vim', {'on_ft': ['json', 'jsonc']})
 " }}}
 

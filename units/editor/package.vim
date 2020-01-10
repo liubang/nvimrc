@@ -6,14 +6,7 @@
 " Last Modified: 2018/11/20 13:00:38
 "
 "======================================================================
-call dein#add('easymotion/vim-easymotion', {'on_func': [ 
-      \ '<Plug>(easymotion-lineforward)',
-      \ '<Plug>(easymotion-j)',
-      \ '<Plug>(easymotion-k)',
-      \ '<Plug>(easymotion-linebackward)',
-      \ '<Plug>(easymotion-bd-w)',
-      \ '<Plug>(easymotion-overwin-w)'
-      \ ]})
+call dein#add('easymotion/vim-easymotion')
 call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
 call dein#add('Shougo/defx.nvim')
 call dein#add('kristijanhusak/defx-icons')
