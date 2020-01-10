@@ -112,7 +112,6 @@ function! StartifyEntryFormat()
 endfunction
 " }}}
 
-
 " {{{ quickui
 if exists('*nvim_open_win') > 0
   call quickui#menu#reset()
@@ -150,7 +149,10 @@ if exists('*nvim_open_win') > 0
         \ [ "Display &Messages", 'call quickui#tools#display_messages()', '' ],
         \ [ "&Tagbar", 'Vista!!', '' ],
         \ [ "&Choose Window/Tab", 'ChooseWin', '' ],
-        \ [ "Display Ca&lendar", 'Calendar', '' ],
+        \ [ "Display Ca&lendar", 'Calendar -first_day=monday', '' ],
+        \ [ "Ter&minal", 'FloatermToggle', '' ],
+        \ [ '--', '' ],
+        \ [ "Plugin &Update", 'DeinUpdate', '' ],
         \ ])
 
   call quickui#menu#install('Help (&?)', [

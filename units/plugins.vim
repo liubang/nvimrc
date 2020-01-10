@@ -49,6 +49,7 @@ call dein#add('google/vim-maktaba')
 call dein#add('bazelbuild/vim-bazel')
 call dein#add('skywind3000/vim-quickui')
 call dein#add('skywind3000/asyncrun.vim', {'on_cmd': ['AsyncRun', 'AsyncRun!']})
+call dein#add('voldikss/vim-floaterm', {'on_cmd': ['FloatermToggle', 'FloatermNew']})
 
 call dein#add('neoclide/coc.nvim', {'merged':0, 'build': 'yarn install --frozen-lockfile'})
 call dein#add('honza/vim-snippets')

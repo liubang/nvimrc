@@ -478,3 +478,17 @@ let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel = 0
 " }}}
 
+" {{{ vim-floaterm
+function s:floatermSettings()
+    setlocal nonumber
+endfunction
+autocmd FileType terminal call s:floatermSettings()
+autocmd User Startified setlocal buflisted
+let g:floaterm_type = 'floating'
+let g:floaterm_wedth = 0.8 * &columns
+let g:floaterm_height = 0.6 * &lines
+let g:floaterm_position = 'auto'
+let g:floaterm_keymap_toggle = '<Ctrl>-d'
+nnoremap <silent><Leader>fn :FloatermNew<CR>
+" }}}
+
