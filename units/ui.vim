@@ -33,6 +33,17 @@ set number
 set fillchars+=vert:\|  " add a bar for vertical splits
 set fcs=eob:\           " hide ~
 set nolist
+let SignColumnGuiBg = matchstr(execute('hi SignColumn'), 'guibg=\zs\S*')
+exe 'hi GitAdd                guifg=#00FF00 guibg=' . SignColumnGuiBg
+exe 'hi GitModify             guifg=#00FFFF guibg=' . SignColumnGuiBg
+exe 'hi GitDeleteTop          guifg=#FF2222 guibg=' . SignColumnGuiBg
+exe 'hi GitDeleteBottom       guifg=#FF2222 guibg=' . SignColumnGuiBg
+exe 'hi GitDeleteTopAndBottom guifg=#FF2222 guibg=' . SignColumnGuiBg
+exe 'hi CocHintSign           guifg=#15aabf guibg=' . SignColumnGuiBg
+exe 'hi CocInfoSign           guifg=#fab005 guibg=' . SignColumnGuiBg
+exe 'hi CocWarningSign        guifg=#ff922b guibg=' . SignColumnGuiBg
+exe 'hi CocErrorSign          guifg=#ff0000 guibg=' . SignColumnGuiBg
+unlet SignColumnGuiBg
 
 " {{{ lightline & tabline
 silent! set laststatus=2   " 总是显示状态栏
