@@ -1,40 +1,19 @@
-"======================================================================
-"
-" init.vim - 
-"
-" Created by liubang on 2018/11/20
-" Last Modified: 2018/11/20 13:01:42
-"
-"======================================================================
-
-" Maintainer: liubang <https://github.com/iliubang>
-" Version: 0.1
 " vim: et ts=2 sts=2 sw=2
 
-scriptencoding utf-8
-
-if !has('nvim') 
+if !has('nvim')
   finish
 endif
 
-let g:nvg = {
-      \ 'version': '2.0',
-      \ 'author': 'liubang',
-      \ 'home': fnamemodify(resolve(expand('<sfile>:p')), ':h'),
-      \ 'os': {
-      \   'mac': has('macunix'),
-      \   'linux': has('unix') && !has('macunix') && !has('win32unix'),
-      \ },
-      \ 'tmux': !empty($TMUX),
-      \ 'nvim': has('nvim'),
-      \ 'termguicolors': has('termguicolors'),
-      \ 'build': {}
-      \ }
+let g:nvg_version = 'v2.0'
+let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let g:nvg_cache_path = expand(g:nvg_root . '/.cache')
+let g:nvg_unit = expand(g:nvg_root . '/unit')
+exec 'set rtp+=' . g:nvg_root
+command! -nargs=1 INC exec 'so '. g:nvg_unit . '/' . <args> . '.vim'
+call plug#init()
+call plug#load(expand(g:nvg_unit . '/plugins.vim'))
 
-let g:nvg.core = g:nvg.home . '/core'
-let g:nvg.plugin_home = g:nvg.home . '/.cache/'
-let g:nvg.components_dir = g:nvg.home . '/units/'
-
-" runtimepath
-exec 'set rtp+=' . expand(g:nvg.core)
-call boot#run()
+INC 'viminit'
+INC 'ui'
+INC 'tools'
+INC 'coder'

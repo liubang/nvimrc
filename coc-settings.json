@@ -139,11 +139,11 @@
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   // java
-  // "java.jdt.ls.home": "/opt/app/jdtls",
-  // "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
-  // "java.errors.incompleteClasspath.severity": "ignore",
-  // "java.import.gradle.enabled": true,
-  // "java.import.maven.enabled": true,
+  "java.jdt.ls.home": "/opt/app/jdtls",
+  "java.jdt.ls.vmargs": "-javaagent:/opt/app/jar/lombok.jar -Xbootclasspath/p:/opt/app/jar/lombok.jar",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.import.gradle.enabled": true,
+  "java.import.maven.enabled": true,
   // go
   "go.goplsOptions": {
     "usePlaceholders": true,
