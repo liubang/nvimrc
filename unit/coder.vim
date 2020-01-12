@@ -95,7 +95,7 @@ if has('macunix')
     \   }
     \ }
     \ })
-elseif g:nvg.os.linux 
+elseif has('unix') && !has('macunix') && !has('win32unix')
   call coc#config('languageserver', {
     \ 'ccls': {
     \   'command': 'ccls',
