@@ -31,15 +31,13 @@ set smartindent
 set cindent
 set expandtab
 set mousehide
-set noshowmode
 set updatetime=300
 set timeout
 set timeoutlen=1000
 set ttimeout
 set ttimeoutlen=10
-" set ruler
-set showcmd
-set showmode
+set noshowcmd
+set noshowmode
 " 显示匹配的括号
 set showmatch
 " 显示括号匹配的时间
@@ -182,7 +180,7 @@ nnoremap <Leader>w\| <C-W>v
 " }}}
 
 " {{{ terminal 
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Leader><Esc> <C-\><C-n>
 tnoremap <Leader>wh <C-\><C-N><C-w>h
 tnoremap <Leader>wj <C-\><C-N><C-w>j
 tnoremap <Leader>wl <C-\><C-N><C-w>l

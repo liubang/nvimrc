@@ -16,36 +16,21 @@ let g:coc_global_extensions = [
       \'coc-sql',
       \'coc-xml',
       \'coc-calc',
-      \]
-
-" fe
-call extend(g:coc_global_extensions, [ 
       \'coc-css', 
       \'coc-html', 
       \'coc-emmet',
       \'coc-tailwindcss', 
       \'coc-vetur', 
-      \'coc-angular', 
       \'coc-tsserver',
-      \'coc-stylelint']) 
-
-" java
-call add(g:coc_global_extensions, 'coc-java')
-
-" php
-call add(g:coc_global_extensions, 'coc-phpls')
-
-" python
-call add(g:coc_global_extensions, 'coc-pyright')
-
-" rust
-call add(g:coc_global_extensions, 'coc-rls')
-
-" docker
-call add(g:coc_global_extensions, 'coc-docker')
-
-" sh
-call add(g:coc_global_extensions, 'coc-sh')
+      \'coc-stylelint',
+      \'coc-java',
+      \'coc-go',
+      \'coc-phpls',
+      \'coc-pyright',
+      \'coc-rls',
+      \'coc-docker',
+      \'coc-sh',
+      \]
 
 " c/c++
 let c_no_curly_error=1
@@ -113,8 +98,6 @@ elseif has('unix') && !has('macunix') && !has('win32unix')
     \ })
 endif
 
-" golang
-call extend(g:coc_global_extensions, ['coc-go'])
 " vim-go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1

@@ -1,5 +1,6 @@
-silent! setl laststatus=0 
-silent! setl listchars=
+silent! setl laststatus=0 noshowmode noruler nonumber norelativenumber
+" Clear the message
+echo "\r"
 augroup fzf
   autocmd!
   autocmd BufLeave <buffer> set laststatus=2 
