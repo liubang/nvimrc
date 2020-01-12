@@ -10,3 +10,10 @@ function! utils#get_vim_version()
     return 'vim ' . v:version
   endif
 endfunc
+
+function! utils#errmsg(msg) 
+  redraw | echo '' | redraw
+  echohl ErrorMsg
+  echom a:msg
+  echohl NONE
+endfunc

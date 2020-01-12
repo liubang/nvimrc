@@ -19,7 +19,8 @@ let g:coc_global_extensions = [
       \]
 
 " fe
-call extend(g:coc_global_extensions, ['coc-css', 
+call extend(g:coc_global_extensions, [ 
+      \'coc-css', 
       \'coc-html', 
       \'coc-emmet',
       \'coc-tailwindcss', 

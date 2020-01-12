@@ -180,3 +180,11 @@ nnoremap <Leader>w- <C-W>s
 nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
 " }}}
+
+" {{{ terminal 
+tnoremap <Esc> <C-\><C-n>
+tnoremap <Leader>wh <C-\><C-N><C-w>h
+tnoremap <Leader>wj <C-\><C-N><C-w>j
+tnoremap <Leader>wl <C-\><C-N><C-w>l
+tnoremap <Leader>wk <C-\><C-N><C-w>k
+" }}}

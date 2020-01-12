@@ -7,8 +7,9 @@ function! plug#init() abort
     let dein_dir = s:cache_path . '/repos/github.com/Shougo/dein.vim'  
     if !isdirectory(dein_dir)
       exec '!git clone https://github.com/Shougo/dein.vim ' . dein_dir
+      autocmd VimEnter * call dein#install() | source $MYVIMRC
       if v:shell_error
-        //TODO 
+        call utils#errmsg('dein installation has failed! is git installed?')
       endif
     endif
     exec 'set runtimepath+=' . substitute(fnamemodify(dein_dir, ':p'), '/$', '', '')

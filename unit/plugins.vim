@@ -1,9 +1,9 @@
 " ui
-call dein#add('sainnhe/gruvbox-material', {'rev': 'neosyn'})
 call dein#add('ryanoasis/vim-devicons')
-call dein#add('hardcoreplayers/spaceline.vim')
-call dein#add('mhinz/vim-startify')
-call dein#add('bagrat/vim-buffet')
+call dein#add('sainnhe/gruvbox-material', {'rev': 'neosyn'})
+call dein#add('hardcoreplayers/spaceline.vim', {'depends': 'vim-devicons'})
+call dein#add('mhinz/vim-startify', {'depends': 'vim-devicons'})
+call dein#add('bagrat/vim-buffet', {'depends': 'vim-devicons'})
 
 " tools
 call dein#add('wsdjeg/dein-ui.vim')
