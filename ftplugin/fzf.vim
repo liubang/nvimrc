@@ -1,6 +1,6 @@
-setl laststatus=0 noshowmode noruler
-setl listchars=
+silent! setl laststatus=0 
+silent! setl listchars=
 augroup fzf
   autocmd!
-  autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd BufLeave <buffer> set laststatus=2 
 augroup END
