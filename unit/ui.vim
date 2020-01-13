@@ -38,8 +38,13 @@ set guioptions-=e  " Don't use GUI tabline
 let g:spaceline_seperate_style= 'arrow-fade'
 let g:spaceline_colorscheme = 'space'
 let g:spaceline_line_symbol = 1
-let g:buffet_always_show_tabline = 0
-let g:buffet_tab_icon = ""
+" buffet
+let g:buffet_always_show_tabline = 1
+if has('macunix')
+  let g:buffet_tab_icon = "\uf302"
+elseif has('unix') && !has('macunix') && !has('win32unix')
+  let g:buffet_tab_icon = "\uf17c"
+endif
 let g:buffet_show_index = 1
 let g:buffet_powerline_separators = 1
 let g:buffet_use_devicons = 0
