@@ -277,10 +277,6 @@ vmap V <Plug>(expand_region_shrink)
 " }}}
 
 " {{{ vim-floaterm
-function s:floatermSettings()
-    setlocal nonumber
-endfunction
-autocmd FileType terminal call s:floatermSettings()
 autocmd User Startified setlocal buflisted
 let g:floaterm_type = 'normal'
 let g:floaterm_height = 0.35 * &lines
