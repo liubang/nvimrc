@@ -55,7 +55,8 @@ set linespace=0
 set pumheight=30
 set winminheight=0
 set wildmode=list:longest,full
-set backspace=2         " 在insert模式下用退格键删除
+" 设置Backspace按键模式
+set backspace=eol,start,indent
 set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundaries
 set cursorline
 set fileformats=unix,dos,mac
