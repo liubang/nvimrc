@@ -279,8 +279,7 @@ vmap V <Plug>(expand_region_shrink)
 " {{{ vim-floaterm
 autocmd User Startified setlocal buflisted
 let g:floaterm_type = 'normal'
-let g:floaterm_height = 0.35 * &lines
-let g:floaterm_position = 'auto'
+let g:floaterm_height = 0.35
 let g:floaterm_keymap_toggle = '<Ctrl>-d'
 nnoremap <silent><Leader>tw :FloatermNew<CR>
 " }}}
