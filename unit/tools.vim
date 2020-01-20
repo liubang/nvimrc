@@ -300,6 +300,8 @@ if exists('*nvim_open_win') > 0
 
   call quickui#menu#install('&Edit', [
         \ [ "&Trailing Space", 'call utils#strip_trailing_whitespace()', '' ],
+        \ [ 'Update &ModTime', 'call comment#update()' ],
+        \ [ '&CopyRight', 'call comment#copyright("liubang")' ],
         \ [ "&Find\t", 'Ag', '' ],
         \ [ "F&ormat", 'Format' ],
         \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],

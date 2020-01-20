@@ -141,6 +141,9 @@ nmap <silent><leader>fm <Plug>(coc-format-selected)
 nnoremap <silent> <space>y       :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+command! -nargs=1 Modeline :call comment#et(<q-args>)
+command! -nargs=0 CopyRight :call comment#copyright('liubang')
+command! -nargs=0 UpdateLastModified :call comment#update()
 
 augroup coc_au
   autocmd!
