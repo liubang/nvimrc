@@ -24,10 +24,9 @@ set noundofile
 set nobackup
 set noswapfile
 set shiftwidth=4
-set tabstop=4
 set softtabstop=4
+set tabstop=4
 set autoindent
-set smartindent
 set cindent
 set expandtab
 set mousehide
