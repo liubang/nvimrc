@@ -1,17 +1,27 @@
-" ui
+"======================================================================
+"
+" plugins.vim - 
+"
+" Created by liubang on 2020/01/21
+" Last Modified: 2020/01/21 16:29
+"
+"======================================================================
+
+" {{{ ui
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('sainnhe/gruvbox-material', {'rev': 'neosyn'})
 call dein#add('hardcoreplayers/spaceline.vim', {'depends': 'vim-devicons'})
 call dein#add('mhinz/vim-startify', {'depends': 'vim-devicons'})
 call dein#add('bagrat/vim-buffet', {'depends': 'vim-devicons'})
+" }}}
 
-" tools
+" {{{ tools
 call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('Shougo/defx.nvim')
-call dein#add('kristijanhusak/defx-icons', {'depends': ['vim-devicons', 'defx.nvim']})
-call dein#add('kristijanhusak/defx-git', {'depends': 'defx.nvim'})
+call dein#add('kristijanhusak/defx-icons', { 'depends': ['vim-devicons', 'defx.nvim'] })
+call dein#add('kristijanhusak/defx-git', { 'depends': 'defx.nvim' })
 call dein#add('tpope/vim-fugitive')
-call dein#add('junegunn/vim-easy-align', {'on_cmd': ['EasyAlign']})
+call dein#add('junegunn/vim-easy-align', { 'on_map': '<Plug>(EasyAlign)', 'on_cmd': 'EasyAlign' })
 call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 call dein#add('dominikduda/vim_current_word')
@@ -26,8 +36,9 @@ call dein#add('mg979/vim-visual-multi')
 call dein#add('t9md/vim-choosewin', {'on_cmd': ['ChooseWin']})
 call dein#add('tpope/vim-surround')
 call dein#add('itchyny/calendar.vim', {'on_cmd': ['Calendar']})
+" }}}
 
-" coder
+" {{{ coder
 call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 call dein#add('honza/vim-snippets')
 call dein#add('neoclide/jsonc.vim', {'on_ft': ['json', 'jsonc']})
@@ -38,3 +49,4 @@ call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'lex', 
 
 call dein#add('fatih/vim-go', {'on_ft': ['go']})
 call dein#add('StanAngeloff/php.vim', {'on_ft': ['php']})
+" }}}

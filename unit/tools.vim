@@ -203,72 +203,6 @@ command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 
 nnoremap <Leader>gc :GitCommit<Space>
-
-function! s:async_build(args)
-  if &filetype == 'c'
-    if empty(a:args)
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw cc " . g:nvg.build.cflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-    else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw cc " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-    endif
-  elseif &filetype == 'cpp'
-    if empty(a:args)
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw c++ " . g:nvg.build.cppflags . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-    else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw c++ " . a:args . " $(VIM_FILEPATH) -o $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-    endif
-  elseif &filetype == 'java'
-    if empty(a:args)
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw javac ${VIM_FILEPATH}"
-    else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw javac " . a:args . " $(VIM_FILEPATH)"
-    endif
-  elseif &filetype == 'go'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go build " . a:args
-  endif
-endfunc
-
-function! s:async_run(args)
-  if &filetype == 'c' || &filetype == 'cpp'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT) " . a:args
-  elseif &filetype == 'php'
-    if !executable('php')
-      call utils#err("php is not executable", s:scriptname) 
-    else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw php -f $(VIM_FILEPATH) " . a:args
-    endif
-  elseif &filetype == 'python'
-    if !executable('python')
-      call utils#err("python is not executable", s:scriptname)
-    else
-      execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw python $(VIM_FILEPATH) " . a:args 
-    endif
-  elseif &filetype == 'java'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw java $(VIM_FILENOEXT)"
-  elseif &filetype == 'sh'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw sh $(VIM_FILEPATH) " . a:args
-  elseif &filetype == 'go'
-    execute "AsyncRun -cwd=$(VIM_FILEDIR) -raw go run $(VIM_FILEPATH) " . a:args
-  endif
-endfunc
-
-function! s:maven(opt, goal)
-  if executable('mvn')
-    execute "AsyncRun -cwd=<root> -raw mvn " . a:opt . " " . a:goal
-  else
-    call utils#err("mvn is not executable", s:scriptname)
-  endif
-endfunc
-
-command! -bang -nargs=? Build call s:async_build(<q-args>)
-command! -bang -nargs=? Run call s:async_run(<q-args>)
-command! -bang -nargs=? Maven call s:maven(<q-args>, "")
-command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
-command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
-cabbrev build <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Build" : "build"<CR>
-cabbrev run <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Run" : "run"<CR>
-nmap <silent> <C-B> :Build<CR>
-nmap <silent> <C-R> :Run<CR>
 " }}}
 
 " {{{ vim-expand-region
@@ -308,8 +242,7 @@ if exists('*nvim_open_win') > 0
         \ ])
 
   call quickui#menu#install('&Build', [
-        \ [ "&Compile File\tCtrl-b", 'Build' ],
-        \ [ "&E&xecute File\tCtrl-r", 'Run' ],
+        \ [ "&Compile and execute\tCtrl-r", 'BuildRun' ],
         \ [ '--','' ],
         \ [ "Clang &Format", 'ClangFormat' ],
         \ ])
@@ -347,4 +280,9 @@ if exists('*nvim_open_win') > 0
   noremap <silent><Leader>to :call quickui#menu#open()<CR>
   nnoremap <silent><expr><Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call quickui#tools#list_buffer('e')\<CR>"
 endif
+" }}}
+
+" {{{ vim-easy-align 
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 " }}}

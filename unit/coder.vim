@@ -1,4 +1,13 @@
-" vim: et ts=2 sts=2 sw=2
+"======================================================================
+"
+" coder.vim - 
+"
+" Created by liubang on 2020/01/21
+" Last Modified: 2020/01/21 16:29
+"
+"======================================================================
+
+" {{{ ext
 let g:coc_global_extensions = [
       \'coc-word',
       \'coc-lists',
@@ -31,8 +40,9 @@ let g:coc_global_extensions = [
       \'coc-docker',
       \'coc-sh',
       \]
+" }}}
 
-" c/c++
+" {{{ c/c++
 let c_no_curly_error=1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_experimental_template_highlight = 0
@@ -97,8 +107,9 @@ elseif has('unix') && !has('macunix') && !has('win32unix')
     \ }
     \ })
 endif
+" }}}
 
-" vim-go
+" {{{ vim-go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -115,8 +126,9 @@ let g:go_highlight_generate_tags = 1
 "disable use K to run godoc
 let g:go_doc_keywordprg_enabled = 0
 let g:go_def_mapping_enabled = 0
+" }}}
 
-" coc
+" {{{ coc
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 function! s:check_back_space() abort
@@ -176,3 +188,45 @@ augroup coc_au
   autocmd ColorScheme * highlight! link CocInfoHighlight NoCocUnderline
   autocmd ColorScheme * highlight! link CocHintHighlight NoCocUnderline
 augroup END
+" }}}
+
+" {{{ build tools 
+if dein#tap('asyncrun.vim')
+  let g:nvg_build_cflags = get(g:, 'nvg_build_cflags', '-std=c11 -g -Wall')
+  let g:nvg_build_cppflags = get(g:, 'nvg_build_cppflags', '-std=c++14 -g -Wall')
+  function! s:build_and_run()
+    let l:cmd = {
+      \ 'c'      : "cc " . g:nvg_build_cflags . " % -o %<; ./%<",
+      \ 'cpp'    : "c++ " . g:nvg_build_cppflags . " % -o %<; ./%<",
+      \ 'sh'     : "sh %",
+      \ 'php'    : "php %",
+      \ 'java'   : "javac %; java %<",
+      \ 'go'     : "go run %",
+      \ 'python' : "python %",
+      \ 'rust'   : "rustc % -o %<; ./%<",
+      \ 'haskell': "ghc % -o %<; ./%<",
+      \ }
+    let l:ft = &filetype
+    if has_key(l:cmd, l:ft)
+      exec 'w'
+      exec "AsyncRun! ".l:cmd[l:ft]
+    endif
+  endfunc
+
+  function! s:maven(opt, goal)
+    if executable('mvn')
+      execute "AsyncRun -cwd=<root> -raw mvn " . a:opt . " " . a:goal
+    else
+      call utils#err("mvn is not executable", s:scriptname)
+    endif
+  endfunc
+  " commands
+  command! -bang -nargs=0 BuildRun call s:build_and_run()
+  command! -bang -nargs=? Maven call s:maven(<q-args>, "")
+  command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
+  command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
+  cabbrev build <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Build" : "build"<CR>
+  cabbrev run <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Run" : "run"<CR>
+  nmap <silent> <C-R> :BuildRun<CR>
+endif
+" }}}

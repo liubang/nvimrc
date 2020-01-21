@@ -1,7 +1,13 @@
-" vim: et ts=2 sts=2 sw=2
+"======================================================================
+"
+" ui.vim - 
+"
+" Created by liubang on 2020/01/21
+" Last Modified: 2020/01/21 16:30
+"
+"======================================================================
 
 syntax on
-
 if empty($TMUX) 
   "if has('termguicolors')
     "set termguicolors
@@ -31,7 +37,6 @@ let g:gruvbox_plugin_hi_groups = 1
 let g:gruvbox_transp_bg = 1
 let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
-
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline

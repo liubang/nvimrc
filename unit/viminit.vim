@@ -1,4 +1,11 @@
-" vim: et ts=2 sts=2 sw=2
+"======================================================================
+"
+" viminit.vim - 
+"
+" Created by liubang on 2020/01/21
+" Last Modified: 2020/01/21 16:30
+"
+"======================================================================
 
 set nocompatible
 syntax enable
@@ -110,7 +117,6 @@ endif
 
 " 文件搜索和补全时忽略下面扩展名
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
-
 set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib "stuff to ignore when tab completing
 set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
 set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz    " MacOSX/Linux
