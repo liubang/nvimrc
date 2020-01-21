@@ -30,7 +30,13 @@ call dein#add('skywind3000/vim-quickui')
 call dein#add('skywind3000/asyncrun.vim', {'on_cmd': ['AsyncRun', 'AsyncRun!']})
 call dein#add('voldikss/vim-floaterm', {'on_cmd': ['FloatermToggle', 'FloatermNew']})
 call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
-call dein#add('easymotion/vim-easymotion')
+call dein#add('easymotion/vim-easymotion', {'on_map': [ 
+      \ '<Plug>(easymotion-lineforward)',
+      \ '<Plug>(easymotion-j)',
+      \ '<Plug>(easymotion-k)',
+      \ '<Plug>(easymotion-linebackward)',
+      \ '<Plug>(easymotion-bd-w)',
+      \ '<Plug>(easymotion-overwin-w)']})
 call dein#add('Shougo/vinarise.vim', {'on_cmd': 'Vinarise'})
 call dein#add('mg979/vim-visual-multi')
 call dein#add('t9md/vim-choosewin', {'on_cmd': ['ChooseWin']})
