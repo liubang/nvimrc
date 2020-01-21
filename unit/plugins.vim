@@ -42,6 +42,14 @@ call dein#add('mg979/vim-visual-multi')
 call dein#add('t9md/vim-choosewin', {'on_cmd': ['ChooseWin']})
 call dein#add('tpope/vim-surround')
 call dein#add('itchyny/calendar.vim', {'on_cmd': ['Calendar']})
+call dein#add('preservim/nerdcommenter', {'on_map': [ 
+      \ '<Plug>NERDCommenterComment',
+      \ '<Plug>NERDCommenterNested',
+      \ '<Plug>NERDCommenterToggle',
+      \ '<Plug>NERDCommenterSexy',
+      \ '<Plug>NERDCommenterToEOL',
+      \ '<Plug>NERDCommenterUncomment',
+      \ ]})
 " }}}
 
 " {{{ coder

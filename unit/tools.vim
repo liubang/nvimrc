@@ -238,6 +238,7 @@ if exists('*nvim_open_win') > 0
         \ [ '&CopyRight', 'call comment#copyright("liubang")' ],
         \ [ "&Find\t", 'Ag', '' ],
         \ [ "F&ormat", 'Format' ],
+        \ [ "Taggle Co&mment", 'call feedkeys("\<Plug>NERDCommenterToggle")' ],
         \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],
         \ ])
 
@@ -285,4 +286,17 @@ endif
 " {{{ vim-easy-align 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" }}}
+
+" {{{ nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCreateDefaultMappings = 0
+let g:NERDRemoveExtraSpaces = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+map <silent><Leader>cc <Plug>NERDCommenterToggle
+map <silent><Leader>cs <Plug>NERDCommenterSexy
+map <silent><Leader>cu <Plug>NERDCommenterUncomment
 " }}}
