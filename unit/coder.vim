@@ -128,6 +128,23 @@ let g:go_doc_keywordprg_enabled = 0
 let g:go_def_mapping_enabled = 0
 " }}}
 
+" {{{ markdown
+let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'top',
+      \ 'hide_yaml_meta': 1,
+      \ 'sequence_diagrams': {
+      \     'theme': 'hand'
+      \   }
+      \ }
+let g:mkdp_auto_close = 0
+nnoremap <silent><Leader>mp :MarkdownPreview<CR>
+" }}}
+
 " {{{ coc
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'

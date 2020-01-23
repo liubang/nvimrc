@@ -63,4 +63,6 @@ call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft': ['c', 'cpp', 'lex', 
 
 call dein#add('fatih/vim-go', {'on_ft': ['go']})
 call dein#add('StanAngeloff/php.vim', {'on_ft': ['php']})
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app & yarn install' })
 " }}}

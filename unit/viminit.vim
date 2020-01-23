@@ -203,6 +203,14 @@ nnoremap <Leader>ws <C-W>s
 nnoremap <Leader>w- <C-W>s
 nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
+
+function s:exit_to_normal() abort
+  if &filetype ==# 'fzf'
+    return "\<Esc>"
+  endif
+  return "\<C-\>\<C-n>"
+endfunc
+tnoremap <expr> <Esc> <SID>exit_to_normal()
 " }}}
 
 " {{{ terminal 
