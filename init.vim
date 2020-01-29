@@ -7,7 +7,7 @@ endif
 let g:nvg_version = 'v2.0'
 let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let g:nvg_cache_path = expand(g:nvg_root . '/.cache')
-let g:nvg_unit = expand(g:nvg_root . '/unit')
+let g:nvg_unit = expand(g:nvg_root . '/units')
 exec 'set rtp+=' . g:nvg_root
 command! -nargs=1 INC exec 'so '. g:nvg_unit . '/' . <args> . '.vim'
 call plug#init()
