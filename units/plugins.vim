@@ -56,6 +56,7 @@ call dein#add('preservim/nerdcommenter', {'on_map': [
 call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 call dein#add('honza/vim-snippets')
 call dein#add('neoclide/jsonc.vim', {'on_ft': ['json', 'jsonc']})
+call dein#add('peitalin/vim-jsx-typescript', {'on_ft': ['typescriptreact', 'tsx']})
 
 call dein#add('rhysd/vim-clang-format', {'on_ft': ['c', 'cpp', 'proto', 'objc']})
 call dein#add('sakhnik/nvim-gdb', {'build': 'sh install.sh', 'on_ft': ['c', 'cpp']})
