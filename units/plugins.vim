@@ -30,6 +30,7 @@ call dein#add('kana/vim-textobj-user', {'on_func': 'textobj#user#'})
 call dein#add('machakann/vim-sandwich', {'depends': ['vim-textobj-user']})
 call dein#add('skywind3000/vim-quickui')
 call dein#add('skywind3000/asyncrun.vim', {'on_cmd': ['AsyncRun', 'AsyncRun!']})
+call dein#add('skywind3000/asynctasks.vim', {'on_cmd': ['AsyncTask'], 'depends': ['asyncrun.vim']})
 call dein#add('voldikss/vim-floaterm', {'on_cmd': ['FloatermToggle', 'FloatermNew']})
 call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
 call dein#add('easymotion/vim-easymotion', {'on_map': [ 

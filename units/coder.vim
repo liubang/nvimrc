@@ -208,42 +208,5 @@ augroup END
 " }}}
 
 " {{{ build tools 
-if dein#tap('asyncrun.vim')
-  let g:nvg_build_cflags = get(g:, 'nvg_build_cflags', '-std=c11 -g -Wall')
-  let g:nvg_build_cppflags = get(g:, 'nvg_build_cppflags', '-std=c++14 -g -Wall')
-  function! s:build_and_run()
-    let l:cmd = {
-      \ 'c'      : "cc " . g:nvg_build_cflags . " % -o %<; ./%<",
-      \ 'cpp'    : "c++ " . g:nvg_build_cppflags . " % -o %<; ./%<",
-      \ 'sh'     : "sh %",
-      \ 'php'    : "php %",
-      \ 'java'   : "javac %; java %<",
-      \ 'go'     : "go run %",
-      \ 'python' : "python %",
-      \ 'rust'   : "rustc % -o %<; ./%<",
-      \ 'haskell': "ghc % -o %<; ./%<",
-      \ }
-    let l:ft = &filetype
-    if has_key(l:cmd, l:ft)
-      exec 'w'
-      exec "AsyncRun! ".l:cmd[l:ft]
-    endif
-  endfunc
-
-  function! s:maven(opt, goal)
-    if executable('mvn')
-      execute "AsyncRun -cwd=<root> -raw mvn " . a:opt . " " . a:goal
-    else
-      call utils#err("mvn is not executable", s:scriptname)
-    endif
-  endfunc
-  " commands
-  command! -bang -nargs=0 BuildRun call s:build_and_run()
-  command! -bang -nargs=? Maven call s:maven(<q-args>, "")
-  command! -bang -nargs=? MavenSkip call s:maven("-Dmaven.test.skip", <q-args>)
-  command! -bang -nargs=? MavenBuildModule call s:maven("-Dmaven.test.skip -am -pl", <q-args>)
-  cabbrev build <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Build" : "build"<CR>
-  cabbrev run <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Run" : "run"<CR>
-  nmap <silent> <C-R> :BuildRun<CR>
-endif
+let g:asynctasks_term_pos = 'right'
 " }}}
