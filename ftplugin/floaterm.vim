@@ -1,1 +1,1 @@
-setlocal nonumber signcolumn=no
+setlocal nonumber signcolumn=no cursorline

@@ -91,6 +91,7 @@ highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
 
 let g:webdevicons_enable_startify = 1
+let g:startify_files_number = 8
 let g:startify_custom_header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',
@@ -101,6 +102,7 @@ let g:startify_custom_header = [
                             \'     Version: ' . g:nvg_version,
                             \'        Vim : ' . utils#get_vim_version(),
                             \ ]
+autocmd User Startified setlocal buflisted
 
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'

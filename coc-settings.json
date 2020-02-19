@@ -3,6 +3,7 @@
   "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.formatOnType": false,
   "coc.preferences.extensionUpdateCheck": "never",
+  "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [

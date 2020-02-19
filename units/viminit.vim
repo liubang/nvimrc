@@ -7,17 +7,22 @@
 "
 "======================================================================
 
-set nocompatible
+"set nocompatible
 syntax enable
 syntax on
 set encoding=UTF-8
 set fileencoding=utf-8
 scriptencoding UTF-8
 set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
-set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
+set completeopt-=menu
+set completeopt+=menuone
+set completeopt-=longest
+set completeopt-=preview
+set completeopt+=noinsert
+set completeopt-=noselect
+set modeline
 set shortmess=atcOI
-" set signcolumn=yes
-set ignorecase
 set smartcase 
 set scrolljump=5
 set scrolloff=3
@@ -60,14 +65,12 @@ set report=0
 set linespace=0
 set pumheight=30
 set winminheight=0
-set wildmode=list:longest,full
 " 设置Backspace按键模式
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l  " Allow backspace and cursor keys to cross line boundaries
 set cursorline
 set fileformats=unix,dos,mac
-set autoread                                  " 文件在Vim之外修改过，自动重新读入
-" set synmaxcol=200
+set autoread " 文件在Vim之外修改过，自动重新读入
 set norelativenumber
 set nocursorcolumn
 " 禁用报警声和图标
@@ -75,9 +78,33 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
-" 利用通配符进行缓冲区跳转
+set cpoptions+=I
 set wildmenu
-set wildmode=longest:list,full
+set wildignorecase
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
+set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib 
+set wildignore+=__pycache__,.stversions,*.spl,*.out,%*
+set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
+set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz
+set wildignore+=*DS_Store*,*.ipch
+set wildignore+=*.gem
+set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
+set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
+set wildignore+=*/.nx/**,*.app,*.git,.git
+set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
+set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
+set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
+set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
+set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
+set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
+set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
+set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
+if matchstr(execute('silent version'), 'NVIM v\zs[^\n-]*') >= '0.4.0'
+  set shada='20,<50,s10
+  set inccommand=nosplit
+  set wildoptions+=pum
+  set pumblend=10
+endif
 
 " 禁止自动切换目录
 set noautochdir
@@ -114,25 +141,6 @@ endif
 if has('clipboard')
   set clipboard& clipboard+=unnamedplus
 endif
-
-" 文件搜索和补全时忽略下面扩展名
-set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
-set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib "stuff to ignore when tab completing
-set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
-set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz    " MacOSX/Linux
-set wildignore+=*DS_Store*,*.ipch
-set wildignore+=*.gem
-set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
-set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
-set wildignore+=*/.nx/**,*.app,*.git,.git
-set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
-set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
-set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
-set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
-set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
-set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
-set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
-set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 
 autocmd FileType xml,json,text
       \ if getfsize(expand("%")) > 10000000
@@ -176,6 +184,18 @@ xnoremap >  >gv
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-d> <Delete>
+
+" command mod
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <S-Left>
+cnoremap <C-f> <S-Right>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <expr> <C-n>  pumvisible() ? '<Right>' : '<Down>'
+cnoremap <expr> <C-p>  pumvisible() ? '<Left>' : '<Up>'
+cnoremap <expr> <Up>   pumvisible() ? '<C-p>' : '<up>'
+cnoremap <expr> <Down> pumvisible() ? '<C-n>' : '<down>'
 
 " buffer 
 nnoremap <Leader>bp :bprevious<CR>

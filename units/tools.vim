@@ -197,11 +197,9 @@ let g:asyncrun_open = 15
 let g:asyncrun_bell = 1
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 nnoremap <Leader>ar :AsyncRun<Space>
-
 " for git
 command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
-
 nnoremap <Leader>gc :GitCommit<Space>
 " }}}
 
@@ -211,7 +209,6 @@ vmap V <Plug>(expand_region_shrink)
 " }}}
 
 " {{{ vim-floaterm
-autocmd User Startified setlocal buflisted
 let g:floaterm_type = 'normal'
 let g:floaterm_height = 0.35
 let g:floaterm_keymap_toggle = '<Ctrl>-d'
