@@ -240,8 +240,6 @@ function! MenuHelp_TaskList()
   call quickui#tools#clever_listbox('tasks', rows, opts)
 endfunc
 
-command! -bang -nargs=0 TaskList call MenuHelp_TaskList()
-
 if exists('*nvim_open_win') > 0
   call quickui#menu#reset()
   call quickui#menu#install('&File', [
@@ -327,4 +325,39 @@ let g:NERDTrimTrailingWhitespace = 1
 map <silent><Leader>cc <Plug>NERDCommenterToggle
 map <silent><Leader>cs <Plug>NERDCommenterSexy
 map <silent><Leader>cu <Plug>NERDCommenterUncomment
+" }}}
+
+" {{{ asynctask
+let g:asynctasks_term_pos = 'right'
+nnoremap <silent><C-x> :AsyncTask build-and-run<CR>
+nnoremap <silent><C-b> :AsyncTask build<CR>
+nnoremap <silent><C-r> :AsyncTask run<CR> 
+function! s:asynctask_run(item)
+  let pos = stridx(a:item, "\t")
+  let cmd = 'AsyncTask ' . a:item[pos+1:-1]
+  execute 'silent ' . cmd
+endfunc
+function! s:fzf_tasks_list() 
+  let items = asynctasks#list('')
+  let rows = []
+  let index = 0
+  for item in items
+    if item.name =~ '^\.'
+      continue
+    endif
+    let text = '[' . index . '] '
+    let text .= "[" . item.scope . "]\t"
+    let rows += [text . item.name]
+    let index += 1
+  endfor
+  call fzf#run({
+    \ 'source': rows,
+    \ 'sink': function('s:asynctask_run'),
+    \ 'options': '-m +s',
+    \ 'down': '20%',
+    \ })
+endfunc
+command! -bang -nargs=0 TaskList call MenuHelp_TaskList()
+command! -bang -nargs=0 TaskListFzf call s:fzf_tasks_list()
+nnoremap <silent><Leader>ts :TaskListFzf<CR>
 " }}}
