@@ -90,6 +90,9 @@ highlight def link Defx_filename_3_Unknown Comment
 highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
 
+" floaterm
+highlight FloatermNF guibg=black
+
 let g:webdevicons_enable_startify = 1
 let g:startify_files_number = 8
 let g:startify_custom_header = [

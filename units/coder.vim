@@ -209,6 +209,7 @@ augroup END
 
 " {{{ build tools 
 let g:asynctasks_term_pos = 'right'
-nnoremap <silent><C-r> :AsyncTask build-and-run<CR>
+nnoremap <silent><C-x> :AsyncTask build-and-run<CR>
 nnoremap <silent><C-b> :AsyncTask build<CR>
+nnoremap <silent><C-r> :AsyncTask run<CR> 
 " }}}

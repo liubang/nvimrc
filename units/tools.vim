@@ -211,11 +211,37 @@ vmap V <Plug>(expand_region_shrink)
 " {{{ vim-floaterm
 let g:floaterm_type = 'normal'
 let g:floaterm_height = 0.35
+let g:floaterm_open_in_root = v:true
 let g:floaterm_keymap_toggle = '<Ctrl>-d'
 nnoremap <silent><Leader>tw :FloatermNew<CR>
 " }}}
 
 " {{{ quickui
+" copied from https://github.com/skywind3000/vim
+function! MenuHelp_TaskList()
+  let keymaps = '123456789abcdefimnopqrstuvwxyz'
+  let items = asynctasks#list('')
+  let rows = []
+  let size = strlen(keymaps)
+  let index = 0
+  for item in items 
+    if item.name =~ '^\.'
+      continue
+    endif
+    let cmd = strpart(item.command, 0, (&columns * 60) / 100)
+    let key = (index >= size)? ' ' : strpart(keymaps, index, 1)
+    let text = "[" . ((key != ' ')? ('&' . key) : ' ') . "]\t"
+    let text .= item.name . "\t[" . item.scope . "]\t" . cmd
+    let rows += [[text, 'AsyncTask ' . fnameescape(item.name)]]
+    let index += 1
+  endfor
+  let opts = {}
+  let opts.title = 'Task List'
+  call quickui#tools#clever_listbox('tasks', rows, opts)
+endfunc
+
+command! -bang -nargs=0 TaskList call MenuHelp_TaskList()
+
 if exists('*nvim_open_win') > 0
   call quickui#menu#reset()
   call quickui#menu#install('&File', [
@@ -240,7 +266,12 @@ if exists('*nvim_open_win') > 0
         \ ])
 
   call quickui#menu#install('&Build', [
-        \ [ "&Compile and execute\tCtrl-r", 'BuildRun' ],
+        \ [ "File &Execute\t<Ctrl-r>", 'AsyncTask run' ],
+        \ [ "File &Compile\t<Ctrl-b>", 'AsyncTask build' ],
+        \ [ "Compile And E&xecute\t<Ctrl-x>", 'AsyncTask build-and-run' ],
+        \ [ "File &Make", 'AsyncTask make' ],
+        \ [ '--','' ],
+        \ [ "&Task List", 'call MenuHelp_TaskList()' ],
         \ [ '--','' ],
         \ [ "Clang &Format", 'ClangFormat' ],
         \ ])

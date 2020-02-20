@@ -7,7 +7,8 @@
 "
 "======================================================================
 
-"set nocompatible
+" {{{ basic
+set nocompatible
 syntax enable
 syntax on
 set encoding=UTF-8
@@ -142,6 +143,9 @@ if has('clipboard')
   set clipboard& clipboard+=unnamedplus
 endif
 
+" }}}
+
+" {{{ autocmd
 autocmd FileType xml,json,text
       \ if getfsize(expand("%")) > 10000000
       \|  setlocal syntax=off
@@ -152,6 +156,7 @@ autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$")
       \|  execute "normal! g`\""
       \|endif
+" }}}
 
 " {{{ mapping
 " Release keymappings prefixes
@@ -224,16 +229,15 @@ nnoremap <Leader>w- <C-W>s
 nnoremap <Leader>wv <C-W>v
 nnoremap <Leader>w\| <C-W>v
 
+" terminal
 function s:exit_to_normal() abort
   if &filetype ==# 'fzf'
     return "\<Esc>"
   endif
   return "\<C-\>\<C-n>"
 endfunc
-tnoremap <expr> <Esc> <SID>exit_to_normal()
-" }}}
 
-" {{{ terminal 
+tnoremap <expr> <Esc> <SID>exit_to_normal()
 tnoremap <Leader><Esc> <C-\><C-n>
 tnoremap <Leader>wh <C-\><C-N><C-w>h
 tnoremap <Leader>wj <C-\><C-N><C-w>j
