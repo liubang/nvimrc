@@ -126,7 +126,7 @@ function! s:edit_file(item)
   execute 'silent e' l:file_path
 endfunc
 
-let s:fzf_options = "-i --border --no-unicode --prompt='\uf101 ' --algo=v2"
+let s:fzf_options = "-i --border --layout=reverse --exact --no-unicode --prompt='\uf101 ' --algo=v2"
 
 " Files + devicons
 function! s:fzf()
