@@ -126,13 +126,14 @@ function! s:edit_file(item)
   execute 'silent e' l:file_path
 endfunc
 
+let s:fzf_options = "-i --border --no-unicode --prompt='\uf101 ' --algo=v2"
+
 " Files + devicons
 function! s:fzf()
-  let l:fzf_files_options = ''
   call fzf#run({
         \ 'source': <sid>files(),
         \ 'sink': function('s:edit_file'),
-        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'options': '-m ' . s:fzf_options,
         \ 'down': '30%'})
 endfunc
 
@@ -333,27 +334,40 @@ nnoremap <silent><C-x> :AsyncTask build-and-run<CR>
 nnoremap <silent><C-b> :AsyncTask build<CR>
 nnoremap <silent><C-r> :AsyncTask run<CR> 
 function! s:asynctask_run(item)
-  let pos = stridx(a:item, "\t")
-  let cmd = 'AsyncTask ' . a:item[pos+1:-1]
+  let s = stridx(a:item, ' ')
+  let e = stridx(a:item, ' ', s+1)
+  let cmd = 'AsyncTask ' . a:item[s+1:e]
   execute 'silent ' . cmd
 endfunc
 function! s:fzf_tasks_list() 
   let items = asynctasks#list('')
   let rows = []
   let index = 0
+  let maxwidth = 0
+  for item in items 
+    let w = strlen(item.name)
+    if maxwidth < w 
+      let maxwidth = w
+    endif
+  endfor
   for item in items
     if item.name =~ '^\.'
       continue
     endif
+    let cmd = strpart(item.command, 0, (&columns * 60) / 100)
     let text = '[' . index . '] '
+    let w = strlen(item.name)
+    let text .= item.name . ' '
+    let text .= repeat(' ', maxwidth - w)
     let text .= "[" . item.scope . "]\t"
-    let rows += [text . item.name]
+    let text .= cmd
+    let rows += [text]
     let index += 1
   endfor
   call fzf#run({
     \ 'source': rows,
     \ 'sink': function('s:asynctask_run'),
-    \ 'options': '-m +s',
+    \ 'options': s:fzf_options,
     \ 'down': '20%',
     \ })
 endfunc

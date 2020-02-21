@@ -8,6 +8,7 @@
 "======================================================================
 
 syntax on
+
 if empty($TMUX) 
   "if has('termguicolors')
     "set termguicolors
@@ -24,6 +25,12 @@ else
   if &ttimeoutlen > 60 || &ttimeoutlen <= 0
     set ttimeoutlen=60
   endif
+endif
+
+" 退出后清屏
+if &term =~ "xterm"
+  let &t_ti = "\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l"
 endif
 
 set background=dark
