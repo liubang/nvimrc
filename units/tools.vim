@@ -344,6 +344,8 @@ function! s:fzf_tasks_list()
   let rows = []
   let index = 0
   let maxwidth = 0
+  let keymaps = '123456789abcdefimopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  let size = strlen(keymaps)
   for item in items 
     let w = strlen(item.name)
     if maxwidth < w 
@@ -355,13 +357,18 @@ function! s:fzf_tasks_list()
       continue
     endif
     let cmd = strpart(item.command, 0, (&columns * 60) / 100)
-    let text = '[' . index . '] '
+    let key = (index >= size) ? ' ' : strpart(keymaps, index, 1)
+    let text = '[' . key . '] '
     let w = strlen(item.name)
     let text .= item.name . ' '
     let text .= repeat(' ', maxwidth - w)
     let text .= "[" . item.scope . "]\t"
     let text .= cmd
-    let rows += [text]
+    if item.scope == 'local'
+      call insert(rows, text)
+    else
+      let rows += [text]
+    endif
     let index += 1
   endfor
   call fzf#run({
