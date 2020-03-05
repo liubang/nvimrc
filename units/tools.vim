@@ -334,45 +334,24 @@ nnoremap <silent><C-x> :AsyncTask build-and-run<CR>
 nnoremap <silent><C-b> :AsyncTask build<CR>
 nnoremap <silent><C-r> :AsyncTask run<CR> 
 function! s:asynctask_run(item)
-  let s = stridx(a:item, ' ')
-  let e = stridx(a:item, ' ', s+1)
-  let cmd = 'AsyncTask ' . a:item[s+1:e]
-  execute 'silent ' . cmd
+  let p1 = stridx(a:item, '<')
+  if p1 > 0 
+    let name = strpart(a:item, 0, p1)
+    let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
+    if name != ''
+      exec "AsyncTask ". fnameescape(name)
+    endif
+  endif
 endfunc
+
 function! s:fzf_tasks_list() 
-  let items = asynctasks#list('')
-  let rows = []
-  let index = 0
-  let maxwidth = 0
-  let keymaps = '123456789abcdefimopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  let size = strlen(keymaps)
-  for item in items 
-    let w = strlen(item.name)
-    if maxwidth < w 
-      let maxwidth = w
-    endif
-  endfor
-  for item in items
-    if item.name =~ '^\.'
-      continue
-    endif
-    let cmd = strpart(item.command, 0, (&columns * 60) / 100)
-    let key = (index >= size) ? ' ' : strpart(keymaps, index, 1)
-    let text = '[' . key . '] '
-    let w = strlen(item.name)
-    let text .= item.name . ' '
-    let text .= repeat(' ', maxwidth - w)
-    let text .= "[" . item.scope . "]\t"
-    let text .= cmd
-    if item.scope == 'local'
-      call insert(rows, text)
-    else
-      let rows += [text]
-    endif
-    let index += 1
+  let rows = asynctasks#source(&columns * 48 / 100)
+  let source = []
+  for row in rows 
+    let source += [row[0]. '  ' . row[1] . '  : ' . row[2]]
   endfor
   call fzf#run({
-    \ 'source': rows,
+    \ 'source': source,
     \ 'sink': function('s:asynctask_run'),
     \ 'options': s:fzf_options,
     \ 'down': '20%',
