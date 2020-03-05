@@ -157,23 +157,88 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr><cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+if has('patch8.1.1068')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" goto definition
 nmap <silent><leader>gd <Plug>(coc-definition)
+" goto declaration
 nmap <silent><leader>gD <Plug>(coc-declaration)
+" goto type definition
 nmap <silent><leader>gy <Plug>(coc-type-definition)
+" goto implementation
 nmap <silent><leader>gi <Plug>(coc-implementation)
+" goto references
 nmap <silent><leader>gr <Plug>(coc-references)
+" error info
 nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
+" rename
 nmap <silent><leader>rn <Plug>(coc-rename)
-vmap <silent><leader>fm <Plug>(coc-format-selected)
-nmap <silent><leader>fm <Plug>(coc-format-selected)
 nnoremap <silent> <space>y       :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=1 Modeline :call comment#et(<q-args>)
 command! -nargs=0 CopyRight :call comment#copyright('liubang')
 command! -nargs=0 UpdateLastModified :call comment#update()
 
+" {{{ coc fzf
+let s:fzf_options = "-i --border --layout=reverse --no-unicode --prompt='\uf101 ' --algo=v2"
+
+function! s:get_diagnostics(diags, current_buffer_only) 
+  if a:current_buffer_only 
+    let l:diags = filter(a:diags, {key, val -> val.file ==# expand('%:p')})
+  else
+    let l:diags = a:diags
+  endif
+  let rows = []
+  for item in l:diags 
+    let text = has_key(item,'file')  ? item.file : ''
+    let text .= ':' . item.lnum . ':' . item.col . ' ' . item.severity . ' ' . item.message
+    let rows += [text]
+  endfor
+  return rows
+endfunc
+
+function! s:error_handler(err) 
+  let match = matchlist(a:err[1:], '\v^([^:]*):(\d+):(\d+)(.*)')[1:4] 
+  if empty(match) || empty(match[0])
+    return
+  endif
+  if empty(l:match[1]) && (bufnr(l:match[0]) == bufnr('%'))
+    return
+  endif
+  let line = empty(match[1]) ? 1 : str2nr(match[1])
+  let col = empty(match[2]) ? 1 : str2nr(match[2])
+  let message = match[3]
+  execute 'silent buffer' bufnr(match[0])
+  call cursor(line, col)
+  normal! zz
+endfunc
+
+function! s:coc_fzf_diagnostics()
+  let l:current_buffer_only = index(a:000, '--current-buf') >= 0
+  let l:diags = CocAction('diagnosticList')
+  if !empty(l:diags) 
+    call fzf#run({
+      \ 'source': s:get_diagnostics(l:diags, l:current_buffer_only),
+      \ 'sink': function('s:error_handler'),
+      \ 'options': '-m ' . s:fzf_options,
+      \ 'down': '30%',
+      \ })
+  endif
+endfunc
+
+command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
+nnoremap <silent><leader>el :CocFzfDiagnostics<CR>
+" }}}
+
+" {{{ auto cmd
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
@@ -207,3 +272,4 @@ augroup coc_au
 augroup END
 " }}}
 
+" }}}
