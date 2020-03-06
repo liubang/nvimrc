@@ -15,13 +15,12 @@ set encoding=UTF-8
 set fileencoding=utf-8
 scriptencoding UTF-8
 set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
-" set completeopt=noinsert,menuone,noselect
 set completeopt-=menu
-set completeopt+=menuone
-set completeopt-=longest
-set completeopt-=preview
-set completeopt+=noinsert
-set completeopt-=noselect
+set completeopt+=menuone   " Show the completions UI even with only 1 item
+set completeopt-=longest   " Don't insert the longest common text
+set completeopt-=preview   " Hide the documentation preview window
+set completeopt+=noinsert  " Don't insert text automatically
+set completeopt-=noselect  " Highlight the first completion automatically
 set modeline
 set shortmess=atcOI
 set smartcase 
@@ -40,6 +39,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set autoindent
+set smartindent
 set cindent
 set expandtab
 set mousehide
