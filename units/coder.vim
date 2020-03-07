@@ -157,11 +157,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-if has('patch8.1.1068')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -188,8 +184,6 @@ command! -nargs=0 CopyRight :call comment#copyright('liubang')
 command! -nargs=0 UpdateLastModified :call comment#update()
 
 " {{{ coc fzf
-let s:fzf_options = "-i --border --layout=reverse --no-unicode --prompt='\uf101 ' --algo=v2"
-
 function! s:get_diagnostics(diags, current_buffer_only) 
   if a:current_buffer_only 
     let l:diags = filter(a:diags, {key, val -> val.file ==# expand('%:p')})
@@ -228,7 +222,7 @@ function! s:coc_fzf_diagnostics()
     call fzf#run({
       \ 'source': s:get_diagnostics(l:diags, l:current_buffer_only),
       \ 'sink': function('s:error_handler'),
-      \ 'options': '-m ' . s:fzf_options,
+      \ 'options': '-m ' . utils#fzf_options('DiagnosticList'),
       \ 'down': '30%',
       \ })
   endif

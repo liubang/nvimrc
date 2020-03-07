@@ -24,3 +24,7 @@ function! utils#errmsg(msg)
   echom a:msg
   echohl NONE
 endfunc
+
+function! utils#fzf_options(title)
+  return "-i --border --layout=reverse --no-unicode --prompt='" . a:title . " \uf101 ' --algo=v2"
+endfunc

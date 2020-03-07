@@ -126,14 +126,12 @@ function! s:edit_file(item)
   execute 'silent e' l:file_path
 endfunc
 
-let s:fzf_options = "-i --border --layout=reverse --no-unicode --prompt='\uf101 ' --algo=v2"
-
 " Files + devicons
 function! s:fzf()
   call fzf#run({
         \ 'source': <sid>files(),
         \ 'sink': function('s:edit_file'),
-        \ 'options': '-m ' . s:fzf_options,
+        \ 'options': '-m ' . utils#fzf_options('Files'),
         \ 'down': '30%'})
 endfunc
 
@@ -353,7 +351,7 @@ function! s:fzf_tasks_list()
   call fzf#run({
     \ 'source': source,
     \ 'sink': function('s:asynctask_run'),
-    \ 'options': s:fzf_options,
+    \ 'options': utils#fzf_options('TaskList'),
     \ 'down': '20%',
     \ })
 endfunc
