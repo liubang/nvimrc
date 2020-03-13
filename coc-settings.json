@@ -38,6 +38,8 @@
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": true,
+  "suggest.enablePreview": false,
+  "suggest.floatEnable": false,
   "suggest.triggerAfterInsertEnter": true,
   "suggest.triggerCompletionWait": 100,
   "suggest.maxCompleteItemCount": 20,
@@ -151,7 +153,7 @@
       "command": "gopls",
       "filetypes": ["go"],
       "rootPatterns": ["go.mod", ".git/"],
-      "disableWorkspaceFolders": true,
+      "disableWorkspaceFolders": false,
       "initializationOptions": {
         "staticcheck": true,
         "usePlaceholders": true,
