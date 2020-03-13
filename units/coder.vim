@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
       \'coc-diagnostic',
       \'coc-pairs',
       \'coc-git',
+      \'coc-ci',
       \'coc-json',
       \'coc-yaml',
       \'coc-vimlsp',
@@ -175,7 +176,9 @@ nmap <silent><leader>gr <Plug>(coc-references)
 nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
 " rename
 nmap <silent><leader>rn <Plug>(coc-rename)
-nnoremap <silent> <space>y       :<C-u>CocList -A --normal yank<cr>
+nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent>w <Plug>(coc-ci-w)
+nmap <silent>b <Plug>(coc-ci-b)
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
