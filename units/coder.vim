@@ -34,7 +34,6 @@ let g:coc_global_extensions = [
       \'coc-tsserver',
       \'coc-stylelint',
       \'coc-java',
-      \'coc-go',
       \'coc-phpls',
       \'coc-pyright',
       \'coc-rls',

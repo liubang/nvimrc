@@ -1,14 +1,14 @@
 {
   "coc.preferences.snippets.enable": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
-  "coc.preferences.formatOnType": false,
+  "coc.preferences.formatOnType": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [
+    "go",
     "css",
-    "svg",
     "bzl",
     "php",
     "python",
@@ -83,6 +83,7 @@
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
+  "diagnostic.format": "[%source%code] [%severity] %message",
   "diagnostic.infoSign": "ღ",
   "diagnostic.hintSign": "ஐ",
   "diagnostic.warningSign": "⚠",
@@ -126,7 +127,7 @@
   // git
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": true,
-  "git.addGBlameToVirtualText": true,
+  "git.addGBlameToVirtualText": false,
   "git.virtualTextPrefix": "     ",
   "git.branchCharacter": "\uf418",
   "git.addedSign.text": "▎",
@@ -145,12 +146,21 @@
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.import.gradle.enabled": true,
   "java.import.maven.enabled": true,
-  // go
-  "go.goplsOptions": {
-    "usePlaceholders": true,
-    "completeUnimported": true,
-    "deepCompletion": true
-  },
-  "languageserver": {}
+  "languageserver": {
+    "gopls": {
+      "command": "gopls",
+      "filetypes": ["go"],
+      "rootPatterns": ["go.mod", ".git/"],
+      "disableWorkspaceFolders": true,
+      "initializationOptions": {
+        "staticcheck": true,
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "caseSensitiveCompletion": true
+      }
+      // for debug
+      // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
+    }
+  }
   // vim:ft=jsonc
 }
