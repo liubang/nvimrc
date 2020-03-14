@@ -41,6 +41,7 @@
   "suggest.enablePreview": false,
   "suggest.floatEnable": false,
   "suggest.triggerAfterInsertEnter": true,
+  "suggest.asciiCharactersOnly": true,
   "suggest.triggerCompletionWait": 100,
   "suggest.maxCompleteItemCount": 20,
   "suggest.detailMaxLength": 30,
