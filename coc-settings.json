@@ -155,7 +155,7 @@
       "rootPatterns": ["go.mod", ".git/"],
       "disableWorkspaceFolders": false,
       "initializationOptions": {
-        "staticcheck": true,
+        "staticcheck": false,
         "usePlaceholders": true,
         "completeUnimported": true,
         "caseSensitiveCompletion": true
