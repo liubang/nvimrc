@@ -87,10 +87,10 @@
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
   "diagnostic.format": "[%source%code] [%severity] %message",
-  "diagnostic.infoSign": "ღ",
-  "diagnostic.hintSign": "ஐ",
-  "diagnostic.warningSign": "⚠",
-  "diagnostic.errorSign": "✖",
+  "diagnostic.infoSign": "\uf449",
+  "diagnostic.hintSign": "\ufad5",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.errorSign": "\uf057",
   "diagnostic.enable": true,
   "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
@@ -133,9 +133,9 @@
   "git.addGBlameToVirtualText": false,
   "git.virtualTextPrefix": "     ",
   "git.branchCharacter": "\uf418",
-  "git.addedSign.text": "▎",
+  "git.addedSign.text": "+",
   "git.changedSign.text": "▎",
-  "git.removedSign.text": "▏",
+  "git.removedSign.text": "-",
   "git.topRemovedSign.text": "▔",
   "git.changeRemovedSign.text": "≃",
   "git.addedSign.hlGroup": "GitGutterAdd",
@@ -167,3 +167,4 @@
   }
   // vim:ft=jsonc
 }
+
