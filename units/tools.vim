@@ -263,9 +263,9 @@ if exists('*nvim_open_win') > 0
         \ ])
 
   call quickui#menu#install('&Build', [
-        \ [ "File &Execute\t<Ctrl-r>", 'AsyncTask run' ],
-        \ [ "File &Compile\t<Ctrl-b>", 'AsyncTask build' ],
-        \ [ "Compile And E&xecute\t<Ctrl-x>", 'AsyncTask build-and-run' ],
+        \ [ "File &Execute\t<Ctrl-r>", 'AsyncTask file-run' ],
+        \ [ "File &Compile\t<Ctrl-b>", 'AsyncTask file-build' ],
+        \ [ "Compile And E&xecute\t<Ctrl-x>", 'AsyncTask file-build-and-run' ],
         \ [ "File &Make", 'AsyncTask make' ],
         \ [ '--','' ],
         \ [ "&Task List", 'call MenuHelp_TaskList()' ],
@@ -328,9 +328,6 @@ map <silent><Leader>cu <Plug>NERDCommenterUncomment
 
 " {{{ asynctask
 let g:asynctasks_term_pos = 'right'
-nnoremap <silent><C-x> :AsyncTask build-and-run<CR>
-nnoremap <silent><C-b> :AsyncTask build<CR>
-nnoremap <silent><C-r> :AsyncTask run<CR> 
 function! s:asynctask_run(item)
   let p1 = stridx(a:item, '<')
   if p1 > 0 
@@ -341,7 +338,6 @@ function! s:asynctask_run(item)
     endif
   endif
 endfunc
-
 function! s:fzf_tasks_list() 
   let rows = asynctasks#source(&columns * 48 / 100)
   let source = []
@@ -358,4 +354,7 @@ endfunc
 command! -bang -nargs=0 TaskList call MenuHelp_TaskList()
 command! -bang -nargs=0 TaskListFzf call s:fzf_tasks_list()
 nnoremap <silent><Leader>ts :TaskListFzf<CR>
+nnoremap <silent><C-x> :AsyncTask file-build-and-run<CR>
+nnoremap <silent><C-b> :AsyncTask file-build<CR>
+nnoremap <silent><C-r> :AsyncTask file-run<CR> 
 " }}}
