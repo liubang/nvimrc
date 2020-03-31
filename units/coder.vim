@@ -39,6 +39,7 @@ let g:coc_global_extensions = [
       \'coc-rls',
       \'coc-docker',
       \'coc-sh',
+      \'coc-cmake',
       \]
 " }}}
 
