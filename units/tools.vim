@@ -208,7 +208,8 @@ vmap V <Plug>(expand_region_shrink)
 " }}}
 
 " {{{ vim-floaterm
-let g:floaterm_type = 'normal'
+let g:floaterm_wintype = 'normal'
+let g:floaterm_position = 'bottom'
 let g:floaterm_height = 0.35
 let g:floaterm_open_in_root = v:true
 let g:floaterm_keymap_toggle = '<Ctrl>-d'

@@ -130,7 +130,7 @@
   // git
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": true,
-  "git.addGBlameToVirtualText": false,
+  "git.addGBlameToVirtualText": true,
   "git.virtualTextPrefix": "     ",
   "git.branchCharacter": "\uf418",
   "git.addedSign.text": "+",
