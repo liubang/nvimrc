@@ -10,9 +10,9 @@
 " {{{ ui
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('sainnhe/gruvbox-material')
-call dein#add('hardcoreplayers/spaceline.vim', {'depends': 'vim-devicons'})
 call dein#add('mhinz/vim-startify', {'depends': 'vim-devicons'})
-call dein#add('bagrat/vim-buffet', {'depends': 'vim-devicons'})
+call dein#add('itchyny/lightline.vim', {'depends': 'vim-devicons'})
+call dein#add('mengelbrecht/lightline-bufferline', {'depends': 'lightline.vim'})
 " }}}
 
 " {{{ tools

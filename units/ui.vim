@@ -47,37 +47,176 @@ colorscheme gruvbox-material
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
-let g:spaceline_seperate_style= 'arrow-fade'
-let g:spaceline_colorscheme = 'space'
-let g:spaceline_line_symbol = 1
-" buffet
-let g:buffet_always_show_tabline = 1
-if has('macunix')
-  let g:buffet_tab_icon = "\uf302"
-elseif has('unix') && !has('macunix') && !has('win32unix')
-  let g:buffet_tab_icon = "\uf17c"
-endif
-let g:buffet_show_index = 1
-let g:buffet_powerline_separators = 1
-let g:buffet_use_devicons = 0
-nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(1)"
-nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(2)"
-nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(3)"
-nmap <silent> <expr> <Leader>4 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(4)"
-nmap <silent> <expr> <Leader>5 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(5)"
-nmap <silent> <expr> <Leader>6 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(6)"
-nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(7)"
-nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(8)"
-nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(9)"
-nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '')."<Plug>BuffetSwitch(10)"
 
-function! g:BuffetSetCustomColors()
-  hi! BuffetCurrentBuffer cterm=NONE ctermbg=214 ctermfg=239 guibg=#b8bb26 guifg=#000000
-  hi! BuffetTrunc cterm=bold ctermbg=239 ctermfg=7 guibg=#458588 guifg=#000000
-  hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=7 guibg=#504945 guifg=#000000
-  hi! BuffetActiveBuffer cterm=NONE ctermbg=239 ctermfg=7 guibg=#999999 guifg=#504945
-  hi! BuffetTab cterm=NONE ctermbg=8 ctermfg=15 guibg=#458588 guifg=#000000
+" lightline and tabline
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox_material',
+      \ 'active': {
+      \   'left': [ ['homemode'],
+      \             ['gitbranch', 'gitstatus'], ['filename'], ['cocerror'], ['cocwarn'] ],
+      \   'right': [ ['lineinfo'], 
+      \              ['percent'], ['fileformat', 'fileencoding'] ],
+      \ },
+      \ 'inactive': {
+      \   'left': [['homemode'], ['filename']],
+      \   'right': [['lineinfo'], ['percent']],
+      \ },
+      \ 'tabline': {
+      \   'left': [['buffers']],
+      \   'right': [['close']],
+      \ },
+      \ 'component': {
+      \   'lineinfo': ' %3l:%-2v',
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers',
+      \   'cocerror': 'LightLineCocError',
+      \   'cocwarn' : 'LightLineCocWarn',
+      \ },
+      \ 'component_function': {
+      \   'homemode': 'LightlineMode',
+      \   'gitbranch': 'LightLineGitBranch',
+      \   'gitstatus': 'LightLineGitStatus',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFname',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileformat': 'LightLineFileformat',
+      \ },
+      \ 'component_type': {'buffers': 'tabsel'},
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
+      \ }
+
+
+function! LightlineMode()
+  let nr = s:get_buffer_number()
+  let nmap = [ '⓿ ',  '❶ ',  '❷ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ','➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ ']
+  if nr == 0
+    return ''
+  endif
+  let l:number = nr
+  let l:result = ''
+  for i in range(1, strlen(l:number))
+    let l:result = get(nmap, l:number % 10, l:number % 10) . l:result
+    let l:number = l:number / 10
+  endfor
+  return join(['🌈',l:result])
 endfunction
+
+function! s:get_buffer_number()
+  let i = 0
+  for nr in filter(range(1, bufnr('$')), 'bufexists(v:val) && buflisted(v:val)')
+    let i += 1
+    if nr == bufnr('')
+      return i
+    endif
+  endfor
+  return ''
+endfunction
+
+function! LightLineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineGitBranch()
+  return get(g:, 'coc_git_status', '')
+endfunction
+
+function! LightLineGitStatus()
+  return get(b:, 'coc_git_status', '')
+endfunction
+
+function! LightLineCocError()
+  let error_sign = get(g:, 'coc_status_error_sign', "\uf529  ")
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info)
+    return ''
+  endif
+  let errmsgs = []
+  if get(info, 'error', 0)
+    call add(errmsgs, error_sign . info['error'])
+  endif
+  return trim(join(errmsgs, ' '))
+endfunction
+
+function! LightLineCocWarn() abort
+  let warning_sign = get(g:, 'coc_status_warning_sign')
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info)
+    return ''
+  endif
+  let warnmsgs = []
+  if get(info, 'warning', 0)
+    call add(warnmsgs, warning_sign . info['warning'])
+  endif
+ return trim(join(warnmsgs, ' '))
+endfunction
+
+function! LightLineFname() 
+  let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
+  let filename = LightLineFilename()
+  let ret = [filename,icon]
+  if filename == ''
+    return ''
+  endif
+  return join([filename, icon],'')
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != expand('%:t') ? expand('%:t') : '') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+autocmd User CocDiagnosticChange call lightline#update()
+
+let g:lightline#bufferline#show_number  = 2
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline#bufferline#number_map = {
+      \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
+      \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
+
+nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
+nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
+nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
+nmap <silent> <expr> <Leader>4 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
+nmap <silent> <expr> <Leader>5 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
+nmap <silent> <expr> <Leader>6 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
+nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
+nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
+nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
+nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
+""" }}}
 
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
