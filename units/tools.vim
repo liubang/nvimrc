@@ -1,5 +1,10 @@
 " vim: et ts=2 sts=2 sw=2
 
+" {{{ Dein 
+command! -bang -nargs=0 DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')")
+command! -bang -nargs=0 DeinRecache call dein#recache_runtimepath()
+" }}}
+
 " {{{ Defx
 let g:defx_icons_enable_syntax_highlight = 1
 call defx#custom#option('_', {
