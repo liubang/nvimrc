@@ -74,7 +74,7 @@ let g:lightline = {
       \   'cocwarn' : 'LightLineCocWarn',
       \ },
       \ 'component_function': {
-      \   'homemode': 'LightlineMode',
+      \   'homemode': 'LightLineHomeMode',
       \   'gitbranch': 'LightLineGitBranch',
       \   'gitstatus': 'LightLineGitStatus',
       \   'readonly': 'LightLineReadonly',
@@ -88,20 +88,29 @@ let g:lightline = {
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
 
+function! s:IsSpecial() abort
+    return &buftype == 'terminal' || &filetype =~ '\v(help|startify|defx|undotree)'
+endfunction
 
-function! LightlineMode()
-  let nr = s:get_buffer_number()
-  let nmap = [ '⓿ ',  '❶ ',  '❷ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ','➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ ']
-  if nr == 0
-    return ''
+function! LightLineHomeMode()
+  if &buftype == 'terminal'
+    return toupper(&buftype)
+  elseif s:IsSpecial() 
+    return toupper(&filetype)
+  else
+    let nr = s:get_buffer_number()
+    let nmap = [ '⓿ ',  '❶ ',  '❷ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ','➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ ']
+    if nr == 0
+      return ''
+    endif
+    let l:number = nr
+    let l:result = ''
+    for i in range(1, strlen(l:number))
+      let l:result = get(nmap, l:number % 10, l:number % 10) . l:result
+      let l:number = l:number / 10
+    endfor
+    return join(['🌈',l:result])
   endif
-  let l:number = nr
-  let l:result = ''
-  for i in range(1, strlen(l:number))
-    let l:result = get(nmap, l:number % 10, l:number % 10) . l:result
-    let l:number = l:number / 10
-  endfor
-  return join(['🌈',l:result])
 endfunction
 
 function! s:get_buffer_number()
@@ -131,44 +140,42 @@ function! LightLineReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return ""
+    return "🔒"
   else
     return ""
   endif
 endfunction
 
 function! LightLineGitBranch()
+  if s:IsSpecial()
+    return ""
+  endif
   return get(g:, 'coc_git_status', '')
 endfunction
 
 function! LightLineGitStatus()
+  if s:IsSpecial()
+    return ""
+  endif
   return get(b:, 'coc_git_status', '')
 endfunction
 
 function! LightLineCocError()
-  let error_sign = get(g:, 'coc_status_error_sign', "\uf529  ")
+  let error_sign = get(g:, 'coc_status_error_sign', "\uf00d ")
   let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info)
-    return ''
+  if !empty(info) && get(info, 'error')
+    return error_sign . info['error']
   endif
-  let errmsgs = []
-  if get(info, 'error', 0)
-    call add(errmsgs, error_sign . info['error'])
-  endif
-  return trim(join(errmsgs, ' '))
+  return ''
 endfunction
 
 function! LightLineCocWarn() abort
-  let warning_sign = get(g:, 'coc_status_warning_sign')
+  let warning_sign = get(g:, 'coc_status_warning_sign', "\uf12a ")
   let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info)
-    return ''
+  if !empty(info) && get(info, 'warning')
+    return warning_sign . info['warning']
   endif
-  let warnmsgs = []
-  if get(info, 'warning', 0)
-    call add(warnmsgs, warning_sign . info['warning'])
-  endif
- return trim(join(warnmsgs, ' '))
+  return ''
 endfunction
 
 function! LightLineFname() 
@@ -192,7 +199,10 @@ function! LightLineFiletype()
 endfunction
 
 function! LightLineFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  if s:IsSpecial() || winwidth(0) <= 70
+    return ''
+  endif
+  return &fileformat . ' ' . WebDevIconsGetFileFormatSymbol()
 endfunction
 
 autocmd User CocDiagnosticChange call lightline#update()
@@ -239,8 +249,10 @@ highlight def link Defx_filename_3_Unmerged Label
 " floaterm
 highlight FloatermNF guibg=black
 
+" starify
 let g:webdevicons_enable_startify = 1
 let g:startify_files_number = 8
+let g:startify_enable_special = 0
 let g:startify_custom_header = [
                             \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
                             \'      │  ││ │├┴┐├─┤││││ ┬ ',

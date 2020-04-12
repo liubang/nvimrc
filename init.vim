@@ -4,7 +4,7 @@ if !has('nvim')
   finish
 endif
 
-let g:nvg_version = 'v2.0'
+let g:nvg_version = 'v2.1'
 let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let g:nvg_cache_path = expand(g:nvg_root . '/.cache')
 let g:nvg_unit = expand(g:nvg_root . '/units')
