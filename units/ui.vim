@@ -63,18 +63,19 @@ let g:lightline = {
       \ },
       \ 'tabline': {
       \   'left': [['buffers']],
-      \   'right': [['close']],
+      \   'right': [['sign']],
       \ },
       \ 'component': {
       \   'lineinfo': ' %3l:%-2v',
+      \   'sign': "\uf25b",
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
-      \   'cocerror': 'LightLineCocError',
-      \   'cocwarn' : 'LightLineCocWarn',
       \ },
       \ 'component_function': {
       \   'homemode': 'LightLineHomeMode',
+      \   'cocerror': 'LightLineCocError',
+      \   'cocwarn' : 'LightLineCocWarn',
       \   'gitbranch': 'LightLineGitBranch',
       \   'gitstatus': 'LightLineGitStatus',
       \   'readonly': 'LightLineReadonly',
@@ -140,7 +141,7 @@ function! LightLineReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return "🔒"
+    return "\uf023"
   else
     return ""
   endif
