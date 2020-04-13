@@ -145,12 +145,12 @@ xmap <silent><Leader>? <plug>(fzf-maps-x)
 omap <silent><Leader>? <plug>(fzf-maps-o)
 
 " https://github.com/junegunn/fzf/issues/453
-nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Rg\<cr>"
+nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Rg\<cr>"
+nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
+nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
+nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
+nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"
 " nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
-nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
-nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
-nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
-nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"
 " }}}
 
 " {{{ vim_current_word
