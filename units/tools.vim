@@ -13,7 +13,7 @@ call defx#custom#option('_', {
       \ 'split': 'vertical',
       \ 'direction': 'topleft',
       \ 'show_ignored_files': 0,
-      \ 'buffer_name': 'Defx_tree',
+      \ 'buffer_name': '',
       \ 'toggle': 1,
       \ 'resume': 1
       \ })

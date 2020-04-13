@@ -54,25 +54,26 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ ['homemode'],
       \             ['gitbranch', 'gitstatus'], ['filename'], ['cocerror'], ['cocwarn'] ],
-      \   'right': [ ['lineinfo'], 
-      \              ['percent'], ['fileformat', 'fileencoding'] ],
+      \   'right': [ ['linenumber'], 
+      \              ['linepercent'], ['fileformat', 'encoding'] ],
       \ },
       \ 'inactive': {
       \   'left': [['homemode'], ['filename']],
-      \   'right': [['lineinfo'], ['percent']],
+      \   'right': [['linenumber'], ['linepercent']],
       \ },
       \ 'tabline': {
       \   'left': [['buffers']],
       \   'right': [['sign']],
       \ },
       \ 'component': {
-      \   'lineinfo': ' %3l:%-2v',
       \   'sign': "\uf25b",
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
       \ },
       \ 'component_function': {
+      \   'linenumber': 'LightLineLineinfo',
+      \   'linepercent': 'LightLinePercent',
       \   'homemode': 'LightLineHomeMode',
       \   'cocerror': 'LightLineCocError',
       \   'cocwarn' : 'LightLineCocWarn',
@@ -83,6 +84,7 @@ let g:lightline = {
       \   'filename': 'LightLineFname',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
+      \   'encoding': 'LightLineEncoding',
       \ },
       \ 'component_type': {'buffers': 'tabsel'},
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
@@ -91,7 +93,28 @@ let g:lightline = {
 
 function! s:IsSpecial() abort
     return &buftype == 'terminal' || &filetype =~ '\v(help|startify|defx|undotree)'
-endfunction
+endfunc
+
+function! LightLineEncoding() 
+  if s:IsSpecial()
+    return ''
+  endif
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunc
+
+function! LightLineLineinfo() 
+  if s:IsSpecial() 
+    return ""
+  endif
+  return ' ' . line('.').':'. col('.')
+endfunc
+
+function! LightLinePercent() 
+  if s:IsSpecial()
+    return ''
+  endif
+  return line('.') * 100 / line('$') . '%'
+endfunc
 
 function! LightLineHomeMode()
   if &buftype == 'terminal'
@@ -156,7 +179,7 @@ endfunction
 
 function! LightLineGitStatus()
   if s:IsSpecial()
-    return ""
+    return ''
   endif
   return get(b:, 'coc_git_status', '')
 endfunction
@@ -180,6 +203,9 @@ function! LightLineCocWarn() abort
 endfunction
 
 function! LightLineFname() 
+  if s:IsSpecial()
+    return ''
+  endif
   let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
   let filename = LightLineFilename()
   let ret = [filename,icon]
@@ -217,16 +243,16 @@ let g:lightline#bufferline#number_map = {
       \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
       \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
 
-nmap <silent> <expr> <Leader>1 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
-nmap <silent> <expr> <Leader>2 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
-nmap <silent> <expr> <Leader>3 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
-nmap <silent> <expr> <Leader>4 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
-nmap <silent> <expr> <Leader>5 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
-nmap <silent> <expr> <Leader>6 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
-nmap <silent> <expr> <Leader>7 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
-nmap <silent> <expr> <Leader>8 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
-nmap <silent> <expr> <Leader>9 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
-nmap <silent> <expr> <Leader>0 (expand('%') =~ 'Defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
+nmap <silent> <expr> <Leader>1 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
+nmap <silent> <expr> <Leader>2 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
+nmap <silent> <expr> <Leader>3 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
+nmap <silent> <expr> <Leader>4 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
+nmap <silent> <expr> <Leader>5 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
+nmap <silent> <expr> <Leader>6 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
+nmap <silent> <expr> <Leader>7 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
+nmap <silent> <expr> <Leader>8 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
+nmap <silent> <expr> <Leader>9 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
+nmap <silent> <expr> <Leader>0 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
 """ }}}
 
 hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
