@@ -197,7 +197,7 @@ nmap <Leader>ww <Plug>(easymotion-overwin-w)
 " }}}
 
 " {{{ AsyncRun
-let g:asyncrun_open = 15
+let g:asyncrun_open = 25
 let g:asyncrun_bell = 1
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 nnoremap <Leader>ar :AsyncRun<Space>
