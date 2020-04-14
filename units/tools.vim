@@ -334,6 +334,7 @@ map <silent><Leader>cu <Plug>NERDCommenterUncomment
 
 " {{{ asynctask
 let g:asynctasks_term_pos = 'right'
+let g:asynctasks_term_reuse = 1
 function! s:asynctask_run(item)
   let p1 = stridx(a:item, '<')
   if p1 > 0 
