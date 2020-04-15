@@ -92,7 +92,7 @@ let g:lightline = {
       \ }
 
 function! s:isSpecial() abort
-    return &buftype == 'terminal' || &filetype =~ '\v(help|startify|defx|undotree|SpaceVimPlugManager)'
+    return &buftype =~ '\v(terminal|quickfix)' || &filetype =~ '\v(help|startify|defx|undotree|SpaceVimPlugManager)'
 endfunc
 
 function! LightLineEncoding() 
@@ -118,6 +118,8 @@ endfunc
 
 function! LightLineHomeMode()
   if &buftype == 'terminal'
+    return toupper(&buftype)
+  elseif &buftype == 'quickfix'
     return toupper(&buftype)
   elseif s:isSpecial() 
     return toupper(&filetype)
