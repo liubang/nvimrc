@@ -181,6 +181,7 @@ let g:vista_executive_for = {
 nnoremap <silent><leader><F3> :Vista!!<CR>
 nnoremap <silent><leader>tl :Vista!!<CR>
 nnoremap <silent><leader>vf :Vista finder coc<CR>
+autocmd WinEnter * if &filetype== 'vista' && winnr('$') == 1 | q | endif
 " }}}
 
 " easymotion {{{
@@ -205,6 +206,7 @@ nnoremap <Leader>ar :AsyncRun<Space>
 command! -bang -nargs=1 GitCommit
       \ :AsyncRun -cwd=<root> -raw git status && git add . && git commit -m <q-args> && git push origin
 nnoremap <Leader>gc :GitCommit<Space>
+autocmd WinEnter * if &buftype == 'quickfix' && winnr('$') == 1 | q | endif
 " }}}
 
 " {{{ vim-expand-region
