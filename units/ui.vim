@@ -276,7 +276,7 @@ highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
 
 " floaterm
-highlight FloatermNF guibg=black
+highlight Floaterm guibg=black
 
 " starify
 let g:webdevicons_enable_startify = 1
