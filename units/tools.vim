@@ -218,8 +218,8 @@ vmap V <Plug>(expand_region_shrink)
 let g:floaterm_wintype = 'normal'
 let g:floaterm_position = 'bottom'
 let g:floaterm_height = 0.35
-let g:floaterm_open_in_root = v:true
 let g:floaterm_keymap_toggle = '<Ctrl>-d'
+let g:floaterm_open_command = 'split'
 nnoremap <silent><Leader>tw :FloatermNew<CR>
 " }}}
 
