@@ -92,7 +92,7 @@ let g:lightline = {
       \ }
 
 function! s:isSpecial() abort
-    return &buftype =~ '\v(terminal|quickfix)' || &filetype =~ '\v(help|startify|defx|vista|undotree|SpaceVimPlugManager)'
+    return &buftype =~ '\v(terminal|quickfix)' || &filetype =~ '\v(help|startify|defx|vista|undotree|SpaceVimPlugManager|git)'
 endfunc
 
 function! LightLineEncoding() 
