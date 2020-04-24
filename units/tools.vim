@@ -104,7 +104,10 @@ let g:fzf_colors = {
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  command! -bang -nargs=* Find call 
+        \ fzf#vim#grep(
+        \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 
+        \ 1, <bang>0)
 else
   let s:sname = expand('<sfile>')
   call utils#err("Please install ripgrep!", s:sname)
@@ -151,6 +154,39 @@ nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : ''
 nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
 nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"
 " nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
+" }}}
+
+" {{{ Bazel fzf
+function! s:bazel_targets()
+  let result = []
+  let targets = split(system("bazel query 'kind(\"rule\", //...)'"), '\n')
+  for target in targets
+    if target =~ "^//"
+      let result += [target]
+    endif
+  endfor
+  return result
+endfunc
+function! s:bazel_build(item)
+  call asyncrun#run("", {'cwd': '<root>'}, 'bazel build ' . a:item)
+endfunc
+function! s:bazel_run(item)
+  let bazel_bin = './bazel-bin'  
+  let cmd = bazel_bin . substitute(strpart(a:item, 1), ':', '/', 'g')
+  call asyncrun#run("", {'cwd': '<root>', 'mode': 'term'}, cmd)
+endfunc
+command! -bang -nargs=0 BazelBuild call fzf#run({
+  \ 'source': <sid>bazel_targets(),
+  \ 'sink': function('s:bazel_build'),
+  \ 'options': '-m ' . utils#fzf_options('Files'),
+  \ 'down': '35%',
+  \ })
+command! -bang -nargs=0 BazelRun call fzf#run({
+  \ 'source': <sid>bazel_targets(),
+  \ 'sink': function('s:bazel_run'),
+  \ 'options': '-m ' . utils#fzf_options('Files'),
+  \ 'down': '35%',
+  \ })
 " }}}
 
 " {{{ vim_current_word
