@@ -131,7 +131,7 @@
   "vimlsp.suggest.fromRuntimepath": false,
   // git
   "git.enableGutters": true,
-  "git.addGBlameToBufferVar": true,
+  "git.addGBlameToBufferVar": false,
   "git.addGBlameToVirtualText": false,
   "git.virtualTextPrefix": "     ",
   "git.branchCharacter": "\uf418",
