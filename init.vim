@@ -14,6 +14,9 @@ call plug#init()
 call plug#load(expand(g:nvg_unit . '/plugins.vim'))
 
 INC 'viminit'
-INC 'ui'
+INC 'theme'
+INC 'lightline'
+INC 'startify'
 INC 'tools'
 INC 'coder'
+INC 'bazel'

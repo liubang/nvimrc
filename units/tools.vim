@@ -156,39 +156,6 @@ nnoremap <silent> <expr> <C-p>      (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : ''
 " nnoremap <silent> <expr> <Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" : '') . ":Buffer\<cr>"
 " }}}
 
-" {{{ Bazel fzf
-function! s:bazel_targets()
-  let result = []
-  let targets = split(system("bazel query 'kind(\"rule\", //...)'"), '\n')
-  for target in targets
-    if target =~ "^//"
-      let result += [target]
-    endif
-  endfor
-  return result
-endfunc
-function! s:bazel_build(item)
-  call asyncrun#run("", {'cwd': '<root>'}, 'bazel build ' . a:item)
-endfunc
-function! s:bazel_run(item)
-  let bazel_bin = './bazel-bin'  
-  let cmd = bazel_bin . substitute(strpart(a:item, 1), ':', '/', 'g')
-  call asyncrun#run("", {'cwd': '<root>', 'mode': 'term'}, cmd)
-endfunc
-command! -bang -nargs=0 BazelBuild call fzf#run({
-  \ 'source': <sid>bazel_targets(),
-  \ 'sink': function('s:bazel_build'),
-  \ 'options': '-m ' . utils#fzf_options('Files'),
-  \ 'down': '35%',
-  \ })
-command! -bang -nargs=0 BazelRun call fzf#run({
-  \ 'source': <sid>bazel_targets(),
-  \ 'sink': function('s:bazel_run'),
-  \ 'options': '-m ' . utils#fzf_options('Files'),
-  \ 'down': '35%',
-  \ })
-" }}}
-
 " {{{ vim_current_word
 let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_twins = 1
