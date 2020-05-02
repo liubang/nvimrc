@@ -26,5 +26,5 @@ function! utils#errmsg(msg)
 endfunc
 
 function! utils#fzf_options(title)
-  return "-i --border --layout=reverse --no-unicode --prompt='" . a:title . " \uf101 ' --algo=v2"
+  return "-i --border --layout=reverse --no-unicode --prompt='" . a:title . " > ' --algo=v2"
 endfunc
