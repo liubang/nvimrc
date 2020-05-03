@@ -256,6 +256,7 @@ if exists('*nvim_open_win') > 0
         \ [ "&Open\t(:e)", 'call feedkeys(":e ")' ],
         \ [ "&Save\t(:w)", 'write' ],
         \ [ "--", ],
+        \ [ "&Outline\t<Leader>tl", 'Vista!!', '' ],
         \ [ "File &Explorer", 'Defx', 'Taggle file exporer' ],
         \ [ "Switch &Files", 'Files .' ],
         \ [ "Switch &Buffers", 'call quickui#tools#list_buffer("e")' ],
@@ -264,12 +265,13 @@ if exists('*nvim_open_win') > 0
         \ ])
 
   call quickui#menu#install('&Edit', [
+        \ [ "&Find\t<Leader>ag", 'Rg', '' ],
         \ [ "&Trailing Space", 'call utils#strip_trailing_whitespace()', '' ],
+        \ [ "--", ],
         \ [ 'Update &ModTime', 'call comment#update()' ],
         \ [ '&CopyRight', 'call comment#copyright("liubang")' ],
-        \ [ "&Find\t", 'Ag', '' ],
-        \ [ "F&ormat", 'Format' ],
-        \ [ "Taggle Co&mment", 'call feedkeys("\<Plug>NERDCommenterToggle")' ],
+        \ [ "Taggle Co&mment\t<Leader>cc", 'call feedkeys("\<Plug>NERDCommenterToggle")' ],
+        \ [ "--", ],
         \ [ "&Hex Edit", 'Vinarise', 'Ultimate hex editing system with Vim' ],
         \ ])
 
@@ -277,11 +279,14 @@ if exists('*nvim_open_win') > 0
         \ [ "File &Execute\t<Ctrl-r>", 'AsyncTask file-run' ],
         \ [ "File &Compile\t<Ctrl-b>", 'AsyncTask file-build' ],
         \ [ "Compile And E&xecute\t<Ctrl-x>", 'AsyncTask file-build-and-run' ],
-        \ [ "File &Make", 'AsyncTask make' ],
         \ [ '--','' ],
-        \ [ "&Task List", 'call MenuHelp_TaskList()' ],
+        \ [ "&BazelBuild\t<Leader>bz", 'BazelBuild' ],
+        \ [ "Bazel&Run\t<Leader>br", 'BazelRun' ],
+        \ [ "Bazel&UpdateTargets\t<Leader>bu", 'BazelUpdateTargets' ],
         \ [ '--','' ],
-        \ [ "Clang &Format", 'ClangFormat' ],
+        \ [ "&Task List\t<Leader>ts", 'call MenuHelp_TaskList()' ],
+        \ [ '--','' ],
+        \ [ "Clang &Format\t<Leader>cf", 'ClangFormat' ],
         \ ])
 
   call quickui#menu#install('&Tools', [
@@ -290,13 +295,12 @@ if exists('*nvim_open_win') > 0
         \ [ "Git &Blame", 'Gblame' ],
         \ [ '--', '' ],
         \ [ "List &Function", 'call quickui#tools#list_function()', '' ],
-        \ [ "Display &Messages", 'call quickui#tools#display_messages()', '' ],
-        \ [ "&Tagbar", 'Vista!!', '' ],
         \ [ "&Choose Window/Tab", 'ChooseWin', '' ],
         \ [ "Display Ca&lendar", 'Calendar -first_day=monday', '' ],
         \ [ "Ter&minal", 'FloatermToggle', '' ],
         \ [ '--', '' ],
         \ [ "Plugin &Update", 'DeinUpdate', '' ],
+        \ [ "Plugin &Clean", 'DeinClean', '' ],
         \ ])
 
   call quickui#menu#install('Help (&?)', [

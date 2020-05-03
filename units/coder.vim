@@ -178,7 +178,6 @@ nmap <silent><leader>rn <Plug>(coc-rename)
 nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent>w <Plug>(coc-ci-w)
 nmap <silent>b <Plug>(coc-ci-b)
-command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=1 Modeline :call comment#et(<q-args>)

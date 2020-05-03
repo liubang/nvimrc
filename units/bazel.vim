@@ -35,6 +35,9 @@ function! s:DefineCmd()
     \ 'options': '-m ' . utils#fzf_options('Files'),
     \ 'down': '35%',
     \ })
+  nnoremap <silent><Leader>bz :BazelBuild<CR>
+  nnoremap <silent><Leader>br :BazelRun<CR>
+  nnoremap <silent><Leader>bu :BazelUpdateTargets<CR>
 endfunc
 
 function s:Setup()
@@ -51,7 +54,6 @@ def bazel_get_targets():
     stream = os.popen(cmd)
     output = stream.read()
     targets = output.split('\n')
-
     result = []
     for target in targets:
       if target.startswith('//'): 
