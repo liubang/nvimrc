@@ -16,7 +16,6 @@ call dein#add('mengelbrecht/lightline-bufferline', {'depends': 'lightline.vim'})
 " }}}
 
 " {{{ tools
-call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('Shougo/defx.nvim')
 call dein#add('kristijanhusak/defx-icons', { 'depends': ['vim-devicons', 'defx.nvim'] })
 call dein#add('kristijanhusak/defx-git', { 'depends': 'defx.nvim' })
