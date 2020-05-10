@@ -54,7 +54,7 @@ call dein#add('preservim/nerdcommenter', {'on_map': [
 " }}}
 
 " {{{ coder
-call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'v0.0.77'})
 call dein#add('honza/vim-snippets')
 call dein#add('neoclide/jsonc.vim', {'on_ft': ['json', 'jsonc']})
 call dein#add('peitalin/vim-jsx-typescript', {'on_ft': ['typescriptreact', 'tsx']})

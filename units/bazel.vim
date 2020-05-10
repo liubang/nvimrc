@@ -22,7 +22,7 @@ function! s:BazelRun(item)
 endfunc
 
 function! s:DefineCmd()
-  command! -bang -nargs=0 BazelUpdateTargets call s:Setup()
+  command! -bang -nargs=0 BazelUpdateTargets call s:get_targets()
   command! -bang -nargs=0 BazelBuild call fzf#run({
     \ 'source': g:bazel_targets,
     \ 'sink': function('s:BazelBuild'),
@@ -40,11 +40,8 @@ function! s:DefineCmd()
   nnoremap <silent><Leader>bu :BazelUpdateTargets<CR>
 endfunc
 
-function s:Setup()
-  let s:workspace = asyncrun#get_root('%')
-  if filereadable(s:workspace . '/WORKSPACE')
-    call s:DefineCmd()
-    python3 << EOF
+function s:get_targets() 
+  python3 << EOF
 import vim
 import os
 
@@ -66,6 +63,12 @@ def bazel_get_targets():
 if __name__ == '__main__':
   vim.async_call(bazel_get_targets)
 EOF
+endfunc
+
+function s:Setup()
+  let s:workspace = asyncrun#get_root('%')
+  if filereadable(s:workspace . '/WORKSPACE')
+    call s:DefineCmd()
   endif
 endfunc
 

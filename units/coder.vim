@@ -30,7 +30,6 @@ let g:coc_global_extensions = [
       \'coc-emmet',
       \'coc-tailwindcss', 
       \'coc-vetur', 
-      \'coc-tsserver',
       \'coc-stylelint',
       \'coc-java',
       \'coc-phpls',
