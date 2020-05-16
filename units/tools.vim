@@ -1,8 +1,9 @@
 " vim: et ts=2 sts=2 sw=2
 
-" {{{ Dein 
-command! -bang -nargs=0 DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')")
-command! -bang -nargs=0 DeinRecache call dein#recache_runtimepath()
+" {{{ Dein
+command! -bang -nargs=0 PlugClean call map(dein#check_clean(), "delete(v:val, 'rf')")
+command! -bang -nargs=0 PlugUpdate call dein#update() | call dein#recache_runtimepath()
+command! -bang -nargs=0 PlugRecache call dein#recache_runtimepath()
 " }}}
 
 " {{{ Defx
@@ -299,8 +300,8 @@ if exists('*nvim_open_win') > 0
         \ [ "Display Ca&lendar", 'Calendar -first_day=monday', '' ],
         \ [ "Ter&minal", 'FloatermToggle', '' ],
         \ [ '--', '' ],
-        \ [ "Plugin &Update", 'DeinUpdate', '' ],
-        \ [ "Plugin &Clean", 'DeinClean', '' ],
+        \ [ "Plugin &Update", 'PlugUpdate', '' ],
+        \ [ "Plugin &Clean", 'PlugClean', '' ],
         \ ])
 
   call quickui#menu#install('Help (&?)', [
