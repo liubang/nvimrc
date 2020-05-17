@@ -2,8 +2,8 @@
 "
 " lightline.vim - 
 "
-" Created by liubang on 2020/05/02
-" Last Modified: 2020/05/02 01:20
+" Created by liubang on 2020/05/17
+" Last Modified: 2020/05/17 19:11
 "
 "======================================================================
 
@@ -207,15 +207,3 @@ let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#number_map = {
       \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
       \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
-
-nmap <silent> <expr> <Leader>1 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
-nmap <silent> <expr> <Leader>2 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
-nmap <silent> <expr> <Leader>3 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
-nmap <silent> <expr> <Leader>4 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
-nmap <silent> <expr> <Leader>5 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
-nmap <silent> <expr> <Leader>6 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
-nmap <silent> <expr> <Leader>7 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
-nmap <silent> <expr> <Leader>8 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
-nmap <silent> <expr> <Leader>9 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
-nmap <silent> <expr> <Leader>0 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
-

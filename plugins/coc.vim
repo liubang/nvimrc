@@ -1,13 +1,12 @@
 "======================================================================
 "
-" coder.vim - 
+" coc.vim - 
 "
-" Created by liubang on 2020/01/21
-" Last Modified: 2020/01/21 16:29
+" Created by liubang on 2020/05/17
+" Last Modified: 2020/05/17 19:14
 "
 "======================================================================
 
-" {{{ ext
 let g:coc_global_extensions = [
       \'coc-word',
       \'coc-lists',
@@ -40,17 +39,9 @@ let g:coc_global_extensions = [
       \'coc-cmake',
       \'coc-leetcode',
       \]
-" }}}
 
-" {{{ c/c++
-let c_no_curly_error=1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 0
-let g:cpp_concepts_highlight = 0
-let g:clang_format#detect_style_file = 1
-let g:clang_format#enable_fallback_style = 1
-autocmd FileType c,cpp,proto nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
-autocmd FileType c,cpp,proto vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 
 if !empty($CLANG_RESOURCEDIR)
   let g:nvg_ccls_clang_resourcedir = $CLANG_RESOURCEDIR
@@ -107,84 +98,8 @@ elseif has('unix') && !has('macunix') && !has('win32unix')
     \ }
     \ })
 endif
-" }}}
 
-" {{{ vim-go
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-"disable use K to run godoc
-let g:go_doc_keywordprg_enabled = 0
-let g:go_def_mapping_enabled = 0
-" }}}
 
-" {{{ markdown
-let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'top',
-      \ 'hide_yaml_meta': 1,
-      \ 'sequence_diagrams': {
-      \     'theme': 'hand'
-      \   }
-      \ }
-let g:mkdp_auto_close = 0
-nnoremap <silent><Leader>mp :MarkdownPreview<CR>
-" }}}
-
-" {{{ coc
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
-function! s:check_back_space() abort
-  let l:col = col('.') - 1
-  return !l:col || getline('.')[l:col - 1]  =~# '\s'
-endfunc
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" goto definition
-nmap <silent><leader>gd <Plug>(coc-definition)
-" goto declaration
-nmap <silent><leader>gD <Plug>(coc-declaration)
-" goto type definition
-nmap <silent><leader>gy <Plug>(coc-type-definition)
-" goto implementation
-nmap <silent><leader>gi <Plug>(coc-implementation)
-" goto references
-nmap <silent><leader>gr <Plug>(coc-references)
-" error info
-nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
-" rename
-nmap <silent><leader>rn <Plug>(coc-rename)
-nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent>w <Plug>(coc-ci-w)
-nmap <silent>b <Plug>(coc-ci-b)
-command! -nargs=? Fold   :call CocAction('fold', <f-args>)
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=1 Modeline :call comment#et(<q-args>)
-command! -nargs=0 CopyRight :call comment#copyright('liubang')
-command! -nargs=0 UpdateLastModified :call comment#update()
-
-" {{{ coc fzf
 function! s:get_diagnostics(diags, current_buffer_only) 
   if a:current_buffer_only 
     let l:diags = filter(a:diags, {key, val -> val.file ==# expand('%:p')})
@@ -230,10 +145,12 @@ function! s:coc_fzf_diagnostics()
 endfunc
 
 command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
-nnoremap <silent><leader>el :CocFzfDiagnostics<CR>
-" }}}
+command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=1 Modeline :call comment#et(<q-args>)
+command! -nargs=0 CopyRight :call comment#copyright('liubang')
+command! -nargs=0 UpdateLastModified :call comment#update()
 
-" {{{ auto cmd
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
@@ -266,6 +183,3 @@ augroup coc_au
   autocmd ColorScheme * highlight! link CocInfoHighlight NoCocUnderline
   autocmd ColorScheme * highlight! link CocHintHighlight NoCocUnderline
 augroup END
-" }}}
-
-" }}}

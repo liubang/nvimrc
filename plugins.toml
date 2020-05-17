@@ -1,0 +1,103 @@
+# Required:
+[[plugins]]
+repo = 'Shougo/dein.vim'
+hook_source = '''
+command! -bang -nargs=0 PlugClean call map(dein#check_clean(), "delete(v:val, 'rf')")
+command! -bang -nargs=0 PlugUpdate call dein#update() | call dein#recache_runtimepath()
+command! -bang -nargs=0 PlugRecache call dein#recache_runtimepath()
+'''
+
+# ui
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
+depends = ['vim-devicons', 'defx.nvim']
+hook_add = '''
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 1
+'''
+
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+depends = ['defx.nvim']
+
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
+hook_add = '''
+let g:gruvbox_filetype_hi_groups = 1
+let g:gruvbox_plugin_hi_groups = 1
+let g:gruvbox_transp_bg = 1
+let g:gruvbox_material_background = 'soft'
+'''
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
+depends = ['vim-devicons']
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+depends = ['vim-devicons']
+hook_add = 'source $PLUGINS/lightline.vim'
+
+[[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+depends = ['lightline.vim']
+
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = 0
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+depends = ['vim-textobj-user']
+
+[[plugins]]
+repo = 'dominikduda/vim_current_word'
+hook_add = '''
+let g:vim_current_word#enabled = 1
+let g:vim_current_word#highlight_delay = 0
+let g:vim_current_word#highlight_twins = 1
+let g:vim_current_word#highlight_current_word = 1
+let g:vim_current_word#highlight_only_in_focused_window = 1
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merged = 0
+rev = 'v0.0.77'
+hook_source = 'source $PLUGINS/coc.vim'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'skywind3000/vim-quickui'
+on_func = 'quickui#'
+hook_source = 'source $PLUGINS/quickui.vim'
+
+[[plugins]]
+repo = 'StanAngeloff/php.vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'neoclide/jsonc.vim'
+
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
+

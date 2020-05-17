@@ -1,0 +1,185 @@
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+on_cmd = 'Defx'
+hook_source = 'source $PLUGINS/defx.vim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = ['<Plug>(EasyAlign)']
+on_cmd = ['EasyAlign']
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = ['fzf']
+on_func = 'fzf#'
+on_cmd = ['Rg', 'Windows', 'Files ~', 'Helptags']
+on_map = ['<plug>(fzf-']
+hook_source = '''
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', '#3a3a3a'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+'''
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+on_map = ['<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)']
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
+on_func = 'asyncrun#'
+on_cmd = 'AsyncRun'
+hook_source = '''
+let g:asyncrun_open = 25
+let g:asyncrun_bell = 1
+let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
+'''
+
+[[plugins]]
+repo = 'skywind3000/asynctasks.vim'
+on_func = 'asynctasks#'
+on_cmd = 'AsyncTask'
+depends = ['asyncrun.vim']
+hook_source = 'source $PLUGINS/asynctask.vim'
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+merged = 0
+on_cmd = ['FloatermToggle', 'FloatermNew']
+hook_source = '''
+let g:floaterm_wintype = 'normal'
+let g:floaterm_position = 'bottom'
+let g:floaterm_height = 0.35
+let g:floaterm_keymap_toggle = '<Ctrl>-d'
+let g:floaterm_open_command = 'split'
+'''
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+on_cmd = ['Vista', 'Vista!']
+hook_source = '''
+let g:vista#renderer#enable_icon = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_echo_cursor = 0
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_executive_for = {
+  \ 'markdown': 'toc',
+  \ 'vim': 'ctags',
+  \ 'go': 'coc',
+  \ 'c': 'coc',
+  \ 'cpp': 'coc',
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ }
+'''
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = ['<Plug>']
+hook_source = '''
+let g:EasyMotion_startofline = 0  " keep cursor column when JK motion
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+on_cmd = ['Vinarise']
+
+[[plugins]]
+repo = 't9md/vim-choosewin'
+on_cmd = ['ChooseWin']
+
+[[plugins]]
+repo = 'itchyny/calendar.vim'
+on_cmd = ['Calendar']
+
+[[plugins]]
+repo = 'preservim/nerdcommenter'
+on_map = ['<Plug>NERDCommenterToggle', '<Plug>NERDCommenterSexy', '<Plug>NERDCommenterUncomment']
+hook_source = '''
+let g:NERDSpaceDelims = 1
+let g:NERDCreateDefaultMappings = 0
+let g:NERDRemoveExtraSpaces = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+'''
+
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp', 'proto', 'objc']
+on_cmd = ['ClangFormat', '<c-u>ClangFormat']
+hook_source = '''
+let g:clang_format#detect_style_file = 1
+let g:clang_format#enable_fallback_style = 1
+'''
+
+[[plugins]]
+repo = 'sakhnik/nvim-gdb'
+build = 'sh install.sh'
+on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'octol/vim-cpp-enhanced-highlight'
+on_ft = ['c', 'cpp', 'lex', 'yacc']
+hook_source = '''
+let c_no_curly_error=1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 0
+let g:cpp_concepts_highlight = 0
+'''
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+hook_source = '''
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_doc_keywordprg_enabled = 0
+let g:go_def_mapping_enabled = 0
+'''
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'rmd', 'pandoc.markdown']
+build = 'cd app && yarn install'
+hook_source = '''
+let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'top',
+      \ 'hide_yaml_meta': 1,
+      \ 'sequence_diagrams': {
+      \     'theme': 'hand'
+      \   }
+      \ }
+let g:mkdp_auto_close = 0
+'''
