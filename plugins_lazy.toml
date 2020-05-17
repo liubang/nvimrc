@@ -4,6 +4,19 @@ on_cmd = 'Defx'
 hook_source = 'source $PLUGINS/defx.vim'
 
 [[plugins]]
+repo = 'kristijanhusak/defx-icons'
+on_source = 'defx.nvim'
+depends = ['vim-devicons']
+hook_source = '''
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 1
+'''
+
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+on_source = 'defx.nvim'
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = ['<Plug>(EasyAlign)']
 on_cmd = ['EasyAlign']
@@ -63,6 +76,7 @@ let g:floaterm_position = 'bottom'
 let g:floaterm_height = 0.35
 let g:floaterm_keymap_toggle = '<Ctrl>-d'
 let g:floaterm_open_command = 'split'
+highlight Floaterm guibg=black
 '''
 
 [[plugins]]

@@ -151,6 +151,14 @@ command! -nargs=1 Modeline :call comment#et(<q-args>)
 command! -nargs=0 CopyRight :call comment#copyright('liubang')
 command! -nargs=0 UpdateLastModified :call comment#update()
 
+" coc-git
+highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
+highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
+highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+
+" highlight
+highlight default CocHighlightText  guibg=#725972 ctermbg=96
+
 augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']

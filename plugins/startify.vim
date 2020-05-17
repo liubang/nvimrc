@@ -2,8 +2,8 @@
 "
 " startify.vim - 
 "
-" Created by liubang on 2020/05/02
-" Last Modified: 2020/05/02 01:22
+" Created by liubang on 2020/05/17
+" Last Modified: 2020/05/17 20:24
 "
 "======================================================================
 
@@ -21,7 +21,3 @@ let g:startify_custom_header = [
                             \'        Vim : ' . utils#get_vim_version(),
                             \ ]
 autocmd User Startified setlocal buflisted
-
-function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
