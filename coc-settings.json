@@ -156,6 +156,9 @@
   "java.configuration.maven.userSettings": "~/.m2/settings.xml",
   "xml.codeLens.enabled": true,
   "xml.format.enabled": true,
+  // leetcode
+  "leetcode.enabled": true,
+  "leetcode.language": "cpp",
   "languageserver": {
     "gopls": {
       "command": "gopls",

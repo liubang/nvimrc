@@ -38,6 +38,7 @@ let g:coc_global_extensions = [
       \'coc-docker',
       \'coc-sh',
       \'coc-cmake',
+      \'coc-leetcode',
       \]
 " }}}
 
