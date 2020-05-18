@@ -41,10 +41,11 @@ function! s:plug_load() abort
 
     call dein#load_toml(l:toml, {'lazy': 0})
     call dein#load_toml(l:lazy_toml, {'lazy': 1})
+
     call dein#end()
     call dein#save_state()
 
-    if !has('vim_starting') && dein#check_install()
+    if dein#check_install()
       call dein#install()
     endif
   endif

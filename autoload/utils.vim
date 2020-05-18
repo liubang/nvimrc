@@ -8,23 +8,21 @@
 "======================================================================
 
 function! utils#get_vim_version()
-  if has('nvim')
-    redir => s
-    silent! version
-    redir END
-    return 'neovim ' . matchstr(s, 'NVIM v\zs[^\n]*')
-  else
+  if !has('nvim')
     return 'vim ' . v:version
+  else
+    redir => s | silent! version | redir END
+    return 'neovim ' 
+          \ . matchstr(s, 'NVIM v\zs[^\n]*')
   endif
 endfunc
 
 function! utils#errmsg(msg) 
   redraw | echo '' | redraw
-  echohl ErrorMsg
-  echom a:msg
-  echohl NONE
+  echohl ErrorMsg | echom a:msg | echohl NONE
 endfunc
 
 function! utils#fzf_options(title)
-  return "-i --border --layout=reverse --no-unicode --prompt='" . a:title . " > ' --algo=v2"
+  return "-i --border --layout=reverse 
+        \ --no-unicode --prompt='" . a:title . " > ' --algo=v2"
 endfunc

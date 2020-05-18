@@ -51,7 +51,7 @@ hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
 [[plugins]]
 repo = 'mhinz/vim-startify'
 depends = ['vim-devicons']
-hook_add = 'source $PLUGINS/startify.vim'
+hook_add = 'source $MD/startify.vim'
 hook_post_source = '''
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
@@ -61,7 +61,7 @@ endfunction
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 depends = ['vim-devicons']
-hook_add = 'source $PLUGINS/lightline.vim'
+hook_add = 'source $MD/lightline.vim'
 
 [[plugins]]
 repo = 'mengelbrecht/lightline-bufferline'
@@ -102,7 +102,7 @@ let g:vim_current_word#highlight_only_in_focused_window = 1
 repo = 'neoclide/coc.nvim'
 merged = 0
 rev = 'v0.0.77'
-hook_source = 'source $PLUGINS/coc.vim'
+hook_source = 'source $MD/coc.vim'
 
 [[plugins]]
 repo = 'honza/vim-snippets'
@@ -110,16 +110,18 @@ repo = 'honza/vim-snippets'
 [[plugins]]
 repo = 'skywind3000/vim-quickui'
 on_func = 'quickui#'
-hook_source = 'source $PLUGINS/quickui.vim'
+hook_source = 'source $MD/quickui.vim'
 
 [[plugins]]
 repo = 'StanAngeloff/php.vim'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
+on_ft = ['toml']
 
 [[plugins]]
 repo = 'neoclide/jsonc.vim'
+on_ft = ['json', 'jsonc']
 
 [[plugins]]
 repo = 'peitalin/vim-jsx-typescript'

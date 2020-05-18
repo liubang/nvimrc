@@ -7,16 +7,11 @@
 "
 "======================================================================
 
-let $ROOT = g:nvg_root
-let $PLUGINS = g:nvg_root . '/plugins'
-function! s:load_module()
-  let l:modules= get(g:, 'nvg_modules', [])
-  for l:item in l:modules
-    exec 'source ' . g:nvg_root. '/units/' . l:item . '.vim'
-  endfor
-endfunc
+let $RT = g:nvg_root
+let $MD = g:nvg_root . '/modules'
 
 function! core#run() 
   call plug#init()
-  call s:load_module()
+  exec 'source ' . $RT . '/core/viminit.vim'
+  exec 'source ' . $RT . '/core/mapping.vim'
 endfunc

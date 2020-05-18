@@ -1,3 +1,12 @@
+"======================================================================
+"
+" comment.vim - 
+"
+" Created by liubang on 2020/05/18
+" Last Modified: 2020/05/18 10:04
+"
+"======================================================================
+
 function s:comment()
   let l:ext = expand('%:e') 
   if &filetype == 'vim'
@@ -28,7 +37,7 @@ function s:comment()
   return '#'
 endfunc
 
-function! comment#et(indent) 
+function! s:comment_et(indent) 
   let l:text = s:comment() . ' vim: set '
   let l:text .= 'et '
   let l:text .= 'ts=' . a:indent . ' '
@@ -46,7 +55,7 @@ function! s:comment_line(char, repeat)
   return l:comment
 endfunc
 
-function! comment#copyright(author)
+function! s:comment_copyright(author)
   let l:c = s:comment() 
   let l:complete = s:comment_line('=', 71)
   let l:filename = expand("%:t") 
@@ -73,7 +82,7 @@ function! comment#copyright(author)
   call append(0, l:text)
 endfunc
 
-function! comment#update() 
+function! s:comment_update() 
   let _s=@/ 
   let l = line(".")
   let c = col(".")
@@ -86,3 +95,8 @@ function! comment#update()
   let @/=_s
   call cursor(l, c)
 endfunc
+
+
+command! -nargs=1 Modeline :call <SID>comment_et(<q-args>)
+command! -nargs=0 CopyRight :call <SID>comment_copyright('liubang')
+command! -nargs=0 UpdateLastModified :call <SID>comment_update()

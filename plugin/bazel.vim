@@ -2,13 +2,11 @@
 "
 " bazel.vim - 
 "
-" Created by liubang on 2020/05/02
-" Last Modified: 2020/05/02 01:12
+" Created by liubang on 2020/05/18
+" Last Modified: 2020/05/18 09:56
 "
 "======================================================================
-" vim: et ts=2 sts=2 sw=2
 
-let s:workspace = ''
 let g:bazel_targets = []
 
 function! s:BazelBuild(item)
@@ -16,28 +14,10 @@ function! s:BazelBuild(item)
 endfunc
 
 function! s:BazelRun(item)
-  let bazel_bin = s:workspace . '/bazel-bin'  
+  let workspace = asyncrun#get_root('%')
+  let bazel_bin = workspace . '/bazel-bin'  
   let cmd = bazel_bin . substitute(strpart(a:item, 1), ':', '/', 'g')
   call asyncrun#run("", {'cwd': '<root>', 'mode': 'term'}, cmd)
-endfunc
-
-function! s:DefineCmd()
-  command! -bang -nargs=0 BazelUpdateTargets call s:get_targets()
-  command! -bang -nargs=0 BazelBuild call fzf#run({
-    \ 'source': g:bazel_targets,
-    \ 'sink': function('s:BazelBuild'),
-    \ 'options': '-m ' . utils#fzf_options('Files'),
-    \ 'down': '35%',
-    \ })
-  command! -bang -nargs=0 BazelRun call fzf#run({
-    \ 'source': g:bazel_targets,
-    \ 'sink': function('s:BazelRun'),
-    \ 'options': '-m ' . utils#fzf_options('Files'),
-    \ 'down': '35%',
-    \ })
-  nnoremap <silent><Leader>bz :BazelBuild<CR>
-  nnoremap <silent><Leader>br :BazelRun<CR>
-  nnoremap <silent><Leader>bu :BazelUpdateTargets<CR>
 endfunc
 
 function s:get_targets() 
@@ -65,13 +45,17 @@ if __name__ == '__main__':
 EOF
 endfunc
 
-function s:Setup()
-  let s:workspace = asyncrun#get_root('%')
-  if filereadable(s:workspace . '/WORKSPACE')
-    call s:DefineCmd()
-  endif
-endfunc
+command! -bang -nargs=0 BazelUpdateTargets call <SID>get_targets()
+command! -bang -nargs=0 BazelBuild call fzf#run({
+  \ 'source': g:bazel_targets,
+  \ 'sink': function('s:BazelBuild'),
+  \ 'options': '-m ' . utils#fzf_options('Files'),
+  \ 'down': '35%',
+  \ })
+command! -bang -nargs=0 BazelRun call fzf#run({
+  \ 'source': g:bazel_targets,
+  \ 'sink': function('s:BazelRun'),
+  \ 'options': '-m ' . utils#fzf_options('Files'),
+  \ 'down': '35%',
+  \ })
 
-if executable('bazel')
-  autocmd VimEnter * call s:Setup()
-endif

@@ -147,9 +147,6 @@ endfunc
 command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
 command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=1 Modeline :call comment#et(<q-args>)
-command! -nargs=0 CopyRight :call comment#copyright('liubang')
-command! -nargs=0 UpdateLastModified :call comment#update()
 
 " coc-git
 highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE

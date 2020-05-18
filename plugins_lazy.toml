@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 on_cmd = 'Defx'
-hook_source = 'source $PLUGINS/defx.vim'
+hook_source = 'source $MD/defx.vim'
 
 [[plugins]]
 repo = 'kristijanhusak/defx-icons'
@@ -64,7 +64,7 @@ repo = 'skywind3000/asynctasks.vim'
 on_func = 'asynctasks#'
 on_cmd = 'AsyncTask'
 depends = ['asyncrun.vim']
-hook_source = 'source $PLUGINS/asynctask.vim'
+hook_source = 'source $MD/asynctask.vim'
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
