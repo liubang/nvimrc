@@ -7,6 +7,12 @@
 "
 "======================================================================
 
+if exists('g:nvg_did_comment_loaded')
+  finish
+endif
+
+let g:nvg_did_comment_loaded= 1
+
 function s:comment()
   let l:ext = expand('%:e') 
   if &filetype == 'vim'

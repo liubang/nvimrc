@@ -7,6 +7,12 @@
 "
 "======================================================================
 
+if exists('g:nvg_did_bazel_loaded')
+  finish
+endif
+
+let g:nvg_did_bazel_loaded = 1
+
 let g:bazel_targets = []
 
 function! s:BazelBuild(item)
