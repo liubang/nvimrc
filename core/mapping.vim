@@ -90,10 +90,23 @@ if dein#tap('fzf.vim')
           \ 'down': '30%'})
   endfunc
 
+  function! s:rg(query, bang)
+    let preview_opts = a:bang ? fzf#vim#with_preview('up:60%') 
+          \ : fzf#vim#with_preview('right:50%')
+    let root_dir = asyncrun#get_root('%')
+    call extend(preview_opts.options, ['--prompt', root_dir.'> '])
+    call fzf#vim#grep(
+      \ 'rg --column --line-number --no-heading --smart-case '.shellescape(a:query), 1,
+      \ preview_opts,
+      \ a:bang,
+      \ )
+  endfunc
+
+  command! -bang -nargs=* MyRg call s:rg(<q-args>, <bang>0)
   nmap <silent><Leader>? <plug>(fzf-maps-n)
   xmap <silent><Leader>? <plug>(fzf-maps-x)
   omap <silent><Leader>? <plug>(fzf-maps-o)
-  nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Rg\<cr>"
+  nnoremap <silent> <expr> <Leader>ag (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":MyRg\<cr>"
   nnoremap <silent> <expr> <Leader>w? (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
   nnoremap <silent> <expr> <Leader>f? (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
   nnoremap <silent> <expr> <Leader>ht (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"

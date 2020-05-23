@@ -72,14 +72,6 @@ function! s:defx_mappings()
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
 endfunc
 
-highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
-highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
-highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
-highlight def link Defx_filename_3_Untracked Comment
-highlight def link Defx_filename_3_Unknown Comment
-highlight def link Defx_filename_3_Renamed Title
-highlight def link Defx_filename_3_Unmerged Label
-
 augroup vfinit
   au!
   autocmd FileType defx call s:defx_mappings()
@@ -89,3 +81,11 @@ augroup vfinit
   " Close defx if it's the only buffer left in the window
   autocmd WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
 augroup END
+
+highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
+highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
+highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
+highlight def link Defx_filename_3_Untracked Comment
+highlight def link Defx_filename_3_Unknown Comment
+highlight def link Defx_filename_3_Renamed Title
+highlight def link Defx_filename_3_Unmerged Label

@@ -14,6 +14,7 @@ syntax on
 set encoding=UTF-8
 set fileencoding=utf-8
 scriptencoding UTF-8
+set termguicolors
 set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
 set completeopt-=menu
 set completeopt+=menuone   " Show the completions UI even with only 1 item
@@ -64,7 +65,7 @@ set formatoptions+=m
 set formatoptions+=B
 set report=0
 set linespace=0
-set pumheight=30
+set pumheight=15
 set winminheight=0
 " 设置Backspace按键模式
 set backspace=eol,start,indent
@@ -101,7 +102,7 @@ set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
 set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
 set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 if matchstr(execute('silent version'), 'NVIM v\zs[^\n-]*') >= '0.4.0'
-  set shada='20,<50,s10
+  set shada=!,'300,<50,@100,s10,h
   set inccommand=nosplit
   set wildoptions+=pum
   set pumblend=10
@@ -123,8 +124,10 @@ if has('folding')
   set foldcolumn=0 
 	set foldmethod=marker
 endif
-" session
-set sessionoptions+=globals
+
+
+set viewoptions=folds,cursor,curdir,slash,unix
+set sessionoptions=curdir,help,tabpages,winsize
 
 " To make vsplit put the new buffer on the right of the current buffer
 set splitright
@@ -154,10 +157,42 @@ endif
 " }}}
 
 " {{{ autocmd
-autocmd FileType xml,json,text
-      \ if getfsize(expand("%")) > 10000000
-      \|  setlocal syntax=off
-      \|endif
+augroup UserTermSettings " neovim only
+  autocmd!
+  autocmd TermOpen *
+    \ setlocal signcolumn=no |
+    \ setlocal nobuflisted |
+    \ setlocal nospell |
+    \ setlocal modifiable |
+    " \ nmap <silent><buffer> <Esc> <Cmd>hide<CR>|
+    \ nmap <silent><buffer> q :q<CR> |
+    \ hi TermCursor guifg=yellow
+augroup END
+
+augroup FileSyntax
+	autocmd!
+  autocmd FileType xml,json,text
+    \ if getfsize(expand("%")) > 10000000
+    \|  setlocal syntax=off
+    \|endif
+augroup END
+
+" Fast fold
+" Credits: https://github.com/Shougo/shougo-s-github
+augroup FastFold
+	autocmd!
+	autocmd TextChangedI,TextChanged *
+		\  if &l:foldenable && &l:foldmethod !=# 'manual'
+		\|   let b:foldmethod_save = &l:foldmethod
+		\|   let &l:foldmethod = 'manual'
+		\| endif
+
+	autocmd BufWritePost *
+		\  if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save')
+		\|   let &l:foldmethod = b:foldmethod_save
+		\|   execute 'normal! zx'
+		\| endif
+augroup END
 
 augroup UserKeywordHighlight
   autocmd!
@@ -259,10 +294,10 @@ function s:exit_to_normal() abort
   return "\<C-\>\<C-n>"
 endfunc
 
-tnoremap <expr> <Esc> <SID>exit_to_normal()
+tnoremap <expr>  <Esc> <SID>exit_to_normal()
 tnoremap <Leader><Esc> <C-\><C-n>
-tnoremap <Leader>wh <C-\><C-N><C-w>h
-tnoremap <Leader>wj <C-\><C-N><C-w>j
-tnoremap <Leader>wl <C-\><C-N><C-w>l
-tnoremap <Leader>wk <C-\><C-N><C-w>k
+tnoremap <Leader>wh    <C-\><C-N><C-w>h
+tnoremap <Leader>wj    <C-\><C-N><C-w>j
+tnoremap <Leader>wl    <C-\><C-N><C-w>l
+tnoremap <Leader>wk    <C-\><C-N><C-w>k
 " }}}

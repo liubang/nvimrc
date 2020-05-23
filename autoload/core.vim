@@ -7,13 +7,6 @@
 "
 "======================================================================
 
-if !empty($PYTHON3_HOST_PROG)
-  let g:python3_host_prog = $PYTHON3_HOST_PROG
-endif
-
-if !empty($PYTHON_HOST_PROG)
-  let g:python_host_prog = $PYTHON_HOST_PROG
-endif
 
 let $RT = g:nvg_root
 let $MD = g:nvg_root . '/modules'

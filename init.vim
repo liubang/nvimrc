@@ -4,6 +4,12 @@ if !has('nvim')
   finish
 endif
 
+if !empty($PYTHON3_HOST_PROG)
+  let g:python3_host_prog = $PYTHON3_HOST_PROG
+elseif !empty($PYTHON_HOST_PROG)
+  let g:python_host_prog = $PYTHON_HOST_PROG
+endif
+
 let g:nvg_version = 'v2.1'
 let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let g:nvg_cache_path = expand(g:nvg_root . '/.cache')
