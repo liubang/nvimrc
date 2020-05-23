@@ -159,11 +159,25 @@ autocmd FileType xml,json,text
       \|  setlocal syntax=off
       \|endif
 
+augroup UserKeywordHighlight
+  autocmd!
+  autocmd Syntax *
+    \ call matchadd('Todo',  '\W\zs\(@TODO\|@FIXME\|@CHANGED\|@XXX\|@BUG\|@HACK\)') |
+    \ call matchadd('Todo',  '\W\zs\(@todo\|@fixme\|@changed\|@xxx\|@bug\|@hack\)') |
+    \ call matchadd('Todo',  '\W\zs\(@NOTE\|@INFO\|@IDEA\|@NOTICE\)') |
+    \ call matchadd('Todo',  '\W\zs\(@note\|@info\|@idea\|@notice\)') |
+    \ call matchadd('Debug', '\W\zs\(@DEBUG\|@Debug\|@debug\)') |
+    \ call matchadd('Tag',   '\W\zs\(@VOLDIKSS\|@voldikss\)')
+augroup END
+
 " restore cursor position when opening file
-autocmd BufReadPost *
-      \ if line("'\"") > 1 && line("'\"") <= line("$")
-      \|  execute "normal! g`\""
-      \|endif
+augroup UserJumpToLastPosition
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' |
+      \ exe "normal! g'\"" |
+    \ endif
+augroup END
 " }}}
 
 " {{{ mapping

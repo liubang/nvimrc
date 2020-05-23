@@ -1,11 +1,6 @@
 # Required:
 [[plugins]]
 repo = 'Shougo/dein.vim'
-hook_source = '''
-command! -bang -nargs=0 PlugClean call map(dein#check_clean(), "delete(v:val, 'rf')")
-command! -bang -nargs=0 PlugUpdate call dein#update() | call dein#recache_runtimepath()
-command! -bang -nargs=0 PlugRecache call dein#recache_runtimepath()
-'''
 
 # ui
 [[plugins]]
@@ -53,6 +48,10 @@ repo = 'mhinz/vim-startify'
 depends = ['vim-devicons']
 hook_add = 'source $MD/startify.vim'
 hook_post_source = '''
+highlight StartifyHeader guifg=#FF00FF
+highlight StartifyNumber guifg=#00FF00
+highlight StartifyPath   guifg=#00AFFF
+highlight StartifySlash  guifg=#DF875F
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction

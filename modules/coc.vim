@@ -144,17 +144,16 @@ function! s:coc_fzf_diagnostics()
   endif
 endfunc
 
-command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
-command! -nargs=? Fold   :call CocAction('fold', <f-args>)
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
 " coc-git
 highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-
-" highlight
 highlight default CocHighlightText  guibg=#725972 ctermbg=96
+
+" command 
+command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
+command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 augroup coc_au
   autocmd!
