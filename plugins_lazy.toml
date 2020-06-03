@@ -62,7 +62,7 @@ let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
 [[plugins]]
 repo = 'skywind3000/asynctasks.vim'
 on_func = 'asynctasks#'
-on_cmd = 'AsyncTask'
+on_cmd = ['AsyncTask', 'TaskList', 'TaskListFzf']
 depends = ['asyncrun.vim']
 hook_source = 'source $MD/asynctask.vim'
 
