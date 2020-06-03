@@ -155,6 +155,13 @@
   "leetcode.enabled": true,
   "leetcode.language": "cpp",
   // python
+  "python.autoComplete.addBrackets": true,
+  "python.jediEnabled": false,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
+  ],
   "languageserver": {
     "gopls": {
       "command": "gopls",

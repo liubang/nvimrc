@@ -32,7 +32,7 @@ let g:coc_global_extensions = [
       \ 'coc-stylelint',
       \ 'coc-java',
       \ 'coc-phpls',
-      \ 'coc-pyright',
+      \ 'coc-python',
       \ 'coc-rls',
       \ 'coc-docker',
       \ 'coc-sh',
