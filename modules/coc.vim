@@ -160,7 +160,7 @@ augroup coc_au
   autocmd!
   autocmd FileType go let b:coc_pairs_disabled = ['<']
   autocmd FileType markdown let b:coc_pairs_disabled = ['`']
-  autocmd BufWritePre *.go   :call CocAction('runCommand', 'editor.action.organizeImport')
+  " autocmd BufWritePre *.go   :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd BufWritePre *.java :call CocAction('runCommand', 'java.action.organizeImports')
   autocmd FileType vim let b:coc_pairs_disabled = ['"']
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
