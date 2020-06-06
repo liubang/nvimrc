@@ -26,3 +26,8 @@ function! utils#fzf_options(title)
   return "-i --border --layout=reverse 
         \ --no-unicode --prompt='" . a:title . " > ' --algo=v2"
 endfunc
+
+function! utils#is_special_buffer()
+  return &buftype =~ '\v(terminal|quickfix)' 
+        \ || &filetype =~ '\v(help|startify|defx|vista|undotree|SpaceVimPlugManager|git|Mundo|MundoDiff)'
+endfunc

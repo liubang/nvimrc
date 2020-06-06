@@ -373,17 +373,20 @@ tnoremap <Leader>wk    <C-\><C-N><C-w>k
 " Defx
 nnoremap <silent><Leader>ft :Defx <CR>
 
+" mundo
+nnoremap <silent><Leader>ud :MundoToggle<CR>
+
 " lightline.vim
-nmap <silent> <expr> <Leader>1 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
-nmap <silent> <expr> <Leader>2 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
-nmap <silent> <expr> <Leader>3 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
-nmap <silent> <expr> <Leader>4 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
-nmap <silent> <expr> <Leader>5 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
-nmap <silent> <expr> <Leader>6 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
-nmap <silent> <expr> <Leader>7 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
-nmap <silent> <expr> <Leader>8 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
-nmap <silent> <expr> <Leader>9 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
-nmap <silent> <expr> <Leader>0 (expand('%') =~ 'defx' ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
+nmap <silent> <expr> <Leader>1 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
+nmap <silent> <expr> <Leader>2 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
+nmap <silent> <expr> <Leader>3 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
+nmap <silent> <expr> <Leader>4 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
+nmap <silent> <expr> <Leader>5 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
+nmap <silent> <expr> <Leader>6 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
+nmap <silent> <expr> <Leader>7 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
+nmap <silent> <expr> <Leader>8 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
+nmap <silent> <expr> <Leader>9 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
+nmap <silent> <expr> <Leader>0 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
 
 " markdown-preview.nvim
 nnoremap <silent><Leader>mp :MarkdownPreview<CR>

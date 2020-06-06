@@ -65,12 +65,6 @@ hook_add = 'source $MD/lightline.vim'
 repo = 'mengelbrecht/lightline-bufferline'
 depends = ['lightline.vim']
 
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_source = '''
-'''
-
 [[plugins]]
 repo = 'junegunn/fzf'
 build = './install --all'
@@ -85,16 +79,6 @@ repo = 'kana/vim-textobj-user'
 [[plugins]]
 repo = 'machakann/vim-sandwich'
 depends = ['vim-textobj-user']
-
-[[plugins]]
-repo = 'dominikduda/vim_current_word'
-hook_add = '''
-let g:vim_current_word#enabled = 1
-let g:vim_current_word#highlight_delay = 0
-let g:vim_current_word#highlight_twins = 1
-let g:vim_current_word#highlight_current_word = 1
-let g:vim_current_word#highlight_only_in_focused_window = 1
-'''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -124,4 +108,3 @@ on_ft = ['json', 'jsonc']
 
 [[plugins]]
 repo = 'peitalin/vim-jsx-typescript'
-

@@ -17,6 +17,13 @@ repo = 'kristijanhusak/defx-git'
 on_source = 'defx.nvim'
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+on_cmd = ['G', 'Git', 'Gfetch', 'Gpush', 'Glog', 'Gclog', 'Gdiffsplit', 'Gblame']
+hook_source = '''
+
+'''
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = ['<Plug>(EasyAlign)']
 on_cmd = ['EasyAlign']
@@ -69,7 +76,7 @@ hook_source = 'source $MD/asynctask.vim'
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
 merged = 0
-on_cmd = ['FloatermToggle', 'FloatermNew']
+on_cmd = ['FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend']
 hook_source = '''
 let g:floaterm_wintype = 'normal'
 let g:floaterm_position = 'bottom'
@@ -102,6 +109,7 @@ let g:vista_executive_for = {
 repo = 'easymotion/vim-easymotion'
 on_map = ['<Plug>']
 hook_source = '''
+let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_startofline = 0  " keep cursor column when JK motion
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
@@ -176,24 +184,15 @@ let g:cpp_concepts_highlight = 0
 '''
 
 [[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
+repo = 'simnalamburt/vim-mundo'
+on_map = ['<Plug>']
+on_cmd = ['MundoToggle']
 hook_source = '''
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-let g:go_doc_keywordprg_enabled = 0
-let g:go_def_mapping_enabled = 0
+set undofile
+set undodir=$HOME/.vim/undo
+let g:mundo_width = 50
+let g:mundo_preview_height = 30
+let g:mundo_right = 1
 '''
 
 [[plugins]]
@@ -215,3 +214,8 @@ let g:mkdp_preview_options = {
       \ }
 let g:mkdp_auto_close = 0
 '''
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_event = 'FileType'
+hook_source='luafile $MD/colorizer.lua'

@@ -54,26 +54,22 @@ let g:lightline = {
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
 
-function! s:isSpecial() abort
-    return &buftype =~ '\v(terminal|quickfix)' || &filetype =~ '\v(help|startify|defx|vista|undotree|SpaceVimPlugManager|git)'
-endfunc
-
 function! LightLineEncoding() 
-  if s:isSpecial()
+  if utils#is_special_buffer()
     return ''
   endif
   return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunc
 
 function! LightLineLineinfo() 
-  if s:isSpecial() 
+  if utils#is_special_buffer()
     return ""
   endif
   return ' ' . line('.').':'. col('.')
 endfunc
 
 function! LightLinePercent() 
-  if s:isSpecial()
+  if utils#is_special_buffer()
     return ''
   endif
   return line('.') * 100 / line('$') . '%'
@@ -84,7 +80,7 @@ function! LightLineHomeMode()
     return toupper(&buftype)
   elseif &buftype == 'quickfix'
     return toupper(&buftype)
-  elseif s:isSpecial() 
+  elseif utils#is_special_buffer()
     return toupper(&filetype)
   else
     let nr = s:get_buffer_number()
@@ -136,14 +132,14 @@ function! LightLineReadonly()
 endfunction
 
 function! LightLineGitBranch()
-  if s:isSpecial()
+  if utils#is_special_buffer()
     return ""
   endif
   return get(g:, 'coc_git_status', '')
 endfunction
 
 function! LightLineGitStatus()
-  if s:isSpecial()
+  if utils#is_special_buffer()
     return ''
   endif
   return get(b:, 'coc_git_status', '')
@@ -168,7 +164,7 @@ function! LightLineCocWarn() abort
 endfunction
 
 function! LightLineFname() 
-  if s:isSpecial()
+  if utils#is_special_buffer()
     return ''
   endif
   let icon = (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
@@ -191,7 +187,7 @@ function! LightLineFiletype()
 endfunction
 
 function! LightLineFileformat()
-  if s:isSpecial() || winwidth(0) <= 70
+  if utils#is_special_buffer() || winwidth(0) <= 70
     return ''
   endif
   return &fileformat . ' ' . WebDevIconsGetFileFormatSymbol()

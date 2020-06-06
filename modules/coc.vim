@@ -11,7 +11,6 @@ let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-emoji',
       \ 'coc-snippets',
-      \ 'coc-highlight',
       \ 'coc-prettier',
       \ 'coc-diagnostic',
       \ 'coc-pairs',
@@ -138,46 +137,41 @@ function! s:coc_fzf_diagnostics()
   endif
 endfunc
 
+" command 
+command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
+
 " coc-git
 highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight default CocHighlightText  guibg=#725972 ctermbg=96
-
-" command 
-command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
-command! -nargs=? Fold   :call CocAction('fold', <f-args>)
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+" virtual text highlight
+highlight! CocCodeLens guifg=#606060 ctermfg=60
+" error/warning/info/hit sign
+highlight! CocErrorSign ctermfg=Red guifg=#ea6962
+highlight! CocWarningSign ctermfg=Yellow guifg=#e3a84e
+highlight! CocInfoSign ctermfg=Blue guifg=#7dae9b
+highlight! CocHintSign ctermfg=Blue guifg=#7dae9b
+" diff sign highlight groups
+highlight GitAddHi    guifg=#b8bb26 ctermfg=40
+highlight GitModifyHi guifg=#83a598 ctermfg=33
+highlight GitDeleteHi guifg=#f3423a ctermfg=196
+highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
+" highlight text color
+highlight! CocHighlightText  guibg=#054c20 ctermbg=023
+" do not underline error/info/hit lines
+highlight! link CocErrorHighlight NoCocUnderline
+highlight! link CocWarningHighlight NoCocUnderline
+highlight! link CocInfoHighlight NoCocUnderline
+highlight! link CocHintHighlight NoCocUnderline
 
 augroup coc_au
   autocmd!
-  autocmd FileType go let b:coc_pairs_disabled = ['<']
-  autocmd FileType markdown let b:coc_pairs_disabled = ['`']
-  " autocmd BufWritePre *.go   :call CocAction('runCommand', 'editor.action.organizeImport')
+  autocmd BufWritePre *.go   :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd BufWritePre *.java :call CocAction('runCommand', 'java.action.organizeImports')
-  autocmd FileType vim let b:coc_pairs_disabled = ['"']
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
-  " virtual text highlight
-  autocmd ColorScheme * highlight! CocCodeLens guifg=#606060 ctermfg=60
-  " error/warning/info/hit sign
-  autocmd ColorScheme * highlight! CocErrorSign ctermfg=Red guifg=#ea6962
-  autocmd ColorScheme * highlight! CocWarningSign ctermfg=Yellow guifg=#e3a84e
-  autocmd ColorScheme * highlight! CocInfoSign ctermfg=Blue guifg=#7dae9b
-  autocmd ColorScheme * highlight! CocHintSign ctermfg=Blue guifg=#7dae9b
-  " diff sign highlight groups
-  autocmd ColorScheme * highlight GitAddHi    guifg=#b8bb26 ctermfg=40
-  autocmd ColorScheme * highlight GitModifyHi guifg=#83a598 ctermfg=33
-  autocmd ColorScheme * highlight GitDeleteHi guifg=#f3423a ctermfg=196
-  autocmd ColorScheme * highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
-  " highlight text color
-  autocmd ColorScheme * highlight! CocHighlightText  guibg=#054c20 ctermbg=023
-  " do not underline error/info/hit lines
-  autocmd ColorScheme * highlight! link CocErrorHighlight NoCocUnderline
-  autocmd ColorScheme * highlight! link CocWarningHighlight NoCocUnderline
-  autocmd ColorScheme * highlight! link CocInfoHighlight NoCocUnderline
-  autocmd ColorScheme * highlight! link CocHintHighlight NoCocUnderline
 augroup END
