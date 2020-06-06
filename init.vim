@@ -97,6 +97,10 @@ set nocursorcolumn
 set noerrorbells
 set novisualbell
 set t_vb=
+" 光标形状
+" default value is guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+set guicursor=i-ci-ve:ver25,n-v-c-sm:hor50,r-cr-o:hor20
+au VimLeave * set guicursor=a:hor50-blinkon0
 
 set cpoptions+=I
 set wildmenu
