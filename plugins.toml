@@ -99,7 +99,8 @@ let g:vim_current_word#highlight_only_in_focused_window = 1
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
-rev = 'v0.0.77'
+# rev = 'v0.0.77'
+build = 'yarn install --frozen-lockfile'
 hook_source = 'source $MD/coc.vim'
 
 [[plugins]]

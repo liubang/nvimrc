@@ -8,7 +8,6 @@
 "======================================================================
 
 let g:coc_global_extensions = [
-      \ 'coc-word',
       \ 'coc-lists',
       \ 'coc-emoji',
       \ 'coc-snippets',
@@ -17,18 +16,15 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-pairs',
       \ 'coc-git',
-      \ 'coc-ci',
       \ 'coc-json',
       \ 'coc-yaml',
       \ 'coc-vimlsp',
-      \ 'coc-sql',
       \ 'coc-xml',
       \ 'coc-calc',
+      \ 'coc-ci',
+      \ 'coc-tsserver',
       \ 'coc-css', 
-      \ 'coc-html', 
       \ 'coc-emmet',
-      \ 'coc-tailwindcss', 
-      \ 'coc-vetur', 
       \ 'coc-stylelint',
       \ 'coc-java',
       \ 'coc-phpls',
@@ -36,8 +32,6 @@ let g:coc_global_extensions = [
       \ 'coc-rls',
       \ 'coc-docker',
       \ 'coc-sh',
-      \ 'coc-cmake',
-      \ 'coc-phpls',
       \]
 
 let g:coc_snippet_next = '<TAB>'
