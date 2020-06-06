@@ -26,6 +26,8 @@ endif
 " }}}
 
 " {{{ basic
+
+" {{{ better 
 set nocompatible
 syntax enable
 syntax on
@@ -178,6 +180,96 @@ endif
 
 " }}}
 
+" {{{ basic mapping 
+" Release keymappings prefixes
+nnoremap <Space> <Nop>
+xnoremap <Space> <Nop>
+nnoremap ,       <Nop>
+xnoremap ,       <Nop>
+nnoremap ;       <Nop>
+xnoremap ;       <Nop>
+nnoremap m       <Nop>
+xnoremap m       <Nop>
+" leader key
+let g:mapleader="\<Space>"
+" Use tab for indenting
+vnoremap <silent> <Tab> >gv|
+vnoremap <silent> <S-Tab> <gv
+nmap <silent> <Tab>   >>_
+nmap <silent> <S-Tab> <<_
+" e -> exchange
+" https://github.com/wsdjeg/vim-galore-zh_cn#%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8%E5%BD%93%E5%89%8D%E8%A1%8C
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+" 防止水平滑动的时候失去选择
+xnoremap <  <gv
+xnoremap >  >gv
+" bash like
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Delete>
+" }}}
+
+" {{{ command mod
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <S-Left>
+cnoremap <C-f> <S-Right>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <expr> <C-n>  pumvisible() ? '<Right>' : '<Down>'
+cnoremap <expr> <C-p>  pumvisible() ? '<Left>' : '<Up>'
+cnoremap <expr> <Up>   pumvisible() ? '<C-p>' : '<up>'
+cnoremap <expr> <Down> pumvisible() ? '<C-n>' : '<down>'
+" }}}
+
+" {{{ buffer 
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bf :bfirst<CR>
+nnoremap <Leader>bl :blast<CR>
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bk :bwipout<CR>
+" }}}
+
+" {{{ window
+nnoremap <Leader>ww <C-W>w
+nnoremap <Leader>wr <C-W>r
+nnoremap <Leader>wd <C-W>c
+nnoremap <Leader>wq <C-W>q
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wJ <C-W>J
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wK <C-W>K
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wH <C-W>H
+nnoremap <Leader>wl <C-W>l
+nnoremap <Leader>wL <C-W>L
+nnoremap <Leader>w= <C-W>=
+nnoremap <Leader>ws <C-W>s
+nnoremap <Leader>w- <C-W>s
+nnoremap <Leader>wv <C-W>v
+nnoremap <Leader>w\| <C-W>v
+" }}}
+
+" {{{ terminal
+function s:exit_to_normal() abort
+  if &filetype ==# 'fzf'
+    return "\<Esc>"
+  endif
+  return "\<C-\>\<C-n>"
+endfunc
+
+tnoremap <expr>  <Esc> <SID>exit_to_normal()
+tnoremap <Leader><Esc> <C-\><C-n>
+tnoremap <Leader>wh    <C-\><C-N><C-w>h
+tnoremap <Leader>wj    <C-\><C-N><C-w>j
+tnoremap <Leader>wl    <C-\><C-N><C-w>l
+tnoremap <Leader>wk    <C-\><C-N><C-w>k
+" }}}
+
+" }}}
+
 " {{{ plugin 
 if &runtimepath !~# '/dein.vim'
   let dein_dir = s:cache_path . '/repos/github.com/Shougo/dein.vim'  
@@ -277,99 +369,6 @@ augroup UserJumpToLastPosition
       \ exe "normal! g'\"" |
     \ endif
 augroup END
-" }}}
-
-" {{{ mapping
-
-" {{{ basic mapping 
-" Release keymappings prefixes
-nnoremap <Space> <Nop>
-xnoremap <Space> <Nop>
-nnoremap ,       <Nop>
-xnoremap ,       <Nop>
-nnoremap ;       <Nop>
-xnoremap ;       <Nop>
-nnoremap m       <Nop>
-xnoremap m       <Nop>
-" leader key
-let g:mapleader="\<Space>"
-" Use tab for indenting
-vnoremap <silent> <Tab> >gv|
-vnoremap <silent> <S-Tab> <gv
-nmap <silent> <Tab>   >>_
-nmap <silent> <S-Tab> <<_
-" e -> exchange
-" https://github.com/wsdjeg/vim-galore-zh_cn#%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8%E5%BD%93%E5%89%8D%E8%A1%8C
-nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-" https://github.com/wsdjeg/vim-galore-zh_cn#%E8%81%AA%E6%98%8E%E5%9C%B0%E4%BD%BF%E7%94%A8-n-%E5%92%8C-n
-nnoremap <expr> n  'Nn'[v:searchforward]
-nnoremap <expr> N  'nN'[v:searchforward]
-" 防止水平滑动的时候失去选择
-xnoremap <  <gv
-xnoremap >  >gv
-" bash like
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-d> <Delete>
-" }}}
-
-" {{{ command mod
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <S-Left>
-cnoremap <C-f> <S-Right>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
-cnoremap <expr> <C-n>  pumvisible() ? '<Right>' : '<Down>'
-cnoremap <expr> <C-p>  pumvisible() ? '<Left>' : '<Up>'
-cnoremap <expr> <Up>   pumvisible() ? '<C-p>' : '<up>'
-cnoremap <expr> <Down> pumvisible() ? '<C-n>' : '<down>'
-" }}}
-
-" {{{ buffer 
-nnoremap <Leader>bp :bprevious<CR>
-nnoremap <Leader>bn :bnext<CR>
-nnoremap <Leader>bf :bfirst<CR>
-nnoremap <Leader>bl :blast<CR>
-nnoremap <Leader>bd :bdelete<CR>
-nnoremap <Leader>bk :bwipout<CR>
-" }}}
-
-" {{{ window
-nnoremap <Leader>ww <C-W>w
-nnoremap <Leader>wr <C-W>r
-nnoremap <Leader>wd <C-W>c
-nnoremap <Leader>wq <C-W>q
-nnoremap <Leader>wj <C-W>j
-nnoremap <Leader>wJ <C-W>J
-nnoremap <Leader>wk <C-W>k
-nnoremap <Leader>wK <C-W>K
-nnoremap <Leader>wh <C-W>h
-nnoremap <Leader>wH <C-W>H
-nnoremap <Leader>wl <C-W>l
-nnoremap <Leader>wL <C-W>L
-nnoremap <Leader>w= <C-W>=
-nnoremap <Leader>ws <C-W>s
-nnoremap <Leader>w- <C-W>s
-nnoremap <Leader>wv <C-W>v
-nnoremap <Leader>w\| <C-W>v
-" }}}
-
-" {{{ terminal
-function s:exit_to_normal() abort
-  if &filetype ==# 'fzf'
-    return "\<Esc>"
-  endif
-  return "\<C-\>\<C-n>"
-endfunc
-
-tnoremap <expr>  <Esc> <SID>exit_to_normal()
-tnoremap <Leader><Esc> <C-\><C-n>
-tnoremap <Leader>wh    <C-\><C-N><C-w>h
-tnoremap <Leader>wj    <C-\><C-N><C-w>j
-tnoremap <Leader>wl    <C-\><C-N><C-w>l
-tnoremap <Leader>wk    <C-\><C-N><C-w>k
 " }}}
 
 " {{{ plugins mapping 
@@ -534,6 +533,4 @@ nnoremap <silent><Leader>ts :TaskListFzf<CR>
 nnoremap <silent><C-x> :AsyncTask file-build-and-run<CR>
 nnoremap <silent><C-b> :AsyncTask file-build<CR>
 nnoremap <silent><C-r> :AsyncTask file-run<CR> 
-" }}}
-
 " }}}
