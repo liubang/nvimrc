@@ -73,10 +73,10 @@ Plug 'preservim/nerdcommenter', {'on': [
       \ '<Plug>NERDCommenterUncomment' 
       \ ]}
 Plug 'rhysd/vim-clang-format', {'on': ['ClangFormat'], 'for': ['c', 'cpp']}
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
+" Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
 
 " filetype
-Plug 'StanAngeloff/php.vim', {'for': 'php'}
+" Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'neoclide/jsonc.vim', {'for': ['json', 'jsonc']}
 call plug#end()

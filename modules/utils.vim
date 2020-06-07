@@ -23,10 +23,10 @@ let g:mkdp_auto_close = 0
 nnoremap <silent><Leader>mp :MarkdownPreview<CR>
 
 " octol/vim-cpp-enhanced-highlight
-let c_no_curly_error=1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 0
-let g:cpp_concepts_highlight = 0
+" let c_no_curly_error=1
+" let g:cpp_experimental_simple_template_highlight = 1
+" let g:cpp_experimental_template_highlight = 0
+" let g:cpp_concepts_highlight = 0
 
 " vim-clang-format
 let g:clang_format#detect_style_file = 1
