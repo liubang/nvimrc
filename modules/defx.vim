@@ -7,6 +7,9 @@
 "
 "======================================================================
 
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 1
+
 call defx#custom#option('_', {
       \ 'columns': 'indent:git:icons:filename',
       \ 'winwidth': 30,
@@ -72,15 +75,7 @@ function! s:defx_mappings()
   nnoremap <silent><buffer><expr> q defx#do_action('quit')
 endfunc
 
-augroup vfinit
-  au!
-  autocmd FileType defx call s:defx_mappings()
-  autocmd FileType defx :let b:vim_current_word_disabled_in_this_buffer = 1
-  " Move focus to the next window if current buffer is defx
-  autocmd TabLeave * if &ft == 'defx' | wincmd w | endif
-  " Close defx if it's the only buffer left in the window
-  autocmd WinEnter * if &ft == 'defx' && winnr('$') == 1 | q | endif
-augroup END
+nnoremap <silent><Leader>ft :Defx <CR>
 
 highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
 highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
@@ -89,3 +84,11 @@ highlight def link Defx_filename_3_Untracked Comment
 highlight def link Defx_filename_3_Unknown Comment
 highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
+
+augroup vfinit
+  au!
+  autocmd FileType defx call s:defx_mappings()
+  autocmd FileType defx :let b:vim_current_word_disabled_in_this_buffer = 1
+  " Move focus to the next window if current buffer is defx
+  autocmd TabLeave * if &ft == 'defx' | wincmd w | endif
+augroup END

@@ -1,12 +1,38 @@
-"======================================================================
-"
-" lightline.vim - 
-"
-" Created by liubang on 2020/05/17
-" Last Modified: 2020/05/17 19:11
-"
-"======================================================================
+" colorscheme
+if !empty($TMUX) 
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  if has('termguicolors')
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
+    set termguicolors
+  else
+    set t_Co=256
+  endif
+  if &ttimeoutlen > 60 || &ttimeoutlen <= 0
+    set ttimeoutlen=60
+  endif
+endif
+" 退出后清屏
+if &term =~ "xterm"
+  let &t_ti = "\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l"
+endif
+set background=dark
+set number
+set fillchars+=vert:\|  " add a bar for vertical splits
+set fcs=eob:\           " hide ~
+set nolist
 
+let g:gruvbox_filetype_hi_groups = 1
+let g:gruvbox_plugin_hi_groups = 1
+let g:gruvbox_transp_bg = 1
+let g:gruvbox_material_background = 'soft'
+colorscheme gruvbox-material
+
+hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
+" hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
+
+" lightline
 silent! set laststatus=2   " 总是显示状态栏
 silent! set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
@@ -203,3 +229,38 @@ let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#number_map = {
       \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
       \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
+
+
+nmap <silent> <expr> <Leader>1 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
+nmap <silent> <expr> <Leader>2 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
+nmap <silent> <expr> <Leader>3 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
+nmap <silent> <expr> <Leader>4 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"
+nmap <silent> <expr> <Leader>5 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"
+nmap <silent> <expr> <Leader>6 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"
+nmap <silent> <expr> <Leader>7 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"
+nmap <silent> <expr> <Leader>8 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
+nmap <silent> <expr> <Leader>9 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
+nmap <silent> <expr> <Leader>0 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
+
+" startify
+let g:webdevicons_enable_startify = 1
+let g:startify_files_number = 8
+let g:startify_enable_special = 0
+let g:startify_custom_header = [
+                            \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
+                            \'      │  ││ │├┴┐├─┤││││ ┬ ',
+                            \'      ┴─┘┴└─┘└─┘┴ ┴┘└┘└─┘ ',
+                            \'                          ',
+                            \'      Author: liubang <it.liubang@gmail.com> ',
+                            \'        Site: https://iliubang.cn            ',
+                            \'     Version: ' . g:nvg_version,
+                            \'        Vim : ' . utils#get_vim_version(),
+                            \ ]
+
+
+function! StartifyEntryFormat()
+  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
+
+autocmd User Startified setlocal buflisted
+
