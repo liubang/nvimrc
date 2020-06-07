@@ -130,3 +130,4 @@ map <silent><Leader>cu <Plug>NERDCommenterUncomment
 
 " vim-sneak
 let g:sneak#label = 1
+let g:sneak#target_labels = ";sftunq/SFGHLTUNRMQZ?0"

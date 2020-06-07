@@ -47,12 +47,7 @@ Plug 'voldikss/vim-floaterm', {'on': [
       \ 'FloatermSend']}
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
-Plug 'justinmk/vim-sneak', {'on': [
-      \ '<Plug>Sneak_f',
-      \ '<Plug>Sneak_F',
-      \ '<Plug>Sneak_t',
-      \ '<Plug>Sneak_T',
-      \ ]}
+Plug 'justinmk/vim-sneak'
 " Plug 'norcalli/nvim-colorizer.lua'
 
 " document
