@@ -56,7 +56,7 @@ Plug 'iamcco/markdown-preview.nvim', {'on': 'MarkdownPreview'}
 " Plug 'machakann/vim-sandwich'
 " Plug 'skywind3000/vim-quickui'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'skywind3000/asynctasks.vim', {'on': ['AsyncTask', 'TaskList', 'TaskListFzf']}
+Plug 'skywind3000/asynctasks.vim'
 
 " file manager
 Plug 'kristijanhusak/defx-icons'

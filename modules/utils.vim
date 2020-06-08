@@ -87,7 +87,6 @@ function! s:fzf_tasks_list()
     \ })
 endfunc
 
-command! -bang -nargs=0 TaskList call MenuHelp_TaskList()
 command! -bang -nargs=0 TaskListFzf call s:fzf_tasks_list()
 nnoremap <silent><Leader>ts :TaskListFzf<CR>
 nnoremap <silent><C-x> :AsyncTask file-build-and-run<CR>
