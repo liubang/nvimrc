@@ -16,6 +16,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'sainnhe/gruvbox-material'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-cursorword'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " search 
