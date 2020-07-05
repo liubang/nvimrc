@@ -25,16 +25,8 @@ Plug 'junegunn/fzf.vim'
 
 " tools
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive', {'on': [ 
-      \ 'G', 
-      \ 'Git', 
-      \ 'Gfetch', 
-      \ 'Gpush', 
-      \ 'Glog', 
-      \ 'Gclog', 
-      \ 'Gdiffsplit', 
-      \ 'Gblame' 
-      \ ]}
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'junegunn/vim-easy-align', {'on': [ 
       \ '<Plug>(EasyAlign)',
@@ -65,7 +57,13 @@ Plug 'kristijanhusak/defx-git'
 Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 
 " programming
-Plug 'neoclide/coc.nvim',  {'do': 'yarn install --frozen-lockfile'}
+if has("nvim-0.5")
+  Plug 'neovim/nvim-lsp'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete-lsp'
+else
+  Plug 'neoclide/coc.nvim',  {'do': 'yarn install --frozen-lockfile'}
+endif
 Plug 'honza/vim-snippets'
 Plug 'liuchengxu/vista.vim', {'on': 'Vista'}
 Plug 'preservim/nerdcommenter', {'on': [ 

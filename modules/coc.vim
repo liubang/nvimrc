@@ -7,6 +7,10 @@
 "
 "======================================================================
 
+if has("nvim-0.5")
+  finish
+endif
+
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-emoji',
