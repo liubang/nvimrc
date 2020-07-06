@@ -59,8 +59,8 @@ Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 " programming
 if has("nvim-0.5")
   Plug 'neovim/nvim-lsp'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/deoplete-lsp'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'nvim-treesitter/nvim-treesitter'
 else
   Plug 'neoclide/coc.nvim',  {'do': 'yarn install --frozen-lockfile'}
 endif
