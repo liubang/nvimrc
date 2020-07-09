@@ -61,6 +61,7 @@ if has("nvim-0.5")
   Plug 'neovim/nvim-lsp'
   Plug 'nvim-lua/completion-nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'jiangmiao/auto-pairs'
 else
   Plug 'neoclide/coc.nvim',  {'do': 'yarn install --frozen-lockfile'}
 endif
