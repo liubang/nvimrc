@@ -79,4 +79,8 @@ Plug 'rhysd/vim-clang-format', {'on': ['ClangFormat'], 'for': ['c', 'cpp']}
 " Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'neoclide/jsonc.vim', {'for': ['json', 'jsonc']}
+
+" gtags 
+Plug 'skywind3000/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 call plug#end()
