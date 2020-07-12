@@ -40,15 +40,16 @@ let g:vista_default_executive = 'ctags'
 let g:vista_echo_cursor = 0
 let g:vista_fzf_preview = ['right:50%']
 let g:vista_executive_for = {
-  \ 'markdown': 'toc',
-  \ 'vim': 'ctags',
-  \ 'go': 'coc',
   \ 'c': 'coc',
+  \ 'go': 'coc',
   \ 'cpp': 'coc',
+  \ 'php': 'coc',
   \ 'javascript': 'coc',
   \ 'typescript': 'coc',
+  \ 'vimwiki': 'markdown',
+  \ 'pandoc': 'markdown',
+  \ 'markdown': 'toc',
   \ }
-nnoremap <silent><leader><F3> :Vista!!<CR>
 nnoremap <silent><leader>tl :Vista!!<CR>
 nnoremap <silent><leader>vf :Vista finder coc<CR>
 
@@ -114,6 +115,18 @@ nnoremap <silent><expr><Leader>bb (expand('%') =~ 'Defx_tree' ? "\<c-w>\<c-w>" :
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" vim-easymotion
+" let g:EasyMotion_do_mapping = 0
+" let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_startofline = 0
+" map <Leader>ll <Plug>(easymotion-lineforward)
+" map <Leader>jj <Plug>(easymotion-j)
+" map <Leader>kk <Plug>(easymotion-k)
+" map <Leader>hh <Plug>(easymotion-linebackward)
+
+" vim-sneak
+let g:sneak#label = 1
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1

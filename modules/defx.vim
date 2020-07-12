@@ -20,6 +20,25 @@ call defx#custom#option('_', {
       \ 'toggle': 1,
       \ 'resume': 1
       \ })
+
+call defx#custom#column('git', {
+      \   'indicators': {
+      \     'Modified'  : '•',
+      \     'Staged'    : '✚',
+      \     'Untracked' : 'ᵁ',
+      \     'Renamed'   : '≫',
+      \     'Unmerged'  : '≠',
+      \     'Ignored'   : 'ⁱ',
+      \     'Deleted'   : '✖',
+      \     'Unknown'   : '⁇'
+      \   }
+      \ })
+
+call defx#custom#column('mark', { 
+      \ 'readonly_icon': '', 
+      \ 'selected_icon': '' 
+      \ })
+
 call defx#custom#column('filename', {
       \ 'min_width': 80,
       \ 'max_width': 80,

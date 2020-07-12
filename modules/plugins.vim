@@ -28,6 +28,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'kana/vim-textobj-user'
+" Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align', {'on': [ 
       \ '<Plug>(EasyAlign)',
       \ ]}

@@ -211,4 +211,3 @@ augroup coc_au
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup END
-
