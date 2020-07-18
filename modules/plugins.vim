@@ -1,14 +1,14 @@
 if empty(glob(g:nvg_root . '/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
 autocmd VimEnter *
       \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-      \|   PlugInstall --sync | q
-      \| endif
+      \ |   PlugInstall --sync | q
+      \ | endif
 
 call plug#begin(g:nvg_root . '/.cache/plugged')
 " theme and ui

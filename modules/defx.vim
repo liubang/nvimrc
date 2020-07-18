@@ -105,7 +105,7 @@ highlight def link Defx_filename_3_Renamed Title
 highlight def link Defx_filename_3_Unmerged Label
 
 augroup vfinit
-  au!
+  autocmd!
   autocmd FileType defx call s:defx_mappings()
   autocmd FileType defx :let b:vim_current_word_disabled_in_this_buffer = 1
   " Move focus to the next window if current buffer is defx
