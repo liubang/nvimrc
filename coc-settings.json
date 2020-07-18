@@ -40,6 +40,7 @@
   "suggest.noselect": true,
   "suggest.enablePreview": false,
   "suggest.floatEnable": false,
+  "suggest.defaultSortMethod": "alphabetical",
   "suggest.triggerAfterInsertEnter": true,
   "suggest.asciiCharactersOnly": true,
   "suggest.triggerCompletionWait": 100,

@@ -22,16 +22,16 @@ call defx#custom#option('_', {
       \ })
 
 call defx#custom#column('git', {
-      \   'indicators': {
-      \     'Modified'  : '•',
-      \     'Staged'    : '✚',
-      \     'Untracked' : 'ᵁ',
-      \     'Renamed'   : '≫',
-      \     'Unmerged'  : '≠',
-      \     'Ignored'   : 'ⁱ',
-      \     'Deleted'   : '✖',
-      \     'Unknown'   : '⁇'
-      \   }
+      \ 'indicators': {
+      \   'Modified'  : '•',
+      \   'Staged'    : '✚',
+      \   'Untracked' : 'ᵁ',
+      \   'Renamed'   : '≫',
+      \   'Unmerged'  : '≠',
+      \   'Ignored'   : 'ⁱ',
+      \   'Deleted'   : '✖',
+      \   'Unknown'   : '⁇'
+      \ }
       \ })
 
 call defx#custom#column('mark', { 
