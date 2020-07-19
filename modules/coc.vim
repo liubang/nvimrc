@@ -66,6 +66,7 @@ if has('macunix')
     \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
     \   'initializationOptions': {
     \     'cache': {'directory': '/tmp/ccls'},
+    \     'highlight': { 'lsRanges' : v:true },
     \     'clang': {
     \       'resourceDir': g:nvg_ccls_clang_resourcedir,
     \       'extraArgs': [
@@ -86,6 +87,7 @@ elseif has('unix') && !has('macunix') && !has('win32unix')
     \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
     \   'initializationOptions': {
     \     'cache': {'directory': '/tmp/ccls'},
+    \     'highlight': { 'lsRanges' : v:true },
     \     'clang': {
     \       'extraArgs': [
     \         '--gcc-toolchain=/usr'

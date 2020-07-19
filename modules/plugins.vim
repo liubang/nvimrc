@@ -75,6 +75,7 @@ Plug 'preservim/nerdcommenter', {'on': [
       \ '<Plug>NERDCommenterUncomment' 
       \ ]}
 Plug 'rhysd/vim-clang-format', {'on': ['ClangFormat'], 'for': ['c', 'cpp']}
+Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
 " Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
 
 " filetype
