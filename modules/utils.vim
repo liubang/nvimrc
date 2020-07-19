@@ -34,6 +34,10 @@ let g:clang_format#enable_fallback_style = 1
 autocmd FileType c,cpp,proto nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
 autocmd FileType c,cpp,proto vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
 
+" shfmt
+let g:shfmt_extra_args = '-i 2 -ci'
+let g:shfmt_fmt_on_save = 1
+
 " vista.vim
 let g:vista#renderer#enable_icon = 1
 let g:vista_default_executive = 'ctags'

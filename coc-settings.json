@@ -104,7 +104,8 @@
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "bzl": "buildifier"
+    "bzl": "buildifier",
+    "sh": "shfmt"
   },
   "diagnostic-languageserver.linters": {},
   "diagnostic-languageserver.filetypes": {},

@@ -78,6 +78,8 @@ Plug 'rhysd/vim-clang-format', {'on': ['ClangFormat'], 'for': ['c', 'cpp']}
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
 " Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
 
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+
 " filetype
 " Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
