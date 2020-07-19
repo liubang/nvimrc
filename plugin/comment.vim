@@ -3,7 +3,7 @@
 " comment.vim - 
 "
 " Created by liubang on 2020/05/18
-" Last Modified: 2020/05/18 10:04
+" Last Modified: 2020/07/19 14:54
 "
 "======================================================================
 
@@ -23,11 +23,11 @@ function s:comment()
     return '//'
   elseif index(['coffee', 'as'], l:ext) >= 0
     return '//'
-  elseif index(['c', 'cpp', 'rust', 'go', 'javascript'], &filetype) >= 0
+  elseif index(['c', 'cpp', 'rust', 'go', 'javascript', 'php'], &filetype) >= 0
     return '//'
   elseif index(['coffee'], &filetype) >= 0
     return '//'
-  elseif index(['sh', 'bash', 'python', 'php', 'perl', 'zsh'], $filetype) >= 0
+  elseif index(['sh', 'bash', 'python', 'perl', 'zsh'], $filetype) >= 0
     return '#'
   elseif index(['make', 'ruby', 'text'], $filetype) >= 0
     return '#'
@@ -70,6 +70,8 @@ function! s:comment_copyright(author)
   if &filetype == 'python'
     let l:text += ['#! /usr/bin/env python']
     let l:text += ['# -*- coding: utf-8 -*-']
+  elseif &filetype == 'php'
+    let l:text += ['<?php']
   elseif &filetype == 'sh'
     let l:text += ['#! /bin/sh']
   elseif &filetype == 'bash'
