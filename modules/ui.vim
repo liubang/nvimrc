@@ -261,8 +261,17 @@ let g:startify_lists = [
       \ { 'type': 'files',     'header': ['   MRU']            },
       \ ]
 
-" let g:startify_custom_footer =
-"       \ ['', "   neovim loaded 12 plugins.", '']
+
+if exists('*dein#get')
+  let s:total_plugins = len(dein#get())
+elseif exists('*plug#begin')
+  let s:total_plugins = len(keys(g:plugs))
+else
+  let s:total_plugins = ''
+endif
+
+let g:startify_custom_footer =
+      \ ['', "   neovim loaded " . s:total_plugins . " plugins.", '']
 
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
