@@ -24,6 +24,7 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-xml',
       \ 'coc-calc',
+      \ 'coc-lua',
       \ 'coc-ci',
       \ 'coc-tsserver',
       \ 'coc-css', 
