@@ -22,6 +22,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 " search 
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'} 
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 
 " tools
 Plug 'tpope/vim-surround'
