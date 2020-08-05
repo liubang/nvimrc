@@ -26,6 +26,8 @@ set nolist
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_plugin_hi_groups = 1
 let g:gruvbox_transp_bg = 1
+let g:gruvbox_material_enable_italic = 0
+let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
 
