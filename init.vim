@@ -17,12 +17,12 @@ elseif !empty($PYTHON_HOST_PROG)
   let g:python_host_prog = $PYTHON_HOST_PROG
 endif
 
-exec 'so '     .g:nvg_root . '/modules/default.vim'
-exec 'so '     .g:nvg_root . '/modules/plugins.vim'
-exec 'so '     .g:nvg_root . '/modules/ui.vim'
-exec 'so '     .g:nvg_root . '/modules/utils.vim'
-exec 'so '     .g:nvg_root . '/modules/fzf.vim'
-exec 'so '     .g:nvg_root . '/modules/defx.vim'
-exec 'so '     .g:nvg_root . '/modules/coc.vim'
-" exec 'so '     .g:nvg_root . '/modules/gtags.vim'
-" exec 'so '     .g:nvg_root . '/modules/nvim-lsp.vim'
+exec 'so ' .g:nvg_root . '/modules/default.vim'
+exec 'so ' .g:nvg_root . '/modules/plugins.vim'
+exec 'so ' .g:nvg_root . '/modules/theme.vim'
+exec 'so ' .g:nvg_root . '/modules/lightline.vim'
+exec 'so ' .g:nvg_root . '/modules/startify.vim'
+exec 'so ' .g:nvg_root . '/modules/utils.vim'
+exec 'so ' .g:nvg_root . '/modules/fzf.vim'
+exec 'so ' .g:nvg_root . '/modules/defx.vim'
+exec 'so ' .g:nvg_root . '/modules/coc.vim'

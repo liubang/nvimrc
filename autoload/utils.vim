@@ -17,6 +17,11 @@ function! utils#get_vim_version()
   endif
 endfunc
 
+function! utils#get_nvim_version()
+  redir => s | silent! version | redir END
+  return 'v' . matchstr(s, 'NVIM v\zs[^\n]*')
+endfunc
+
 function! utils#errmsg(msg) 
   redraw | echo '' | redraw
   echohl ErrorMsg | echom a:msg | echohl NONE

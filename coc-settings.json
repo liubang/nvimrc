@@ -34,7 +34,8 @@
   "list.source.files.defaultOptions": ["--auto-preview"],
   "list.source.outline.defaultOptions": ["--auto-preview"],
   // session
-  "session.saveOnVimLeave": true,
+  "session.saveOnVimLeave": false,
+  "session.directory": "$HOME/.vim/sessions",
   // suggest
   "suggest.timeout": 500,
   "suggest.noselect": true,

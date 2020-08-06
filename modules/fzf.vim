@@ -64,4 +64,6 @@ nnoremap <silent> <expr> <Leader>ag (utils#maybe_special_buffer() ? "\<c-w>\<c-w
 nnoremap <silent> <expr> <Leader>w? (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":Windows\<cr>"
 nnoremap <silent> <expr> <Leader>f? (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":Files ~\<cr>"
 nnoremap <silent> <expr> <Leader>ht (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":Helptags\<cr>"
+nnoremap <silent> <expr> <Leader>fh (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":History\<cr>"
+nnoremap <silent> <expr> <Leader>ff (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"
 nnoremap <silent> <expr> <C-p>      (utils#maybe_special_buffer() ? "\<c-w>\<c-w>" : '') . ":call <sid>fzf()\<cr>"

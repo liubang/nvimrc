@@ -15,6 +15,7 @@ call plug#begin(g:nvg_root . '/.cache/plugged')
 Plug 'ryanoasis/vim-devicons'
 Plug 'sainnhe/gruvbox-material'
 Plug 'mhinz/vim-startify'
+" Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-cursorword'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -60,14 +61,14 @@ Plug 'kristijanhusak/defx-git'
 Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 
 " programming
-if has("nvim-0.5")
-  Plug 'neovim/nvim-lsp'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'jiangmiao/auto-pairs'
-else
+" if has("nvim-0.5")
+"   Plug 'neovim/nvim-lsp'
+"   Plug 'nvim-lua/completion-nvim'
+"   Plug 'nvim-treesitter/nvim-treesitter'
+"   Plug 'jiangmiao/auto-pairs'
+" else
   Plug 'neoclide/coc.nvim',  {'do': 'yarn install --frozen-lockfile'}
-endif
+" endif
 Plug 'honza/vim-snippets'
 Plug 'liuchengxu/vista.vim', {'on': 'Vista'}
 Plug 'preservim/nerdcommenter', {'on': [ 

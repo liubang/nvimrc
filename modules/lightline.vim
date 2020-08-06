@@ -1,38 +1,11 @@
-" colorscheme
-if !empty($TMUX) 
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  if has('termguicolors')
-    set t_8f=^[[38;2;%lu;%lu;%lum
-    set t_8b=^[[48;2;%lu;%lu;%lum
-    set termguicolors
-  else
-    set t_Co=256
-  endif
-  if &ttimeoutlen > 60 || &ttimeoutlen <= 0
-    set ttimeoutlen=60
-  endif
-endif
-" 退出后清屏
-if &term =~ "xterm"
-  let &t_ti = "\<Esc>[?47h"
-  let &t_te = "\<Esc>[?47l"
-endif
-set background=dark
-set number
-set fillchars+=vert:\|  " add a bar for vertical splits
-set fcs=eob:\           " hide ~
-set nolist
-
-let g:gruvbox_filetype_hi_groups = 1
-let g:gruvbox_plugin_hi_groups = 1
-let g:gruvbox_transp_bg = 1
-let g:gruvbox_material_enable_italic = 0
-let g:gruvbox_material_disable_italic_comment = 1
-let g:gruvbox_material_background = 'soft'
-colorscheme gruvbox-material
-
-hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
-" hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
+"======================================================================
+"
+" lightline.vim - 
+"
+" Created by liubang on 2020/08/06
+" Last Modified: 2020/08/06 22:06
+"
+"======================================================================
 
 " lightline
 silent! set laststatus=2   " 总是显示状态栏
@@ -232,7 +205,6 @@ let g:lightline#bufferline#number_map = {
       \ 0: '⓿ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
       \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
 
-
 nmap <silent> <expr> <Leader>1 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"
 nmap <silent> <expr> <Leader>2 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"
 nmap <silent> <expr> <Leader>3 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"
@@ -243,40 +215,3 @@ nmap <silent> <expr> <Leader>7 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')
 nmap <silent> <expr> <Leader>8 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"
 nmap <silent> <expr> <Leader>9 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"
 nmap <silent> <expr> <Leader>0 (utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"
-
-" startify
-let g:webdevicons_enable_startify = 1
-let g:startify_files_number = 8
-let g:startify_enable_special = 0
-let g:startify_custom_header = [
-      \'      ┬  ┬┬ ┬┌┐ ┌─┐┌┐┌┌─┐ ',
-      \'      │  ││ │├┴┐├─┤││││ ┬ ',
-      \'      ┴─┘┴└─┘└─┘┴ ┴┘└┘└─┘ ',
-      \'                          ',
-      \'      Author: liubang <it.liubang@gmail.com> ',
-      \'        Site: https://iliubang.cn            ',
-      \'     Version: ' . g:nvg_version,
-      \'        Vim : ' . utils#get_vim_version(),
-      \ ]
-
-let g:startify_lists = [
-      \ { 'type': 'files',     'header': ['   MRU']            },
-      \ ]
-
-
-if exists('*dein#get')
-  let s:total_plugins = len(dein#get())
-elseif exists('*plug#begin')
-  let s:total_plugins = len(keys(g:plugs))
-else
-  let s:total_plugins = ''
-endif
-
-let g:startify_custom_footer =
-      \ ['', "   neovim loaded " . s:total_plugins . " plugins.", '']
-
-function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
-
-autocmd User Startified setlocal buflisted
