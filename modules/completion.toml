@@ -1,12 +1,8 @@
-"======================================================================
-"
-" coc.vim - 
-"
-" Created by liubang on 2020/05/17
-" Last Modified: 2020/05/17 19:14
-"
-"======================================================================
-
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+hook_source = '''
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-emoji',
@@ -143,38 +139,6 @@ endfunc
 " command 
 command! -nargs=0 CocFzfDiagnostics :call s:coc_fzf_diagnostics()
 
-function! s:check_back_space() abort
-  let l:col = col('.') - 1
-  return !l:col || getline('.')[l:col - 1]  =~# '\s'
-endfunc
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-nnoremap <silent><leader>el :CocFzfDiagnostics<CR>
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" goto definition
-nmap <silent><leader>gd <Plug>(coc-definition)
-" goto declaration
-nmap <silent><leader>gD <Plug>(coc-declaration)
-" goto type definition
-nmap <silent><leader>gy <Plug>(coc-type-definition)
-" goto implementation
-nmap <silent><leader>gi <Plug>(coc-implementation)
-" goto references
-nmap <silent><leader>gr <Plug>(coc-references)
-" error info
-nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
-" rename
-nmap <silent><leader>rn <Plug>(coc-rename)
-nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent>w <Plug>(coc-ci-w)
-nmap <silent>b <Plug>(coc-ci-b)
-
 " coc-git
 highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
@@ -210,3 +174,9 @@ augroup coc_au
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup END
+'''
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+depends = 'coc.nvim'
+merged = 0

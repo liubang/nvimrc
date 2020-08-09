@@ -1,12 +1,12 @@
 " {{{ better 
 set nocompatible
-syntax enable
-syntax on
-set encoding=UTF-8
-set fileencoding=utf-8
-scriptencoding UTF-8
-set termguicolors
-set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
+if has('vim_starting')
+  set encoding=utf-8
+  set fileencoding=utf-8
+  scriptencoding utf-8
+endif
+set termguicolors "Enable tru color
+set synmaxcol=2500         " Don't syntax highlight long lines
 set completeopt-=menu
 set completeopt+=menuone   " Show the completions UI even with only 1 item
 set completeopt-=longest   " Don't insert the longest common text
@@ -249,42 +249,6 @@ augroup UserTermSettings " neovim only
     " \ nmap <silent><buffer> <Esc> <Cmd>hide<CR>|
     \ nmap <silent><buffer> q :q<CR> |
     \ hi TermCursor guifg=yellow
-augroup END
-
-augroup FileSyntax
-	autocmd!
-  autocmd FileType xml,json,text
-    \ if getfsize(expand("%")) > 10000000
-    \|  setlocal syntax=off
-    \|endif
-augroup END
-
-" Fast fold
-" Credits: https://github.com/Shougo/shougo-s-github
-augroup FastFold
-	autocmd!
-	autocmd TextChangedI,TextChanged *
-		\  if &l:foldenable && &l:foldmethod !=# 'manual'
-		\|   let b:foldmethod_save = &l:foldmethod
-		\|   let &l:foldmethod = 'manual'
-		\| endif
-
-	autocmd BufWritePost *
-		\  if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save')
-		\|   let &l:foldmethod = b:foldmethod_save
-		\|   execute 'normal! zx'
-		\| endif
-augroup END
-
-augroup UserKeywordHighlight
-  autocmd!
-  autocmd Syntax *
-    \ call matchadd('Todo',  '\W\zs\(@TODO\|@FIXME\|@CHANGED\|@XXX\|@BUG\|@HACK\)') |
-    \ call matchadd('Todo',  '\W\zs\(@todo\|@fixme\|@changed\|@xxx\|@bug\|@hack\)') |
-    \ call matchadd('Todo',  '\W\zs\(@NOTE\|@INFO\|@IDEA\|@NOTICE\)') |
-    \ call matchadd('Todo',  '\W\zs\(@note\|@info\|@idea\|@notice\)') |
-    \ call matchadd('Debug', '\W\zs\(@DEBUG\|@Debug\|@debug\)') |
-    \ call matchadd('Tag',   '\W\zs\(@VOLDIKSS\|@voldikss\)')
 augroup END
 
 " restore cursor position when opening file

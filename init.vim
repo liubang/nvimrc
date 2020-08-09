@@ -11,18 +11,27 @@
 let g:nvg_version = 'v2.2'
 let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-if !empty($PYTHON3_HOST_PROG)
-  let g:python3_host_prog = $PYTHON3_HOST_PROG
-elseif !empty($PYTHON_HOST_PROG)
-  let g:python_host_prog = $PYTHON_HOST_PROG
-endif
+" Disable vim distribution plugins
+let g:loaded_gzip = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
 
-exec 'so ' .g:nvg_root . '/modules/default.vim'
-exec 'so ' .g:nvg_root . '/modules/plugins.vim'
-exec 'so ' .g:nvg_root . '/modules/theme.vim'
-exec 'so ' .g:nvg_root . '/modules/lightline.vim'
-exec 'so ' .g:nvg_root . '/modules/startify.vim'
-exec 'so ' .g:nvg_root . '/modules/utils.vim'
-exec 'so ' .g:nvg_root . '/modules/fzf.vim'
-exec 'so ' .g:nvg_root . '/modules/defx.vim'
-exec 'so ' .g:nvg_root . '/modules/coc.vim'
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+
+let g:loaded_matchit = 1
+let g:loaded_matchparen = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_logiPat = 1
+let g:loaded_rrhelper = 1
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
+call core#_begin()

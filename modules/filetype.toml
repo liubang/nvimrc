@@ -1,0 +1,65 @@
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'neoclide/jsonc.vim'
+on_ft = ['json', 'jsonc']
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+hook_add = '''
+let g:vim_markdown_folding_level = 1
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_auto_insert_bullets = 1
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_edit_url_in = 'vsplit'
+let g:vim_markdown_fenced_languages = [
+  \ 'c++=cpp',
+  \ 'viml=vim',
+  \ 'bash=sh',
+  \ 'ini=dosini',
+  \ 'js=javascript',
+  \ 'json=javascript',
+  \ 'jsx=javascriptreact',
+  \ 'tsx=typescriptreact',
+  \ 'docker=Dockerfile',
+  \ 'makefile=make',
+  \ 'py=python'
+  \ ]
+'''
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app & yarn install"'
+hook_source = '''
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+'''
+
+[[plugins]]
+repo = 'z0mbix/vim-shfmt'
+on_ft = 'sh'
+hook_source = '''
+let g:shfmt_extra_args = '-i 2 -ci'
+let g:shfmt_fmt_on_save = 1
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp']
+on = 'ClangFormat'
+hook_source = '''
+let g:clang_format#detect_style_file = 1
+let g:clang_format#enable_fallback_style = 1
+'''
+
+[[plugins]]
+repo = 'jackguo380/vim-lsp-cxx-highlight'
+on_ft = ['c', 'cpp']

@@ -1,0 +1,166 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+on_func = 'dein#'
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+on_cmd = ['Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Git!', 'Grebase', 'Gpull']
+
+[[plugins]]
+repo = 'junegunn/gv.vim'
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'justinmk/vim-sneak'
+hook_source = '''
+let g:sneak#label = 1
+let g:sneak#target_labels = ";sftunq/SFGHLTUNRMQZ?0"
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-slash'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_cmd = '<Plug>(EasyAlign)'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+on_cmd = ['FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend']
+hook_source = '''
+let g:floaterm_wintype = 'normal'
+let g:floaterm_position = 'bottom'
+let g:floaterm_height = 0.35
+let g:floaterm_keymap_toggle = '<Ctrl>-d'
+let g:floaterm_open_command = 'split'
+highlight Floaterm guibg=black
+'''
+
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+on_cmd = 'Vinarise'
+
+[[plugins]]
+repo = 'simnalamburt/vim-mundo'
+on_cmd = 'MundoToggle'
+on_source = '''
+set undofile
+set undodir=$HOME/.vim/.cache/undo
+let g:mundo_width = 50
+let g:mundo_preview_height = 30
+let g:mundo_right = 1
+'''
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
+hook_source = '''
+let g:asyncrun_open = 25
+let g:asyncrun_bell = 1
+let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
+'''
+
+[[plugins]]
+repo = 'skywind3000/asynctasks.vim'
+depends = 'asyncrun.vim'
+hook_source = '''
+let g:asynctasks_term_pos = 'right'
+let g:asynctasks_term_reuse = 0
+
+function! s:asynctask_run(item)
+  let p1 = stridx(a:item, '<')
+  if p1 > 0 
+    let name = strpart(a:item, 0, p1)
+    let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
+    if name != ''
+      exec "AsyncTask ". fnameescape(name)
+    endif
+  endif
+endfunc
+
+function! s:fzf_tasks_list() 
+  let rows = asynctasks#source(&columns * 48 / 100)
+  let source = []
+  for row in rows 
+    let source += [row[0]. '  ' . row[1] . '  : ' . row[2]]
+  endfor
+  call fzf#run({
+    \ 'source': source,
+    \ 'sink': function('s:asynctask_run'),
+    \ 'options': utils#fzf_options('TaskList'),
+    \ 'down': '20%',
+    \ })
+endfunc
+command! -bang -nargs=0 TaskListFzf call s:fzf_tasks_list()
+'''
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+on_cmd = ['Vista', 'Vista!', 'Vista!!']
+hook_source = '''
+let g:vista#renderer#enable_icon = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_echo_cursor = 0
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_executive_for = {
+  \ 'c': 'coc',
+  \ 'go': 'coc',
+  \ 'cpp': 'coc',
+  \ 'php': 'coc',
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'vimwiki': 'markdown',
+  \ 'pandoc': 'markdown',
+  \ 'markdown': 'toc',
+  \ }
+'''
+
+[[plugins]]
+repo = 'preservim/nerdcommenter'
+hook_source = '''
+let g:NERDSpaceDelims = 1
+let g:NERDCreateDefaultMappings = 0
+let g:NERDRemoveExtraSpaces = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+'''
+
+[[plugins]]
+repo = 'liuchengxu/vim-clap'
+merged = 0
+build = 'bash install.sh'
+on_map = '<plug>'
+hook_source = '''
+let g:clap_cache_directory = $DATA_PATH . '/clap'
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_enable_icon = 1
+let g:clap_provider_grep_enable_icon = 1
+let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
+" let g:clap_provider_dotfiles = initself#clap_my_dotfiles()
+" let g:clap_provider_gosource = initself#clap_go_source()
+" A funtion to config highlight of ClapSymbol
+" when the background color is opactiy
+function! s:ClapSymbolHL() abort
+    let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
+    if s:current_bgcolor == ''
+        hi ClapSymbol guibg=NONE ctermbg=NONE
+    endif
+endfunction
+autocmd User ClapOnEnter call s:ClapSymbolHL()
+'''
+
+[[plugins]]
+repo = 'vn-ki/coc-clap'
+on_source = 'vim-clap'
