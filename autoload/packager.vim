@@ -6,10 +6,6 @@
 " Last Modified: 2020/08/09 20:32
 "
 "======================================================================
-augroup user_events
-  autocmd!
-augroup END
-
 let $VIM_PATH = get(g:, 'nvg_root', stdpath('config'))
 let $DATA_PATH = expand($VIM_PATH . '/.cache')
 let s:toml_files = split(globpath('$VIM_PATH/modules', '*.toml'), '\n')

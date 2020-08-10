@@ -6,6 +6,7 @@
 " Last Modified: 2020/08/10 00:32
 "
 "======================================================================
+
 let s:_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 function! core#_begin()
