@@ -93,9 +93,9 @@ if dein#tap('markdown-preview.nvim')
   nnoremap <silent><Leader>mp :MarkdownPreview<CR>
 endif
 
-if dein#tap('rhysd/vim-clang-format')
-  autocmd FileType c,cpp nnoremap <silent><buffer><leader>cf :<c-u>ClangFormat<cr>
-  autocmd FileType c,cpp vnoremap <silent><buffer><leader>cf :ClangFormat<cr>
+if dein#tap('vim-clang-format')
+  nnoremap <silent><leader>cf :<c-u>ClangFormat<cr>
+  vnoremap <silent><leader>cf :ClangFormat<cr>
 endif
 
 if dein#tap('lightline-bufferline')
@@ -116,8 +116,8 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>bb :<C-u>Clap buffers<CR>
   nnoremap <silent> <Leader>fa :<C-u>Clap grep2<CR>
   nnoremap <silent> <Leader>fb :<C-u>Clap marks<CR>
-  "like emacs counsel-find-file
-  nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
+  " ctrl-p
+  nnoremap <silent> <C-p>      :<C-u>Clap filer<CR>
   nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
   nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
   nnoremap <silent> <Leader>ag :<C-u>Clap grep<cr>
