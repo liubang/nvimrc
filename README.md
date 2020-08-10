@@ -1,4 +1,4 @@
-# vimrc
+#vimrc
 
 [![GitHub release](https://img.shields.io/github/release/liubang/vimrc.svg)](https://github.com/liubang/vimrc/releases)
 
@@ -8,120 +8,8 @@ Configuration for neovim :rose:.
 
 ![screenshot](https://user-images.githubusercontent.com/13254917/58614382-c7f21500-82ea-11e9-9b7a-c3b63b60eb44.png)
 
-## Dependences
-
-**Install [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)**
-
-For Mac OS X (Recommend iTerm2)
+## install
 
 ```shell
-brew install the_silver_searcher
+curl -sSL https://raw.githubusercontent.com/liubang/vimrc/master/install.sh | sh
 ```
-
-For Ubuntu
-
-```shell
-sudo apt-get install silversearcher-ag
-```
-
-**Install ctags/gtags**
-
-For Max OS X
-
-```shell
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-brew install global
-```
-
-For Ubuntu
-
-```shell
-git clone https://github.com/universal-ctags/ctags.git
-cd ctags && ./autogen.sh && ./configure && make && sudo make install
-sudo apt install global
-```
-
-**Install pip modules**
-
-```shell
-pip3 install --user pynvim
-```
-
-**Install lps servers**
-
-```shell
-# for bash
-npm install -g bash-language-server
-
-# for purescript
-npm install -g purescript-language-server
-
-# for dockerfile
-npm install -g dockerfile-language-server-nodejs
-
-# for lua
-luarocks install --server=http://luarocks.org/dev lua-lsp
-
-# for c/c++
-# mac
-brew install ccls
-# or on linux see  https://github.com/MaskRay/ccls/wiki/Build#system-specific-notes
-```
-
-Install phpcs
-
-[https://github.com/squizlabs/PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-
-**Install nerd-fonts**
-
-[https://github.com/ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
-
-Recommend AnonymousPro.
-
-**Install jdt.ls**
-
-```shell
-curl -fSL http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -o /opt/app/jdt-language-server-latest.tar.gz
-tar -xf /opt/app/jdt-language-server-latest.tar.gz -C /opt/app/jdtls
-```
-
-**Install lombok**
-
-```shell
-curl -fSL https://projectlombok.org/downloads/lombok.jar -o /opt/app/jar/lombok.jar
-```
-
-**install rust**
-
-```shell
-curl https://sh.rustup.rs -sSf | sh
-```
-
-**install shellcheck**
-
-```shell
-brew install shellcheck
-// or for ubuntu/debian
-apt-get install shellcheck
-```
-
-## neovim
-
-Install neovim
-
-@See [https://github.com/neovim/neovim/wiki/Installing-Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
-Install configuration
-
-```shell
-git clone https://github.com/iliubang/vimrc.git ~/.vim
-ln -s ~/.vim ~/.config/nvim
-nvim +PlugInstall +UpdateRemotePlugins +qall
-```
-
-## Update
-
-```shell
-cd ~/.vim && git pull
-```
-
