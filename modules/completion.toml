@@ -1,6 +1,7 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
+on_event = 'BufReadPre'
 build = 'yarn install --frozen-lockfile'
 hook_source = '''
 let g:coc_global_extensions = [

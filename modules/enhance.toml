@@ -146,8 +146,11 @@ hook_source = '''
 let g:clap_cache_directory = $DATA_PATH . '/clap'
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_enable_icon = 1
+let g:clap_search_box_border_style = 'curve'
+let g:clap_popup_border = 'sharp'
 let g:clap_provider_grep_enable_icon = 1
-let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
+let g:clap_insert_mode_only = v:true
+let g:clap_current_selection_sign= { 'text': '> ', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
 " let g:clap_provider_dotfiles = initself#clap_my_dotfiles()
 " let g:clap_provider_gosource = initself#clap_go_source()
 " A funtion to config highlight of ClapSymbol
