@@ -42,12 +42,10 @@ if dein#tap('asyncrun.vim')
   nnoremap <Leader>ar :AsyncRun<Space>
 endif
 
-if dein#tap('asyntasks.vim')
-  nnoremap <silent><Leader>ts :TaskListFzf<CR>
+if dein#tap('asynctasks.vim')
   nnoremap <silent><C-x> :AsyncTask file-build-and-run<CR>
   nnoremap <silent><C-b> :AsyncTask file-build<CR>
   nnoremap <silent><C-r> :AsyncTask file-run<CR> 
-
 endif
 
 if dein#tap('vista.vim')
