@@ -9,8 +9,8 @@
 
 let s:_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-function! core#_begin()
-  call packager#_start()
+function! core#_start()
+  call pm#_start()
   call s:_load_core_modules()
 endfunc
 

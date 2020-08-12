@@ -34,4 +34,4 @@ let g:loaded_netrwPlugin = 1
 let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 
-call core#_begin()
+call core#_start()

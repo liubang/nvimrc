@@ -10,7 +10,7 @@ let $VIM_PATH = get(g:, 'nvg_root', stdpath('config'))
 let $DATA_PATH = expand($VIM_PATH . '/.cache')
 let s:toml_files = split(globpath('$VIM_PATH/modules', '*.toml'), '\n')
 
-function! packager#_start()
+function! pm#_start()
   if has('vim_starting')
     if has('nvim')
       if !empty($PYTHON3_HOST_PROG)
@@ -61,15 +61,12 @@ function s:debin_begin()
     call dein#end()
 
     " Save cached state for faster startups
-    if ! g:dein#_is_sudo
+    if !g:dein#_is_sudo
       call dein#save_state()
     endif
 
     " Update or install plugins if a change detected
     if dein#check_install()
-      if ! has('nvim')
-        set nomore
-      endif
       call dein#install()
     endif
   endif
