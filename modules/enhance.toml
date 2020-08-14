@@ -124,7 +124,7 @@ let g:clap_popup_border = 'sharp'
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_insert_mode_only = v:true
 " let g:clap_search_box_border_style = 'curve'
-let g:clap_current_selection_sign= { 'text': '> ', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
+let g:clap_current_selection_sign= { 'text': "\uf124", 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
 '''
 
 [[plugins]]

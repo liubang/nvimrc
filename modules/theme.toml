@@ -142,7 +142,7 @@ let g:lightline = {
       \   'right': [['sign']],
       \ },
       \ 'component': {
-      \   'sign': "\uf25b",
+      \   'sign': "\uf18a",
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
