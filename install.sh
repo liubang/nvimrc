@@ -44,21 +44,43 @@ if [ ! -d $HOME/bin ]; then
   mkdir $HOME/bin
 fi
 mv $archive_dir $HOME/bin/
-pip3 install --user pynvim
 
 # install dependencies
 if [ $ostype == 'macos' ]; then
   brew install ripgrep
+  brew install ccls --HEAD
 elif [ $ostype == 'linux' ]; then
   if [ $linux_type == 'centos' ]; then
+    # install rg
     sudo yum-config-manager \ 
     --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
-    sudo yum install ripgrep
+    sudo yum install ripgrep -y
+    # install yarn
+    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+    sudo yum install yarn -y
+    # build ccls
+    sudo yum install epel-release -y
+    sudo yum install snapd -y
+    sudo systemctl enable --now snapd.socket
+    sudo ln -s /var/lib/snapd/snap /snap
+    sudo snap install ccls --classic
   elif [$linux_type == 'ubuntu' ]; then
-    sudo apt-get install ripgrep
+    # install rg
+    sudo apt-get install ripgrep -y
+    # install yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt-get update && sudo apt-get install yarn -y
+    # build ccls
+    cd /tmp && git clone --depth=1 --recursive https://github.com/MaskRay/ccls && cd ccls
+    sudo apt install clang cmake libclang-dev llvm-dev rapidjson-dev -y
+    cmake -H. -BRelease
+    cmake --build Release
+    cp Release/ccls $HOME/bin/
   fi
 fi
 
+# install shfmt
 GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
 
 if [ ! -d $HOME/.config ]; then
@@ -71,16 +93,19 @@ fi
 
 git clone --depth=1 https://github.com/liubang/vimrc.git $HOME/.config/nvim
 
+pip install --user pynvim
+pip3 install --user pynvim
+
 if [ -f $HOME/.bashrc ]; then
   cat <<"EOF" >>$HOME/.bashrc
-export PATH=$HOME/bin/nvim/bin:$PATH
+export PATH=$HOME/bin/nvim/bin:$HOME/bin:$PATH
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 $HOME/bin/nvim/bin/nvim'
 EOF
 fi
 
 if [ -f $HOME/.zshrc]; then
   cat <<"EOF" >>$HOME/.zshrc
-export PATH=$HOME/bin/nvim/bin:$PATH
+export PATH=$HOME/bin/nvim/bin:$HOME/bin:$PATH
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 $HOME/bin/nvim/bin/nvim'
 EOF
 fi
