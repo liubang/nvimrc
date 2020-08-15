@@ -83,4 +83,5 @@ function s:debin_begin()
 endfunc
 
 command! -nargs=0 -bar PluginUpdate   call dein#update()
+command! -nargs=0 -bar PluginClean    call map(dein#check_clean(), "delete(v:val, 'rf')")
 command! -nargs=0 -bar ReRuntimePath  call dein#recache_runtimepath()
