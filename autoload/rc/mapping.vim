@@ -92,8 +92,8 @@ if dein#tap('markdown-preview.nvim')
 endif
 
 if dein#tap('vim-clang-format')
-  nnoremap <silent><leader>cf :<c-u>ClangFormat<cr>
-  vnoremap <silent><leader>cf :ClangFormat<cr>
+  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 endif
 
 if dein#tap('lightline-bufferline')
