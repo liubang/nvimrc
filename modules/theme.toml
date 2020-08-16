@@ -131,11 +131,11 @@ let g:lightline = {
       \   'left': [ ['homemode'],
       \             ['gitbranch', 'gitstatus'], ['filename'], ['cocerror'], ['cocwarn'] ],
       \   'right': [ ['linenumber'], 
-      \              ['linepercent'], ['fileformat', 'encoding'] ],
+      \              ['fileformat']],
       \ },
       \ 'inactive': {
       \   'left': [['homemode'], ['filename']],
-      \   'right': [['linenumber'], ['linepercent']],
+      \   'right': [['linenumber'], ['fileformat']],
       \ },
       \ 'tabline': {
       \   'left': [['buffers']],
@@ -149,7 +149,6 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'linenumber': 'LightLineLineinfo',
-      \   'linepercent': 'LightLinePercent',
       \   'homemode': 'LightLineHomeMode',
       \   'cocerror': 'LightLineCocError',
       \   'cocwarn' : 'LightLineCocWarn',
@@ -160,32 +159,24 @@ let g:lightline = {
       \   'filename': 'LightLineFname',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
-      \   'encoding': 'LightLineEncoding',
       \ },
       \ 'component_type': {'buffers': 'tabsel'},
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"},
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
 
-function! LightLineEncoding() 
-  if utils#is_special_buffer()
+function! LightLineFileformat()
+  if utils#is_special_buffer() || winwidth(0) <= 70
     return ''
   endif
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunc
+  return WebDevIconsGetFileFormatSymbol() . ' ' . (&fenc !=# '' ? &fenc : &enc) . '[' . &fileformat . ']'
+endfunction
 
 function! LightLineLineinfo() 
   if utils#is_special_buffer()
     return ""
   endif
-  return ' ' . line('.').':'. col('.')
-endfunc
-
-function! LightLinePercent() 
-  if utils#is_special_buffer()
-    return ''
-  endif
-  return line('.') * 100 / line('$') . '%'
+  return line('.') * 100 / line('$') . '%' . '  ' . line('.').':'. col('.')
 endfunc
 
 function! LightLineHomeMode()
@@ -299,12 +290,6 @@ function! LightLineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
-function! LightLineFileformat()
-  if utils#is_special_buffer() || winwidth(0) <= 70
-    return ''
-  endif
-  return &fileformat . ' ' . WebDevIconsGetFileFormatSymbol()
-endfunction
 
 autocmd User CocDiagnosticChange call lightline#update()
 
