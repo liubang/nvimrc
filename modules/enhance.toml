@@ -3,6 +3,10 @@ repo = 'Shougo/dein.vim'
 on_func = 'dein#'
 
 [[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
+
+[[plugins]]
 repo = 'itchyny/vim-cursorword'
 
 [[plugins]]
