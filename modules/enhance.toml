@@ -140,7 +140,5 @@ repo = 'Yggdroot/indentLine'
 on_event = 'BufReadPost'
 hook_source = '''
 let g:indentLine_char = '┊'
-let g:indentLine_fileType = ['python', 'vim', 'json']
-let g:indentLine_concealcursor = 'niv'
-let g:indentLine_conceallevel = 2
+let g:indentLine_fileType = ['python', 'vim']
 '''
