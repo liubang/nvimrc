@@ -12,6 +12,7 @@
     "bzl",
     "php",
     "xml",
+    "rust",
     "java",
     "python",
     "json",
