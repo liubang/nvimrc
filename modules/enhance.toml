@@ -34,7 +34,7 @@ repo = 'junegunn/vim-slash'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-on_cmd = '<Plug>(EasyAlign)'
+on_map = '<Plug>(EasyAlign)'
 
 [[plugins]]
 repo = 'terryma/vim-expand-region'
