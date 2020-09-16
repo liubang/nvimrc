@@ -135,10 +135,3 @@ let g:clap_current_selection_sign= { 'text': "\uf124", 'texthl': "ClapCurrentSel
 repo = 'vn-ki/coc-clap'
 on_source = 'vim-clap'
 
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-on_event = 'BufReadPost'
-hook_source = '''
-let g:indentLine_char = '┊'
-let g:indentLine_fileType = ['python', 'vim']
-'''
