@@ -28,6 +28,7 @@ let g:coc_global_extensions = [
       \ 'coc-rls',
       \ 'coc-docker',
       \ 'coc-sh',
+      \ 'coc-go',
       \]
 
 let g:coc_snippet_next = '<TAB>'
@@ -166,7 +167,7 @@ highlight! link CocHintHighlight NoCocUnderline
 
 augroup coc_au
   autocmd!
-  autocmd BufWritePre *.go   :call CocAction('runCommand', 'editor.action.organizeImport')
+  autocmd BufWritePre *.go   :call CocAction('organizeImport')
   autocmd BufWritePre *.java :call CocAction('runCommand', 'java.action.organizeImports')
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
