@@ -7,7 +7,6 @@
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [
-    "go",
     "css",
     "bzl",
     "php",
@@ -155,27 +154,21 @@
     "--style",
     "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
   ],
-  // go
-  "go.checkForUpdates": "disabled",
-  "go.goplsOptions": {
-    "usePlaceholders": true,
-    "completeUnimported": true
-  },
   "languageserver": {
-    // "gopls": {
-    //   "command": "gopls",
-    //   "filetypes": ["go"],
-    //   "rootPatterns": ["go.mod", ".git/"],
-    //   "initializationOptions": {
-    //     "diagnosticsEnabled": true,
-    //     "lintTool": "golint",
-    //     "usePlaceholders": true,
-    //     "completeUnimported": true,
-    //     "gocodeCompletionEnabled": true
-    //   }
-    //   // for debug
-    //   // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
-    // }
+    "gopls": {
+      "command": "gopls",
+      "filetypes": ["go"],
+      "rootPatterns": ["go.mod", ".git/"],
+      "initializationOptions": {
+        "diagnosticsEnabled": true,
+        "lintTool": "golint",
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "gocodeCompletionEnabled": true
+      }
+      // for debug
+      // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
+    }
   }
   // vim:ft=jsonc
 }
