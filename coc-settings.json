@@ -160,11 +160,8 @@
       "filetypes": ["go"],
       "rootPatterns": ["go.mod", ".git/"],
       "initializationOptions": {
-        "diagnosticsEnabled": true,
-        "lintTool": "golint",
         "usePlaceholders": true,
-        "completeUnimported": true,
-        "gocodeCompletionEnabled": true
+        "completeUnimported": true
       }
       // for debug
       // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]

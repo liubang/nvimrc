@@ -1,6 +1,5 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-on_func = 'dein#'
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
