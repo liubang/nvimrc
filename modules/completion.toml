@@ -33,6 +33,7 @@ let g:coc_global_extensions = [
       \ 'coc-ci',
       \ 'coc-tsserver',
       \ 'coc-vetur',
+      \ 'coc-eslint',
       \ 'coc-css', 
       \ 'coc-emmet',
       \ 'coc-stylelint',

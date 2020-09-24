@@ -8,6 +8,10 @@
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "scss",
+    "less",
+    "html",
+    "vue",
     "bzl",
     "php",
     "xml",
@@ -119,6 +123,8 @@
     "vue-html": "html",
     "javascript": "javascriptreact"
   },
+  // eslint
+  "eslint.autoFixOnSave": false,
   // calc
   "calc.replaceOriginalExpression": false,
   "calc.priority": 1000,
