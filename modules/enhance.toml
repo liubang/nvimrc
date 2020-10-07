@@ -6,7 +6,21 @@ repo = 'wsdjeg/dein-ui.vim'
 on_cmd = 'DeinUpdate'
 
 [[plugins]]
+repo = 'rhysd/accelerated-jk'
+on_map = '<Plug>'
+
+[[plugins]]
 repo = 'itchyny/vim-cursorword'
+on_event = ['BufReadPre', 'BufNewFile']
+hook_source = '''
+augroup user_plugin_cursorword
+  autocmd!
+  autocmd FileType defx,denite,fern,clap,vista let b:cursorword = 0
+  autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif
+  autocmd InsertEnter * let b:cursorword = 0
+  autocmd InsertLeave * let b:cursorword = 1
+augroup END
+'''
 
 [[plugins]]
 repo = 'tpope/vim-surround'

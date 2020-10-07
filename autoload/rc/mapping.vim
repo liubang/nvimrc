@@ -10,6 +10,11 @@ if dein#tap('defx.nvim')
   nnoremap <silent><Leader>ft :Defx <CR>
 endif
 
+if dein#tap('accelerated-jk')
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+endif
+
 if dein#tap('nerdcommenter')
   map <silent><Leader>cc <Plug>NERDCommenterToggle
   map <silent><Leader>cs <Plug>NERDCommenterSexy
