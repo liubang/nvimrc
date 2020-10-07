@@ -115,7 +115,6 @@ autocmd User Startified setlocal buflisted
 
 [[plugins]]
 repo = 'mengelbrecht/lightline-bufferline'
-on_source = 'lightline.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
