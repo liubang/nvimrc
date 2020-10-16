@@ -87,9 +87,11 @@ if dein#tap('coc.nvim')
   nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
   " rename
   nmap <silent><leader>rn <Plug>(coc-rename)
+  nmap <silent><leader>rf <Plug>(coc-refactor)
   nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
   nmap <silent>w <Plug>(coc-ci-w)
   nmap <silent>b <Plug>(coc-ci-b)
+  nmap <silent><leader>fm <Plug>(coc-format)
 endif
 
 if dein#tap('markdown-preview.nvim')
@@ -132,4 +134,11 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>fv :<C-u>Clap grep ++query=@visual<CR>
   nnoremap <silent> <Leader>oc :<C-u>Clap dotfiles<CR>
   nnoremap <silent> <LocalLeader>g :<C-u>Clap gosource<CR>
+endif
+
+
+if dein#tap('vim-quickui')
+  " tab menu
+  nnoremap <silent> <Leader>tm :call quickui#menu#open()<cr>
+  nnoremap <silent>K :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
 endif
