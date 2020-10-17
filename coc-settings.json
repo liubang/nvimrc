@@ -160,7 +160,7 @@
     "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
   ],
   "languageserver": {
-    "gopls": {
+    "golang": {
       "command": "gopls",
       "filetypes": ["go"],
       "rootPatterns": ["go.mod", ".git/"],
