@@ -12,6 +12,7 @@
     "less",
     "html",
     "bzl",
+    "lua",
     "php",
     "xml",
     "rust",
@@ -170,6 +171,10 @@
       }
       // for debug
       // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
+    },
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": ["lua"]
     }
   }
   // vim:ft=jsonc
