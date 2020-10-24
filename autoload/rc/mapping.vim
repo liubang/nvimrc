@@ -15,10 +15,17 @@ if dein#tap('accelerated-jk')
   nmap k <Plug>(accelerated_jk_gk)
 endif
 
-if dein#tap('nerdcommenter')
-  map <silent><Leader>cc <Plug>NERDCommenterToggle
-  map <silent><Leader>cs <Plug>NERDCommenterSexy
-  map <silent><Leader>cu <Plug>NERDCommenterUncomment
+if dein#tap('vim-niceblock')
+  xmap <silent>I <Plug>(niceblock-I)
+  xmap <silent>gI <Plug>(niceblock-gI)
+  xmap <silent>A <Plug>(niceblock-A)
+endif
+
+if dein#tap('caw.vim')
+  map <silent><Leader>cc <Plug>(caw:hatpos:toggle)
+  map <silent><Leader>cw <Plug>(caw:wrap:comment)
+  map <silent><Leader>cu <Plug>(caw:wrap:uncomment)
+  map <silent><Leader>cb <Plug>(caw:box:comment)
 endif
 
 if dein#tap('vim-slash')
