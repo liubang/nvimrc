@@ -77,22 +77,14 @@ if dein#tap('coc.nvim')
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   nnoremap <silent><leader>el :CocFzfDiagnostics<CR>
-  " Use `[g` and `]g` to navigate diagnostics
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
-  " goto definition
   nmap <silent><leader>gd <Plug>(coc-definition)
-  " goto declaration
   nmap <silent><leader>gD <Plug>(coc-declaration)
-  " goto type definition
   nmap <silent><leader>gy <Plug>(coc-type-definition)
-  " goto implementation
   nmap <silent><leader>gi <Plug>(coc-implementation)
-  " goto references
   nmap <silent><leader>gr <Plug>(coc-references)
-  " error info
   nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
-  " rename
   nmap <silent><leader>rn <Plug>(coc-rename)
   nmap <silent><leader>rf <Plug>(coc-refactor)
   nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
