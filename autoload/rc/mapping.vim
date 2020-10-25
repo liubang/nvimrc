@@ -26,6 +26,8 @@ if dein#tap('caw.vim')
   map <silent><Leader>cw <Plug>(caw:wrap:comment)
   map <silent><Leader>cu <Plug>(caw:wrap:uncomment)
   map <silent><Leader>cb <Plug>(caw:box:comment)
+  map <silent><Leader>cp <Plug>(caw:jump:comment-prev)
+  map <silent><Leader>cn <Plug>(caw:jump:comment-next)
 endif
 
 if dein#tap('vim-slash')
@@ -43,7 +45,13 @@ if dein#tap('vim-expand-region')
 endif
 
 if dein#tap('vim-floaterm')
-  nnoremap <silent><Leader>tw :FloatermNew<CR>
+  nnoremap   <silent><Leader>tw :FloatermNew<CR>
+  nnoremap   <silent><Leader>tt :FloatermToggle<CR>
+  tnoremap   <silent><C-n>      <C-\><C-n>:FloatermNew<CR>
+  tnoremap   <silent><C-k>      <C-\><C-n>:FloatermPrev<CR>
+  tnoremap   <silent><C-j>      <C-\><C-n>:FloatermNext<CR>
+  tnoremap   <silent><C-t>      <C-\><C-n>:FloatermToggle<CR>
+  tnoremap   <silent><C-d>      <C-\><C-n>:FloatermKill<CR>
 endif
 
 if dein#tap('vim-mundo')
