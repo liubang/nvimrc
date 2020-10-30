@@ -84,21 +84,20 @@ if dein#tap('coc.nvim')
         \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  nnoremap <silent><leader>el :CocFzfDiagnostics<CR>
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
-  nmap <silent><leader>gd <Plug>(coc-definition)
-  nmap <silent><leader>gD <Plug>(coc-declaration)
-  nmap <silent><leader>gy <Plug>(coc-type-definition)
-  nmap <silent><leader>gi <Plug>(coc-implementation)
-  nmap <silent><leader>gr <Plug>(coc-references)
-  nmap <silent><leader>ei <Plug>(coc-diagnostic-info)
-  nmap <silent><leader>rn <Plug>(coc-rename)
-  nmap <silent><leader>rf <Plug>(coc-refactor)
-  nmap <silent><space>y :<C-u>CocList -A --normal yank<cr>
-  nmap <silent>w <Plug>(coc-ci-w)
-  nmap <silent>b <Plug>(coc-ci-b)
-  nmap <silent><leader>fm <Plug>(coc-format)
+  nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+  nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+  nnoremap <silent><leader>gd <Plug>(coc-definition)
+  nnoremap <silent><leader>gD <Plug>(coc-declaration)
+  nnoremap <silent><leader>gy <Plug>(coc-type-definition)
+  nnoremap <silent><leader>gi <Plug>(coc-implementation)
+  nnoremap <silent><leader>gr <Plug>(coc-references)
+  nnoremap <silent><leader>ei <Plug>(coc-diagnostic-info)
+  nnoremap <silent><leader>rn <Plug>(coc-rename)
+  nnoremap <silent><leader>rf <Plug>(coc-refactor)
+  nnoremap <silent><space>y :<C-u>CocList -A --normal yank <CR>
+  nnoremap <silent>w <Plug>(coc-ci-w)
+  nnoremap <silent>b <Plug>(coc-ci-b)
+  nnoremap <silent><leader>fm :call CocAction('format') <CR>
 endif
 
 if dein#tap('markdown-preview.nvim')

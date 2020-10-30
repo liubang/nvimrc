@@ -7,17 +7,13 @@
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
   "coc.preferences.formatOnSaveFiletypes": [
+    "go",
     "css",
     "scss",
     "less",
     "html",
     "bzl",
-    "lua",
-    "php",
     "xml",
-    "rust",
-    "java",
-    "python",
     "json",
     "jsonc",
     "markdown",
@@ -106,11 +102,22 @@
     "buildifier": {
       "command": "buildifier",
       "args": []
+    },
+    "gofmt": {
+      "command": "gofmt",
+      "args": []
+    },
+    "clang-format": {
+      "command": "clang-format",
+      "args": []
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
-    "sh": "shfmt"
+    "sh": "shfmt",
+    "go": "gofmt",
+    "cpp": "clang-format",
+    "c": "clang-format"
   },
   "diagnostic-languageserver.linters": {},
   "diagnostic-languageserver.filetypes": {},
