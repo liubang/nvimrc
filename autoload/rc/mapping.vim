@@ -94,10 +94,9 @@ if dein#tap('coc.nvim')
   nnoremap <silent><leader>ei <Plug>(coc-diagnostic-info)
   nnoremap <silent><leader>rn <Plug>(coc-rename)
   nnoremap <silent><leader>rf <Plug>(coc-refactor)
-  nnoremap <silent><space>y :<C-u>CocList -A --normal yank <CR>
-  nnoremap <silent>w <Plug>(coc-ci-w)
-  nnoremap <silent>b <Plug>(coc-ci-b)
   nnoremap <silent><leader>fm :call CocAction('format') <CR>
+  nmap <silent>w <Plug>(coc-ci-w)
+  nmap <silent>b <Plug>(coc-ci-b)
 endif
 
 if dein#tap('markdown-preview.nvim')
