@@ -104,8 +104,8 @@ if dein#tap('markdown-preview.nvim')
 endif
 
 if dein#tap('vim-clang-format')
-  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+  autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf :<C-u>ClangFormat<CR>
+  autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>
 endif
 
 if dein#tap('lightline-bufferline')
@@ -140,7 +140,6 @@ if dein#tap('vim-clap')
   nnoremap <silent> <Leader>oc :<C-u>Clap dotfiles<CR>
   nnoremap <silent> <LocalLeader>g :<C-u>Clap gosource<CR>
 endif
-
 
 if dein#tap('vim-quickui')
   " tab menu
