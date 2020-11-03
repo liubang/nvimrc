@@ -7,6 +7,10 @@ repo = 'neoclide/jsonc.vim'
 on_ft = ['json', 'jsonc']
 
 [[plugins]]
+repo = 'buoto/gotests-vim'
+on_ft = ['go']
+
+[[plugins]]
 repo = 'plasticboy/vim-markdown'
 on_ft = 'markdown'
 hook_add = '''
