@@ -59,9 +59,7 @@ hook_source = '''
 let g:floaterm_wintype = 'floating'
 let g:floaterm_position = 'center'
 let g:floaterm_autoinsert = v:true
-let g:floaterm_borderchars = ['-', '|', '-', '|', '+', '+', '+', '+']
 let g:floaterm_title = 'terminal [$1/$2]'
-
 '''
 
 [[plugins]]

@@ -46,7 +46,7 @@ endif
 
 if dein#tap('vim-floaterm')
   nnoremap   <silent><Leader>tw :FloatermNew<CR>
-  nnoremap   <silent><Leader>tt :FloatermToggle<CR>
+  nnoremap   <silent><C-t>      :FloatermToggle<CR>
   tnoremap   <silent><C-n>      <C-\><C-n>:FloatermNew<CR>
   tnoremap   <silent><C-k>      <C-\><C-n>:FloatermPrev<CR>
   tnoremap   <silent><C-j>      <C-\><C-n>:FloatermNext<CR>
