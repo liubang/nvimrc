@@ -21,14 +21,12 @@
     "typescript"
   ],
   "coc.source.emoji.shortcut": "E",
-  "coc.source.emoji.priority": 8,
   "coc.source.file.shortcut": "F",
-  "coc.source.file.priority": 89,
   "coc.source.file.ignoreHidden": true,
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false,
   "coc.source.around.shortcut": "A",
-  "coc.source.around.priority": 88,
   "coc.source.buffer.shortcut": "B",
-  "coc.source.buffer.priority": 87,
   "coc.source.buffer.ignoreGitignore": false,
   //CocList
   "list.source.files.defaultOptions": ["--auto-preview"],
@@ -173,8 +171,11 @@
       "filetypes": ["go"],
       "rootPatterns": ["go.mod", ".git/"],
       "initializationOptions": {
+        "lintTool": "golint",
         "usePlaceholders": true,
-        "completeUnimported": true
+        "completeUnimported": true,
+        "diagnosticsEnabled": true,
+        "gocodeCompletionEnabled": true
       }
       // for debug
       // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
