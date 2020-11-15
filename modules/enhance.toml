@@ -120,6 +120,7 @@ merged = 0
 build = 'bash install.sh'
 on_map = '<plug>'
 hook_source = '''
+let g:clap_default_external_filter = 'fzy'
 let g:clap_cache_directory = $DATA_PATH . '/clap'
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_enable_icon = 1
