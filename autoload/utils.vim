@@ -7,16 +7,6 @@
 "
 "======================================================================
 
-function! utils#get_vim_version()
-  if !has('nvim')
-    return 'vim ' . v:version
-  else
-    redir => s | silent! version | redir END
-    return 'neovim ' 
-          \ . matchstr(s, 'NVIM v\zs[^\n]*')
-  endif
-endfunc
-
 function! utils#get_nvim_version()
   redir => s | silent! version | redir END
   return 'v' . matchstr(s, 'NVIM v\zs[^\n]*')

@@ -1,2 +1,3 @@
+setlocal iskeyword+=:,#
+setlocal foldmethod=marker
 let b:coc_pairs_disabled = ['"']
-setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
