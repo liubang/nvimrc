@@ -34,6 +34,8 @@ set smartindent
 set cindent
 set expandtab
 set mousehide
+set mouse=a
+set mousefocus
 set updatetime=300
 set timeout
 set timeoutlen=1000
@@ -144,10 +146,6 @@ if has('mac')
     \   },
     \   'cache_enabled': 0,
     \ }
-endif
-
-if has('clipboard')
-  set clipboard& clipboard+=unnamedplus
 endif
 
 " }}}
