@@ -157,3 +157,9 @@ on_map = { 'nx' = '<Plug>' }
 hook_source = '''
 let g:caw_operator_keymappings = 0
 '''
+
+[[plugins]]
+repo = 'matze/vim-move'
+hook_source = '''
+let g:move_key_modifier = 'C'
+'''
