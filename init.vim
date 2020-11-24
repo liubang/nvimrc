@@ -19,6 +19,6 @@ let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 call pm#_start()
 
-runtime configs/general.vim
-runtime configs/mappings.vim
-runtime configs/autocmds.vim
+exec 'source ' . g:nvg_root . '/configs/general.vim'
+exec 'source ' . g:nvg_root . '/configs/mappings.vim'
+exec 'source ' . g:nvg_root . '/configs/autocmds.vim'
