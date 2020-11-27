@@ -6,20 +6,7 @@
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "go",
-    "css",
-    "scss",
-    "less",
-    "html",
-    "bzl",
-    "xml",
-    "json",
-    "jsonc",
-    "markdown",
-    "javascript",
-    "typescript"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "java", "python", "yaml"],
   "coc.source.emoji.shortcut": "E",
   "coc.source.file.shortcut": "F",
   "coc.source.file.ignoreHidden": true,
@@ -92,7 +79,6 @@
   "diagnostic.warningSign": "\uf12a",
   "diagnostic.errorSign": "\uf00d",
   "diagnostic.enable": true,
-  "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
@@ -105,20 +91,83 @@
       "command": "gofmt",
       "args": []
     },
-    "clang-format": {
-      "command": "clang-format",
-      "args": []
+    "black": {
+      "command": "black",
+      "args": ["black", "-q", "-"]
+    },
+    "isort": {
+      "command": "isort",
+      "args": ["-q", "-"]
+    },
+    "docformatter": {
+      "command": "docformatter",
+      "args": ["-"]
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
     "sh": "shfmt",
     "go": "gofmt",
-    "cpp": "clang-format",
-    "c": "clang-format"
+    "python": ["black", "isort", "docformatter"]
   },
-  "diagnostic-languageserver.linters": {},
-  "diagnostic-languageserver.filetypes": {},
+  "diagnostic-languageserver.linters": {
+    "pylint": {
+      "sourceName": "pylint",
+      "command": "pylint",
+      "debounce": 100,
+      "args": [
+        "--output-format",
+        "text",
+        "--score",
+        "no",
+        "--msg-template",
+        "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
+        "%file"
+      ],
+      "formatPattern": [
+        "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "rootPatterns": ["pyproject.toml", "setup.py", ".git"],
+      "securities": {
+        "informational": "hint",
+        "refactor": "info",
+        "convention": "info",
+        "warning": "warning",
+        "error": "error",
+        "fatal": "error"
+      },
+      "offsetColumn": 1,
+      "formatLines": 1
+    },
+    "write-good": {
+      "sourceName": "write-good",
+      "command": "write-good",
+      "debounce": 100,
+      "args": ["--text=%text"],
+      "offsetLine": 0,
+      "offsetColumn": 1,
+      "formatLines": 1,
+      "formatPattern": [
+        "(.*)\\s+on\\s+line\\s+(\\d+)\\s+at\\s+column\\s+(\\d+)\\s*$",
+        {
+          "line": 2,
+          "column": 3,
+          "message": 1
+        }
+      ]
+    }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "python": "pylint",
+    "markdown": "write-good",
+    "rst": "write-good"
+  },
   "diagnostic-languageserver.debug": false,
   // "diagnostic-languageserver.trace.server": "verbose",
   // prettier
@@ -157,14 +206,19 @@
   "java.configuration.maven.userSettings": "~/.m2/settings.xml",
   "xml.codeLens.enabled": true,
   "xml.format.enabled": true,
+  "yaml.format.enable": true,
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/docker/compose/master/compose/config/config_schema_v3.8.json": "/*docker-compose.yml",
+    "https://raw.githubusercontent.com/threadheap/serverless-ide-vscode/master/packages/serverless-framework-schema/schema.json": "/*serverless.yml",
+    "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/3.0.3/schemas/v3.0/schema.json": [
+      "/*open-api*.yml",
+      "/*open-api*.yaml"
+    ]
+  },
   // python
-  "python.autoComplete.addBrackets": true,
-  "python.jediEnabled": false,
-  "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": [
-    "--style",
-    "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
-  ],
+  "jedi.markupKindPreferred": "plaintext",
+  "jedi.jediSettings.autoImportModules": ["numpy", "alembic"],
+  "jedi.diagnostics.enable": false,
   "languageserver": {
     "golang": {
       "command": "gopls",
