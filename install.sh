@@ -82,6 +82,9 @@ fi
 
 # install shfmt
 GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
+# install go tools
+GO111MODULE=on go get -u golang.org/x/tools/gopls
+GO111MODULE=on go get -u golang.org/x/tools/cmd/...
 
 if [ ! -d $HOME/.config ]; then
   mkdir $HOME/.config

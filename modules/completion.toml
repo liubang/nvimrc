@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
       \ 'coc-emoji',
       \ 'coc-snippets',
       \ 'coc-diagnostic',
+      \ 'coc-prettier',
       \ 'coc-pairs',
       \ 'coc-git',
       \ 'coc-json',
@@ -166,7 +167,6 @@ highlight! link CocHintHighlight NoCocUnderline
 
 augroup coc_au
   autocmd!
-  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd CursorHold * silent call CocActionAsync('highlight')

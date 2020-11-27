@@ -6,7 +6,7 @@
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
-  "coc.preferences.formatOnSaveFiletypes": ["go", "java", "python", "yaml"],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "java", "python", "yaml", "markdown"],
   "coc.source.emoji.shortcut": "E",
   "coc.source.file.shortcut": "F",
   "coc.source.file.ignoreHidden": true,
@@ -73,7 +73,6 @@
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
-  "diagnostic.format": "[%source%code] [%severity] %message",
   "diagnostic.infoSign": "\uf449",
   "diagnostic.hintSign": "\ufad5",
   "diagnostic.warningSign": "\uf12a",
@@ -88,7 +87,7 @@
       "args": []
     },
     "gofmt": {
-      "command": "gofmt",
+      "command": "goimports",
       "args": []
     },
     "black": {
@@ -107,71 +106,17 @@
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
     "sh": "shfmt",
+    "lua": "lua-format",
     "go": "gofmt",
     "python": ["black", "isort", "docformatter"]
   },
-  "diagnostic-languageserver.linters": {
-    "pylint": {
-      "sourceName": "pylint",
-      "command": "pylint",
-      "debounce": 100,
-      "args": [
-        "--output-format",
-        "text",
-        "--score",
-        "no",
-        "--msg-template",
-        "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
-        "%file"
-      ],
-      "formatPattern": [
-        "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "rootPatterns": ["pyproject.toml", "setup.py", ".git"],
-      "securities": {
-        "informational": "hint",
-        "refactor": "info",
-        "convention": "info",
-        "warning": "warning",
-        "error": "error",
-        "fatal": "error"
-      },
-      "offsetColumn": 1,
-      "formatLines": 1
-    },
-    "write-good": {
-      "sourceName": "write-good",
-      "command": "write-good",
-      "debounce": 100,
-      "args": ["--text=%text"],
-      "offsetLine": 0,
-      "offsetColumn": 1,
-      "formatLines": 1,
-      "formatPattern": [
-        "(.*)\\s+on\\s+line\\s+(\\d+)\\s+at\\s+column\\s+(\\d+)\\s*$",
-        {
-          "line": 2,
-          "column": 3,
-          "message": 1
-        }
-      ]
-    }
-  },
+  "diagnostic-languageserver.linters": {},
   "diagnostic-languageserver.filetypes": {
     "python": "pylint",
-    "markdown": "write-good",
-    "rst": "write-good"
+    "markdown": [ "write-good", "markdownlint" ],
+    "sh": "shellcheck"
   },
   "diagnostic-languageserver.debug": false,
-  // "diagnostic-languageserver.trace.server": "verbose",
-  // prettier
-  "prettier.statusItemText": "ⓟ ",
   //emmet
   "emmet.includeLanguages": {
     "vue-html": "html",
@@ -225,11 +170,8 @@
       "filetypes": ["go"],
       "rootPatterns": ["go.mod", ".git/"],
       "initializationOptions": {
-        "lintTool": "golint",
         "usePlaceholders": true,
-        "completeUnimported": true,
-        "diagnosticsEnabled": true,
-        "gocodeCompletionEnabled": true
+        "completeUnimported": true
       }
       // for debug
       // "args": ["-logfile", "/tmp/gopls.log", "-v", "-rpc.trace"]
