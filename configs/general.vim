@@ -153,7 +153,7 @@ endif
 set mousehide
 " set mouse mode to all so it can be used in any circumstance I want it
 " e.g. whilst scrolling the pager in tmux
-set mouse=a
+set mouse=vr
 set mousefocus
 if !has('nvim')
   set ttymouse=xterm2
