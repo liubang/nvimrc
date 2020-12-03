@@ -23,5 +23,3 @@ let dein#inline_vimrcs = [
    \ ]
 
 call pm#_start()
-
-unlet dein#inline_vimrcs
