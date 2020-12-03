@@ -37,7 +37,7 @@ set shortmess+=c
 " better {{{
 set encoding=utf-8
 set fileencoding=utf-8
-set termguicolors          "Enable tru color
+set termguicolors          "Enable true color
 set synmaxcol=2500         " Don't syntax highlight long lines
 set completeopt+=noinsert,noselect,longest
 set completeopt-=preview

@@ -16,9 +16,12 @@ augroup END
 
 let g:nvg_version = 'v2.2'
 let g:nvg_root = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let dein#inline_vimrcs = [  
+   \ g:nvg_root . '/configs/general.vim',
+   \ g:nvg_root . '/configs/mappings.vim',
+   \ g:nvg_root . '/configs/autocmds.vim',
+   \ ]
 
 call pm#_start()
 
-exec 'source ' . g:nvg_root . '/configs/general.vim'
-exec 'source ' . g:nvg_root . '/configs/mappings.vim'
-exec 'source ' . g:nvg_root . '/configs/autocmds.vim'
+unlet dein#inline_vimrcs
