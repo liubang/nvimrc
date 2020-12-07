@@ -6,7 +6,12 @@
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
-  "coc.preferences.formatOnSaveFiletypes": ["go", "java", "python", "yaml", "markdown"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go",
+    "java",
+    "yaml",
+    "markdown"
+  ],
   "coc.source.emoji.shortcut": "E",
   "coc.source.file.shortcut": "F",
   "coc.source.file.ignoreHidden": true,
@@ -73,22 +78,25 @@
   "snippets.ultisnips.enable": true,
   "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
+  "diagnostic.enable": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextLineSeparator": " \\ ",
+  "diagnostic.virtualTextPrefix": "Error: ",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.enableMessage": "never",
   "diagnostic.infoSign": "\uf449",
   "diagnostic.hintSign": "\ufad5",
   "diagnostic.warningSign": "\uf12a",
   "diagnostic.errorSign": "\uf00d",
-  "diagnostic.enable": true,
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic-languageserver.formatters": {
     "buildifier": {
-      "command": "buildifier",
-      "args": []
+      "command": "buildifier"
     },
     "gofmt": {
-      "command": "goimports",
-      "args": []
+      "command": "goimports"
     },
     "black": {
       "command": "black",
@@ -113,7 +121,7 @@
   "diagnostic-languageserver.linters": {},
   "diagnostic-languageserver.filetypes": {
     "python": "pylint",
-    "markdown": [ "write-good", "markdownlint" ],
+    "markdown": ["write-good", "markdownlint"],
     "sh": "shellcheck"
   },
   "diagnostic-languageserver.debug": false,
@@ -165,6 +173,16 @@
   "jedi.jediSettings.autoImportModules": ["numpy", "alembic"],
   "jedi.diagnostics.enable": false,
   "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "args": [
+        "--clang-tidy",
+        "--background-index",
+        "--header-insertion=iwyu"
+      ],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    },
     "golang": {
       "command": "gopls",
       "filetypes": ["go"],

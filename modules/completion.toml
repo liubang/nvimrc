@@ -17,7 +17,6 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-calc',
       \ 'coc-cmake',
-      \ 'coc-clangd',
       \ 'coc-ci',
       \ 'coc-tsserver',
       \ 'coc-vetur',
