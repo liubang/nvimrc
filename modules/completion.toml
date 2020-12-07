@@ -16,6 +16,8 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-xml',
       \ 'coc-calc',
+      \ 'coc-cmake',
+      \ 'coc-clangd',
       \ 'coc-ci',
       \ 'coc-tsserver',
       \ 'coc-vetur',
@@ -32,109 +34,6 @@ let g:coc_global_extensions = [
 
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
-
-if !empty($CLANG_RESOURCEDIR)
-  let g:nvg_ccls_clang_resourcedir = $CLANG_RESOURCEDIR
-else
-  let g:nvg_ccls_clang_resourcedir = ''
-endif
-
-if !empty($CLANG_ISYSTEM)
-  let g:nvg_ccls_clang_isystem = $CLANG_ISYSTEM
-else
-  let g:nvg_ccls_clang_isystem = ''
-endif
-
-if !empty($CLANG_INCLUDE)
-  let g:nvg_ccls_clang_include = $CLANG_INCLUDE
-else
-  let g:nvg_ccls_clang_include = ''
-endif
-
-if has('macunix')
-  call coc#config('languageserver', {
-    \ 'ccls': {
-    \   'command': 'ccls',
-    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
-    \   'initializationOptions': {
-    \     'cache': {'directory': '/tmp/ccls'},
-    \     'highlight': { 'lsRanges' : v:true },
-    \     'clang': {
-    \       'resourceDir': g:nvg_ccls_clang_resourcedir,
-    \       'extraArgs': [
-    \         '-isystem',
-    \         g:nvg_ccls_clang_isystem,
-    \         '-I',
-    \         g:nvg_ccls_clang_include,
-    \       ]
-    \     }
-    \   }
-    \ }
-    \ })
-elseif has('unix') && !has('macunix') && !has('win32unix')
-  call coc#config('languageserver', {
-    \ 'ccls': {
-    \   'command': 'ccls',
-    \   'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-    \   'rootPatterns': ['.ccls', 'compile_commands.json', '.git'],
-    \   'initializationOptions': {
-    \     'cache': {'directory': '/tmp/ccls'},
-    \     'highlight': { 'lsRanges' : v:true },
-    \     'clang': {
-    \       'extraArgs': [
-    \         '--gcc-toolchain=/usr'
-    \       ]
-    \     }
-    \   }
-    \ }
-    \ })
-endif
-
-
-function! s:get_diagnostics(diags, current_buffer_only) 
-  if a:current_buffer_only 
-    let l:diags = filter(a:diags, {key, val -> val.file ==# expand('%:p')})
-  else
-    let l:diags = a:diags
-  endif
-  let rows = []
-  for item in l:diags 
-    let text = has_key(item,'file')  ? item.file : ''
-    let text .= ':' . item.lnum . ':' . item.col . ' ' . item.severity . ' ' . item.message
-    let rows += [text]
-  endfor
-  return rows
-endfunc
-
-function! s:error_handler(err) 
-  let match = matchlist(a:err[1:], '\v^([^:]*):(\d+):(\d+)(.*)')[1:4] 
-  if empty(match) || empty(match[0])
-    return
-  endif
-  if empty(l:match[1]) && (bufnr(l:match[0]) == bufnr('%'))
-    return
-  endif
-  let line = empty(match[1]) ? 1 : str2nr(match[1])
-  let col = empty(match[2]) ? 1 : str2nr(match[2])
-  let message = match[3]
-  execute 'silent buffer' bufnr(match[0])
-  call cursor(line, col)
-  normal! zz
-endfunc
-
-function! s:coc_fzf_diagnostics()
-  let l:current_buffer_only = index(a:000, '--current-buf') >= 0
-  let l:diags = CocAction('diagnosticList')
-  if !empty(l:diags) 
-    call fzf#run({
-      \ 'source': s:get_diagnostics(l:diags, l:current_buffer_only),
-      \ 'sink': function('s:error_handler'),
-      \ 'options': '-m ' . utils#fzf_options('DiagnosticList'),
-      \ 'down': '30%',
-      \ })
-  endif
-endfunc
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')
