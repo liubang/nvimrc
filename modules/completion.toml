@@ -6,7 +6,6 @@ hook_source = '''
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-emoji',
-      \ 'coc-snippets',
       \ 'coc-diagnostic',
       \ 'coc-prettier',
       \ 'coc-pairs',
@@ -71,8 +70,3 @@ augroup coc_au
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup END
 '''
-
-[[plugins]]
-repo = 'honza/vim-snippets'
-depends = 'coc.nvim'
-merged = 0

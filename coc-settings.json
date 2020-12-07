@@ -1,6 +1,5 @@
 {
   "coc.preferences.snippets.enable": true,
-  "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.formatOnType": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.hoverTarget": "float",
@@ -26,9 +25,13 @@
   // session
   "session.saveOnVimLeave": false,
   "session.directory": "$HOME/.vim/sessions",
+  // signature
+  "signature.hideOnTextChange": true,
+  "signature.target": "float",
+  "signature.preferShownAbove": true,
   // suggest
   "suggest.timeout": 500,
-  "suggest.noselect": true,
+  "suggest.noselect": false,
   "suggest.enablePreview": false,
   "suggest.floatEnable": false,
   "suggest.defaultSortMethod": "alphabetical",
@@ -68,15 +71,6 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "snippets.shortcut": "S",
-  "snippets.ultisnips.directories": [
-    "UltiSnips",
-    "snip",
-    "gosnippets/UltiSnips"
-  ],
-  "snippets.ultisnips.usePythonx": true,
-  "snippets.ultisnips.enable": true,
-  "snippets.snipmate.author": "liubang <it.liubang@gmail.com>",
   // diagnostic
   "diagnostic.enable": true,
   "diagnostic.virtualText": true,
