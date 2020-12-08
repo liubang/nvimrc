@@ -75,13 +75,13 @@
   "diagnostic.enable": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextLineSeparator": " \\ ",
-  "diagnostic.virtualTextPrefix": "Error: ",
+  "diagnostic.virtualTextPrefix": "\uf445 ",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.enableMessage": "never",
-  "diagnostic.infoSign": "\uf449",
-  "diagnostic.hintSign": "\ufad5",
-  "diagnostic.warningSign": "\uf12a",
-  "diagnostic.errorSign": "\uf00d",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "diagnostic.warningSign": "W",
+  "diagnostic.errorSign": "E",
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
@@ -174,7 +174,7 @@
         "--background-index",
         "--header-insertion=iwyu"
       ],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".clangd"],
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
     },
     "golang": {
