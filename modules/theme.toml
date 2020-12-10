@@ -310,6 +310,5 @@ let g:lightline#bufferline#number_map = {
 [[plugins]]
 repo = 'kyazdani42/nvim-tree.lua'
 hook_source = '''
-let g:lua_tree_indent_markers = 1
-let g:lua_tree_hide_dotfiles = 1 
+lua require('config.nvim-tree').on_attach()
 '''

@@ -8,37 +8,7 @@
 "======================================================================
 
 if dein#tap('nvim-tree.lua')
-  function! s:tree_context_menu() abort
-    let l:selection = confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Cut\n&Paste\n&Remove")
-    silent exe 'redraw'
-    if l:selection == 1 
-      lua require'tree'.on_keypress('create')
-    elseif l:selection == 2
-      lua require'tree'.on_keypress('rename')
-    elseif l:selection == 3
-      lua require'tree'.on_keypress('copy')
-    elseif l:selection == 4
-      lua require'tree'.on_keypress('cut')
-    elseif l:selection == 5
-      lua require'tree'.on_keypress('paste')
-    elseif l:selection == 6
-      lua require'tree'.on_keypress('remove')
-    endif
-  endfunc
-
-  nnoremap <silent><Leader>ft :lua require'tree'.toggle()<cr>
-
-  function! s:lua_tree_mappings()
-    nnoremap <silent><buffer>m :call <SID>tree_context_menu()<cr>
-    nnoremap <silent><buffer>r :lua require'tree'.on_keypress('refresh')<cr>
-    nnoremap <silent><buffer>s :lua require'tree'.on_keypress('split')<cr>
-    nnoremap <silent><buffer>v :lua require'tree'.on_keypress('vsplit')<cr>
-  endfunc
-
-  augroup vfinit
-    autocmd!
-    autocmd FileType LuaTree call s:lua_tree_mappings() 
-  augroup END
+   nnoremap <silent><Leader>ft :lua require'tree'.toggle()<cr>
 endif
 
 if dein#tap('accelerated-jk')
