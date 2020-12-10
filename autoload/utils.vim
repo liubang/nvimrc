@@ -24,10 +24,10 @@ endfunc
 
 function! utils#is_special_buffer()
   return &buftype =~ '\v(terminal|quickfix)' 
-        \ || &filetype =~ '\v(help|startify|defx|vista|undotree|SpaceVimPlugManager|git|Mundo|MundoDiff|vim-plug)'
+        \ || &filetype =~ '\v(help|startify|defx|LuaTree|vista|undotree|SpaceVimPlugManager|git|Mundo|MundoDiff|vim-plug)'
 endfunc
 
 function! utils#maybe_special_buffer()
   return &buftype =~ '\v(terminal|quickfix)' 
-        \ || &filetype =~ '\v(defx|vista|undotree|SpaceVimPlugManager|git|Mundo|MundoDiff)'
+        \ || &filetype =~ '\v(defx|vista|undotree|LuaTree|SpaceVimPlugManager|git|Mundo|MundoDiff)'
 endfunc
