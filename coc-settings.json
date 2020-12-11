@@ -27,7 +27,6 @@
   },
   // session
   "session.saveOnVimLeave": false,
-  "session.directory": "$HOME/.vim/sessions",
   // signature
   "signature.hideOnTextChange": true,
   "signature.target": "float",

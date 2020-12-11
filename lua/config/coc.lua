@@ -43,6 +43,7 @@ M.set_config = function()
   vim.fn['coc#config']('snippets.textmateSnippetsRoots', {
     vim.g.nvg_root .. '/snippets'
   })
+  vim.fn['coc#config']('session.directory', vim.g.nvg_root .. '/.cache/sessions')
 end
 
 M.set_highlight = function()

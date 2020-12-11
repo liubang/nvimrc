@@ -105,6 +105,6 @@ function! s:comment_update()
 endfunc
 
 
-command! -nargs=1 Modeline :call <SID>comment_et(<q-args>)
-command! -nargs=0 CopyRight :call <SID>comment_copyright('liubang')
-command! -nargs=0 UpdateLastModified :call <SID>comment_update()
+" command! -nargs=1 Modeline :call <SID>comment_et(<q-args>)
+" command! -nargs=0 CopyRight :call <SID>comment_copyright('liubang')
+" command! -nargs=0 UpdateLastModified :call <SID>comment_update()
