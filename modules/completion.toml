@@ -3,5 +3,5 @@ repo = 'neoclide/coc.nvim'
 merged = 0
 rev = 'release'
 hook_source = '''
-lua require('config.coc').on_attach()
+lua require('lb.config.coc').on_attach()
 '''

@@ -9,28 +9,28 @@
 local comment = {}
 
 local prefix_mappings = {
-  [c]                 = "//",
-  [cpp]               = '//',
-  [rust]              = '//',
-  [go]                = '//',
-  [php]               = '//',
-  [java]              = '//',
-  [lua]               = '--',
-  [sql]               = '--',
-  [python]            = '#',
-  [sh]                = '#',
-  [zsh]               = '#',
-  [bash]              = '#',
-  [make]              = '#',
-  [ruby]              = '#',
+  ["c"]               = "//",
+  ["cpp"]             = '//',
+  ["rust"]            = '//',
+  ["go"]              = '//',
+  ["php"]             = '//',
+  ["java"]            = '//',
+  ["lua"]             = '--',
+  ["sql"]             = '--',
+  ["python"]          = '#',
+  ["sh"]              = '#',
+  ["zsh"]             = '#',
+  ["bash"]            = '#',
+  ["make"]            = '#',
+  ["ruby"]            = '#',
 }
 
 local header_mappings = {
-  [python]              = {"#! /usr/bin/env python", "# -*- coding: utf-8 -*-"},
-  [php]                 = {"<?php"},
-  [sh]                  = {"#! /bin/sh"},
-  [bash]                = {"#! /usr/bin/env bash"},
-  [zsh]                 = {"#! /usr/bin/env zsh"},
+  ["python"]              = {"#! /usr/bin/env python", "# -*- coding: utf-8 -*-"},
+  ["php"]                 = {"<?php"},
+  ["sh"]                  = {"#! /bin/sh"},
+  ["bash"]                = {"#! /usr/bin/env bash"},
+  ["zsh"]                 = {"#! /usr/bin/env zsh"},
 }
 
 comment.comment_prefix = function()
@@ -69,7 +69,7 @@ comment.copy_right = function(author)
   table.insert(text, c .. ' Last Modified: ' .. t )
   table.insert(text, c)
   table.insert(text, complete) 
-  api.nvim_buf_set_lines(tree.bufnr, 0, -1, false, text)
+  vim.fn.append(0, text)
 end
 
 return comment

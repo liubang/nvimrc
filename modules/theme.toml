@@ -310,5 +310,5 @@ let g:lightline#bufferline#number_map = {
 [[plugins]]
 repo = 'kyazdani42/nvim-tree.lua'
 hook_source = '''
-lua require('config.nvim-tree').on_attach()
+lua require('lb.config.nvim-tree').on_attach()
 '''

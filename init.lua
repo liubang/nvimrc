@@ -8,4 +8,4 @@
 --=====================================================================
 
 local script_path = string.gsub(debug.getinfo(1).source, "^@(.+/)[^/]+$", "%1")
-require('core.core').run(script_path)
+require('lb').run(script_path)
