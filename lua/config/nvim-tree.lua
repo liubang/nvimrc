@@ -19,7 +19,7 @@ end
 
 M.tree_context_menu = function()
   local actions = {"create", "rename", "copy", "cut", "paste", "remove"}
-  local section = vim.fn.confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Cut\n&Paste\n&Delete")  
+  local section = vim.fn.confirm('Action?', "&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete")  
   vim.cmd('redraw')  
   require("tree").on_keypress(actions[section])
 end
