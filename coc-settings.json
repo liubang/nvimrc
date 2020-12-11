@@ -5,12 +5,7 @@
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.colorSupport": true,
   "coc.preferences.rootPatterns": [".git", ".projections.json"],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "go",
-    "java",
-    "yaml",
-    "markdown"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "java", "yaml", "markdown"],
   "coc.source.emoji.shortcut": "E",
   "coc.source.file.shortcut": "F",
   "coc.source.file.ignoreHidden": true,
@@ -19,9 +14,17 @@
   "coc.source.around.shortcut": "A",
   "coc.source.buffer.shortcut": "B",
   "coc.source.buffer.ignoreGitignore": false,
-  //CocList
+  // CocList
   "list.source.files.defaultOptions": ["--auto-preview"],
   "list.source.outline.defaultOptions": ["--auto-preview"],
+  // snippets
+  "snippets.autoTrigger": true,
+  "snippets.snipmate.author": "liubang",
+  "snippets.snipmate.enable": true,
+  "snippets.ultisnips.enable": false,
+  "snippets.extends": {
+    "cpp": ["c"]
+  },
   // session
   "session.saveOnVimLeave": false,
   "session.directory": "$HOME/.vim/sessions",
@@ -169,12 +172,13 @@
   "languageserver": {
     "clangd": {
       "command": "clangd",
-      "args": [
-        "--clang-tidy",
-        "--background-index",
-        "--header-insertion=iwyu"
+      "args": ["--clang-tidy", "--background-index", "--header-insertion=iwyu"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".git/",
+        ".clangd"
       ],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".clangd"],
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
     },
     "golang": {

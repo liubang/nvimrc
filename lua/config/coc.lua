@@ -15,6 +15,7 @@ M.set_config = function()
     'coc-emoji',
     'coc-diagnostic',
     'coc-prettier',
+    'coc-snippets',
     'coc-pairs',
     'coc-git',
     'coc-json',
@@ -38,6 +39,10 @@ M.set_config = function()
   }
   vim.g.coc_snippet_next = '<TAB>'
   vim.g.coc_snippet_prev = '<S-TAB>'
+
+  vim.fn['coc#config']('snippets.textmateSnippetsRoots', {
+    vim.g.nvg_root .. '/snippets'
+  })
 end
 
 M.set_highlight = function()

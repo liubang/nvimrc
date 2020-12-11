@@ -8,7 +8,7 @@
 "======================================================================
 
 if dein#tap('nvim-tree.lua')
-   nnoremap <silent><Leader>ft :lua require'tree'.toggle()<cr>
+   nnoremap <silent><Leader>ft :lua require('tree').toggle()<cr>
 endif
 
 if dein#tap('accelerated-jk')
