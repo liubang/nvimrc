@@ -72,8 +72,4 @@ comment.copy_right = function(author)
   vim.fn.append(0, text)
 end
 
-comment.setup = function()
-  vim.cmd [[command! -nargs=0 CopyRight :lua require('lb.utils.comment').copy_right('liubang')]]
-end
-
 return comment

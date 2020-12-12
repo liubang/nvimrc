@@ -9,8 +9,10 @@
 
 local g = vim.g
 local o = vim.o
+local python_host_prog = os.getenv("PYTHON_HOST_PROG")
+local python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
 
-local bind_options = function(k, v)
+local function bind_options(k, v)
   if v == true then
     vim.api.nvim_command('set ' .. k)
   elseif v == false then
@@ -20,6 +22,13 @@ local bind_options = function(k, v)
   end
 end
 
+if python_host_prog ~= nil then
+  g.python_host_prog = python_host_prog
+end
+
+if python3_host_prog ~= nil then
+  g.python3_host_prog = python3_host_prog
+end
 
 g.mapleader = " "
 g.loaded_gzip              = 1
