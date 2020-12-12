@@ -7,5 +7,7 @@
 --
 --=====================================================================
 
-local script_path = string.gsub(debug.getinfo(1).source, "^@(.+/)[^/]+$", "%1")
-require('lb').run(script_path)
+vim.g.nvg_version = 'v3.0'
+vim.g.nvg_root = string.gsub(debug.getinfo(1).source, "^@(.+/)[^/]+$", "%1")
+
+require('lb')

@@ -25,7 +25,7 @@ M.tree_context_menu = function()
 end
 
 M.tree_mapping = function()
-  buf_mapper('n', 'm', 'require("lib.config.nvim-tree").tree_context_menu()')
+  buf_mapper('n', 'm', 'require("lb.config.nvim-tree").tree_context_menu()')
   buf_mapper('n', 'r', 'require("tree").on_keypress("refresh")')
   buf_mapper('n', 's', 'require("tree").on_keypress("split")')
   buf_mapper('n', 'v', 'require("tree").on_keypress("vsplit")')

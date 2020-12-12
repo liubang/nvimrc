@@ -152,10 +152,6 @@ let g:far#enable_undo=1
 '''
 
 [[plugins]]
-repo = 'kana/vim-niceblock'
-on_map = { 'x' = '<Plug>' }
-
-[[plugins]]
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
