@@ -161,8 +161,8 @@ if vim.fn['dein#tap']('markdown-preview.nvim') then
 end
 
 if vim.fn['dein#tap']('vim-clang-format') then
-  vim.cmd [[autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf <cmd><C-u>ClangFormat<CR>]] 
-  vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf <cmd>ClangFormat<CR>]] 
+  vim.cmd [[autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf :<C-u>ClangFormat<CR>]] 
+  vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>]] 
 end
 
 if vim.fn['dein#tap']('lightline-bufferline') then
