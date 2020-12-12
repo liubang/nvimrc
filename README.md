@@ -1,4 +1,4 @@
-#nvimrc
+# nvimrc
 
 [![GitHub release](https://img.shields.io/github/release/liubang/nvimrc.svg)](https://github.com/liubang/nvimrc/releases)
 
