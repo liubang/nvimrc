@@ -13,4 +13,6 @@ require('lb.options')
 require('lb.mappings')
 require('lb.events')
 
-require('lb.utils.comment').setup()
+vim.schedule(function() 
+  require('lb.utils.comment').setup() 
+end)
