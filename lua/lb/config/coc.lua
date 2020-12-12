@@ -9,6 +9,19 @@
 
 local M = {}
 
+local function get_lua_runtime()
+  local result = {};
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. "/lua/";
+    if vim.fn.isdirectory(lua_path) then
+      result[lua_path] = true
+    end
+  end
+  -- This loads the `lua` files from nvim into the runtime.
+  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  return result;
+end
+
 M.set_config = function() 
   vim.g.coc_global_extensions = {
     'coc-lists',
@@ -40,10 +53,59 @@ M.set_config = function()
   vim.g.coc_snippet_next = '<TAB>'
   vim.g.coc_snippet_prev = '<S-TAB>'
 
-  vim.fn['coc#config']('snippets.textmateSnippetsRoots', {
-    vim.g.nvg_root .. '/snippets'
+  -- lua lsp config
+  local lua_ls_path = vim.g.cache_path .. '/lua-language-server'
+  local lua_ls_bin = ""    
+  if jit.os == 'OSX' then
+    lua_ls_bin = lua_ls_path .. '/bin/macOS/lua-language-server'
+  elseif jit.os == 'Linux' then
+    lua_ls_bin = lua_ls_path .. '/bin/Linux/lua-language-server'
+  end
+  vim.fn['coc#config']('languageserver', {
+    lua = {
+      cwd = lua_ls_path,
+      command = lua_ls_bin, 
+      args = {
+        '-E', '-e', 'LANG="zh-cn"', lua_ls_path .. '/main.lua'
+      },
+      filetypes = {'lua'},
+      rootPatterns = {'.git/', ''},
+      settings = {
+        Lua = {
+          workspace = {
+            library = get_lua_runtime(),
+            maxPreload = 2000,
+            preloadFileSize = 1000
+          },
+          runtime = {
+            version = "LuaJIT"
+          },
+          completion = {
+            -- You should use real snippets
+            keywordSnippet = "Disable",
+          },
+          diagnostics = {
+            enable = true,
+            disable = {
+              "trailing-space",
+            },
+            globals = {
+              -- Neovim
+              "vim",
+              -- Busted
+              "describe", "it", "before_each", "after_each", "teardown", "pending"
+            }
+          }
+        }
+      }
+    }
   })
-  vim.fn['coc#config']('session.directory', vim.g.nvg_root .. '/.cache/sessions')
+  -- snippets config
+  vim.fn['coc#config']('snippets.textmateSnippetsRoots', {
+    vim.g.snip_path
+  })
+  -- session config
+  vim.fn['coc#config']('session.directory', vim.g.cache_path .. '/sessions')
 end
 
 M.set_highlight = function()
@@ -69,9 +131,11 @@ M.set_highlight = function()
 end
 
 M.set_command = function()
-  vim.cmd [[command! -nargs=0 Format :call CocAction('format')]]
-  vim.cmd [[command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')]]
-  vim.cmd [[command! -nargs=? Fold   :call CocAction('fold', <f-args>)]]
+  vim.schedule(function() 
+    vim.cmd [[command! -nargs=0 Format :call CocAction('format')]]
+    vim.cmd [[command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')]]
+    vim.cmd [[command! -nargs=? Fold   :call CocAction('fold', <f-args>)]]
+  end)
 end
 
 M.set_autocmd = function()
@@ -86,8 +150,8 @@ end
 
 M.on_attach = function() 
   M.set_config()
-  M.set_command()
   M.set_autocmd()
+  M.set_command()
 end
 
 return M

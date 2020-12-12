@@ -79,12 +79,12 @@ if vim.fn['dein#tap']('nvim-tree.lua') then
 end
 
 if vim.fn['dein#tap']('caw.vim') then
-  keymap('n', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false, silent = true})
-  keymap('n', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false, silent = true})
-  keymap('n', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false, silent = true})
-  keymap('n', "<Leader>cb", "<Plug>(caw:box:comment)", {noremap = false, silent = true})
-  keymap('n', "<Leader>cp", "<Plug>(caw:jump:comment-prev)", {noremap = false, silent = true})
-  keymap('n', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false, silent = true})
+  keymap('', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false, silent = true})
+  keymap('', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false, silent = true})
+  keymap('', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false, silent = true})
+  keymap('', "<Leader>cb", "<Plug>(caw:box:comment)", {noremap = false, silent = true})
+  keymap('', "<Leader>cp", "<Plug>(caw:jump:comment-prev)", {noremap = false, silent = true})
+  keymap('', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false, silent = true})
 end
 
 if vim.fn['dein#tap']('vim-slash') then

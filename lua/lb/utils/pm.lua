@@ -11,8 +11,8 @@ local g = vim.g
 local o = vim.o
 local pm = {}
 
-local data_path  = g.nvg_root .. '.cache'
-local cache_path = data_path .. '/dein'
+local cache_path  = g.nvg_root .. '.cache'
+local repo_path = cache_path .. '/dein'
 
 pm.init_dein = function()
   if vim.fn.has('vim_starting') then
@@ -20,9 +20,9 @@ pm.init_dein = function()
     g['dein#install_max_processes'] = 12
     g['dein#install_progress_type'] = 'title'
     g['dein#enable_notification'] = 1
-    g['dein#install_log_filename'] = data_path .. '/dein.log'
+    g['dein#install_log_filename'] = cache_path .. '/dein.log'
     if not o.runtimepath:match('/dein.vim') then
-      local dein_dir = cache_path .. '/repos/github.com/Shougo/dein.vim'
+      local dein_dir = repo_path .. '/repos/github.com/Shougo/dein.vim'
       if not vim.fn.isdirectory(dein_dir) then
         os.execute("git clone https://github.com/Shougo/dein.vim " .. dein_dir)
       end
@@ -32,8 +32,8 @@ pm.init_dein = function()
 end
 
 pm.load_modules = function(modules)
-  if vim.fn['dein#load_state'](cache_path) == 1 then
-    vim.fn['dein#begin'](cache_path, vim.fn.extend({vim.fn.expand('<sfile>')}, modules))
+  if vim.fn['dein#load_state'](repo_path) == 1 then
+    vim.fn['dein#begin'](repo_path, vim.fn.extend({vim.fn.expand('<sfile>')}, modules))
     -- load modules
     for idx, file in pairs(modules) do
       vim.fn['dein#load_toml'](file)   

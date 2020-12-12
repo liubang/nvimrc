@@ -17,6 +17,7 @@ local prefix_mappings = {
   ["java"]            = '//',
   ["lua"]             = '--',
   ["sql"]             = '--',
+  ["vim"]             = '"',
   ["python"]          = '#',
   ["sh"]              = '#',
   ["zsh"]             = '#',
@@ -57,7 +58,7 @@ comment.copy_right = function(author)
   local t = os.date("%Y/%m/%d %H:%M")
   local text = {}
   if header_mappings[filetype] ~= nil then
-    for k, v in pairs(header_mappings[filetype]) do
+    for _, v in pairs(header_mappings[filetype]) do
       table.insert(text, v)
     end
   end

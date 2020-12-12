@@ -109,6 +109,8 @@ o.splitright = true
 o.splitbelow = true
 o.clipboard = 'unnamedplus'
 o.mouse = 'vr'
+o.laststatus = 2
+o.showtabline = 2
 o.grepformat = "%f:%l:%c:%m";
 o.grepprg = 'rg --hidden --vimgrep --smart-case --';
 o.wildignorecase = true
@@ -139,6 +141,7 @@ bind_options('smartindent', true)
 bind_options('cindent', true)
 bind_options('wrap', true)
 bind_options('number', true)
+bind_options('list', false)
 bind_options('relativenumber', false)
 bind_options('foldenable', true)
 bind_options('foldtext', 'folds#render()')

@@ -9,8 +9,11 @@
 
 local g = vim.g
 
-local modules_dir = g.nvg_root .. '/modules'
-local p = assert(io.popen('find "' .. modules_dir ..'" -name "*.toml"'))
+g.cache_path  = g.nvg_root .. '.cache'
+g.module_path = g.nvg_root .. 'modules'
+g.snip_path   = g.nvg_root .. 'snippets'
+
+local p = assert(io.popen('find "' .. g.module_path ..'" -name "*.toml"'))
 local modules = {}
 for file in p:lines() do
   table.insert(modules, file)
