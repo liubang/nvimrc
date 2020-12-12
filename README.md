@@ -1,6 +1,6 @@
-#vimrc
+#nvimrc
 
-[![GitHub release](https://img.shields.io/github/release/liubang/vimrc.svg)](https://github.com/liubang/vimrc/releases)
+[![GitHub release](https://img.shields.io/github/release/liubang/nvimrc.svg)](https://github.com/liubang/nvimrc/releases)
 
 Configuration for neovim :rose:.
 
@@ -11,5 +11,5 @@ Configuration for neovim :rose:.
 ## install
 
 ```shell
-curl -sSL https://raw.githubusercontent.com/liubang/vimrc/master/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/liubang/nvimrc/master/install.sh | sh
 ```
