@@ -1,4 +1,3 @@
-local mappings = require "telescope.mappings"
 --=====================================================================
 --
 -- nvim-telescope.lua - 
