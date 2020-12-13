@@ -21,7 +21,11 @@ require('telescope').setup{
       '--column',
       '--smart-case',
     },
-    file_ignore_patterns = {".git/*"},
+    file_ignore_patterns = {
+      ".git/*", 
+      "**/*.otf", 
+      "**/*.o"
+    },
     shorten_path = true,
     winblend = 0,
     mappings = {
