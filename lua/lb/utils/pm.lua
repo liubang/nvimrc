@@ -35,7 +35,7 @@ pm.load_modules = function(modules)
   if vim.fn['dein#load_state'](repo_path) == 1 then
     vim.fn['dein#begin'](repo_path, vim.fn.extend({vim.fn.expand('<sfile>')}, modules))
     -- load modules
-    for idx, file in pairs(modules) do
+    for _, file in pairs(modules) do
       vim.fn['dein#load_toml'](file)   
     end
     vim.fn['dein#end']()

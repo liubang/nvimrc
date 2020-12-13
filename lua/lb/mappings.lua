@@ -25,10 +25,10 @@ keymap('n', "<S-Tab>", '<<_', {noremap = true, silent = true})
 
 -- buffer
 keymap('n', "<Leader>bp", "<cmd>bprevious<CR>", {noremap = true, silent = true})
-keymap('n', "<Leader>bn", "<cmd>bnext<cr>", {noremap = true, silent = true})
-keymap('n', "<Leader>bf", "<cmd>bfirst<cr>", {noremap = true, silent = true})
-keymap('n', "<Leader>bl", "<cmd>blast<cr>", {noremap = true, silent = true})
-keymap('n', "<Leader>bd", "<cmd>bdelete<cr>", {noremap = true, silent = true})
+keymap('n', "<Leader>bn", "<cmd>bnext<CR>", {noremap = true, silent = true})
+keymap('n', "<Leader>bf", "<cmd>bfirst<CR>", {noremap = true, silent = true})
+keymap('n', "<Leader>bl", "<cmd>blast<CR>", {noremap = true, silent = true})
+keymap('n', "<Leader>bd", "<cmd>bdelete<CR>", {noremap = true, silent = true})
 
 -- window
 keymap('n', "<Leader>ww", "<C-W>w", {noremap = true, silent = true})
@@ -75,7 +75,7 @@ keymap('t', "<Leader>wk", "<C-\\><C-N><C-w>k", {noremap = true, silent = true})
 
 -- plugins key mappings
 if vim.fn['dein#tap']('nvim-tree.lua') then
-  keymap('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<cr>", {noremap = true, silent = true})
+  keymap('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>", {noremap = true, silent = true})
 end
 
 if vim.fn['dein#tap']('caw.vim') then
@@ -102,17 +102,17 @@ if vim.fn['dein#tap']('vim-expand-region') then
 end
 
 if vim.fn['dein#tap']('vim-floaterm') then
-  keymap('n', "<Leader>tw", "<cmd>FloatermNew<cr>", {noremap = true, silent = true})
-  keymap('n', "<C-t>", "<cmd>FloatermToggle<cr>", {noremap = true, silent = true})
-  keymap('t', "<C-n>", "<C-\\><C-n>:FloatermNew<cr>", {noremap = true, silent = true})
-  keymap('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<cr>", {noremap = true, silent = true})
-  keymap('t', "<C-j>", "<C-\\><C-n>:FloatermNext<cr>", {noremap = true, silent = true})
-  keymap('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<cr>", {noremap = true, silent = true})
-  keymap('t', "<C-d>", "<C-\\><C-n>:FloatermKill<cr>", {noremap = true, silent = true})
+  keymap('n', "<Leader>tw", "<cmd>FloatermNew<CR>", {noremap = true, silent = true})
+  keymap('n', "<C-t>", "<cmd>FloatermToggle<CR>", {noremap = true, silent = true})
+  keymap('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>", {noremap = true, silent = true})
+  keymap('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<CR>", {noremap = true, silent = true})
+  keymap('t', "<C-j>", "<C-\\><C-n>:FloatermNext<CR>", {noremap = true, silent = true})
+  keymap('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>", {noremap = true, silent = true})
+  keymap('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>", {noremap = true, silent = true})
 end
 
 if vim.fn['dein#tap']('vim-mundo') then
-  keymap('n', "<Leader>ud", "<cmd>MundoToggle<cr>", {noremap = true, silent = true}) 
+  keymap('n', "<Leader>ud", "<cmd>MundoToggle<CR>", {noremap = true, silent = true}) 
 end
 
 if vim.fn['dein#tap']('asyncrun.vim') then
@@ -120,14 +120,14 @@ if vim.fn['dein#tap']('asyncrun.vim') then
 end
 
 if vim.fn['dein#tap']('asynctasks.vim') then
-  keymap('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<cr>", {noremap = true, silent = true})
-  keymap('n', "<C-b>", "<cmd>AsyncTask file-build<cr>", {noremap = true, silent = true})
-  keymap('n', "<C-r>", "<cmd>AsyncTask file-run<cr>", {noremap = true, silent = true})
+  keymap('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>", {noremap = true, silent = true})
+  keymap('n', "<C-b>", "<cmd>AsyncTask file-build<CR>", {noremap = true, silent = true})
+  keymap('n', "<C-r>", "<cmd>AsyncTask file-run<CR>", {noremap = true, silent = true})
 end
 
 if vim.fn['dein#tap']('vista.vim') then
-  keymap('n', "<Leader>tl", "<cmd>Vista!!<cr>", {noremap = true, silent = true})
-  keymap('n', "<Leader>vf", "<cmd>Vista finder coc<cr>", {noremap = true, silent = true})
+  keymap('n', "<Leader>tl", "<cmd>Vista!!<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>vf", "<cmd>Vista finder coc<CR>", {noremap = true, silent = true})
 end
 
 function _G.check_back_space()
@@ -152,13 +152,13 @@ if vim.fn['dein#tap']('coc.nvim') then
   keymap('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false, silent = true})
   keymap('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false, silent = true})
   keymap('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false, silent = true})
-  keymap('n', "<Leader>fm", "<cmd>call CocAction('format')<cr>", {noremap = true, silent = true})
+  keymap('n', "<Leader>fm", "<cmd>call CocAction('format')<CR>", {noremap = true, silent = true})
   keymap('n', "w", "<Plug>(coc-ci-w)", {noremap = false, silent = true})
   keymap('n', "b", "<Plug>(coc-ci-b)", {noremap = false, silent = true})
 end
 
 if vim.fn['dein#tap']('markdown-preview.nvim') then
-  keymap('n', "<Leader>mp", "<cmd>MarkdownPreview<cr>", {noremap = true, silent = true})
+  keymap('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>", {noremap = true, silent = true})
 end
 
 if vim.fn['dein#tap']('vim-clang-format') then
@@ -180,10 +180,10 @@ if vim.fn['dein#tap']('lightline-bufferline') then
 end
 
 if vim.fn['dein#tap']('telescope.nvim') then
-  keymap('n', "<Leader>ff", "<cmd>Telescope find_files<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>ag", "<cmd>Telescope live_grep<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>Ag", "<cmd>Telescope grep_string<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>bb", "<cmd>Telescope buffers<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>fc", "<cmd>Telescope commands<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>fb", "<cmd>Telescope builtin<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
+  keymap('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
 end

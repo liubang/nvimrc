@@ -8,15 +8,7 @@ on_cmd = 'DeinUpdate'
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
 on_event = ['BufReadPre', 'BufNewFile']
-hook_source = '''
-augroup user_plugin_cursorword
-  autocmd!
-  autocmd FileType LuaTree,defx,denite,fern,clap,vista let b:cursorword = 0
-  autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif
-  autocmd InsertEnter * let b:cursorword = 0
-  autocmd InsertLeave * let b:cursorword = 1
-augroup END
-'''
+hook_source = 'lua require("lb.config.vim-cursorword")'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -32,17 +24,6 @@ repo = 'junegunn/gv.vim'
 repo = 'kana/vim-textobj-user'
 
 [[plugins]]
-repo = 'tpope/vim-repeat'
-
-[[plugins]]
-repo = 'justinmk/vim-sneak'
-depends = ['vim-repeat']
-hook_source = '''
-let g:sneak#label = 1
-let g:sneak#s_next = 1
-'''
-
-[[plugins]]
 repo = 'junegunn/vim-slash'
 
 [[plugins]]
@@ -55,12 +36,7 @@ repo = 'terryma/vim-expand-region'
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
 on_cmd = ['FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend', 'FloatermKill']
-hook_source = '''
-let g:floaterm_wintype = 'floating'
-let g:floaterm_position = 'center'
-let g:floaterm_autoinsert = v:true
-let g:floaterm_title = 'terminal [$1/$2]'
-'''
+hook_source = 'lua require("lb.config.vim-floaterm")'
 
 [[plugins]]
 repo = 'simnalamburt/vim-mundo'
@@ -111,16 +87,14 @@ let g:vista_executive_for = {
 '''
 
 [[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-on_cmd = ['Telescope']
-
-[[plugins]]
 repo = 'nvim-lua/popup.nvim'
-on_source = 'telescope.nvim'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-on_source = 'telescope.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+hook_source = 'lua require("lb.config.nvim-telescope")'
 
 [[plugins]]
 repo = 'brooth/far.vim'

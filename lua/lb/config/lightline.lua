@@ -106,7 +106,6 @@ M.LightlineHomemode = function()
     return ''
   end
   local number = nr
-  print(nr)
   local result = ''
   for _ = 1, string.len(tostring(number)), 1 do
     result = nmap[tostring(number % 10)] .. result
