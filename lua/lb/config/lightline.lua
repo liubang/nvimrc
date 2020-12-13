@@ -11,8 +11,13 @@ local g = vim.g
 local M = {}
 local devicons = require('nvim-web-devicons')
 
-local nmap = { '⓿ ',  '❶ ',  '❷ ',  '❸ ', '❹ ','❺ ',  '❻ ',  '❼ ',  '❽ ',  '❾ ',
-               '➓ ','⓫ ','⓬ ','⓭ ','⓮ ','⓯ ','⓰ ','⓱ ','⓲ ','⓳ ','⓴ '}
+local nmap = {
+  ['0']  = "\u{24FF}", ['1'] = "\u{2776}", ['2'] = "\u{2777}", ['3'] = "\u{2778}", ['4'] = "\u{2779}",
+  ['5']  = "\u{277A}", ['6'] = "\u{277B}", ['7'] = "\u{277C}", ['8'] = "\u{277D}", ['9'] = "\u{277E}",
+  ['10'] = "\u{277F}", ['11'] = "\u{24EB}", ['12'] = "\u{24EC}", ['13'] = "\u{24ED}", ['14'] = "\u{24EE}",
+  ['15'] = "\u{24EF}", ['16'] = "\u{24F0}", ['17'] = "\u{24F1}", ['18'] = "\u{24F2}", ['19'] = "\u{24F3}",
+  ['20'] = "\u{24F4}",
+}
 
 local function get_buffer_number()
   local i = 0
@@ -59,16 +64,12 @@ M.set_options = function()
     subseparator = { left = "\u{e0b1}", right = "\u{e0b3}" }
   }
 
-  g['lightline#bufferline#show_number']  = 2
+  g['lightline#bufferline#show_number'] = 2
   g['lightline#bufferline#shorten_path'] = 1
   g['lightline#bufferline#enable_devicons'] = 1
   g['lightline#bufferline#filename_modifier'] = ':t'
   g['lightline#bufferline#unnamed']= '[No Name]'
-  g['lightline#bufferline#number_map'] = {
-    ['0'] = '⓿ ', ['1'] = '❶ ', ['2'] = '❷ ', ['3'] = '❸ ', ['4'] = '❹ ',
-    ['5'] = '❺ ', ['6'] = '❻ ', ['7'] = '❼ ', ['8'] = '❽ ', ['9'] = '❾ '
-  }
-
+  g['lightline#bufferline#composed_number_map'] = nmap
   vim.cmd [[autocmd User CocDiagnosticChange call lightline#update()]]
 end
 
@@ -105,10 +106,11 @@ M.LightlineHomemode = function()
     return ''
   end
   local number = nr
+  print(nr)
   local result = ''
   for _ = 1, string.len(tostring(number)), 1 do
-    result = nmap[number % 10] .. result
-    number = number / 10
+    result = nmap[tostring(number % 10)] .. result
+    number = math.floor(number / 10)
   end
   return '🌈 ' .. result
 end
@@ -146,7 +148,7 @@ end
 M.LightlineCocError = function()
   local error_sign = g['coc_status_error_sign'] or "\u{f00d}"   
   local info = vim.b['coc_diagnostic_info']
-  if info ~= nil and info['error'] ~= nil then 
+  if info ~= nil and info['error'] ~= nil and info['error'] > 0 then 
     return error_sign .. " " .. info['error'] 
   end
   return ''
@@ -155,7 +157,7 @@ end
 M.LightlineCocWarn = function()
   local warning_sign = g['coc_status_warning_sign'] or "\u{f12a}"
   local info = vim.b['coc_diagnostic_info']
-  if info ~= nil and info['warning'] ~= nil then
+  if info ~= nil and info['warning'] ~= nil and info['warning'] > 0 then
     return warning_sign .. ' ' .. info['warning']
   end
   return ''
