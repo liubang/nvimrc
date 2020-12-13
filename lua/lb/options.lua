@@ -7,18 +7,17 @@
 --
 --=====================================================================
 
-local g = vim.g
-local o = vim.o
+local g, o, api = vim.g, vim.o, vim.api
 local python_host_prog = os.getenv("PYTHON_HOST_PROG")
 local python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
 
 local function bind_options(k, v)
   if v == true then
-    vim.api.nvim_command('set ' .. k)
+    api.nvim_command('set ' .. k)
   elseif v == false then
-    vim.api.nvim_command('set no' .. k)
+    api.nvim_command('set no' .. k)
   else
-    vim.api.nvim_command('set ' .. k .. '=' .. v)
+    api.nvim_command('set ' .. k .. '=' .. v)
   end
 end
 

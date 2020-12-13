@@ -22,9 +22,7 @@ require('telescope').setup{
       '--smart-case',
     },
     file_ignore_patterns = {
-      ".git/*", 
-      "**/*.otf", 
-      "**/*.o"
+      ".git/*"
     },
     shorten_path = true,
     winblend = 0,

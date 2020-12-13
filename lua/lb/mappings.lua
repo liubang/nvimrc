@@ -7,127 +7,131 @@
 --
 --=====================================================================
 
-local keymap = vim.api.nvim_set_keymap
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true, silent = true} 
+  if opts then for k, v in pairs(opts) do options[k] = v end end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
-keymap('n', ' ', '', {noremap = true})
-keymap('x', ' ', '', {noremap = true})
-keymap('n', ',', '', {noremap = true})
-keymap('x', ',', '', {noremap = true})
-keymap('n', ';', '', {noremap = true})
-keymap('x', ';', '', {noremap = true})
-keymap('n', 'm', '', {noremap = true})
-keymap('x', 'm', '', {noremap = true})
+map('n', ' ', '')
+map('x', ' ', '')
+map('n', ',', '')
+map('x', ',', '')
+map('n', ';', '')
+map('x', ';', '')
+map('n', 'm', '')
+map('x', 'm', '')
 
-keymap('v', "<Tab>", '>gv|', {noremap = true, silent = true})
-keymap('v', "<S-Tab>", '<gv', {noremap = true, silent = true})
-keymap('n', "<Tab>", '>>_', {noremap = true, silent = true})
-keymap('n', "<S-Tab>", '<<_', {noremap = true, silent = true})
+map('v', "<Tab>", '>gv|')
+map('v', "<S-Tab>", '<gv')
+map('n', "<Tab>", '>>_')
+map('n', "<S-Tab>", '<<_')
 
 -- buffer
-keymap('n', "<Leader>bp", "<cmd>bprevious<CR>", {noremap = true, silent = true})
-keymap('n', "<Leader>bn", "<cmd>bnext<CR>", {noremap = true, silent = true})
-keymap('n', "<Leader>bf", "<cmd>bfirst<CR>", {noremap = true, silent = true})
-keymap('n', "<Leader>bl", "<cmd>blast<CR>", {noremap = true, silent = true})
-keymap('n', "<Leader>bd", "<cmd>bdelete<CR>", {noremap = true, silent = true})
+map('n', "<Leader>bp", "<cmd>bprevious<CR>")
+map('n', "<Leader>bn", "<cmd>bnext<CR>")
+map('n', "<Leader>bf", "<cmd>bfirst<CR>")
+map('n', "<Leader>bl", "<cmd>blast<CR>")
+map('n', "<Leader>bd", "<cmd>bdelete<CR>")
 
 -- window
-keymap('n', "<Leader>ww", "<C-W>w", {noremap = true, silent = true})
-keymap('n', "<Leader>wr", "<C-W>r", {noremap = true, silent = true})
-keymap('n', "<Leader>wd", "<C-W>d", {noremap = true, silent = true})
-keymap('n', "<Leader>wq", "<C-W>q", {noremap = true, silent = true})
-keymap('n', "<Leader>wj", "<C-W>j", {noremap = true, silent = true})
-keymap('n', "<Leader>wJ", "<C-W>J", {noremap = true, silent = true})
-keymap('n', "<Leader>wk", "<C-W>k", {noremap = true, silent = true})
-keymap('n', "<Leader>wK", "<C-W>K", {noremap = true, silent = true})
-keymap('n', "<Leader>wh", "<C-W>h", {noremap = true, silent = true})
-keymap('n', "<Leader>wH", "<C-W>H", {noremap = true, silent = true})
-keymap('n', "<Leader>wl", "<C-W>l", {noremap = true, silent = true})
-keymap('n', "<Leader>wL", "<C-W>L", {noremap = true, silent = true})
-keymap('n', "<Leader>w=", "<C-W>=", {noremap = true, silent = true})
-keymap('n', "<Leader>ws", "<C-W>s", {noremap = true, silent = true})
-keymap('n', "<Leader>w-", "<C-W>-", {noremap = true, silent = true})
-keymap('n', "<Leader>wv", "<C-W>v", {noremap = true, silent = true})
+map('n', "<Leader>ww", "<C-W>w")
+map('n', "<Leader>wr", "<C-W>r")
+map('n', "<Leader>wd", "<C-W>d")
+map('n', "<Leader>wq", "<C-W>q")
+map('n', "<Leader>wj", "<C-W>j")
+map('n', "<Leader>wJ", "<C-W>J")
+map('n', "<Leader>wk", "<C-W>k")
+map('n', "<Leader>wK", "<C-W>K")
+map('n', "<Leader>wh", "<C-W>h")
+map('n', "<Leader>wH", "<C-W>H")
+map('n', "<Leader>wl", "<C-W>l")
+map('n', "<Leader>wL", "<C-W>L")
+map('n', "<Leader>w=", "<C-W>=")
+map('n', "<Leader>ws", "<C-W>s")
+map('n', "<Leader>w-", "<C-W>-")
+map('n', "<Leader>wv", "<C-W>v")
 
-keymap('x', "<", "<gv", {noremap = true, silent = true})
-keymap('x', ">", ">gv", {noremap = true, silent = true})
+map('x', "<", "<gv")
+map('x', ">", ">gv")
 
 -- bash like
-keymap('i', "<C-a>", "<Home>", {noremap = true, silent = true})
-keymap('i', "<C-e>", "<End>", {noremap = true, silent = true})
-keymap('i', "<C-d>", "<Delete>", {noremap = true, silent = true})
+map('i', "<C-a>", "<Home>")
+map('i', "<C-e>", "<End>")
+map('i', "<C-d>", "<Delete>")
 
 -- command mod
-keymap('c', "<C-a>", "<Home>", {noremap = true, silent = true})
-keymap('c', "<C-e>", "<End>", {noremap = true, silent = true})
-keymap('c', "<C-b>", "<S-Left>", {noremap = true, silent = true})
-keymap('c', "<C-f>", "<S-right>", {noremap = true, silent = true})
-keymap('c', "<C-h>", "<Left>", {noremap = true, silent = true})
-keymap('c', "<C-l>", "<Right>", {noremap = true, silent = true})
-keymap('c', "<C-n>", "pumvisible() ? '<Right>' : '<Down>'", {noremap = true, expr = true})
-keymap('c', "<C-p>", "pumvisible() ? '<Left>' : '<Up>'", {noremap = true, expr = true})
+map('c', "<C-a>", "<Home>")
+map('c', "<C-e>", "<End>")
+map('c', "<C-b>", "<S-Left>")
+map('c', "<C-f>", "<S-right>")
+map('c', "<C-h>", "<Left>")
+map('c', "<C-l>", "<Right>")
+map('c', "<C-n>", "pumvisible() ? '<Right>' : '<Down>'", {expr = true})
+map('c', "<C-p>", "pumvisible() ? '<Left>' : '<Up>'", {expr = true})
 
 -- terminal
-keymap('t', "<Esc>", "<C-\\><C-n>", {noremap = true, silent = true})
-keymap('t', "<Leader>wh", "<C-\\><C-N><C-w>h", {noremap = true, silent = true})
-keymap('t', "<Leader>wj", "<C-\\><C-N><C-w>j", {noremap = true, silent = true})
-keymap('t', "<Leader>wl", "<C-\\><C-N><C-w>l", {noremap = true, silent = true})
-keymap('t', "<Leader>wk", "<C-\\><C-N><C-w>k", {noremap = true, silent = true})
+map('t', "<Esc>", "<C-\\><C-n>")
+map('t', "<Leader>wh", "<C-\\><C-N><C-w>h")
+map('t', "<Leader>wj", "<C-\\><C-N><C-w>j")
+map('t', "<Leader>wl", "<C-\\><C-N><C-w>l")
+map('t', "<Leader>wk", "<C-\\><C-N><C-w>k")
 
 -- plugins key mappings
 if vim.fn['dein#tap']('nvim-tree.lua') then
-  keymap('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>", {noremap = true, silent = true})
+  map('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>")
 end
 
 if vim.fn['dein#tap']('caw.vim') then
-  keymap('', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false, silent = true})
-  keymap('', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false, silent = true})
-  keymap('', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false, silent = true})
-  keymap('', "<Leader>cb", "<Plug>(caw:box:comment)", {noremap = false, silent = true})
-  keymap('', "<Leader>cp", "<Plug>(caw:jump:comment-prev)", {noremap = false, silent = true})
-  keymap('', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false, silent = true})
+  map('', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false})
+  map('', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false})
+  map('', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false})
+  map('', "<Leader>cb", "<Plug>(caw:box:comment)", {noremap = false})
+  map('', "<Leader>cp", "<Plug>(caw:jump:comment-prev)", {noremap = false})
+  map('', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false})
 end
 
 if vim.fn['dein#tap']('vim-slash') then
-  keymap('', "<plug>(slash-after)", 'zz', {noremap = true, silent = true})
+  map('', "<plug>(slash-after)", 'zz')
 end
 
 if vim.fn['dein#tap']('vim-easy-align') then
-  keymap('x', 'ga', "<Plug>(EasyAlign)", {noremap = false, silent = true})
-  keymap('n', 'ga', "<Plug>(EasyAlign)", {noremap = false, silent = true})
+  map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
+  map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
 end
 
 if vim.fn['dein#tap']('vim-expand-region') then
-  keymap('v', 'v', "<Plug>(expand_region_expand)", {noremap = false, silent = true})
-  keymap('v', 'V', "<Plug>(expand_region_shrink)", {noremap = false, silent = true})
+  map('v', 'v', "<Plug>(expand_region_expand)", {noremap = false})
+  map('v', 'V', "<Plug>(expand_region_shrink)", {noremap = false})
 end
 
 if vim.fn['dein#tap']('vim-floaterm') then
-  keymap('n', "<Leader>tw", "<cmd>FloatermNew<CR>", {noremap = true, silent = true})
-  keymap('n', "<C-t>", "<cmd>FloatermToggle<CR>", {noremap = true, silent = true})
-  keymap('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>", {noremap = true, silent = true})
-  keymap('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<CR>", {noremap = true, silent = true})
-  keymap('t', "<C-j>", "<C-\\><C-n>:FloatermNext<CR>", {noremap = true, silent = true})
-  keymap('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>", {noremap = true, silent = true})
-  keymap('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>", {noremap = true, silent = true})
+  map('n', "<Leader>tw", "<cmd>FloatermNew<CR>")
+  map('n', "<C-t>", "<cmd>FloatermToggle<CR>")
+  map('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>")
+  map('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<CR>")
+  map('t', "<C-j>", "<C-\\><C-n>:FloatermNext<CR>")
+  map('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>")
+  map('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>")
 end
 
 if vim.fn['dein#tap']('vim-mundo') then
-  keymap('n', "<Leader>ud", "<cmd>MundoToggle<CR>", {noremap = true, silent = true}) 
+  map('n', "<Leader>ud", "<cmd>MundoToggle<CR>") 
 end
 
 if vim.fn['dein#tap']('asyncrun.vim') then
-  keymap('n', "<Leader>ar", "<cmd>AsyncRun ", {noremap = true, silent = true})
+  map('n', "<Leader>ar", "<cmd>AsyncRun ")
 end
 
 if vim.fn['dein#tap']('asynctasks.vim') then
-  keymap('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>", {noremap = true, silent = true})
-  keymap('n', "<C-b>", "<cmd>AsyncTask file-build<CR>", {noremap = true, silent = true})
-  keymap('n', "<C-r>", "<cmd>AsyncTask file-run<CR>", {noremap = true, silent = true})
+  map('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>")
+  map('n', "<C-b>", "<cmd>AsyncTask file-build<CR>")
+  map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
 end
 
 if vim.fn['dein#tap']('vista.vim') then
-  keymap('n', "<Leader>tl", "<cmd>Vista!!<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>vf", "<cmd>Vista finder coc<CR>", {noremap = true, silent = true})
+  map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
+  map('n', "<Leader>vf", "<cmd>Vista finder coc<CR>")
 end
 
 function _G.check_back_space()
@@ -140,25 +144,26 @@ function _G.check_back_space()
 end
 
 if vim.fn['dein#tap']('coc.nvim') then
-  keymap('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {noremap = true, silent = true, expr = true}) 
-  keymap('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {noremap = true, silent = true, expr = true})
-  keymap('n', "[g", "<Plug>(coc-diagnostic-prev)", {noremap = false, silent = true})
-  keymap('n', "]g", "<Plug>(coc-diagnostic-next)", {noremap = false, silent = true})
-  keymap('n', "<Leader>gd", "<Plug>(coc-definition)", {noremap = false, silent = true})
-  keymap('n', "<Leader>gD", "<Plug>(coc-declaration)", {noremap = false, silent = true})
-  keymap('n', "<Leader>gy", "<Plug>(coc-type-definition)", {noremap = false, silent = true})
-  keymap('n', "<Leader>gi", "<Plug>(coc-implementation)", {noremap = false, silent = true})
-  keymap('n', "<Leader>gr", "<Plug>(coc-references)", {noremap = false, silent = true})
-  keymap('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false, silent = true})
-  keymap('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false, silent = true})
-  keymap('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false, silent = true})
-  keymap('n', "<Leader>fm", "<cmd>call CocAction('format')<CR>", {noremap = true, silent = true})
-  keymap('n', "w", "<Plug>(coc-ci-w)", {noremap = false, silent = true})
-  keymap('n', "b", "<Plug>(coc-ci-b)", {noremap = false, silent = true})
+  map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 
+  map('i', "<cr>", [[pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true})
+  map('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {expr = true})
+  map('n', "[g", "<Plug>(coc-diagnostic-prev)", {noremap = false})
+  map('n', "]g", "<Plug>(coc-diagnostic-next)", {noremap = false})
+  map('n', "<Leader>gd", "<Plug>(coc-definition)", {noremap = false})
+  map('n', "<Leader>gD", "<Plug>(coc-declaration)", {noremap = false})
+  map('n', "<Leader>gy", "<Plug>(coc-type-definition)", {noremap = false})
+  map('n', "<Leader>gi", "<Plug>(coc-implementation)", {noremap = false})
+  map('n', "<Leader>gr", "<Plug>(coc-references)", {noremap = false})
+  map('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false})
+  map('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false})
+  map('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false})
+  map('n', "<Leader>fm", "<cmd>call CocAction('format')<CR>")
+  map('n', "w", "<Plug>(coc-ci-w)", {noremap = false})
+  map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
 end
 
 if vim.fn['dein#tap']('markdown-preview.nvim') then
-  keymap('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>", {noremap = true, silent = true})
+  map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 end
 
 if vim.fn['dein#tap']('vim-clang-format') then
@@ -167,23 +172,23 @@ if vim.fn['dein#tap']('vim-clang-format') then
 end
 
 if vim.fn['dein#tap']('lightline-bufferline') then
-  keymap('n', "<Leader>1", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>2", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>3", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>4", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>5", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>6", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>7", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>8", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>9", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"]], {noremap = false, expr = true, silent = true})
-  keymap('n', "<Leader>0", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true, silent = true})
+  map('n', "<Leader>1", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true})
+  map('n', "<Leader>2", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"]], {noremap = false, expr = true})
+  map('n', "<Leader>3", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"]], {noremap = false, expr = true})
+  map('n', "<Leader>4", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"]], {noremap = false, expr = true})
+  map('n', "<Leader>5", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"]], {noremap = false, expr = true})
+  map('n', "<Leader>6", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"]], {noremap = false, expr = true})
+  map('n', "<Leader>7", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"]], {noremap = false, expr = true})
+  map('n', "<Leader>8", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"]], {noremap = false, expr = true})
+  map('n', "<Leader>9", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"]], {noremap = false, expr = true})
+  map('n', "<Leader>0", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true})
 end
 
 if vim.fn['dein#tap']('telescope.nvim') then
-  keymap('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
-  keymap('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({}))<CR>", {noremap = true, silent = true})
+  map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
+  map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({}))<CR>")
 end
