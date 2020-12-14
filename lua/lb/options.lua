@@ -47,18 +47,21 @@ g.loaded_netrw             = 1
 g.loaded_netrwPlugin       = 1
 g.loaded_netrwSettings     = 1
 g.loaded_netrwFileHandlers = 1
-g.clipboard = {
-  name = "macOS-clipboard",
-  copy = {
-    ["+"] = "pbcopy",
-    ["*"] = "pbcopy",
-  },
-  paste = {
-    ["+"] = "pbpaste",
-    ["*"] = "pbpaste",
-  },
-  cache_enabled = 0
-}
+
+if jit.os == 'OSX' then
+  g.clipboard = {
+    name = "macOS-clipboard",
+    copy = {
+      ["+"] = "pbcopy",
+      ["*"] = "pbcopy",
+    },
+    paste = {
+      ["+"] = "pbpaste",
+      ["*"] = "pbpaste",
+    },
+    cache_enabled = 0
+  }
+end
 
 o.shortmess = "aoOTIcF"
 o.encoding = 'utf-8'
