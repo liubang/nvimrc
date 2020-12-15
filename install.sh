@@ -99,14 +99,14 @@ git clone --depth=1 https://github.com/liubang/vimrc.git $HOME/.config/nvim
 pip install --user pynvim
 pip3 install --user pynvim
 
-if [ -f $HOME/.bashrc ]; then
+if [ -f "$HOME/.bashrc" ]; then
   cat <<"EOF" >>$HOME/.bashrc
 export PATH=$HOME/bin/nvim/bin:$HOME/bin:$PATH
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 $HOME/bin/nvim/bin/nvim'
 EOF
 fi
 
-if [ -f $HOME/.zshrc]; then
+if [ -f "$HOME/.zshrc" ]; then
   cat <<"EOF" >>$HOME/.zshrc
 export PATH=$HOME/bin/nvim/bin:$HOME/bin:$PATH
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 $HOME/bin/nvim/bin/nvim'
