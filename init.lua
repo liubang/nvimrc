@@ -7,7 +7,4 @@
 --
 --=====================================================================
 
-vim.g.nvg_version = 'v3.0'
-vim.g.nvg_root = string.gsub(debug.getinfo(1).source, "^@(.+/)[^/]+$", "%1")
-
-require('lb')
+require('lb')('v3.0')

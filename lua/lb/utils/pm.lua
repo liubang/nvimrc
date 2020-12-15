@@ -11,8 +11,7 @@ local g = vim.g
 local o = vim.o
 local pm = {}
 
-local cache_path  = g.nvg_root .. '.cache'
-local repo_path = cache_path .. '/dein'
+local repo_path = g.cache_path .. '/dein'
 
 pm.init_dein = function()
   if vim.fn.has('vim_starting') then
@@ -20,7 +19,7 @@ pm.init_dein = function()
     g['dein#install_max_processes'] = 12
     g['dein#install_progress_type'] = 'title'
     g['dein#enable_notification'] = 1
-    g['dein#install_log_filename'] = cache_path .. '/dein.log'
+    g['dein#install_log_filename'] = g.cache_path .. '/dein.log'
     if not o.runtimepath:match('/dein.vim') then
       local dein_dir = repo_path .. '/repos/github.com/Shougo/dein.vim'
       if not vim.fn.isdirectory(dein_dir) then

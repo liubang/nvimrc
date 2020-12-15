@@ -61,10 +61,14 @@ end
 g.webdevicons_enable_startify = 1
 g.startify_files_number = 8
 g.startify_enable_special = 0
-g.startify_custom_header = header_superman
-for _, line in pairs(header_common) do
-  table.insert(g.startify_custom_header, line)
+local header = {}
+for _, line in pairs(header_superman) do
+  table.insert(header, line)
 end
+for _, line in pairs(header_common) do
+  table.insert(header, line)
+end
+g.startify_custom_header = header
 g.startify_lists = {{ type = 'files', header = {'    MRU'}}}
 g.startify_custom_footer = {'', "    neovim loaded " ..  total_plugins .. " plugins.", ''}
 

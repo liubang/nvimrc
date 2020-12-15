@@ -7,22 +7,26 @@
 --
 --=====================================================================
 
-local g = vim.g
+local g, fn = vim.g, vim.fn
 
-g.cache_path  = g.nvg_root .. '.cache'
-g.module_path = g.nvg_root .. 'modules'
-g.snip_path   = g.nvg_root .. 'snippets'
+return function(v)
+  g.nvg_version = v
+  g.nvg_root = fn.stdpath('config')
+  g.cache_path  = g.nvg_root .. '/.cache'
+  g.module_path = g.nvg_root .. '/modules'
+  g.snip_path   = g.nvg_root .. '/snippets'
 
-local p = assert(io.popen('find "' .. g.module_path ..'" -name "*.toml"'))
-local modules = {}
-for file in p:lines() do
-  table.insert(modules, file)
+  local p = assert(io.popen('find "' .. g.module_path ..'" -name "*.toml"'))
+  local modules = {}
+  for file in p:lines() do
+    table.insert(modules, file)
+  end
+
+  -- plugins
+  require('lb.utils.pm').setup(modules)
+
+  require('lb.options')
+  require('lb.mappings')
+  require('lb.events')
+  require('lb.commands')
 end
-
--- plugins
-require('lb.utils.pm').setup(modules)
-
-require('lb.options')
-require('lb.mappings')
-require('lb.events')
-require('lb.commands')
