@@ -7,8 +7,7 @@
 --
 --=====================================================================
 
-local g = vim.g
-local o = vim.o
+local g, o = vim.g, vim.o
 local pm = {}
 
 local repo_path = g.cache_path .. '/dein'
