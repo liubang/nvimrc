@@ -185,7 +185,8 @@ M.LightlineFname = function()
 end
 
 M.set_functions = function()
-  vim.api.nvim_exec([[
+  vim.api.nvim_exec(
+  [[
     function! LightlineLineinfo() 
       return luaeval("require('lb.config.lightline').LightlineLineinfo()")
     endfunc
@@ -224,4 +225,5 @@ M.on_attach = function()
   M.set_functions()
   M.set_options()
 end
+
 return M
