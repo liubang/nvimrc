@@ -3,7 +3,7 @@
 -- comment.lua - 
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2020/12/11 17:32
+-- Last Modified: 2020/12/15 21:40
 --
 --=====================================================================
 local comment = {}
@@ -71,6 +71,16 @@ comment.copy_right = function(author)
   table.insert(text, c)
   table.insert(text, complete) 
   vim.fn.append(0, text)
+end
+
+comment.copy_right_update = function()
+  local pos = vim.api.nvim_win_get_cursor(0) 
+  local n = math.min(10, vim.fn.line('$'))
+  local timestamp = os.date("%Y/%m/%d %H:%M")
+  vim.cmd("keepjumps silent execute '1," .. n .. "s%^.*Last Modified:\\s*\\zs.*\\ze.*$%" .. timestamp .. "%e'")
+  vim.api.nvim_win_set_cursor(0, pos)
+  -- clear last search pattern register
+  vim.cmd [[let @/=""]]
 end
 
 return comment
