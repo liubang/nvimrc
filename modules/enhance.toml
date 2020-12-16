@@ -68,23 +68,7 @@ let g:asynctasks_term_reuse = 0
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
 on_cmd = ['Vista', 'Vista!', 'Vista!!']
-hook_source = '''
-let g:vista#renderer#enable_icon = 1
-let g:vista_default_executive = 'ctags'
-let g:vista_echo_cursor = 0
-let g:vista_fzf_preview = ['right:50%']
-let g:vista_executive_for = {
-  \ 'c': 'coc',
-  \ 'go': 'coc',
-  \ 'cpp': 'coc',
-  \ 'php': 'coc',
-  \ 'javascript': 'coc',
-  \ 'typescript': 'coc',
-  \ 'vimwiki': 'markdown',
-  \ 'pandoc': 'markdown',
-  \ 'markdown': 'toc',
-  \ }
-'''
+hook_source = 'lua require("lb.config.vista")'
 
 [[plugins]]
 repo = 'nvim-lua/popup.nvim'
@@ -99,10 +83,6 @@ hook_source = 'lua require("lb.config.nvim-telescope")'
 [[plugins]]
 repo = 'brooth/far.vim'
 on_cmd = ['Far', 'Fardo', 'Farundo', 'F', 'Farr']
-hook_source = '''
-let g:far#enable_undo=1
-" let g:far#source = 'rg'
-'''
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
