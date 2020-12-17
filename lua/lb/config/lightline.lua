@@ -167,7 +167,7 @@ M.LightlineFname = function()
     return ''
   end
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype') 
-  local filename = vim.fn.expand('%:t')
+  local filename = vim.fn.expand('%')
   local ext = vim.fn.expand('%:e')
   local icon = ''
   if filetype == '' then
