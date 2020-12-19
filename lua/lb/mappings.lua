@@ -13,6 +13,11 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function detect(plug)
+  return vim.fn['dein#tap'](plug)
+  -- return true
+end
+
 map('n', ' ', '')
 map('x', ' ', '')
 map('n', ',', '')
@@ -78,11 +83,11 @@ map('t', "<Leader>wl", "<C-\\><C-N><C-w>l")
 map('t', "<Leader>wk", "<C-\\><C-N><C-w>k")
 
 -- plugins key mappings
-if vim.fn['dein#tap']('nvim-tree.lua') then
+if detect('nvim-tree.lua') then
   map('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>")
 end
 
-if vim.fn['dein#tap']('caw.vim') then
+if detect('caw.vim') then
   map('', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false})
   map('', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false})
   map('', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false})
@@ -91,21 +96,21 @@ if vim.fn['dein#tap']('caw.vim') then
   map('', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false})
 end
 
-if vim.fn['dein#tap']('vim-slash') then
+if detect('vim-slash') then
   map('', "<plug>(slash-after)", 'zz')
 end
 
-if vim.fn['dein#tap']('vim-easy-align') then
+if detect('vim-easy-align') then
   map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
   map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
 end
 
-if vim.fn['dein#tap']('vim-expand-region') then
+if detect('vim-expand-region') then
   map('v', 'v', "<Plug>(expand_region_expand)", {noremap = false})
   map('v', 'V', "<Plug>(expand_region_shrink)", {noremap = false})
 end
 
-if vim.fn['dein#tap']('vim-floaterm') then
+if detect('vim-floaterm') then
   map('n', "<Leader>tw", "<cmd>FloatermNew<CR>")
   map('n', "<C-t>", "<cmd>FloatermToggle<CR>")
   map('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>")
@@ -115,21 +120,21 @@ if vim.fn['dein#tap']('vim-floaterm') then
   map('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>")
 end
 
-if vim.fn['dein#tap']('vim-mundo') then
+if detect('vim-mundo') then
   map('n', "<Leader>ud", "<cmd>MundoToggle<CR>") 
 end
 
-if vim.fn['dein#tap']('asyncrun.vim') then
+if detect('asyncrun.vim') then
   map('n', "<Leader>ar", "<cmd>AsyncRun ")
 end
 
-if vim.fn['dein#tap']('asynctasks.vim') then
+if detect('asynctasks.vim') then
   map('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>")
   map('n', "<C-b>", "<cmd>AsyncTask file-build<CR>")
   map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
 end
 
-if vim.fn['dein#tap']('vista.vim') then
+if detect('vista.vim') then
   map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
   map('n', "<Leader>vf", "<cmd>Vista finder coc<CR>")
 end
@@ -143,7 +148,7 @@ function _G.check_back_space()
   end
 end
 
-if vim.fn['dein#tap']('coc.nvim') then
+if detect('coc.nvim') then
   map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 
   map('i', "<cr>", [[pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true})
   map('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {expr = true})
@@ -162,16 +167,16 @@ if vim.fn['dein#tap']('coc.nvim') then
   map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
 end
 
-if vim.fn['dein#tap']('markdown-preview.nvim') then
+if detect('markdown-preview.nvim') then
   map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 end
 
-if vim.fn['dein#tap']('vim-clang-format') then
+if detect('vim-clang-format') then
   vim.cmd [[autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf :<C-u>ClangFormat<CR>]] 
   vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>]] 
 end
 
-if vim.fn['dein#tap']('lightline-bufferline') then
+if detect('lightline-bufferline') then
   map('n', "<Leader>1", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true})
   map('n', "<Leader>2", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"]], {noremap = false, expr = true})
   map('n', "<Leader>3", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"]], {noremap = false, expr = true})
@@ -184,7 +189,7 @@ if vim.fn['dein#tap']('lightline-bufferline') then
   map('n', "<Leader>0", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true})
 end
 
-if vim.fn['dein#tap']('telescope.nvim') then
+if detect('telescope.nvim') then
   map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
   map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>")
   map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>")

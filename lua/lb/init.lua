@@ -23,6 +23,7 @@ return function(v)
   end
 
   -- plugins
+  -- require('lb.plugins')
   require('lb.utils.pm').setup(modules)
 
   require('lb.options')
