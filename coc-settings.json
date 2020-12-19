@@ -94,6 +94,13 @@
     "gofmt": {
       "command": "goimports"
     },
+    "luafmt": {
+      "command": "luafmt",
+      "args": [
+        "--indent-count=2",
+        "--stdin"
+      ]
+    },
     "black": {
       "command": "black",
       "args": ["black", "-q", "-"]
@@ -110,7 +117,7 @@
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
     "sh": "shfmt",
-    "lua": "lua-format",
+    "lua": "luafmt",
     "go": "gofmt",
     "python": ["black", "isort", "docformatter"]
   },
