@@ -1,15 +1,14 @@
---=====================================================================
+-- =====================================================================
 --
 -- theme.lua - 
 --
 -- Created by liubang on 2020/12/12 21:20
 -- Last Modified: 2020/12/12 21:20
 --
---=====================================================================
-
-if os.getenv("TMUX") ~= nil then
+-- =====================================================================
+if os.getenv('TMUX') ~= nil then
   vim.cmd [[let $NVIM_TUI_ENABLE_TRUE_COLOR=1]]
-  if vim.fn.has('termguicolors') then 
+  if vim.fn.has('termguicolors') then
     vim.cmd [[set t_8f=^[[38;2;%lu;%lu;%lum]]
     vim.cmd [[set t_8b=^[[48;2;%lu;%lu;%lum]]
     vim.cmd [[set termguicolors]]
@@ -25,7 +24,7 @@ if vim.api.nvim_get_option('term'):match('xterm') then
 end
 
 -- hide ~
-vim.o.fcs = 'eob:\\' 
+vim.o.fcs = 'eob:\\'
 vim.o.background = 'dark'
 
 vim.g.gruvbox_filetype_hi_groups = 1

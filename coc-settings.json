@@ -95,10 +95,23 @@
       "command": "goimports"
     },
     "luafmt": {
-      "command": "luafmt",
+      "command": "lua-format",
       "args": [
-        "--indent-count=2",
-        "--stdin"
+        "--column-limit=120",
+        "--indent-width=2",
+        "--tab-width=2",
+        "--continuation-indent-width=2",
+        "--align-table-field",
+        "--align-args",
+        "--align-parameter",
+        "--chop-down-table",
+        "--chop-down-parameter",
+        "--chop-down-kv-table",
+        "--extra-sep-at-table-end",
+        "--no-keep-simple-function-one-line",
+        "--no-break-after-functioncall-lp",
+        "--double-quote-to-single-quote",
+        "--no-keep-simple-control-block-one-line"
       ]
     },
     "black": {

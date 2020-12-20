@@ -1,28 +1,27 @@
---=====================================================================
+-- =====================================================================
 --
 -- coc.lua - 
 --
 -- Created by liubang on 2020/12/11
 -- Last Modified: 2020/12/11 00:23
 --
---=====================================================================
-
+-- =====================================================================
 local M = {}
 
 local function get_lua_runtime()
   local result = {};
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-    local lua_path = path .. "/lua/";
+    local lua_path = path .. '/lua/';
     if vim.fn.isdirectory(lua_path) then
       result[lua_path] = true
     end
   end
   -- This loads the `lua` files from nvim into the runtime.
-  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  result[vim.fn.expand('$VIMRUNTIME/lua')] = true
   return result;
 end
 
-M.set_config = function() 
+M.set_config = function()
   vim.g.coc_global_extensions = {
     'coc-lists',
     'coc-emoji',
@@ -41,21 +40,21 @@ M.set_config = function()
     'coc-tsserver',
     'coc-vetur',
     'coc-eslint',
-    'coc-css', 
+    'coc-css',
     'coc-emmet',
     'coc-stylelint',
     'coc-java',
     'coc-jedi',
     'coc-rls',
     'coc-docker',
-    'coc-sh',
+    'coc-sh'
   }
   vim.g.coc_snippet_next = '<TAB>'
   vim.g.coc_snippet_prev = '<S-TAB>'
 
   -- lua lsp config
   local lua_ls_path = vim.g.cache_path .. '/lua-language-server'
-  local lua_ls_bin = ""    
+  local lua_ls_bin = ''
   if jit.os == 'OSX' then
     lua_ls_bin = lua_ls_path .. '/bin/macOS/lua-language-server'
   elseif jit.os == 'Linux' then
@@ -64,36 +63,31 @@ M.set_config = function()
   vim.fn['coc#config']('languageserver', {
     lua = {
       cwd = lua_ls_path,
-      command = lua_ls_bin, 
-      args = {
-        '-E', '-e', 'LANG="zh-cn"', lua_ls_path .. '/main.lua'
-      },
+      command = lua_ls_bin,
+      args = {'-E', '-e', 'LANG="zh-cn"', lua_ls_path .. '/main.lua'},
       filetypes = {'lua'},
       rootPatterns = {'.git/', ''},
       settings = {
         Lua = {
-          workspace = {
-            library = get_lua_runtime(),
-            maxPreload = 2000,
-            preloadFileSize = 1000
-          },
-          runtime = {
-            version = "LuaJIT"
-          },
+          workspace = {library = get_lua_runtime(), maxPreload = 2000, preloadFileSize = 1000},
+          runtime = {version = 'LuaJIT'},
           completion = {
             -- You should use real snippets
-            keywordSnippet = "Disable",
+            keywordSnippet = 'Disable'
           },
           diagnostics = {
             enable = true,
-            disable = {
-              "trailing-space",
-            },
+            disable = {'trailing-space'},
             globals = {
               -- Neovim
-              "vim",
+              'vim',
               -- Busted
-              "describe", "it", "before_each", "after_each", "teardown", "pending"
+              'describe',
+              'it',
+              'before_each',
+              'after_each',
+              'teardown',
+              'pending'
             }
           }
         }
@@ -101,9 +95,7 @@ M.set_config = function()
     }
   })
   -- snippets config
-  vim.fn['coc#config']('snippets.textmateSnippetsRoots', {
-    vim.g.snip_path
-  })
+  vim.fn['coc#config']('snippets.textmateSnippetsRoots', {vim.g.snip_path})
   -- session config
   vim.fn['coc#config']('session.directory', vim.g.cache_path .. '/sessions')
 end
@@ -131,7 +123,7 @@ M.set_highlight = function()
 end
 
 M.set_command = function()
-  vim.schedule(function() 
+  vim.schedule(function()
     vim.cmd [[command! -nargs=0 Format :call CocAction('format')]]
     vim.cmd [[command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')]]
     vim.cmd [[command! -nargs=? Fold   :call CocAction('fold', <f-args>)]]
@@ -148,7 +140,7 @@ M.set_autocmd = function()
   vim.cmd [[augroup END]]
 end
 
-M.on_attach = function() 
+M.on_attach = function()
   M.set_config()
   M.set_autocmd()
   M.set_command()

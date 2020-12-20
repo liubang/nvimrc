@@ -1,15 +1,18 @@
---=====================================================================
+-- =====================================================================
 --
 -- mappings.lua - 
 --
 -- Created by liubang on 2020/12/12 12:56
 -- Last Modified: 2020/12/12 12:56
 --
---=====================================================================
-
+-- =====================================================================
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true} 
-  if opts then for k, v in pairs(opts) do options[k] = v end end
+  local options = {noremap = true, silent = true}
+  if opts then
+    for k, v in pairs(opts) do
+      options[k] = v
+    end
+  end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
@@ -27,62 +30,63 @@ map('x', ';', '')
 map('n', 'm', '')
 map('x', 'm', '')
 
-map('v', "<Tab>", '>gv|')
-map('v', "<S-Tab>", '<gv')
-map('n', "<Tab>", '>>_')
-map('n', "<S-Tab>", '<<_')
+map('v', '<Tab>', '>gv|')
+map('v', '<S-Tab>', '<gv')
+map('n', '<Tab>', '>>_')
+map('n', '<S-Tab>', '<<_')
 
 -- buffer
-map('n', "<Leader>bp", "<cmd>bprevious<CR>")
-map('n', "<Leader>bn", "<cmd>bnext<CR>")
-map('n', "<Leader>bf", "<cmd>bfirst<CR>")
-map('n', "<Leader>bl", "<cmd>blast<CR>")
-map('n', "<Leader>bd", "<cmd>bdelete<CR>")
+map('n', '<Leader>bp', '<cmd>bprevious<CR>')
+map('n', '<Leader>bn', '<cmd>bnext<CR>')
+map('n', '<Leader>bf', '<cmd>bfirst<CR>')
+map('n', '<Leader>bl', '<cmd>blast<CR>')
+map('n', '<Leader>bd', '<cmd>bdelete<CR>')
 
 -- window
-map('n', "<Leader>ww", "<C-W>w")
-map('n', "<Leader>wr", "<C-W>r")
-map('n', "<Leader>wd", "<C-W>d")
-map('n', "<Leader>wq", "<C-W>q")
-map('n', "<Leader>wj", "<C-W>j")
-map('n', "<Leader>wJ", "<C-W>J")
-map('n', "<Leader>wk", "<C-W>k")
-map('n', "<Leader>wK", "<C-W>K")
-map('n', "<Leader>wh", "<C-W>h")
-map('n', "<Leader>wH", "<C-W>H")
-map('n', "<Leader>wl", "<C-W>l")
-map('n', "<Leader>wL", "<C-W>L")
-map('n', "<Leader>w=", "<C-W>=")
-map('n', "<Leader>ws", "<C-W>s")
-map('n', "<Leader>w-", "<C-W>-")
-map('n', "<Leader>wv", "<C-W>v")
+map('n', '<Leader>ww', '<C-W>w')
+map('n', '<Leader>wr', '<C-W>r')
+map('n', '<Leader>wd', '<C-W>d')
+map('n', '<Leader>wq', '<C-W>q')
+map('n', '<Leader>wj', '<C-W>j')
+map('n', '<Leader>wJ', '<C-W>J')
+map('n', '<Leader>wk', '<C-W>k')
+map('n', '<Leader>wK', '<C-W>K')
+map('n', '<Leader>wh', '<C-W>h')
+map('n', '<Leader>wH', '<C-W>H')
+map('n', '<Leader>wl', '<C-W>l')
+map('n', '<Leader>wL', '<C-W>L')
+map('n', '<Leader>w=', '<C-W>=')
+map('n', '<Leader>ws', '<C-W>s')
+map('n', '<Leader>w-', '<C-W>-')
+map('n', '<Leader>wv', '<C-W>v')
 
-map('x', "<", "<gv")
-map('x', ">", ">gv")
+map('x', '<', '<gv')
+map('x', '>', '>gv')
 
 -- bash like
-map('i', "<C-a>", "<Home>")
-map('i', "<C-e>", "<End>")
-map('i', "<C-d>", "<Delete>")
+map('i', '<C-a>', '<Home>')
+map('i', '<C-e>', '<End>')
+map('i', '<C-d>', '<Delete>')
 
 -- command mod
-map('c', "<C-a>", "<Home>")
-map('c', "<C-e>", "<End>")
-map('c', "<C-b>", "<S-Left>")
-map('c', "<C-f>", "<S-right>")
-map('c', "<C-h>", "<Left>")
-map('c', "<C-l>", "<Right>")
-map('c', "<C-n>", "pumvisible() ? '<Right>' : '<Down>'", {expr = true})
-map('c', "<C-p>", "pumvisible() ? '<Left>' : '<Up>'", {expr = true})
+map('c', '<C-a>', '<Home>')
+map('c', '<C-e>', '<End>')
+map('c', '<C-b>', '<S-Left>')
+map('c', '<C-f>', '<S-right>')
+map('c', '<C-h>', '<Left>')
+map('c', '<C-l>', '<Right>')
+map('c', '<C-n>', 'pumvisible() ? \'<Right>\' : \'<Down>\'', {expr = true})
+map('c', '<C-p>', 'pumvisible() ? \'<Left>\' : \'<Up>\'', {expr = true})
 
 -- terminal
-map('t', "<Esc>", "<C-\\><C-n>")
-map('t', "<Leader>wh", "<C-\\><C-N><C-w>h")
-map('t', "<Leader>wj", "<C-\\><C-N><C-w>j")
-map('t', "<Leader>wl", "<C-\\><C-N><C-w>l")
-map('t', "<Leader>wk", "<C-\\><C-N><C-w>k")
+map('t', '<Esc>', '<C-\\><C-n>')
+map('t', '<Leader>wh', '<C-\\><C-N><C-w>h')
+map('t', '<Leader>wj', '<C-\\><C-N><C-w>j')
+map('t', '<Leader>wl', '<C-\\><C-N><C-w>l')
+map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 
 -- plugins key mappings
+-- LuaFormatter off
 if detect('nvim-tree.lua') then
   map('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>")
 end
@@ -197,3 +201,4 @@ if detect('telescope.nvim') then
   map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({}))<CR>")
   map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({}))<CR>")
 end
+-- LuaFormatter on

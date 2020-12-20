@@ -1,15 +1,14 @@
---=====================================================================
+-- =====================================================================
 --
 -- nvim-telescope.lua - 
 --
 -- Created by liubang on 2020/12/13 13:38
 -- Last Modified: 2020/12/13 13:38
 --
---=====================================================================
-
+-- =====================================================================
 local actions = require('telescope.actions')
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -18,25 +17,21 @@ require('telescope').setup{
       '--with-filename',
       '--line-number',
       '--column',
-      '--smart-case',
+      '--smart-case'
     },
-    file_ignore_patterns = {
-      ".git/*"
-    },
+    file_ignore_patterns = {'.git/*'},
     shorten_path = true,
     winblend = 0,
     mappings = {
       i = {
-        ["<C-x>"] = false,
-        ["<C-u>"] = false,
-        ["<C-d>"] = false,
-        ["<C-c>"] = actions.close,
-        ["<C-s>"] = actions.goto_file_selection_split,
-        ["<C-v>"] = actions.goto_file_selection_vsplit,
+        ['<C-x>'] = false,
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+        ['<C-c>'] = actions.close,
+        ['<C-s>'] = actions.goto_file_selection_split,
+        ['<C-v>'] = actions.goto_file_selection_vsplit
       },
-      n = {
-        ["<esc>"] = actions.close,
-      }
+      n = {['<esc>'] = actions.close}
     }
   }
 }

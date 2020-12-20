@@ -1,15 +1,14 @@
---=====================================================================
+-- =====================================================================
 --
 -- options.lua - 
 --
 -- Created by liubang on 2020/12/12 13:01
 -- Last Modified: 2020/12/12 13:01
 --
---=====================================================================
-
+-- =====================================================================
 local g, o, api = vim.g, vim.o, vim.api
-local python_host_prog = os.getenv("PYTHON_HOST_PROG")
-local python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
+local python_host_prog = os.getenv('PYTHON_HOST_PROG')
+local python3_host_prog = os.getenv('PYTHON3_HOST_PROG')
 
 local function bind_options(k, v)
   if v == true then
@@ -29,45 +28,39 @@ if python3_host_prog ~= nil then
   g.python3_host_prog = python3_host_prog
 end
 
-g.mapleader = " "
-g.loaded_gzip              = 1
-g.loaded_tar               = 1
-g.loaded_tarPlugin         = 1
-g.loaded_zip               = 1
-g.loaded_zipPlugin         = 1
-g.loaded_getscript         = 1
-g.loaded_getscriptPlugin   = 1
-g.loaded_vimball           = 1
-g.loaded_vimballPlugin     = 1
-g.loaded_matchit           = 1
-g.loaded_2html_plugin      = 1
-g.loaded_logiPat           = 1
-g.loaded_rrhelper          = 1
-g.loaded_netrw             = 1
-g.loaded_netrwPlugin       = 1
-g.loaded_netrwSettings     = 1
+g.mapleader = ' '
+g.loaded_gzip = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_matchit = 1
+g.loaded_2html_plugin = 1
+g.loaded_logiPat = 1
+g.loaded_rrhelper = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
 g.loaded_netrwFileHandlers = 1
 
 if jit.os == 'OSX' then
   g.clipboard = {
-    name = "macOS-clipboard",
-    copy = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    paste = {
-      ["+"] = "pbpaste",
-      ["*"] = "pbpaste",
-    },
+    name = 'macOS-clipboard',
+    copy = {['+'] = 'pbcopy', ['*'] = 'pbcopy'},
+    paste = {['+'] = 'pbpaste', ['*'] = 'pbpaste'},
     cache_enabled = 0
   }
 end
 
-o.shortmess = "aoOTIcF"
+o.shortmess = 'aoOTIcF'
 o.encoding = 'utf-8'
-o.fileencoding = 'utf-8' 
+o.fileencoding = 'utf-8'
 o.termguicolors = true
-o.completeopt = "menu,noinsert,noselect,longest"
+o.completeopt = 'menu,noinsert,noselect,longest'
 o.modeline = true
 o.smartcase = true
 o.hidden = true
@@ -113,21 +106,16 @@ o.clipboard = 'unnamedplus'
 o.mouse = 'vr'
 o.laststatus = 2
 o.showtabline = 2
-o.grepformat = "%f:%l:%c:%m";
+o.grepformat = '%f:%l:%c:%m';
 o.grepprg = 'rg --hidden --vimgrep --smart-case --';
 o.wildignorecase = true
-o.wildignore = '*.aux,*.out,*.toc' ..
-                '*.o,*.obj,*.dll,*.jar,*.pyc,*.rbc,*.class' .. 
-                '*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp' ..
-                '*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm' ..
-                '*.eot,*.otf,*.ttf,*.woff' ..
-                '*.doc,*.pdf' ..
-                '*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz' ..
-                '*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem' .. 
-                '*.*~,*~' ..
-                '*.swp,.lock,.DS_Store,._*,tags.lock'
-o.shada = "!,'300,<50,@100,s10,h"
-o.inccommand = "nosplit"
+o.wildignore = '*.aux,*.out,*.toc' .. '*.o,*.obj,*.dll,*.jar,*.pyc,*.rbc,*.class' ..
+                 '*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp' ..
+                 '*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm' .. '*.eot,*.otf,*.ttf,*.woff' .. '*.doc,*.pdf' ..
+                 '*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz' .. '*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem' ..
+                 '*.*~,*~' .. '*.swp,.lock,.DS_Store,._*,tags.lock'
+o.shada = '!,\'300,<50,@100,s10,h'
+o.inccommand = 'nosplit'
 o.wildoptions = 'pum'
 o.pumblend = 3
 
