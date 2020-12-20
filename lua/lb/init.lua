@@ -30,16 +30,13 @@ app.run = function(v)
   g.module_path = g.nvg_root .. '/modules'
   g.snip_path = g.nvg_root .. '/snippets'
 
-  local p = assert(io.popen('find "' .. g.module_path .. '" -name "*.toml"'))
-  local modules = {}
-  for file in p:lines() do
-    table.insert(modules, file)
-  end
-
   -- plugins
   -- require('lb.plugins')
-  require('lb.utils.pm').setup(modules)
-
+  -- LuaFormatter off
+  require('lb.utils.pm').setup(
+    require('lb.utils.fs').list_files(g.module_path, '*.toml')
+  )
+  -- LuaFormatter on
   require('lb.options')
   require('lb.mappings')
   require('lb.events')

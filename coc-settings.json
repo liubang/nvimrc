@@ -158,7 +158,7 @@
   "git.enableGutters": true,
   "git.addGBlameToBufferVar": false,
   "git.addGBlameToVirtualText": false,
-  "git.virtualTextPrefix": "     ",
+  "git.enableGlobalStatus": true,
   "git.branchCharacter": "\uf418",
   // java
   "java.jdt.ls.home": "/opt/app/jdtls",

@@ -50,10 +50,10 @@ M.set_options = function()
   g['lightline'] = {
     colorscheme = 'gruvbox_material',
     active = {
-      left = {{'homemode'}, {'gitbranch', 'gitstatus'}, {'filename'}, {'cocerror'}, {'cocwarn'}},
+      left = {{'homemode'}, {'gitbranch', 'filename', 'filesize'}, {'cocerror'}, {'cocwarn'}},
       right = {{'linenumber'}, {'fileformat'}},
     },
-    inactive = {left = {{'homemode'}, {'filename'}}, right = {{'linenumber'}, {'fileformat'}}},
+    inactive = {left = {{'homemode'}, {'gitbranch', 'filename', 'filesize'}}, right = {{'linenumber'}, {'fileformat'}}},
     tabline = {left = {{'buffers'}}, right = {{'sign'}}},
     component = {sign = '\u{f18a}'},
     component_expand = {buffers = 'lightline#bufferline#buffers'},
@@ -65,6 +65,7 @@ M.set_options = function()
       gitbranch = 'LightlineGitBranch',
       gitstatus = 'LightlineGitStatus',
       filename = 'LightlineFname',
+      filesize = 'LightlineFsize',
       fileformat = 'LightlineFileformat',
     },
     component_type = {buffers = 'tabsel'},
@@ -98,9 +99,9 @@ M.LightlineFileformat = function()
   local fenc = vim.api.nvim_get_option('fenc')
   local icon = vim.fn['WebDevIconsGetFileFormatSymbol']()
   if fenc ~= '' then
-    return icon .. ' ' .. fenc .. '[' .. vim.o.fileformat .. ']'
+    return icon .. ' ' .. fenc .. ' | ' .. vim.o.fileformat
   else
-    return icon .. ' ' .. vim.o.enc .. '[' .. vim.o.fileformat .. ']'
+    return icon .. ' ' .. vim.o.enc .. ' | ' .. vim.o.fileformat
   end
 end
 
@@ -114,12 +115,12 @@ M.LightlineHomemode = function()
     return ''
   end
   -- local number = nr
-  local result = nr
+  -- local result = nr
   -- for _ = 1, string.len(tostring(number)), 1 do
   --   result = nmap[tostring(number % 10)] .. result
   --   number = math.floor(number / 10)
   -- end
-  return '🌈 ' .. result
+  return '🌈 ' .. nr
 end
 
 M.LightlineModified = function()
@@ -142,14 +143,14 @@ M.LightlineGitBranch = function()
   if vim.fn['utils#is_special_buffer']() == 1 then
     return ''
   end
-  return g['coc_git_status']
+  return g['coc_git_status'] or ''
 end
 
 M.LightlineGitStatus = function()
   if vim.fn['utils#is_special_buffer']() == 1 or vim.b['coc_git_status'] == nil then
     return ''
   end
-  return vim.b['coc_git_status']
+  return vim.b['coc_git_status'] or ''
 end
 
 M.LightlineCocError = function()
@@ -170,17 +171,22 @@ M.LightlineCocWarn = function()
   return ''
 end
 
+M.LightlineFsize = function()
+  if vim.fn['utils#is_special_buffer']() == 1 then
+    return ''
+  end
+  return '  ' .. require('lb.utils.fs').file_size(vim.fn.expand('%:p'))
+end
+
 M.LightlineFname = function()
   if vim.fn['utils#is_special_buffer']() == 1 then
     return ''
   end
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
-  local filename = vim.fn.expand('%')
+  local filename = vim.fn.expand('%:t')
   local ext = vim.fn.expand('%:e')
   local icon = ''
-  if filetype == '' then
-    icon = 'no ft'
-  else
+  if filetype ~= '' then
     icon = devicons.get_icon(filename, ext, {default = true})
   end
   if M.LightlineReadonly() ~= '' then
@@ -190,7 +196,7 @@ M.LightlineFname = function()
     filename = filename .. ' '
     M.LightlineModified()
   end
-  return filename .. ' ' .. icon
+  return icon .. ' ' .. filename
 end
 
 M.set_functions = function()
@@ -221,6 +227,10 @@ M.set_functions = function()
 
     function! LightlineFname() 
       return luaeval("require('lb.config.lightline').LightlineFname()")
+    endfunc
+
+    function! LightlineFsize()
+      return luaeval("require('lb.config.lightline').LightlineFsize()")
     endfunc
     
     function! LightlineFileformat() 

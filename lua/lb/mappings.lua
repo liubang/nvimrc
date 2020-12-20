@@ -189,8 +189,8 @@ if detect('telescope.nvim') then
   map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
   map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>")
   map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
+  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
+  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
 end
 -- LuaFormatter on
