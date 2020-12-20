@@ -80,21 +80,17 @@
   "diagnostic.virtualTextPrefix": "\uf445 ",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.enableMessage": "never",
-  "diagnostic.infoSign": "I",
-  "diagnostic.hintSign": "H",
-  "diagnostic.warningSign": "W",
-  "diagnostic.errorSign": "E",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.errorSign": "",
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic-languageserver.formatters": {
-    "buildifier": {
-      "command": "buildifier"
-    },
-    "gofmt": {
-      "command": "goimports"
-    },
-    "luafmt": {
+    "buildifier": { "command": "buildifier" },
+    "gofmt": { "command": "goimports" },
+    "lua-format": {
       "command": "lua-format",
       "args": [
         "--column-limit=120",
@@ -130,7 +126,7 @@
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
     "sh": "shfmt",
-    "lua": "luafmt",
+    "lua": "lua-format",
     "go": "gofmt",
     "python": ["black", "isort", "docformatter"]
   },

@@ -7,8 +7,23 @@
 --
 -- =====================================================================
 local g, fn = vim.g, vim.fn
+local app = {}
 
-return function(v)
+_G.check_back_space = function()
+  local col = vim.fn.col('.') - 1
+  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    return true
+  else
+    return false
+  end
+end
+
+_G.dump = function(...)
+  local objects = vim.tbl_map(vim.inspect, {...})
+  print(unpack(objects))
+end
+
+app.run = function(v)
   g.nvg_version = v
   g.nvg_root = fn.stdpath('config')
   g.cache_path = g.nvg_root .. '/.cache'
@@ -30,3 +45,5 @@ return function(v)
   require('lb.events')
   require('lb.commands')
 end
+
+return app

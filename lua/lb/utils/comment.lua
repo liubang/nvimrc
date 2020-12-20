@@ -23,7 +23,7 @@ local prefix_mappings = {
   ['zsh'] = '#',
   ['bash'] = '#',
   ['make'] = '#',
-  ['ruby'] = '#'
+  ['ruby'] = '#',
 }
 
 local header_mappings = {
@@ -31,7 +31,7 @@ local header_mappings = {
   ['sh'] = {'#! /bin/sh'},
   ['bash'] = {'#! /usr/bin/env bash'},
   ['zsh'] = {'#! /usr/bin/env zsh'},
-  ['python'] = {'#! /usr/bin/env python', '# -*- coding: utf-8 -*-'}
+  ['python'] = {'#! /usr/bin/env python', '# -*- coding: utf-8 -*-'},
 }
 
 comment.comment_prefix = function()

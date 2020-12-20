@@ -61,7 +61,7 @@ g.webdevicons_enable_startify = 1
 g.startify_files_number = 8
 g.startify_enable_special = 0
 local header = {}
-for _, line in pairs(header_superman) do
+for _, line in pairs(header_cres) do
   table.insert(header, line)
 end
 for _, line in pairs(header_common) do

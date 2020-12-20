@@ -6,7 +6,6 @@
 -- Last Modified: 2020/12/12 13:04
 --
 -- =====================================================================
-
 -- clear augroup vimrc
 vim.cmd [[augroup vimrc]]
 vim.cmd [[  autocmd!]]

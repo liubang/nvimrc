@@ -10,29 +10,29 @@ local g = vim.g
 local M = {}
 local devicons = require('nvim-web-devicons')
 
-local nmap = {
-  ['0'] = '\u{24FF}',
-  ['1'] = '\u{2776}',
-  ['2'] = '\u{2777}',
-  ['3'] = '\u{2778}',
-  ['4'] = '\u{2779}',
-  ['5'] = '\u{277A}',
-  ['6'] = '\u{277B}',
-  ['7'] = '\u{277C}',
-  ['8'] = '\u{277D}',
-  ['9'] = '\u{277E}',
-  ['10'] = '\u{277F}',
-  ['11'] = '\u{24EB}',
-  ['12'] = '\u{24EC}',
-  ['13'] = '\u{24ED}',
-  ['14'] = '\u{24EE}',
-  ['15'] = '\u{24EF}',
-  ['16'] = '\u{24F0}',
-  ['17'] = '\u{24F1}',
-  ['18'] = '\u{24F2}',
-  ['19'] = '\u{24F3}',
-  ['20'] = '\u{24F4}'
-}
+-- local nmap = {
+--   ['0'] = '\u{24FF}',
+--   ['1'] = '\u{2776}',
+--   ['2'] = '\u{2777}',
+--   ['3'] = '\u{2778}',
+--   ['4'] = '\u{2779}',
+--   ['5'] = '\u{277A}',
+--   ['6'] = '\u{277B}',
+--   ['7'] = '\u{277C}',
+--   ['8'] = '\u{277D}',
+--   ['9'] = '\u{277E}',
+--   ['10'] = '\u{277F}',
+--   ['11'] = '\u{24EB}',
+--   ['12'] = '\u{24EC}',
+--   ['13'] = '\u{24ED}',
+--   ['14'] = '\u{24EE}',
+--   ['15'] = '\u{24EF}',
+--   ['16'] = '\u{24F0}',
+--   ['17'] = '\u{24F1}',
+--   ['18'] = '\u{24F2}',
+--   ['19'] = '\u{24F3}',
+--   ['20'] = '\u{24F4}'
+-- }
 
 local function get_buffer_number()
   local i = 0
@@ -51,7 +51,7 @@ M.set_options = function()
     colorscheme = 'gruvbox_material',
     active = {
       left = {{'homemode'}, {'gitbranch', 'gitstatus'}, {'filename'}, {'cocerror'}, {'cocwarn'}},
-      right = {{'linenumber'}, {'fileformat'}}
+      right = {{'linenumber'}, {'fileformat'}},
     },
     inactive = {left = {{'homemode'}, {'filename'}}, right = {{'linenumber'}, {'fileformat'}}},
     tabline = {left = {{'buffers'}}, right = {{'sign'}}},
@@ -65,11 +65,11 @@ M.set_options = function()
       gitbranch = 'LightlineGitBranch',
       gitstatus = 'LightlineGitStatus',
       filename = 'LightlineFname',
-      fileformat = 'LightlineFileformat'
+      fileformat = 'LightlineFileformat',
     },
     component_type = {buffers = 'tabsel'},
     separator = {left = '\u{e0b0}', right = '\u{e0b2}'},
-    subseparator = {left = '\u{e0b1}', right = '\u{e0b3}'}
+    subseparator = {left = '\u{e0b1}', right = '\u{e0b3}'},
   }
 
   g['lightline#bufferline#show_number'] = 2
@@ -77,7 +77,7 @@ M.set_options = function()
   g['lightline#bufferline#enable_devicons'] = 1
   g['lightline#bufferline#filename_modifier'] = ':t'
   g['lightline#bufferline#unnamed'] = '[No Name]'
-  g['lightline#bufferline#composed_number_map'] = nmap
+  -- g['lightline#bufferline#composed_number_map'] = nmap
   vim.cmd [[autocmd User CocDiagnosticChange call lightline#update()]]
 end
 
@@ -113,12 +113,12 @@ M.LightlineHomemode = function()
   if nr == 0 then
     return ''
   end
-  local number = nr
-  local result = ''
-  for _ = 1, string.len(tostring(number)), 1 do
-    result = nmap[tostring(number % 10)] .. result
-    number = math.floor(number / 10)
-  end
+  -- local number = nr
+  local result = nr
+  -- for _ = 1, string.len(tostring(number)), 1 do
+  --   result = nmap[tostring(number % 10)] .. result
+  --   number = math.floor(number / 10)
+  -- end
   return '🌈 ' .. result
 end
 

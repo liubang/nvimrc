@@ -17,8 +17,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local function detect(plug)
-  return vim.fn['dein#tap'](plug)
   -- return true
+  return vim.fn['dein#tap'](plug)
 end
 
 map('n', ' ', '')
@@ -143,14 +143,6 @@ if detect('vista.vim') then
   map('n', "<Leader>vf", "<cmd>Vista finder coc<CR>")
 end
 
-function _G.check_back_space()
-  local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-    return true
-  else
-    return false
-  end
-end
 
 if detect('coc.nvim') then
   map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 

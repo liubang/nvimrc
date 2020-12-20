@@ -6,7 +6,6 @@
 -- Last Modified: 2020/12/12 18:32
 --
 -- =====================================================================
-
 vim.schedule(function()
   vim.cmd [[command! -nargs=0 -bar PlugUpdate call dein#update()]]
   vim.cmd [[command! -nargs=0 -bar PlugClean  call map(dein#check_clean(), "delete(v:val, 'rf')")]]
