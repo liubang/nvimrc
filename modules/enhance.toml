@@ -104,3 +104,27 @@ let g:move_key_modifier = 'C'
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = ['vim', 'lua', 'html', 'css', 'sass', 'scss']
+hook_source = '''
+lua << EOF
+require 'colorizer'.setup {
+        css = { rgb_fn = true; };
+        scss = { rgb_fn = true; };
+        sass = { rgb_fn = true; };
+        lua = { rgb_fn = true; };
+        stylus = { rgb_fn = true; };
+        vim = { names = true; };
+        tmux = { names = false; };
+        'javascript';
+        'javascriptreact';
+        'typescript';
+        'typescriptreact';
+        html = {
+          mode = 'foreground';
+        }
+      }
+EOF
+'''
