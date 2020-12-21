@@ -26,7 +26,6 @@ end
 -- hide ~
 vim.o.fcs = 'eob:\\'
 vim.o.background = 'dark'
-
 vim.g.gruvbox_filetype_hi_groups = 1
 vim.g.gruvbox_plugin_hi_groups = 1
 vim.g.gruvbox_transp_bg = 1

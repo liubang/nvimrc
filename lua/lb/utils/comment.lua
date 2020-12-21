@@ -9,28 +9,28 @@
 local comment = {}
 
 local prefix_mappings = {
-  ['c'] = '//',
-  ['cpp'] = '//',
-  ['rust'] = '//',
-  ['go'] = '//',
-  ['php'] = '//',
-  ['java'] = '//',
-  ['lua'] = '--',
-  ['sql'] = '--',
-  ['vim'] = '"',
+  ['c']      = '//',
+  ['cpp']    = '//',
+  ['rust']   = '//',
+  ['go']     = '//',
+  ['php']    = '//',
+  ['java']   = '//',
+  ['lua']    = '--',
+  ['sql']    = '--',
+  ['vim']    = '"',
   ['python'] = '#',
-  ['sh'] = '#',
-  ['zsh'] = '#',
-  ['bash'] = '#',
-  ['make'] = '#',
-  ['ruby'] = '#',
+  ['sh']     = '#',
+  ['zsh']    = '#',
+  ['bash']   = '#',
+  ['make']   = '#',
+  ['ruby']   = '#',
 }
 
 local header_mappings = {
-  ['php'] = {'<?php'},
-  ['sh'] = {'#! /bin/sh'},
-  ['bash'] = {'#! /usr/bin/env bash'},
-  ['zsh'] = {'#! /usr/bin/env zsh'},
+  ['php']    = {'<?php'},
+  ['sh']     = {'#! /bin/sh'},
+  ['bash']   = {'#! /usr/bin/env bash'},
+  ['zsh']    = {'#! /usr/bin/env zsh'},
   ['python'] = {'#! /usr/bin/env python', '# -*- coding: utf-8 -*-'},
 }
 

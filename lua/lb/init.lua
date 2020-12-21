@@ -11,11 +11,7 @@ local app = {}
 
 _G.check_back_space = function()
   local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-    return true
-  else
-    return false
-  end
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
 _G.dump = function(...)
@@ -24,15 +20,15 @@ _G.dump = function(...)
 end
 
 app.run = function(v)
+  -- LuaFormatter off
   g.nvg_version = v
-  g.nvg_root = fn.stdpath('config')
-  g.cache_path = g.nvg_root .. '/.cache'
-  g.module_path = g.nvg_root .. '/modules'
-  g.snip_path = g.nvg_root .. '/snippets'
+  g.nvg_root    = fn.stdpath('config')
+  g.cache_path  = string.format('%s/.cache', g.nvg_root)
+  g.module_path = string.format('%s/modules', g.nvg_root)
+  g.snip_path   = string.format('%s/snippets', g.nvg_root)
 
   -- plugins
   -- require('lb.plugins')
-  -- LuaFormatter off
   require('lb.utils.pm').setup(
     require('lb.utils.fs').list_files(g.module_path, '*.toml')
   )

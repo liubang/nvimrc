@@ -8,6 +8,7 @@
 -- =====================================================================
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true, silent = true}
+  -- rewrite options
   if opts then
     for k, v in pairs(opts) do
       options[k] = v
@@ -21,6 +22,7 @@ local function detect(plug)
   return vim.fn['dein#tap'](plug)
 end
 
+-- clear default
 map('n', ' ', '')
 map('x', ' ', '')
 map('n', ',', '')
@@ -30,9 +32,10 @@ map('x', ';', '')
 map('n', 'm', '')
 map('x', 'm', '')
 
-map('v', '<Tab>', '>gv|')
+-- better
+map('v', '<Tab>',   '>gv|')
 map('v', '<S-Tab>', '<gv')
-map('n', '<Tab>', '>>_')
+map('n', '<Tab>',   '>>_')
 map('n', '<S-Tab>', '<<_')
 
 -- buffer

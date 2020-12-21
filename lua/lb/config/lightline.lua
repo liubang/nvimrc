@@ -10,33 +10,11 @@ local g = vim.g
 local M = {}
 local devicons = require('nvim-web-devicons')
 
--- local nmap = {
---   ['0'] = '\u{24FF}',
---   ['1'] = '\u{2776}',
---   ['2'] = '\u{2777}',
---   ['3'] = '\u{2778}',
---   ['4'] = '\u{2779}',
---   ['5'] = '\u{277A}',
---   ['6'] = '\u{277B}',
---   ['7'] = '\u{277C}',
---   ['8'] = '\u{277D}',
---   ['9'] = '\u{277E}',
---   ['10'] = '\u{277F}',
---   ['11'] = '\u{24EB}',
---   ['12'] = '\u{24EC}',
---   ['13'] = '\u{24ED}',
---   ['14'] = '\u{24EE}',
---   ['15'] = '\u{24EF}',
---   ['16'] = '\u{24F0}',
---   ['17'] = '\u{24F1}',
---   ['18'] = '\u{24F2}',
---   ['19'] = '\u{24F3}',
---   ['20'] = '\u{24F4}'
--- }
-
 local function get_buffer_number()
   local i = 0
-  local buffers = vim.fn.filter(vim.fn.range(1, vim.fn.bufnr('$')), 'bufexists(v:val) && buflisted(v:val)')
+  local buffers = vim.fn.filter(
+    vim.fn.range(1, vim.fn.bufnr('$')), 'bufexists(v:val) && buflisted(v:val)'
+  )
   for _, nr in pairs(buffers) do
     i = i + 1
     if nr == vim.fn.bufnr('') then

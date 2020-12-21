@@ -9,22 +9,33 @@
 local g, o = vim.g, vim.o
 local pm = {}
 
-local repo_path = g.cache_path .. '/dein'
+local repo_path = string.format('%s/dein', g.cache_path)
+
+pm.config = function()
+  g['dein#auto_recache']          = 0
+  g['dein#install_max_processes'] = 12
+  g['dein#install_progress_type'] = 'title'
+  g['dein#enable_notification']   = 1
+  g['dein#install_log_filename']  = string.format(
+    '%s/dein.log', g.cache_path
+  )
+end
 
 pm.init_dein = function()
-  if vim.fn.has('vim_starting') then
-    g['dein#auto_recache'] = 0
-    g['dein#install_max_processes'] = 12
-    g['dein#install_progress_type'] = 'title'
-    g['dein#enable_notification'] = 1
-    g['dein#install_log_filename'] = g.cache_path .. '/dein.log'
-    if not o.runtimepath:match('/dein.vim') then
-      local dein_dir = repo_path .. '/repos/github.com/Shougo/dein.vim'
-      if not vim.fn.isdirectory(dein_dir) then
-        os.execute('git clone https://github.com/Shougo/dein.vim ' .. dein_dir)
-      end
-      o.runtimepath = o.runtimepath .. ',' .. dein_dir
+  if not vim.fn.has('vim_starting') then
+    return
+  end
+  if not o.runtimepath:match('/dein.vim') then
+    local dein_dir = string.format(
+      '%s/repos/github.com/Shougo/dein.vim', repo_path
+    )
+    if not vim.fn.isdirectory(dein_dir) then
+      os.execute(string.format(
+        'git clone https://github.com/Shougo/dein.vim %s',
+        dein_dir
+      ))
     end
+    o.runtimepath = string.format('%s,%s', o.runtimepath, dein_dir)
   end
 end
 
@@ -35,6 +46,7 @@ pm.load_modules = function(modules)
     for _, file in pairs(modules) do
       vim.fn['dein#load_toml'](file)
     end
+
     vim.fn['dein#end']()
 
     vim.fn['dein#save_state']()
@@ -47,11 +59,14 @@ pm.load_modules = function(modules)
   if vim.fn.has('vim_starting') then
     vim.cmd('syntax enable')
   end
+  
+  -- hook
   vim.fn['dein#call_hook']('source')
   vim.fn['dein#call_hook']('post_source')
 end
 
 pm.setup = function(modules)
+  pm.config()
   pm.init_dein()
   pm.load_modules(modules)
 end
