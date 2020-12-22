@@ -8,10 +8,11 @@ gl.short_line_list = {
   'dbui',
   'startify',
   'term',
+  'plug',
   'nerdtree',
   'fugitive',
   'fugitiveblame',
-  'plug',
+  'SpaceVimPlugManager',
 }
 
 local colors = {
