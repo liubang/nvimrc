@@ -185,7 +185,11 @@ gls.left[10] = {
 gls.right[1] = {
   FileFormat = {
     provider = function()
-      return ' ' .. vim.bo.fileformat
+      if vim.bo.fenc ~= '' then 
+        return string.format(' %s [%s]', vim.bo.fileformat, vim.bo.fenc)
+      else
+        return string.format(' %s [%s]', vim.bo.fileformat, vim.o.enc)
+      end
     end,
     separator = '\u{e0b2}',
     separator_highlight = {colors.line_bg, colors.bg},
