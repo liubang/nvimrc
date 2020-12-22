@@ -125,7 +125,6 @@
   },
   "diagnostic-languageserver.formatFiletypes": {
     "bzl": "buildifier",
-    "sh": "shfmt",
     "lua": "lua-format",
     "go": "gofmt",
     "python": ["black", "isort", "docformatter"]

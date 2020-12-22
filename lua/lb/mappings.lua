@@ -19,7 +19,7 @@ end
 
 local function detect(plug)
   -- return true
-  return vim.fn['dein#tap'](plug)
+  return vim.fn['dein#tap'](plug) > 0
 end
 
 -- clear default
@@ -186,6 +186,12 @@ if detect('lightline-bufferline') then
   map('n', "<Leader>8", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"]], {noremap = false, expr = true})
   map('n', "<Leader>9", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"]], {noremap = false, expr = true})
   map('n', "<Leader>0", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true})
+end
+
+if detect('nvim-bufferline.lua') then
+  for i = 1, 9 do
+    map('n', "<leader>" .. i, ':lua require("bufferline").go_to_buffer(' .. i .. ')<CR>')
+  end
 end
 
 if detect('telescope.nvim') then

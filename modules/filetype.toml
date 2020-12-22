@@ -27,7 +27,3 @@ repo = 'rhysd/vim-clang-format'
 on_ft = ['c', 'cpp']
 on = 'ClangFormat'
 hook_source = 'lua require("lb.config.vim-clang-format")'
-
-[[plugins]]
-repo = 'jackguo380/vim-lsp-cxx-highlight'
-on_ft = ['c', 'cpp']

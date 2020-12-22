@@ -12,12 +12,9 @@ hook_source = 'lua require("lb.config.theme")'
 repo = 'mhinz/vim-startify'
 hook_source = 'lua require("lb.config.vim-startify")'
 
-# [[plugins]]
-# repo = 'mengelbrecht/lightline-bufferline'
-# 
-# [[plugins]]
-# repo = 'itchyny/lightline.vim'
-# hook_source = 'lua require("lb.config.lightline").on_attach()'
+[[plugins]]
+repo = 'liubang/nvim-bufferline.lua'
+hook_source = 'lua require("lb.config.nvim-bufferline")'
 
 [[plugins]]
 repo = 'glepnir/galaxyline.nvim'
