@@ -62,6 +62,7 @@ o.fileencoding = 'utf-8'
 o.termguicolors = true
 o.completeopt = 'menu,noinsert,noselect,longest'
 o.modeline = true
+o.ignorecase = true
 o.smartcase = true
 o.hidden = true
 o.cmdheight = 1

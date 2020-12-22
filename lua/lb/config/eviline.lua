@@ -15,9 +15,8 @@ gl.short_line_list = {
 }
 
 local colors = {
-  -- bg       = '#282c34',
   bg       = '#3c3836',
-  line_bg  = '#353644',
+  line_bg  = '#665c54',
   fg       = '#8FBCBB',
   fg_green = '#65a380',
   yellow   = '#fabd2f',
@@ -32,10 +31,7 @@ local colors = {
 }
 
 local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
+  return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
 
 gls.left[1] = {
@@ -46,34 +42,28 @@ gls.left[1] = {
     highlight = {colors.blue, colors.line_bg},
   },
 }
+
 gls.left[2] = {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
+      local alias = {
+				n = 'NORMAL',
+				i = 'INSERT',
+				c = 'COMMAND',
+				v = 'VISUAL', 
+				V = 'VISUAL', 
+			}
       local mode_color = {
         n = colors.magenta,
         i = colors.green,
-        v = colors.blue,
-        -- [''] = colors.blue,
-        V = colors.blue,
         c = colors.red,
-        no = colors.magenta,
-        s = colors.orange,
-        S = colors.orange,
-        [''] = colors.orange,
-        ic = colors.yellow,
-        R = colors.purple,
-        Rv = colors.purple,
-        cv = colors.red,
-        ce = colors.red,
-        r = colors.cyan,
-        rm = colors.cyan,
-        ['r?'] = colors.cyan,
-        ['!'] = colors.red,
-        t = colors.red,
+        v = colors.blue,
+        V = colors.blue,
       }
-      vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
-      return '  '
+      local mode = vim.fn.mode()
+      vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[mode])
+      return alias[mode] .. '   '
     end,
     highlight = {colors.red, colors.line_bg, 'bold'},
   },
@@ -89,7 +79,25 @@ gls.left[3] = {
 
 gls.left[4] = {
   FileName = {
-    provider = {'FileName', 'FileSize'},
+    provider = function()
+      local filename = require('galaxyline.provider_fileinfo').get_current_file_name()  
+      local filepath = vim.fn.expand('%:p')
+      local size = vim.fn.getfsize(filepath)
+      if size <= 0 then
+        size = ''
+      else
+        if size < 1024 then
+          size = size .. 'B '
+        elseif size < 1024 * 1024 then
+          size = string.format('%.1f',size/1024) .. 'K '
+        elseif size < 1024 * 1024 * 1024 then
+          size = string.format('%.1f',size/1024/1024) .. 'M '
+        else
+          size = string.format('%.1f',size/1024/1024/1024) .. 'G '
+        end
+      end
+      return filename .. size
+    end,
     condition = buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
@@ -107,18 +115,19 @@ gls.left[5] = {
 
 gls.left[6] = {
   GitBranch = {
-    provider = 'GitBranch',
+    provider = function() 
+      if vim.g['coc_git_status'] ~= nil then
+        return vim.g['coc_git_status'] .. ' '
+      end
+      return ' '
+    end;
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
 
 local checkwidth = function()
-  local squeeze_width = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
+  return (vim.fn.winwidth(0) / 2) > 40
 end
 
 gls.left[7] = {
@@ -132,17 +141,14 @@ gls.left[7] = {
           local prefix = string.sub(diff, 1, 1)
           local number = string.sub(diff, 2)
           if prefix == '+' then
-            result = result .. ' ' .. number
+            result = result .. '  ' .. number
           elseif prefix == '~' then
-            result = result .. ' ' .. number
+            result = result .. '  ' .. number
           elseif prefix == '-' then
-            result = result .. ' ' .. number
+            result = result .. '  ' .. number
           end
         end
-        if result ~= '' then
-          return '  ' .. result .. ' '
-        end
-        return ' '
+        return result .. ' '
       end
     end,
     condition = checkwidth,
@@ -205,19 +211,25 @@ gls.right[2] = {
 gls.right[3] = {
   PerCent = {
     provider = 'LinePercent',
-    separator = ' ',
-    separator_highlight = {colors.line_bg, colors.line_bg},
-    highlight = {colors.cyan, colors.darkblue, 'bold'},
+    separator = ' |',
+    separator_highlight = {colors.blue, colors.line_bg},
+    highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
-gls.right[4] = {ScrollBar = {provider = 'ScrollBar', highlight = {colors.blue, colors.purple}}}
+
+gls.right[4] = {
+  ScrollBar = {
+    provider = 'ScrollBar', 
+    highlight = {colors.blue, colors.line_bg}
+  }
+}
 
 gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
     separator = '\u{e0b0}',
-    separator_highlight = {colors.purple, colors.bg},
-    highlight = {colors.fg, colors.purple},
+    separator_highlight = {colors.line_bg, colors.bg},
+    highlight = {colors.fg, colors.line_bg},
   },
 }
 
@@ -225,7 +237,7 @@ gls.short_line_right[1] = {
   BufferIcon = {
     provider = 'BufferIcon',
     separator = '\u{e0b2}',
-    separator_highlight = {colors.purple, colors.bg},
-    highlight = {colors.fg, colors.purple},
+    separator_highlight = {colors.line_bg, colors.bg},
+    highlight = {colors.fg, colors.line_bg},
   },
 }
