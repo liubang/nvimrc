@@ -200,6 +200,7 @@ gls.right[1] = {
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
+
 gls.right[2] = {
   LineInfo = {
     provider = 'LineColumn',
@@ -208,6 +209,7 @@ gls.right[2] = {
     highlight = {colors.fg, colors.line_bg},
   },
 }
+
 gls.right[3] = {
   PerCent = {
     provider = 'LinePercent',

@@ -1,5 +1,5 @@
-local numbers = require "bufferline.numbers"
-local mappings = require "telescope.mappings"
+local numbers = require 'bufferline.numbers'
+local mappings = require 'telescope.mappings'
 -- =====================================================================
 --
 -- nvim-bufferline.lua - 
@@ -28,28 +28,28 @@ local colors = {
 
 bufferline.setup {
   options = {
-    numbers = 'ordinal',
+    numbers = 'ordinal', 
     mappings = false,
   },
   highlights = {
     fill = {guifg = colors.fg, guibg = colors.bg},
     background = {guifg = colors.fg, guibg = colors.bg},
     tab = {guifg = colors.fg, guibg = colors.bg},
-    tab_selected = {guifg = colors.fs, guibg = colors.line_bg},
+    tab_selected = {guifg = colors.fg, guibg = colors.line_bg},
     tab_close = {guifg = colors.fg, guibg = colors.line_bg},
-    buffer_visible = {guifg = colors.fs, guibg = colors.line_bg},
+    buffer_visible = {guifg = colors.fg, guibg = colors.bg},
     buffer_selected = {guifg = colors.fg, guibg = colors.line_bg, gui = 'bold'},
     modified = {guifg = colors.fg, guibg = colors.line_bg},
-    modified_visible = {guifg = colors.fg, guibg = colors.line_bg},
+    modified_visible = {guifg = colors.fg, guibg = colors.bg},
     modified_selected = {guifg = colors.fg, guibg = colors.line_bg},
-    duplicate_selected = {guifg = colors.fg, guibg = colors.line_bg},
-    duplicate_visible = {guifg = colors.fg, guibg = colors.line_bg},
-    duplicate = {guifg = colors.fg, guibg = colors.line_bg},
+    duplicate_selected = {guifg = colors.fg, guibg = colors.line_bg, gui = ''},
+    duplicate_visible = {guifg = colors.fg, guibg = colors.line_bg, gui = ''},
+    duplicate = {guifg = colors.fg, guibg = colors.bg, gui = ''},
     separator_selected = {guifg = colors.blue, guibg = colors.line_bg},
-    separator_visible = {guifg = colors.blue, guibg = colors.line_bg},
+    separator_visible = {guifg = colors.fg, guibg = colors.bg},
     separator = {guifg = colors.fg, guibg = colors.bg},
     indicator_selected = {guifg = colors.fg, guibg = colors.line_bg},
-    pick_selected = {guifg = colors.fg, guibg = colors.line_bg},
+    pick_selected = {guifg = colors.fg, guibg = colors.line_bg, gui = 'bold'},
     pick_visible = {guifg = colors.fg, guibg = colors.line_bg, gui = 'bold'},
     pick = {guifg = colors.fg, guibg = colors.line_bg, gui = 'bold'},
   },
