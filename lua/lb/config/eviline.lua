@@ -168,24 +168,15 @@ gls.left[8] = {
 gls.left[9] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.red, colors.bg},
   },
 }
 
 gls.left[10] = {
-  Space = {
-    provider = function()
-      return ' '
-    end,
-    highlight = {colors.bg, colors.bg},
-  },
-}
-
-gls.left[11] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
-    icon = '  ',
+    icon = '   ',
     highlight = {colors.blue, colors.bg},
   },
 }
