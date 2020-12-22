@@ -33,9 +33,9 @@ map('n', 'm', '')
 map('x', 'm', '')
 
 -- better
-map('v', '<Tab>',   '>gv|')
+map('v', '<Tab>', '>gv|')
 map('v', '<S-Tab>', '<gv')
-map('n', '<Tab>',   '>>_')
+map('n', '<Tab>', '>>_')
 map('n', '<S-Tab>', '<<_')
 
 -- buffer
@@ -161,7 +161,8 @@ if detect('coc.nvim') then
   map('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false})
   map('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false})
   map('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false})
-  map('n', "<Leader>fm", "<cmd>call CocAction('format')<CR>")
+  map('n', "<Leader>fm", "<Plug>(coc-format)", {noremap = false})
+  map('v', "<Leader>fm", "<Plug>(coc-format-selected)", {noremap =  false})
   map('n', "w", "<Plug>(coc-ci-w)", {noremap = false})
   map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
 end
@@ -170,10 +171,10 @@ if detect('markdown-preview.nvim') then
   map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 end
 
-if detect('vim-clang-format') then
-  vim.cmd [[autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf :<C-u>ClangFormat<CR>]] 
-  vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>]] 
-end
+-- if detect('vim-clang-format') then
+--   vim.cmd [[autocmd FileType c,cpp,objc nnoremap <silent><buffer><Leader>cf :<C-u>ClangFormat<CR>]] 
+--   vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>]] 
+-- end
 
 if detect('lightline-bufferline') then
   map('n', "<Leader>1", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true})

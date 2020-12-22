@@ -22,8 +22,10 @@ repo = 'z0mbix/vim-shfmt'
 on_ft = 'sh'
 hook_source = 'lua require("lb.config.vim-shfmt")'
 
-[[plugins]]
-repo = 'rhysd/vim-clang-format'
-on_ft = ['c', 'cpp']
-on = 'ClangFormat'
-hook_source = 'lua require("lb.config.vim-clang-format")'
+# clangd has built-in clang-format
+#
+# [[plugins]]
+# repo = 'rhysd/vim-clang-format'
+# on_ft = ['c', 'cpp']
+# on = 'ClangFormat'
+# hook_source = 'lua require("lb.config.vim-clang-format")'

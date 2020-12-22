@@ -191,7 +191,12 @@
   "languageserver": {
     "clangd": {
       "command": "clangd",
-      "args": ["--clang-tidy", "--background-index", "--header-insertion=iwyu"],
+      "args": [
+        "--clang-tidy",
+        "--background-index",
+        "--header-insertion=iwyu",
+        "--fallback-style=llvm"
+      ],
       "rootPatterns": [
         "compile_flags.txt",
         "compile_commands.json",
