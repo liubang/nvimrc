@@ -1,5 +1,3 @@
-local numbers = require 'bufferline.numbers'
-local mappings = require 'telescope.mappings'
 -- =====================================================================
 --
 -- nvim-bufferline.lua - 
@@ -30,6 +28,10 @@ bufferline.setup {
   options = {
     numbers = 'ordinal', 
     mappings = false,
+    close_icon = '\u{f18a}',
+    modified_icon = '\u{fbba}',
+    show_buffer_close_icons = false,
+    always_show_bufferline = false,
   },
   highlights = {
     fill = {guifg = colors.fg, guibg = colors.bg},
