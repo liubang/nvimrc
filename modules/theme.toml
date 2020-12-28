@@ -13,7 +13,7 @@ repo = 'mhinz/vim-startify'
 hook_source = 'lua require("lb.config.vim-startify")'
 
 [[plugins]]
-repo = 'liubang/nvim-bufferline.lua'
+repo = 'akinsho/nvim-bufferline.lua'
 hook_source = 'lua require("lb.config.nvim-bufferline")'
 
 [[plugins]]

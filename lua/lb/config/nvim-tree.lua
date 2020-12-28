@@ -7,13 +7,16 @@
 --
 -- =====================================================================
 local M = {}
+local g, api = vim.g, vim.api
 
 local buf_mapper = function(mode, key, result)
-  vim.api.nvim_buf_set_keymap(0, mode, key, '<cmd>lua ' .. result .. '<CR>', {noremap = true, silent = true})
+  api.nvim_buf_set_keymap(0, mode, key, '<cmd>lua ' .. result .. '<CR>', {noremap = true, silent = true})
 end
 
 M.tree_config = function()
-  vim.g.lua_tree_hide_dotfiles = 1
+  g.nvim_tree_hide_dotfiles = 1
+  g.nvim_tree_side = 'left'
+  g.nvim_tree_width = 30 
 end
 
 M.tree_context_menu = function()
@@ -31,7 +34,7 @@ M.tree_mapping = function()
 end
 
 M.tree_autocmd = function()
-  vim.cmd [[augroup LuaTree]]
+  vim.cmd [[augroup NvimTree]]
   vim.cmd [[ au!]]
   vim.cmd [[ autocmd FileType NvimTree :lua require('lb.config.nvim-tree').tree_mapping() ]]
   vim.cmd [[augroup END]]
