@@ -3,7 +3,7 @@ local gl = require('galaxyline')
 local gls = gl.section
 
 gl.short_line_list = {
-  'LuaTree',
+  'NvimTree',
   'vista',
   'dbui',
   'startify',

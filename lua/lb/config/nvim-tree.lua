@@ -33,7 +33,7 @@ end
 M.tree_autocmd = function()
   vim.cmd [[augroup LuaTree]]
   vim.cmd [[ au!]]
-  vim.cmd [[ autocmd FileType LuaTree :lua require('lb.config.nvim-tree').tree_mapping() ]]
+  vim.cmd [[ autocmd FileType NvimTree :lua require('lb.config.nvim-tree').tree_mapping() ]]
   vim.cmd [[augroup END]]
 end
 
