@@ -91,7 +91,7 @@ map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 -- plugins key mappings
 -- LuaFormatter off
 if detect('nvim-tree.lua') then
-  map('n', "<Leader>ft", "<cmd>lua require('tree').toggle()<CR>")
+  map('n', "<Leader>ft", "<cmd>lua require('nvim-tree').toggle()<CR>")
 end
 
 if detect('caw.vim') then

@@ -20,14 +20,14 @@ M.tree_context_menu = function()
   local actions = {'create', 'rename', 'copy', 'cut', 'paste', 'remove'}
   local section = vim.fn.confirm('Action?', '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete')
   vim.cmd('redraw')
-  require('tree').on_keypress(actions[section])
+  require('nvim-tree').on_keypress(actions[section])
 end
 
 M.tree_mapping = function()
   buf_mapper('n', 'm', 'require("lb.config.nvim-tree").tree_context_menu()')
-  buf_mapper('n', 'r', 'require("tree").on_keypress("refresh")')
-  buf_mapper('n', 's', 'require("tree").on_keypress("split")')
-  buf_mapper('n', 'v', 'require("tree").on_keypress("vsplit")')
+  buf_mapper('n', 'r', 'require("nvim-tree").on_keypress("refresh")')
+  buf_mapper('n', 's', 'require("nvim-tree").on_keypress("split")')
+  buf_mapper('n', 'v', 'require("nvim-tree").on_keypress("vsplit")')
 end
 
 M.tree_autocmd = function()
