@@ -14,7 +14,6 @@ vim.cmd [[augroup END]]
 -- augroup user_events
 vim.cmd [[augroup user_events]]
 vim.cmd [[  autocmd!]]
-vim.cmd [[  autocmd VimLeave     * :!clear]]
 vim.cmd [[  autocmd WinEnter     * if v:lua.is_special_buffer() && winnr('$') == 1 | q | endif]]
 vim.cmd [[  autocmd BufReadPost  * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif]]
 vim.cmd [[  autocmd BufWritePost * nested if &l:filetype ==# '' || exists('b:ftdetect') | unlet! b:ftdetect | filetype detect | endif]]

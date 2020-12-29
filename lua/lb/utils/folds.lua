@@ -68,13 +68,13 @@ local render = function()
   local lines_count = vim.v.foldend - vim.v.foldstart + 1
   local count_text = string.format('(%d lines)', lines_count)
   local indentation = fn.indent(vim.v.foldstart)
-  local fold_start = fn['repeat'](' ', indentation) .. line
-  local fold_end = '  ' .. count_text .. '  '
+  local fold_start = fn['repeat'](' ', indentation) .. line .. ' '
+  local fold_end = ' ' .. count_text .. ' '
   local columns = fn.split(vim.wo.foldcolumn, ':')
   local column_size = columns[#columns]
   local fold_char = vim.o.fillchars:match('fold:(.-),') or ' '
   local text_length = #fn.substitute(fold_start .. fold_end, '.', 'x', 'g') + column_size
-  return string.format('%s%s%s', fold_start, fn['repeat'](fold_char, fn.winwidth(0) - text_length - 7), fold_end)
+  return string.format('%s%s%s', fold_start, fn['repeat'](fold_char, fn.winwidth(0) - text_length - 10), fold_end)
 end
 
 return {render = render}
