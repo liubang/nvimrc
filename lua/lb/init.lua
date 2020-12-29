@@ -6,8 +6,37 @@
 -- Last Modified: 2020/12/11 00:23
 --
 -- =====================================================================
-local g, fn = vim.g, vim.fn
+local g, fn, api = vim.g, vim.fn, vim.api
 local app = {}
+local special_buffers = {
+  'git',
+  'defx',
+  'vista',
+  'undotree',
+  'help',
+  'startify',
+  'SpaceVimPlugManager',
+  'vim-plug',
+  'NvimTree',
+  'Mundo',
+  'MundoDiff',
+}
+
+_G.folds_render = require('lb.utils.folds').render
+
+_G.is_special_buffer = function()
+  local buftype = api.nvim_buf_get_option(0, 'buftype')
+  if buftype == 'terminal' or buftype == 'quickfix' or buftype == 'help' then
+    return true
+  end
+  local filetype = api.nvim_buf_get_option(0, 'filetype')
+  for _, b in ipairs(special_buffers) do
+    if filetype == b then
+      return true
+    end
+  end
+  return false
+end
 
 _G.check_back_space = function()
   local col = vim.fn.col('.') - 1

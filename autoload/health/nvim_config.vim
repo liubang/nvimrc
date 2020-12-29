@@ -23,11 +23,11 @@ function! s:check_required_yarn() abort
   endif
 endfunc
 
-function! s:check_required_ccls() abort 
-  if !executable('ccls')
-    call health#report_error('Please install ccls')
+function! s:check_required_clangd() abort 
+  if !executable('clangd')
+    call health#report_error('Please install clangd')
   else
-    call health#report_ok('Require ccls was successful')
+    call health#report_ok('Require clangd was successful')
   endif
 endfunc
 
@@ -43,6 +43,6 @@ function! health#nvim_config#check()
   call health#report_start('Checking my nvim configuration requirements')
   call s:check_required_rg()
   call s:check_required_yarn()
-  call s:check_required_ccls()
+  call s:check_required_clangd()
   call s:check_required_shfmt()
 endfunc

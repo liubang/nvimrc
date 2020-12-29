@@ -176,22 +176,22 @@ end
 --   vim.cmd [[autocmd FileType c,cpp,objc vnoremap <silent><buffer><Leader>cf :ClangFormat<CR>]] 
 -- end
 
-if detect('lightline-bufferline') then
-  map('n', "<Leader>1", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true})
-  map('n', "<Leader>2", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"]], {noremap = false, expr = true})
-  map('n', "<Leader>3", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"]], {noremap = false, expr = true})
-  map('n', "<Leader>4", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"]], {noremap = false, expr = true})
-  map('n', "<Leader>5", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"]], {noremap = false, expr = true})
-  map('n', "<Leader>6", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"]], {noremap = false, expr = true})
-  map('n', "<Leader>7", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"]], {noremap = false, expr = true})
-  map('n', "<Leader>8", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"]], {noremap = false, expr = true})
-  map('n', "<Leader>9", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"]], {noremap = false, expr = true})
-  map('n', "<Leader>0", [[(utils#is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true})
-end
-
+-- if detect('lightline-bufferline') then
+--   map('n', "<Leader>1", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(1)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>2", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(2)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>3", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(3)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>4", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(4)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>5", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(5)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>6", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(6)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>7", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(7)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>8", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(8)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>9", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(9)"]], {noremap = false, expr = true})
+--   map('n', "<Leader>0", [[(v:lua.is_special_buffer() ? "\<c-w>\<c-w>" : '')."<Plug>lightline#bufferline#go(10)"]], {noremap = false, expr = true})
+-- end
+-- 
 if detect('nvim-bufferline.lua') then
   for i = 1, 9 do
-    map('n', "<leader>" .. i, ':lua require("bufferline").go_to_buffer(' .. i .. ')<CR>')
+    map('n', "<leader>" .. i, '(v:lua.is_special_buffer() ? "<c-w><c-w>" : "") . ":lua require(\'bufferline\').go_to_buffer(' .. i .. ')<CR>"', {expr = true})
   end
 end
 

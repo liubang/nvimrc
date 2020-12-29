@@ -83,21 +83,8 @@ gls.left[4] = {
     provider = function()
       local filename = require('galaxyline.provider_fileinfo').get_current_file_name()  
       local filepath = vim.fn.expand('%:p')
-      local size = vim.fn.getfsize(filepath)
-      if size <= 0 then
-        size = ''
-      else
-        if size < 1024 then
-          size = size .. 'B '
-        elseif size < 1024 * 1024 then
-          size = string.format('%.1f',size/1024) .. 'K '
-        elseif size < 1024 * 1024 * 1024 then
-          size = string.format('%.1f',size/1024/1024) .. 'M '
-        else
-          size = string.format('%.1f',size/1024/1024/1024) .. 'G '
-        end
-      end
-      return filename .. size
+      local size = require('lb.utils.fs').file_size(filepath)
+      return filename .. size .. ' '
     end,
     condition = buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},

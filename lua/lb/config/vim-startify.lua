@@ -7,13 +7,14 @@
 --
 -- =====================================================================
 local g = vim.g
+local version = require('lb.utils.version')
 
 local header_common = {
   '                                                ',
   '        Author: liubang <it.liubang@gmail.com>  ',
   '          Site: https://iliubang.cn             ',
   '       Version: ' .. g.nvg_version .. '         ',
-  '       Neovim : ' .. vim.fn['utils#get_nvim_version']() .. ''
+  '       Neovim : ' .. version.nvim_version() .. ' ',
 }
 
 local header_cres = {
@@ -31,7 +32,7 @@ local header_cres = {
   '       ⠀⠁⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⢇⣿⣿⣿⣿⡸⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠈⠀ ',
   '       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ',
   '       ⠀⠀⠀⠐⢤⣀⣀⢀⣀⣠⣴⣿⣿⠿⠋⠙⠿⣿⣿⣦⣄⣀⠀⠀⣀⡠⠂⠀⠀⠀ ',
-  '       ⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠉⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠋⠁⠀⠀⠀⠀⠀ '
+  '       ⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠉⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠋⠁⠀⠀⠀⠀⠀ ',
 }
 
 local header_superman = {
@@ -46,7 +47,7 @@ local header_superman = {
   '              ▀█████▄▄▄▄▄▄▄███▀           ',
   '                ▀████▀▀▀████▀             ',
   '                  ▀███▄███▀                ',
-  '                     ▀█▀                   '
+  '                     ▀█▀                   ',
 }
 
 local total_plugins = 0

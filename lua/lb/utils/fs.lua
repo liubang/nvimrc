@@ -20,7 +20,7 @@ end
 fs.file_size = function(file)
   local size = vim.fn.getfsize(file)
   if size == 0 or size == -1 or size == -2 then
-    return '0'
+    return '0B'
   end
   if size < 1024 then
     return size .. 'B'

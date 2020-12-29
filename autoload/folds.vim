@@ -95,3 +95,7 @@ function! folds#render(...)
   let text_length = strlen(substitute(fold_start . fold_end, '.', 'x', 'g')) + column_size
   return fold_start . repeat(' ', winwidth(0) - text_length - 7) . fold_end
 endfunction
+
+let a = s:handle_fold_end('}')
+let b = s:handle_fold_start('int add(int a, int b) {', '}', '…')
+echo b . a
