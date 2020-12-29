@@ -18,13 +18,12 @@ if os.getenv('TMUX') ~= nil then
 end
 
 -- 退出后清屏
-if vim.api.nvim_get_option('term'):match('xterm') then
-  vim.cmd [[let &t_ti = "\<Esc>[?47h"]]
-  vim.cmd [[let &t_te = "\<Esc>[?47l"]]
-end
+-- if vim.api.nvim_get_option('term'):match('xterm') then
+--   vim.cmd [[let &t_ti = "\<Esc>[?47h"]]
+--   vim.cmd [[let &t_te = "\<Esc>[?47l"]]
+-- end
 
 -- hide ~
-vim.o.fcs = 'eob:\\'
 vim.o.background = 'dark'
 vim.g.gruvbox_filetype_hi_groups = 1
 vim.g.gruvbox_plugin_hi_groups = 1

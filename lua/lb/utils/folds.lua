@@ -28,7 +28,7 @@ end
 
 local is_import = function(item)
   local sub = item:match('^import')
-  if sub ~= nil then 
+  if sub ~= nil then
     return #sub > 0
   end
   return false
@@ -69,16 +69,12 @@ local render = function()
   local count_text = string.format('(%d lines)', lines_count)
   local indentation = fn.indent(vim.v.foldstart)
   local fold_start = fn['repeat'](' ', indentation) .. line
-  local fold_end = count_text .. fn['repeat'](' ', 2)
-  local column_size = fn.split(vim.wo.foldcolumn, ':')[-1]
+  local fold_end = '  ' .. count_text .. '  '
+  local columns = fn.split(vim.wo.foldcolumn, ':')
+  local column_size = columns[#columns]
+  local fold_char = vim.o.fillchars:match('fold:(.-),') or ' '
   local text_length = #fn.substitute(fold_start .. fold_end, '.', 'x', 'g') + column_size
-  return fold_start .. fn['repeat'](' ', fn.winwidth(0) - text_length - 7) .. fold_end
+  return string.format('%s%s%s', fold_start, fn['repeat'](fold_char, fn.winwidth(0) - text_length - 7), fold_end)
 end
 
-local ed = handle_fold_end('}')
-local st = handle_fold_start('int add(int a, int b) {', '}', '…')
-
 return {render = render}
-
--- local aa = "import aaa"
--- print(#aa:match('^import'))

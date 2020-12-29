@@ -119,6 +119,7 @@ o.shada = '!,\'300,<50,@100,s10,h'
 o.inccommand = 'nosplit'
 o.wildoptions = 'pum'
 o.pumblend = 3
+o.fillchars = 'vert:│,fold:·,diff:,msgsep:‾,eob: ,foldopen:▾,foldsep:│,foldclose:▸'
 
 bind_options('synmaxcol', 2500)
 bind_options('formatoptions', '1n2jvcroql')
@@ -135,7 +136,6 @@ bind_options('number', true)
 bind_options('list', false)
 bind_options('relativenumber', false)
 bind_options('foldenable', true)
--- bind_options('foldtext', 'folds#render()')
 bind_options('foldtext', 'v:lua.folds_render()')
 bind_options('foldmethod', 'syntax')
 bind_options('foldlevelstart', 10)
