@@ -132,7 +132,6 @@
   "diagnostic-languageserver.linters": {},
   "diagnostic-languageserver.filetypes": {
     "python": "pylint",
-    "markdown": ["write-good", "markdownlint"],
     "sh": "shellcheck"
   },
   "diagnostic-languageserver.debug": false,

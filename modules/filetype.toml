@@ -6,10 +6,10 @@ on_ft = 'toml'
 repo = 'neoclide/jsonc.vim'
 on_ft = ['json', 'jsonc']
 
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-on_ft = 'markdown'
-hook_add = 'lua require("lb.config.vim-markdown")'
+# [[plugins]]
+# repo = 'plasticboy/vim-markdown'
+# on_ft = 'markdown'
+# hook_add = 'lua require("lb.config.vim-markdown")'
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
