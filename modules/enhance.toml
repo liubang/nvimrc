@@ -77,6 +77,9 @@ repo = 'nvim-lua/popup.nvim'
 repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
+repo = 'nvim-telescope/telescope-fzy-native.nvim'
+
+[[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 hook_source = 'lua require("lb.config.nvim-telescope")'
 
