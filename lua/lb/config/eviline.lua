@@ -54,6 +54,11 @@ gls.left[2] = {
 				c = 'COMMAND',
 				v = 'VISUAL', 
 				V = 'VISUAL', 
+        t = 'TERMINAL',
+        s = 'SELECT',
+        S = 'SELECT',
+        ['r?'] = 'CONFIRM',
+        ['!'] = 'SHELL',
 			}
       local mode_color = {
         n = colors.magenta,
@@ -61,6 +66,11 @@ gls.left[2] = {
         c = colors.red,
         v = colors.blue,
         V = colors.blue,
+        s = colors.orange,
+        S = colors.orange,
+        t = colors.purple,
+        ['r?'] = colors.purple,
+        ['!'] = colors.purple,
       }
       local mode = vim.fn.mode()
       vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[mode])

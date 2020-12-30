@@ -192,9 +192,10 @@
     "clangd": {
       "command": "clangd",
       "args": [
-        "--clang-tidy",
+        //"--clang-tidy",
         "--background-index",
         "--header-insertion=iwyu",
+        "--suggest-missing-includes",
         "--fallback-style=llvm"
       ],
       "rootPatterns": [
