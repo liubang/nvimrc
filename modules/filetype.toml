@@ -6,26 +6,8 @@ on_ft = 'toml'
 repo = 'neoclide/jsonc.vim'
 on_ft = ['json', 'jsonc']
 
-# [[plugins]]
-# repo = 'plasticboy/vim-markdown'
-# on_ft = 'markdown'
-# hook_add = 'lua require("lb.config.vim-markdown")'
-
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'sh -c "cd app & yarn install"'
 hook_source = 'lua require("lb.config.markdown-preview")'
-
-[[plugins]]
-repo = 'z0mbix/vim-shfmt'
-on_ft = 'sh'
-hook_source = 'lua require("lb.config.vim-shfmt")'
-
-# clangd has built-in clang-format
-#
-# [[plugins]]
-# repo = 'rhysd/vim-clang-format'
-# on_ft = ['c', 'cpp']
-# on = 'ClangFormat'
-# hook_source = 'lua require("lb.config.vim-clang-format")'

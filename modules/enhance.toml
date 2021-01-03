@@ -39,17 +39,6 @@ on_cmd = ['FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'Floa
 hook_source = 'lua require("lb.config.vim-floaterm")'
 
 [[plugins]]
-repo = 'simnalamburt/vim-mundo'
-on_cmd = 'MundoToggle'
-on_source = '''
-set undofile
-set undodir=$HOME/.vim/.cache/undo
-let g:mundo_width = 50
-let g:mundo_preview_height = 30
-let g:mundo_right = 1
-'''
-
-[[plugins]]
 repo = 'skywind3000/asyncrun.vim'
 hook_source = '''
 let g:asyncrun_open = 25
