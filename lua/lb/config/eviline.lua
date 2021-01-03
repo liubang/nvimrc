@@ -3,6 +3,8 @@ local gl = require('galaxyline')
 local gls = gl.section
 
 gl.short_line_list = {
+  'qf',
+  'help',
   'NvimTree',
   'vista',
   'dbui',
@@ -221,16 +223,43 @@ gls.right[4] = {
 
 gls.short_line_left[1] = {
   BufferType = {
-    provider = 'FileTypeName',
+    provider = function() 
+      return string.format('  %s ', vim.bo.filetype:upper())
+    end,
     separator = '\u{e0b0}',
     separator_highlight = {colors.line_bg, colors.bg},
     highlight = {colors.fg, colors.line_bg},
   },
 }
 
+local buf_icon        = {
+  help                = '   ',
+  defx                = '   ',
+  nerdtree            = '   ',
+  denite              = '   ',
+  ['vim-plug']        = '   ',
+  SpaceVimPlugManager = '   ',
+  qf                  = '   ',
+  vista               = ' 識 ',
+  vista_kind          = '   ',
+  dbui                = '   ',
+  magit               = '   ',
+  NvimTree            = '   ',
+}
+
 gls.short_line_right[1] = {
   BufferIcon = {
-    provider = 'BufferIcon',
+    provider = function()
+      local bi = buf_icon[vim.bo.filetype]
+      if bi ~= nil then
+        return bi
+      end
+      local f_name,f_extension = vim.fn.expand('%:t'),vim.fn.expand('%:e')
+      if f_name == "" or f_extension == "" then
+        return '   '
+      end
+      return string.format(' %s ', require('nvim-web-devicons').get_icon(f_name,f_extension))
+    end,
     separator = '\u{e0b2}',
     separator_highlight = {colors.line_bg, colors.bg},
     highlight = {colors.fg, colors.line_bg},

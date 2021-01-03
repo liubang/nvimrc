@@ -53,7 +53,7 @@ local tasks = function(opts)
     sorter = sorters.get_fzy_sorter(),
     attach_mappings = function(prompt_bufnr)
       actions.goto_file_selection_edit:replace(function()
-        local selection = actions.get_selected_entry(prompt_bufnr)
+        local selection = actions.get_selected_entry()
         actions.close(prompt_bufnr)
         if selection.value ~= '' then
           vim.cmd(selection.value)
