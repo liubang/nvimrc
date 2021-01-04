@@ -47,7 +47,7 @@ M.set_config = function()
     'coc-jedi',
     'coc-rls',
     'coc-docker',
-    'coc-sh'
+    'coc-sh',
   }
   vim.g.coc_snippet_next = '<TAB>'
   vim.g.coc_snippet_prev = '<S-TAB>'
@@ -60,39 +60,54 @@ M.set_config = function()
   elseif jit.os == 'Linux' then
     lua_ls_bin = lua_ls_path .. '/bin/Linux/lua-language-server'
   end
-  vim.fn['coc#config']('languageserver', {
-    lua = {
-      cwd = lua_ls_path,
-      command = lua_ls_bin,
-      args = {'-E', '-e', 'LANG="zh-cn"', lua_ls_path .. '/main.lua'},
-      filetypes = {'lua'},
-      rootPatterns = {'.git/', ''},
-      settings = {
-        Lua = {
-          workspace = {library = get_lua_runtime(), maxPreload = 2000, preloadFileSize = 1000},
-          runtime = {version = 'LuaJIT'},
-          completion = {
-            -- You should use real snippets
-            keywordSnippet = 'Disable'
+  vim.fn['coc#config']('languageserver.lua', {
+    cwd = lua_ls_path,
+    command = lua_ls_bin,
+    args = {'-E', '-e', 'LANG="zh-cn"', lua_ls_path .. '/main.lua'},
+    filetypes = {'lua'},
+    rootPatterns = {'.git/', ''},
+    settings = {
+      Lua = {
+        workspace = {library = get_lua_runtime(), maxPreload = 2000, preloadFileSize = 1000},
+        runtime = {version = 'LuaJIT'},
+        completion = {
+          -- You should use real snippets
+          keywordSnippet = 'Disable',
+        },
+        diagnostics = {
+          enable = true,
+          disable = {'trailing-space'},
+          globals = {
+            -- Neovim
+            'vim',
+            -- Busted
+            'describe',
+            'it',
+            'before_each',
+            'after_each',
+            'teardown',
+            'pending',
           },
-          diagnostics = {
-            enable = true,
-            disable = {'trailing-space'},
-            globals = {
-              -- Neovim
-              'vim',
-              -- Busted
-              'describe',
-              'it',
-              'before_each',
-              'after_each',
-              'teardown',
-              'pending'
-            }
-          }
-        }
-      }
+        },
+      },
+    },
+  })
+
+  -- cpp lsp config
+  local ccls_init = {cache = {directory = '/tmp/ccls'}}
+  if jit.os == 'OSX' then
+    ccls_init.clang = {
+      resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
+      extraArgs = {'-isystem', os.getenv('CLANG_ISYSTEM') or '', '-I', os.getenv('CLANG_INCLUDE') or ''},
     }
+  elseif jit.os == 'Linux' then
+    ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr'}}
+  end
+  vim.fn['coc#config']('languageserver.ccls', {
+    command = 'ccls',
+    filetypes = {'c', 'cpp', 'objc', 'objcpp'},
+    rootPatterns = {'.ccls', '.git/', 'compile_commands.json'},
+    initializationOptions = ccls_init,
   })
   -- snippets config
   vim.fn['coc#config']('snippets.textmateSnippetsRoots', {vim.g.snip_path})

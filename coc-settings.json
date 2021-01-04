@@ -14,9 +14,6 @@
   "coc.source.around.shortcut": "A",
   "coc.source.buffer.shortcut": "B",
   "coc.source.buffer.ignoreGitignore": false,
-  // CocList
-  "list.source.files.defaultOptions": ["--auto-preview"],
-  "list.source.outline.defaultOptions": ["--auto-preview"],
   // snippets
   "snippets.autoTrigger": true,
   "snippets.snipmate.author": "liubang",
@@ -205,23 +202,6 @@
     // "trace.server": "verbose",
     // "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
     // },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
-      // "trace.server": "verbose",
-      "initializationOptions": {
-        "cache": {
-          "directory": ".ccls-cache"
-        },
-        "client": {
-          "snippetSupport": true
-        },
-        "completion": {
-          "placeholder": true
-        }
-      }
-    },
     "golang": {
       "command": "gopls",
       "filetypes": ["go"],
