@@ -258,7 +258,11 @@ gls.short_line_right[1] = {
       if f_name == "" or f_extension == "" then
         return '   '
       end
-      return string.format(' %s ', require('nvim-web-devicons').get_icon(f_name,f_extension))
+      local icon = require('nvim-web-devicons').get_icon(f_name,f_extension)
+      if icon == nil then
+        icon = '   '
+      end
+      return string.format(' %s ', icon)
     end,
     separator = '\u{e0b2}',
     separator_highlight = {colors.line_bg, colors.bg},

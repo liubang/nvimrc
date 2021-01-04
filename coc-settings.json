@@ -188,22 +188,39 @@
   "jedi.jediSettings.autoImportModules": ["numpy", "alembic"],
   "jedi.diagnostics.enable": false,
   "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "args": [
-        //"--clang-tidy",
-        "--background-index",
-        "--header-insertion=iwyu",
-        "--suggest-missing-includes",
-        "--fallback-style=llvm"
-      ],
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".git/",
-        ".clangd"
-      ],
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    // "clangd": {
+    // "command": "clangd",
+    // "args": [
+    // "--background-index",
+    //"--header-insertion=iwyu",
+    //"--suggest-missing-includes",
+    //"--fallback-style=llvm"
+    //],
+    //"rootPatterns": [
+    // "compile_flags.txt",
+    // "compile_commands.json",
+    //".git/",
+    //".clangd"
+    //],
+    // "trace.server": "verbose",
+    // "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    // },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
+      // "trace.server": "verbose",
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        },
+        "completion": {
+          "placeholder": true
+        }
+      }
     },
     "golang": {
       "command": "gopls",
