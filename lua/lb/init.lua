@@ -7,7 +7,14 @@
 --
 -- =====================================================================
 local g, fn, api = vim.g, vim.fn, vim.api
-local app = {}
+
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+_G.folds_render = require('lb.utils.folds').render
+
 local special_buffers = {
   'git',
   'defx',
@@ -21,13 +28,6 @@ local special_buffers = {
   'Mundo',
   'MundoDiff',
 }
-
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
-
-_G.folds_render = require('lb.utils.folds').render
 
 _G.is_special_buffer = function()
   local buftype = api.nvim_buf_get_option(0, 'buftype')
@@ -44,8 +44,8 @@ _G.is_special_buffer = function()
 end
 
 _G.check_back_space = function()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+  local col = fn.col('.') - 1
+  return col == 0 or fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
 function string:split(sep)
@@ -57,9 +57,18 @@ function string:split(sep)
   return fields
 end
 
-app.run = function(v)
+local app = {}
+
+function app:new(v)
+  local instance = {nvg_version = v}
+  setmetatable(instance, self)
+  self.__index = self
+  return instance
+end
+
+function app:run()
   -- LuaFormatter off
-  g.nvg_version = v
+  g.nvg_version = self.nvg_version
   g.nvg_root    = fn.stdpath('config')
   g.cache_path  = string.format('%s/.cache', g.nvg_root)
   g.module_path = string.format('%s/modules', g.nvg_root)

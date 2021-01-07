@@ -17,11 +17,21 @@ local sorters = require('telescope.sorters')
 local actions = require('telescope.actions')
 
 local bazel_finder = function(opts, title, kind)
+  -- check if bazel installed
   if 1 ~= vim.fn.executable('bazel') then
-    print('You need to install bazel')
+    print('ERROR: You need to install bazel')
     return
   end
+
+  local root = vim.fn['asyncrun#get_root'](vim.fn.expand('%'))
+  if 0 == vim.fn.filereadable(string.format('%s/WORKSPACE', vim.fn.expand(root))) then
+    print(
+      'ERROR: The "bazel" command is only supported from within a workspace (below a directory having a WORKSPACE file).')
+    return
+  end
+
   opts = opts or {}
+
   local find_command = {
     'bazel',
     'query',
