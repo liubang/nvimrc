@@ -185,5 +185,8 @@ if detect('telescope.nvim') then
   map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
   map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
   map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries(require('telescope.themes').get_dropdown({}))<CR>")
 end
 -- LuaFormatter on

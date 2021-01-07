@@ -48,6 +48,15 @@ _G.check_back_space = function()
   return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
+function string:split(sep)
+  local sep, fields = sep or ':', {}
+  local pattern = string.format('([^%s]+)', sep)
+  self:gsub(pattern, function(c)
+    fields[#fields + 1] = c
+  end)
+  return fields
+end
+
 app.run = function(v)
   -- LuaFormatter off
   g.nvg_version = v
