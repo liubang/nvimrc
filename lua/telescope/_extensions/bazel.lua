@@ -40,7 +40,15 @@ local bazel_finder = function(opts, title, kind)
         local selection = actions.get_selected_entry()
         actions.close(prompt_bufnr)
         if selection.value ~= '' then
-          vim.cmd(string.format('AsyncRun -mode=term -pos=right bazel build %s', selection.value))
+          local cmd = 'AsyncRun -mode=term -pos=right'
+          if kind:match('test') ~= nil then
+            cmd = string.format('%s bazel test %s', cmd, selection.value)
+          elseif kind:match('binary') ~= nil then
+            cmd = string.format('%s bazel run %s', cmd, selection.value)
+          else
+            cmd = string.format('%s bazel build %s', cmd, selection.value)
+          end
+          vim.cmd(cmd)
         end
       end)
       return true
