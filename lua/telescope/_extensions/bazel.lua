@@ -22,35 +22,14 @@ local bazel_finder = function(opts, title, kind)
     return
   end
   opts = opts or {}
-  local find_command = {}
-  if kind == 'rules' then
-    find_command = {
-      'bazel', 
-      'query', 
-      'kind("rule", //...)', 
-      '--keep_going', 
-      '--noshow_progress', 
-      '--output=label'
-    }
-  elseif kind == 'tests' then
-    find_command = {
-      'bazel',
-      'query',
-      'kind(".*_test rule", //...)',
-      '--keep_going',
-      '--noshow_progress',
-      '--output=label',
-    }
-  elseif kind == 'binaries' then
-    find_command = {
-      'bazel',
-      'query',
-      'kind(".*_binary rule", //...)',
-      '--keep_going',
-      '--noshow_progress',
-      '--output=label',
-    }
-  end
+  local find_command = {
+    'bazel',
+    'query',
+    string.format('kind("%s rule", //...)', kind),
+    '--keep_going',
+    '--noshow_progress',
+    '--output=label',
+  }
 
   pickers.new(opts, {
     prompt_title = title,
@@ -70,21 +49,36 @@ local bazel_finder = function(opts, title, kind)
 end
 
 local bazel_rules = function(opts)
-  bazel_finder(opts, 'BazelRules', 'rules')
+  bazel_finder(opts, 'BazelRules', '')
 end
 
 local bazel_tests = function(opts)
-  bazel_finder(opts, 'BazelTests', 'tests')
+  bazel_finder(opts, 'BazelTests', '.*_test')
 end
 
 local bazel_binaries = function(opts)
-  bazel_finder(opts, 'BazelBinaries', 'binaries')
+  bazel_finder(opts, 'BazelBinaries', '.*_binary')
+end
+
+local bazel_cc_rules = function(opts)
+  bazel_finder(opts, 'BazelCCRules', 'cc_.*')
+end
+
+local bazel_cc_tests = function(opts)
+  bazel_finder(opts, 'BazelCCTests', 'cc_test')
+end
+
+local bazel_cc_binaries = function(opts)
+  bazel_finder(opts, 'BazelCCBinaries', 'cc_binary')
 end
 
 return telescope.register_extension {
   exports = {
-    bazel_rules = bazel_rules, 
-    bazel_tests = bazel_tests, 
-    bazel_binaries = bazel_binaries
+    bazel_rules = bazel_rules,
+    bazel_tests = bazel_tests,
+    bazel_binaries = bazel_binaries,
+    bazel_cc_rules = bazel_cc_rules,
+    bazel_cc_tests = bazel_cc_tests,
+    bazel_cc_binaries = bazel_cc_binaries,
   },
 }
