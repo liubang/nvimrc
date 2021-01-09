@@ -11,15 +11,6 @@ local telescope = require('telescope')
 
 telescope.setup {
   defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
     file_ignore_patterns = {'.git/*'},
     shorten_path = true,
     winblend = 0,
@@ -30,19 +21,19 @@ telescope.setup {
         ['<C-d>'] = false,
         ['<C-c>'] = actions.close,
         ['<C-s>'] = actions.goto_file_selection_split,
-        ['<C-v>'] = actions.goto_file_selection_vsplit
+        ['<C-v>'] = actions.goto_file_selection_vsplit,
       },
-      n = {['<esc>'] = actions.close}
-    }
+      n = {['<esc>'] = actions.close},
+    },
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
-    }
-  }
+    fzy_native = {override_generic_sorter = false, override_file_sorter = true},
+    fzf_writer = {
+      minimum_grep_characters = 2,
+      minimum_files_characters = 2,
+      use_highlighter = true,
+    },
+  },
 }
 
 telescope.load_extension('fzy_native')
-telescope.load_extension('tasks')
-telescope.load_extension('bazel')

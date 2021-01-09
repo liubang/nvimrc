@@ -69,6 +69,9 @@ repo = 'nvim-lua/plenary.nvim'
 repo = 'nvim-telescope/telescope-fzy-native.nvim'
 
 [[plugins]]
+repo = 'nvim-telescope/telescope-fzf-writer.nvim'
+
+[[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 hook_source = 'lua require("lb.config.nvim-telescope")'
 

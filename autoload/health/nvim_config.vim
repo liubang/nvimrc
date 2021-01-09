@@ -23,6 +23,7 @@ function! health#nvim_config#check()
   call s:check_executable('shfmt', 'shfmt', ['Run in shell: GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt'])
   call s:check_executable('lua-format', 'lua-format', ['Run in shell: luarocks install --server=https://luarocks.org/dev luaformatter'])
   call s:check_executable('fzy', 'fzy', ['See https://github.com/jhawthorn/fzy'])
+  call s:check_executable('fzf', 'fzf', ['See https://github.com/junegunn/fzf'])
   call s:check_executable('gopls', 'gopls', [
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/gopls',
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/cmd/...',
