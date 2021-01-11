@@ -29,7 +29,7 @@ pm.init_dein = function()
     local dein_dir = string.format(
       '%s/repos/github.com/Shougo/dein.vim', repo_path
     )
-    if not vim.fn.isdirectory(dein_dir) then
+    if 0 == vim.fn.isdirectory(dein_dir) then
       os.execute(string.format(
         'git clone https://github.com/Shougo/dein.vim %s',
         dein_dir
