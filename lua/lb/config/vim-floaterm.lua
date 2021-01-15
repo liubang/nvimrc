@@ -12,3 +12,5 @@ g.floaterm_wintype = 'floating'
 g.floaterm_position = 'center'
 g.floaterm_autoinsert = true
 g.floaterm_title = 'terminal [$1/$2]'
+
+vim.cmd('hi FloatermBorder guibg=#32302f guifg=#e78a4e')
