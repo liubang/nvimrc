@@ -23,15 +23,14 @@ local bazel_finder = function(opts, title, kind)
     return
   end
 
-  local root = vim.fn['asyncrun#get_root'](vim.fn.expand('%'))
-  if 0 == vim.fn.filereadable(string.format('%s/WORKSPACE', vim.fn.expand(root))) then
+  local root = vim.fn['asyncrun#get_root'](vim.fn.expand('%'), {'WORKSPACE'}, 1)
+  if root == '' or 0 == vim.fn.filereadable(string.format('%s/WORKSPACE', vim.fn.expand(root))) then
     print(
       'ERROR: The "bazel" command is only supported from within a workspace (below a directory having a WORKSPACE file).')
     return
   end
 
   opts = opts or {}
-
   local find_command = {
     'bazel',
     'query',

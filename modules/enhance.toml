@@ -40,19 +40,14 @@ hook_source = 'lua require("lb.config.vim-floaterm")'
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
-hook_source = '''
-let g:asyncrun_open = 25
-let g:asyncrun_bell = 1
-let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
-'''
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.extra'
 
 [[plugins]]
 repo = 'skywind3000/asynctasks.vim'
-depends = 'asyncrun.vim'
-hook_source = '''
-let g:asynctasks_term_pos = 'right'
-let g:asynctasks_term_reuse = 0
-'''
+depends = ['asyncrun.vim', 'asyncrun.extra']
+hook_source = 'lua require("lb.config.asynctasks")'
 
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
