@@ -6,59 +6,18 @@
 -- Last Modified: 2020/12/11 00:23
 --
 -- =====================================================================
-local g, fn, api = vim.g, vim.fn, vim.api
+local g, fn = vim.g, vim.fn
 
-P = function(v)
+-- global functions 
+_G.P = function(v)
   print(vim.inspect(v))
   return v
 end
-
 _G.folds_render = require('lb.utils.folds').render
-
-local special_buffers = {
-  'git',
-  'defx',
-  'vista',
-  'undotree',
-  'help',
-  'startify',
-  'SpaceVimPlugManager',
-  'vim-plug',
-  'NvimTree',
-  'Mundo',
-  'MundoDiff',
-}
-
-_G.is_special_buffer = function()
-  local buftype = api.nvim_buf_get_option(0, 'buftype')
-  if buftype == 'terminal' or buftype == 'quickfix' or buftype == 'help' then
-    return true
-  end
-  local filetype = api.nvim_buf_get_option(0, 'filetype')
-  for _, b in ipairs(special_buffers) do
-    if filetype == b then
-      return true
-    end
-  end
-  return false
-end
-
-_G.check_back_space = function()
-  local col = fn.col('.') - 1
-  return col == 0 or fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
-function string:split(sep)
-  local sep, fields = sep or ':', {}
-  local pattern = string.format('([^%s]+)', sep)
-  self:gsub(pattern, function(c)
-    fields[#fields + 1] = c
-  end)
-  return fields
-end
+_G.is_special_buffer = require('lb.utils.buffer').is_special_buffer
+_G.check_back_space = require('lb.utils.buffer').check_back_space
 
 local app = {}
-
 function app:new(v)
   local instance = {nvg_version = v}
   setmetatable(instance, self)

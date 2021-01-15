@@ -6,8 +6,6 @@
 -- Last Modified: 2020/12/11 00:23
 --
 -- =====================================================================
-local M = {}
-
 local function get_lua_runtime()
   local result = {};
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
@@ -21,7 +19,7 @@ local function get_lua_runtime()
   return result;
 end
 
-M.set_config = function()
+local set_config = function()
   vim.g.coc_global_extensions = {
     'coc-lists',
     'coc-emoji',
@@ -115,7 +113,7 @@ M.set_config = function()
   vim.fn['coc#config']('session.directory', vim.g.cache_path .. '/sessions')
 end
 
-M.set_highlight = function()
+local set_highlight = function()
   -- coc-git
   vim.cmd [[highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE]]
   vim.cmd [[highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE]]
@@ -137,7 +135,7 @@ M.set_highlight = function()
   vim.cmd [[highlight! CocHighlightText guibg=#054c20 ctermbg=023]]
 end
 
-M.set_command = function()
+local set_command = function()
   vim.schedule(function()
     vim.cmd [[command! -nargs=0 Format :call CocAction('format')]]
     vim.cmd [[command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')]]
@@ -145,7 +143,7 @@ M.set_command = function()
   end)
 end
 
-M.set_autocmd = function()
+local set_autocmd = function()
   vim.cmd [[augroup coc_au]]
   vim.cmd [[  autocmd!]]
   vim.cmd [[  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')]]
@@ -155,10 +153,11 @@ M.set_autocmd = function()
   vim.cmd [[augroup END]]
 end
 
-M.on_attach = function()
-  M.set_config()
-  M.set_autocmd()
-  M.set_command()
+local on_attach = function()
+  set_config()
+  set_highlight()
+  set_autocmd()
+  set_command()
 end
 
-return M
+return {on_attach = on_attach}

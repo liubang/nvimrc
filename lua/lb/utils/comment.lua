@@ -6,8 +6,8 @@
 -- Last Modified: 2020/12/15 21:40
 --
 -- =====================================================================
-local comment = {}
 
+-- LuaFormatter off
 local prefix_mappings = {
   ['c']      = '//',
   ['cpp']    = '//',
@@ -33,8 +33,9 @@ local header_mappings = {
   ['zsh']    = {'#! /usr/bin/env zsh'},
   ['python'] = {'#! /usr/bin/env python', '# -*- coding: utf-8 -*-'},
 }
+-- LuaFormatter on
 
-comment.comment_prefix = function()
+local comment_prefix = function()
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
   if prefix_mappings[filetype] ~= nil then
     return prefix_mappings[filetype]
@@ -42,17 +43,17 @@ comment.comment_prefix = function()
   return '#'
 end
 
-comment.comment_line = function(c, r)
-  local prefix = comment.comment_prefix()
+local comment_line = function(c, r)
+  local prefix = comment_prefix()
   while (string.len(prefix) < r) do
     prefix = prefix .. c
   end
   return prefix
 end
 
-comment.copy_right = function(author)
-  local c = comment.comment_prefix()
-  local complete = comment.comment_line('=', 71)
+local copy_right = function(author)
+  local c = comment_prefix()
+  local complete = comment_line('=', 71)
   local filename = vim.fn.expand('%:t')
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
   local t = os.date('%Y/%m/%d %H:%M')
@@ -73,7 +74,7 @@ comment.copy_right = function(author)
   vim.fn.append(0, text)
 end
 
-comment.copy_right_update = function()
+local copy_right_update = function()
   local pos = vim.api.nvim_win_get_cursor(0)
   local n = math.min(10, vim.fn.line('$'))
   local timestamp = os.date('%Y/%m/%d %H:%M')
@@ -83,4 +84,4 @@ comment.copy_right_update = function()
   vim.cmd [[let @/=""]]
 end
 
-return comment
+return {copy_right = copy_right, copy_right_update = copy_right_update}

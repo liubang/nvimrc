@@ -8,6 +8,9 @@
 -- =====================================================================
 local fn, api = vim.fn, vim.api
 
+-- for string:split function
+require('lb.utils.string')
+
 local replace_tabs = function(value)
   return fn.substitute(value, '\\t', fn['repeat'](' ', api.nvim_buf_get_option(0, 'tabstop')), 'g')
 end

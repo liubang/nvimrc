@@ -2,21 +2,12 @@
 local gl = require('galaxyline')
 local gls = gl.section
 
-gl.short_line_list = {
-  'qf',
-  'help',
-  'NvimTree',
-  'vista',
-  'dbui',
-  'startify',
-  'term',
-  'plug',
-  'nerdtree',
-  'fugitive',
-  'fugitiveblame',
-  'SpaceVimPlugManager',
-}
+-- for string:split function
+require('lb.utils.string')
 
+gl.short_line_list = require('lb.utils.buffer').list_special_buffers()
+
+-- LuaFormatter off
 local colors = {
   bg       = '#3c3836',
   line_bg  = '#665c54',
@@ -32,6 +23,7 @@ local colors = {
   blue     = '#51afef',
   red      = '#ec5f67',
 }
+-- LuaFormatter on
 
 local buffer_not_empty = function()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -54,8 +46,8 @@ gls.left[2] = {
         n = 'NORMAL',
         i = 'INSERT',
         c = 'COMMAND',
-        v = 'VISUAL', 
-        V = 'VISUAL', 
+        v = 'VISUAL',
+        V = 'VISUAL',
         t = 'TERMINAL',
         s = 'SELECT',
         S = 'SELECT',
@@ -93,7 +85,7 @@ gls.left[3] = {
 gls.left[4] = {
   FileName = {
     provider = function()
-      local filename = require('galaxyline.provider_fileinfo').get_current_file_name()  
+      local filename = require('galaxyline.provider_fileinfo').get_current_file_name()
       local filepath = vim.fn.expand('%:p')
       local size = require('lb.utils.fs').file_size(filepath)
       return filename .. size .. ' '
@@ -115,12 +107,12 @@ gls.left[5] = {
 
 gls.left[6] = {
   GitBranch = {
-    provider = function() 
+    provider = function()
       if vim.g['coc_git_status'] ~= nil then
         return vim.g['coc_git_status'] .. ' '
       end
       return ' '
-    end;
+    end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
@@ -134,9 +126,9 @@ gls.left[7] = {
   DiffAdd = {
     provider = function()
       local result = ''
-      local status = vim.b['coc_git_status']   
+      local status = vim.b['coc_git_status']
       if status ~= nil then
-        local diffs = vim.fn.split(status, ' ')  
+        local diffs = vim.fn.split(status, ' ')
         for _, diff in ipairs(diffs) do
           local prefix = string.sub(diff, 1, 1)
           local number = string.sub(diff, 2)
@@ -165,26 +157,14 @@ gls.left[8] = {
   },
 }
 
-gls.left[9] = {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '   ',
-    highlight = {colors.red, colors.bg},
-  },
-}
+gls.left[9] = {DiagnosticError = {provider = 'DiagnosticError', icon = '   ', highlight = {colors.red, colors.bg}}}
 
-gls.left[10] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '   ',
-    highlight = {colors.blue, colors.bg},
-  },
-}
+gls.left[10] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '   ', highlight = {colors.blue, colors.bg}}}
 
 gls.right[1] = {
   FileFormat = {
     provider = function()
-      if vim.bo.fenc ~= '' then 
+      if vim.bo.fenc ~= '' then
         return string.format(' %s [%s]', vim.bo.fileformat, vim.bo.fenc)
       else
         return string.format(' %s [%s]', vim.bo.fileformat, vim.o.enc)
@@ -214,16 +194,11 @@ gls.right[3] = {
   },
 }
 
-gls.right[4] = {
-  ScrollBar = {
-    provider = 'ScrollBar', 
-    highlight = {colors.blue, colors.line_bg}
-  }
-}
+gls.right[4] = {ScrollBar = {provider = 'ScrollBar', highlight = {colors.blue, colors.line_bg}}}
 
 gls.short_line_left[1] = {
   BufferType = {
-    provider = function() 
+    provider = function()
       return string.format('  %s ', vim.bo.filetype:upper())
     end,
     separator = '\u{e0b0}',
@@ -232,7 +207,8 @@ gls.short_line_left[1] = {
   },
 }
 
-local buf_icon        = {
+-- LuaFormatter off
+local buf_icon = {
   help                = '   ',
   defx                = '   ',
   nerdtree            = '   ',
@@ -246,6 +222,7 @@ local buf_icon        = {
   magit               = '   ',
   NvimTree            = '   ',
 }
+-- LuaFormatter on
 
 gls.short_line_right[1] = {
   BufferIcon = {
@@ -254,11 +231,11 @@ gls.short_line_right[1] = {
       if bi ~= nil then
         return bi
       end
-      local f_name,f_extension = vim.fn.expand('%:t'),vim.fn.expand('%:e')
-      if f_name == "" or f_extension == "" then
+      local f_name, f_extension = vim.fn.expand('%:t'), vim.fn.expand('%:e')
+      if f_name == '' or f_extension == '' then
         return '   '
       end
-      local icon = require('nvim-web-devicons').get_icon(f_name,f_extension)
+      local icon = require('nvim-web-devicons').get_icon(f_name, f_extension)
       if icon == nil then
         icon = '   '
       end
