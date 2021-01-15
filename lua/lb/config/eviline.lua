@@ -51,17 +51,17 @@ gls.left[2] = {
     provider = function()
       -- auto change color according the vim mode
       local alias = {
-				n = 'NORMAL',
-				i = 'INSERT',
-				c = 'COMMAND',
-				v = 'VISUAL', 
-				V = 'VISUAL', 
+        n = 'NORMAL',
+        i = 'INSERT',
+        c = 'COMMAND',
+        v = 'VISUAL', 
+        V = 'VISUAL', 
         t = 'TERMINAL',
         s = 'SELECT',
         S = 'SELECT',
         ['r?'] = 'CONFIRM',
         ['!'] = 'SHELL',
-			}
+      }
       local mode_color = {
         n = colors.magenta,
         i = colors.green,
