@@ -15,8 +15,8 @@ local special_buffers = {
   'plug',
   'defx',
   'vista',
-  'undotree',
   'help',
+  'undotree',
   'startify',
   'vim-plug',
   'NvimTree',
@@ -24,6 +24,7 @@ local special_buffers = {
   'MundoDiff',
   'fugitive',
   'fugitiveblame',
+  'startuptime',
   'SpaceVimPlugManager',
 }
 
