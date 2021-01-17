@@ -13,8 +13,8 @@ end
 
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
-local sorters = require 'telescope.sorters'
-local actions = require 'telescope.actions'
+local sorters = require('telescope.sorters')
+local actions = require('telescope.actions')
 
 local task_lists = function()
   if vim.fn['asynctasks#source'] == nil then
