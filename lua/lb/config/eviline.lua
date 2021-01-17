@@ -98,7 +98,7 @@ gls.left[4] = {
 gls.left[5] = {
   GitIcon = {
     provider = function()
-      return '\u{f1d2} '
+      return '  '
     end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.orange, colors.line_bg},
@@ -194,7 +194,14 @@ gls.right[3] = {
   },
 }
 
-gls.right[4] = {ScrollBar = {provider = 'ScrollBar', highlight = {colors.blue, colors.line_bg}}}
+gls.right[4] = {
+  RainbowBlue = {
+    provider = function() 
+      return '▊' 
+    end,
+    highlight = {colors.blue, colors.line_bg},
+  },
+}
 
 gls.short_line_left[1] = {
   BufferType = {
