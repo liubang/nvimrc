@@ -89,10 +89,8 @@ o.pumheight = 15
 o.winminheight = 0
 o.backspace = 'eol,start,indent'
 o.whichwrap = 'b,s,<,>,h,l'
-o.cursorline = true
 o.fileformats = 'unix,mac,dos'
 o.autoread = true
-o.cursorcolumn = false
 o.errorbells = false
 o.visualbell = false
 o.t_vb = ''
@@ -139,3 +137,5 @@ bind_options('foldenable', true)
 bind_options('foldtext', 'v:lua.folds_render()')
 bind_options('foldmethod', 'syntax')
 bind_options('foldlevelstart', 10)
+bind_options('cursorline', true)
+bind_options('cursorcolumn', false)
