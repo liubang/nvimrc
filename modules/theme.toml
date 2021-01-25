@@ -5,6 +5,9 @@ repo = 'ryanoasis/vim-devicons'
 repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
+repo = 'sainnhe/sonokai'
+
+[[plugins]]
 repo = 'sainnhe/gruvbox-material'
 hook_source = 'lua require("lb.config.theme")'
 
