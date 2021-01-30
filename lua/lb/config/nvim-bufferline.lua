@@ -31,7 +31,7 @@ bufferline.setup {
     close_icon = '\u{f18a}',
     modified_icon = '\u{fbba}',
     show_buffer_close_icons = false,
-    always_show_bufferline = false,
+    always_show_bufferline = true,
   },
   highlights = {
     fill = {guifg = colors.fg, guibg = colors.bg},
