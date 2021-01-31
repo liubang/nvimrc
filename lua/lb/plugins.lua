@@ -13,64 +13,121 @@ if not packer_exists then
   return
 end
 
-local packer = require('packer')
-
-packer.startup {
+require('packer').startup {
   function(use)
     use {'wbthomason/packer.nvim', opt = true}
+
+    -- appearance
     use {
       'sainnhe/gruvbox-material',
       requires = {'kyazdani42/nvim-web-devicons', 'ryanoasis/vim-devicons'},
-      config = require('lb.config.theme'),
+      config = function()
+        require('lb.config.theme')
+      end,
     }
-    use {'mhinz/vim-startify', config = require('lb.config.vim-startify')}
     use {
-      'mengelbrecht/lightline-bufferline',
-      requires = 'itchyny/lightline.vim',
-      config = require('lb.config.lightline').on_attach(),
+      'mhinz/vim-startify',
+      config = function()
+        require('lb.config.vim-startify')
+      end,
     }
-    use {'kyazdani42/nvim-tree.lua', config = require('lb.config.nvim-tree').on_attach()}
+    use {
+      'akinsho/nvim-bufferline.lua',
+      config = function()
+        require('lb.config.nvim-bufferline')
+      end,
+    }
+    use {
+      'glepnir/galaxyline.nvim',
+      config = function()
+        require('lb.config.eviline')
+      end,
+    }
+    use {
+      'kyazdani42/nvim-tree.lua',
+      config = function()
+        require('lb.config.nvim-tree').on_attach()
+      end,
+    }
 
-    use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}, config = require('lb.config.vim-cursorword')}
-
-    use 'tpope/vim-surround'
+    -- editor
+    use {
+      'itchyny/vim-cursorword',
+      event = {'BufReadPre', 'BufNewFile'},
+      config = function()
+        require('lb.config.vim-cursorword')
+      end,
+    }
+    use {'tpope/vim-surround'}
     use {'tpope/vim-fugitive', cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'}}
-    use 'junegunn/gv.vim'
-    use 'junegunn/vim-easy-align'
-    use 'terryma/vim-expand-region'
+    use {'junegunn/gv.vim'}
+    use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
+    use {'terryma/vim-expand-region', event = {'BufReadPre', 'BufNewFile'}}
     use {
       'voldikss/vim-floaterm',
       cmd = {'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend', 'FloatermKill'},
-      config = require('lb.config.vim-floaterm'),
+      config = function()
+        require('lb.config.vim-floaterm')
+      end,
     }
-    use {'skywind3000/asynctasks.vim', requires = 'skywind3000/asyncrun.vim'}
-    use {'liuchengxu/vista.vim', cmd = {'Vista', 'Vista!', 'Vista!!'}, config = require('lb.config.vista')}
+    use {'skywind3000/asynctasks.vim', requires = {'skywind3000/asyncrun.vim', 'skywind3000/asyncrun.extra'}}
     use {
-      'nvim-telescope/telescope.nvim',
-      requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'},
-      config = require('lb.config.nvim-telescope'),
+      'liuchengxu/vista.vim',
+      cmd = {'Vista'},
+      config = function()
+        require('lb.config.vista')
+      end,
     }
-    use {'tyru/caw.vim', requires = 'kana/vim-operator-user'}
-    use 'matze/vim-move'
-    use 'dstein64/vim-startuptime'
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'}}
+    use {
+      'nvim-telescope/telescope-fzy-native.nvim',
+      after = 'telescope.nvim',
+      config = function()
+        require('lb.config.nvim-telescope')
+      end,
+    }
+    use {'brooth/far.vim'}
+    use {
+      'tyru/caw.vim',
+      requires = 'kana/vim-operator-user',
+      keys = {
+        '<Plug>(caw:prefix)',
+        '<Plug>(caw:hatpos:toggle)',
+        '<Plug>(caw:wrap:comment)',
+        '<Plug>(caw:wrap:uncomment)',
+        '<Plug>(caw:box:comment)',
+        '<Plug>(caw:jump:comment-prev)',
+        '<Plug>(caw:jump:comment-next)',
+      },
+    }
+    use {
+      'matze/vim-move',
+      config = function()
+        vim.g.move_key_modifier = 'C'
+      end,
+    }
+    use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
-    use {'neoclide/coc.nvim', branch = 'release', config = require('lb.config.coc').on_attach()}
+    -- lsp
+    use {
+      'neoclide/coc.nvim',
+      branch = 'release',
+      config = function()
+        require('lb.config.coc').on_attach()
+      end,
+    }
 
+    -- ft
     use {'cespare/vim-toml', ft = 'toml'}
     use {'neoclide/jsonc.vim', ft = {'json', 'jsonc'}}
-    use {'plasticboy/vim-markdown', ft = 'markdown', config = require('lb.config.vim-markdown')}
     use {
       'iamcco/markdown-preview.nvim',
       ft = {'markdown', 'pandoc.markdown', 'rmd'},
       run = 'sh -c "cd app & yarn install"',
-      config = require('lb.config.markdown-preview'),
-    }
-    use {'z0mbix/vim-shfmt', ft = 'sh', config = require('lb.config.vim-shfmt')}
-    use {
-      'rhysd/vim-clang-format',
-      ft = {'c', 'cpp'},
-      cmd = 'ClangFormat',
-      config = require('lb.config.vim-clang-format'),
+      config = function()
+        require('lb.config.markdown-preview')
+      end,
     }
   end,
+  config = {},
 }

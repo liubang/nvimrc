@@ -18,8 +18,10 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local function detect(plug)
-  -- return true
-  return vim.fn['dein#tap'](plug) > 0
+  if vim.fn.exists('*dein#tap') ~= 0 then
+    return vim.fn['dein#tap'](plug) > 0
+  end
+  return true
 end
 
 -- clear default

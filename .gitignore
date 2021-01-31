@@ -3,3 +3,4 @@ sessions
 .netrwhist
 undo
 plugged
+plugin/packer_compiled.vim

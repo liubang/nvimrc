@@ -51,7 +51,7 @@ local header_superman = {
 }
 
 local total_plugins = 0
-if vim.fn.exists('*dein#get') then
+if vim.fn.exists('*dein#get') ~= 0 then
   local plugins = vim.fn['dein#get']()
   for _, _ in pairs(plugins) do
     total_plugins = total_plugins + 1

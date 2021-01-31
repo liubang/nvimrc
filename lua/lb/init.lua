@@ -6,7 +6,7 @@
 -- Last Modified: 2020/12/11 00:23
 --
 -- =====================================================================
-local g, fn = vim.g, vim.fn
+local g, o, fn = vim.g, vim.o, vim.fn
 
 -- global functions 
 _G.P = function(v)
@@ -34,10 +34,10 @@ function app:run()
   g.snip_path   = string.format('%s/snippets', g.nvg_root)
 
   -- plugins
-  -- require('lb.plugins')
-  require('lb.utils.pm').setup(
-    require('lb.utils.fs').list_files(g.module_path, '*.toml')
-  )
+  require('lb.plugins')
+  -- require('lb.utils.pm').setup(
+  --   require('lb.utils.fs').list_files(g.module_path, '*.toml')
+  -- )
   -- LuaFormatter on
   require('lb.options')
   require('lb.mappings')
