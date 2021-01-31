@@ -83,6 +83,8 @@ map('c', '<C-l>', '<Right>')
 map('c', '<C-n>', 'pumvisible() ? \'<Right>\' : \'<Down>\'', {expr = true})
 map('c', '<C-p>', 'pumvisible() ? \'<Left>\' : \'<Up>\'', {expr = true})
 
+-- insert mod
+
 -- terminal
 map('t', '<Esc>', '<C-\\><C-n>')
 map('t', '<Leader>wh', '<C-\\><C-N><C-w>h')
@@ -148,26 +150,31 @@ if detect('vista.vim') then
   map('n', "<Leader>vf", "<cmd>Vista finder coc<CR>")
 end
 
-
-if detect('coc.nvim') then
-  map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 
-  map('i', "<cr>", [[pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true})
-  map('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {expr = true})
-  map('n', "[g", "<Plug>(coc-diagnostic-prev)", {noremap = false})
-  map('n', "]g", "<Plug>(coc-diagnostic-next)", {noremap = false})
-  map('n', "<Leader>gd", "<Plug>(coc-definition)", {noremap = false})
-  map('n', "<Leader>gD", "<Plug>(coc-declaration)", {noremap = false})
-  map('n', "<Leader>gy", "<Plug>(coc-type-definition)", {noremap = false})
-  map('n', "<Leader>gi", "<Plug>(coc-implementation)", {noremap = false})
-  map('n', "<Leader>gr", "<Plug>(coc-references)", {noremap = false})
-  map('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false})
-  map('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false})
-  map('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false})
-  map('n', "<Leader>fm", "<Plug>(coc-format)", {noremap = false})
-  map('v', "<Leader>fm", "<Plug>(coc-format-selected)", {noremap =  false})
-  map('n', "w", "<Plug>(coc-ci-w)", {noremap = false})
-  map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
+if detect('nvim-compe') then
+  map('i', '<TAB>', [[pumvisible() ? '<C-n>' : vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : v:lua.check_back_space() ? '<TAB>' : compe#complete()]], {expr = true, noremap = false})
+  map('i', "<S-TAB>", [[pumvisible() ? '<C-p>' : '<C-h>']], {expr = true})
+  map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 end
+
+-- if detect('coc.nvim') then
+  -- map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 
+--   map('i', "<cr>", [[pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true})
+--   map('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {expr = true})
+--   map('n', "[g", "<Plug>(coc-diagnostic-prev)", {noremap = false})
+--   map('n', "]g", "<Plug>(coc-diagnostic-next)", {noremap = false})
+--   map('n', "<Leader>gd", "<Plug>(coc-definition)", {noremap = false})
+--   map('n', "<Leader>gD", "<Plug>(coc-declaration)", {noremap = false})
+--   map('n', "<Leader>gy", "<Plug>(coc-type-definition)", {noremap = false})
+--   map('n', "<Leader>gi", "<Plug>(coc-implementation)", {noremap = false})
+--   map('n', "<Leader>gr", "<Plug>(coc-references)", {noremap = false})
+--   map('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false})
+--   map('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false})
+--   map('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false})
+--   map('n', "<Leader>fm", "<Plug>(coc-format)", {noremap = false})
+--   map('v', "<Leader>fm", "<Plug>(coc-format-selected)", {noremap =  false})
+--   map('n', "w", "<Plug>(coc-ci-w)", {noremap = false})
+--   map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
+-- end
 
 if detect('markdown-preview.nvim') then
   map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")

@@ -1,0 +1,13 @@
+{
+	"main": {
+		"prefix": "main",
+		"body": [
+			"int main(int argc, char *argv[])",
+			"{",
+			" ${1:/* code */}",
+			" return 0;",
+			"}\n"
+		],
+		"description": "main(…)"
+	}
+}

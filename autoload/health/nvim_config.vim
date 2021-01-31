@@ -25,6 +25,21 @@ function! health#nvim_config#check()
   call s:check_executable('lua-format', 'lua-format', ['Run in shell: luarocks install --server=https://luarocks.org/dev luaformatter'])
   call s:check_executable('fzy', 'fzy', ['Refer to https://github.com/jhawthorn/fzy'])
   call s:check_executable('fzf', 'fzf', ['Refer to https://github.com/junegunn/fzf'])
+  call s:check_executable('bash-language-server', 'bash-language-server', [
+        \ 'Run in shell: npm i -g bash-language-server',
+        \ ])
+  call s:check_executable('vim-language-server', 'vim-language-server', [
+        \ 'Run in shell: npm i -g vim-language-server',
+        \ ])
+  call s:check_executable('vscode-json-languageserver', 'vscode-json-languageserver', [
+        \ 'Run in shell: npm i -g vscode-json-languageserver',
+        \ ])
+  call s:check_executable('yaml-language-server', 'yaml-language-server', [
+        \ 'Run in shell: npm i -g yaml-language-server',
+        \ ])
+  call s:check_executable('cmake-language-server', 'cmake-language-server', [
+        \ 'Run in shell: pip install cmake-language-server',
+        \ ])
   call s:check_executable('gopls', 'gopls', [
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/gopls',
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/cmd/...',

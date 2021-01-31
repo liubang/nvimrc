@@ -52,6 +52,16 @@ require('packer').startup {
 
     -- editor
     use {
+      -- 'jiangmiao/auto-pairs',
+      'Raimondi/delimitMate',
+      config = function()
+        vim.g.delimitMate_expand_cr = 0
+        vim.g.delimitMate_expand_space = 1
+        vim.g.delimitMate_smart_quotes = 1
+        vim.g.delimitMate_expand_inside_quotes = 0
+      end
+    }
+    use {
       'itchyny/vim-cursorword',
       event = {'BufReadPre', 'BufNewFile'},
       config = function()
@@ -62,7 +72,7 @@ require('packer').startup {
     use {'tpope/vim-fugitive', cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'}}
     use {'junegunn/gv.vim'}
     use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
-    use {'terryma/vim-expand-region', event = {'BufReadPre', 'BufNewFile'}}
+    use {'terryma/vim-expand-region'}
     use {
       'voldikss/vim-floaterm',
       cmd = {'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend', 'FloatermKill'},
@@ -91,14 +101,13 @@ require('packer').startup {
       'tyru/caw.vim',
       requires = 'kana/vim-operator-user',
       keys = {
-        '<Plug>(caw:prefix)',
         '<Plug>(caw:hatpos:toggle)',
         '<Plug>(caw:wrap:comment)',
         '<Plug>(caw:wrap:uncomment)',
         '<Plug>(caw:box:comment)',
         '<Plug>(caw:jump:comment-prev)',
         '<Plug>(caw:jump:comment-next)',
-      },
+      }, 
     }
     use {
       'matze/vim-move',
@@ -110,16 +119,22 @@ require('packer').startup {
 
     -- lsp
     use {
-      'neoclide/coc.nvim',
-      branch = 'release',
+      'tjdevries/nlua.nvim',
+    }
+
+    use {
+      'hrsh7th/nvim-compe',
+      requires = {
+        'neovim/nvim-lspconfig',
+        'hrsh7th/vim-vsnip'
+      },
       config = function()
-        require('lb.config.coc').on_attach()
+        require('lb.config.lspconfig')
       end,
     }
 
     -- ft
     use {'cespare/vim-toml', ft = 'toml'}
-    use {'neoclide/jsonc.vim', ft = {'json', 'jsonc'}}
     use {
       'iamcco/markdown-preview.nvim',
       ft = {'markdown', 'pandoc.markdown', 'rmd'},
