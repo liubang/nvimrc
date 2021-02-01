@@ -59,7 +59,7 @@ require('packer').startup {
         vim.g.delimitMate_expand_space = 1
         vim.g.delimitMate_smart_quotes = 1
         vim.g.delimitMate_expand_inside_quotes = 0
-      end
+      end,
     }
     use {
       'itchyny/vim-cursorword',
@@ -98,16 +98,11 @@ require('packer').startup {
     }
     use {'brooth/far.vim'}
     use {
-      'tyru/caw.vim',
-      requires = 'kana/vim-operator-user',
-      keys = {
-        '<Plug>(caw:hatpos:toggle)',
-        '<Plug>(caw:wrap:comment)',
-        '<Plug>(caw:wrap:uncomment)',
-        '<Plug>(caw:box:comment)',
-        '<Plug>(caw:jump:comment-prev)',
-        '<Plug>(caw:jump:comment-next)',
-      }, 
+      'preservim/nerdcommenter',
+      setup = function()
+        vim.g['NERDCreateDefaultMappings'] = 0
+        vim.g['NERDSpaceDelims'] = 1
+      end,
     }
     use {
       'matze/vim-move',
@@ -118,23 +113,19 @@ require('packer').startup {
     use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
     -- lsp
-    use {
-      'tjdevries/nlua.nvim',
-    }
+    use {'tjdevries/nlua.nvim'}
 
     use {
       'hrsh7th/nvim-compe',
-      requires = {
-        'neovim/nvim-lspconfig',
-        'hrsh7th/vim-vsnip'
-      },
+      requires = {'neovim/nvim-lspconfig', 'hrsh7th/vim-vsnip'},
       config = function()
         require('lb.config.lspconfig')
       end,
     }
 
     -- ft
-    use {'cespare/vim-toml', ft = 'toml'}
+    use {'cespare/vim-toml', ft = {'toml'}}
+    use {'neoclide/jsonc.vim', ft = {'jsonc', 'json'}}
     use {
       'iamcco/markdown-preview.nvim',
       ft = {'markdown', 'pandoc.markdown', 'rmd'},

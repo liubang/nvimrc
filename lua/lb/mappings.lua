@@ -98,17 +98,11 @@ if detect('nvim-tree.lua') then
   map('n', "<Leader>ft", "<cmd>lua require('nvim-tree').toggle()<CR>")
 end
 
-if detect('caw.vim') then
-  map('', "<Leader>cc", "<Plug>(caw:hatpos:toggle)", {noremap = false})
-  map('', "<Leader>cw", "<Plug>(caw:wrap:comment)", {noremap = false})
-  map('', "<Leader>cu", "<Plug>(caw:wrap:uncomment)", {noremap = false})
-  map('', "<Leader>cb", "<Plug>(caw:box:comment)", {noremap = false})
-  map('', "<Leader>cp", "<Plug>(caw:jump:comment-prev)", {noremap = false})
-  map('', "<Leader>cn", "<Plug>(caw:jump:comment-next)", {noremap = false})
-end
-
-if detect('vim-slash') then
-  map('', "<plug>(slash-after)", 'zz')
+if detect('nerdcommenter') then
+  map('n', "<Leader>cc", ':call NERDComment(\'n\', \'toggle\')<CR>')
+  map('x', "<Leader>cc", ':call NERDComment(\'x\', \'toggle\')<CR>')
+  map('n', "<Leader>cn", ':call NERDComment(\'n\', \'sexy\')<CR>')
+  map('x', "<Leader>cn", ':call NERDComment(\'x\', \'sexy\')<CR>')
 end
 
 if detect('vim-easy-align') then
@@ -147,34 +141,25 @@ end
 
 if detect('vista.vim') then
   map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
-  map('n', "<Leader>vf", "<cmd>Vista finder coc<CR>")
 end
+
+-- lsp
+map('n', '<Leader>gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
+map('n', '<Leader>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', '<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+map('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', '<Leader>hh', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+map('n', '<Leader>ee', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+-- formatting
+map('n', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+map('v', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
 if detect('nvim-compe') then
   map('i', '<TAB>', [[pumvisible() ? '<C-n>' : vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : v:lua.check_back_space() ? '<TAB>' : compe#complete()]], {expr = true, noremap = false})
   map('i', "<S-TAB>", [[pumvisible() ? '<C-p>' : '<C-h>']], {expr = true})
   map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 end
-
--- if detect('coc.nvim') then
-  -- map('i', "<TAB>", [[pumvisible() ? "\<C-n>" : v:lua.check_back_space() ? "\<TAB>" : coc#refresh()]], {expr = true}) 
---   map('i', "<cr>", [[pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], {expr = true})
---   map('i', "<S-TAB>", [[pumvisible() ? "\<C-p>" : "\<C-h>"]], {expr = true})
---   map('n', "[g", "<Plug>(coc-diagnostic-prev)", {noremap = false})
---   map('n', "]g", "<Plug>(coc-diagnostic-next)", {noremap = false})
---   map('n', "<Leader>gd", "<Plug>(coc-definition)", {noremap = false})
---   map('n', "<Leader>gD", "<Plug>(coc-declaration)", {noremap = false})
---   map('n', "<Leader>gy", "<Plug>(coc-type-definition)", {noremap = false})
---   map('n', "<Leader>gi", "<Plug>(coc-implementation)", {noremap = false})
---   map('n', "<Leader>gr", "<Plug>(coc-references)", {noremap = false})
---   map('n', "<Leader>rn", "<Plug>(coc-rename)", {noremap = false})
---   map('n', "<Leader>rf", "<Plug>(coc-refactor)", {noremap = false})
---   map('n', "<Leader>ac", "<Plug>(coc-codeaction)", {noremap = false})
---   map('n', "<Leader>fm", "<Plug>(coc-format)", {noremap = false})
---   map('v', "<Leader>fm", "<Plug>(coc-format-selected)", {noremap =  false})
---   map('n', "w", "<Plug>(coc-ci-w)", {noremap = false})
---   map('n', "b", "<Plug>(coc-ci-b)", {noremap = false})
--- end
 
 if detect('markdown-preview.nvim') then
   map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
