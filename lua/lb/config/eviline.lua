@@ -43,32 +43,40 @@ gls.left[2] = {
     provider = function()
       -- auto change color according the vim mode
       local alias = {
-        n = 'NORMAL',
-        i = 'INSERT',
-        c = 'COMMAND',
-        v = 'VISUAL',
-        V = 'VISUAL',
-        t = 'TERMINAL',
-        s = 'SELECT',
-        S = 'SELECT',
-        ['r?'] = 'CONFIRM',
-        ['!'] = 'SHELL',
+        n       = 'NORMAL',
+        i       = 'INSERT',
+        c       = 'COMMAND',
+        v       = 'VISUAL',
+        V       = 'VISUAL',
+        ['\22'] = 'VISUAL',
+        t       = 'TERMINAL',
+        s       = 'SELECT',
+        S       = 'SELECT',
+        ['r?']  = 'CONFIRM',
+        ['!']   = 'SHELL',
       }
       local mode_color = {
-        n = colors.magenta,
-        i = colors.green,
-        c = colors.red,
-        v = colors.blue,
-        V = colors.blue,
-        s = colors.orange,
-        S = colors.orange,
-        t = colors.purple,
-        ['r?'] = colors.purple,
-        ['!'] = colors.purple,
+        n       = colors.magenta,
+        i       = colors.green,
+        c       = colors.red,
+        v       = colors.blue,
+        V       = colors.blue,
+        ['\22'] = colors.blue,
+        s       = colors.orange,
+        S       = colors.orange,
+        t       = colors.purple,
+        ['r?']  = colors.purple,
+        ['!']   = colors.purple,
       }
       local mode = vim.fn.mode()
-      vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[mode])
-      return alias[mode] .. '   '
+      if mode_color[mode] ~= nil then
+        vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[mode])
+        return alias[mode] .. '   '
+      else
+        P(mode)
+        vim.api.nvim_command('hi GalaxyViMode guifg=' .. colors.red)
+        return 'UNKNOWN' .. '   '
+      end
     end,
     highlight = {colors.red, colors.line_bg, 'bold'},
   },
