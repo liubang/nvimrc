@@ -22,6 +22,7 @@ function! health#nvim_config#check()
   " call s:check_executable('clangd', 'clangd', ['Refer to https://clangd.llvm.org/'])
   call s:check_executable('ccls', 'ccls', ['Refer to https://github.com/MaskRay/ccls/wiki/Build'])
   call s:check_executable('shfmt', 'shfmt', ['Run in shell: GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt'])
+  call s:check_executable('buildifier', 'buildifier', ['Run in shell: GO111MODULE=on go get github.com/bazelbuild/buildtools/buildifier'])
   call s:check_executable('lua-format', 'lua-format', ['Run in shell: luarocks install --server=https://luarocks.org/dev luaformatter'])
   call s:check_executable('fzy', 'fzy', ['Refer to https://github.com/jhawthorn/fzy'])
   call s:check_executable('fzf', 'fzf', ['Refer to https://github.com/junegunn/fzf'])
@@ -36,6 +37,9 @@ function! health#nvim_config#check()
         \ ])
   call s:check_executable('yaml-language-server', 'yaml-language-server', [
         \ 'Run in shell: npm i -g yaml-language-server',
+        \ ])
+  call s:check_executable('prettier', 'prettier', [
+        \ 'Run in shell: npm i -g prettier',
         \ ])
   call s:check_executable('cmake-language-server', 'cmake-language-server', [
         \ 'Run in shell: pip install cmake-language-server',
