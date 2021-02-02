@@ -4,9 +4,11 @@ if not packer_exists then
   if vim.fn.input('Download Packer? (y for yes)') ~= 'y' then
     return
   end
-  local directory = string.format('%s/site/pack/packer/opt/', vim.fn.stdpath('data'))
+  local directory = string.format('%s/site/pack/packer/opt/',
+                                  vim.fn.stdpath('data'))
   vim.fn.mkdir(directory, 'p')
-  local out = vim.fn.system(string.format('git clone %s %s', 'https://github.com/wbthomason/packer.nvim',
+  local out = vim.fn.system(string.format('git clone %s %s',
+                                          'https://github.com/wbthomason/packer.nvim',
                                           directory .. '/packer.nvim'))
   print(out)
   print('Downloading packer.nvim...')
@@ -69,18 +71,31 @@ require('packer').startup {
       end,
     }
     use {'tpope/vim-surround'}
-    use {'tpope/vim-fugitive', cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'}}
+    use {
+      'tpope/vim-fugitive',
+      cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
+    }
     use {'junegunn/gv.vim'}
     use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
     use {'terryma/vim-expand-region'}
     use {
       'voldikss/vim-floaterm',
-      cmd = {'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend', 'FloatermKill'},
+      cmd = {
+        'FloatermNew',
+        'FloatermToggle',
+        'FloatermPrev',
+        'FloatermNext',
+        'FloatermSend',
+        'FloatermKill',
+      },
       config = function()
         require('lb.config.vim-floaterm')
       end,
     }
-    use {'skywind3000/asynctasks.vim', requires = {'skywind3000/asyncrun.vim', 'skywind3000/asyncrun.extra'}}
+    use {
+      'skywind3000/asynctasks.vim',
+      requires = {'skywind3000/asyncrun.vim', 'skywind3000/asyncrun.extra'},
+    }
     use {
       'liuchengxu/vista.vim',
       cmd = {'Vista'},
@@ -88,7 +103,10 @@ require('packer').startup {
         require('lb.config.vista')
       end,
     }
-    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'}}
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'},
+    }
     use {
       'nvim-telescope/telescope-fzy-native.nvim',
       after = 'telescope.nvim',
@@ -118,7 +136,11 @@ require('packer').startup {
 
     use {
       'hrsh7th/nvim-compe',
-      requires = {'neovim/nvim-lspconfig', 'hrsh7th/vim-vsnip'},
+      requires = {
+        'neovim/nvim-lspconfig',
+        'hrsh7th/vim-vsnip',
+        'norcalli/snippets.nvim',
+      },
       config = function()
         require('lb.config.lspconfig')
       end,

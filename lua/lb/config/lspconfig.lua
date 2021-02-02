@@ -9,9 +9,19 @@
 local lspconfig = require('lspconfig')
 local lspconfig_util = require('lspconfig/util')
 local nvim_compe = require('compe')
+local snippets = require('snippets')
+local U = require('snippets.utils')
+
+snippets.snippets = {
+  _global = {
+    todo = 'TODO(liubang): ',
+    date = [[${=os.date("%Y-%m-%d")}]],
+    datetime = [[${=os.date("%Y-%m-%d %H:%M:%S")}]],
+    time = os.time,
+  },
+}
 
 vim.g.vsnip_snippet_dir = vim.g.snip_path
-
 nvim_compe.setup {
   enabled = true,
   autocomplete = true,
@@ -22,7 +32,15 @@ nvim_compe.setup {
   source_timeout = 200,
   incomplete_delay = 400,
   allow_prefix_unmatch = false,
-  source = {path = true, buffer = true, vsnip = true, nvim_lsp = true, nvim_lua = true},
+  source = {
+    path = true,
+    calc = true,
+    buffer = true,
+    vsnip = true,
+    nvim_lsp = true,
+    nvim_lua = true,
+    snippets_nvim = true,
+  },
 }
 
 -- define commands
@@ -34,7 +52,15 @@ local custom_attach = function(client, bufnr)
   -- TODO
 end
 
-local servers = {'bashls', 'cmake', 'cssls', 'dockerls', 'jsonls', 'vimls', 'yamlls'}
+local servers = {
+  'bashls',
+  'cmake',
+  'cssls',
+  'dockerls',
+  'jsonls',
+  'vimls',
+  'yamlls',
+}
 
 for _, ls in ipairs(servers) do
   lspconfig[ls].setup {on_attach = custom_attach}
@@ -45,7 +71,12 @@ local ccls_init = {cache = {directory = '/tmp/ccls'}}
 if jit.os == 'OSX' then
   ccls_init.clang = {
     resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
-    extraArgs = {'-isystem', os.getenv('CLANG_ISYSTEM') or '', '-I', os.getenv('CLANG_INCLUDE') or ''},
+    extraArgs = {
+      '-isystem',
+      os.getenv('CLANG_ISYSTEM') or '',
+      '-I',
+      os.getenv('CLANG_INCLUDE') or '',
+    },
   }
 elseif jit.os == 'Linux' then
   ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr'}}
@@ -55,7 +86,8 @@ lspconfig.ccls.setup {
   cmd = {'ccls'},
   filetypes = {'c', 'cpp'},
   init_options = ccls_init,
-  root_dir = lspconfig_util.root_pattern({'.ccls', '.git/', 'compile_commands.json'}),
+  root_dir = lspconfig_util.root_pattern(
+    {'.ccls', '.git/', 'compile_commands.json'}),
 }
 
 -- golang organize imports
@@ -64,7 +96,8 @@ function go_org_imports(options, timeout_ms)
   vim.validate {context = {context, 't', true}}
   local params = vim.lsp.util.make_range_params()
   params.context = context
-  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, timeout_ms)
+  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params,
+                                           timeout_ms)
   if not results then
     return
   end
@@ -85,7 +118,9 @@ vim.cmd [[augroup END]]
 lspconfig.gopls.setup {
   on_attach = custom_attach,
   cmd = {'gopls'},
-  capabilities = {textDocument = {completion = {completionItem = {snippetSupport = true}}}},
+  capabilities = {
+    textDocument = {completion = {completionItem = {snippetSupport = true}}},
+  },
   init_options = {usePlaceholders = true, completeUnimported = true},
 }
 
@@ -110,7 +145,12 @@ local sumneko_command = function()
   elseif jit.os == 'Linux' then
     lua_ls_bin = lua_ls_path .. '/bin/Linux/lua-language-server'
   end
-  return {lua_ls_bin, '-E', 'LANG="zh-cn"', string.format('%s/main.lua', lua_ls_path)}
+  return {
+    lua_ls_bin,
+    '-E',
+    'LANG="zh-cn"',
+    string.format('%s/main.lua', lua_ls_path),
+  }
 end
 
 lspconfig.sumneko_lua.setup {
@@ -124,9 +164,21 @@ lspconfig.sumneko_lua.setup {
       diagnostics = {
         enable = true,
         disable = {'trailing-space'},
-        globals = {'vim', 'describe', 'it', 'before_each', 'after_each', 'teardown', 'pending'},
+        globals = {
+          'vim',
+          'describe',
+          'it',
+          'before_each',
+          'after_each',
+          'teardown',
+          'pending',
+        },
       },
-      workspace = {library = get_lua_runtime(), maxPreload = 1000, preloadFileSize = 1000},
+      workspace = {
+        library = get_lua_runtime(),
+        maxPreload = 1000,
+        preloadFileSize = 1000,
+      },
     },
   },
 }
@@ -141,7 +193,7 @@ lspconfig.diagnosticls.setup {
       lua_format = {
         command = 'lua-format',
         args = {
-          '--column-limit=120',
+          '--column-limit=80',
           '--indent-width=2',
           '--tab-width=2',
           '--continuation-indent-width=2',
@@ -159,7 +211,10 @@ lspconfig.diagnosticls.setup {
         },
       },
       shfmt = {command = 'shfmt'},
-      prettier = {command = 'prettier', args = {'--stdin', '--stdin-filepath', [[%filepath]]}},
+      prettier = {
+        command = 'prettier',
+        args = {'--stdin', '--stdin-filepath', [[%filepath]]},
+      },
     },
     formatFiletypes = {
       sh = 'shfmt',
