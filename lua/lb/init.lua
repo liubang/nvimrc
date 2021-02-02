@@ -32,13 +32,13 @@ function app:run()
   g.cache_path  = string.format('%s/.cache', g.nvg_root)
   g.module_path = string.format('%s/modules', g.nvg_root)
   g.snip_path   = string.format('%s/snippets', g.nvg_root)
+  -- LuaFormatter on
 
   -- plugins
   require('lb.plugins')
   -- require('lb.utils.pm').setup(
   --   require('lb.utils.fs').list_files(g.module_path, '*.toml')
   -- )
-  -- LuaFormatter on
   require('lb.options')
   require('lb.mappings')
   require('lb.events')
