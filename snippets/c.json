@@ -35,5 +35,4 @@
 		"body": "else \n{\n\t${1:/* code */}\n}",
 		"description": "else {…}"
 	}
-
 }

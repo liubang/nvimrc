@@ -12,22 +12,26 @@ local nvim_compe = require('compe')
 local snippets = require('snippets')
 local U = require('snippets.utils')
 
+-- about snippets
 snippets.snippets = {
   _global = {
     todo = 'TODO(liubang): ',
     date = [[${=os.date("%Y-%m-%d")}]],
     datetime = [[${=os.date("%Y-%m-%d %H:%M:%S")}]],
-    time = os.time,
   },
+  php = {php = '<?php\n'},
 }
 
+-- vsnip
 vim.g.vsnip_snippet_dir = vim.g.snip_path
+
+-- nvim-compe
 nvim_compe.setup {
   enabled = true,
   autocomplete = true,
   debug = false,
   min_length = 1,
-  preselect = 'always',
+  preselect = 'enable',
   throttle_time = 80,
   source_timeout = 200,
   incomplete_delay = 400,
@@ -48,8 +52,28 @@ vim.schedule(function()
   vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting()]]
 end)
 
+local opts = {noremap = true, silent = true}
+local function buf_set_keymap(...)
+  vim.api.nvim_buf_set_keymap(bufnr, ...)
+end
+
 local custom_attach = function(client, bufnr)
-  -- TODO
+  buf_set_keymap('n', '<Leader>gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>',
+                 opts)
+  buf_set_keymap('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>',
+                 opts)
+  buf_set_keymap('n', '<Leader>ee', ':lua vim.lsp.diagnostic.set_loclist()<CR>',
+                 opts)
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
+  end
+  if client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap('i', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
+  end
 end
 
 local servers = {
@@ -98,11 +122,15 @@ function go_org_imports(options, timeout_ms)
   params.context = context
   local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params,
                                            timeout_ms)
-  if not results then
+  if not results or #results == 0 then
+    --- always call formatting
+    vim.lsp.buf.formatting()
     return
   end
   result = results[1].result
-  if not result then
+  if not result or #result == 0 then
+    --- always call formatting
+    vim.lsp.buf.formatting()
     return
   end
   edit = result[1].edit
@@ -113,6 +141,7 @@ end
 vim.cmd [[augroup lsp]]
 vim.cmd [[  autocmd! ]]
 vim.cmd [[  autocmd BufWritePre *.go lua go_org_imports({}, 1000) ]]
+vim.cmd [[  autocmd CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })]]
 vim.cmd [[augroup END]]
 
 lspconfig.gopls.setup {
@@ -185,6 +214,7 @@ lspconfig.sumneko_lua.setup {
 
 -- diagnosticls
 lspconfig.diagnosticls.setup {
+  on_attach = custom_attach,
   cmd = {'diagnostic-languageserver', '--stdio'},
   filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
   init_options = {

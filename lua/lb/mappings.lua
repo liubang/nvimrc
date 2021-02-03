@@ -143,18 +143,6 @@ if detect('vista.vim') then
   map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
 end
 
--- lsp
-map('n', '<Leader>gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n', '<Leader>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
-map('n', '<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-map('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-map('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-map('n', '<Leader>hh', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-map('n', '<Leader>ee', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
--- formatting
-map('n', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-map('v', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-
 if detect('nvim-compe') then
   map('i', '<TAB>', [[pumvisible() ? '<C-n>' : vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : v:lua.check_back_space() ? '<TAB>' : compe#complete()]], {expr = true, noremap = false})
   map('i', "<S-TAB>", [[pumvisible() ? '<C-p>' : '<C-h>']], {expr = true})
