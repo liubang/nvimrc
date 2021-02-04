@@ -19,3 +19,12 @@ vim.cmd [[  autocmd BufReadPost  * if line("'\"") > 1 && line("'\"") <= line("$"
 vim.cmd [[  autocmd BufWritePost * nested if &l:filetype ==# '' || exists('b:ftdetect') | unlet! b:ftdetect | filetype detect | endif]]
 vim.cmd [[  autocmd TextYankPost * lua require('vim.highlight').on_yank({timeout = 500, on_visual = false})]]
 vim.cmd [[augroup END]]
+
+vim.cmd [[augroup user_plugin_cursorword]]
+vim.cmd [[  autocmd!]]
+vim.cmd [[  autocmd FileType LuaTree,defx,denite,fern,clap,vista let b:cursorword = 0]]
+vim.cmd [[  autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif]]
+vim.cmd [[  autocmd InsertEnter * let b:cursorword = 0]]
+vim.cmd [[  autocmd InsertLeave * let b:cursorword = 1]]
+vim.cmd [[augroup END]]
+

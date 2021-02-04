@@ -33,8 +33,3 @@ vim.g.gruvbox_material_background = 'soft'
 
 vim.cmd('colorscheme gruvbox-material')
 vim.cmd('hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE')
-
--- vim.g.sonokai_style = 'shusia'
--- vim.g.sonokai_enable_italic = 0
--- vim.g.sonokai_disable_italic_comment = 1
--- vim.cmd('colorscheme sonokai')

@@ -70,7 +70,11 @@ require('packer').startup {
         require('lb.config.vim-cursorword')
       end,
     }
-    use {'tpope/vim-surround'}
+    use {
+      'tpope/vim-surround',
+      config = function()
+      end,
+    }
     use {
       'tpope/vim-fugitive',
       cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
@@ -89,18 +93,43 @@ require('packer').startup {
         'FloatermKill',
       },
       config = function()
-        require('lb.config.vim-floaterm')
+        vim.g.floaterm_wintype = 'floating'
+        vim.g.floaterm_position = 'center'
+        vim.g.floaterm_autoinsert = true
+        vim.g.floaterm_title = 'terminal [$1/$2]'
+        vim.cmd('hi FloatermBorder guibg=#32302f guifg=#e78a4e')
       end,
     }
     use {
       'skywind3000/asynctasks.vim',
       requires = {'skywind3000/asyncrun.vim', 'skywind3000/asyncrun.extra'},
+      config = function()
+        vim.g.asyncrun_open = 25
+        vim.g.asyncrun_bell = 1
+        vim.g.asyncrun_rootmarks = {
+          '.svn',
+          '.git',
+          '.root',
+          '_darcs',
+          'build.xml',
+        }
+        vim.g.asynctasks_term_pos = 'floaterm'
+        vim.g.asynctasks_term_reuse = 0
+      end,
     }
     use {
       'liuchengxu/vista.vim',
       cmd = {'Vista'},
       config = function()
-        require('lb.config.vista')
+        vim.g['vista#renderer#enable_icon'] = 1
+        vim.g['vista_default_executive'] = 'coc'
+        vim.g['vista_echo_cursor'] = 0
+        vim.g['vista_fzf_preview'] = {right = '50%'}
+        vim.g['vista_executive_for'] {
+          vimwiki = 'markdown',
+          pandoc = 'markdown',
+          markdown = 'toc',
+        }
       end,
     }
     use {
@@ -154,7 +183,8 @@ require('packer').startup {
       ft = {'markdown', 'pandoc.markdown', 'rmd'},
       run = 'sh -c "cd app & yarn install"',
       config = function()
-        require('lb.config.markdown-preview')
+        vim.g.mkdp_auto_start = 0
+        vim.g.mkdp_auto_close = 0
       end,
     }
   end,
