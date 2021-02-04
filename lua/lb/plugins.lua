@@ -63,18 +63,7 @@ require('packer').startup {
         vim.g.delimitMate_expand_inside_quotes = 0
       end,
     }
-    use {
-      'itchyny/vim-cursorword',
-      event = {'BufReadPre', 'BufNewFile'},
-      config = function()
-        require('lb.config.vim-cursorword')
-      end,
-    }
-    use {
-      'tpope/vim-surround',
-      config = function()
-      end,
-    }
+    use {'tpope/vim-surround'}
     use {
       'tpope/vim-fugitive',
       cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
