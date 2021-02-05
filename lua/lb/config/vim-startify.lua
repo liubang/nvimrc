@@ -56,6 +56,10 @@ if vim.fn.exists('*dein#get') ~= 0 then
   for _, _ in pairs(plugins) do
     total_plugins = total_plugins + 1
   end
+elseif _G.packer_plugins ~= nil then
+  for _, _ in pairs(_G.packer_plugins) do 
+    total_plugins = total_plugins + 1
+  end
 end
 
 g.webdevicons_enable_startify = 1

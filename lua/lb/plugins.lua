@@ -18,7 +18,6 @@ end
 require('packer').startup {
   function(use)
     use {'wbthomason/packer.nvim', opt = true}
-
     -- appearance
     use {
       'sainnhe/gruvbox-material',
@@ -51,7 +50,6 @@ require('packer').startup {
         require('lb.config.nvim-tree').on_attach()
       end,
     }
-
     -- editor
     use {
       -- 'jiangmiao/auto-pairs',
