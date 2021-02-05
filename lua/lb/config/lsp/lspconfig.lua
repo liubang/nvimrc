@@ -2,49 +2,40 @@
 --
 -- lspconfig.lua - 
 --
--- Created by liubang on 2021/01/31 18:07
--- Last Modified: 2021/01/31 18:07
+-- Created by liubang on 2021/02/06 00:05
+-- Last Modified: 2021/02/06 00:05
 --
 -- =====================================================================
 local lspconfig = require('lspconfig')
 local lspconfig_util = require('lspconfig/util')
-local nvim_compe = require('compe')
-local snippets = require('snippets')
-local U = require('snippets.utils')
+local lspprotocol = require('vim.lsp.protocol')
 
--- about snippets
-snippets.snippets = {
-  _global = {
-    todo = 'TODO(liubang): ',
-    date = [[${=os.date("%Y-%m-%d")}]],
-    datetime = [[${=os.date("%Y-%m-%d %H:%M:%S")}]],
-  },
-  php = {php = '<?php\n'},
-}
-
--- vsnip
-vim.g.vsnip_snippet_dir = vim.g.snip_path
-
--- nvim-compe
-nvim_compe.setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = 'enable',
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  allow_prefix_unmatch = false,
-  source = {
-    path = true,
-    calc = true,
-    buffer = true,
-    vsnip = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    snippets_nvim = true,
-  },
+lspprotocol.CompletionItemKind = {
+  ' Text', -- = 1
+  'ƒ Method', -- = 2;
+  ' Function', -- = 3;
+  ' Constructor', -- = 4;
+  '綠Field', -- = 5;
+  ' Variable', -- = 6;
+  ' Class', -- = 7;
+  '禍Interface', -- = 8;
+  ' Module', -- = 9;
+  ' Property', -- = 10;
+  ' Unit', -- = 11;
+  ' Value', -- = 12;
+  ' Enum', -- = 13;
+  ' Keyword', -- = 14;
+  ' Snippet', -- = 15;
+  ' Color', -- = 16;
+  ' File', -- = 17;
+  '  Reference', -- = 18;
+  ' Folder', -- = 19;
+  ' EnumMember', -- = 20;
+  ' Constant', -- = 21;
+  ' Struct', -- = 22;
+  '鬒Event', -- = 23;
+  '洛Operator', -- = 24;
+  '  TypeParameter', -- = 25;
 }
 
 -- define commands
@@ -52,22 +43,21 @@ vim.schedule(function()
   vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting()]]
 end)
 
+-- custom attach function
 local opts = {noremap = true, silent = true}
 local function buf_set_keymap(...)
   vim.api.nvim_buf_set_keymap(bufnr, ...)
 end
 
+-- LuaFormatter off
 local custom_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>',
-                 opts)
+  buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>',
-                 opts)
-  buf_set_keymap('n', '<Leader>ee', ':lua vim.lsp.diagnostic.set_loclist()<CR>',
-                 opts)
+  buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<Leader>ee', ':lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
@@ -75,6 +65,7 @@ local custom_attach = function(client, bufnr)
     buf_set_keymap('i', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
 end
+-- LuaFormatter on
 
 local servers = {
   'bashls',
@@ -91,7 +82,11 @@ for _, ls in ipairs(servers) do
 end
 
 -- ccls
-local ccls_init = {cache = {directory = '/tmp/ccls'}}
+local ccls_init = {
+  cache = {directory = '/tmp/ccls'},
+  client = {snippetSupport = true},
+  completion = {placeholder = true},
+}
 if jit.os == 'OSX' then
   ccls_init.clang = {
     resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
@@ -141,7 +136,6 @@ end
 vim.cmd [[augroup lsp]]
 vim.cmd [[  autocmd! ]]
 vim.cmd [[  autocmd BufWritePre *.go lua go_org_imports({}, 1000) ]]
-vim.cmd [[  autocmd CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })]]
 vim.cmd [[augroup END]]
 
 lspconfig.gopls.setup {

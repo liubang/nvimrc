@@ -148,17 +148,16 @@ require('packer').startup {
     use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
     -- lsp
-    use {'tjdevries/nlua.nvim'}
-
     use {
       'hrsh7th/nvim-compe',
       requires = {
         'neovim/nvim-lspconfig',
-        'hrsh7th/vim-vsnip',
         'norcalli/snippets.nvim',
+        'hrsh7th/vim-vsnip',
+        'hrsh7th/vim-vsnip-integ',
       },
       config = function()
-        require('lb.config.lspconfig')
+        require('lb.config.lsp')
       end,
     }
 
