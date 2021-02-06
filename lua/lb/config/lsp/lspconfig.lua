@@ -84,8 +84,8 @@ end
 -- ccls
 local ccls_init = {
   cache = {directory = '/tmp/ccls'},
-  client = {snippetSupport = true},
-  completion = {placeholder = true},
+  -- client = {snippetSupport = true},
+  -- completion = {placeholder = true},
 }
 if jit.os == 'OSX' then
   ccls_init.clang = {

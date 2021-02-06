@@ -154,7 +154,6 @@ require('packer').startup {
         'neovim/nvim-lspconfig',
         'norcalli/snippets.nvim',
         'hrsh7th/vim-vsnip',
-        'hrsh7th/vim-vsnip-integ',
       },
       config = function()
         require('lb.config.lsp')
