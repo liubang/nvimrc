@@ -144,8 +144,10 @@ if detect('vista.vim') then
 end
 
 if detect('nvim-compe') then
-  map('i', '<TAB>', [[pumvisible() ? '<C-n>' : vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : v:lua.check_back_space() ? '<TAB>' : compe#complete()]], {expr = true, noremap = false})
-  map('i', "<S-TAB>", [[pumvisible() ? '<C-p>' : '<C-h>']], {expr = true})
+  map('i', "<Tab>", "v:lua.tab_complete()", {expr = true})
+  map('s', "<Tab>", "v:lua.tab_complete()", {expr = true})
+  map('i', "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+  map('s', "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
   map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 end
 

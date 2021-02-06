@@ -130,7 +130,6 @@ require('packer').startup {
         require('lb.config.nvim-telescope')
       end,
     }
-    use {'brooth/far.vim'}
     use {
       'preservim/nerdcommenter',
       setup = function()

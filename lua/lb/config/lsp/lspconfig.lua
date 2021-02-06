@@ -48,7 +48,6 @@ local opts = {noremap = true, silent = true}
 local function buf_set_keymap(...)
   vim.api.nvim_buf_set_keymap(bufnr, ...)
 end
-
 -- LuaFormatter off
 local custom_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
@@ -62,7 +61,7 @@ local custom_attach = function(client, bufnr)
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap('i', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('v', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
 end
 -- LuaFormatter on
@@ -105,6 +104,9 @@ lspconfig.ccls.setup {
   cmd = {'ccls'},
   filetypes = {'c', 'cpp'},
   init_options = ccls_init,
+  capabilities = {
+    textDocument = {completion = {completionItem = {snippetSupport = true}}},
+  },
   root_dir = lspconfig_util.root_pattern(
     {'.ccls', '.git/', 'compile_commands.json'}),
 }
