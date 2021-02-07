@@ -14,6 +14,19 @@ telescope.setup {
     file_ignore_patterns = {'.git/*'},
     shorten_path = true,
     winblend = 0,
+    sorting_strategy = 'ascending',
+    layout_strategy = 'center',
+    results_title = false,
+    preview_title = 'Preview',
+    preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+    width = 80,
+    results_height = 15,
+    borderchars = {
+      {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+      prompt = {'─', '│', ' ', '│', '╭', '╮', '│', '│'},
+      results = {'─', '│', '─', '│', '├', '┤', '╯', '╰'},
+      preview = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+    },
     mappings = {
       i = {
         ['<C-x>'] = false,

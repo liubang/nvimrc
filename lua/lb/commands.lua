@@ -17,4 +17,5 @@ vim.schedule(function()
   vim.cmd [[command! -nargs=0 -bar BazelCCRules :lua require('telescope').extensions.bazel.bazel_cc_rules(require('telescope.themes').get_dropdown({}))<CR>]]
   vim.cmd [[command! -nargs=0 -bar BazelCCTests :lua require('telescope').extensions.bazel.bazel_cc_tests(require('telescope.themes').get_dropdown({}))<CR>]]
   vim.cmd [[command! -nargs=0 -bar BazelCCBinaries :lua require('telescope').extensions.bazel.bazel_cc_binaries(require('telescope.themes').get_dropdown({}))<CR>]]
+  vim.cmd [[command! -nargs=0 -bar Projects :lua require('telescope').extensions.project.project(require('telescope.themes').get_dropdown({}))<CR>]]
 end)

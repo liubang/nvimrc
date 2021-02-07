@@ -162,15 +162,16 @@ if detect('nvim-bufferline.lua') then
 end
 
 if detect('telescope.nvim') then
-  map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
-  map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
-  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
-  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin(require('telescope.themes').get_dropdown({previewer = false}))<CR>")
-  map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests(require('telescope.themes').get_dropdown({}))<CR>")
-  map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries(require('telescope.themes').get_dropdown({}))<CR>")
+  map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files({previewer = false})<CR>")
+  map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep()<CR>")
+  map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string()<CR>")
+  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers({previewer = false})<CR>")
+  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands({previewer = false})<CR>")
+  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin({previewer = false})<CR>")
+  map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks()<CR>")
+  map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules()<CR>")
+  map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests()<CR>")
+  map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries()<CR>")
+  map('n', "<Leader>wo", ":lua require('telescope').extensions.project.project()<CR>")
 end
 -- LuaFormatter on
