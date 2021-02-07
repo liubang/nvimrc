@@ -1,6 +1,7 @@
 -- https://github.com/glepnir/galaxyline.nvim/blob/main/example/eviline.lua
 local gl = require('galaxyline')
 local gls = gl.section
+local vcs = require('galaxyline.provider_vcs')
 
 -- for string:split function
 require('lb.utils.string')
@@ -43,30 +44,30 @@ gls.left[2] = {
     provider = function()
       -- auto change color according the vim mode
       local alias = {
-        n       = 'NORMAL',
-        i       = 'INSERT',
-        c       = 'COMMAND',
-        v       = 'VISUAL',
-        V       = 'VISUAL',
+        n = 'NORMAL',
+        i = 'INSERT',
+        c = 'COMMAND',
+        v = 'VISUAL',
+        V = 'VISUAL',
         ['\22'] = 'VISUAL',
-        t       = 'TERMINAL',
-        s       = 'SELECT',
-        S       = 'SELECT',
-        ['r?']  = 'CONFIRM',
-        ['!']   = 'SHELL',
+        t = 'TERMINAL',
+        s = 'SELECT',
+        S = 'SELECT',
+        ['r?'] = 'CONFIRM',
+        ['!'] = 'SHELL',
       }
       local mode_color = {
-        n       = colors.magenta,
-        i       = colors.green,
-        c       = colors.red,
-        v       = colors.blue,
-        V       = colors.blue,
+        n = colors.magenta,
+        i = colors.green,
+        c = colors.red,
+        v = colors.blue,
+        V = colors.blue,
         ['\22'] = colors.blue,
-        s       = colors.orange,
-        S       = colors.orange,
-        t       = colors.purple,
-        ['r?']  = colors.purple,
-        ['!']   = colors.purple,
+        s = colors.orange,
+        S = colors.orange,
+        t = colors.purple,
+        ['r?'] = colors.purple,
+        ['!'] = colors.purple,
       }
       local mode = vim.fn.mode()
       if mode_color[mode] ~= nil then
@@ -86,14 +87,18 @@ gls.left[3] = {
   FileIcon = {
     provider = 'FileIcon',
     condition = buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.line_bg},
+    highlight = {
+      require('galaxyline.provider_fileinfo').get_file_icon_color,
+      colors.line_bg,
+    },
   },
 }
 
 gls.left[4] = {
   FileName = {
     provider = function()
-      local filename = require('galaxyline.provider_fileinfo').get_current_file_name()
+      local filename =
+        require('galaxyline.provider_fileinfo').get_current_file_name()
       local filepath = vim.fn.expand('%:p')
       local size = require('lb.utils.fs').file_size(filepath)
       return filename .. size .. ' '
@@ -115,12 +120,7 @@ gls.left[5] = {
 
 gls.left[6] = {
   GitBranch = {
-    provider = function()
-      if vim.g['coc_git_status'] ~= nil then
-        return vim.g['coc_git_status'] .. ' '
-      end
-      return ' '
-    end,
+    provider = 'GitBranch',
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
@@ -134,22 +134,18 @@ gls.left[7] = {
   DiffAdd = {
     provider = function()
       local result = ''
-      local status = vim.b['coc_git_status']
-      if status ~= nil then
-        local diffs = vim.fn.split(status, ' ')
-        for _, diff in ipairs(diffs) do
-          local prefix = string.sub(diff, 1, 1)
-          local number = string.sub(diff, 2)
-          if prefix == '+' then
-            result = result .. '  ' .. number
-          elseif prefix == '~' then
-            result = result .. '  ' .. number
-          elseif prefix == '-' then
-            result = result .. '  ' .. number
-          end
-        end
-        return result .. ' '
+      local add, modify, remove = vcs.diff_add(), vcs.diff_modified(),
+                                  vcs.diff_remove()
+      if add ~= nil then
+        result = result .. '  ' .. add
       end
+      if modify ~= nil then
+        result = result .. '  ' .. modify
+      end
+      if remove ~= nil then
+        result = result .. '  ' .. remove
+      end
+      return result .. ' '
     end,
     condition = checkwidth,
     highlight = {colors.green, colors.line_bg},
@@ -165,9 +161,21 @@ gls.left[8] = {
   },
 }
 
-gls.left[9] = {DiagnosticError = {provider = 'DiagnosticError', icon = '   ', highlight = {colors.red, colors.bg}}}
+gls.left[9] = {
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '   ',
+    highlight = {colors.red, colors.bg},
+  },
+}
 
-gls.left[10] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '   ', highlight = {colors.blue, colors.bg}}}
+gls.left[10] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '   ',
+    highlight = {colors.blue, colors.bg},
+  },
+}
 
 gls.right[1] = {
   FileFormat = {
@@ -204,8 +212,8 @@ gls.right[3] = {
 
 gls.right[4] = {
   RainbowBlue = {
-    provider = function() 
-      return '▊' 
+    provider = function()
+      return '▊'
     end,
     highlight = {colors.blue, colors.line_bg},
   },

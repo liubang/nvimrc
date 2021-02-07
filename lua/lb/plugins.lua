@@ -67,6 +67,10 @@ require('packer').startup {
       cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
     }
     use {'junegunn/gv.vim'}
+    use {
+      'mhinz/vim-signify',
+      event = {'BufReadPre *', 'BufNewFile *'},
+    }
     use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
     use {'terryma/vim-expand-region'}
     use {
@@ -122,12 +126,21 @@ require('packer').startup {
     use {
       'nvim-telescope/telescope.nvim',
       requires = {'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim'},
+      config = function()
+        require('lb.config.nvim-telescope')
+      end,
+    }
+    use {
+      'nvim-telescope/telescope-project.nvim',
+      config = function()
+        require('telescope').load_extension('project')
+      end,
     }
     use {
       'nvim-telescope/telescope-fzy-native.nvim',
       after = 'telescope.nvim',
       config = function()
-        require('lb.config.nvim-telescope')
+        require('telescope').load_extension('fzy_native')
       end,
     }
     use {
