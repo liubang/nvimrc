@@ -59,15 +59,6 @@ local buffer_not_empty = function()
 end
 
 gls.left[1] = {
-  FirstElement = {
-    provider = function()
-      return '▊'
-    end,
-    highlight = {colors.blue, colors.line_bg},
-  },
-}
-
-gls.left[2] = {
   ViMode = {
     provider = function()
       local mode = vim.fn.mode()
@@ -83,7 +74,7 @@ gls.left[2] = {
   },
 }
 
-gls.left[3] = {
+gls.left[2] = {
   LeftDelimiter = {
     provider = function()
       local mode = vim.fn.mode()
@@ -93,13 +84,13 @@ gls.left[3] = {
       else
         vim.api.nvim_command('hi GalaxyLeftDelimiter guifg=' .. colors.red)
       end
-      return ' \u{e0b8}  '
+      return '\u{e0b8} '
     end,
     highlight = {colors.orange, colors.line_bg, 'bold'},
   },
 }
 
-gls.left[4] = {
+gls.left[3] = {
   FileIcon = {
     provider = 'FileIcon',
     condition = buffer_not_empty,
@@ -110,65 +101,41 @@ gls.left[4] = {
   },
 }
 
-gls.left[5] = {
+gls.left[4] = {
   FileName = {
     provider = function()
       local filename =
         require('galaxyline.provider_fileinfo').get_current_file_name()
       local filepath = vim.fn.expand('%:p')
       local size = require('lb.utils.fs').file_size(filepath)
-      return filename .. size .. ' \u{e0b9}  '
+      return filename .. size .. ' '
     end,
     condition = buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
 
+gls.left[5] = {
+  GitBranchSep = {
+    provider = function()
+      return '\u{e0b9} '
+    end,
+    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    highlight = {colors.fg, colors.line_bg},
+  },
+}
+
 gls.left[6] = {
   GitIcon = {
     provider = function()
-      return '  '
+      return string.format('  %s ', vcs.get_git_branch())
     end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
-    highlight = {colors.orange, colors.line_bg},
+    highlight = {colors.orange, colors.line_bg, 'bold'},
   },
 }
 
 gls.left[7] = {
-  GitBranch = {
-    provider = 'GitBranch',
-    condition = require('galaxyline.provider_vcs').check_git_workspace,
-    highlight = {colors.fg, colors.line_bg, 'bold'},
-  },
-}
-
-local checkwidth = function()
-  return (vim.fn.winwidth(0) / 2) > 40
-end
-
-gls.left[8] = {
-  DiffAdd = {
-    provider = function()
-      local result = ''
-      local add, modify, remove = vcs.diff_add(), vcs.diff_modified(),
-                                  vcs.diff_remove()
-      if add ~= nil then
-        result = result .. '  ' .. add
-      end
-      if modify ~= nil then
-        result = result .. '  ' .. modify
-      end
-      if remove ~= nil then
-        result = result .. '  ' .. remove
-      end
-      return result .. ' '
-    end,
-    condition = checkwidth,
-    highlight = {colors.green, colors.line_bg},
-  },
-}
-
-gls.left[9] = {
   LeftEnd = {
     provider = function()
       return '\u{e0b8}'
@@ -177,7 +144,7 @@ gls.left[9] = {
   },
 }
 
-gls.left[10] = {
+gls.left[8] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '   ',
@@ -185,7 +152,7 @@ gls.left[10] = {
   },
 }
 
-gls.left[11] = {
+gls.left[9] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '   ',
@@ -196,7 +163,7 @@ gls.left[11] = {
 gls.right[1] = {
   RightDelimiter = {
     provider = function()
-      return '\u{e0be} '
+      return '\u{e0be}'
     end,
     highlight = {colors.line_bg, colors.bg},
   },
@@ -216,29 +183,36 @@ gls.right[2] = {
 }
 
 gls.right[3] = {
-  LineInfo = {
-    provider = 'LineColumn',
-    separator = ' \u{e0b9}  ',
-    separator_highlight = {colors.fg, colors.line_bg},
-    highlight = {colors.fg, colors.line_bg},
+  RightLastDelimiter = {
+    provider = function()
+      local mode = vim.fn.mode()
+      if mode_color[mode] ~= nil then
+        vim.api.nvim_command('hi GalaxyRightLastDelimiter guibg=' ..
+                               mode_color[mode])
+      else
+        vim.api.nvim_command('hi GalaxyRightLastDelimiter guibg=' .. colors.red)
+      end
+      return '\u{e0b8}'
+    end,
+    highlight = {colors.line_bg, colors.bg, 'bold'},
   },
 }
 
 gls.right[4] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = ' \u{e0b9} ',
-    separator_highlight = {colors.fg, colors.line_bg},
-    highlight = {colors.fg, colors.line_bg, 'bold'},
-  },
-}
-
-gls.right[5] = {
-  RainbowBlue = {
+  LineInfo = {
     provider = function()
-      return '▊'
+      local mode = vim.fn.mode()
+      if mode_color[mode] ~= nil then
+        vim.api.nvim_command('hi GalaxyLineInfo guibg=' .. mode_color[mode])
+      else
+        vim.api.nvim_command('hi GalaxyLineInfo guibg=' .. colors.red)
+      end
+      local c = vim.fn.line('.')
+      local e = vim.fn.line('$')
+      local o = vim.fn.col('.')
+      return string.format('  %d  %d:%d ', (c * 100 / e), e, o)
     end,
-    highlight = {colors.blue, colors.line_bg},
+    highlight = {colors.bg_gray, colors.line_bg, 'bold'},
   },
 }
 
@@ -287,7 +261,7 @@ gls.short_line_right[1] = {
       end
       return string.format(' %s ', icon)
     end,
-    separator = '\u{e0be} ',
+    separator = '\u{e0be}',
     separator_highlight = {colors.line_bg, colors.bg},
     highlight = {colors.fg, colors.line_bg},
   },
