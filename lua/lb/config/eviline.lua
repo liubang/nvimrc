@@ -210,7 +210,7 @@ gls.right[4] = {
       local c = vim.fn.line('.')
       local e = vim.fn.line('$')
       local o = vim.fn.col('.')
-      return string.format('  %d  %d:%d ', (c * 100 / e), e, o)
+      return string.format('  %d%s  %d:%d ', (c * 100 / e), '%', e, o)
     end,
     highlight = {colors.bg_gray, colors.line_bg, 'bold'},
   },
