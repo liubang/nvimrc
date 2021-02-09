@@ -16,6 +16,7 @@ local special_buffers = {
   'defx',
   'vista',
   'help',
+  'packer',
   'undotree',
   'startify',
   'vim-plug',
