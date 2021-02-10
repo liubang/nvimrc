@@ -104,11 +104,7 @@ gls.left[3] = {
 gls.left[4] = {
   FileName = {
     provider = function()
-      local filename =
-        require('galaxyline.provider_fileinfo').get_current_file_name()
-      local filepath = vim.fn.expand('%:p')
-      local size = require('lb.utils.fs').file_size(filepath)
-      return filename .. size .. ' '
+      return require('galaxyline.provider_fileinfo').get_current_file_name()
     end,
     condition = buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},
@@ -116,6 +112,18 @@ gls.left[4] = {
 }
 
 gls.left[5] = {
+  FileSize = {
+    provider = function()
+      local filepath = vim.fn.expand('%:p')
+      local size = require('lb.utils.fs').file_size(filepath)
+      return ' \u{e0b9} ' .. size .. ' '
+    end,
+    condition = buffer_not_empty,
+    highlight = {colors.fg, colors.line_bg, 'bold'},
+  },
+}
+
+gls.left[6] = {
   GitBranchSep = {
     provider = function()
       return '\u{e0b9} '
@@ -125,7 +133,7 @@ gls.left[5] = {
   },
 }
 
-gls.left[6] = {
+gls.left[7] = {
   GitIcon = {
     provider = function()
       return string.format('  %s ', vcs.get_git_branch())
@@ -135,7 +143,7 @@ gls.left[6] = {
   },
 }
 
-gls.left[7] = {
+gls.left[8] = {
   LeftEnd = {
     provider = function()
       return '\u{e0b8}'
@@ -144,7 +152,7 @@ gls.left[7] = {
   },
 }
 
-gls.left[8] = {
+gls.left[9] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '   ',
@@ -152,7 +160,7 @@ gls.left[8] = {
   },
 }
 
-gls.left[9] = {
+gls.left[10] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '   ',
