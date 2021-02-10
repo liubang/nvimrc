@@ -7,6 +7,7 @@
 --
 -- =====================================================================
 require('lb.config.lsp.lspconfig')
+require('lb.config.lsp.handlers')
 require('lb.config.lsp.snippets')
 require('lb.config.lsp.vsnip')
 require('lb.config.lsp.compe')
