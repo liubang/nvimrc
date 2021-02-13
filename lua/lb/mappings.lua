@@ -172,6 +172,6 @@ if detect('telescope.nvim') then
   map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules()<CR>")
   map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests()<CR>")
   map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries()<CR>")
-  map('n', "<Leader>wo", ":lua require('telescope').extensions.project.project()<CR>")
+  map('n', "<Leader>wo", ":lua require('telescope').extensions.project.project({change_dir = true})<CR>")
 end
 -- LuaFormatter on
