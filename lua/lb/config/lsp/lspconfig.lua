@@ -76,16 +76,15 @@ local servers = {
   'yamlls',
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 for _, ls in ipairs(servers) do
   lspconfig[ls].setup {on_attach = custom_attach}
 end
 
 -- ccls
-local ccls_init = {
-  cache = {directory = '/tmp/ccls'},
-  -- client = {snippetSupport = true},
-  -- completion = {placeholder = true},
-}
+local ccls_init = {cache = {directory = '/tmp/ccls'}}
 if jit.os == 'OSX' then
   ccls_init.clang = {
     resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
@@ -104,9 +103,7 @@ lspconfig.ccls.setup {
   cmd = {'ccls'},
   filetypes = {'c', 'cpp'},
   init_options = ccls_init,
-  capabilities = {
-    textDocument = {completion = {completionItem = {snippetSupport = true}}},
-  },
+  capabilities = capabilities,
   root_dir = lspconfig_util.root_pattern(
     {'.ccls', '.git/', 'compile_commands.json'}),
 }
@@ -143,9 +140,7 @@ vim.cmd [[augroup END]]
 lspconfig.gopls.setup {
   on_attach = custom_attach,
   cmd = {'gopls'},
-  capabilities = {
-    textDocument = {completion = {completionItem = {snippetSupport = true}}},
-  },
+  capabilities = capabilities,
   init_options = {usePlaceholders = true, completeUnimported = true},
 }
 
