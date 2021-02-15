@@ -96,7 +96,7 @@ if jit.os == 'OSX' then
     },
   }
 elseif jit.os == 'Linux' then
-  ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr'}}
+  -- ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr/local'}}
 end
 lspconfig.ccls.setup {
   on_attach = custom_attach,

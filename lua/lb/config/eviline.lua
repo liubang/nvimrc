@@ -2,6 +2,7 @@
 local gl = require('galaxyline')
 local gls = gl.section
 local vcs = require('galaxyline.provider_vcs')
+local condition = require('galaxyline.condition')
 
 -- for string:split function
 require('lb.utils.string')
@@ -54,10 +55,6 @@ local mode_color = {
 }
 -- LuaFormatter on
 
-local buffer_not_empty = function()
-  return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-end
-
 gls.left[1] = {
   ViMode = {
     provider = function()
@@ -93,7 +90,7 @@ gls.left[2] = {
 gls.left[3] = {
   FileIcon = {
     provider = 'FileIcon',
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = {
       require('galaxyline.provider_fileinfo').get_file_icon_color,
       colors.line_bg,
@@ -106,7 +103,7 @@ gls.left[4] = {
     provider = function()
       return require('galaxyline.provider_fileinfo').get_current_file_name()
     end,
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
@@ -118,7 +115,7 @@ gls.left[5] = {
       local size = require('lb.utils.fs').file_size(filepath)
       return ' \u{e0b9} ' .. size .. ' '
     end,
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = {colors.fg, colors.line_bg, 'bold'},
   },
 }
@@ -128,7 +125,7 @@ gls.left[6] = {
     provider = function()
       return '\u{e0b9} '
     end,
-    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    condition = condition.check_git_workspace,
     highlight = {colors.fg, colors.line_bg},
   },
 }
@@ -138,7 +135,7 @@ gls.left[7] = {
     provider = function()
       return string.format('  %s ', vcs.get_git_branch())
     end,
-    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    condition = condition.check_git_workspace,
     highlight = {colors.orange, colors.line_bg, 'bold'},
   },
 }
