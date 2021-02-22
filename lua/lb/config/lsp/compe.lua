@@ -12,6 +12,7 @@ local nvim_compe = require('compe')
 nvim_compe.setup {
   enabled = true,
   autocomplete = true,
+  documentation = false,
   debug = false,
   min_length = 1,
   preselect = 'always',
