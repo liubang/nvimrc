@@ -10,5 +10,3 @@ local snippets = require('snippets')
 
 -- vsnip
 vim.g.vsnip_snippet_dir = vim.g.snip_path
-
-

@@ -144,10 +144,6 @@ if detect('vista.vim') then
 end
 
 if detect('nvim-compe') then
-  map('i', "<Tab>", "v:lua.tab_complete()", {expr = true})
-  map('s', "<Tab>", "v:lua.tab_complete()", {expr = true})
-  map('i', "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-  map('s', "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
   map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 end
 
