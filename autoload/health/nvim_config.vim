@@ -48,4 +48,7 @@ function! health#nvim_config#check()
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/gopls',
         \ 'Run in shell: GO111MODULE=on go get -u golang.org/x/tools/cmd/...',
         \ ])
+  call s:check_executable('intelephense', 'intelephense', [
+        \ 'Run in shell: npm install -g intelephense',
+        \ ])
 endfunc

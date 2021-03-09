@@ -74,6 +74,7 @@ local servers = {
   'jsonls',
   'vimls',
   'yamlls',
+  'intelephense',
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
