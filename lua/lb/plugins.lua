@@ -67,10 +67,8 @@ require('packer').startup {
       cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
     }
     use {'junegunn/gv.vim'}
-    use {
-      'mhinz/vim-signify',
-      event = {'BufReadPre *', 'BufNewFile *'},
-    }
+    use {'mhinz/vim-signify', event = {'BufReadPre', 'BufNewFile'}}
+    use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
     use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
     use {'terryma/vim-expand-region'}
     use {
@@ -161,6 +159,7 @@ require('packer').startup {
     -- lsp
     use {
       'hrsh7th/nvim-compe',
+      event = {'InsertEnter'},
       requires = {
         'neovim/nvim-lspconfig',
         'norcalli/snippets.nvim',
