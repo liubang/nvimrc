@@ -24,8 +24,9 @@ nvim_compe.setup {
   source = {
     path = true,
     calc = true,
-    buffer = true,
+    spell = true,
     vsnip = true,
+    buffer = true,
     nvim_lsp = true,
     nvim_lua = true,
     snippets_nvim = true,
