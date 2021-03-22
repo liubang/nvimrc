@@ -159,7 +159,6 @@ require('packer').startup {
     -- lsp
     use {
       'hrsh7th/nvim-compe',
-      event = {'InsertEnter'},
       requires = {
         'neovim/nvim-lspconfig',
         'norcalli/snippets.nvim',
