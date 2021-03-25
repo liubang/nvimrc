@@ -5,4 +5,4 @@
 
 Configuration for neovim :rose:.
 
-![nvim](https://user-images.githubusercontent.com/13254917/104576099-bbbef500-5692-11eb-9a23-699b67344c66.png)
+![nvim](https://user-images.githubusercontent.com/13254917/112428076-8f4fe500-8d75-11eb-8ea2-aee7b2647617.png)
