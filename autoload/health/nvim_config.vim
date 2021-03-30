@@ -51,4 +51,7 @@ function! health#nvim_config#check()
   call s:check_executable('intelephense', 'intelephense', [
         \ 'Run in shell: npm install -g intelephense',
         \ ])
+  call s:check_executable('texlab', 'texlab', [
+        \ 'cargo install --git https://github.com/latex-lsp/texlab.git --locked',
+        \ ])
 endfunc

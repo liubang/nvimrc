@@ -67,6 +67,7 @@ end
 -- LuaFormatter on
 
 local servers = {
+  'texlab',
   'bashls',
   'cmake',
   'cssls',
