@@ -108,16 +108,20 @@ o.showtabline = 2
 o.grepformat = '%f:%l:%c:%m';
 o.grepprg = 'rg --hidden --vimgrep --smart-case --';
 o.wildignorecase = true
-o.wildignore = '*.aux,*.out,*.toc' .. '*.o,*.obj,*.dll,*.jar,*.pyc,*.rbc,*.class' ..
+o.wildignore = '*.aux,*.out,*.toc' ..
+                 '*.o,*.obj,*.dll,*.jar,*.pyc,*.rbc,*.class' ..
                  '*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp' ..
-                 '*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm' .. '*.eot,*.otf,*.ttf,*.woff' .. '*.doc,*.pdf' ..
-                 '*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz' .. '*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem' ..
+                 '*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm' ..
+                 '*.eot,*.otf,*.ttf,*.woff' .. '*.doc,*.pdf' ..
+                 '*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz' ..
+                 '*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem' ..
                  '*.*~,*~' .. '*.swp,.lock,.DS_Store,._*,tags.lock'
 o.shada = '!,\'300,<50,@100,s10,h'
 o.inccommand = 'nosplit'
 o.wildoptions = 'pum'
 o.pumblend = 3
-o.fillchars = 'vert:│,fold:·,diff:,msgsep:‾,eob: ,foldopen:▾,foldsep:│,foldclose:▸'
+o.fillchars =
+  'vert:│,fold:·,diff:,msgsep:‾,eob: ,foldopen:▾,foldsep:│,foldclose:▸'
 
 bind_options('synmaxcol', 2500)
 bind_options('formatoptions', '1n2jvcroql')

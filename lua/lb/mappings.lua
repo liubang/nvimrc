@@ -17,13 +17,6 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local function detect(plug)
-  if vim.fn.exists('*dein#tap') ~= 0 then
-    return vim.fn['dein#tap'](plug) > 0
-  end
-  return true
-end
-
 -- clear default
 map('n', ' ', '')
 map('x', ' ', '')
@@ -94,80 +87,54 @@ map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 
 -- plugins key mappings
 -- LuaFormatter off
-if detect('nvim-tree.lua') then
-  map('n', "<Leader>ft", "<cmd>lua require('nvim-tree').toggle()<CR>")
+map('n', "<Leader>ft", "<cmd>lua require('nvim-tree').toggle()<CR>")
+
+map('n', "<Leader>cc", ':call NERDComment(\'n\', \'toggle\')<CR>')
+map('x', "<Leader>cc", ':call NERDComment(\'x\', \'toggle\')<CR>')
+map('n', "<Leader>cn", ':call NERDComment(\'n\', \'sexy\')<CR>')
+map('x', "<Leader>cn", ':call NERDComment(\'x\', \'sexy\')<CR>')
+
+map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
+map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
+
+map('v', 'v', "<Plug>(expand_region_expand)", {noremap = false})
+map('v', 'V', "<Plug>(expand_region_shrink)", {noremap = false})
+
+map('n', "<Leader>tw", "<cmd>FloatermNew<CR>")
+map('n', "<C-t>", "<cmd>FloatermToggle<CR>")
+map('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>")
+map('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<CR>")
+map('t', "<C-j>", "<C-\\><C-n>:FloatermNext<CR>")
+map('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>")
+map('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>")
+
+map('n', "<Leader>ud", "<cmd>MundoToggle<CR>") 
+
+map('n', "<Leader>ar", "<cmd>AsyncRun ")
+
+map('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>")
+map('n', "<C-b>", "<cmd>AsyncTask file-build<CR>")
+map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
+
+map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
+
+map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
+
+map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
+
+for i = 1, 9 do
+  map('n', "<leader>" .. i, '(v:lua.is_special_buffer() ? "<c-w><c-w>" : "") . ":lua require(\'bufferline\').go_to_buffer(' .. i .. ')<CR>"', {expr = true})
 end
 
-if detect('nerdcommenter') then
-  map('n', "<Leader>cc", ':call NERDComment(\'n\', \'toggle\')<CR>')
-  map('x', "<Leader>cc", ':call NERDComment(\'x\', \'toggle\')<CR>')
-  map('n', "<Leader>cn", ':call NERDComment(\'n\', \'sexy\')<CR>')
-  map('x', "<Leader>cn", ':call NERDComment(\'x\', \'sexy\')<CR>')
-end
-
-if detect('vim-easy-align') then
-  map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
-  map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
-end
-
-if detect('vim-expand-region') then
-  map('v', 'v', "<Plug>(expand_region_expand)", {noremap = false})
-  map('v', 'V', "<Plug>(expand_region_shrink)", {noremap = false})
-end
-
-if detect('vim-floaterm') then
-  map('n', "<Leader>tw", "<cmd>FloatermNew<CR>")
-  map('n', "<C-t>", "<cmd>FloatermToggle<CR>")
-  map('t', "<C-n>", "<C-\\><C-n>:FloatermNew<CR>")
-  map('t', "<C-k>", "<C-\\><C-n>:FloatermPrev<CR>")
-  map('t', "<C-j>", "<C-\\><C-n>:FloatermNext<CR>")
-  map('t', "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>")
-  map('t', "<C-d>", "<C-\\><C-n>:FloatermKill<CR>")
-end
-
-if detect('vim-mundo') then
-  map('n', "<Leader>ud", "<cmd>MundoToggle<CR>") 
-end
-
-if detect('asyncrun.vim') then
-  map('n', "<Leader>ar", "<cmd>AsyncRun ")
-end
-
-if detect('asynctasks.vim') then
-  map('n', "<C-x>", "<cmd>AsyncTask file-build-and-run<CR>")
-  map('n', "<C-b>", "<cmd>AsyncTask file-build<CR>")
-  map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
-end
-
-if detect('vista.vim') then
-  map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
-end
-
-if detect('nvim-compe') then
-  map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
-end
-
-if detect('markdown-preview.nvim') then
-  map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
-end
-
-if detect('nvim-bufferline.lua') then
-  for i = 1, 9 do
-    map('n', "<leader>" .. i, '(v:lua.is_special_buffer() ? "<c-w><c-w>" : "") . ":lua require(\'bufferline\').go_to_buffer(' .. i .. ')<CR>"', {expr = true})
-  end
-end
-
-if detect('telescope.nvim') then
-  map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files({previewer = false})<CR>")
-  map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep()<CR>")
-  map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string()<CR>")
-  map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers({previewer = false})<CR>")
-  map('n', "<Leader>fc", ":lua require('telescope.builtin').commands({previewer = false})<CR>")
-  map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin({previewer = false})<CR>")
-  map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks()<CR>")
-  map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules()<CR>")
-  map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests()<CR>")
-  map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries()<CR>")
-  map('n', "<Leader>wo", ":lua require('telescope').extensions.project.project({change_dir = true})<CR>")
-end
+map('n', "<Leader>ff", ":lua require('telescope.builtin').find_files({previewer = false})<CR>")
+map('n', "<Leader>ag", ":lua require('telescope.builtin').live_grep()<CR>")
+map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string()<CR>")
+map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers({previewer = false})<CR>")
+map('n', "<Leader>fc", ":lua require('telescope.builtin').commands({previewer = false})<CR>")
+map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin({previewer = false})<CR>")
+map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks()<CR>")
+map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules()<CR>")
+map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests()<CR>")
+map('n', "<Leader>be", ":lua require('telescope').extensions.bazel.bazel_binaries()<CR>")
+map('n', "<Leader>wo", ":lua require('telescope').extensions.project.project({change_dir = true})<CR>")
 -- LuaFormatter on
