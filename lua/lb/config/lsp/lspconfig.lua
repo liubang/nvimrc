@@ -82,7 +82,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _, ls in ipairs(servers) do
-  lspconfig[ls].setup {on_attach = custom_attach}
+  lspconfig[ls].setup {capabilities = capabilities, on_attach = custom_attach}
 end
 
 -- ccls
@@ -178,6 +178,7 @@ end
 lspconfig.sumneko_lua.setup {
   cmd = sumneko_command(),
   on_attach = custom_attach,
+  capabilities = capabilities,
   filetypes = {'lua'},
   settings = {
     Lua = {
