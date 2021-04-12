@@ -9,19 +9,28 @@
 local g, api = vim.g, vim.api
 
 local buf_mapper = function(mode, key, result)
-  api.nvim_buf_set_keymap(0, mode, key, '<cmd>lua ' .. result .. '<CR>', {noremap = true, silent = true})
+  api.nvim_buf_set_keymap(0, mode, key, '<cmd>lua ' .. result .. '<CR>',
+                          {noremap = true, silent = true})
 end
 
 local tree_config = function()
-  g.nvim_tree_hide_dotfiles = 1
   g.nvim_tree_side = 'left'
   g.nvim_tree_width = 30
+  g.nvim_tree_disable_netrw = 0
+  g.nvim_tree_hijack_netrw = 1
+  g.nvim_tree_follow = 1
+  g.nvim_tree_tab_open = 1
+  g.nvim_tree_lint_lsp = 0
+  g.nvim_tree_gitignore = 1
+  g.nvim_tree_auto_open = 0
+  g.nvim_tree_auto_close = 0
 end
 
 local tree_context_menu = function()
   vim.cmd('redraw! | echo | redraw!')
   local actions = {'create', 'rename', 'copy', 'cut', 'paste', 'remove'}
-  local section = vim.fn.confirm('Action?', '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete')
+  local section = vim.fn.confirm('Action?',
+                                 '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete')
   vim.cmd('redraw!')
   require('nvim-tree').on_keypress(actions[section])
 end
@@ -46,7 +55,7 @@ local on_attach = function()
 end
 
 return {
-  tree_mapping = tree_mapping, 
-  tree_context_menu = tree_context_menu, 
-  on_attach = on_attach
+  tree_mapping = tree_mapping,
+  tree_context_menu = tree_context_menu,
+  on_attach = on_attach,
 }
