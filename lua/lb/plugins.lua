@@ -21,38 +21,40 @@ require('packer').startup {
     -- appearance
     use {
       'sainnhe/gruvbox-material',
-      requires = {'kyazdani42/nvim-web-devicons', 'ryanoasis/vim-devicons'},
       config = function()
         require('lb.config.theme')
       end,
     }
     use {
       'mhinz/vim-startify',
+      requires = {'ryanoasis/vim-devicons'},
       config = function()
         require('lb.config.vim-startify')
       end,
     }
     use {
       'akinsho/nvim-bufferline.lua',
+      requires = {'kyazdani42/nvim-web-devicons'},
       config = function()
         require('lb.config.nvim-bufferline')
       end,
     }
+
     use {
       'glepnir/galaxyline.nvim',
       config = function()
         require('lb.config.eviline')
       end,
     }
+
     use {
       'kyazdani42/nvim-tree.lua',
-      config = function()
-        require('lb.config.nvim-tree').on_attach()
-      end,
+      requires = {'kyazdani42/nvim-web-devicons'},
+      config = require('lb.config.nvim-tree').on_attach(),
     }
+
     -- editor
     use {
-      -- 'jiangmiao/auto-pairs',
       'Raimondi/delimitMate',
       config = function()
         vim.g.delimitMate_expand_cr = 0

@@ -87,7 +87,7 @@ map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 
 -- plugins key mappings
 -- LuaFormatter off
-map('n', "<Leader>ft", "<cmd>lua require('nvim-tree').toggle()<CR>")
+map('n', "<Leader>ft", ":NvimTreeToggle<CR>")
 
 map('n', "<Leader>cc", ':call NERDComment(\'n\', \'toggle\')<CR>')
 map('x', "<Leader>cc", ':call NERDComment(\'x\', \'toggle\')<CR>')
