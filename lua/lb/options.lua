@@ -143,3 +143,8 @@ bind_options('foldmethod', 'syntax')
 bind_options('foldlevelstart', 10)
 bind_options('cursorline', true)
 bind_options('cursorcolumn', false)
+
+-- for neovide
+if vim.fn.has('gui') then
+  vim.cmd [[set guifont=AurulentSansMono\ Nerd\ Font\ Mono:h16]]
+end
