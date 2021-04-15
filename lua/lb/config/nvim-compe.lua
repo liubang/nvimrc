@@ -8,6 +8,7 @@
 -- =====================================================================
 local nvim_compe = require('compe')
 local check_back_space = require('lb.utils.buffer').check_back_space
+require('lb.config.snippets')
 
 -- nvim-compe
 nvim_compe.setup {

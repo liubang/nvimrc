@@ -9,6 +9,9 @@
 local snippets = require('snippets')
 local U = require('snippets.utils')
 
+-- about vsnip
+vim.g.vsnip_snippet_dir = vim.g.snip_path
+
 -- about snippets
 snippets.snippets = {
   _global = {

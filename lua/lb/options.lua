@@ -146,5 +146,5 @@ bind_options('cursorcolumn', false)
 
 -- for neovide
 if vim.fn.has('gui') then
-  vim.cmd [[set guifont=AurulentSansMono\ Nerd\ Font\ Mono:h16]]
+  vim.cmd [[set guifont=Operator\ Mono\ Lig:h18]]
 end

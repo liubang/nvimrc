@@ -43,7 +43,11 @@ require('packer').startup {
     use {
       'glepnir/galaxyline.nvim',
       config = function()
-        require('lb.config.eviline')
+        if vim.fn.has('gui') then
+          require('lb.config.eviline-gui')
+        else
+          require('lb.config.eviline')
+        end
       end,
     }
 
@@ -154,14 +158,18 @@ require('packer').startup {
 
     -- lsp
     use {
-      'hrsh7th/nvim-compe',
-      requires = {
-        'neovim/nvim-lspconfig',
-        'norcalli/snippets.nvim',
-        'hrsh7th/vim-vsnip',
-      },
+      'neovim/nvim-lspconfig',
+      requires = {'glepnir/lspsaga.nvim'},
       config = function()
         require('lb.config.lsp')
+      end,
+    }
+
+    use {
+      'hrsh7th/nvim-compe',
+      requires = {'norcalli/snippets.nvim', 'hrsh7th/vim-vsnip'},
+      config = function()
+        require('lb.config.nvim-compe')
       end,
     }
 

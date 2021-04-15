@@ -54,9 +54,14 @@ local custom_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<Leader>ee', ':lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<Leader>rn', ':lua require("lspsaga.rename").rename()<CR>', opts)
+  buf_set_keymap('n', '<Leader>ca', ':lua require("lspsaga.codeaction").code_action()<CR>', opts)
+  buf_set_keymap('v', '<Leader>ca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
+  buf_set_keymap('n', 'K', ':lua require("lspsaga.hover").render_hover_doc()<CR>', opts)
+
+  -- format
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
