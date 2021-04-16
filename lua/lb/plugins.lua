@@ -181,6 +181,10 @@ require('packer').startup {
     use {'cespare/vim-toml', ft = {'toml'}}
     use {'neoclide/jsonc.vim', ft = {'jsonc', 'json'}}
     use {
+      'masukomi/vim-markdown-folding',
+      ft = {'markdown', 'rmd', 'pandoc.markdown'},
+    }
+    use {
       'iamcco/markdown-preview.nvim',
       ft = {'markdown', 'pandoc.markdown', 'rmd'},
       run = 'sh -c "cd app & yarn install"',
