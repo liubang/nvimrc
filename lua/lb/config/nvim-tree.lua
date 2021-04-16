@@ -52,6 +52,7 @@ end
 local on_attach = function()
   tree_config()
   tree_autocmd()
+  require('nvim-tree').on_enter()
 end
 
 return {
