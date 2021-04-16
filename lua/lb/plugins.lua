@@ -167,7 +167,11 @@ require('packer').startup {
 
     use {
       'hrsh7th/nvim-compe',
-      requires = {'norcalli/snippets.nvim', 'hrsh7th/vim-vsnip'},
+      requires = {
+        'norcalli/snippets.nvim',
+        'hrsh7th/vim-vsnip',
+        'GoldsteinE/compe-latex-symbols',
+      },
       config = function()
         require('lb.config.nvim-compe')
       end,

@@ -30,6 +30,7 @@ nvim_compe.setup {
     buffer = true,
     nvim_lsp = true,
     nvim_lua = true,
+    latex_symbols = true,
     snippets_nvim = true,
   },
 }
