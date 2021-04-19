@@ -8,6 +8,7 @@
 -- =====================================================================
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_header = {
+  '                                                          ',
   ' ██▓     ██▓ █    ██  ▄▄▄▄    ▄▄▄       ███▄    █   ▄████',
   '▓██▒    ▓██▒ ██  ▓██▒▓█████▄ ▒████▄     ██ ▀█   █  ██▒ ▀█▒',
   '▒██░    ▒██▒▓██  ▒██░▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒▒██░▄▄▄░',
@@ -18,6 +19,8 @@ vim.g.dashboard_custom_header = {
   '  ░ ░    ▒ ░ ░░░ ░ ░  ░    ░   ░   ▒      ░   ░ ░ ░ ░   ░ ',
   '    ░  ░ ░     ░      ░            ░  ░         ░       ░ ',
   '                           ░                              ',
+  '                                                          ',
+  '                                                          ',
 }
 vim.g.dashboard_custom_section = {
   find_file = {
@@ -25,7 +28,7 @@ vim.g.dashboard_custom_section = {
     command = [[lua require('telescope.builtin').find_files({previewer = false})]],
   },
   find_history = {
-    description = {'  Buffers                                 SPC fb'},
+    description = {'  Buffers                                 SPC bb'},
     command = [[lua require('telescope.builtin').buffers({previewer = false})]],
   },
   find_word = {

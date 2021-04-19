@@ -24,6 +24,7 @@ local tree_config = function()
   g.nvim_tree_gitignore = 1
   g.nvim_tree_auto_open = 0
   g.nvim_tree_auto_close = 0
+  g.nvim_tree_auto_ignore_ft = {'startify', 'dashboard'}
 end
 
 local tree_context_menu = function()
