@@ -21,17 +21,12 @@ use {
     require('lb.config.theme')
   end,
 }
--- use {
---   'mhinz/vim-startify',
---   requires = {'ryanoasis/vim-devicons'},
---   config = function()
---     require('lb.config.vim-startify')
---   end,
--- }
 use {
   'glepnir/dashboard-nvim',
   requires = {'ryanoasis/vim-devicons'},
-  config = require('lb.config.dashboard-nvim'),
+  config = function()
+    require('lb.config.dashboard-nvim')
+  end,
 }
 use {
   'akinsho/nvim-bufferline.lua',
@@ -55,7 +50,9 @@ use {
 use {
   'kyazdani42/nvim-tree.lua',
   requires = {'kyazdani42/nvim-web-devicons'},
-  config = require('lb.config.nvim-tree').on_attach(),
+  config = function()
+    require('lb.config.nvim-tree').on_attach()
+  end,
 }
 
 -- editor
