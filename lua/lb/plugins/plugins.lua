@@ -15,6 +15,7 @@ packer.reset()
 
 use {'wbthomason/packer.nvim', opt = true}
 -- appearance
+use {'mortepau/codicons.nvim'}
 use {
   'sainnhe/gruvbox-material',
   config = function()
