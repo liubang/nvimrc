@@ -53,7 +53,10 @@ end
 local on_attach = function()
   tree_config()
   tree_autocmd()
-  require('nvim-tree').on_enter()
+  require('nvim-tree.events').on_nvim_tree_ready(
+    function()
+      vim.cmd('NvimTreeRefresh')
+    end)
 end
 
 return {
