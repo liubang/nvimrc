@@ -85,6 +85,8 @@ local servers = {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport =
+  {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
 for _, ls in ipairs(servers) do
   lspconfig[ls].setup {capabilities = capabilities, on_attach = custom_attach}
