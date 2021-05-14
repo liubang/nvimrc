@@ -231,38 +231,38 @@ gls.right = {
   },
 }
 
+-- short line
 gl.short_line_list = require('lb.utils.buffer').list_special_buffers()
 
-gls.short_line_left = {
-  {
-    BufferIcon = {
-      provider = function()
-        local icon = buffer.get_buffer_type_icon()
-        if icon ~= nil then
-          return string.format(' %s ', icon)
-        end
-      end,
-      highlight = {colors.white, colors.black},
-    },
+table.insert(gls.short_line_left, {
+  BufferIcon = {
+    provider = function()
+      local icon = buffer.get_buffer_type_icon()
+      if icon ~= nil then
+        return string.format(' %s ', icon)
+      end
+    end,
+    highlight = {colors.white, colors.black},
   },
-  {
-    BufferName = {
-      provider = function()
-        if vim.fn.index(gl.short_line_list, vim.bo.filetype) ~= -1 then
-          local filetype = vim.bo.filetype
-          if filetype == 'NvimTree' then
-            return ' Explorer '
-          end
-        else
-          if fileinfo.get_current_file_name() ~= '' then
-            return string.format(' %s %s | %s ', fileinfo.get_file_icon(),
-                                 fileinfo.get_file_size(),
-                                 fileinfo.get_current_file_name())
-          end
+})
+
+table.insert(gls.short_line_left, {
+  BufferName = {
+    provider = function()
+      if vim.fn.index(gl.short_line_list, vim.bo.filetype) ~= -1 then
+        local filetype = vim.bo.filetype
+        if filetype == 'NvimTree' then
+          return ' Explorer '
         end
-      end,
-      separator = '',
-      highlight = {colors.white, colors.black},
-    },
+      else
+        if fileinfo.get_current_file_name() ~= '' then
+          return string.format(' %s %s | %s ', fileinfo.get_file_icon(),
+                               fileinfo.get_file_size(),
+                               fileinfo.get_current_file_name())
+        end
+      end
+    end,
+    separator = '',
+    highlight = {colors.white, colors.black},
   },
-}
+})
