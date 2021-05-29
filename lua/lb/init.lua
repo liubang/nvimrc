@@ -34,6 +34,7 @@ function app:run()
   g.snip_path   = string.format('%s/snippets', g.nvg_root)
   -- LuaFormatter on
 
+  require('lb.globals')
   require('lb.options')
   require('lb.plugins')
   require('lb.mappings')
