@@ -55,11 +55,11 @@ local custom_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<Leader>ee', ':lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<Leader>rn', ':lua require("lspsaga.rename").rename()<CR>', opts)
+  buf_set_keymap('n', '<Leader>rn', ':lua MyLspRename()<CR>', opts)
+  buf_set_keymap('n', '<Leader>ee', ':lua require("lspsaga.diagnostic").show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<Leader>ca', ':lua require("lspsaga.codeaction").code_action()<CR>', opts)
   buf_set_keymap('v', '<Leader>ca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
-  buf_set_keymap('n', 'K', ':lua require("lspsaga.hover").render_hover_doc()<CR>', opts)
+  buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 
   -- format
   if client.resolved_capabilities.document_formatting then
@@ -117,33 +117,9 @@ lspconfig.ccls.setup {
     {'.ccls', '.git/', 'compile_commands.json'}),
 }
 
--- golang organize imports
-function go_org_imports(options, timeout_ms)
-  local context = {source = {organizeImports = true}}
-  vim.validate {context = {context, 't', true}}
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params,
-                                           timeout_ms)
-  if not results or #results == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
-    return
-  end
-  result = results[1].result
-  if not result or #result == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
-    return
-  end
-  edit = result[1].edit
-  vim.lsp.util.apply_workspace_edit(edit)
-  vim.lsp.buf.formatting()
-end
-
 vim.cmd [[augroup lsp]]
 vim.cmd [[  autocmd! ]]
-vim.cmd [[  autocmd BufWritePre *.go lua go_org_imports({}, 1000) ]]
+vim.cmd [[  autocmd BufWritePre *.go lua GoOrgImports({}, 1000) ]]
 vim.cmd [[augroup END]]
 
 lspconfig.gopls.setup {
