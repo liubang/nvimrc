@@ -8,7 +8,6 @@
 #
 #======================================================================
 
-nvim_version="v0.4.4"
 ostype=""
 linux_type=""
 case "$OSTYPE" in
@@ -33,10 +32,10 @@ esac
 # install neovim
 archive_dir=""
 if [ $ostype == 'macos' ]; then
-	wget https://github.com/neovim/neovim/releases/download/${nvim_version}/nvim-macos.tar.gz -O /tmp/nvim.tar.gz
+	wget https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz -O /tmp/nvim.tar.gz
 	archive_dir="nvim-osx64"
 elif [ $ostype == 'linux' ]; then
-	wget https://github.com/neovim/neovim/releases/download/${nvim_version}/nvim-linux64.tar.gz -O /tmp/nvim.tar.gz
+	wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -O /tmp/nvim.tar.gz
 	archive_dir="nvim-linux64"
 fi
 tar -zxvf /tmp/nvim.tar.gz -C /tmp/
@@ -85,6 +84,19 @@ GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
 # install go tools
 GO111MODULE=on go get -u golang.org/x/tools/gopls
 GO111MODULE=on go get -u golang.org/x/tools/cmd/...
+# buildifier
+GO111MODULE=on go get github.com/bazelbuild/buildtools/buildifier
+# luarocks install --server=https://luarocks.org/dev luaformatter
+
+npm i -g bash-language-server
+npm i -g vscode-json-languageserver
+npm i -g yaml-language-server
+npm i -g prettier
+npm install -g intelephense
+
+pip install --user cmake-language-server
+pip install --user pynvim
+pip3 install --user pynvim
 
 if [ ! -d $HOME/.config ]; then
 	mkdir $HOME/.config
@@ -95,9 +107,6 @@ if [ -d $HOME/.config/nvim ]; then
 fi
 
 git clone --depth=1 https://github.com/liubang/vimrc.git $HOME/.config/nvim
-
-pip install --user pynvim
-pip3 install --user pynvim
 
 if [ -f "$HOME/.bashrc" ]; then
 	cat <<"EOF" >>$HOME/.bashrc
