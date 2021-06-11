@@ -38,7 +38,7 @@ use {
 }
 
 use {
-  'glepnir/galaxyline.nvim',
+  'liubang/galaxyline.nvim',
   config = function()
     -- if vim.fn.has('gui') then
     require('lb.config.eviline-gui')
