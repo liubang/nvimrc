@@ -94,14 +94,14 @@ lspconfig.sumneko_lua.setup(c.default({
   filetypes = {'lua'},
   settings = {
     Lua = {
-      runtime = {version = 'LuaJIT'},
-      completion = {keywordSnippet = 'Disable'},
+      runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
+      telemetry = {enable = false},
       diagnostics = {
         enable = true,
-        disable = {'trailing-space'},
         globals = {
           'vim',
           'describe',
+          'use',
           'it',
           'before_each',
           'after_each',
