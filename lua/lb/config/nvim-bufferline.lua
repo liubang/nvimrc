@@ -17,6 +17,7 @@ bufferline.setup {
     modified_icon           = '\u{fbba}',
     show_buffer_close_icons = false,
     always_show_bufferline  = true,
+    offsets                 = {{filetype = "NvimTree", text = "", padding = 1}},
   },
 }
 -- LuaFormatter on
