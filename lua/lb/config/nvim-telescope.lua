@@ -14,19 +14,30 @@ telescope.setup {
     file_ignore_patterns = {'.git/*'},
     shorten_path = true,
     winblend = 0,
-    sorting_strategy = 'ascending',
-    layout_strategy = 'center',
+    -- theme start
     results_title = false,
     preview_title = 'Preview',
-    preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-    width = 80,
-    results_height = 15,
+    sorting_strategy = 'ascending',
+    layout_strategy = 'center',
+    layout_config = {
+      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+
+      width = function(_, max_columns, _)
+        return math.min(max_columns - 3, 80)
+      end,
+
+      height = function(_, _, max_lines)
+        return math.min(max_lines - 4, 15)
+      end,
+    },
+    border = true,
     borderchars = {
       {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
       prompt = {'─', '│', ' ', '│', '╭', '╮', '│', '│'},
       results = {'─', '│', '─', '│', '├', '┤', '╯', '╰'},
       preview = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
     },
+    -- theme end
     mappings = {
       i = {
         ['<C-x>'] = false,
