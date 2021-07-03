@@ -26,29 +26,42 @@ for _, ls in ipairs(servers) do
   lspconfig[ls].setup(c.default())
 end
 
--- ccls
-local ccls_init = {cache = {directory = '/tmp/ccls'}}
-if jit.os == 'OSX' then
-  ccls_init.clang = {
-    resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
-    extraArgs = {
-      '-isystem',
-      os.getenv('CLANG_ISYSTEM') or '',
-      '-I',
-      os.getenv('CLANG_INCLUDE') or '',
-    },
-  }
-elseif jit.os == 'Linux' then
-  -- ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr/local'}}
-end
+lspconfig.clangd.setup(c.default({
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--suggest-missing-includes',
+    '--clang-tidy',
+    '--header-insertion=iwyu',
+  },
 
-lspconfig.ccls.setup(c.default({
-  cmd = {'ccls'},
-  filetypes = {'c', 'cpp'},
-  init_options = ccls_init,
-  root_dir = lspconfig_util.root_pattern(
-    {'.ccls', '.git/', 'compile_commands.json'}),
+  -- Required for lsp-status
+  init_options = {clangdFileStatus = true},
 }))
+
+-- ccls
+-- local ccls_init = {cache = {directory = '/tmp/ccls'}}
+-- if jit.os == 'OSX' then
+--   ccls_init.clang = {
+--     resourceDir = os.getenv('CLANG_RESOURCEDIR') or '',
+--     extraArgs = {
+--       '-isystem',
+--       os.getenv('CLANG_ISYSTEM') or '',
+--       '-I',
+--       os.getenv('CLANG_INCLUDE') or '',
+--     },
+--   }
+-- elseif jit.os == 'Linux' then
+--   -- ccls_init.clang = {extraArgs = {'--gcc-toolchain=/usr/local'}}
+-- end
+
+-- lspconfig.ccls.setup(c.default({
+--   cmd = {'ccls'},
+--   filetypes = {'c', 'cpp'},
+--   init_options = ccls_init,
+--   root_dir = lspconfig_util.root_pattern(
+--     {'.ccls', '.git/', 'compile_commands.json'}),
+-- }))
 
 vim.cmd [[augroup lsp]]
 vim.cmd [[  autocmd! ]]

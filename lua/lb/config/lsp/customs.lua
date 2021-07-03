@@ -35,7 +35,13 @@ vim.schedule(function()
   vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting()]]
 end)
 
+local custom_init = function(client)
+  client.config.flags = client.config.flags or {}
+  client.config.flags.allow_incremental_sync = true
+end
+
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
+custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
 custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
 custom_capabilities.textDocument.completion.completionItem.resolveSupport =
   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
@@ -69,6 +75,7 @@ end
 
 M.default = function(configs)
   local custom_config = {
+    on_init = custom_init,
     on_attach = custom_attach,
     capabilities = custom_capabilities,
   }
