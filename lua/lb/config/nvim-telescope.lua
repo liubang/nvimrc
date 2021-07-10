@@ -12,7 +12,7 @@ local telescope = require('telescope')
 telescope.setup {
   defaults = {
     file_ignore_patterns = {'.git/*'},
-    shorten_path = true,
+    path_display = {'absolute'},
     winblend = 0,
     -- theme start
     results_title = false,
