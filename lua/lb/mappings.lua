@@ -22,8 +22,8 @@ map('n', ' ', '')
 map('x', ' ', '')
 map('n', ',', '')
 map('x', ',', '')
-map('n', ';', '')
-map('x', ';', '')
+-- map('n', ';', '')
+-- map('x', ';', '')
 map('n', 'm', '')
 map('x', 'm', '')
 
@@ -119,6 +119,11 @@ map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
 map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
 
 map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
+
+-- map('n', '<Leader>jj', "<Plug>(easymotion-sol-j)", {noremap = false})
+-- map('n', '<Leader>kk', "<Plug>(easymotion-sol-k)", {noremap = false})
+-- map('n', '<Leader>ll', "<Plug>(easymotion-w)", {noremap = false})
+-- map('n', '<Leader>hh', "<Plug>(easymotion-b)", {noremap = false})
 
 map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 

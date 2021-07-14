@@ -57,6 +57,22 @@ use {
 }
 
 -- editor
+-- use {
+--   'easymotion/vim-easymotion',
+--   config = function()
+--     vim.g.EasyMotion_do_mapping = 0
+--   end
+-- }
+
+use {
+  'justinmk/vim-sneak',
+  config = function()
+    vim.g['sneak#label'] = 1
+    vim.g['sneak#target_labels'] = ';sftunq/SFGHLTUNRMQZ?0'
+    vim.g['sneak#use_ic_scs'] = 1
+  end
+}
+
 use {
   'Raimondi/delimitMate',
   config = function()
