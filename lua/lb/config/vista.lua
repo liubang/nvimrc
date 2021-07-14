@@ -22,3 +22,4 @@ vim.g.vista_echo_cursor = 0
 vim.g.vista_default_executive = 'nvim_lsp'
 vim.g.vista_no_mappings = 1
 vim.g.vista_sidebar_open_cmd = get_vista_open_cmd()
+vim.g.vista_disable_statusline = 1

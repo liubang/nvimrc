@@ -15,7 +15,7 @@ end
 
 local tree_config = function()
   g.nvim_tree_side = 'left'
-  g.nvim_tree_width = 30
+  g.nvim_tree_width = 40
   g.nvim_tree_disable_netrw = 0
   g.nvim_tree_hijack_netrw = 1
   g.nvim_tree_follow = 1

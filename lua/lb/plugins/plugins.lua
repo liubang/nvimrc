@@ -105,8 +105,11 @@ use {
     vim.g.asynctasks_term_reuse = 0
   end,
 }
+use { "junegunn/fzf", run = "./install --all" }
+use {'junegunn/fzf.vim'}
 use {
   'liuchengxu/vista.vim',
+  cmd = {'Vista'},
   config = function()
     require('lb.config.vista')
   end,
