@@ -109,8 +109,8 @@ use {
   'liuchengxu/vista.vim',
   cmd = {'Vista'},
   config = function()
-    vim.g['vista#renderer#enable_icon'] = 1
-    vim.g['vista_echo_cursor'] = 0
+    vim.g.vista_echo_cursor = 0
+    vim.g.vista_default_executive = 'nvim_lsp'
   end,
 }
 use {
