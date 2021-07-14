@@ -108,8 +108,7 @@ use {
 use {
   'liuchengxu/vista.vim',
   config = function()
-    vim.g.vista_echo_cursor = 0
-    vim.g.vista_default_executive = 'nvim_lsp'
+    require('lb.config.vista')
   end,
 }
 use {
