@@ -253,6 +253,8 @@ table.insert(gls.short_line_left, {
         local filetype = vim.bo.filetype
         if filetype == 'NvimTree' then
           return ' Explorer '
+        elseif filetype == 'vista_kind' then
+          return ' Outline '
         end
       else
         if fileinfo.get_current_file_name() ~= '' then
