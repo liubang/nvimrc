@@ -107,7 +107,7 @@ use {
 }
 use {
   'liuchengxu/vista.vim',
-  cmd = {'Vista'},
+  cmd = {'Vista', 'Vista!', 'Vista!!'},
   config = function()
     vim.g.vista_echo_cursor = 0
     vim.g.vista_default_executive = 'nvim_lsp'
