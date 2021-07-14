@@ -15,6 +15,7 @@ local special_buffers = {
   'plug',
   'defx',
   'vista',
+  'vista_kind',
   'help',
   'packer',
   'undotree',
