@@ -32,4 +32,6 @@ vim.g.gruvbox_material_disable_italic_comment = 1
 vim.g.gruvbox_material_background = 'soft'
 
 vim.cmd('colorscheme gruvbox-material')
-vim.cmd('hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE')
+
+vim.cmd('highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen')
+-- vim.cmd('highlight ExtraWhitespace ctermbg=red guibg=red')

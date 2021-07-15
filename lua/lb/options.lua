@@ -99,6 +99,7 @@ opt.formatoptions = opt.formatoptions
   - "2" -- I'm not in gradeschool anymore
 -- LuaFormatter on
 opt.textwidth = 120
+opt.colorcolumn = {'120'}
 opt.expandtab = true
 opt.tabstop = 2
 opt.shiftwidth = 2
