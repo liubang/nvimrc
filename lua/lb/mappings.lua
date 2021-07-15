@@ -137,6 +137,8 @@ map('n', "<Leader>Ag", ":lua require('telescope.builtin').grep_string()<CR>")
 map('n', "<Leader>bb", ":lua require('telescope.builtin').buffers({previewer = false})<CR>")
 map('n', "<Leader>fc", ":lua require('telescope.builtin').commands({previewer = false})<CR>")
 map('n', "<Leader>fb", ":lua require('telescope.builtin').builtin({previewer = false})<CR>")
+-- list symbols
+map('n', "<Leader>ls", ":lua require('telescope.builtin').lsp_document_symbols()<CR>")
 map('n', "<Leader>ts", ":lua require('telescope').extensions.tasks.tasks()<CR>")
 map('n', "<Leader>br", ":lua require('telescope').extensions.bazel.bazel_rules()<CR>")
 map('n', "<Leader>bt", ":lua require('telescope').extensions.bazel.bazel_tests()<CR>")
