@@ -32,7 +32,7 @@ lspconfig.clangd.setup(c.default({
     '--background-index',
     '--suggest-missing-includes',
     '--clang-tidy',
-    '--header-insertion=iwyu',
+    '--header-insertion=never',
   },
 
   -- Required for lsp-status
