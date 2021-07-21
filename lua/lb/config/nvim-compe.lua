@@ -27,6 +27,7 @@ nvim_compe.setup {
     calc = true,
     spell = true,
     vsnip = true,
+    emoji = true,
     buffer = true,
     nvim_lsp = true,
     nvim_lua = true,
