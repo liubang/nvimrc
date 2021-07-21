@@ -21,5 +21,14 @@ snippets.snippets = {
   },
   php = {php = '<?php\n'},
   lua = {formatoff = '-- LuaFormatter off', formaton = '-- LuaFormatter on'},
-  cpp = {formatoff = '// clang-format off', formaton = '// clang-format on'},
+  cpp = {
+    formatoff = '// clang-format off', 
+    formaton = '// clang-format on',
+    vim = [[/* vim: set expandtab ts=4 sw=4 sts=4 tw=100: */]]
+  },
+  c = {
+    formatoff = '// clang-format off', 
+    formaton = '// clang-format on',
+    vim = [[/* vim: set expandtab ts=4 sw=4 sts=4 tw=100: */]]
+  },
 }
