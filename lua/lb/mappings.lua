@@ -125,6 +125,15 @@ map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]
 -- map('n', '<Leader>ll', "<Plug>(easymotion-w)", {noremap = false})
 -- map('n', '<Leader>hh', "<Plug>(easymotion-b)", {noremap = false})
 
+-- sneak
+map('n', 's', "<Plug>Sneak_s", {noremap = false})
+map('n', 'S', "<Plug>Sneak_S", {noremap = false})
+map('n', ';', "<Plug>Sneak_;", {noremap = false})
+-- map('n', 't', "<Plug>Sneak_t", {noremap = false})
+-- map('n', 'T', "<Plug>Sneak_T", {noremap = false})
+-- map('n', 'f', "<Plug>Sneak_f", {noremap = false})
+-- map('n', 'F', "<Plug>Sneak_F", {noremap = false})
+
 map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 
 for i = 1, 9 do
