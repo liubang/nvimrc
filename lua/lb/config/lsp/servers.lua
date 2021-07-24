@@ -73,63 +73,17 @@ lspconfig.gopls.setup(c.default({
   init_options = {usePlaceholders = true, completeUnimported = true},
 }))
 
-local get_lua_runtime = function()
-  local result = {};
-  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-    local lua_path = path .. '/lua/'
-    if vim.fn.isdirectory(lua_path) then
-      result[lua_path] = true
-    end
-  end
-  -- This loads the `lua` files from nvim into the runtime.
-  result[vim.fn.expand('$VIMRUNTIME/lua')] = true
-  return result;
-end
-
-local sumneko_command = function()
-  local lua_ls_path = vim.g.cache_path .. '/lua-language-server'
-  local lua_ls_bin = ''
-  if jit.os == 'OSX' then
-    lua_ls_bin = lua_ls_path .. '/bin/macOS/lua-language-server'
-  elseif jit.os == 'Linux' then
-    lua_ls_bin = lua_ls_path .. '/bin/Linux/lua-language-server'
-  end
-  return {
-    lua_ls_bin,
-    '-E',
-    'LANG="zh-cn"',
-    string.format('%s/main.lua', lua_ls_path),
-  }
-end
-
-lspconfig.sumneko_lua.setup(c.default({
-  cmd = sumneko_command(),
-  filetypes = {'lua'},
-  settings = {
-    Lua = {
-      runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-      telemetry = {enable = false},
-      diagnostics = {
-        enable = true,
-        globals = {
-          'vim',
-          'describe',
-          'use',
-          'it',
-          'before_each',
-          'after_each',
-          'teardown',
-          'pending',
-        },
-      },
-      workspace = {
-        library = get_lua_runtime(),
-        maxPreload = 1000,
-        preloadFileSize = 1000,
-      },
+require('nlua.lsp.nvim').setup(lspconfig, c.default(
+                                 {
+    globals = {
+      -- Colorbuddy
+      'Color',
+      'c',
+      'Group',
+      'g',
+      's',
     },
-  },
-}))
+  }))
 
 -- diagnosticls
 lspconfig.diagnosticls.setup(c.default({

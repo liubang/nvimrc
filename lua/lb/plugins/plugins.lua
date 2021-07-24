@@ -70,7 +70,7 @@ use {
     vim.g['sneak#label'] = 1
     vim.g['sneak#target_labels'] = ';sftunq/SFGHLTUNRMQZ?0'
     vim.g['sneak#use_ic_scs'] = 1
-  end
+  end,
 }
 
 use {
@@ -121,7 +121,7 @@ use {
     vim.g.asynctasks_term_reuse = 0
   end,
 }
-use { "junegunn/fzf", run = "./install --all" }
+use {'junegunn/fzf', run = './install --all'}
 use {'junegunn/fzf.vim'}
 use {
   'liuchengxu/vista.vim',
@@ -174,6 +174,8 @@ use {
     require('lb.config.lsp')
   end,
 }
+
+use {'tjdevries/nlua.nvim'}
 
 use {
   'hrsh7th/nvim-compe',
