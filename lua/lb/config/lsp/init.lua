@@ -8,3 +8,4 @@
 -- =====================================================================
 require('lb.config.lsp.servers')
 require('lb.config.lsp.handlers')
+require('lb.config.lsp.events')

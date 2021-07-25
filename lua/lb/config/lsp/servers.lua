@@ -8,22 +8,82 @@
 -- =====================================================================
 local c = require('lb.config.lsp.customs')
 local lspconfig = require('lspconfig')
-local lspconfig_util = require('lspconfig/util')
+local my_os_type = os.getenv('MY_OS_TYPE')
 
-local servers = {
-  'texlab',
-  'bashls',
-  'cmake',
-  'cssls',
-  'dockerls',
-  'jsonls',
-  'vimls',
-  'yamlls',
-  'intelephense',
-}
+if my_os_type == 'own' then
+  local servers = {
+    'texlab',
+    'bashls',
+    'cmake',
+    'cssls',
+    'dockerls',
+    'jsonls',
+    'vimls',
+    'yamlls',
+    'intelephense',
+  }
 
-for _, ls in ipairs(servers) do
-  lspconfig[ls].setup(c.default())
+  for _, ls in ipairs(servers) do
+    lspconfig[ls].setup(c.default())
+  end
+
+  require('nlua.lsp.nvim').setup(lspconfig, c.default(
+                                   {
+      globals = {
+        -- Colorbuddy
+        'Color',
+        'c',
+        'Group',
+        'g',
+        's',
+      },
+    }))
+
+  -- diagnosticls
+  lspconfig.diagnosticls.setup(c.default(
+                                 {
+      cmd = {'diagnostic-languageserver', '--stdio'},
+      filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
+      init_options = {
+        formatters = {
+          buildifier = {command = 'buildifier'},
+          lua_format = {
+            command = 'lua-format',
+            args = {
+              '--column-limit=80',
+              '--indent-width=2',
+              '--tab-width=2',
+              '--continuation-indent-width=2',
+              '--align-table-field',
+              '--align-args',
+              '--align-parameter',
+              '--chop-down-table',
+              '--chop-down-parameter',
+              '--chop-down-kv-table',
+              '--extra-sep-at-table-end',
+              '--no-keep-simple-function-one-line',
+              '--no-break-after-functioncall-lp',
+              '--double-quote-to-single-quote',
+              '--no-keep-simple-control-block-one-line',
+            },
+          },
+          shfmt = {command = 'shfmt'},
+          prettier = {
+            command = 'prettier',
+            args = {'--stdin', '--stdin-filepath', [[%filepath]]},
+          },
+        },
+        formatFiletypes = {
+          sh = 'shfmt',
+          bzl = 'buildifier',
+          lua = 'lua_format',
+          json = 'prettier',
+          jsonc = 'prettier',
+          markdown = 'prettier',
+          yaml = 'prettier',
+        },
+      },
+    }))
 end
 
 lspconfig.clangd.setup(c.default({
@@ -63,69 +123,8 @@ lspconfig.clangd.setup(c.default({
 --     {'.ccls', '.git/', 'compile_commands.json'}),
 -- }))
 
-vim.cmd [[augroup lsp]]
-vim.cmd [[  autocmd! ]]
-vim.cmd [[  autocmd BufWritePre *.go lua GoOrgImports({}, 1000) ]]
-vim.cmd [[augroup END]]
-
+-- for golang
 lspconfig.gopls.setup(c.default({
   cmd = {'gopls'},
   init_options = {usePlaceholders = true, completeUnimported = true},
-}))
-
-require('nlua.lsp.nvim').setup(lspconfig, c.default(
-                                 {
-    globals = {
-      -- Colorbuddy
-      'Color',
-      'c',
-      'Group',
-      'g',
-      's',
-    },
-  }))
-
--- diagnosticls
-lspconfig.diagnosticls.setup(c.default({
-  cmd = {'diagnostic-languageserver', '--stdio'},
-  filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
-  init_options = {
-    formatters = {
-      buildifier = {command = 'buildifier'},
-      lua_format = {
-        command = 'lua-format',
-        args = {
-          '--column-limit=80',
-          '--indent-width=2',
-          '--tab-width=2',
-          '--continuation-indent-width=2',
-          '--align-table-field',
-          '--align-args',
-          '--align-parameter',
-          '--chop-down-table',
-          '--chop-down-parameter',
-          '--chop-down-kv-table',
-          '--extra-sep-at-table-end',
-          '--no-keep-simple-function-one-line',
-          '--no-break-after-functioncall-lp',
-          '--double-quote-to-single-quote',
-          '--no-keep-simple-control-block-one-line',
-        },
-      },
-      shfmt = {command = 'shfmt'},
-      prettier = {
-        command = 'prettier',
-        args = {'--stdin', '--stdin-filepath', [[%filepath]]},
-      },
-    },
-    formatFiletypes = {
-      sh = 'shfmt',
-      bzl = 'buildifier',
-      lua = 'lua_format',
-      json = 'prettier',
-      jsonc = 'prettier',
-      markdown = 'prettier',
-      yaml = 'prettier',
-    },
-  },
 }))
