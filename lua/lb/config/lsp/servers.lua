@@ -7,6 +7,7 @@
 --
 -- =====================================================================
 local c = require('lb.config.lsp.customs')
+local Job = require('plenary.job')
 local lspconfig = require('lspconfig')
 local my_os_type = os.getenv('MY_OS_TYPE')
 
@@ -86,15 +87,40 @@ if my_os_type == 'own' then
     }))
 end
 
-lspconfig.clangd.setup(c.default({
-  cmd = {
+local get_default_driver = function()
+  local j = Job:new({
+    command = "which",
+    args = {"g++"},
+  })
+
+  local ok, result = pcall(function()
+    return vim.trim(j:sync()[1])
+  end)
+
+  if ok then 
+    return result
+  end
+
+  return nil
+end
+
+local get_cland_cmd = function()
+  local cmd = {
     'clangd',
     '--background-index',
     '--suggest-missing-includes',
     '--clang-tidy',
     '--header-insertion=never',
-  },
+  }
+  local driver = get_default_driver()
+  if driver ~= nil then 
+    table.insert(cmd, string.format('--query-driver=%s', driver))
+  end
+  return cmd
+end
 
+lspconfig.clangd.setup(c.default({
+  cmd = get_cland_cmd(),
   -- Required for lsp-status
   init_options = {clangdFileStatus = true},
 }))
