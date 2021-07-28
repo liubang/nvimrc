@@ -98,8 +98,8 @@ opt.formatoptions = opt.formatoptions
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
 -- LuaFormatter on
-opt.textwidth = 120
-opt.colorcolumn = {'120'}
+opt.textwidth = 100
+opt.colorcolumn = {'100'}
 opt.expandtab = true
 opt.tabstop = 2
 opt.shiftwidth = 2
