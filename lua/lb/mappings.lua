@@ -92,10 +92,10 @@ map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 -- LuaFormatter off
 map('n', "<Leader>ft", ":NvimTreeToggle<CR>")
 
-map('n', "<Leader>cc", ':call NERDComment(\'n\', \'toggle\')<CR>')
-map('x', "<Leader>cc", ':call NERDComment(\'x\', \'toggle\')<CR>')
-map('n', "<Leader>cn", ':call NERDComment(\'n\', \'sexy\')<CR>')
-map('x', "<Leader>cn", ':call NERDComment(\'x\', \'sexy\')<CR>')
+map('n', "<Leader>cc", ':call nerdcommenter#Comment(\'n\', \'toggle\')<CR>')
+map('x', "<Leader>cc", ':call nerdcommenter#Comment(\'x\', \'toggle\')<CR>')
+map('n', "<Leader>cn", ':call nerdcommenter#Comment(\'n\', \'sexy\')<CR>')
+map('x', "<Leader>cn", ':call nerdcommenter#Comment(\'x\', \'sexy\')<CR>')
 
 map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
 map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
