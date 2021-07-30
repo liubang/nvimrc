@@ -38,13 +38,13 @@ use {
 }
 
 use {
+'nvim-lua/lsp-status.nvim'
+}
+
+use {
   'liubang/galaxyline.nvim',
   config = function()
-    -- if vim.fn.has('gui') then
     require('lb.config.eviline-gui')
-    -- else
-    -- require('lb.config.eviline')
-    -- end
   end,
 }
 
@@ -167,6 +167,7 @@ use {
 use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
 -- lsp
+use {'mfussenegger/nvim-jdtls'}
 use {
   'neovim/nvim-lspconfig',
   requires = {'glepnir/lspsaga.nvim'},

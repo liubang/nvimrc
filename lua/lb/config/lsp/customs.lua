@@ -1,6 +1,8 @@
 local M = {}
 
 local lspprotocol = require('vim.lsp.protocol')
+local nvim_status = require('lsp-status')
+local status = require('lb.config.lsp.status')
 
 lspprotocol.CompletionItemKind = {
   ' Text', -- = 1
@@ -30,6 +32,8 @@ lspprotocol.CompletionItemKind = {
   '  TypeParameter', -- = 25;
 }
 
+status.activate()
+
 -- define commands
 vim.schedule(function()
   vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting()]]
@@ -41,6 +45,7 @@ local custom_init = function(client)
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
+custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, nvim_status.capabilities)
 custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
 custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
 custom_capabilities.textDocument.completion.completionItem.resolveSupport =
@@ -53,6 +58,8 @@ local function buf_set_keymap(...)
 end
 -- LuaFormatter off
 local custom_attach = function(client, bufnr)
+  nvim_status.on_attach(client)
+
   buf_set_keymap('n', '<Leader>gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', opts)

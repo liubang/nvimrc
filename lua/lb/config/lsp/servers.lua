@@ -9,6 +9,7 @@
 local c = require('lb.config.lsp.customs')
 local Job = require('plenary.job')
 local lspconfig = require('lspconfig')
+local util = require ('lspconfig.util')
 local my_os_type = os.getenv('MY_OS_TYPE')
 
 if my_os_type == 'own' then
@@ -87,6 +88,7 @@ if my_os_type == 'own' then
     }))
 end
 
+--- for cpp
 local get_default_driver = function()
   local j = Job:new({
     command = "which",
@@ -153,4 +155,9 @@ lspconfig.clangd.setup(c.default({
 lspconfig.gopls.setup(c.default({
   cmd = {'gopls'},
   init_options = {usePlaceholders = true, completeUnimported = true},
+}))
+
+-- for java
+lspconfig.jdtls.setup(c.default({
+  cmd = {vim.g.scripts_path .. '/java-lsp.sh'},
 }))

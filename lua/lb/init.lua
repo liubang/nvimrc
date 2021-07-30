@@ -27,11 +27,12 @@ end
 
 function app:run()
   -- LuaFormatter off
-  g.nvg_version = self.nvg_version
-  g.nvg_root    = fn.stdpath('config')
-  g.cache_path  = string.format('%s/.cache', g.nvg_root)
-  g.module_path = string.format('%s/modules', g.nvg_root)
-  g.snip_path   = string.format('%s/snippets', g.nvg_root)
+  g.nvg_version  = self.nvg_version
+  g.nvg_root     = fn.stdpath('config')
+  g.cache_path   = string.format('%s/.cache', g.nvg_root)
+  g.module_path  = string.format('%s/modules', g.nvg_root)
+  g.snip_path    = string.format('%s/snippets', g.nvg_root)
+  g.scripts_path = string.format('%s/scripts', g.nvg_root)
   -- LuaFormatter on
 
   require('lb.globals')
