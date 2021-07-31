@@ -9,26 +9,25 @@
 local c = require('lb.config.lsp.customs')
 local Job = require('plenary.job')
 local lspconfig = require('lspconfig')
-local util = require ('lspconfig.util')
+local util = require('lspconfig.util')
 local my_os_type = os.getenv('MY_OS_TYPE')
 
+local servers = {
+  'texlab',
+  'bashls',
+  'cmake',
+  'dockerls',
+  'jsonls',
+  'vimls',
+  'yamlls',
+  'intelephense',
+}
+
+for _, ls in ipairs(servers) do
+  lspconfig[ls].setup(c.default())
+end
+
 if my_os_type == 'own' then
-  local servers = {
-    'texlab',
-    'bashls',
-    'cmake',
-    'cssls',
-    'dockerls',
-    'jsonls',
-    'vimls',
-    'yamlls',
-    'intelephense',
-  }
-
-  for _, ls in ipairs(servers) do
-    lspconfig[ls].setup(c.default())
-  end
-
   require('nlua.lsp.nvim').setup(lspconfig, c.default(
                                    {
       globals = {
@@ -90,16 +89,13 @@ end
 
 --- for cpp
 local get_default_driver = function()
-  local j = Job:new({
-    command = "which",
-    args = {"g++"},
-  })
+  local j = Job:new({command = 'which', args = {'g++'}})
 
   local ok, result = pcall(function()
     return vim.trim(j:sync()[1])
   end)
 
-  if ok then 
+  if ok then
     return result
   end
 
@@ -115,7 +111,7 @@ local get_cland_cmd = function()
     '--header-insertion=never',
   }
   local driver = get_default_driver()
-  if driver ~= nil then 
+  if driver ~= nil then
     table.insert(cmd, string.format('--query-driver=%s', driver))
   end
   return cmd
@@ -159,5 +155,46 @@ lspconfig.gopls.setup(c.default({
 
 -- for java
 lspconfig.jdtls.setup(c.default({
-  cmd = {vim.g.scripts_path .. '/java-lsp.sh'},
+  cmd = {
+    vim.g.scripts_path .. '/java-lsp.sh',
+    util.root_pattern('pom.xml', 'gradlew')(vim.fn.expand('%:p')),
+  },
+  flags = {allow_incremental_sync = true},
+  init_options = {
+    extendedClientCapabilities = {
+      progressReportProvider = true,
+      classFileContentsSupport = true,
+      generateToStringPromptSupport = true,
+      hashCodeEqualsPromptSupport = true,
+      advancedExtractRefactoringSupport = true,
+      advancedOrganizeImportsSupport = true,
+      resolveAdditionalTextEditsSupport = true,
+      generateConstructorsPromptSupport = true,
+      generateDelegateMethodsPromptSupport = true,
+      moveRefactoringSupport = true,
+      inferSelectionSupport = {
+        'extractMethod',
+        'extractVariable',
+        'extractConstant',
+      },
+    },
+  },
+  capabilities = {
+    workspace = {configuration = true},
+    textDocument = {completion = {completionItem = {snippetSupport = true}}},
+  },
+  settings = {
+    java = {
+      signatureHelp = {enabled = true},
+      contentProvider = {preferred = 'fernflower'},
+    },
+    sources = {
+      organizeImports = {starThreshold = 9999, staticStarThreshold = 9999},
+    },
+    codeGeneration = {
+      toString = {
+        template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+      },
+    },
+  },
 }))

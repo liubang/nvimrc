@@ -38,10 +38,6 @@ use {
 }
 
 use {
-'nvim-lua/lsp-status.nvim'
-}
-
-use {
   'liubang/galaxyline.nvim',
   config = function()
     require('lb.config.eviline-gui')
@@ -167,16 +163,16 @@ use {
 use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
 -- lsp
-use {'mfussenegger/nvim-jdtls'}
 use {
   'neovim/nvim-lspconfig',
-  requires = {'glepnir/lspsaga.nvim'},
+  requires = {
+    'glepnir/lspsaga.nvim',
+    'tjdevries/nlua.nvim',
+  },
   config = function()
     require('lb.config.lsp')
   end,
 }
-
-use {'tjdevries/nlua.nvim'}
 
 use {
   'hrsh7th/nvim-compe',
