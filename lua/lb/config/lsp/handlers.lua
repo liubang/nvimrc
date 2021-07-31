@@ -30,31 +30,7 @@ end
 vim.lsp.handlers["textDocument/hover"] = require("lspsaga.hover").handler
 -- LuaFormatter on
 
--- golang organize imports
-GoOrgImports = function(options, timeout_ms)
-  local context = {source = {organizeImports = true}}
-  vim.validate {context = {context, 't', true}}
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params,
-                                           timeout_ms)
-  if not results or #results == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
-    return
-  end
-  result = results[1].result
-  if not result or #result == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
-    return
-  end
-  edit = result[1].edit
-  vim.lsp.util.apply_workspace_edit(edit)
-  vim.lsp.buf.formatting()
-end
-
-local ns_rename = vim.api.nvim_create_namespace 'lb_rename'
+local ns_rename = vim.api.nvim_create_namespace('lb_rename')
 
 MyLspRename = function()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -76,8 +52,7 @@ MyLspRename = function()
   end
 
   if has_found_highlights then
-    vim.api.nvim_buf_add_highlight(bufnr, ns_rename, 'Visual', line - 1,
-                                   start - 1, finish)
+    vim.api.nvim_buf_add_highlight(bufnr, ns_rename, 'Visual', line - 1, start - 1, finish)
     vim.cmd(string.format(
               'autocmd BufEnter <buffer=%s> ++once :call nvim_buf_clear_namespace(%s, %s, 0, -1)',
               bufnr, bufnr, ns_rename))
@@ -90,3 +65,213 @@ MyLspRename = function()
                               {noremap = true, silent = true})
   return
 end
+
+-- golang organize imports
+GoOrgImports = function(options, timeout_ms)
+  _ = options
+  local context = {source = {organizeImports = true}}
+  vim.validate {context = {context, 't', true}}
+  local params = vim.lsp.util.make_range_params()
+  params.context = context
+  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, timeout_ms)
+  if not results or #results == 0 then
+    --- always call formatting
+    vim.lsp.buf.formatting()
+    return
+  end
+  local result = results[1].result
+  if not result or #result == 0 then
+    --- always call formatting
+    vim.lsp.buf.formatting()
+    return
+  end
+  local edit = result[1].edit
+  vim.lsp.util.apply_workspace_edit(edit)
+  vim.lsp.buf.formatting()
+end
+
+-- java organize imports
+local function within_range(outer, inner)
+  local o1y = outer.start.line
+  local o1x = outer.start.character
+  local o2y = outer['end'].line
+  local o2x = outer['end'].character
+  assert(o1y <= o2y, 'Start must be before end: ' .. vim.inspect(outer))
+
+  local i1y = inner.start.line
+  local i1x = inner.start.character
+  local i2y = inner['end'].line
+  local i2x = inner['end'].character
+  assert(i1y <= i2y, 'Start must be before end: ' .. vim.inspect(inner))
+
+  -- Outer: {}
+  -- Inner: []
+  -------------
+  -------------
+  --  {     [ ]
+  --      }
+  -------------
+  --     {
+  --  []   }
+  -------------
+
+  if o1y < i1y then
+    --     {
+    --  [      ]
+    --     }
+    if o2y > i2y then
+      return true
+    end
+    --     {
+    --  [  }   ]
+    return o2y == i2y and o2x >= i2x
+  elseif o1y == i1y then
+    if o2y > i2y then
+      -- { []
+      --  }
+      return true
+    else
+      --  { [ ]  }
+      --  [ { ]  }
+      return o2y == i2y and o1x <= i1x and o2x >= i2x
+    end
+  else
+    return false
+  end
+end
+
+local function get_diagnostics_for_range(bufnr, range)
+  local diagnostics = vim.lsp.diagnostic.get(bufnr)
+  if not diagnostics then
+    return {}
+  end
+  local line_diagnostics = {}
+  for _, diagnostic in ipairs(diagnostics) do
+    if within_range(diagnostic.range, range) then
+      table.insert(line_diagnostics, diagnostic)
+    end
+  end
+  if #line_diagnostics == 0 then
+    -- If there is no diagnostics at the cursor position,
+    -- see if there is at least something on the same line
+    for _, diagnostic in ipairs(diagnostics) do
+      if diagnostic.range.start.line == range.start.line then
+        table.insert(line_diagnostics, diagnostic)
+      end
+    end
+  end
+  return line_diagnostics
+end
+
+local java_action_organize_imports = function()
+  local params = vim.lsp.util.make_range_params()
+  params.context = {
+    diagnostics = get_diagnostics_for_range(vim.api.nvim_get_current_buf(), params.range),
+    only = nil,
+  }
+  vim.lsp.buf_request(0, 'java/organizeImports', params, function(err, _, resp)
+    if err then
+      print('Error on organize imports: ' .. err.message)
+      return
+    end
+    if resp then
+      vim.lsp.util.apply_workspace_edit(resp)
+    end
+  end)
+end
+
+JavaOrgImports = java_action_organize_imports
+
+local java_generate_to_string_prompt = function()
+  vim.lsp.buf_request(0, 'java/checkToStringStatus', {}, function(err, _, result)
+    if err then
+      print('Could not execute java/checkToStringStatus: ' .. err.message)
+      return
+    end
+    if not result then
+      return
+    end
+    if result.exists then
+      vim.cmd('redraw! | echo | redraw!')
+      local actions = {'Yes', 'No'}
+      local section = vim.fn.confirm(
+                        'Method \'toString()\' already exists. Do you want to replace it?',
+                        '&Yes\n&No')
+      vim.cmd('redraw!')
+      if section == 2 then
+        return
+      end
+    end
+    vim.lsp.buf_request(0, 'java/generateToString', {context = {}, fields = result.fields},
+                        function(e, _, edit)
+      if e then
+        print('Could not execute java/generateToString: ' .. e.message)
+        return
+      end
+      if edit then
+        vim.lsp.util.apply_workspace_edit(edit)
+      end
+    end)
+  end)
+end
+
+local java_action_rename = function()
+end
+
+local java_apply_workspace_edit = function()
+
+end
+
+local java_hash_code_equals_prompt = function()
+
+end
+
+local java_apply_refactoring_command = function()
+
+end
+
+local java_choose_imports = function()
+
+end
+
+local java_generate_constructors_prompt = function()
+
+end
+
+local java_generate_delegate_methods_prompt = function()
+
+end
+
+-- local M = {}
+
+-- M.commands = {
+--   ['java.apply.workspaceEdit'] = java_apply_workspace_edit,
+--   ['java.action.generateToStringPrompt'] = java_generate_to_string_prompt,
+--   ['java.action.hashCodeEqualsPrompt'] = java_hash_code_equals_prompt,
+--   ['java.action.applyRefactoringCommand'] = java_apply_refactoring_command,
+--   ['java.action.rename'] = java_action_rename,
+--   ['java.action.organizeImports'] = java_action_organize_imports,
+--   ['java.action.organizeImports.chooseImports'] = java_choose_imports,
+--   ['java.action.generateConstructorsPrompt'] = java_generate_constructors_prompt,
+--   ['java.action.generateDelegateMethodsPrompt'] = java_generate_delegate_methods_prompt,
+-- }
+
+-- if not vim.lsp.handlers['workspace/executeClientCommand'] then
+--   vim.lsp.handlers['workspace/executeClientCommand'] =
+--     function(_, _, params)
+--       local fn = M.commands[params.command]
+--       if fn then
+--         local ok, result = pcall(fn, params.arguments)
+--         if ok then
+--           return result
+--         else
+--           return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.InternalError, result)
+--         end
+--       else
+--         return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.MethodNotFound, 'Command ' ..
+--                                             params.command .. ' not supported on client')
+--       end
+--     end
+-- end
+
+-- return M

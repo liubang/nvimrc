@@ -63,7 +63,6 @@ local custom_attach = function(client, _)
   buf_set_keymap('n', '<Leader>ca', ':lua require("lspsaga.codeaction").code_action()<CR>', opts)
   buf_set_keymap('v', '<Leader>ca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
   buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-  -- format
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end

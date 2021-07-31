@@ -51,7 +51,7 @@ if my_os_type == 'own' then
           lua_format = {
             command = 'lua-format',
             args = {
-              '--column-limit=80',
+              '--column-limit=100',
               '--indent-width=2',
               '--tab-width=2',
               '--continuation-indent-width=2',
@@ -189,6 +189,8 @@ lspconfig.jdtls.setup(c.default({
       contentProvider = {preferred = 'fernflower'},
       errors = {incompleteClasspath = {severity = 'warning'}},
       saveActions = {organizeImports = true},
+      maven = {downloadSources = true, updateSnapshots = true},
+      format = {enabled = true},
       configuration = {
         checkProjectSettingsExclusions = true,
         runtimes = {
@@ -205,6 +207,10 @@ lspconfig.jdtls.setup(c.default({
           'org.junit.jupiter.api.DynamicTest.*',
         },
         importOrder = {'java', 'javax', 'com', 'org'},
+        maxResults = 0.0,
+        enabled = true,
+        overwrite = true,
+        guessMethodArguments = true,
       },
       sources = {
         organizeImports = {starThreshold = 9999, staticStarThreshold = 9999},
