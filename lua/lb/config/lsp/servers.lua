@@ -187,13 +187,49 @@ lspconfig.jdtls.setup(c.default({
     java = {
       signatureHelp = {enabled = true},
       contentProvider = {preferred = 'fernflower'},
-    },
-    sources = {
-      organizeImports = {starThreshold = 9999, staticStarThreshold = 9999},
-    },
-    codeGeneration = {
-      toString = {
-        template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+      errors = {incompleteClasspath = {severity = 'warning'}},
+      saveActions = {organizeImports = true},
+      configuration = {
+        checkProjectSettingsExclusions = true,
+        runtimes = {
+          {default = true, name = 'JavaSE-16', path = os.getenv('JAVA_HOME')},
+        },
+      },
+      completion = {
+        favoriteStaticMembers = {
+          'org.junit.Assert.*',
+          'org.junit.Assume.*',
+          'org.junit.jupiter.api.Assertions.*',
+          'org.junit.jupiter.api.Assumptions.*',
+          'org.junit.jupiter.api.DynamicContainer.*',
+          'org.junit.jupiter.api.DynamicTest.*',
+        },
+        importOrder = {'java', 'javax', 'com', 'org'},
+      },
+      sources = {
+        organizeImports = {starThreshold = 9999, staticStarThreshold = 9999},
+      },
+      import = {
+        gradle = {enabled = true},
+        maven = {enabled = true},
+        exclusions = {
+          '**/node_modules/**',
+          '**/.metadata/**',
+          '**/archetype-resources/**',
+          '**/META-INF/maven/**',
+          '/**/test/**',
+        },
+      },
+      codeGeneration = {
+        toString = {
+          template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+        },
+        hashCodeEquals = {useJava7Objects = false, useInstanceof = false},
+        useBlocks = false,
+        generateComments = false,
+        skipNullValues = false,
+        listArrayContents = true,
+        limitElements = 0.0,
       },
     },
   },
