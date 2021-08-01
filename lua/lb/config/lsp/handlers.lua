@@ -167,7 +167,6 @@ local java_action_organize_imports = function()
   local params = vim.lsp.util.make_range_params()
   params.context = {
     diagnostics = get_diagnostics_for_range(vim.api.nvim_get_current_buf(), params.range),
-    only = nil,
   }
   vim.lsp.buf_request(0, 'java/organizeImports', params, function(err, _, resp)
     if err then
@@ -242,36 +241,18 @@ local java_generate_delegate_methods_prompt = function()
 
 end
 
--- local M = {}
+local M = {}
 
--- M.commands = {
---   ['java.apply.workspaceEdit'] = java_apply_workspace_edit,
---   ['java.action.generateToStringPrompt'] = java_generate_to_string_prompt,
---   ['java.action.hashCodeEqualsPrompt'] = java_hash_code_equals_prompt,
---   ['java.action.applyRefactoringCommand'] = java_apply_refactoring_command,
---   ['java.action.rename'] = java_action_rename,
---   ['java.action.organizeImports'] = java_action_organize_imports,
---   ['java.action.organizeImports.chooseImports'] = java_choose_imports,
---   ['java.action.generateConstructorsPrompt'] = java_generate_constructors_prompt,
---   ['java.action.generateDelegateMethodsPrompt'] = java_generate_delegate_methods_prompt,
--- }
+M.commands = {
+  ['java.apply.workspaceEdit'] = java_apply_workspace_edit,
+  ['java.action.generateToStringPrompt'] = java_generate_to_string_prompt,
+  ['java.action.hashCodeEqualsPrompt'] = java_hash_code_equals_prompt,
+  ['java.action.applyRefactoringCommand'] = java_apply_refactoring_command,
+  ['java.action.rename'] = java_action_rename,
+  ['java.action.organizeImports'] = java_action_organize_imports,
+  ['java.action.organizeImports.chooseImports'] = java_choose_imports,
+  ['java.action.generateConstructorsPrompt'] = java_generate_constructors_prompt,
+  ['java.action.generateDelegateMethodsPrompt'] = java_generate_delegate_methods_prompt,
+}
 
--- if not vim.lsp.handlers['workspace/executeClientCommand'] then
---   vim.lsp.handlers['workspace/executeClientCommand'] =
---     function(_, _, params)
---       local fn = M.commands[params.command]
---       if fn then
---         local ok, result = pcall(fn, params.arguments)
---         if ok then
---           return result
---         else
---           return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.InternalError, result)
---         end
---       else
---         return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.MethodNotFound, 'Command ' ..
---                                             params.command .. ' not supported on client')
---       end
---     end
--- end
-
--- return M
+return M
