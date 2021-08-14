@@ -79,10 +79,7 @@ use {
   end,
 }
 use {'tpope/vim-surround'}
-use {
-  'tpope/vim-fugitive',
-  cmd = {'Gblame', 'Glog', 'Gdiff', 'Gstatus', 'Gpull', 'Grebase'},
-}
+use {'tpope/vim-fugitive', cmd = {'G'}, event = 'BufRead'}
 use {'junegunn/gv.vim'}
 use {'mhinz/vim-signify', event = {'BufReadPre', 'BufNewFile'}}
 use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
@@ -165,10 +162,7 @@ use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 -- lsp
 use {
   'neovim/nvim-lspconfig',
-  requires = {
-    'glepnir/lspsaga.nvim',
-    'tjdevries/nlua.nvim',
-  },
+  requires = {'glepnir/lspsaga.nvim', 'tjdevries/nlua.nvim'},
   config = function()
     require('lb.config.lsp')
   end,
@@ -176,11 +170,7 @@ use {
 
 use {
   'hrsh7th/nvim-compe',
-  requires = {
-    'norcalli/snippets.nvim',
-    'hrsh7th/vim-vsnip',
-    'GoldsteinE/compe-latex-symbols',
-  },
+  requires = {'norcalli/snippets.nvim', 'hrsh7th/vim-vsnip', 'GoldsteinE/compe-latex-symbols'},
   config = function()
     require('lb.config.nvim-compe')
   end,
@@ -189,10 +179,7 @@ use {
 -- ft
 use {'cespare/vim-toml', ft = {'toml'}}
 use {'neoclide/jsonc.vim', ft = {'jsonc', 'json'}}
-use {
-  'masukomi/vim-markdown-folding',
-  ft = {'markdown', 'rmd', 'pandoc.markdown'},
-}
+use {'masukomi/vim-markdown-folding', ft = {'markdown', 'rmd', 'pandoc.markdown'}}
 use {
   'iamcco/markdown-preview.nvim',
   ft = {'markdown', 'pandoc.markdown', 'rmd'},
