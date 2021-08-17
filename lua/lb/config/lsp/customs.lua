@@ -67,7 +67,7 @@ local custom_attach = function(client, _)
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap('v', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('v', '<Leader>fm', ':<C-U>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
 end
 -- LuaFormatter on
