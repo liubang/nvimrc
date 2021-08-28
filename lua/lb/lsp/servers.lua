@@ -6,7 +6,7 @@
 -- Last Modified: 2021/02/06 00:05
 --
 -- =====================================================================
-local c = require('lb.config.lsp.customs')
+local c = require('lb.lsp.customs')
 local Job = require('plenary.job')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
@@ -41,50 +41,46 @@ if my_os_type == 'own' then
     }))
 
   -- diagnosticls
-  lspconfig.diagnosticls.setup(c.default(
-                                 {
-      cmd = {'diagnostic-languageserver', '--stdio'},
-      filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
-      init_options = {
-        formatters = {
-          buildifier = {command = 'buildifier'},
-          lua_format = {
-            command = 'lua-format',
-            args = {
-              '--column-limit=100',
-              '--indent-width=2',
-              '--tab-width=2',
-              '--continuation-indent-width=2',
-              '--align-table-field',
-              '--align-args',
-              '--align-parameter',
-              '--chop-down-table',
-              '--chop-down-parameter',
-              '--chop-down-kv-table',
-              '--extra-sep-at-table-end',
-              '--no-keep-simple-function-one-line',
-              '--no-break-after-functioncall-lp',
-              '--double-quote-to-single-quote',
-              '--no-keep-simple-control-block-one-line',
-            },
-          },
-          shfmt = {command = 'shfmt'},
-          prettier = {
-            command = 'prettier',
-            args = {'--stdin', '--stdin-filepath', [[%filepath]]},
+  lspconfig.diagnosticls.setup(c.default({
+    cmd = {'diagnostic-languageserver', '--stdio'},
+    filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
+    init_options = {
+      formatters = {
+        buildifier = {command = 'buildifier'},
+        lua_format = {
+          command = 'lua-format',
+          args = {
+            '--column-limit=100',
+            '--indent-width=2',
+            '--tab-width=2',
+            '--continuation-indent-width=2',
+            '--align-table-field',
+            '--align-args',
+            '--align-parameter',
+            '--chop-down-table',
+            '--chop-down-parameter',
+            '--chop-down-kv-table',
+            '--extra-sep-at-table-end',
+            '--no-keep-simple-function-one-line',
+            '--no-break-after-functioncall-lp',
+            '--double-quote-to-single-quote',
+            '--no-keep-simple-control-block-one-line',
           },
         },
-        formatFiletypes = {
-          sh = 'shfmt',
-          bzl = 'buildifier',
-          lua = 'lua_format',
-          json = 'prettier',
-          jsonc = 'prettier',
-          markdown = 'prettier',
-          yaml = 'prettier',
-        },
+        shfmt = {command = 'shfmt'},
+        prettier = {command = 'prettier', args = {'--stdin', '--stdin-filepath', [[%filepath]]}},
       },
-    }))
+      formatFiletypes = {
+        sh = 'shfmt',
+        bzl = 'buildifier',
+        lua = 'lua_format',
+        json = 'prettier',
+        jsonc = 'prettier',
+        markdown = 'prettier',
+        yaml = 'prettier',
+      },
+    },
+  }))
 end
 
 --- for cpp
@@ -172,11 +168,7 @@ lspconfig.jdtls.setup(c.default({
       generateConstructorsPromptSupport = true,
       generateDelegateMethodsPromptSupport = true,
       moveRefactoringSupport = true,
-      inferSelectionSupport = {
-        'extractMethod',
-        'extractVariable',
-        'extractConstant',
-      },
+      inferSelectionSupport = {'extractMethod', 'extractVariable', 'extractConstant'},
     },
   },
   capabilities = {
@@ -193,9 +185,7 @@ lspconfig.jdtls.setup(c.default({
       format = {enabled = true},
       configuration = {
         checkProjectSettingsExclusions = true,
-        runtimes = {
-          {default = true, name = 'JavaSE-16', path = os.getenv('JAVA_HOME')},
-        },
+        runtimes = {{default = true, name = 'JavaSE-16', path = os.getenv('JAVA_HOME')}},
       },
       completion = {
         favoriteStaticMembers = {
@@ -212,9 +202,7 @@ lspconfig.jdtls.setup(c.default({
         overwrite = true,
         guessMethodArguments = true,
       },
-      sources = {
-        organizeImports = {starThreshold = 9999, staticStarThreshold = 9999},
-      },
+      sources = {organizeImports = {starThreshold = 9999, staticStarThreshold = 9999}},
       import = {
         gradle = {enabled = true},
         maven = {enabled = true},

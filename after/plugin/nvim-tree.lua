@@ -13,21 +13,19 @@ local buf_mapper = function(mode, key, result)
                           {noremap = true, silent = true})
 end
 
-local tree_config = function()
-  g.nvim_tree_side = 'left'
-  g.nvim_tree_width = 40
-  g.nvim_tree_disable_netrw = 0
-  g.nvim_tree_hijack_netrw = 1
-  g.nvim_tree_follow = 1
-  g.nvim_tree_tab_open = 0
-  g.nvim_tree_lint_lsp = 0
-  g.nvim_tree_gitignore = 1
-  g.nvim_tree_auto_open = 0
-  g.nvim_tree_auto_close = 0
-  g.nvim_tree_auto_ignore_ft = {'startify', 'dashboard'}
-end
+g.nvim_tree_side = 'left'
+g.nvim_tree_width = 40
+g.nvim_tree_disable_netrw = 0
+g.nvim_tree_hijack_netrw = 1
+g.nvim_tree_follow = 1
+g.nvim_tree_tab_open = 0
+g.nvim_tree_lint_lsp = 0
+g.nvim_tree_gitignore = 1
+g.nvim_tree_auto_open = 0
+g.nvim_tree_auto_close = 0
+g.nvim_tree_auto_ignore_ft = {'startify', 'dashboard'}
 
-local tree_context_menu = function()
+_G.lb_nvim_tree_context_menu = function()
   vim.cmd('redraw! | echo | redraw!')
   local actions = {'create', 'rename', 'copy', 'cut', 'paste', 'remove'}
   local section = vim.fn.confirm('Action?',
@@ -36,31 +34,18 @@ local tree_context_menu = function()
   require('nvim-tree').on_keypress(actions[section])
 end
 
-local tree_mapping = function()
-  buf_mapper('n', 'm', 'require("lb.config.nvim-tree").tree_context_menu()')
+_G.lb_nvim_tree_mapping = function()
+  buf_mapper('n', 'm', '_G.lb_nvim_tree_context_menu()')
   buf_mapper('n', 'r', 'require("nvim-tree").on_keypress("refresh")')
   buf_mapper('n', 's', 'require("nvim-tree").on_keypress("split")')
   buf_mapper('n', 'v', 'require("nvim-tree").on_keypress("vsplit")')
 end
 
-local tree_autocmd = function()
-  vim.cmd [[augroup NvimTree]]
-  vim.cmd [[ au!]]
-  vim.cmd [[ autocmd FileType NvimTree :lua require('lb.config.nvim-tree').tree_mapping() ]]
-  vim.cmd [[augroup END]]
-end
+vim.cmd [[augroup NvimTree]]
+vim.cmd [[ au!]]
+vim.cmd [[ autocmd FileType NvimTree :lua _G.lb_nvim_tree_mapping() ]]
+vim.cmd [[augroup END]]
 
-local on_attach = function()
-  tree_config()
-  tree_autocmd()
-  require('nvim-tree.events').on_nvim_tree_ready(
-    function()
-      vim.cmd('NvimTreeRefresh')
-    end)
-end
-
-return {
-  tree_mapping = tree_mapping,
-  tree_context_menu = tree_context_menu,
-  on_attach = on_attach,
-}
+require('nvim-tree.events').on_nvim_tree_ready(function()
+  vim.cmd('NvimTreeRefresh')
+end)

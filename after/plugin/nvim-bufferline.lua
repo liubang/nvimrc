@@ -12,7 +12,6 @@ local bufferline = require('bufferline')
 bufferline.setup {
   options                   = {
     numbers                 = 'ordinal',
-    mappings                = false,
     close_icon              = '\u{f18a}',
     modified_icon           = '\u{fbba}',
     show_buffer_close_icons = false,

@@ -6,6 +6,6 @@
 -- Last Modified: 2021/02/06 00:10
 --
 -- =====================================================================
-require('lb.config.lsp.servers')
-require('lb.config.lsp.handlers')
-require('lb.config.lsp.events')
+require('lb.lsp.servers')
+require('lb.lsp.handlers')
+require('lb.lsp.events')
