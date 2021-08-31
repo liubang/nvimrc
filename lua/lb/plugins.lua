@@ -64,7 +64,8 @@ use {'nvim-telescope/telescope-fzy-native.nvim'}
 use {'nvim-telescope/telescope-fzf-writer.nvim'}
 use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
-use {'preservim/nerdcommenter'}
+-- use {'preservim/nerdcommenter'}
+use {'b3nj5m1n/kommentary'}
 
 use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 

@@ -92,10 +92,13 @@ map('t', '<Leader>wk', '<C-\\><C-N><C-w>k')
 -- LuaFormatter off
 map('n', "<Leader>ft", ":NvimTreeToggle<CR>")
 
-map('n', "<Leader>cc", ':call nerdcommenter#Comment(\'n\', \'toggle\')<CR>')
-map('x', "<Leader>cc", ':call nerdcommenter#Comment(\'x\', \'toggle\')<CR>')
-map('n', "<Leader>cn", ':call nerdcommenter#Comment(\'n\', \'sexy\')<CR>')
-map('x', "<Leader>cn", ':call nerdcommenter#Comment(\'x\', \'sexy\')<CR>')
+-- map('n', "<Leader>cc", ':call nerdcommenter#Comment(\'n\', \'toggle\')<CR>')
+-- map('x', "<Leader>cc", ':call nerdcommenter#Comment(\'x\', \'toggle\')<CR>')
+-- map('n', "<Leader>cn", ':call nerdcommenter#Comment(\'n\', \'sexy\')<CR>')
+-- map('x', "<Leader>cn", ':call nerdcommenter#Comment(\'x\', \'sexy\')<CR>')
+
+map('n', "<Leader>cc", '<Plug>kommentary_line_default', {noremap = false})
+map('v', "<Leader>cc", '<Plug>kommentary_visual_default<C-c>', {noremap = false})
 
 map('x', 'ga', "<Plug>(EasyAlign)", {noremap = false})
 map('n', 'ga', "<Plug>(EasyAlign)", {noremap = false})
