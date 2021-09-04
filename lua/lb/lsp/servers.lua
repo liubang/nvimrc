@@ -1,16 +1,16 @@
 -- =====================================================================
 --
--- lspconfig.lua - 
+-- lspconfig.lua -
 --
 -- Created by liubang on 2021/02/06 00:05
 -- Last Modified: 2021/02/06 00:05
 --
 -- =====================================================================
-local c = require('lb.lsp.customs')
-local Job = require('plenary.job')
-local lspconfig = require('lspconfig')
-local util = require('lspconfig.util')
-local my_os_type = os.getenv('MY_OS_TYPE')
+local c = require 'lb.lsp.customs'
+local Job = require 'plenary.job'
+local lspconfig = require 'lspconfig'
+local util = require 'lspconfig.util'
+local my_os_type = os.getenv 'MY_OS_TYPE'
 
 local servers = {
   'texlab',
@@ -28,8 +28,9 @@ for _, ls in ipairs(servers) do
 end
 
 if my_os_type == 'own' then
-  require('nlua.lsp.nvim').setup(lspconfig, c.default(
-                                   {
+  require('nlua.lsp.nvim').setup(
+    lspconfig,
+    c.default {
       globals = {
         -- Colorbuddy
         'Color',
@@ -38,18 +39,28 @@ if my_os_type == 'own' then
         'g',
         's',
       },
-    }))
+    }
+  )
 
   -- diagnosticls
-  lspconfig.diagnosticls.setup(c.default({
-    cmd = {'diagnostic-languageserver', '--stdio'},
-    filetypes = {'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc'},
+  lspconfig.diagnosticls.setup(c.default {
+    cmd = { 'diagnostic-languageserver', '--stdio' },
+    filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc' },
     init_options = {
       formatters = {
-        buildifier = {command = 'buildifier'},
-        stylua = {command = 'stylua'},
-        shfmt = {command = 'shfmt'},
-        prettier = {command = 'prettier', args = {'--stdin', '--stdin-filepath', [[%filepath]]}},
+        buildifier = { command = 'buildifier' },
+        stylua = {
+          command = 'stylua',
+          args = { '-' },
+          rootPatterns = { 'stylua.toml' },
+          requiredFiles = { 'stylua.toml' },
+        },
+        shfmt = {
+          command = 'shfmt',
+          args = { '-filename', '%filepath' },
+          rootPatterns = { '.editorconfig' },
+        },
+        prettier = { command = 'prettier', args = { '--stdin', '--stdin-filepath', [[%filepath]] } },
       },
       formatFiletypes = {
         sh = 'shfmt',
@@ -61,12 +72,12 @@ if my_os_type == 'own' then
         yaml = 'prettier',
       },
     },
-  }))
+  })
 end
 
 --- for cpp
 local get_default_driver = function()
-  local j = Job:new({command = 'which', args = {'g++'}})
+  local j = Job:new { command = 'which', args = { 'g++' } }
 
   local ok, result = pcall(function()
     return vim.trim(j:sync()[1])
@@ -94,11 +105,11 @@ local get_cland_cmd = function()
   return cmd
 end
 
-lspconfig.clangd.setup(c.default({
+lspconfig.clangd.setup(c.default {
   cmd = get_cland_cmd(),
   -- Required for lsp-status
-  init_options = {clangdFileStatus = true},
-}))
+  init_options = { clangdFileStatus = true },
+})
 
 -- ccls
 -- local ccls_init = {cache = {directory = '/tmp/ccls'}}
@@ -125,18 +136,18 @@ lspconfig.clangd.setup(c.default({
 -- }))
 
 -- for golang
-lspconfig.gopls.setup(c.default({
-  cmd = {'gopls'},
-  init_options = {usePlaceholders = true, completeUnimported = true},
-}))
+lspconfig.gopls.setup(c.default {
+  cmd = { 'gopls' },
+  init_options = { usePlaceholders = true, completeUnimported = true },
+})
 
 -- for java
-lspconfig.jdtls.setup(c.default({
+lspconfig.jdtls.setup(c.default {
   cmd = {
     vim.g.scripts_path .. '/java-lsp.sh',
-    util.root_pattern('pom.xml', 'gradlew')(vim.fn.expand('%:p')),
+    util.root_pattern('pom.xml', 'gradlew')(vim.fn.expand '%:p'),
   },
-  flags = {allow_incremental_sync = true},
+  flags = { allow_incremental_sync = true },
   init_options = {
     extendedClientCapabilities = {
       progressReportProvider = true,
@@ -149,24 +160,24 @@ lspconfig.jdtls.setup(c.default({
       generateConstructorsPromptSupport = true,
       generateDelegateMethodsPromptSupport = true,
       moveRefactoringSupport = true,
-      inferSelectionSupport = {'extractMethod', 'extractVariable', 'extractConstant'},
+      inferSelectionSupport = { 'extractMethod', 'extractVariable', 'extractConstant' },
     },
   },
   capabilities = {
-    workspace = {configuration = true},
-    textDocument = {completion = {completionItem = {snippetSupport = true}}},
+    workspace = { configuration = true },
+    textDocument = { completion = { completionItem = { snippetSupport = true } } },
   },
   settings = {
     java = {
-      signatureHelp = {enabled = true},
-      contentProvider = {preferred = 'fernflower'},
-      errors = {incompleteClasspath = {severity = 'warning'}},
-      saveActions = {organizeImports = true},
-      maven = {downloadSources = true, updateSnapshots = true},
-      format = {enabled = true},
+      signatureHelp = { enabled = true },
+      contentProvider = { preferred = 'fernflower' },
+      errors = { incompleteClasspath = { severity = 'warning' } },
+      saveActions = { organizeImports = true },
+      maven = { downloadSources = true, updateSnapshots = true },
+      format = { enabled = true },
       configuration = {
         checkProjectSettingsExclusions = true,
-        runtimes = {{default = true, name = 'JavaSE-16', path = os.getenv('JAVA_HOME')}},
+        runtimes = { { default = true, name = 'JavaSE-16', path = os.getenv 'JAVA_HOME' } },
       },
       completion = {
         favoriteStaticMembers = {
@@ -177,16 +188,16 @@ lspconfig.jdtls.setup(c.default({
           'org.junit.jupiter.api.DynamicContainer.*',
           'org.junit.jupiter.api.DynamicTest.*',
         },
-        importOrder = {'java', 'javax', 'com', 'org'},
+        importOrder = { 'java', 'javax', 'com', 'org' },
         maxResults = 0.0,
         enabled = true,
         overwrite = true,
         guessMethodArguments = true,
       },
-      sources = {organizeImports = {starThreshold = 9999, staticStarThreshold = 9999}},
+      sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
       import = {
-        gradle = {enabled = true},
-        maven = {enabled = true},
+        gradle = { enabled = true },
+        maven = { enabled = true },
         exclusions = {
           '**/node_modules/**',
           '**/.metadata/**',
@@ -199,7 +210,7 @@ lspconfig.jdtls.setup(c.default({
         toString = {
           template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
         },
-        hashCodeEquals = {useJava7Objects = false, useInstanceof = false},
+        hashCodeEquals = { useJava7Objects = false, useInstanceof = false },
         useBlocks = false,
         generateComments = false,
         skipNullValues = false,
@@ -208,4 +219,4 @@ lspconfig.jdtls.setup(c.default({
       },
     },
   },
-}))
+})
