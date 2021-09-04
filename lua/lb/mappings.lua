@@ -124,21 +124,12 @@ map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
 
 map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
 
-map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
+-- map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 
--- map('n', '<Leader>jj', "<Plug>(easymotion-sol-j)", {noremap = false})
--- map('n', '<Leader>kk', "<Plug>(easymotion-sol-k)", {noremap = false})
--- map('n', '<Leader>ll', "<Plug>(easymotion-w)", {noremap = false})
--- map('n', '<Leader>hh', "<Plug>(easymotion-b)", {noremap = false})
-
--- sneak
-map('n', 's', "<Plug>Sneak_s", {noremap = false})
-map('n', 'S', "<Plug>Sneak_S", {noremap = false})
-map('n', ';', "<Plug>Sneak_;", {noremap = false})
--- map('n', 't', "<Plug>Sneak_t", {noremap = false})
--- map('n', 'T', "<Plug>Sneak_T", {noremap = false})
--- map('n', 'f', "<Plug>Sneak_f", {noremap = false})
--- map('n', 'F', "<Plug>Sneak_F", {noremap = false})
+-- hop
+map('n', '<Leader>kk', ":lua require('hop').hint_lines()<CR>")
+map('n', '<Leader>jj', ":lua require('hop').hint_lines()<CR>")
+map('n', '<Leader>ss', ":lua require('hop').hint_patterns()<CR>")
 
 map('n', "<Leader>mp", "<cmd>MarkdownPreview<CR>")
 

@@ -39,16 +39,18 @@ use {'akinsho/nvim-bufferline.lua'}
 use {'liubang/galaxyline.nvim'}
 use {'kyazdani42/nvim-tree.lua'}
 
-use {'justinmk/vim-sneak'}
-use {'Raimondi/delimitMate'}
+use {'windwp/nvim-autopairs'}
 use {'tpope/vim-surround'}
-use {'tpope/vim-fugitive', cmd = {'G'}, event = 'BufRead'}
-use {'junegunn/gv.vim'}
+-- use {'tanvirtin/vgit.nvim'}
+use {'sindrets/diffview.nvim'}
+-- use {'tpope/vim-fugitive', cmd = {'G'}, event = 'BufRead'}
+-- use {'junegunn/gv.vim'}
 use {'lewis6991/gitsigns.nvim'}
 use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
 use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
 use {'terryma/vim-expand-region'}
 use {'voldikss/vim-floaterm'}
+use {'phaazon/hop.nvim'}
 
 use {'skywind3000/asyncrun.vim'}
 use {'skywind3000/asyncrun.extra'}
@@ -73,10 +75,21 @@ use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 use {'glepnir/lspsaga.nvim'}
 use {'tjdevries/nlua.nvim'}
 use {'neovim/nvim-lspconfig'}
+use {'onsails/lspkind-nvim'}
 
-use {'hrsh7th/vim-vsnip'}
-use {'GoldsteinE/compe-latex-symbols'}
-use {'hrsh7th/nvim-compe'}
+-- completion
+use {'hrsh7th/nvim-cmp'}
+use {'hrsh7th/cmp-buffer'}
+use {'hrsh7th/cmp-path'}
+use {'hrsh7th/cmp-nvim-lua'}
+use {'hrsh7th/cmp-nvim-lsp'}
+use {'saadparwaiz1/cmp_luasnip'}
+use {'L3MON4D3/LuaSnip'}
+
+
+-- use {'hrsh7th/vim-vsnip'}
+-- use {'GoldsteinE/compe-latex-symbols'}
+-- use {'hrsh7th/nvim-compe'}
 
 -- ft
 use {'cespare/vim-toml', ft = {'toml'}}

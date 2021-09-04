@@ -1,34 +1,36 @@
 local M = {}
 
-local lspprotocol = require('vim.lsp.protocol')
+-- local lspprotocol = require('vim.lsp.protocol')
 
-lspprotocol.CompletionItemKind = {
-  ' Text', -- = 1
-  'ƒ Method', -- = 2;
-  ' Function', -- = 3;
-  ' Constructor', -- = 4;
-  '綠Field', -- = 5;
-  ' Variable', -- = 6;
-  ' Class', -- = 7;
-  '禍Interface', -- = 8;
-  ' Module', -- = 9;
-  ' Property', -- = 10;
-  ' Unit', -- = 11;
-  ' Value', -- = 12;
-  ' Enum', -- = 13;
-  ' Keyword', -- = 14;
-  ' Snippet', -- = 15;
-  ' Color', -- = 16;
-  ' File', -- = 17;
-  '  Reference', -- = 18;
-  ' Folder', -- = 19;
-  ' EnumMember', -- = 20;
-  ' Constant', -- = 21;
-  ' Struct', -- = 22;
-  '鬒Event', -- = 23;
-  '洛Operator', -- = 24;
-  '  TypeParameter', -- = 25;
-}
+-- lspprotocol.CompletionItemKind = {
+--   ' Text', -- = 1
+--   'ƒ Method', -- = 2;
+--   ' Function', -- = 3;
+--   ' Constructor', -- = 4;
+--   '綠Field', -- = 5;
+--   ' Variable', -- = 6;
+--   ' Class', -- = 7;
+--   '禍Interface', -- = 8;
+--   ' Module', -- = 9;
+--   ' Property', -- = 10;
+--   ' Unit', -- = 11;
+--   ' Value', -- = 12;
+--   ' Enum', -- = 13;
+--   ' Keyword', -- = 14;
+--   ' Snippet', -- = 15;
+--   ' Color', -- = 16;
+--   ' File', -- = 17;
+--   '  Reference', -- = 18;
+--   ' Folder', -- = 19;
+--   ' EnumMember', -- = 20;
+--   ' Constant', -- = 21;
+--   ' Struct', -- = 22;
+--   '鬒Event', -- = 23;
+--   '洛Operator', -- = 24;
+--   '  TypeParameter', -- = 25;
+-- }
+
+require('lspkind').init()
 
 -- define commands
 vim.schedule(function()
@@ -42,9 +44,13 @@ end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
-custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
-custom_capabilities.textDocument.completion.completionItem.resolveSupport =
-  {properties = {'documentation', 'detail', 'additionalTextEdits'}}
+custom_capabilities= require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
+
+-- local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
+-- custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
+-- custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- custom_capabilities.textDocument.completion.completionItem.resolveSupport =
+--   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
 -- custom attach function
 local opts = {noremap = true, silent = true}
