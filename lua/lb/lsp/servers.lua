@@ -136,9 +136,40 @@ lspconfig.clangd.setup(c.default {
 -- }))
 
 -- for golang
+-- https://github.com/ray-x/go.nvim/blob/master/lua/go/lsp.lua
 lspconfig.gopls.setup(c.default {
-  cmd = { 'gopls' },
-  init_options = { usePlaceholders = true, completeUnimported = true },
+  cmd = {
+    'gopls', -- share the gopls instance if there is one already
+    '-remote.debug=:0',
+  },
+  filetypes = { 'go', 'gomod' },
+  flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
+  settings = {
+    gopls = {
+      -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+      -- flags = {allow_incremental_sync = true, debounce_text_changes = 500},
+      -- not supported
+      analyses = { unusedparams = true, unreachable = false },
+      codelenses = {
+        generate = true, -- show the `go generate` lens.
+        gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+        test = true,
+        tidy = true,
+      },
+      usePlaceholders = true,
+      completeUnimported = true,
+      staticcheck = true,
+      matcher = 'Fuzzy',
+      -- experimentalDiagnosticsDelay = "500ms",
+      diagnosticsDelay = '500ms',
+      experimentalWatchedFileDelay = '100ms',
+      symbolMatcher = 'fuzzy',
+      ['local'] = '',
+      gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+      buildFlags = { '-tags', 'integration' },
+      -- buildFlags = {"-tags", "functional"}
+    },
+  },
 })
 
 -- for java
