@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- handlers.lua - 
+-- handlers.lua -
 --
 -- Created by liubang on 2021/02/10 10:06
 -- Last Modified: 2021/02/10 10:06
@@ -8,16 +8,18 @@
 -- =====================================================================
 -- LuaFormatter off
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false, 
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    virtual_text = false,
     underline = true,
-    signs = true, 
-    update_in_insert = false
-  })
+    signs = true,
+    update_in_insert = false,
+  }
+)
 
 vim.lsp.handlers['textDocument/definition'] = function(_, _, result)
   if not result or vim.tbl_isempty(result) then
-    print("[LSP] Could not find definition")
+    print '[LSP] Could not find definition'
     return
   end
   if vim.tbl_islist(result) then
@@ -27,16 +29,16 @@ vim.lsp.handlers['textDocument/definition'] = function(_, _, result)
   end
 end
 
-vim.lsp.handlers["textDocument/hover"] = require("lspsaga.hover").handler
+vim.lsp.handlers['textDocument/hover'] = require('lspsaga.hover').handler
 -- LuaFormatter on
 
-local ns_rename = vim.api.nvim_create_namespace('lb_rename')
+local ns_rename = vim.api.nvim_create_namespace 'lb_rename'
 
 MyLspRename = function()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_clear_namespace(bufnr, ns_rename, 0, -1)
   local current_word = vim.fn.expand '<cword>'
-  local saga = require('lspsaga.rename')
+  local saga = require 'lspsaga.rename'
   local line, col = vim.fn.line '.', vim.fn.col '.'
   local contents = vim.api.nvim_buf_get_lines(bufnr, line - 1, line, false)[1]
   local has_found_highlights, start, finish = false, 0, -1
@@ -53,40 +55,52 @@ MyLspRename = function()
 
   if has_found_highlights then
     vim.api.nvim_buf_add_highlight(bufnr, ns_rename, 'Visual', line - 1, start - 1, finish)
-    vim.cmd(string.format(
-              'autocmd BufEnter <buffer=%s> ++once :call nvim_buf_clear_namespace(%s, %s, 0, -1)',
-              bufnr, bufnr, ns_rename))
+    vim.cmd(
+      string.format(
+        'autocmd BufEnter <buffer=%s> ++once :call nvim_buf_clear_namespace(%s, %s, 0, -1)',
+        bufnr,
+        bufnr,
+        ns_rename
+      )
+    )
   end
 
   saga.rename()
 
-  vim.api.nvim_buf_set_keymap(0, 'n', '<esc>',
-                              '<cmd>lua require("lspsaga.rename").close_rename_win()<CR>',
-                              {noremap = true, silent = true})
+  vim.api.nvim_buf_set_keymap(
+    0,
+    'n',
+    '<esc>',
+    '<cmd>lua require("lspsaga.rename").close_rename_win()<CR>',
+    { noremap = true, silent = true }
+  )
   return
 end
 
 -- golang organize imports
-GoOrgImports = function(options, timeout_ms)
-  _ = options
-  local context = {source = {organizeImports = true}}
-  vim.validate {context = {context, 't', true}}
+GoOrgImports = function(_, timeout_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = context
-  local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, timeout_ms)
-  if not results or #results == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
+  params.context = { only = { 'source.organizeImports' } }
+  local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, timeout_ms)
+  if not result or next(result) == nil then
+    -- log 'nil result'
+    print 'nil result'
     return
   end
-  local result = results[1].result
-  if not result or #result == 0 then
-    --- always call formatting
-    vim.lsp.buf.formatting()
-    return
+  for _, res in pairs(result) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit or type(r.command) == 'table' then
+        if r.edit then
+          vim.lsp.util.apply_workspace_edit(r.edit)
+        end
+        if type(r.command) == 'table' then
+          vim.lsp.buf.execute_command(r.command)
+        end
+      else
+        vim.lsp.buf.execute_command(r)
+      end
+    end
   end
-  local edit = result[1].edit
-  vim.lsp.util.apply_workspace_edit(edit)
   vim.lsp.buf.formatting()
 end
 
@@ -191,55 +205,47 @@ local java_generate_to_string_prompt = function()
       return
     end
     if result.exists then
-      vim.cmd('redraw! | echo | redraw!')
-      local actions = {'Yes', 'No'}
+      vim.cmd 'redraw! | echo | redraw!'
+      local actions = { 'Yes', 'No' }
       local section = vim.fn.confirm(
-                        'Method \'toString()\' already exists. Do you want to replace it?',
-                        '&Yes\n&No')
-      vim.cmd('redraw!')
+        'Method \'toString()\' already exists. Do you want to replace it?',
+        '&Yes\n&No'
+      )
+      vim.cmd 'redraw!'
       if section == 2 then
         return
       end
     end
-    vim.lsp.buf_request(0, 'java/generateToString', {context = {}, fields = result.fields},
-                        function(e, _, edit)
-      if e then
-        print('Could not execute java/generateToString: ' .. e.message)
-        return
+    vim.lsp.buf_request(
+      0,
+      'java/generateToString',
+      { context = {}, fields = result.fields },
+      function(e, _, edit)
+        if e then
+          print('Could not execute java/generateToString: ' .. e.message)
+          return
+        end
+        if edit then
+          vim.lsp.util.apply_workspace_edit(edit)
+        end
       end
-      if edit then
-        vim.lsp.util.apply_workspace_edit(edit)
-      end
-    end)
+    )
   end)
 end
 
-local java_action_rename = function()
-end
+local java_action_rename = function() end
 
-local java_apply_workspace_edit = function()
+local java_apply_workspace_edit = function() end
 
-end
+local java_hash_code_equals_prompt = function() end
 
-local java_hash_code_equals_prompt = function()
+local java_apply_refactoring_command = function() end
 
-end
+local java_choose_imports = function() end
 
-local java_apply_refactoring_command = function()
+local java_generate_constructors_prompt = function() end
 
-end
-
-local java_choose_imports = function()
-
-end
-
-local java_generate_constructors_prompt = function()
-
-end
-
-local java_generate_delegate_methods_prompt = function()
-
-end
+local java_generate_delegate_methods_prompt = function() end
 
 local M = {}
 
