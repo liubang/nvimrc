@@ -101,9 +101,9 @@ opt.formatoptions = opt.formatoptions
 opt.textwidth = 100
 opt.colorcolumn = {'100'}
 opt.expandtab = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
 opt.autoindent = true
 opt.smartindent = true
 opt.cindent = true
@@ -111,6 +111,11 @@ opt.wrap = true
 opt.number = true
 opt.list = false
 opt.relativenumber = false
+
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
 opt.foldenable = true
 opt.foldtext = 'v:lua.folds_render()'
 opt.foldmethod = 'syntax'

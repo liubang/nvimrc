@@ -1,1 +1,1 @@
-setlocal formatoptions-=o
+setlocal tabstop=2 shiftwidth=2 softtabstop=2

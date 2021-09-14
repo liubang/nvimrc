@@ -7,6 +7,7 @@
 --
 -- =====================================================================
 local has_telescope, telescope = pcall(require, 'telescope')
+
 if not has_telescope then
   error('This plugins require nvim-telescope/telescope.nvim')
 end
