@@ -7,23 +7,7 @@
 --
 -- =====================================================================
 local g, api = vim.g, vim.api
-
-local buf_mapper = function(mode, key, result)
-  api.nvim_buf_set_keymap(0, mode, key, '<cmd>lua ' .. result .. '<CR>',
-                          {noremap = true, silent = true})
-end
-
-g.nvim_tree_side = 'left'
-g.nvim_tree_width = 40
-g.nvim_tree_disable_netrw = 0
-g.nvim_tree_hijack_netrw = 1
-g.nvim_tree_follow = 1
-g.nvim_tree_tab_open = 0
-g.nvim_tree_lint_lsp = 0
-g.nvim_tree_gitignore = 1
-g.nvim_tree_auto_open = 0
-g.nvim_tree_auto_close = 0
-g.nvim_tree_auto_ignore_ft = {'startify', 'dashboard'}
+local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 _G.lb_nvim_tree_context_menu = function()
   vim.cmd('redraw! | echo | redraw!')
@@ -31,21 +15,40 @@ _G.lb_nvim_tree_context_menu = function()
   local section = vim.fn.confirm('Action?',
                                  '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete')
   vim.cmd('redraw!')
-  require('nvim-tree').on_keypress(actions[section])
+  require('nvim-tree.config').nvim_tree_callback(actions[section])
 end
 
-_G.lb_nvim_tree_mapping = function()
-  buf_mapper('n', 'm', '_G.lb_nvim_tree_context_menu()')
-  buf_mapper('n', 'r', 'require("nvim-tree").on_keypress("refresh")')
-  buf_mapper('n', 's', 'require("nvim-tree").on_keypress("split")')
-  buf_mapper('n', 'v', 'require("nvim-tree").on_keypress("vsplit")')
-end
-
-vim.cmd [[augroup NvimTree]]
-vim.cmd [[ au!]]
-vim.cmd [[ autocmd FileType NvimTree :lua _G.lb_nvim_tree_mapping() ]]
-vim.cmd [[augroup END]]
-
-require('nvim-tree.events').on_nvim_tree_ready(function()
-  vim.cmd('NvimTreeRefresh')
-end)
+require('nvim-tree').setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  ignore_ft_on_setup  = {'startify', 'dashboard'},
+  auto_close          = false,
+  open_on_tab         = false,
+  hijack_cursor       = false,
+  update_cwd          = false,
+  lsp_diagnostics     = false,
+  update_focused_file = {
+    enable      = false,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  view = {
+    width = 35,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = true,
+      list = {
+        { key = "m",                            cb = ":lua _G.lb_nvim_tree_context_menu()<CR>" },
+        { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+        { key = "v",                            cb = tree_cb("vsplit") },
+        { key = "s",                            cb = tree_cb("split") },
+      }
+    }
+  }
+}
