@@ -18,6 +18,8 @@ _G.lb_nvim_tree_context_menu = function()
   require('nvim-tree.config').nvim_tree_callback(actions[section])
 end
 
+g.nvim_tree_gitignore = 1
+
 require('nvim-tree').setup {
   disable_netrw       = true,
   hijack_netrw        = true,
@@ -38,7 +40,7 @@ require('nvim-tree').setup {
     args = {}
   },
   view = {
-    width = 35,
+    width = 40,
     side = 'left',
     auto_resize = false,
     mappings = {
