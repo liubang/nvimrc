@@ -19,7 +19,7 @@ function! health#nvim_config#check()
   call health#report_start('Checking nvim configuration requirements')
   call s:check_executable('yarn', 'yarn', ['Refer to https://classic.yarnpkg.com/en/docs/install'])
   call s:check_executable('rg', 'ripgrep', ['Refer to https://github.com/BurntSushi/ripgrep#installation'])
-  " call s:check_executable('clangd', 'clangd', ['Refer to https://clangd.llvm.org/'])
+  call s:check_executable('clangd', 'clangd', ['Refer to https://clangd.llvm.org/'])
   call s:check_executable('ccls', 'ccls', ['Refer to https://github.com/MaskRay/ccls/wiki/Build'])
   call s:check_executable('shfmt', 'shfmt', ['Run in shell: GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt'])
   call s:check_executable('buildifier', 'buildifier', ['Run in shell: GO111MODULE=on go get github.com/bazelbuild/buildtools/buildifier'])
@@ -54,4 +54,7 @@ function! health#nvim_config#check()
   call s:check_executable('texlab', 'texlab', [
         \ 'cargo install --git https://github.com/latex-lsp/texlab.git --locked',
         \ ])
+  call s:check_executable('stylua', 'stylua', [
+        \ 'cargo install stylua'
+        \])
 endfunc
