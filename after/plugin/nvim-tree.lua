@@ -15,7 +15,8 @@ _G.lb_nvim_tree_context_menu = function()
   local section = vim.fn.confirm('Action?',
                                  '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete')
   vim.cmd('redraw!')
-  require('nvim-tree.config').nvim_tree_callback(actions[section])
+  require('nvim-tree').on_keypress(actions[section])
+  -- require('nvim-tree.config').nvim_tree_callback(actions[section])
 end
 
 g.nvim_tree_gitignore = 1
