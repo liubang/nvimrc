@@ -29,7 +29,7 @@ local colors = {
 }
 -- LuaFormatter on
 
-icons['man'] = {colors.green, ''}
+icons['man'] = {colors.green, '\u{f128}'}
 
 gls.left = {
   {
@@ -45,7 +45,7 @@ gls.left = {
         if not condition.hide_in_width() then
           alias = {n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V'}
         end
-        return string.format('   %s ', alias[vim.fn.mode()])
+        return string.format('  \u{e62b} %s ', alias[vim.fn.mode()])
       end,
       highlight = {colors.black, colors.yellow, 'bold'},
     },
@@ -53,7 +53,7 @@ gls.left = {
   {
     GitIcon = {
       provider = function()
-        return '   '
+        return '  \u{e725} '
       end,
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
@@ -143,7 +143,7 @@ gls.right = {
   {
     DiagnosticError = {
       provider = diagnostic.get_diagnostic_error,
-      icon = '  ',
+      icon = ' \u{f057} ',
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
@@ -153,7 +153,7 @@ gls.right = {
   {
     DiagnosticWarn = {
       provider = diagnostic.get_diagnostic_warn,
-      icon = '  ',
+      icon = ' \u{f071} ',
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
@@ -163,7 +163,7 @@ gls.right = {
   {
     DiagnosticHint = {
       provider = diagnostic.get_diagnostic_hint,
-      icon = '  ',
+      icon = ' \u{f41b} ',
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
@@ -173,7 +173,7 @@ gls.right = {
   {
     DiagnosticInfo = {
       provider = diagnostic.get_diagnostic_info,
-      icon = '  ',
+      icon = ' \u{f05a} ',
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
@@ -185,7 +185,7 @@ gls.right = {
       provider = function()
         return string.format(' %s ', lspclient.get_lsp_client())
       end,
-      icon = '   ',
+      icon = '  \u{f817} ',
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
@@ -206,7 +206,13 @@ gls.right = {
   {
     FileFormat = {
       provider = function()
-        return string.format('   %s ', fileinfo.get_file_format())
+        if vim.fn.has('unix') then 
+          return string.format('  \u{f17c} %s ', fileinfo.get_file_format())
+        elseif vim.fn.has('max') then
+          return string.format('  \u{f302} %s ', fileinfo.get_file_format())
+        else 
+          return string.format('  \u{f17a} %s ', fileinfo.get_file_format())
+        end
       end,
       condition = condition.hide_in_width,
       highlight = {colors.black, colors.white},
@@ -215,7 +221,7 @@ gls.right = {
   {
     FileEncode = {
       provider = function()
-        return string.format('   %s ', fileinfo.get_file_encode())
+        return string.format('  \u{f040} %s ', fileinfo.get_file_encode())
       end,
       condition = condition.hide_in_width,
       highlight = {colors.black, colors.bblack},
@@ -224,7 +230,7 @@ gls.right = {
   {
     LineInfo = {
       provider = function()
-        return string.format('   %s ', fileinfo.line_column())
+        return string.format('  \u{e0a1} %s ', fileinfo.line_column())
       end,
       highlight = {colors.black, colors.yellow},
     },

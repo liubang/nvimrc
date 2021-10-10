@@ -52,39 +52,24 @@ cmp.setup {
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
-
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n', true)
-      elseif has_words_before() and luasnip.expand_or_jumpable() then
-        vim.api.nvim_feedkeys(
-          vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true),
-          '',
-          true
-        )
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
-
-    ['<S-Tab>'] = cmp.mapping(function()
-      if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n', true)
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
-        vim.api.nvim_feedkeys(
-          vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true),
-          '',
-          true
-        )
+        luasnip.jump(-1)
+      else
+        fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
-
+    end,
     -- These mappings are useless. I already use C-n and C-p correctly.
     -- This simply overrides them and makes them do bad things in other buffers.
     -- ["<C-p>"] = cmp.mapping.select_prev_item(),
