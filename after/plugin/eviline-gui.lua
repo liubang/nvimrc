@@ -45,7 +45,7 @@ gls.left = {
         if not condition.hide_in_width() then
           alias = {n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V'}
         end
-        return string.format('  \u{e62b} %s ', alias[vim.fn.mode()])
+        return string.format('  \u{f8d6} %s ', alias[vim.fn.mode()])
       end,
       highlight = {colors.black, colors.yellow, 'bold'},
     },
