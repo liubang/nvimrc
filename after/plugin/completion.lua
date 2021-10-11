@@ -52,16 +52,22 @@ cmp.setup {
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
       else
         fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
+    end, {
+      'i',
+      's',
+    }),
+
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -69,7 +75,10 @@ cmp.setup {
       else
         fallback()
       end
-    end,
+    end, {
+      'i',
+      's',
+    }),
     -- These mappings are useless. I already use C-n and C-p correctly.
     -- This simply overrides them and makes them do bad things in other buffers.
     -- ["<C-p>"] = cmp.mapping.select_prev_item(),

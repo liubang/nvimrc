@@ -264,7 +264,7 @@ table.insert(gls.short_line_left, {
         end
       else
         if fileinfo.get_current_file_name() ~= '' then
-          return string.format(' %s %s | %s ', fileinfo.get_file_icon(),
+          return string.format('  %s %s | %s ', fileinfo.get_file_icon(),
                                fileinfo.get_file_size(),
                                fileinfo.get_current_file_name())
         end
