@@ -76,6 +76,7 @@ use {'glepnir/lspsaga.nvim'}
 use {'tjdevries/nlua.nvim'}
 use {'neovim/nvim-lspconfig'}
 use {'onsails/lspkind-nvim'}
+use {'nvim-lua/lsp_extensions.nvim'}
 
 -- completion
 use {'hrsh7th/nvim-cmp'}

@@ -65,7 +65,7 @@ elif [ $ostype == 'linux' ]; then
 		sudo snap install ccls --classic
 	elif [$linux_type == 'ubuntu' ]; then
 		# install rg
-		sudo apt-get install ripgrep -y
+		sudo apt-get install ripgrep xclip -y
 		# install yarn
 		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list

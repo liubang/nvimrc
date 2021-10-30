@@ -8,7 +8,6 @@
 -- =====================================================================
 local opt = vim.opt
 
-opt.clipboard = 'unnamedplus'
 opt.shortmess = 'aoOTIcF'
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'

@@ -8,6 +8,6 @@
 -- =====================================================================
 vim.cmd [[augroup lsp]]
 vim.cmd [[  autocmd! ]]
-vim.cmd [[  autocmd BufWritePre *.go lua GoOrgImports({}, 1000) ]]
+vim.cmd [[  autocmd BufWritePre *.go lua GoOrgImports(1000) ]]
 vim.cmd [[  autocmd BufWritePre *.java lua JavaOrgImports() ]]
 vim.cmd [[augroup END]]

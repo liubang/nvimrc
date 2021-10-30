@@ -14,6 +14,7 @@ vim.opt.shortmess:append 'c'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -96,11 +97,5 @@ cmp.setup {
 }
 
 -- autopairs
-
 require('nvim-autopairs').setup { disable_filetype = { 'TelescopePrompt', 'vim' } }
-
-require('nvim-autopairs.completion.cmp').setup {
-  map_cr = true, --  map <CR> on insert mode
-  map_complete = true, -- it will auto insert `(` after select function or method item
-  auto_select = true, -- automatically select the first item
-}
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
