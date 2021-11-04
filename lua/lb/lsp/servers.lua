@@ -21,6 +21,7 @@ local servers = {
   'vimls',
   'yamlls',
   'intelephense',
+  'pylsp',
 }
 
 for _, ls in ipairs(servers) do
