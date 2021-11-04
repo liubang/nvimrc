@@ -80,10 +80,6 @@ cmp.setup {
       'i',
       's',
     }),
-    -- These mappings are useless. I already use C-n and C-p correctly.
-    -- This simply overrides them and makes them do bad things in other buffers.
-    -- ["<C-p>"] = cmp.mapping.select_prev_item(),
-    -- ["<C-n>"] = cmp.mapping.select_next_item(),
   },
 
   sources = {
@@ -95,6 +91,32 @@ cmp.setup {
     { name = 'calc' },
   },
 }
+
+cmp.setup.cmdline(':', {
+    completion = {
+      autocomplete = false,
+    },
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { 
+        name = 'cmdline',
+        max_item_count = 20,
+        keyword_length = 4,
+      }
+    })
+})
+
+cmp.setup.cmdline('/', {
+    completion = {
+      autocomplete = false,
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp_document_symbol' }
+    }, {
+      { name = 'buffer' }
+    })
+})
 
 -- autopairs
 require('nvim-autopairs').setup { disable_filetype = { 'TelescopePrompt', 'vim' } }
