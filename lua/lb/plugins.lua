@@ -72,7 +72,7 @@ use {'b3nj5m1n/kommentary'}
 use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
 
 -- lsp
-use {'glepnir/lspsaga.nvim'}
+use {'tami5/lspsaga.nvim'}
 use {'tjdevries/nlua.nvim'}
 use {'neovim/nvim-lspconfig'}
 use {'onsails/lspkind-nvim'}
