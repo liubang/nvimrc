@@ -22,8 +22,6 @@ map('n', ' ', '')
 map('x', ' ', '')
 map('n', ',', '')
 map('x', ',', '')
--- map('n', ';', '')
--- map('x', ';', '')
 map('n', 'm', '')
 map('x', 'm', '')
 
@@ -123,8 +121,6 @@ map('n', "<C-b>", "<cmd>AsyncTask file-build<CR>")
 map('n', "<C-r>", "<cmd>AsyncTask file-run<CR>")
 
 map('n', "<Leader>tl", "<cmd>Vista!!<CR>")
-
--- map('i', '<CR>', [[compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })]], {expr = true})
 
 -- hop
 map('n', '<Leader>kk', ":lua require('hop').hint_lines()<CR>")
