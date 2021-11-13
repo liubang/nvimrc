@@ -1,35 +1,5 @@
 local M = {}
 
--- local lspprotocol = require('vim.lsp.protocol')
-
--- lspprotocol.CompletionItemKind = {
---   ' Text', -- = 1
---   'ƒ Method', -- = 2;
---   ' Function', -- = 3;
---   ' Constructor', -- = 4;
---   '綠Field', -- = 5;
---   ' Variable', -- = 6;
---   ' Class', -- = 7;
---   '禍Interface', -- = 8;
---   ' Module', -- = 9;
---   ' Property', -- = 10;
---   ' Unit', -- = 11;
---   ' Value', -- = 12;
---   ' Enum', -- = 13;
---   ' Keyword', -- = 14;
---   ' Snippet', -- = 15;
---   ' Color', -- = 16;
---   ' File', -- = 17;
---   '  Reference', -- = 18;
---   ' Folder', -- = 19;
---   ' EnumMember', -- = 20;
---   ' Constant', -- = 21;
---   ' Struct', -- = 22;
---   '鬒Event', -- = 23;
---   '洛Operator', -- = 24;
---   '  TypeParameter', -- = 25;
--- }
-
 require('lspkind').init()
 
 -- define commands
@@ -66,6 +36,7 @@ local custom_attach = function(client, _)
   buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<Leader>ee', ':lua require("lspsaga.diagnostic").show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<Leader>ef', ':lua require("telescope.builtin").lsp_document_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<Leader>ca', ':lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
   buf_set_keymap('v', '<Leader>ca', ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>', opts)
   buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)

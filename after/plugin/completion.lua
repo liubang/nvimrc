@@ -92,31 +92,31 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline(':', {
-    completion = {
-      autocomplete = false,
-    },
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { 
-        name = 'cmdline',
-        max_item_count = 20,
-        keyword_length = 4,
-      }
-    })
-})
+-- cmp.setup.cmdline(':', {
+--     completion = {
+--       autocomplete = false,
+--     },
+--     sources = cmp.config.sources({
+--       { name = 'path' }
+--     }, {
+--       { 
+--         name = 'cmdline',
+--         max_item_count = 20,
+--         keyword_length = 4,
+--       }
+--     })
+-- })
 
-cmp.setup.cmdline('/', {
-    completion = {
-      autocomplete = false,
-    },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp_document_symbol' }
-    }, {
-      { name = 'buffer' }
-    })
-})
+-- cmp.setup.cmdline('/', {
+--     completion = {
+--       autocomplete = false,
+--     },
+--     sources = cmp.config.sources({
+--       { name = 'nvim_lsp_document_symbol' }
+--     }, {
+--       { name = 'buffer' }
+--     })
+-- })
 
 -- autopairs
 require('nvim-autopairs').setup { disable_filetype = { 'TelescopePrompt', 'vim' } }
