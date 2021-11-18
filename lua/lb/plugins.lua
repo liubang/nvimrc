@@ -41,10 +41,8 @@ use {'kyazdani42/nvim-tree.lua'}
 
 use {'windwp/nvim-autopairs'}
 use {'tpope/vim-surround'}
--- use {'tanvirtin/vgit.nvim'}
+use {'karb94/neoscroll.nvim'}
 use {'sindrets/diffview.nvim'}
--- use {'tpope/vim-fugitive', cmd = {'G'}, event = 'BufRead'}
--- use {'junegunn/gv.vim'}
 use {'lewis6991/gitsigns.nvim'}
 use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
 use {'junegunn/vim-easy-align', keys = {'<Plug>(EasyAlign)'}}
@@ -55,9 +53,11 @@ use {'phaazon/hop.nvim'}
 use {'skywind3000/asyncrun.vim'}
 use {'skywind3000/asyncrun.extra'}
 use {'skywind3000/asynctasks.vim'}
-use {'junegunn/fzf', run = './install --all'}
-use {'junegunn/fzf.vim'}
+-- use {'junegunn/fzf', run = './install --all'}
+-- use {'junegunn/fzf.vim'}
 use {'liuchengxu/vista.vim', cmd = {'Vista'}}
+use {'romgrk/fzy-lua-native'}
+use {'gelguy/wilder.nvim'}
 
 use {'nvim-lua/plenary.nvim'}
 use {'nvim-telescope/telescope.nvim'}
@@ -66,7 +66,6 @@ use {'nvim-telescope/telescope-fzy-native.nvim'}
 use {'nvim-telescope/telescope-fzf-writer.nvim'}
 use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
--- use {'preservim/nerdcommenter'}
 use {'b3nj5m1n/kommentary'}
 
 use {'dstein64/vim-startuptime', cmd = {'StartupTime'}}
@@ -85,15 +84,8 @@ use {'hrsh7th/cmp-path'}
 use {'hrsh7th/cmp-calc'}
 use {'hrsh7th/cmp-nvim-lua'}
 use {'hrsh7th/cmp-nvim-lsp'}
--- use {'hrsh7th/cmp-cmdline'}
--- use {'hrsh7th/cmp-nvim-lsp-document-symbol'}
 use {'saadparwaiz1/cmp_luasnip'}
 use {'L3MON4D3/LuaSnip'}
-
-
--- use {'hrsh7th/vim-vsnip'}
--- use {'GoldsteinE/compe-latex-symbols'}
--- use {'hrsh7th/nvim-compe'}
 
 -- ft
 use {'cespare/vim-toml', ft = {'toml'}}
