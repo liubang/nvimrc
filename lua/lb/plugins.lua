@@ -57,7 +57,7 @@ use {'skywind3000/asynctasks.vim'}
 -- use {'junegunn/fzf.vim'}
 use {'liuchengxu/vista.vim', cmd = {'Vista'}}
 use {'romgrk/fzy-lua-native'}
-use {'gelguy/wilder.nvim'}
+-- use {'gelguy/wilder.nvim'}
 
 use {'nvim-lua/plenary.nvim'}
 use {'nvim-telescope/telescope.nvim'}
