@@ -13,8 +13,8 @@ local custom_init = function(client)
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
-custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
-custom_capabilities= require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
+custom_capabilities.textDocument.codeLens = { dynamicRegistration = false }
+custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 
 -- local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
@@ -23,7 +23,7 @@ custom_capabilities= require('cmp_nvim_lsp').update_capabilities(custom_capabili
 --   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
 -- custom attach function
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 local function buf_set_keymap(...)
   vim.api.nvim_buf_set_keymap(0, ...)
 end
@@ -35,10 +35,30 @@ local custom_attach = function(client, _)
   buf_set_keymap('n', '<Leader>gr', ':lua require("telescope.builtin").lsp_references()<CR>', opts)
   buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<Leader>ee', ':lua require("lspsaga.diagnostic").show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '<Leader>ef', ':lua require("telescope.builtin").lsp_document_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '<Leader>ca', ':lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
-  buf_set_keymap('v', '<Leader>ca', ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>', opts)
+  buf_set_keymap(
+    'n',
+    '<Leader>ee',
+    ':lua require("lspsaga.diagnostic").show_line_diagnostics()<CR>',
+    opts
+  )
+  buf_set_keymap(
+    'n',
+    '<Leader>ef',
+    ':lua require("telescope.builtin").lsp_document_diagnostics()<CR>',
+    opts
+  )
+  buf_set_keymap(
+    'n',
+    '<Leader>ca',
+    ':lua require("telescope.builtin").lsp_code_actions()<CR>',
+    opts
+  )
+  buf_set_keymap(
+    'v',
+    '<Leader>ca',
+    ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>',
+    opts
+  )
   buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
