@@ -43,6 +43,8 @@ use { 'akinsho/nvim-bufferline.lua' }
 use { 'liubang/galaxyline.nvim' }
 use { 'kyazdani42/nvim-tree.lua' }
 
+-- tools
+use { 'tjdevries/astronauta.nvim' }
 use { 'windwp/nvim-autopairs' }
 use { 'tpope/vim-surround' }
 use { 'karb94/neoscroll.nvim' }
@@ -59,7 +61,6 @@ use { 'skywind3000/asyncrun.extra' }
 use { 'skywind3000/asynctasks.vim' }
 use { 'liuchengxu/vista.vim', cmd = { 'Vista' } }
 use { 'romgrk/fzy-lua-native' }
--- use {'gelguy/wilder.nvim'}
 
 use { 'nvim-lua/plenary.nvim' }
 use { 'nvim-telescope/telescope.nvim' }

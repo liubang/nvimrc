@@ -1,10 +1,12 @@
+local nnoremap = vim.keymap.nnoremap
+local vnoremap = vim.keymap.vnoremap
 local M = {}
 
 require('lspkind').init()
 
 -- define commands
 vim.schedule(function()
-  vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting()]]
+  vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync()]]
 end)
 
 local custom_init = function(client)
@@ -16,58 +18,39 @@ local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 
--- local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
--- custom_capabilities.textDocument.codeLens = {dynamicRegistration = false}
--- custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
--- custom_capabilities.textDocument.completion.completionItem.resolveSupport =
---   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
-
 -- custom attach function
-local opts = { noremap = true, silent = true }
-local function buf_set_keymap(...)
-  vim.api.nvim_buf_set_keymap(0, ...)
+local buf_nnoremap = function(opts)
+  opts.buffer = 0
+  nnoremap(opts)
 end
--- LuaFormatter off
+
+local buf_vnoremap = function(opts)
+  opts.buffer = 0
+  vnoremap(opts)
+end
+
 local custom_attach = function(client, _)
-  buf_set_keymap('n', '<Leader>gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gr', ':lua require("telescope.builtin").lsp_references()<CR>', opts)
-  buf_set_keymap('n', '<Leader>hh', ':lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap(
-    'n',
-    '<Leader>ee',
-    ':lua require("lspsaga.diagnostic").show_line_diagnostics()<CR>',
-    opts
-  )
-  buf_set_keymap(
-    'n',
-    '<Leader>ef',
-    ':lua require("telescope.builtin").lsp_document_diagnostics()<CR>',
-    opts
-  )
-  buf_set_keymap(
-    'n',
-    '<Leader>ca',
-    ':lua require("telescope.builtin").lsp_code_actions()<CR>',
-    opts
-  )
-  buf_set_keymap(
-    'v',
+  buf_nnoremap { '<Leader>gD', vim.lsp.buf.declaration }
+  buf_nnoremap { '<Leader>gd', vim.lsp.buf.definition }
+  buf_nnoremap { '<Leader>gi', vim.lsp.buf.implementation }
+  buf_nnoremap { '<Leader>gr', require('telescope.builtin').lsp_references }
+  buf_nnoremap { '<Leader>hh', vim.lsp.buf.signature_help }
+  buf_nnoremap { '<Leader>rn', vim.lsp.buf.rename }
+  buf_nnoremap { '<Leader>ee', require('lspsaga.diagnostic').show_line_diagnostics }
+  buf_nnoremap { '<Leader>ef', require('telescope.builtin').lsp_document_diagnostics }
+  buf_nnoremap { '<Leader>ca', require('telescope.builtin').lsp_code_actions }
+  buf_vnoremap {
     '<Leader>ca',
     ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>',
-    opts
-  )
-  buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+  }
+  buf_nnoremap { 'K', vim.lsp.buf.hover }
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap('n', '<Leader>fm', ':lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_nnoremap { '<Leader>fm', vim.lsp.buf.formatting_sync }
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap('v', '<Leader>fm', ':<C-U>lua vim.lsp.buf.range_formatting()<CR>', opts)
+    buf_vnoremap { '<Leader>fm', vim.lsp.buf.range_formatting }
   end
 end
--- LuaFormatter on
 
 M.default = function(configs)
   local custom_config = {

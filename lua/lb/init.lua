@@ -8,7 +8,7 @@
 -- =====================================================================
 local g, o, fn = vim.g, vim.o, vim.fn
 
--- global functions 
+-- global functions
 _G.P = function(v)
   print(vim.inspect(v))
   return v
@@ -19,29 +19,29 @@ _G.check_back_space = require('lb.utils.buffer').check_back_space
 
 local app = {}
 function app:new(v)
-  local instance = {nvg_version = v}
+  local instance = { nvg_version = v }
   setmetatable(instance, self)
   self.__index = self
   return instance
 end
 
 function app:run()
-  -- LuaFormatter off
-  g.nvg_version  = self.nvg_version
-  g.nvg_root     = fn.stdpath('config')
-  g.cache_path   = string.format('%s/.cache', g.nvg_root)
-  g.module_path  = string.format('%s/modules', g.nvg_root)
-  g.snip_path    = string.format('%s/snippets', g.nvg_root)
-  g.scripts_path = string.format('%s/scripts', g.nvg_root)
-  -- LuaFormatter on
+  vim.cmd [[runtime plugin/astronauta.vim]]
 
-  require('lb.globals')
-  require('lb.options')
-  require('lb.plugins')
-  require('lb.lsp')
-  require('lb.mappings')
-  require('lb.events')
-  require('lb.commands')
+  g.nvg_version = self.nvg_version
+  g.nvg_root = fn.stdpath 'config'
+  g.cache_path = string.format('%s/.cache', g.nvg_root)
+  g.module_path = string.format('%s/modules', g.nvg_root)
+  g.snip_path = string.format('%s/snippets', g.nvg_root)
+  g.scripts_path = string.format('%s/scripts', g.nvg_root)
+
+  require 'lb.globals'
+  require 'lb.options'
+  require 'lb.plugins'
+  require 'lb.lsp'
+  require 'lb.mappings'
+  require 'lb.events'
+  require 'lb.commands'
 end
 
 return app
