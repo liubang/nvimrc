@@ -14,7 +14,9 @@ vim.opt.shortmess:append 'c'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+
+lspkind.init()
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -30,26 +32,19 @@ cmp.setup {
   },
 
   formatting = {
-    format = function(entry, vim_item)
-      -- fancy icons and a name of kind
-      vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
-
-      -- set a name for each source
-      vim_item.menu = ({
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
         buffer = '[buffer]',
         path = '[path]',
         nvim_lsp = '[lsp]',
         luasnip = '[snip]',
         nvim_lua = '[lua]',
         latex_symbols = '[latex]',
-      })[entry.source.name]
-
-      return vim_item
-    end,
+      },
+    },
   },
-
   documentation = false,
-
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
@@ -90,34 +85,11 @@ cmp.setup {
     { name = 'path' },
     { name = 'calc' },
   },
+  experimental = {
+    native_menu = false,
+  },
 }
-
--- cmp.setup.cmdline(':', {
---     completion = {
---       autocomplete = false,
---     },
---     sources = cmp.config.sources({
---       { name = 'path' }
---     }, {
---       { 
---         name = 'cmdline',
---         max_item_count = 20,
---         keyword_length = 4,
---       }
---     })
--- })
-
--- cmp.setup.cmdline('/', {
---     completion = {
---       autocomplete = false,
---     },
---     sources = cmp.config.sources({
---       { name = 'nvim_lsp_document_symbol' }
---     }, {
---       { name = 'buffer' }
---     })
--- })
 
 -- autopairs
 require('nvim-autopairs').setup { disable_filetype = { 'TelescopePrompt', 'vim' } }
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })

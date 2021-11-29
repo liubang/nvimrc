@@ -2,7 +2,6 @@ local nnoremap = vim.keymap.nnoremap
 local vnoremap = vim.keymap.vnoremap
 local M = {}
 
-require('lspkind').init()
 
 -- define commands
 vim.schedule(function()
