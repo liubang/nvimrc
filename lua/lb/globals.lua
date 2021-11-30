@@ -6,32 +6,45 @@
 -- Last Modified: 2021/05/30 01:05
 --
 -- =====================================================================
-local g = vim.g
 local python_host_prog = os.getenv('PYTHON_HOST_PROG')
 local python3_host_prog = os.getenv('PYTHON3_HOST_PROG')
 
 if python_host_prog ~= nil then
-  g.python_host_prog = python_host_prog
+  vim.g.python_host_prog = python_host_prog
 end
 if python3_host_prog ~= nil then
-  g.python3_host_prog = python3_host_prog
+  vim.g.python3_host_prog = python3_host_prog
 end
 -- use space as leader key
-g.mapleader = ' '
-g.loaded_gzip = 1
-g.loaded_tar = 1
-g.loaded_tarPlugin = 1
-g.loaded_zip = 1
-g.loaded_zipPlugin = 1
-g.loaded_getscript = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_vimball = 1
-g.loaded_vimballPlugin = 1
-g.loaded_matchit = 1
-g.loaded_2html_plugin = 1
-g.loaded_logiPat = 1
-g.loaded_rrhelper = 1
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
+vim.g.mapleader = ' '
+vim.g.loaded_gzip = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.loaded_netrwFileHandlers = 1
+
+vim.g.nvg_root = vim.fn.stdpath 'config'
+vim.g.cache_path = string.format('%s/.cache', vim.g.nvg_root)
+vim.g.module_path = string.format('%s/modules', vim.g.nvg_root)
+vim.g.snip_path = string.format('%s/snippets', vim.g.nvg_root)
+vim.g.scripts_path = string.format('%s/scripts', vim.g.nvg_root)
+
+-- global functions
+_G.P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+_G.folds_render = require('lb.utils.folds').render

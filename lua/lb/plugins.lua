@@ -26,73 +26,80 @@ if not packer_exists then
 end
 
 local packer = require 'packer'
-local use = packer.use
+-- local use = packer.use
 
-packer.init {}
-packer.reset()
+-- packer.init {}
+-- packer.reset()
+packer.startup {
+  function(use) 
+    use { 'wbthomason/packer.nvim', opt = true }
+    -- appearance
+    use { 'mortepau/codicons.nvim' }
+    use { 'ryanoasis/vim-devicons' }
+    use { 'kyazdani42/nvim-web-devicons' }
 
-use { 'wbthomason/packer.nvim', opt = true }
--- appearance
-use { 'mortepau/codicons.nvim' }
-use { 'ryanoasis/vim-devicons' }
-use { 'kyazdani42/nvim-web-devicons' }
+    use { 'sainnhe/gruvbox-material' }
+    use { 'glepnir/dashboard-nvim' }
+    use { 'akinsho/nvim-bufferline.lua' }
+    use { 'liubang/galaxyline.nvim' }
+    use { 'kyazdani42/nvim-tree.lua' }
 
-use { 'sainnhe/gruvbox-material' }
-use { 'glepnir/dashboard-nvim' }
-use { 'akinsho/nvim-bufferline.lua' }
-use { 'liubang/galaxyline.nvim' }
-use { 'kyazdani42/nvim-tree.lua' }
+    -- tools
+    use { 'lewis6991/impatient.nvim' }
+    use { 'tjdevries/astronauta.nvim' }
+    use { 'windwp/nvim-autopairs' }
+    use { 'tpope/vim-surround' }
+    use { 'karb94/neoscroll.nvim' }
+    use { 'sindrets/diffview.nvim' }
+    use { 'lewis6991/gitsigns.nvim' }
+    use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
+    use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
+    use { 'terryma/vim-expand-region' }
+    use { 'voldikss/vim-floaterm' }
+    use { 'phaazon/hop.nvim' }
 
--- tools
-use { 'tjdevries/astronauta.nvim' }
-use { 'windwp/nvim-autopairs' }
-use { 'tpope/vim-surround' }
-use { 'karb94/neoscroll.nvim' }
-use { 'sindrets/diffview.nvim' }
-use { 'lewis6991/gitsigns.nvim' }
-use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
-use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
-use { 'terryma/vim-expand-region' }
-use { 'voldikss/vim-floaterm' }
-use { 'phaazon/hop.nvim' }
+    use { 'skywind3000/asyncrun.vim' }
+    use { 'skywind3000/asyncrun.extra' }
+    use { 'skywind3000/asynctasks.vim' }
+    use { 'liuchengxu/vista.vim', cmd = { 'Vista' } }
+    use { 'romgrk/fzy-lua-native' }
 
-use { 'skywind3000/asyncrun.vim' }
-use { 'skywind3000/asyncrun.extra' }
-use { 'skywind3000/asynctasks.vim' }
-use { 'liuchengxu/vista.vim', cmd = { 'Vista' } }
-use { 'romgrk/fzy-lua-native' }
+    use { 'nvim-lua/plenary.nvim' }
+    use { 'nvim-telescope/telescope.nvim' }
+    use { 'nvim-telescope/telescope-project.nvim' }
+    use { 'nvim-telescope/telescope-fzy-native.nvim' }
+    use { 'nvim-telescope/telescope-fzf-writer.nvim' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-use { 'nvim-lua/plenary.nvim' }
-use { 'nvim-telescope/telescope.nvim' }
-use { 'nvim-telescope/telescope-project.nvim' }
-use { 'nvim-telescope/telescope-fzy-native.nvim' }
-use { 'nvim-telescope/telescope-fzf-writer.nvim' }
-use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'b3nj5m1n/kommentary' }
 
-use { 'b3nj5m1n/kommentary' }
+    use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
-use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
+    -- lsp
+    use { 'tami5/lspsaga.nvim', branch = 'nvim51' }
+    use { 'tjdevries/nlua.nvim' }
+    use { 'neovim/nvim-lspconfig' }
+    use { 'onsails/lspkind-nvim' }
+    use { 'nvim-lua/lsp_extensions.nvim' }
+    use { 'williamboman/nvim-lsp-installer' }
 
--- lsp
-use { 'tami5/lspsaga.nvim', branch = 'nvim51' }
-use { 'tjdevries/nlua.nvim' }
-use { 'neovim/nvim-lspconfig' }
-use { 'onsails/lspkind-nvim' }
-use { 'nvim-lua/lsp_extensions.nvim' }
-use { 'williamboman/nvim-lsp-installer' }
+    -- completion
+    use { 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-calc' }
+    use { 'hrsh7th/cmp-nvim-lua' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'saadparwaiz1/cmp_luasnip' }
+    use { 'L3MON4D3/LuaSnip' }
 
--- completion
-use { 'hrsh7th/nvim-cmp' }
-use { 'hrsh7th/cmp-buffer' }
-use { 'hrsh7th/cmp-path' }
-use { 'hrsh7th/cmp-calc' }
-use { 'hrsh7th/cmp-nvim-lua' }
-use { 'hrsh7th/cmp-nvim-lsp' }
-use { 'saadparwaiz1/cmp_luasnip' }
-use { 'L3MON4D3/LuaSnip' }
-
--- ft
-use { 'cespare/vim-toml', ft = { 'toml' } }
-use { 'neoclide/jsonc.vim', ft = { 'jsonc', 'json' } }
-use { 'masukomi/vim-markdown-folding', ft = { 'markdown', 'rmd', 'pandoc.markdown' } }
-use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+    -- ft
+    use { 'cespare/vim-toml', ft = { 'toml' } }
+    use { 'neoclide/jsonc.vim', ft = { 'jsonc', 'json' } }
+    use { 'masukomi/vim-markdown-folding', ft = { 'markdown', 'rmd', 'pandoc.markdown' } }
+    use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+  end,
+  config = {
+    -- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+  },
+}
