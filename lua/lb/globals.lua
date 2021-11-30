@@ -1,13 +1,13 @@
 -- =====================================================================
 --
--- globals.lua - 
+-- globals.lua -
 --
 -- Created by liubang on 2021/05/30 01:05
 -- Last Modified: 2021/05/30 01:05
 --
 -- =====================================================================
-local python_host_prog = os.getenv('PYTHON_HOST_PROG')
-local python3_host_prog = os.getenv('PYTHON3_HOST_PROG')
+local python_host_prog = os.getenv 'PYTHON_HOST_PROG'
+local python3_host_prog = os.getenv 'PYTHON3_HOST_PROG'
 
 if python_host_prog ~= nil then
   vim.g.python_host_prog = python_host_prog

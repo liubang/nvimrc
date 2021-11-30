@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- buffer.lua - 
+-- buffer.lua -
 --
 -- Created by liubang on 2021/01/15 15:05
 -- Last Modified: 2021/01/15 15:05
@@ -49,8 +49,8 @@ local is_special_buffer = function()
 end
 
 local check_back_space = function()
-  local col = fn.col('.') - 1
-  return col == 0 or fn.getline('.'):sub(col, col):match('%s') ~= nil
+  local col = fn.col '.' - 1
+  return col == 0 or fn.getline('.'):sub(col, col):match '%s' ~= nil
 end
 
 return {

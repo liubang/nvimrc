@@ -2,7 +2,6 @@ local nnoremap = vim.keymap.nnoremap
 local vnoremap = vim.keymap.vnoremap
 local M = {}
 
-
 -- define commands
 vim.schedule(function()
   vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync()]]

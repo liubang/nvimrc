@@ -7,12 +7,6 @@
 --
 -- =====================================================================
 
-pcall(require, "impatient")
+pcall(require, 'impatient')
 
-require 'lb.globals'
-
-vim.cmd [[runtime plugin/astronauta.vim]]
-
-require 'lb.plugins'
-
-require 'lb.lsp'
+require 'lb'

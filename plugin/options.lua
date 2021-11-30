@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- options.lua - 
+-- options.lua -
 --
 -- Created by liubang on 2020/12/12 13:01
 -- Last Modified: 2020/12/12 13:01
@@ -65,13 +65,13 @@ opt.showtabline = 2
 opt.wildignorecase = true
 -- Ignore compiled files
 opt.wildignore = '__pycache__'
-opt.wildignore = opt.wildignore + {'*.o', '*~', '*.pyc', '*pycache*'}
+opt.wildignore = opt.wildignore + { '*.o', '*~', '*.pyc', '*pycache*' }
 opt.wildoptions = 'pum'
-opt.wildmode = {'longest', 'list', 'full'}
+opt.wildmode = { 'longest', 'list', 'full' }
 opt.wildmode = opt.wildmode - 'list'
-opt.wildmode = opt.wildmode + {'longest', 'full'}
+opt.wildmode = opt.wildmode + { 'longest', 'full' }
 opt.pumblend = 17
-opt.shada = {'!', '\'1000', '<50', 's10', 'h'}
+opt.shada = { '!', '\'1000', '<50', 's10', 'h' }
 opt.inccommand = 'nosplit'
 opt.fillchars = {
   vert = '│',
@@ -87,18 +87,18 @@ opt.synmaxcol = 2500
 -- LuaFormatter off
 -- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
+  - 'a' -- Auto formatting is BAD.
+  - 't' -- Don't auto format my code. I got linters for that.
+  + 'c' -- In general, I like it when comments respect textwidth
+  + 'q' -- Allow formatting comments w/ gq
+  - 'o' -- O and o, don't continue comments
+  + 'r' -- But do continue when pressing enter.
+  + 'n' -- Indent past the formatlistpat, not underneath it.
+  + 'j' -- Auto-remove comments if possible.
+  - '2' -- I'm not in gradeschool anymore
 -- LuaFormatter on
 opt.textwidth = 100
-opt.colorcolumn = {'100'}
+opt.colorcolumn = { '100' }
 opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
@@ -112,7 +112,7 @@ opt.list = false
 opt.relativenumber = false
 
 opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
 opt.foldenable = true

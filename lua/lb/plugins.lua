@@ -31,12 +31,11 @@ local packer = require 'packer'
 -- packer.init {}
 -- packer.reset()
 packer.startup {
-  function(use) 
+  function(use)
     use { 'wbthomason/packer.nvim', opt = true }
     -- appearance
-    use { 'mortepau/codicons.nvim' }
-    use { 'ryanoasis/vim-devicons' }
     use { 'kyazdani42/nvim-web-devicons' }
+    -- use { 'yamatsum/nvim-web-nonicons' }
 
     use { 'sainnhe/gruvbox-material' }
     use { 'glepnir/dashboard-nvim' }
