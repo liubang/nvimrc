@@ -95,7 +95,6 @@ packer.startup {
     -- ft
     use { 'cespare/vim-toml', ft = { 'toml' } }
     use { 'neoclide/jsonc.vim', ft = { 'jsonc', 'json' } }
-    use { 'masukomi/vim-markdown-folding', ft = { 'markdown', 'rmd', 'pandoc.markdown' } }
     use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
   end,
   config = {
