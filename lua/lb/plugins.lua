@@ -45,7 +45,6 @@ packer.startup {
     use { 'tjdevries/astronauta.nvim' }
     use { 'windwp/nvim-autopairs' }
     use { 'tpope/vim-surround' }
-    use { 'karb94/neoscroll.nvim' }
     use { 'sindrets/diffview.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
     use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
