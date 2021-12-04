@@ -7,7 +7,7 @@
 --
 --=====================================================================
 local get_vista_open_cmd = function()
-  local w = vim.fn.winwidth('%')
+  local w = vim.fn.winwidth '%'
   if w >= 160 then
     return '80vsplit'
   elseif w >= 100 then
