@@ -85,8 +85,8 @@ tnoremap { '<Leader>wk', '<C-\\><C-N><C-w>k' }
 -- plugins key mappings
 nnoremap { '<Leader>ft', '<cmd>NvimTreeToggle<CR>' }
 
-nmap { '<Leader>cc', '<Plug>kommentary_line_default' }
-vmap { '<Leader>cc', '<Plug>kommentary_visual_default<C-c>' }
+-- nmap { '<Leader>cc', '<Plug>kommentary_line_default' }
+-- vmap { '<Leader>cc', '<Plug>kommentary_visual_default<C-c>' }
 
 xmap { 'ga', '<Plug>(EasyAlign)' }
 nmap { 'ga', '<Plug>(EasyAlign)' }

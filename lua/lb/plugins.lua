@@ -26,10 +26,7 @@ if not packer_exists then
 end
 
 local packer = require 'packer'
--- local use = packer.use
 
--- packer.init {}
--- packer.reset()
 packer.startup {
   function(use)
     use { 'wbthomason/packer.nvim', opt = true }
@@ -61,8 +58,8 @@ packer.startup {
     use { 'skywind3000/asyncrun.extra' }
     use { 'skywind3000/asynctasks.vim' }
     use { 'liuchengxu/vista.vim', cmd = { 'Vista' } }
-    use { 'romgrk/fzy-lua-native' }
 
+    use { 'romgrk/fzy-lua-native' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'nvim-telescope/telescope.nvim' }
     use { 'nvim-telescope/telescope-project.nvim' }
@@ -70,7 +67,8 @@ packer.startup {
     use { 'nvim-telescope/telescope-fzf-writer.nvim' }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-    use { 'b3nj5m1n/kommentary' }
+    -- use { 'b3nj5m1n/kommentary' }
+    use { 'numToStr/Comment.nvim' }
 
     use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
@@ -97,7 +95,5 @@ packer.startup {
     use { 'neoclide/jsonc.vim', ft = { 'jsonc', 'json' } }
     use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
   end,
-  config = {
-    -- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
-  },
+  config = {},
 }
