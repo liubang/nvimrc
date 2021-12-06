@@ -118,6 +118,14 @@ nnoremap { '<Leader>kk', ':lua require(\'hop\').hint_lines()<CR>' }
 nnoremap { '<Leader>jj', ':lua require(\'hop\').hint_lines()<CR>' }
 nnoremap { '<Leader>ss', ':lua require(\'hop\').hint_patterns()<CR>' }
 
+-- git
+nnoremap {
+  '<Leader>hb',
+  function()
+    require('gitsigns').blame_line { full = true }
+  end,
+}
+
 -- markdown
 nnoremap { '<Leader>mp', '<cmd>MarkdownPreview<CR>' }
 

@@ -7,9 +7,4 @@
 --
 -- =====================================================================
 
-require('gitsigns').setup {
-  keymaps = {
-    noremap = true,
-    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-  },
-}
+require('gitsigns').setup {}
