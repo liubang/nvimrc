@@ -232,9 +232,9 @@ gls.right = {
   {
     FileFormat = {
       provider = function()
-        if vim.fn.has 'mac' then
+        if vim.fn.has 'mac' == 1 then
           return string.format('  \u{f302} %s ', fileinfo.get_file_format())
-        elseif vim.fn.has 'unix' then
+        elseif vim.fn.has 'unix' == 1 then
           return string.format('  \u{f17c} %s ', fileinfo.get_file_format())
         else
           return string.format('  \u{f17a} %s ', fileinfo.get_file_format())
