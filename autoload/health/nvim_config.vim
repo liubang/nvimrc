@@ -39,7 +39,7 @@ function! health#nvim_config#check()
         \ 'Run in shell: npm i -g yaml-language-server',
         \ ])
   call s:check_executable('prettier', 'prettier', [
-        \ 'Run in shell: npm i -g prettier',
+        \ 'Run in shell: yarn global add prettier',
         \ ])
   call s:check_executable('cmake-language-server', 'cmake-language-server', [
         \ 'Run in shell: pip install cmake-language-server',

@@ -6,7 +6,6 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     disable = { 'html' }, -- list of language that will be disabled
-    -- additional_vim_regex_highlighting = false,
   },
 
   incremental_selection = {
@@ -25,6 +24,8 @@ require('nvim-treesitter.configs').setup {
 
   rainbow = {
     enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
   },
 
   context_commentstring = {
@@ -58,7 +59,6 @@ require('nvim-treesitter.configs').setup {
 
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
-
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ['af'] = '@function.outer',
@@ -75,4 +75,29 @@ require('nvim-treesitter.configs').setup {
       ['<cr>'] = 'textsubjects-smart', -- works in visual mode
     },
   },
+}
+
+-- nvim-gps
+require('nvim-gps').setup {
+  icons = {
+    ['class-name'] = ' ', -- Classes and class-like objects
+    ['function-name'] = ' ', -- Functions
+    ['method-name'] = ' ', -- Methods (functions inside class-like objects)
+    ['container-name'] = ' ', -- Containers (example: lua tables)
+    ['tag-name'] = '炙', -- Tags (example: html tags)
+  },
+  -- Disable any languages individually over here
+  -- Any language not disabled here is enabled by default
+  languages = {
+    ['html'] = false,
+    ['c'] = true,
+    ['cpp'] = true,
+    ['go'] = true,
+    ['java'] = true,
+    ['javascript'] = true,
+    ['lua'] = true,
+    ['python'] = true,
+    ['rust'] = true,
+  },
+  depth = 3,
 }

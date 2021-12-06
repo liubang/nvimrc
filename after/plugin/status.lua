@@ -30,22 +30,6 @@ local colors = {
 
 icons['man'] = { colors.green, '\u{f128}' }
 
-require('nvim-gps').setup {
-  icons = {
-    ['class-name'] = ' ', -- Classes and class-like objects
-    ['function-name'] = ' ', -- Functions
-    ['method-name'] = ' ', -- Methods (functions inside class-like objects)
-    ['container-name'] = ' ', -- Containers (example: lua tables)
-    ['tag-name'] = '炙', -- Tags (example: html tags)
-  },
-  -- Disable any languages individually over here
-  -- Any language not disabled here is enabled by default
-  languages = {
-    ['html'] = false,
-  },
-  depth = 3,
-}
-
 gls.left = {
   {
     Mode = {

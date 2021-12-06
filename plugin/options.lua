@@ -116,8 +116,8 @@ opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
 opt.foldenable = true
-opt.foldtext = 'v:lua.folds_render()'
-opt.foldmethod = 'syntax'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+opt.foldmethod = 'expr'
 opt.foldlevelstart = 10
 opt.cursorline = true
 opt.cursorcolumn = false
