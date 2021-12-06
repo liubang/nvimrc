@@ -60,7 +60,7 @@ gls.left = {
         if not condition.hide_in_width() then
           alias = { n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V' }
         end
-        return string.format('  \u{f8d6} %s ', alias[vim.fn.mode()])
+        return string.format('  \u{e7c5} %s ', alias[vim.fn.mode()])
       end,
       highlight = { colors.black, colors.yellow, 'bold' },
     },
@@ -143,7 +143,7 @@ gls.left = {
         )
       end,
       condition = condition.buffer_not_empty,
-      highlight = { colors.bwhite, colors.black },
+      highlight = { colors.white, colors.black },
     },
   },
   {
@@ -151,7 +151,7 @@ gls.left = {
       provider = function()
         return ''
       end,
-      highlight = { colors.bwhite, colors.black },
+      highlight = { colors.white, colors.black },
     },
   },
   {
@@ -162,7 +162,7 @@ gls.left = {
       condition = function()
         return gps.is_available()
       end,
-      highlight = { colors.bwhite, colors.black },
+      highlight = { colors.white, colors.black },
     },
   },
 }
@@ -258,7 +258,11 @@ gls.right = {
   {
     LineInfo = {
       provider = function()
-        return string.format('  \u{e0a1} %s ', fileinfo.line_column())
+        return string.format(
+          '  \u{e0a1} %s%s',
+          fileinfo.line_column(),
+          fileinfo.current_line_percent()
+        )
       end,
       highlight = { colors.black, colors.yellow },
     },
