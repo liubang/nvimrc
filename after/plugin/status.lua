@@ -1,35 +1,50 @@
-local gl = require('galaxyline')
+local gl = require 'galaxyline'
 local gls = gl.section
-local condition = require('galaxyline.condition')
-local vcs = require('galaxyline.provider_vcs')
-local buffer = require('galaxyline.provider_buffer')
-local fileinfo = require('galaxyline.provider_fileinfo')
-local diagnostic = require('galaxyline.provider_diagnostic')
-local lspclient = require('galaxyline.provider_lsp')
+local condition = require 'galaxyline.condition'
+local vcs = require 'galaxyline.provider_vcs'
+local buffer = require 'galaxyline.provider_buffer'
+local fileinfo = require 'galaxyline.provider_fileinfo'
+local diagnostic = require 'galaxyline.provider_diagnostic'
+local lspclient = require 'galaxyline.provider_lsp'
 local icons = require('galaxyline.provider_fileinfo').define_file_icon()
+local gps = require 'nvim-gps'
 
--- LuaFormatter off
 local colors = {
-  black      = '#282828',
-  bblack     = '#928374',
-  red        = '#cc241d',
-  bred       = '#fb4934',
-  green      = '#98971a',
-  bgreen     = '#b8bb26',
-  yellow     = '#d79921',
-  byellow    = '#fabd2f',
-  blue       = '#458588',
-  bblue      = '#83a598',
-  mangenta   = '#b16286',
-  bmangenta  = '#d3869b',
-  cyan       = '#689d6a',
-  bcyan      = '#8ec07c',
-  white      = '#a89984',
-  bwhite     = '#ebdbb2',
+  black = '#282828',
+  bblack = '#928374',
+  red = '#cc241d',
+  bred = '#fb4934',
+  green = '#98971a',
+  bgreen = '#b8bb26',
+  yellow = '#d79921',
+  byellow = '#fabd2f',
+  blue = '#458588',
+  bblue = '#83a598',
+  mangenta = '#b16286',
+  bmangenta = '#d3869b',
+  cyan = '#689d6a',
+  bcyan = '#8ec07c',
+  white = '#a89984',
+  bwhite = '#ebdbb2',
 }
--- LuaFormatter on
 
-icons['man'] = {colors.green, '\u{f128}'}
+icons['man'] = { colors.green, '\u{f128}' }
+
+require('nvim-gps').setup {
+  icons = {
+    ['class-name'] = ' ', -- Classes and class-like objects
+    ['function-name'] = ' ', -- Functions
+    ['method-name'] = ' ', -- Methods (functions inside class-like objects)
+    ['container-name'] = ' ', -- Containers (example: lua tables)
+    ['tag-name'] = '炙', -- Tags (example: html tags)
+  },
+  -- Disable any languages individually over here
+  -- Any language not disabled here is enabled by default
+  languages = {
+    ['html'] = false,
+  },
+  depth = 3,
+}
 
 gls.left = {
   {
@@ -43,11 +58,11 @@ gls.left = {
           [''] = 'VISUAL',
         }
         if not condition.hide_in_width() then
-          alias = {n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V'}
+          alias = { n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V' }
         end
         return string.format('  \u{f8d6} %s ', alias[vim.fn.mode()])
       end,
-      highlight = {colors.black, colors.yellow, 'bold'},
+      highlight = { colors.black, colors.yellow, 'bold' },
     },
   },
   {
@@ -58,7 +73,7 @@ gls.left = {
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
       end,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -69,7 +84,7 @@ gls.left = {
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
       end,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -79,7 +94,7 @@ gls.left = {
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
       end,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -89,7 +104,7 @@ gls.left = {
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
       end,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -99,7 +114,7 @@ gls.left = {
       condition = function()
         return condition.check_git_workspace() and condition.hide_in_width()
       end,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -107,26 +122,28 @@ gls.left = {
       provider = function()
         return ' '
       end,
-      highlight = {colors.black, colors.black},
+      highlight = { colors.black, colors.black },
     },
   },
   {
     FileIcon = {
       provider = fileinfo.get_file_icon,
       condition = condition.buffer_not_empty,
-      highlight = {fileinfo.get_file_icon_color, colors.black},
+      highlight = { fileinfo.get_file_icon_color, colors.black },
     },
   },
   {
     FileName = {
       provider = function()
-        local filepath = vim.fn.expand('%:p')
-        return string.format('%s | %s ',
-                             require('lb.utils.fs').file_size(filepath),
-                             fileinfo.get_current_file_name())
+        local filepath = vim.fn.expand '%:p'
+        return string.format(
+          '%s | %s ',
+          require('lb.utils.fs').file_size(filepath),
+          fileinfo.get_current_file_name()
+        )
       end,
       condition = condition.buffer_not_empty,
-      highlight = {colors.bwhite, colors.black},
+      highlight = { colors.bwhite, colors.black },
     },
   },
   {
@@ -134,7 +151,18 @@ gls.left = {
       provider = function()
         return ''
       end,
-      highlight = {colors.black, colors.black},
+      highlight = { colors.bwhite, colors.black },
+    },
+  },
+  {
+    nvimGPS = {
+      provider = function()
+        return gps.get_location()
+      end,
+      condition = function()
+        return gps.is_available()
+      end,
+      highlight = { colors.bwhite, colors.black },
     },
   },
 }
@@ -147,7 +175,7 @@ gls.right = {
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
-      highlight = {colors.red, colors.black},
+      highlight = { colors.red, colors.black },
     },
   },
   {
@@ -157,7 +185,7 @@ gls.right = {
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
-      highlight = {colors.yellow, colors.black},
+      highlight = { colors.yellow, colors.black },
     },
   },
   {
@@ -167,7 +195,7 @@ gls.right = {
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
-      highlight = {colors.cyan, colors.black},
+      highlight = { colors.cyan, colors.black },
     },
   },
   {
@@ -177,7 +205,7 @@ gls.right = {
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
-      highlight = {colors.cyan, colors.black},
+      highlight = { colors.cyan, colors.black },
     },
   },
   {
@@ -189,7 +217,7 @@ gls.right = {
       condition = function()
         return condition.check_active_lsp() and condition.hide_in_width()
       end,
-      highlight = {colors.white, colors.black},
+      highlight = { colors.white, colors.black },
     },
   },
   {
@@ -200,22 +228,22 @@ gls.right = {
       condition = function()
         return buffer.get_buffer_filetype() ~= ''
       end,
-      highlight = {colors.white, colors.black},
+      highlight = { colors.white, colors.black },
     },
   },
   {
     FileFormat = {
       provider = function()
-        if vim.fn.has('unix') then 
+        if vim.fn.has 'unix' then
           return string.format('  \u{f17c} %s ', fileinfo.get_file_format())
-        elseif vim.fn.has('max') then
+        elseif vim.fn.has 'max' then
           return string.format('  \u{f302} %s ', fileinfo.get_file_format())
-        else 
+        else
           return string.format('  \u{f17a} %s ', fileinfo.get_file_format())
         end
       end,
       condition = condition.hide_in_width,
-      highlight = {colors.black, colors.white},
+      highlight = { colors.black, colors.white },
     },
   },
   {
@@ -224,7 +252,7 @@ gls.right = {
         return string.format('  \u{f040} %s ', fileinfo.get_file_encode())
       end,
       condition = condition.hide_in_width,
-      highlight = {colors.black, colors.bblack},
+      highlight = { colors.black, colors.bblack },
     },
   },
   {
@@ -232,7 +260,7 @@ gls.right = {
       provider = function()
         return string.format('  \u{e0a1} %s ', fileinfo.line_column())
       end,
-      highlight = {colors.black, colors.yellow},
+      highlight = { colors.black, colors.yellow },
     },
   },
 }
@@ -248,7 +276,7 @@ table.insert(gls.short_line_left, {
         return string.format(' %s ', icon)
       end
     end,
-    highlight = {colors.white, colors.black},
+    highlight = { colors.white, colors.black },
   },
 })
 
@@ -264,13 +292,16 @@ table.insert(gls.short_line_left, {
         end
       else
         if fileinfo.get_current_file_name() ~= '' then
-          return string.format('  %s %s | %s ', fileinfo.get_file_icon(),
-                               fileinfo.get_file_size(),
-                               fileinfo.get_current_file_name())
+          return string.format(
+            '  %s %s | %s ',
+            fileinfo.get_file_icon(),
+            fileinfo.get_file_size(),
+            fileinfo.get_current_file_name()
+          )
         end
       end
     end,
     separator = '',
-    highlight = {colors.white, colors.black},
+    highlight = { colors.white, colors.black },
   },
 })

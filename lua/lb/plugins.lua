@@ -38,6 +38,7 @@ packer.startup {
     use { 'glepnir/dashboard-nvim' }
     use { 'akinsho/nvim-bufferline.lua' }
     use { 'liubang/galaxyline.nvim' }
+    use { 'SmiteshP/nvim-gps' }
     use { 'kyazdani42/nvim-tree.lua' }
 
     -- tools
@@ -70,6 +71,13 @@ packer.startup {
     use { 'numToStr/Comment.nvim' }
 
     use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
+
+    -- treesitter
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+    }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 
     -- lsp
     use { 'tami5/lspsaga.nvim', branch = 'nvim51' }
