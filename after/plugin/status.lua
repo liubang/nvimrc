@@ -30,6 +30,20 @@ local colors = {
 
 icons['man'] = { colors.green, '\u{f128}' }
 
+-- rewrite some function
+local line_column = function()
+  local line = vim.fn.line '.'
+  local column = vim.fn.col '.'
+  return string.format('%d:%d ', line, column)
+end
+
+local current_line_percent = function()
+  local current_line = vim.fn.line '.'
+  local total_line = vim.fn.line '$'
+  local result, _ = math.modf((current_line / total_line) * 100)
+  return result .. '%'
+end
+
 gls.left = {
   {
     Mode = {
@@ -218,10 +232,10 @@ gls.right = {
   {
     FileFormat = {
       provider = function()
-        if vim.fn.has 'unix' then
-          return string.format('  \u{f17c} %s ', fileinfo.get_file_format())
-        elseif vim.fn.has 'max' then
+        if vim.fn.has 'mac' then
           return string.format('  \u{f302} %s ', fileinfo.get_file_format())
+        elseif vim.fn.has 'unix' then
+          return string.format('  \u{f17c} %s ', fileinfo.get_file_format())
         else
           return string.format('  \u{f17a} %s ', fileinfo.get_file_format())
         end
@@ -242,11 +256,7 @@ gls.right = {
   {
     LineInfo = {
       provider = function()
-        return string.format(
-          '  \u{e0a1} %s%s',
-          fileinfo.line_column(),
-          fileinfo.current_line_percent()
-        )
+        return string.format('  \u{e0a1} %s[%s] ', line_column(), current_line_percent())
       end,
       highlight = { colors.black, colors.yellow },
     },
