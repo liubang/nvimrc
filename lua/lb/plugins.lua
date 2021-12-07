@@ -78,6 +78,7 @@ packer.startup {
       run = ':TSUpdate',
     }
     use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    use { 'p00f/nvim-ts-rainbow' }
 
     -- lsp
     use { 'tami5/lspsaga.nvim', branch = 'nvim51' }

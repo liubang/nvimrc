@@ -17,6 +17,7 @@ if python3_host_prog ~= nil then
 end
 -- use space as leader key
 vim.g.mapleader = ' '
+vim.g.loaded_matchparen = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
