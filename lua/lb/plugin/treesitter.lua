@@ -10,12 +10,11 @@ return function()
     },
 
     incremental_selection = {
-      enable = false,
+      enable = true,
       keymaps = {
-        init_selection = '<leader>gnn',
-        node_incremental = '<leader>gnr',
-        scope_incremental = '<leader>gne',
-        node_decremental = '<leader>gnt',
+        init_selection = 'v',
+        node_incremental = 'v',
+        node_decremental = 'V',
       },
     },
 

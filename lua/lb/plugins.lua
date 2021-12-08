@@ -79,7 +79,7 @@ use {
 }
 use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
 use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
-use { 'terryma/vim-expand-region', event = { 'BufRead', 'BufNewFile' } }
+-- use { 'terryma/vim-expand-region', event = { 'BufRead', 'BufNewFile' } }
 use {
   'voldikss/vim-floaterm',
   cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermKill' },

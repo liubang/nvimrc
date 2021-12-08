@@ -91,8 +91,8 @@ nnoremap { '<Leader>ft', '<cmd>NvimTreeToggle<CR>' }
 xmap { 'ga', '<Plug>(EasyAlign)' }
 nmap { 'ga', '<Plug>(EasyAlign)' }
 
-vmap { 'v', '<Plug>(expand_region_expand)' }
-vmap { 'V', '<Plug>(expand_region_shrink)' }
+-- vmap { 'v', '<Plug>(expand_region_expand)' }
+-- vmap { 'V', '<Plug>(expand_region_shrink)' }
 
 nnoremap { '<Leader>tw', '<cmd>FloatermNew<CR>' }
 nnoremap { '<C-t>', '<cmd>FloatermToggle<CR>' }
