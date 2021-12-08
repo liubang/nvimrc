@@ -6,8 +6,8 @@
 -- Last Modified: 2021/09/04 21:05
 --
 -- =====================================================================
-vim.opt.completeopt = { 'menuone', 'noselect' }
 
+vim.opt.completeopt = { 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append 'c'
 
@@ -15,7 +15,6 @@ return function()
   local cmp = require 'cmp'
   local lspkind = require 'lspkind'
   local luasnip = require 'luasnip'
-  local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
   lspkind.init()
 
@@ -90,7 +89,9 @@ return function()
       native_menu = false,
     },
   }
+
   -- autopairs
+  local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
   require('nvim-autopairs').setup { disable_filetype = { 'TelescopePrompt', 'vim' } }
   cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
 end

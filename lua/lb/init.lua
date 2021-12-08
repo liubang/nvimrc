@@ -7,6 +7,8 @@
 --
 --=====================================================================
 
+pcall(require, 'impatient')
+
 vim.cmd [[runtime plugin/astronauta.vim]]
 
 require 'lb.options'

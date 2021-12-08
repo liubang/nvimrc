@@ -84,7 +84,6 @@ opt.fillchars = {
   foldclose = '▸',
 }
 opt.synmaxcol = 2500
--- LuaFormatter off
 -- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
   - 'a' -- Auto formatting is BAD.
@@ -96,7 +95,6 @@ opt.formatoptions = opt.formatoptions
   + 'n' -- Indent past the formatlistpat, not underneath it.
   + 'j' -- Auto-remove comments if possible.
   - '2' -- I'm not in gradeschool anymore
--- LuaFormatter on
 opt.textwidth = 100
 opt.colorcolumn = { '100' }
 opt.expandtab = true

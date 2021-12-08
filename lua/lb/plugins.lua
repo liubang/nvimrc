@@ -15,8 +15,6 @@ utils.bootstrap_packer()
 local packer = require 'packer'
 local use = packer.use
 
--- local packer_compiled_path = vim.fn.stdpath 'data' .. '/site/lua/_compiled.lua'
-
 packer.init {
   -- compile_path = packer_compiled_path,
   display = {
@@ -185,10 +183,3 @@ use {
 -- ft
 use { 'cespare/vim-toml', ft = { 'toml' } }
 use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
-
--- if not vim.g.packer_compiled_loaded and vim.loop.fs_stat(packer_compiled_path) then
---   require '_compiled'
---   vim.g.packer_compiled_loaded = true
--- else
---   assert 'Missing packer compile file Run PackerCompile Or PackerInstall to fix'
--- end
