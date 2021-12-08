@@ -9,6 +9,10 @@
 
 vim.cmd [[runtime plugin/astronauta.vim]]
 
+require 'lb.options'
 require 'lb.globals'
 require 'lb.plugins'
 require 'lb.lsp'
+require 'lb.commands'
+require 'lb.events'
+require 'lb.mappings'

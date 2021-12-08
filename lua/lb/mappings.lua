@@ -103,9 +103,6 @@ tnoremap { '<C-t>', '<C-\\><C-n>:FloatermToggle<CR>' }
 tnoremap { '<C-d>', '<C-\\><C-n>:FloatermKill<CR>' }
 
 -- nnoremap { '<Leader>ud', '<cmd>MundoToggle<CR>' }
---
--- AsyncRun
-nnoremap { '<Leader>ar', '<cmd>AsyncRun ' }
 
 nnoremap { '<C-x>', '<cmd>AsyncTask file-build-and-run<CR>' }
 nnoremap { '<C-b>', '<cmd>AsyncTask file-build<CR>' }
