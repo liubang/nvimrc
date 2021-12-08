@@ -15,8 +15,6 @@ end
 if python3_host_prog ~= nil then
   vim.g.python3_host_prog = python3_host_prog
 end
--- use space as leader key
-vim.g.mapleader = ' '
 
 vim.g.loaded_matchparen = 1
 vim.g.loaded_gzip = 1
@@ -37,16 +35,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 
-vim.g.nvg_root = vim.fn.stdpath 'config'
-vim.g.cache_path = string.format('%s/.cache', vim.g.nvg_root)
-vim.g.module_path = string.format('%s/modules', vim.g.nvg_root)
-vim.g.snip_path = string.format('%s/snippets', vim.g.nvg_root)
-vim.g.scripts_path = string.format('%s/scripts', vim.g.nvg_root)
-
 -- global functions
 _G.P = function(v)
   print(vim.inspect(v))
   return v
 end
-
 -- _G.folds_render = require('lb.utils.folds').render

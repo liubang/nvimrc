@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- async_tasks.lua - 
+-- async_tasks.lua -
 --
 -- Created by liubang on 2021/01/03 19:02
 -- Last Modified: 2021/01/03 19:02
@@ -8,13 +8,13 @@
 -- =====================================================================
 local has_telescope, telescope = pcall(require, 'telescope')
 if not has_telescope then
-  error('This plugins require nvim-telescope/telescope.nvim')
+  error 'This plugins require nvim-telescope/telescope.nvim'
 end
 
-local finders = require('telescope.finders')
-local pickers = require('telescope.pickers')
-local sorters = require('telescope.sorters')
-local actions = require('telescope.actions')
+local finders = require 'telescope.finders'
+local pickers = require 'telescope.pickers'
+local sorters = require 'telescope.sorters'
+local actions = require 'telescope.actions'
 
 local task_lists = function()
   if vim.fn['asynctasks#source'] == nil then
@@ -34,7 +34,10 @@ local task_lists = function()
     end
     text = string.format('%s%s\t%s\t%s', text, item[1], item[2], item[3])
     local value = string.format('AsyncTask %s', item[1])
-    table.insert(result, {display = text, value = value, ordinal = string.format('%s %s', key, item[1])})
+    table.insert(
+      result,
+      { display = text, value = value, ordinal = string.format('%s %s', key, item[1]) }
+    )
     index = index + 1
   end
   return result
@@ -47,7 +50,7 @@ local tasks = function(opts)
     finder = finders.new_table {
       results = task_lists(),
       entry_maker = function(entry)
-        return {value = entry.value, display = entry.display, ordinal = entry.ordinal}
+        return { value = entry.value, display = entry.display, ordinal = entry.ordinal }
       end,
     },
     sorter = sorters.get_fzy_sorter(),
@@ -64,4 +67,4 @@ local tasks = function(opts)
   }):find()
 end
 
-return telescope.register_extension {exports = {tasks = tasks}}
+return telescope.register_extension { exports = { tasks = tasks } }

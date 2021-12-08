@@ -14,7 +14,7 @@ local cnoremap = vim.keymap.cnoremap
 local tnoremap = vim.keymap.tnoremap
 local nmap = vim.keymap.nmap
 local xmap = vim.keymap.xmap
-local vmap = vim.keymap.vmap
+-- local vmap = vim.keymap.vmap
 
 -- clear default
 nnoremap { ',', '' }

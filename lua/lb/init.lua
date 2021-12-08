@@ -7,13 +7,14 @@
 --
 --=====================================================================
 
-pcall(require, 'impatient')
-
 vim.cmd [[runtime plugin/astronauta.vim]]
+
+-- use space as leader key
+vim.g.mapleader = ' '
 
 require 'lb.options'
 require 'lb.globals'
-require 'lb.plugins'
+require 'lb.plugin'
 require 'lb.lsp'
 require 'lb.commands'
 require 'lb.events'

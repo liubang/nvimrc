@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- bazel.lua - 
+-- bazel.lua -
 --
 -- Created by liubang on 2021/01/03 19:02
 -- Last Modified: 2021/01/03 19:02
@@ -9,25 +9,24 @@
 local has_telescope, telescope = pcall(require, 'telescope')
 
 if not has_telescope then
-  error('This plugins require nvim-telescope/telescope.nvim')
+  error 'This plugins require nvim-telescope/telescope.nvim'
 end
 
-local finders = require('telescope.finders')
-local pickers = require('telescope.pickers')
-local sorters = require('telescope.sorters')
-local actions = require('telescope.actions')
+local finders = require 'telescope.finders'
+local pickers = require 'telescope.pickers'
+local sorters = require 'telescope.sorters'
+local actions = require 'telescope.actions'
 
 local bazel_finder = function(opts, title, kind)
   -- check if bazel installed
-  if 1 ~= vim.fn.executable('bazel') then
-    print('ERROR: You need to install bazel')
+  if 1 ~= vim.fn.executable 'bazel' then
+    print 'ERROR: You need to install bazel'
     return
   end
 
-  local root = vim.fn['asyncrun#get_root'](vim.fn.expand('%'), {'WORKSPACE'}, 1)
+  local root = vim.fn['asyncrun#get_root'](vim.fn.expand '%', { 'WORKSPACE' }, 1)
   if root == '' or 0 == vim.fn.filereadable(string.format('%s/WORKSPACE', vim.fn.expand(root))) then
-    print(
-      'ERROR: The "bazel" command is only supported from within a workspace (below a directory having a WORKSPACE file).')
+    print 'ERROR: The "bazel" command is only supported from within a workspace (below a directory having a WORKSPACE file).'
     return
   end
 
@@ -51,9 +50,9 @@ local bazel_finder = function(opts, title, kind)
         actions.close(prompt_bufnr)
         if selection.value ~= '' then
           local cmd = 'AsyncRun -mode=term -pos=right'
-          if kind:match('test') ~= nil then
+          if kind:match 'test' ~= nil then
             cmd = string.format('%s bazel test %s', cmd, selection.value)
-          elseif kind:match('binary') ~= nil then
+          elseif kind:match 'binary' ~= nil then
             cmd = string.format('%s bazel run %s', cmd, selection.value)
           else
             cmd = string.format('%s bazel build %s', cmd, selection.value)
