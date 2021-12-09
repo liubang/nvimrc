@@ -19,7 +19,7 @@ return function()
     },
 
     indent = {
-      enable = true,
+      enable = false,
     },
 
     context_commentstring = {
