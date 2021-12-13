@@ -53,11 +53,12 @@ return function()
             n = 'NORMAL',
             i = 'INSERT',
             c = 'COMMAND',
+            v = 'VISUAL',
             V = 'VISUAL',
             [''] = 'VISUAL',
           }
           if not condition.hide_in_width() then
-            alias = { n = 'N', i = 'I', c = 'C', V = 'V', [''] = 'V' }
+            alias = { n = 'N', i = 'I', c = 'C', v = 'V', V = 'V', [''] = 'V' }
           end
           return string.format('  \u{e7c5} %s ', alias[vim.fn.mode()])
         end,
