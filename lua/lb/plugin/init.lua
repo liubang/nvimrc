@@ -49,6 +49,7 @@ use { 'liubang/galaxyline.nvim', config = conf 'status' }
 use { 'kyazdani42/nvim-tree.lua', config = conf 'file_explorer' }
 
 -- tools
+use { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end}
 use { 'lewis6991/impatient.nvim' }
 use { 'tjdevries/astronauta.nvim' }
 use { 'tpope/vim-surround', event = 'InsertEnter' }
