@@ -209,6 +209,15 @@ return function()
       },
     },
     {
+      LineInfo = {
+        provider = function()
+          return string.format('  \u{e0a1} %s[%s] ', line_column(), current_line_percent())
+        end,
+        highlight = { colors.white, colors.black },
+        -- highlight = { colors.black, colors.yellow },
+      },
+    },
+    {
       LspStatus = {
         provider = function()
           return string.format(' %s ', lspclient.get_lsp_client())
@@ -223,12 +232,12 @@ return function()
     {
       FileType = {
         provider = function()
-          return string.format(' %s ', buffer.get_buffer_filetype())
+          return string.format('  %s ', buffer.get_buffer_filetype())
         end,
         condition = function()
           return buffer.get_buffer_filetype() ~= ''
         end,
-        highlight = { colors.white, colors.black },
+        highlight = { colors.black, colors.white },
       },
     },
     {
@@ -243,23 +252,15 @@ return function()
           end
         end,
         condition = condition.hide_in_width,
-        highlight = { colors.black, colors.white },
+        highlight = { colors.black, colors.bblack },
       },
     },
     {
       FileEncode = {
         provider = function()
-          return string.format('  \u{f040} %s ', fileinfo.get_file_encode())
+          return string.format('  \u{f040}%s ', fileinfo.get_file_encode())
         end,
         condition = condition.hide_in_width,
-        highlight = { colors.black, colors.bblack },
-      },
-    },
-    {
-      LineInfo = {
-        provider = function()
-          return string.format('  \u{e0a1} %s[%s] ', line_column(), current_line_percent())
-        end,
         highlight = { colors.black, colors.yellow },
       },
     },
