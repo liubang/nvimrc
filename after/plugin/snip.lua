@@ -6,57 +6,56 @@
 -- Last Modified: 2021/09/04 21:07
 --
 -- =====================================================================
-return function()
-  local ls = require 'luasnip'
-  -- some shorthands...
-  local s = ls.snippet
-  local sn = ls.snippet_node
-  local t = ls.text_node
-  local i = ls.insert_node
-  local f = ls.function_node
-  local c = ls.choice_node
-  local d = ls.dynamic_node
-  local l = require('luasnip.extras').lambda
-  local r = require('luasnip.extras').rep
-  local p = require('luasnip.extras').partial
-  local m = require('luasnip.extras').match
-  local n = require('luasnip.extras').nonempty
-  local dl = require('luasnip.extras').dynamic_lambda
-  local types = require 'luasnip.util.types'
+local ls = require 'luasnip'
+-- some shorthands...
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local l = require('luasnip.extras').lambda
+local r = require('luasnip.extras').rep
+local p = require('luasnip.extras').partial
+local m = require('luasnip.extras').match
+local n = require('luasnip.extras').nonempty
+local dl = require('luasnip.extras').dynamic_lambda
+local types = require 'luasnip.util.types'
 
-  ls.config.set_config {
-    history = true,
-    -- Update more often, :h events for more info.
-    updateevents = 'TextChanged,TextChangedI',
-  }
+ls.config.set_config {
+  history = true,
+  -- Update more often, :h events for more info.
+  updateevents = 'TextChanged,TextChangedI',
+}
 
-  local uuid = function()
-    local random = math.random
-    local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-    local out
-    local subs = function(ch)
-      local v = (((ch == 'x') and random(0, 15)) or random(8, 11))
-      return string.format('%x', v)
-    end
-    out = template:gsub('[xy]', subs)
-    return out
+local uuid = function()
+  local random = math.random
+  local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+  local out
+  local subs = function(ch)
+    local v = (((ch == 'x') and random(0, 15)) or random(8, 11))
+    return string.format('%x', v)
   end
+  out = template:gsub('[xy]', subs)
+  return out
+end
 
-  local __1__ = function()
-    return { os.date '%Y-%m-%d' }
-  end
+local __1__ = function()
+  return { os.date '%Y-%m-%d' }
+end
 
-  local __2__ = function()
-    return { os.date '%Y-%m-%d %H:%M:%S' }
-  end
+local __2__ = function()
+  return { os.date '%Y-%m-%d %H:%M:%S' }
+end
 
-  local replace_each = function(replacer)
-    local wrapper = function(args)
-      local len = #(args[1])[1]
-      return { replacer:rep(len) }
-    end
-    return wrapper
+local replace_each = function(replacer)
+  local wrapper = function(args)
+    local len = #(args[1])[1]
+    return { replacer:rep(len) }
   end
+  return wrapper
+end
 
 -- stylua: ignore
 ls.snippets = {
@@ -139,4 +138,3 @@ ls.snippets = {
     }),
   },
 }
-end

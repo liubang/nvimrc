@@ -108,7 +108,7 @@ nnoremap { '<C-x>', '<cmd>AsyncTask file-build-and-run<CR>' }
 nnoremap { '<C-b>', '<cmd>AsyncTask file-build<CR>' }
 nnoremap { '<C-r>', '<cmd>AsyncTask file-run<CR>' }
 
-nnoremap { '<Leader>tl', '<cmd>Vista!!<CR>' }
+nnoremap { '<Leader>tl', '<cmd>SymbolsOutline<CR>' }
 
 -- hop
 nnoremap { '<Leader>kk', ':lua require(\'hop\').hint_lines()<CR>' }

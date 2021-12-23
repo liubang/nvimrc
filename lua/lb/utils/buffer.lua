@@ -16,6 +16,8 @@ local special_buffers = {
   'defx',
   'vista',
   'vista_kind',
+  'Outline',
+  'toggleterm',
   'help',
   'packer',
   'undotree',
