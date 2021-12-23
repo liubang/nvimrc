@@ -106,7 +106,7 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'nvim-telescope/telescope.nvim' }
 
-  use { 'simrat39/symbols-outline.nvim' }
+  use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
   use { 'numToStr/Comment.nvim' }
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
