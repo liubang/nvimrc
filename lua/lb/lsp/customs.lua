@@ -45,14 +45,19 @@ local buf_vnoremap = function(opts)
 end
 
 local custom_attach = function(client, _)
+  buf_nnoremap { '<C-k>', vim.lsp.buf.signature_help }
   buf_nnoremap { '<Leader>gD', vim.lsp.buf.declaration }
   buf_nnoremap { '<Leader>gd', vim.lsp.buf.definition }
   buf_nnoremap { '<Leader>gi', vim.lsp.buf.implementation }
   buf_nnoremap { '<Leader>gr', require('telescope.builtin').lsp_references }
-  buf_nnoremap { '<Leader>hh', vim.lsp.buf.signature_help }
   buf_nnoremap { '<Leader>rn', vim.lsp.buf.rename }
   buf_nnoremap { '<Leader>ee', require('lspsaga.diagnostic').show_line_diagnostics }
-  buf_nnoremap { '<Leader>ef', require('telescope.builtin').lsp_document_diagnostics }
+  buf_nnoremap {
+    '<Leader>ef',
+    function()
+      require('telescope.builtin').diagnostics { bufnr = 0 }
+    end,
+  }
   buf_nnoremap { '<Leader>ca', require('telescope.builtin').lsp_code_actions }
   buf_vnoremap {
     '<Leader>ca',

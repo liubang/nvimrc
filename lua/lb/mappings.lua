@@ -114,6 +114,24 @@ nnoremap { '<Leader>tl', '<cmd>SymbolsOutline<CR>' }
 nnoremap { '<Leader>kk', ':lua require(\'hop\').hint_lines()<CR>' }
 nnoremap { '<Leader>jj', ':lua require(\'hop\').hint_lines()<CR>' }
 nnoremap { '<Leader>ss', ':lua require(\'hop\').hint_patterns()<CR>' }
+nnoremap {
+  '<Leader>ll',
+  function()
+    require('hop').hint_words {
+      direction = require('hop.hint').HintDirection.AFTER_CURSOR,
+      current_line_only = true,
+    }
+  end,
+}
+nnoremap {
+  '<Leader>hh',
+  function()
+    require('hop').hint_words {
+      direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
+      current_line_only = true,
+    }
+  end,
+}
 
 -- git
 nnoremap {
