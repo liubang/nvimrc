@@ -18,17 +18,21 @@ function M.conf(name)
 end
 
 function M.bootstrap_packer()
-  local install_path = string.format('%s/site/pack/packer/opt/packer.nvim', vim.fn.stdpath 'data')
+  local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
   if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     M.packer_notify 'Downloading packer.nvim...'
-    M.packer_notify(
-      vim.fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
-    )
-    vim.cmd 'packadd! packer.nvim'
-    require('packer').sync()
+    M.packer_notify(vim.fn.system {
+      'git',
+      'clone',
+      '--depth',
+      '1',
+      'https://github.com/wbthomason/packer.nvim',
+      install_path,
+    })
+    vim.cmd [[packadd packer.nvim]]
+    return true
   else
-    local name = vim.env.DEVELOPING and 'local-packer.nvim' or 'packer.nvim'
-    vim.cmd(string.format('packadd! %s', name))
+    return false
   end
 end
 
