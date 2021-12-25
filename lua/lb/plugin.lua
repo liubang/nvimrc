@@ -19,6 +19,10 @@ packer.init {
       return require('packer.util').float { border = 'single' }
     end,
   },
+  git = {
+    depth = 1,
+    clone_timeout = 300,
+  },
 }
 
 return packer.startup(function(use)
