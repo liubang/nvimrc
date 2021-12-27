@@ -287,7 +287,7 @@ table.insert(gls.short_line_left, {
         local filetype = vim.bo.filetype
         if filetype == 'NvimTree' then
           return ' Explorer '
-        elseif filetype == 'vista_kind' then
+        elseif filetype == 'Outline' then
           return ' Outline '
         end
       else
