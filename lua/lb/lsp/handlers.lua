@@ -27,19 +27,6 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
---   require('lsp_extensions.workspace.diagnostic').handler,
---   {
---     signs = {
---       severity_limit = 'Error',
---     },
---     underline = {
---       severity_limit = 'Warning',
---     },
---     virtual_text = false,
---   }
--- )
-
 vim.lsp.handlers['textDocument/hover'] = require('lspsaga.hover').handler
 
 local ns_rename = vim.api.nvim_create_namespace 'lb_rename'

@@ -8,8 +8,6 @@
 -- =====================================================================
 local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
-local lspconfig = require 'lspconfig'
-local util = require 'lspconfig.util'
 local lsp_installer = require 'nvim-lsp-installer'
 
 --- for cpp
@@ -22,6 +20,71 @@ local get_default_driver = function()
     return result
   end
   return nil
+end
+
+local get_gopls_opts = function(server)
+  -- https://github.com/ray-x/go.nvim/blob/master/lua/go/lsp.lua
+  return {
+    cmd = { vim.fn.expand(server.root_dir .. '/gopls'), '-remote.debug=:0' },
+    filetypes = { 'go', 'gomod' },
+    flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
+    settings = {
+      gopls = {
+        analyses = { unusedparams = true, unreachable = false },
+        codelenses = {
+          generate = true, -- show the `go generate` lens.
+          gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+          test = true,
+          tidy = true,
+        },
+        usePlaceholders = true,
+        completeUnimported = true,
+        staticcheck = true,
+        matcher = 'Fuzzy',
+        diagnosticsDelay = '500ms',
+        experimentalWatchedFileDelay = '100ms',
+        symbolMatcher = 'fuzzy',
+        ['local'] = '',
+        gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+        buildFlags = { '-tags', 'integration' },
+      },
+    },
+  }
+end
+
+local get_diagnostic_opts = function(_)
+  return {
+    filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc' },
+    init_options = {
+      formatters = {
+        buildifier = { command = 'buildifier' },
+        stylua = {
+          command = 'stylua',
+          args = { '-' },
+          rootPatterns = { 'stylua.toml' },
+          requiredFiles = { 'stylua.toml' },
+        },
+        shfmt = {
+          command = 'shfmt',
+          args = { '-filename', '%filepath' },
+          rootPatterns = { '.editorconfig' },
+        },
+        prettier = {
+          command = 'prettier',
+          args = { '--stdin', '--stdin-filepath', [[%filepath]] },
+        },
+      },
+      formatFiletypes = {
+        sh = 'shfmt',
+        bzl = 'buildifier',
+        lua = 'stylua',
+        json = 'prettier',
+        jsonc = 'prettier',
+        markdown = 'prettier',
+        yaml = 'prettier',
+      },
+    },
+  }
 end
 
 lsp_installer.on_server_ready(function(server)
@@ -55,66 +118,9 @@ lsp_installer.on_server_ready(function(server)
     end
     opts.cmd = cmd
   elseif server.name == 'gopls' then
-    -- https://github.com/ray-x/go.nvim/blob/master/lua/go/lsp.lua
-    opts = {
-      cmd = { vim.fn.expand(server.root_dir .. '/gopls'), '-remote.debug=:0' },
-      filetypes = { 'go', 'gomod' },
-      flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
-      settings = {
-        gopls = {
-          analyses = { unusedparams = true, unreachable = false },
-          codelenses = {
-            generate = true, -- show the `go generate` lens.
-            gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-            test = true,
-            tidy = true,
-          },
-          usePlaceholders = true,
-          completeUnimported = true,
-          staticcheck = true,
-          matcher = 'Fuzzy',
-          diagnosticsDelay = '500ms',
-          experimentalWatchedFileDelay = '100ms',
-          symbolMatcher = 'fuzzy',
-          ['local'] = '',
-          gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-          buildFlags = { '-tags', 'integration' },
-        },
-      },
-    }
+    opts = get_gopls_opts(server)
   elseif server.name == 'diagnosticls' then
-    opts = {
-      filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc' },
-      init_options = {
-        formatters = {
-          buildifier = { command = 'buildifier' },
-          stylua = {
-            command = 'stylua',
-            args = { '-' },
-            rootPatterns = { 'stylua.toml' },
-            requiredFiles = { 'stylua.toml' },
-          },
-          shfmt = {
-            command = 'shfmt',
-            args = { '-filename', '%filepath' },
-            rootPatterns = { '.editorconfig' },
-          },
-          prettier = {
-            command = 'prettier',
-            args = { '--stdin', '--stdin-filepath', [[%filepath]] },
-          },
-        },
-        formatFiletypes = {
-          sh = 'shfmt',
-          bzl = 'buildifier',
-          lua = 'stylua',
-          json = 'prettier',
-          jsonc = 'prettier',
-          markdown = 'prettier',
-          yaml = 'prettier',
-        },
-      },
-    }
+    opts = get_diagnostic_opts(server)
   end
   server:setup(c.default(opts))
 end)
