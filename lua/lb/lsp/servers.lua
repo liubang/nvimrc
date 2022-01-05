@@ -54,7 +54,7 @@ end
 
 local get_diagnostic_opts = function(_)
   return {
-    filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml', 'json', 'jsonc' },
+    filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml' },
     init_options = {
       formatters = {
         buildifier = { command = 'buildifier' },
@@ -78,8 +78,6 @@ local get_diagnostic_opts = function(_)
         sh = 'shfmt',
         bzl = 'buildifier',
         lua = 'stylua',
-        json = 'prettier',
-        jsonc = 'prettier',
         markdown = 'prettier',
         yaml = 'prettier',
       },
