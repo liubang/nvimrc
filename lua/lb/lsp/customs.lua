@@ -58,7 +58,7 @@ local custom_attach = function(client, _)
       require('telescope.builtin').diagnostics { bufnr = 0 }
     end,
   }
-  buf_nnoremap { '<Leader>ca', require('telescope.builtin').lsp_code_actions }
+  buf_nnoremap { '<Leader>ca', require('lspsaga.codeaction').code_action }
   buf_vnoremap {
     '<Leader>ca',
     ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>',
