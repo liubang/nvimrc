@@ -48,6 +48,11 @@ return packer.startup(function(use)
 
   -- tools
   use {
+    'rhysd/accelerated-jk',
+    event = { 'VimEnter *' },
+  }
+
+  use {
     'blackCauldron7/surround.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
