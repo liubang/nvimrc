@@ -20,9 +20,9 @@ vim.lsp.handlers['textDocument/definition'] = function(_, result)
 end
 
 vim.diagnostic.config {
-  underline = true,
+  underline = false,
   virtual_text = false,
-  signs = false,
+  signs = true,
   update_in_insert = false,
   severity_sort = true,
 }
