@@ -95,7 +95,7 @@ return packer.startup(function(use)
     config = function()
       require('pretty-fold').setup {
         fill_char = '-',
-        comment_signs = false,
+        comment_signs = {},
         keep_indentation = false,
         sections = {
           left = {
