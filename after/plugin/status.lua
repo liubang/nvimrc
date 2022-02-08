@@ -305,3 +305,12 @@ table.insert(gls.short_line_left, {
     highlight = { colors.white, colors.black },
   },
 })
+
+require('fidget').setup {
+  text = {
+    spinner = 'moon',
+  },
+  align = {
+    bottom = true,
+  },
+}

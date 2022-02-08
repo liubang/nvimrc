@@ -159,6 +159,7 @@ return packer.startup(function(use)
   use { 'tami5/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
+  use { 'j-hui/fidget.nvim' }
 
   -- completion
   use { 'windwp/nvim-autopairs' }
