@@ -23,7 +23,7 @@ local get_default_driver = function()
 end
 
 local get_gopls_opts = function(server)
-  -- https://github.com/ray-x/go.nvim/blob/master/lua/go/lsp.lua
+  -- https://github.com/ray-x/go.nvim/blob/master/lua/go/gopls.lua
   return {
     cmd = { vim.fn.expand(server.root_dir .. '/gopls'), '-remote.debug=:0' },
     filetypes = { 'go', 'gomod' },
