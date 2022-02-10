@@ -19,7 +19,7 @@ end
 vim.g.mapleader = ' '
 
 -- disable distribution plugins
-vim.g.did_load_filetypes = 1
+-- vim.g.did_load_filetypes = 1
 vim.g.loaded_matchparen = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1

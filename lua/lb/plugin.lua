@@ -45,12 +45,12 @@ return packer.startup(function(use)
     end,
   }
   use { 'lewis6991/impatient.nvim' }
-  use {
-    'nathom/filetype.nvim',
-    config = function()
-      require('filetype').setup {}
-    end,
-  }
+  -- use {
+  --   'nathom/filetype.nvim',
+  --   config = function()
+  --     require('filetype').setup {}
+  --   end,
+  -- }
 
   -- tools
   use {
