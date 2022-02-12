@@ -104,11 +104,12 @@ lsp_installer.on_server_ready(function(server)
     }
   elseif server.name == 'clangd' then
     local cmd = {
-      vim.fn.expand(server.root_dir .. '/clangd_*/bin/clangd'),
+      vim.fn.expand(server.root_dir .. '/clangd/bin/clangd'),
       '--background-index',
       '--suggest-missing-includes',
       '--clang-tidy',
       '--header-insertion=never',
+      '--inlay-hints',
     }
     local driver = get_default_driver()
     if driver ~= nil then
