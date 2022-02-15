@@ -59,7 +59,7 @@ return packer.startup(function(use)
   }
 
   use {
-    'blackCauldron7/surround.nvim',
+    'liubang/surround.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('surround').setup { mappings_style = 'sandwich' }
