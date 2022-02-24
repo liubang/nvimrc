@@ -54,16 +54,10 @@ end
 
 local get_diagnostic_opts = function(_)
   return {
-    filetypes = { 'lua', 'bzl', 'sh', 'markdown', 'yaml' },
+    filetypes = { 'bzl', 'sh', 'markdown', 'yaml' },
     init_options = {
       formatters = {
         buildifier = { command = 'buildifier' },
-        stylua = {
-          command = 'stylua',
-          args = { '-' },
-          rootPatterns = { 'stylua.toml' },
-          requiredFiles = { 'stylua.toml' },
-        },
         shfmt = {
           command = 'shfmt',
           args = { '-filename', '%filepath' },
@@ -77,7 +71,6 @@ local get_diagnostic_opts = function(_)
       formatFiletypes = {
         sh = 'shfmt',
         bzl = 'buildifier',
-        lua = 'stylua',
         markdown = 'prettier',
         yaml = 'prettier',
       },

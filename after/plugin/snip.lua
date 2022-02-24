@@ -91,9 +91,9 @@ ls.snippets = {
       t { '', '\treturn 0;', '}' },
     }),
     s({ trig = 'ignore' }, {
-      t { '// clang-format off', '', '' },
-      i(1, { '// put your code hare' }),
-      t { '// clang-format on' },
+      t { '// clang-format off', '' },
+      i(1, { '' }),
+      t { '', '// clang-format on' },
     }),
   },
   c = {
