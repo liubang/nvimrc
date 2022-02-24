@@ -57,84 +57,68 @@ local replace_each = function(replacer)
   return wrapper
 end
 
--- stylua: ignore
 ls.snippets = {
   all = {
-    s({ trig = "date", wordTrig = true}, {f(__1__, {}), i(0) }),
-    s({ trig = "datetime", wordTrig = true}, {f(__2__, {}), i(0) }),
-    s({ trig = "uuid", wordTrig = true}, {f(uuid, {}), i(0) }),
-    s({ trig = "todo" }, { t("TODO(liubang): ") }),
-    s({ trig = "fixme" }, { t("FIXME(liubang): ") }),
-    s({ trig = "note" }, { t("NOTE(liubang): ") }),
-    -- s({ trig = "bbox"}, {
-    --   t { "╔" },
-    --   f(replace_each "═", { 1 }),
-    --   t { "╗", "║" },
-    --   i(1, { "content" }),
-    --   t { "║", "╚" },
-    --   f(replace_each "═", { 1 }),
-    --   t { "╝" },
-    --   i(0),
-    -- }),
-    -- s({ trig = "sbox", wordTrig = true }, {
-    --   t { "*" },
-    --   f(replace_each "-", { 1 }),
-    --   t { "*", "|" },
-    --   i(1, { "content" }),
-    --   t { "|", "*" },
-    --   f(replace_each "-", { 1 }),
-    --   t { "*" },
-    --   i(0),
-    -- }),
+    s({ trig = 'date', wordTrig = true }, { f(__1__, {}), i(0) }),
+    s({ trig = 'datetime', wordTrig = true }, { f(__2__, {}), i(0) }),
+    s({ trig = 'uuid', wordTrig = true }, { f(uuid, {}), i(0) }),
+    s({ trig = 'todo' }, { t 'TODO(liubang): ' }),
+    s({ trig = 'fixme' }, { t 'FIXME(liubang): ' }),
+    s({ trig = 'note' }, { t 'NOTE(liubang): ' }),
   },
   go = {
     s({ trig = 'main' }, {
-      t({'func main() {', "\t"}),
+      t { 'func main() {', '\t' },
       i(1, '// put your code hare'),
-      t({'', '}'})
+      t { '', '}' },
     }),
     s({ trig = 'pmain' }, {
-      t({'package main', '', 'func main() {', "\t"}),
+      t { 'package main', '', 'func main() {', '\t' },
       i(1, '// put your code hare'),
-      t({'', '}'})
+      t { '', '}' },
     }),
   },
   cpp = {
     s({ trig = 'pmain' }, {
-      t({"#include <iostream>", '', ''}),
-      t({"int main(int argc, char* argv[]) {", "\t"}),
-      i(1, {"// put your code hare"}),
-      t({"", "\treturn 0;", "}"}),
+      t { '#include <iostream>', '', '' },
+      t { 'int main(int argc, char* argv[]) {', '\t' },
+      i(1, { '// put your code hare' }),
+      t { '', '\treturn 0;', '}' },
     }),
     s({ trig = 'main' }, {
-      t({"int main(int argc, char* argv[]) {", "\t"}),
-      i(1, {"// put your code hare"}),
-      t({"", "\treturn 0;", "}"}),
+      t { 'int main(int argc, char* argv[]) {', '\t' },
+      i(1, { '// put your code hare' }),
+      t { '', '\treturn 0;', '}' },
     }),
-	},
+    s({ trig = 'ignore' }, {
+      t { '// clang-format off', '', '' },
+      i(1, { '// put your code hare' }),
+      t { '// clang-format on' },
+    }),
+  },
   c = {
     s({ trig = 'pmain' }, {
-      t({'#include <stdio.h>', '', ''}),
-      t({"int main(int argc, char* argv[]) {", "\t"}),
-      i(1, {"// put your code hare"}),
-      t({"", "\treturn 0;", "}"}),
+      t { '#include <stdio.h>', '', '' },
+      t { 'int main(int argc, char* argv[]) {', '\t' },
+      i(1, { '// put your code hare' }),
+      t { '', '\treturn 0;', '}' },
     }),
     s({ trig = 'main' }, {
-      t({"int main(int argc, char* argv[]) {", "\t"}),
-      i(1, {"// put your code hare"}),
-      t({"", "\treturn 0;", "}"}),
+      t { 'int main(int argc, char* argv[]) {', '\t' },
+      i(1, { '// put your code hare' }),
+      t { '', '\treturn 0;', '}' },
     }),
   },
   lua = {
     s({ trig = 'ignore' }, {
-      t('-- stylua: ignore')
+      t '-- stylua: ignore',
     }),
     s({ trig = 'fun' }, {
-      t('function '),
+      t 'function ',
       i(1, 'function_name'),
-      t({ '()', '  ' }),
+      t { '()', '  ' },
       i(0),
-      t({ '', 'end' })
+      t { '', 'end' },
     }),
   },
 }
