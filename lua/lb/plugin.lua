@@ -35,12 +35,8 @@ return packer.startup(function(use)
   use { 'sainnhe/gruvbox-material' }
   use { 'akinsho/nvim-bufferline.lua' }
   use { 'kyazdani42/nvim-tree.lua' }
-  use {
-    'nvim-lualine/lualine.nvim',
-    -- config = function()
-    --   require('lualine').setup()
-    -- end,
-  }
+  -- use { 'arkav/lualine-lsp-progress' }
+  use { 'nvim-lualine/lualine.nvim' }
 
   -- performance
   use {
@@ -50,12 +46,6 @@ return packer.startup(function(use)
     end,
   }
   use { 'lewis6991/impatient.nvim' }
-  -- use {
-  --   'nathom/filetype.nvim',
-  --   config = function()
-  --     require('filetype').setup {}
-  --   end,
-  -- }
 
   -- tools
   use {

@@ -28,7 +28,31 @@ require('lualine').setup {
       { 'filename', file_status = true, shorting_target = 40, path = 1 },
       { gps.get_location, cond = gps.is_available },
     },
-    lualine_x = { { line_column }, { current_line_percent } },
+    lualine_x = {
+      -- {
+      --   'lsp_progress',
+      --   display_components = {
+      --     'lsp_client_name',
+      --     'spinner',
+      --     { 'title', 'percentage' },
+      --   },
+      --   timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+      --   spinner_symbols = {
+      --     '⠋',
+      --     '⠙',
+      --     '⠹',
+      --     '⠸',
+      --     '⠼',
+      --     '⠴',
+      --     '⠦',
+      --     '⠧',
+      --     '⠇',
+      --     '⠏',
+      --   },
+      -- },
+      { line_column },
+      { current_line_percent },
+    },
     lualine_y = {
       { 'filetype', icon_only = true, colored = true },
       { 'encoding' },
