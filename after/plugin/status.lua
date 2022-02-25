@@ -18,6 +18,10 @@ local current_line_percent = function()
   return '[%p%%]'
 end
 
+local lineinfo = function ()
+  return line_column() .. ' ' .. current_line_percent()
+end
+
 local mode = function()
   return '\u{e7c5} ' .. require('lualine.utils.mode').get_mode()
 end
@@ -38,6 +42,22 @@ local filesize = function()
     i = i + 1
   end
   return string.format('%.1f%s', size, sufixes[i])
+end
+
+local lspprovider = function ()
+  local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+  local clients = vim.lsp.get_active_clients()
+  if next(clients) == nil then
+    return ''
+  end
+  local cs = {}
+  for _,client in ipairs(clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+      table.insert(cs, client.name)
+    end
+  end
+  return '\u{f817} ' .. table.concat(cs, ',')
 end
 
 require('lualine').setup {
@@ -71,8 +91,8 @@ require('lualine').setup {
       { gps.get_location, cond = gps.is_available },
     },
     lualine_x = {
-      { line_column },
-      { current_line_percent },
+      lineinfo,
+      lspprovider,
     },
     lualine_y = {
       { 'filetype', icon_only = true, colored = true },
