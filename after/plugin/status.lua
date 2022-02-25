@@ -18,7 +18,7 @@ local current_line_percent = function()
   return '[%p%%]'
 end
 
-local lineinfo = function ()
+local lineinfo = function()
   return line_column() .. ' ' .. current_line_percent()
 end
 
@@ -44,16 +44,16 @@ local filesize = function()
   return string.format('%.1f%s', size, sufixes[i])
 end
 
-local lspprovider = function ()
-  local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+local lspprovider = function()
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
   local clients = vim.lsp.get_active_clients()
   if next(clients) == nil then
     return ''
   end
   local cs = {}
-  for _,client in ipairs(clients) do
+  for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
-    if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
       table.insert(cs, client.name)
     end
   end

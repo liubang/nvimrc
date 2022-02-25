@@ -15,24 +15,6 @@ end
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 
--- custom_capabilities.textDocument.completion.completionItem.documentationFormat = {
---   'markdown',
---   'plaintext',
--- }
--- custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
--- custom_capabilities.textDocument.completion.completionItem.preselectSupport = true
--- custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
--- custom_capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
--- custom_capabilities.textDocument.completion.completionItem.deprecatedSupport = true
--- custom_capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
--- custom_capabilities.textDocument.completion.completionItem.tagSupport = {
---   valueSet = { 1 },
--- }
--- custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = { 'documentation', 'detail', 'additionalTextEdits' },
--- }
---
-
 -- custom attach function
 local buf_nnoremap = function(opts)
   opts.buffer = 0

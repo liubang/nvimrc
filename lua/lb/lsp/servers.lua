@@ -52,32 +52,6 @@ local get_gopls_opts = function(server)
   }
 end
 
-local get_diagnostic_opts = function(_)
-  return {
-    filetypes = { 'bzl', 'sh', 'markdown', 'yaml' },
-    init_options = {
-      formatters = {
-        buildifier = { command = 'buildifier' },
-        shfmt = {
-          command = 'shfmt',
-          args = { '-filename', '%filepath' },
-          rootPatterns = { '.editorconfig' },
-        },
-        prettier = {
-          command = 'prettier',
-          args = { '--stdin', '--stdin-filepath', [[%filepath]] },
-        },
-      },
-      formatFiletypes = {
-        sh = 'shfmt',
-        bzl = 'buildifier',
-        markdown = 'prettier',
-        yaml = 'prettier',
-      },
-    },
-  }
-end
-
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   if server.name == 'sumneko_lua' then
@@ -111,8 +85,6 @@ lsp_installer.on_server_ready(function(server)
     opts.cmd = cmd
   elseif server.name == 'gopls' then
     opts = get_gopls_opts(server)
-  elseif server.name == 'diagnosticls' then
-    opts = get_diagnostic_opts(server)
   end
   server:setup(c.default(opts))
 end)
