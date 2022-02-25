@@ -12,7 +12,7 @@ require('null-ls').setup {
   on_attach = require('lb.lsp.customs').default({}).on_attach,
   sources = {
     require 'lb.lsp.null-ls.formatting.buildifier',
-    -- null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.asmfmt,
     null_ls.builtins.formatting.shfmt.with {
       extra_args = { '-i', '2', '-ci' },
@@ -20,6 +20,5 @@ require('null-ls').setup {
     null_ls.builtins.formatting.prettier.with {
       filetypes = { 'json', 'yaml', 'markdown' },
     },
-    null_ls.builtins.completion.spell,
   },
 }

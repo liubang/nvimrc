@@ -12,12 +12,16 @@ local lsp_installer = require 'nvim-lsp-installer'
 
 --- for cpp
 local get_default_driver = function()
-  local j = Job:new { command = 'which', args = { 'g++' } }
+  local gcc = Job:new { command = 'which', args = { 'gcc' } }
+  local gpp = Job:new { command = 'which', args = { 'g++' } }
   local ok, result = pcall(function()
-    return vim.trim(j:sync()[1])
+    local ret = {}
+    table.insert(ret, vim.trim(gcc:sync()[1]))
+    table.insert(ret, vim.trim(gpp:sync()[1]))
+    return ret
   end)
   if ok then
-    return result
+    return table.concat(result, ',')
   end
   return nil
 end
@@ -52,31 +56,47 @@ local get_gopls_opts = function(server)
   }
 end
 
+local function get_lua_runtime()
+  local result = {}
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. '/lua/'
+    if vim.fn.isdirectory(lua_path) then
+      result[lua_path] = true
+    end
+  end
+  -- This loads the `lua` files from nvim into the runtime.
+  result[vim.fn.expand '$VIMRUNTIME/lua'] = true
+  return result
+end
+
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   if server.name == 'sumneko_lua' then
     opts.settings = {
       Lua = {
-        diagnostics = { globals = { 'vim', 'packer_plugins' } },
+        runtime = {
+          version = 'LuaJIT',
+        },
+        completion = {
+          keywordSnippet = 'Disable',
+          showWord = 'Disable',
+        },
+        diagnostics = { enable = true, globals = { 'vim', 'packer_plugins' } },
         workspace = {
-          library = {
-            [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-            [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-          },
+          library = vim.list_extend(get_lua_runtime(), {}),
           maxPreload = 100000,
           preloadFileSize = 10000,
         },
-        telemetry = { enable = false },
       },
     }
   elseif server.name == 'clangd' then
     local cmd = {
       vim.fn.expand(server.root_dir .. '/clangd/bin/clangd'),
       '--background-index',
+      '-j=4',
       '--suggest-missing-includes',
       '--clang-tidy',
       '--header-insertion=never',
-      '--inlay-hints',
     }
     local driver = get_default_driver()
     if driver ~= nil then

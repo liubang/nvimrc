@@ -6,22 +6,18 @@
 -- Last Modified: 2021/09/04 21:07
 --
 -- =====================================================================
-local ls = require 'luasnip'
--- some shorthands...
+local ls = require"luasnip"
 local s = ls.snippet
 local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
-local l = require('luasnip.extras').lambda
-local r = require('luasnip.extras').rep
-local p = require('luasnip.extras').partial
-local m = require('luasnip.extras').match
-local n = require('luasnip.extras').nonempty
-local dl = require('luasnip.extras').dynamic_lambda
-local types = require 'luasnip.util.types'
+local r = ls.restore_node
+local events = require("luasnip.util.events")
+local ai = require("luasnip.nodes.absolute_indexer")
 
 ls.config.set_config {
   history = true,
@@ -47,14 +43,6 @@ end
 
 local __2__ = function()
   return { os.date '%Y-%m-%d %H:%M:%S' }
-end
-
-local replace_each = function(replacer)
-  local wrapper = function(args)
-    local len = #(args[1])[1]
-    return { replacer:rep(len) }
-  end
-  return wrapper
 end
 
 ls.snippets = {

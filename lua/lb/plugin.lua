@@ -35,7 +35,6 @@ return packer.startup(function(use)
   use { 'sainnhe/gruvbox-material' }
   use { 'akinsho/nvim-bufferline.lua' }
   use { 'kyazdani42/nvim-tree.lua' }
-  -- use { 'arkav/lualine-lsp-progress' }
   use { 'nvim-lualine/lualine.nvim' }
 
   -- performance

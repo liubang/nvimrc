@@ -50,14 +50,21 @@ local lspprovider = function()
   if next(clients) == nil then
     return ''
   end
-  local cs = {}
+  local cm = {}
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      table.insert(cs, client.name)
+      cm[client.name] = client.name
     end
   end
-  return '\u{f817} ' .. table.concat(cs, ',')
+  local cs = {}
+  for key, _ in pairs(cm) do
+    table.insert(cs, key)
+  end
+  if #cs > 0 then
+    return '\u{f817} ' .. table.concat(cs, ',')
+  end
+  return ''
 end
 
 require('lualine').setup {
