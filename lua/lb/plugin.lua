@@ -156,7 +156,7 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
-  use { 'tami5/lspsaga.nvim' }
+  use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' }
   use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }
