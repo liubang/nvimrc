@@ -1,3 +1,11 @@
+--=====================================================================
+--
+-- treesitter.lua - 
+--
+-- Created by liubang on 2022/03/02 16:58
+-- Last Modified: 2022/03/02 16:58
+--
+--=====================================================================
 require('nvim-treesitter.install').prefer_git = true
 require('nvim-treesitter.configs').setup {
   ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages

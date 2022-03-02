@@ -31,7 +31,7 @@ return packer.startup(function(use)
 
   -- appearance
   use { 'kyazdani42/nvim-web-devicons' }
-  use { 'glepnir/dashboard-nvim' }
+  use { 'goolord/alpha-nvim' }
   use { 'sainnhe/gruvbox-material' }
   use { 'akinsho/nvim-bufferline.lua' }
   use { 'kyazdani42/nvim-tree.lua' }

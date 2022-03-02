@@ -1,3 +1,11 @@
+--=====================================================================
+--
+-- outline.lua - 
+--
+-- Created by liubang on 2022/03/02 16:58
+-- Last Modified: 2022/03/02 16:58
+--
+--=====================================================================
 vim.g.symbols_outline = {
   highlight_hovered_item = false,
   show_guides = true,

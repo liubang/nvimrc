@@ -1,3 +1,11 @@
+--=====================================================================
+--
+-- git.lua - 
+--
+-- Created by liubang on 2022/03/02 16:58
+-- Last Modified: 2022/03/02 16:58
+--
+--=====================================================================
 require('gitsigns').setup {
   signs = {
     add = { hl = 'GitSignsAdd', text = '▎', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
