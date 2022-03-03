@@ -86,15 +86,15 @@ opt.fillchars = {
 opt.synmaxcol = 2500
 -- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
-    - 'a' -- Auto formatting is BAD.
-    - 't' -- Don't auto format my code. I got linters for that.
-    + 'c' -- In general, I like it when comments respect textwidth
-    + 'q' -- Allow formatting comments w/ gq
-    - 'o' -- O and o, don't continue comments
-    + 'r' -- But do continue when pressing enter.
-    + 'n' -- Indent past the formatlistpat, not underneath it.
-    + 'j' -- Auto-remove comments if possible.
-    - '2' -- I'm not in gradeschool anymore
+  - 'a' -- Auto formatting is BAD.
+  - 't' -- Don't auto format my code. I got linters for that.
+  + 'c' -- In general, I like it when comments respect textwidth
+  + 'q' -- Allow formatting comments w/ gq
+  - 'o' -- O and o, don't continue comments
+  + 'r' -- But do continue when pressing enter.
+  + 'n' -- Indent past the formatlistpat, not underneath it.
+  + 'j' -- Auto-remove comments if possible.
+  - '2' -- I'm not in gradeschool anymore
 opt.textwidth = 100
 opt.colorcolumn = { '100' }
 opt.expandtab = true
@@ -119,3 +119,17 @@ opt.foldmethod = 'expr'
 opt.foldlevelstart = 10
 opt.cursorline = true
 opt.cursorcolumn = false
+
+--- {{{neowide
+vim.cmd [[set guifont=FiraCode\ Nerd\ Font:h18]]
+vim.g.neovide_refresh_rate = 60
+vim.g.neovide_cursor_vfx_mode = 'railgun'
+vim.g.neovide_no_idle = true
+vim.g.neovide_cursor_animation_length = 0.03
+vim.g.neovide_cursor_trail_length = 0.05
+vim.g.neovide_cursor_antialiasing = true
+vim.g.neovide_cursor_vfx_opacity = 200.0
+vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+vim.g.neovide_cursor_vfx_particle_speed = 20.0
+vim.g.neovide_cursor_vfx_particle_density = 5.0
+--}}}
