@@ -9,6 +9,7 @@
 local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
 local lsp_installer = require 'nvim-lsp-installer'
+local util = require 'lspconfig.util'
 
 --- for cpp
 local get_default_driver = function()
@@ -105,6 +106,10 @@ lsp_installer.on_server_ready(function(server)
     opts.cmd = cmd
   elseif server.name == 'gopls' then
     opts = get_gopls_opts(server)
+  elseif server.name == 'zeta_note' then
+    opts.cmd = { vim.fn.expand(server.root_dir .. '/zeta-note') }
+    opts.filetypes = { 'markdown', 'md' }
+    opts.root_dir = util.root_pattern { '.zeta.toml', '.git/' }
   end
   server:setup(c.default(opts))
 end)
