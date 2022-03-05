@@ -7,10 +7,9 @@
 --
 -- =====================================================================
 
-local if_nil = vim.F.if_nil
 local alpha = require 'alpha'
 
-local default_header = {
+local header = {
   type = 'text',
   val = {
     [[                                                          ]],
@@ -33,48 +32,59 @@ local default_header = {
   },
 }
 
-local function footer_val()
-  local plugins = #vim.tbl_keys(packer_plugins)
-  local v = vim.version()
-  return string.format('  %s    v%s.%s.%s', plugins, v.major, v.minor, v.patch)
-end
-
-local footer = {
+local plugins = #vim.tbl_keys(packer_plugins)
+local plugin_count = {
   type = 'text',
-  val = footer_val(),
+  val = '└─   ' .. plugins .. ' plugins in total ─┘',
   opts = {
     position = 'center',
-    -- hl = 'Number',
+    hl = 'AlphaHeader',
   },
 }
 
-local leader = 'SPC'
+local datetime = os.date '%Y-%m-%d'
+local heading = {
+  type = 'text',
+  val = '┌─   Today is ' .. datetime .. ' ─┐',
+  opts = {
+    position = 'center',
+    hl = 'AlphaHeader',
+  },
+}
 
-local function button(sc, txt, keybind, keybind_opts)
-  local sc_ = sc:gsub('%s', ''):gsub(leader, '<leader>')
+local footer = {
+  type = 'text',
+  val = '- enjoy -',
+  opts = {
+    position = 'center',
+    hl = 'AlphaFooter',
+  },
+}
+
+local function button(sc, txt, keybind)
+  local sc_ = sc:gsub('%s', ''):gsub('SPC', '<leader>')
 
   local opts = {
     position = 'center',
+    text = txt,
     shortcut = sc,
     cursor = 5,
     width = 50,
     align_shortcut = 'right',
-    -- hl_shortcut = 'Keyword',
+    hl_shortcut = 'AlphaButtons',
+    hl = 'AlphaButtons',
   }
   if keybind then
-    keybind_opts = if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-    opts.keymap = { 'n', sc_, keybind, keybind_opts }
-  end
-
-  local function on_press()
-    local key = vim.api.nvim_replace_termcodes(sc_ .. '<Ignore>', true, false, true)
-    vim.api.nvim_feedkeys(key, 'normal', false)
+    opts.keymap = { 'n', sc_, keybind, { noremap = true, silent = true } }
   end
 
   return {
     type = 'button',
     val = txt,
-    on_press = on_press,
+    on_press = function()
+      local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
+      vim.api.nvim_feedkeys(key, 'normal', false)
+    end,
     opts = opts,
   }
 end
@@ -107,17 +117,23 @@ local buttons = {
 }
 
 local section = {
-  header = default_header,
+  header = header,
   buttons = buttons,
+  plugin_count = plugin_count,
+  heading = heading,
   footer = footer,
 }
 
-local config = {
+local opts = {
   layout = {
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
     section.header,
-    { type = 'padding', val = 2 },
+    { type = 'padding', val = 1 },
+    section.heading,
+    section.plugin_count,
+    { type = 'padding', val = 1 },
     section.buttons,
+    { type = 'padding', val = 1 },
     section.footer,
   },
   opts = {
@@ -125,7 +141,4 @@ local config = {
   },
 }
 
-alpha.setup(config)
-
--- set header
--- dashboard.section.header.opts.hl = 'Keyword'
+alpha.setup(opts)

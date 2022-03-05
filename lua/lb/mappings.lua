@@ -14,7 +14,6 @@ local cnoremap = vim.keymap.cnoremap
 local tnoremap = vim.keymap.tnoremap
 local nmap = vim.keymap.nmap
 local xmap = vim.keymap.xmap
--- local vmap = vim.keymap.vmap
 
 -- clear default
 nnoremap { ',', '' }
@@ -85,14 +84,8 @@ tnoremap { '<Leader>wk', '<C-\\><C-N><C-w>k' }
 -- plugins key mappings
 nnoremap { '<Leader>ft', '<cmd>NvimTreeToggle<CR>' }
 
--- nmap { '<Leader>cc', '<Plug>kommentary_line_default' }
--- vmap { '<Leader>cc', '<Plug>kommentary_visual_default<C-c>' }
-
 xmap { 'ga', '<Plug>(EasyAlign)' }
 nmap { 'ga', '<Plug>(EasyAlign)' }
-
--- vmap { 'v', '<Plug>(expand_region_expand)' }
--- vmap { 'V', '<Plug>(expand_region_shrink)' }
 
 nnoremap { '<Leader>tw', '<cmd>FloatermNew<CR>' }
 nnoremap { '<C-t>', '<cmd>FloatermToggle<CR>' }
