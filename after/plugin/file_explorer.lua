@@ -20,6 +20,8 @@ _G.lb_nvim_tree_context_menu = function()
   require('nvim-tree').on_keypress(actions[section])
 end
 
+vim.g.nvim_tree_respect_buf_cwd = 0
+
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -30,8 +32,8 @@ nvim_tree.setup {
   update_cwd = false,
   auto_reload_on_write = true,
   update_focused_file = {
-    enable = false,
-    update_cwd = false,
+    enable = true,
+    update_cwd = true,
     ignore_list = {},
   },
   diagnostics = {
