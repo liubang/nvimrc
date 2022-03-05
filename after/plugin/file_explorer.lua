@@ -7,7 +7,8 @@
 --
 -- =====================================================================
 
-local tree_cb = require('nvim-tree.config').nvim_tree_callback
+local nvim_tree = require 'nvim-tree'
+
 _G.lb_nvim_tree_context_menu = function()
   vim.cmd 'redraw! | echo | redraw!'
   local actions = { 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }
@@ -19,7 +20,7 @@ _G.lb_nvim_tree_context_menu = function()
   require('nvim-tree').on_keypress(actions[section])
 end
 
-require('nvim-tree').setup {
+nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
@@ -29,7 +30,7 @@ require('nvim-tree').setup {
   update_cwd = false,
   auto_reload_on_write = true,
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_cwd = false,
     ignore_list = {},
   },
@@ -47,17 +48,26 @@ require('nvim-tree').setup {
     auto_resize = false,
     number = false,
     relativenumber = false,
+    hide_root_folder = false,
+    preserve_window_proportions = false,
     signcolumn = 'yes',
     mappings = {
       custom_only = true,
       list = {
         { key = 'm', cb = ':lua _G.lb_nvim_tree_context_menu()<CR>' },
-        { key = { '<CR>', 'o' }, cb = tree_cb 'edit' },
-        { key = 'v', cb = tree_cb 'vsplit' },
-        { key = 's', cb = tree_cb 'split' },
-        { key = 'R', cb = tree_cb 'refresh' },
-        { key = 'y', cb = tree_cb 'copy_name' },
-        { key = 'Y', cb = tree_cb 'copy_path' },
+        { key = { '<CR>', 'o' }, action = 'edit' },
+        { key = 'a', action = 'create' },
+        { key = 'v', action = 'vsplit' },
+        { key = 's', action = 'split' },
+        { key = 'r', action = 'rename' },
+        { key = 'x', action = 'cut' },
+        { key = 'c', action = 'copy' },
+        { key = 'p', action = 'paste' },
+        { key = 'R', action = 'refresh' },
+        { key = 'y', action = 'copy_name' },
+        { key = 'Y', action = 'copy_path' },
+        { key = 'd', action = 'remove' },
+        { key = '<C-k>', action = 'show_file_info' },
       },
     },
   },

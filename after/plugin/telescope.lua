@@ -10,6 +10,7 @@
 local actions = require 'telescope.actions'
 local telescope = require 'telescope'
 local themes = require 'telescope.themes'
+
 telescope.setup {
   defaults = themes.get_dropdown {
     file_ignore_patterns = { '.git/*' },
@@ -23,6 +24,7 @@ telescope.setup {
         ['<C-c>'] = actions.close,
         ['<C-s>'] = actions.select_horizontal,
         ['<C-v>'] = actions.select_vertical,
+        ['<C-/>'] = 'which_key',
       },
       n = { ['<esc>'] = actions.close },
     },
@@ -33,6 +35,9 @@ telescope.setup {
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
       case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+    },
+    project = {
+      hidden_files = true,
     },
   },
 }
