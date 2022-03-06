@@ -8,18 +8,10 @@
 --=====================================================================
 local gps = require 'nvim-gps'
 
-local line_column = function()
+local lineinfo = function()
   local line = vim.fn.line '.'
   local column = vim.fn.col '.'
-  return string.format('\u{e0a1} %d:%d', line, column)
-end
-
-local current_line_percent = function()
-  return '[%p%%]'
-end
-
-local lineinfo = function()
-  return line_column() .. ' ' .. current_line_percent()
+  return string.format('\u{e0a1} %d:%d %s', line, column, '[%p%%]')
 end
 
 local mode = function()
@@ -90,7 +82,7 @@ require('lualine').setup {
         shorting_target = 40,
         symbols = {
           modified = ' \u{f040}',
-          readonly = ' \u{e0a2}',
+          readonly = ' \u{f023}',
           unnamed = '[No Name]',
         },
       },
