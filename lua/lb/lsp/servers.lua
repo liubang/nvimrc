@@ -78,6 +78,7 @@ lsp_installer.on_server_ready(function(server)
         runtime = {
           version = 'LuaJIT',
         },
+        format = { enable = false },
         completion = {
           keywordSnippet = 'Disable',
           showWord = 'Disable',

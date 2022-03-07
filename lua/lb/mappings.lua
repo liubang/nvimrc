@@ -180,10 +180,11 @@ nnoremap {
     telescope_builtin.commands { previewer = false }
   end,
 }
+-- errors
 nnoremap {
-  '<Leader>fb',
+  '<Leader>es',
   function()
-    telescope_builtin.builtin { previewer = false }
+    telescope_builtin.diagnostics { bufnr = 0 }
   end,
 }
 -- list symbols
