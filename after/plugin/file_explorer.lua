@@ -69,7 +69,7 @@ nvim_tree.setup {
         { key = 'y', action = 'copy_name' },
         { key = 'Y', action = 'copy_path' },
         { key = 'd', action = 'remove' },
-        { key = '<C-k>', action = 'show_file_info' },
+        { key = '<C-k>', action = 'toggle_file_info' },
       },
     },
   },
