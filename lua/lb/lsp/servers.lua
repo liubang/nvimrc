@@ -17,8 +17,14 @@ local get_default_driver = function()
   local llvm = Job:new { command = 'which', args = { 'clang++' } }
   local ok, result = pcall(function()
     local ret = {}
-    table.insert(ret, vim.trim(gcc:sync()[1]))
-    table.insert(ret, vim.trim(llvm:sync()[1]))
+    local gcct = gcc:sync()
+    local llvmt = llvm:sync()
+    if #gcct > 0 then
+      table.insert(ret, vim.trim(gcct[1]))
+    end
+    if #llvmt > 0 then
+      table.insert(ret, vim.trim(llvmt[1]))
+    end
     return ret
   end)
   if ok then
