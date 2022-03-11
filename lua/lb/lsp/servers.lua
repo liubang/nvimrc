@@ -13,12 +13,12 @@ local util = require 'lspconfig.util'
 
 --- for cpp
 local get_default_driver = function()
-  local gcc = Job:new { command = 'which', args = { 'gcc' } }
-  local gpp = Job:new { command = 'which', args = { 'g++' } }
+  local gcc = Job:new { command = 'which', args = { 'g++' } }
+  local llvm = Job:new { command = 'which', args = { 'clang++' } }
   local ok, result = pcall(function()
     local ret = {}
     table.insert(ret, vim.trim(gcc:sync()[1]))
-    table.insert(ret, vim.trim(gpp:sync()[1]))
+    table.insert(ret, vim.trim(llvm:sync()[1]))
     return ret
   end)
   if ok then
