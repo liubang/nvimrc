@@ -15,22 +15,18 @@ local util = require 'lspconfig.util'
 local get_default_driver = function()
   local gcc = Job:new { command = 'which', args = { 'g++' } }
   local llvm = Job:new { command = 'which', args = { 'clang++' } }
-  local ok, result = pcall(function()
-    local ret = {}
+  local _, result = pcall(function()
     local gcct = gcc:sync()
     local llvmt = llvm:sync()
     if #gcct > 0 then
-      table.insert(ret, vim.trim(gcct[1]))
+      return vim.trim(gcct[1])
     end
     if #llvmt > 0 then
-      table.insert(ret, vim.trim(llvmt[1]))
+      return vim.trim(llvmt[1])
     end
-    return ret
+    return nil
   end)
-  if ok then
-    return table.concat(result, ',')
-  end
-  return nil
+  return result
 end
 
 local get_gopls_opts = function(server)
