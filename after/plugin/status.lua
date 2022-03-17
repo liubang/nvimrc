@@ -121,7 +121,8 @@ require('lualine').setup {
 
 require('fidget').setup {
   text = {
-    spinner = 'moon',
+    spinner = 'dots',
+    done = ' ',
   },
   align = {
     bottom = true,
