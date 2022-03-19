@@ -6,14 +6,12 @@
 -- Last Modified: 2021/07/25 20:20
 --
 -- =====================================================================
-vim.cmd [[augroup lsp]]
-vim.cmd [[  autocmd! ]]
-vim.cmd [[  autocmd BufWritePre *.go lua GoOrgImports(1000) ]]
--- vim.cmd [[  autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre *.md lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre *.yaml lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre *.bzl lua vim.lsp.buf.formatting_sync() ]]
--- vim.cmd [[  autocmd BufWritePre BUILD lua vim.lsp.buf.formatting_sync() ]]
-vim.cmd [[augroup END]]
+
+vim.api.nvim_create_augroup('custom_lsp_events', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = 'custom_lsp_events',
+  pattern = '*.go',
+  callback = function()
+    GoOrgImports(1000)
+  end,
+})

@@ -1,5 +1,3 @@
-local nnoremap = vim.keymap.nnoremap
-local vnoremap = vim.keymap.vnoremap
 local M = {}
 
 -- define commands
@@ -15,42 +13,39 @@ end
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 
--- custom attach function
-local buf_nnoremap = function(opts)
-  opts.buffer = 0
-  nnoremap(opts)
-end
-
-local buf_vnoremap = function(opts)
-  opts.buffer = 0
-  vnoremap(opts)
-end
-
 local custom_attach = function(client, _)
-  buf_nnoremap { '<C-k>', vim.lsp.buf.signature_help }
-  buf_nnoremap { '<Leader>gD', vim.lsp.buf.declaration }
-  buf_nnoremap { '<Leader>gd', vim.lsp.buf.definition }
-  buf_nnoremap { '<Leader>gi', vim.lsp.buf.implementation }
-  buf_nnoremap { '<Leader>gr', require('telescope.builtin').lsp_references }
-  buf_nnoremap { '<Leader>rn', vim.lsp.buf.rename }
-  buf_nnoremap { '<Leader>ee', require('lspsaga.diagnostic').show_line_diagnostics }
-  buf_nnoremap {
-    '<Leader>ef',
-    function()
-      require('telescope.builtin').diagnostics { bufnr = 0 }
-    end,
-  }
-  buf_nnoremap { '<Leader>ca', require('lspsaga.codeaction').code_action }
-  buf_vnoremap {
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { remap = true, buffer = true })
+  vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, { remap = true, buffer = true })
+  vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { remap = true, buffer = true })
+  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { remap = true, buffer = true })
+  vim.keymap.set(
+    'n',
+    '<Leader>gr',
+    require('telescope.builtin').lsp_references,
+    { remap = true, buffer = true }
+  )
+  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { remap = true, buffer = true })
+  vim.keymap.set(
+    'n',
+    '<Leader>ee',
+    require('lspsaga.diagnostic').show_line_diagnostics,
+    { remap = true, buffer = true }
+  )
+  vim.keymap.set('n', '<Leader>ef', function()
+    require('telescope.builtin').diagnostics { bufnr = 0 }
+  end, { remap = true, buffer = true })
+  vim.keymap.set(
+    'n',
     '<Leader>ca',
-    ':<C-U>lua require("telescope.builtin").lsp_range_code_actions()<CR>',
-  }
-  buf_nnoremap { 'K', vim.lsp.buf.hover }
+    require('lspsaga.codeaction').code_action,
+    { remap = true, buffer = true }
+  )
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { remap = true, buffer = true })
   if client.resolved_capabilities.document_formatting then
-    buf_nnoremap { '<Leader>fm', vim.lsp.buf.formatting_sync }
+    vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { remap = true, buffer = true })
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_vnoremap { '<Leader>fm', vim.lsp.buf.range_formatting }
+    vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { remap = true, buffer = true })
   end
 end
 

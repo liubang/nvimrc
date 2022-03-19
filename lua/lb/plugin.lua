@@ -135,7 +135,6 @@ return packer.startup(function(use)
   }
 
   use { 'nvim-lua/plenary.nvim' }
-  use { 'tjdevries/astronauta.nvim' }
   use { 'sindrets/diffview.nvim', cmd = { 'DiffView' } }
   use { 'lewis6991/gitsigns.nvim' }
   use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
@@ -156,7 +155,7 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
-  use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' }
+  use { 'tami5/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }

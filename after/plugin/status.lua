@@ -66,6 +66,7 @@ require('lualine').setup {
     section_separators = '',
     always_divide_middle = true,
     disabled_filetypes = { 'NvimTree', 'Outline' },
+    globalstatus = true,
   },
   sections = {
     lualine_a = { mode },
