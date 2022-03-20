@@ -17,6 +17,5 @@ vim.schedule(function()
   vim.cmd [[command! -nargs=0 -bar BazelCCRules :lua require('telescope').extensions.bazel.bazel_cc_rules()<CR>]]
   vim.cmd [[command! -nargs=0 -bar BazelCCTests :lua require('telescope').extensions.bazel.bazel_cc_tests()<CR>]]
   vim.cmd [[command! -nargs=0 -bar BazelCCBinaries :lua require('telescope').extensions.bazel.bazel_cc_binaries()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar Projects :lua require('telescope').extensions.project.project({change_dir = true})<CR>]]
   vim.cmd [[command! -nargs=0 -bar LspDebug :lua vim.lsp.set_log_level("debug")<CR>]]
 end)

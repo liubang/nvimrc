@@ -14,38 +14,28 @@ local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 
 local custom_attach = function(client, _)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { remap = true, buffer = true })
-  vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, { remap = true, buffer = true })
-  vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { remap = true, buffer = true })
-  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { remap = true, buffer = true })
-  vim.keymap.set(
-    'n',
-    '<Leader>gr',
-    require('telescope.builtin').lsp_references,
-    { remap = true, buffer = true }
-  )
-  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { remap = true, buffer = true })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>gr', require('telescope.builtin').lsp_references, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { buffer = 0 })
   vim.keymap.set(
     'n',
     '<Leader>ee',
     require('lspsaga.diagnostic').show_line_diagnostics,
-    { remap = true, buffer = true }
+    { buffer = 0 }
   )
   vim.keymap.set('n', '<Leader>ef', function()
     require('telescope.builtin').diagnostics { bufnr = 0 }
-  end, { remap = true, buffer = true })
-  vim.keymap.set(
-    'n',
-    '<Leader>ca',
-    require('lspsaga.codeaction').code_action,
-    { remap = true, buffer = true }
-  )
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { remap = true, buffer = true })
+  end, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>ca', require('lspsaga.codeaction').code_action, { buffer = 0 })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0 })
   if client.resolved_capabilities.document_formatting then
-    vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { remap = true, buffer = true })
+    vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
   end
   if client.resolved_capabilities.document_range_formatting then
-    vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { remap = true, buffer = true })
+    vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { buffer = 0 })
   end
 end
 
