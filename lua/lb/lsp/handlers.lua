@@ -49,7 +49,7 @@ GoOrgImports = function(timeoutms)
     local result = resp[1].result
     if result and result[1] then
       local edit = result[1].edit
-      vim.lsp.util.apply_workspace_edit(edit, 'UTF-8')
+      vim.lsp.util.apply_workspace_edit(edit, 'UTF-16')
     end
   end
   vim.lsp.buf.formatting_sync()
