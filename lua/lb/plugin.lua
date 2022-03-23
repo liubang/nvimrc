@@ -135,7 +135,7 @@ return packer.startup(function(use)
   }
 
   use { 'nvim-lua/plenary.nvim' }
-  use { 'sindrets/diffview.nvim', cmd = { 'DiffView' } }
+  use { 'sindrets/diffview.nvim'}
   use { 'lewis6991/gitsigns.nvim' }
   use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
   use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }

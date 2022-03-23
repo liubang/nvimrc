@@ -47,3 +47,5 @@ require('gitsigns').setup {
   word_diff = false,
   diff_opts = { internal = true },
 }
+
+require('diffview').setup {}
