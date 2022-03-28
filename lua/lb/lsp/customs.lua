@@ -2,7 +2,10 @@ local M = {}
 
 -- define commands
 vim.schedule(function()
-  vim.cmd [[command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync()]]
+  vim.cmd [[command! -buffer -nargs=0 Format :lua vim.lsp.buf.formatting_sync()]]
+  vim.cmd [[command! -buffer JdtOrgImport :lua require'jdtls'.organize_imports()]]
+  vim.cmd [[command! -buffer JdtBytecode lua require'jdtls'.javap()]]
+  vim.cmd [[command! -buffer JdtJshell lua require'jdtls'.jshell()]]
 end)
 
 local custom_init = function(client)

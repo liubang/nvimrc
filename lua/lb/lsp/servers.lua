@@ -10,6 +10,8 @@ local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
 local lsp_installer = require 'nvim-lsp-installer'
 local util = require 'lspconfig.util'
+local sysname = vim.loop.os_uname().sysname
+local jdtls_commands = require('jdtls').commands
 
 --- for cpp
 local get_default_driver = function()
@@ -29,6 +31,7 @@ local get_default_driver = function()
   return result
 end
 
+-- for golang
 local get_gopls_opts = function(server)
   -- https://github.com/ray-x/go.nvim/blob/master/lua/go/gopls.lua
   return {
@@ -59,6 +62,7 @@ local get_gopls_opts = function(server)
   }
 end
 
+-- for lua
 local function get_lua_runtime()
   local result = {}
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
@@ -70,6 +74,55 @@ local function get_lua_runtime()
   -- This loads the `lua` files from nvim into the runtime.
   result[vim.fn.expand '$VIMRUNTIME/lua'] = true
   return result
+end
+
+-- for java
+local function get_jdtls_launcher()
+  local l = Job:new {
+    command = 'ls',
+    args = {
+      util.path.join(
+        vim.fn.stdpath 'data',
+        '/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'
+      ),
+    },
+  }
+  local _, result = pcall(function()
+    local jart = l:sync()
+    if #jart > 0 then
+      return vim.trim(jart[1])
+    end
+    return nil
+  end)
+  return result
+end
+
+local function get_jdtls_config()
+  if sysname:match 'Linux' then
+    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
+  elseif sysname:match 'Darwin' then
+    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_mac')
+  elseif sysname:match 'Windows' then
+    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_win')
+  end
+  return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
+end
+
+local handlersExecuteClientCommand = function(_, params, ctx) -- luacheck: ignore 122
+  local fn = jdtls_commands[params.command]
+  if fn then
+    local ok, result = pcall(fn, params.arguments, ctx)
+    if ok then
+      return result
+    else
+      return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.InternalError, result)
+    end
+  else
+    return vim.lsp.rpc_response_error(
+      vim.lsp.protocol.ErrorCodes.MethodNotFound,
+      'Command ' .. params.command .. ' not supported on client'
+    )
+  end
 end
 
 lsp_installer.on_server_ready(function(server)
@@ -113,6 +166,101 @@ lsp_installer.on_server_ready(function(server)
     opts.cmd = { vim.fn.expand(server.root_dir .. '/zeta-note') }
     opts.filetypes = { 'markdown', 'md' }
     opts.root_dir = util.root_pattern { '.zeta.toml', '.git/' }
+  elseif server.name == 'jdtls' then
+    opts = {
+      name = 'jdtls',
+      cmd = {
+        'java',
+        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        '-Dosgi.bundles.defaultStartLevel=4',
+        '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        '-Dlog.protocol=true',
+        '-Dlog.level=ALL',
+        '-Xms1g',
+        '-Xmx2G',
+        '--add-modules=ALL-SYSTEM',
+        '--add-opens',
+        'java.base/java.util=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.lang=ALL-UNNAMED',
+        '-javaagent:' .. vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/lombok.jar',
+        '-jar',
+        get_jdtls_launcher(),
+        '-configuration',
+        get_jdtls_config(),
+        '-data',
+        os.getenv 'HOME' .. '/.cache/jdtls-workspace',
+      },
+      handlers = {
+        ['workspace/executeClientCommand'] = handlersExecuteClientCommand,
+      },
+      settings = {
+        java = {
+          progressReports = { enabled = true },
+          signatureHelp = { enabled = true },
+          contentProvider = { preferred = 'fernflower' },
+          completion = {
+            favoriteStaticMembers = {
+              'org.hamcrest.MatcherAssert.assertThat',
+              'org.hamcrest.Matchers.*',
+              'org.hamcrest.CoreMatchers.*',
+              'org.junit.jupiter.api.Assertions.*',
+              'java.util.Objects.requireNonNull',
+              'java.util.Objects.requireNonNullElse',
+              'org.mockito.Mockito.*',
+            },
+          },
+          sources = {
+            organizeImports = {
+              starThreshold = 9999,
+              staticStarThreshold = 9999,
+            },
+          },
+          codeGeneration = {
+            toString = {
+              template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+            },
+          },
+        },
+      },
+    }
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local extra_capabilities = {
+      textDocument = {
+        completion = {
+          completionItem = {
+            snippetSupport = true,
+          },
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = {
+                'source.generate.toString',
+                'source.generate.hashCodeEquals',
+                'source.organizeImports',
+              },
+            },
+          },
+        },
+      },
+    }
+    opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
+    opts.init_options = {
+      extendedClientCapabilities = {
+        progressReportProvider = true,
+        classFileContentsSupport = true,
+        generateToStringPromptSupport = true,
+        hashCodeEqualsPromptSupport = true,
+        advancedExtractRefactoringSupport = true,
+        advancedOrganizeImportsSupport = true,
+        generateConstructorsPromptSupport = true,
+        generateDelegateMethodsPromptSupport = true,
+        moveRefactoringSupport = true,
+        resolveAdditionalTextEditsSupport = true,
+        inferSelectionSupport = { 'extractMethod', 'extractVariable', 'extractConstant' },
+      },
+    }
   end
   server:setup(c.default(opts))
 end)

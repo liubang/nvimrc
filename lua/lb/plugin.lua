@@ -135,7 +135,7 @@ return packer.startup(function(use)
   }
 
   use { 'nvim-lua/plenary.nvim' }
-  use { 'sindrets/diffview.nvim'}
+  use { 'sindrets/diffview.nvim' }
   use { 'lewis6991/gitsigns.nvim' }
   use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
   use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
@@ -160,6 +160,7 @@ return packer.startup(function(use)
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }
+  use { 'mfussenegger/nvim-jdtls' }
 
   -- completion
   use { 'windwp/nvim-autopairs' }
