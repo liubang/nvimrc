@@ -6,14 +6,13 @@
 -- Last Modified: 2021/02/10 10:06
 --
 -- =====================================================================
-local saga = require 'lspsaga'
 
-saga.init_lsp_saga {
-  error_sign = '',
-  warn_sign = '',
-  hint_sign = '',
-  infor_sign = '',
-}
+-- saga.init_lsp_saga {
+--   error_sign = '',
+--   warn_sign = '',
+--   hint_sign = '',
+--   infor_sign = '',
+-- }
 
 vim.diagnostic.config {
   underline = false,

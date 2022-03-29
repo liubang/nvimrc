@@ -76,26 +76,6 @@ local function get_lua_runtime()
 end
 
 -- for java
-local function get_jdtls_launcher()
-  local l = Job:new {
-    command = 'ls',
-    args = {
-      util.path.join(
-        vim.fn.stdpath 'data',
-        '/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'
-      ),
-    },
-  }
-  local _, result = pcall(function()
-    local jart = l:sync()
-    if #jart > 0 then
-      return vim.trim(jart[1])
-    end
-    return nil
-  end)
-  return result
-end
-
 local function get_jdtls_config()
   if sysname:match 'Linux' then
     return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
@@ -105,6 +85,85 @@ local function get_jdtls_config()
     return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_win')
   end
   return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
+end
+
+local function get_jdtls_options(server)
+  local opts = {
+    name = 'jdtls',
+    cmd = {
+      'java',
+      '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+      '-Dosgi.bundles.defaultStartLevel=4',
+      '-Declipse.product=org.eclipse.jdt.ls.core.product',
+      '-Dlog.protocol=true',
+      '-Dlog.level=ALL',
+      '-Xms1g',
+      '-Xmx2G',
+      '--add-modules=ALL-SYSTEM',
+      '--add-opens',
+      'java.base/java.util=ALL-UNNAMED',
+      '--add-opens',
+      'java.base/java.lang=ALL-UNNAMED',
+      '-javaagent:' .. vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/lombok.jar',
+      '-jar',
+      vim.fn.glob(
+        vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'
+      ),
+      '-configuration',
+      get_jdtls_config(),
+      '-data',
+      os.getenv 'HOME' .. '/.cache/jdtls-workspace/' .. vim.fn.fnamemodify(
+        vim.fn.getcwd(),
+        ':p:h:t'
+      ),
+    },
+    settings = {
+      java = {
+        eclipse = {
+          downloadSources = true,
+        },
+        maven = {
+          downloadSources = true,
+          updateSnapshots = true,
+        },
+        progressReports = { enabled = true },
+        signatureHelp = { enabled = true },
+        configuration = {
+          maven = {
+            userSettings = os.getenv 'HOME' .. '/.m2/settings.xml',
+          },
+        },
+      },
+    },
+  }
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+  )
+  local extra_capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          snippetSupport = true,
+        },
+      },
+      codeAction = {
+        codeActionLiteralSupport = {
+          codeActionKind = {
+            valueSet = {
+              'source.generate.toString',
+              'source.generate.hashCodeEquals',
+              'source.organizeImports',
+            },
+          },
+        },
+      },
+    },
+  }
+  opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
+  opts.init_options = {
+    extendedClientCapabilities = require('jdtls').extendedClientCapabilities,
+  }
+  return opts
 end
 
 lsp_installer.on_server_ready(function(server)
@@ -149,79 +208,7 @@ lsp_installer.on_server_ready(function(server)
     opts.filetypes = { 'markdown', 'md' }
     opts.root_dir = util.root_pattern { '.zeta.toml', '.git/' }
   elseif server.name == 'jdtls' then
-    opts = {
-      name = 'jdtls',
-      cmd = {
-        'java',
-        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-        '-Dosgi.bundles.defaultStartLevel=4',
-        '-Declipse.product=org.eclipse.jdt.ls.core.product',
-        '-Dlog.protocol=true',
-        '-Dlog.level=ALL',
-        '-Xms1g',
-        '-Xmx2G',
-        '--add-modules=ALL-SYSTEM',
-        '--add-opens',
-        'java.base/java.util=ALL-UNNAMED',
-        '--add-opens',
-        'java.base/java.lang=ALL-UNNAMED',
-        '-javaagent:' .. vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/lombok.jar',
-        '-jar',
-        get_jdtls_launcher(),
-        '-configuration',
-        get_jdtls_config(),
-        '-data',
-        os.getenv 'HOME' .. '/.cache/jdtls-workspace/' .. vim.fn.fnamemodify(
-          vim.fn.getcwd(),
-          ':p:h:t'
-        ),
-      },
-      settings = {
-        java = {
-          eclipse = {
-            downloadSources = true,
-          },
-          maven = {
-            downloadSources = true,
-            updateSnapshots = true,
-          },
-          progressReports = { enabled = true },
-          signatureHelp = { enabled = true },
-          configuration = {
-            maven = {
-              userSettings = os.getenv 'HOME' .. '/.m2/settings.xml',
-            },
-          },
-        },
-      },
-    }
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    )
-    local extra_capabilities = {
-      textDocument = {
-        completion = {
-          completionItem = {
-            snippetSupport = true,
-          },
-        },
-        codeAction = {
-          codeActionLiteralSupport = {
-            codeActionKind = {
-              valueSet = {
-                'source.generate.toString',
-                'source.generate.hashCodeEquals',
-                'source.organizeImports',
-              },
-            },
-          },
-        },
-      },
-    }
-    opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
-    opts.init_options = {
-      extendedClientCapabilities = require('jdtls').extendedClientCapabilities,
-    }
+    opts = get_jdtls_options(server)
   end
   server:setup(c.default(opts))
 end)
