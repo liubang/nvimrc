@@ -14,6 +14,7 @@ local themes = require 'telescope.themes'
 telescope.setup {
   defaults = themes.get_dropdown {
     file_ignore_patterns = { '.git/*' },
+    prompt_prefix = '\u{f422} ',
     path_display = { 'absolute' },
     winblend = 0,
     mappings = {
@@ -39,6 +40,11 @@ telescope.setup {
     project = {
       hidden_files = true,
     },
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown {
+        -- even more opts
+      },
+    },
   },
 }
 
@@ -46,3 +52,4 @@ telescope.load_extension 'fzf'
 telescope.load_extension 'bazel'
 telescope.load_extension 'tasks'
 telescope.load_extension 'project'
+telescope.load_extension 'ui-select'
