@@ -11,7 +11,6 @@ local Job = require 'plenary.job'
 local lsp_installer = require 'nvim-lsp-installer'
 local util = require 'lspconfig.util'
 local sysname = vim.loop.os_uname().sysname
-local jdtls_commands = require('jdtls').commands
 
 --- for cpp
 local get_default_driver = function()
@@ -108,23 +107,6 @@ local function get_jdtls_config()
   return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
 end
 
-local handlersExecuteClientCommand = function(_, params, ctx) -- luacheck: ignore 122
-  local fn = jdtls_commands[params.command]
-  if fn then
-    local ok, result = pcall(fn, params.arguments, ctx)
-    if ok then
-      return result
-    else
-      return vim.lsp.rpc_response_error(vim.lsp.protocol.ErrorCodes.InternalError, result)
-    end
-  else
-    return vim.lsp.rpc_response_error(
-      vim.lsp.protocol.ErrorCodes.MethodNotFound,
-      'Command ' .. params.command .. ' not supported on client'
-    )
-  end
-end
-
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   if server.name == 'sumneko_lua' then
@@ -189,42 +171,33 @@ lsp_installer.on_server_ready(function(server)
         '-configuration',
         get_jdtls_config(),
         '-data',
-        os.getenv 'HOME' .. '/.cache/jdtls-workspace',
-      },
-      handlers = {
-        ['workspace/executeClientCommand'] = handlersExecuteClientCommand,
+        os.getenv 'HOME' .. '/.cache/jdtls-workspace/' .. vim.fn.fnamemodify(
+          vim.fn.getcwd(),
+          ':p:h:t'
+        ),
       },
       settings = {
         java = {
+          eclipse = {
+            downloadSources = true,
+          },
+          maven = {
+            downloadSources = true,
+            updateSnapshots = true,
+          },
           progressReports = { enabled = true },
           signatureHelp = { enabled = true },
-          contentProvider = { preferred = 'fernflower' },
-          completion = {
-            favoriteStaticMembers = {
-              'org.hamcrest.MatcherAssert.assertThat',
-              'org.hamcrest.Matchers.*',
-              'org.hamcrest.CoreMatchers.*',
-              'org.junit.jupiter.api.Assertions.*',
-              'java.util.Objects.requireNonNull',
-              'java.util.Objects.requireNonNullElse',
-              'org.mockito.Mockito.*',
-            },
-          },
-          sources = {
-            organizeImports = {
-              starThreshold = 9999,
-              staticStarThreshold = 9999,
-            },
-          },
-          codeGeneration = {
-            toString = {
-              template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+          configuration = {
+            maven = {
+              userSettings = os.getenv 'HOME' .. '/.m2/settings.xml',
             },
           },
         },
       },
     }
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    )
     local extra_capabilities = {
       textDocument = {
         completion = {
@@ -247,19 +220,7 @@ lsp_installer.on_server_ready(function(server)
     }
     opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
     opts.init_options = {
-      extendedClientCapabilities = {
-        progressReportProvider = true,
-        classFileContentsSupport = true,
-        generateToStringPromptSupport = true,
-        hashCodeEqualsPromptSupport = true,
-        advancedExtractRefactoringSupport = true,
-        advancedOrganizeImportsSupport = true,
-        generateConstructorsPromptSupport = true,
-        generateDelegateMethodsPromptSupport = true,
-        moveRefactoringSupport = true,
-        resolveAdditionalTextEditsSupport = true,
-        inferSelectionSupport = { 'extractMethod', 'extractVariable', 'extractConstant' },
-      },
+      extendedClientCapabilities = require('jdtls').extendedClientCapabilities,
     }
   end
   server:setup(c.default(opts))
