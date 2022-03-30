@@ -14,7 +14,7 @@ local themes = require 'telescope.themes'
 telescope.setup {
   defaults = themes.get_dropdown {
     file_ignore_patterns = { '.git/*' },
-    prompt_prefix = '\u{f422} ',
+    prompt_prefix = '  ',
     path_display = { 'absolute' },
     winblend = 0,
     mappings = {
