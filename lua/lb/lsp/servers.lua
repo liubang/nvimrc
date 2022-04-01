@@ -151,9 +151,12 @@ local function get_jdtls_options(server)
       ),
     },
     handlers = {
-      ['language/progressReport'] = progress_report,
+      -- ['language/progressReport'] = progress_report,
     },
     settings = {
+      ['java.format.settings.url'] = vim.fn.stdpath 'config'
+        .. '/static/lsf/eclipse-java-google-style.xml',
+      ['java.format.settings.profile'] = 'GoogleStyle',
       java = {
         eclipse = {
           downloadSources = true,
