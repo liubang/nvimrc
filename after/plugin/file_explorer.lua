@@ -21,6 +21,7 @@ _G.lb_nvim_tree_context_menu = function()
 end
 
 vim.g.nvim_tree_respect_buf_cwd = 0
+vim.g.nvim_tree_group_empty = 1
 
 nvim_tree.setup {
   disable_netrw = true,
