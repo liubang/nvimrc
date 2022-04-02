@@ -149,16 +149,10 @@ return packer.startup(function(use)
     'p00f/godbolt.nvim',
     config = function()
       require('godbolt').setup {
-        langauges = {
-          c = { compiler = 'cg112' },
-          cpp = { compiler = 'g112' },
-          rust = { compiler = 'r1590' },
-        },
         quickfix = {
           enable = true,
           auto_open = true,
         },
-        url = 'https://godbolt.org',
       }
     end,
   }
