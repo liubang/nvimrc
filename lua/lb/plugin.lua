@@ -145,6 +145,24 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope.nvim' }
   use { 'nvim-telescope/telescope-ui-select.nvim' }
 
+  use {
+    'p00f/godbolt.nvim',
+    config = function()
+      require('godbolt').setup {
+        langauges = {
+          c = { compiler = 'cg112' },
+          cpp = { compiler = 'g112' },
+          rust = { compiler = 'r1590' },
+        },
+        quickfix = {
+          enable = true,
+          auto_open = true,
+        },
+        url = 'https://godbolt.org',
+      }
+    end,
+  }
+
   use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
   use { 'numToStr/Comment.nvim' }
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }

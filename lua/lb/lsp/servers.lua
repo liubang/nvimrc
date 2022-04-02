@@ -120,36 +120,9 @@ local function progress_report(_, result, ctx)
   vim.lsp.handlers['$/progress'](nil, msg, info)
 end
 
-local function get_jdtls_options(server)
+local function get_jdtls_options(_)
   local opts = {
     name = 'jdtls',
-    cmd = {
-      'java',
-      '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-      '-Dosgi.bundles.defaultStartLevel=4',
-      '-Declipse.product=org.eclipse.jdt.ls.core.product',
-      '-Dlog.protocol=true',
-      '-Dlog.level=ALL',
-      '-Xms1g',
-      '-Xmx2G',
-      '--add-modules=ALL-SYSTEM',
-      '--add-opens',
-      'java.base/java.util=ALL-UNNAMED',
-      '--add-opens',
-      'java.base/java.lang=ALL-UNNAMED',
-      '-javaagent:' .. vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/lombok.jar',
-      '-jar',
-      vim.fn.glob(
-        vim.fn.stdpath 'data' .. '/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'
-      ),
-      '-configuration',
-      get_jdtls_config(),
-      '-data',
-      os.getenv 'HOME' .. '/.cache/jdtls-workspace/' .. vim.fn.fnamemodify(
-        vim.fn.getcwd(),
-        ':p:h:t'
-      ),
-    },
     handlers = {
       -- ['language/progressReport'] = progress_report,
     },
@@ -249,5 +222,11 @@ lsp_installer.on_server_ready(function(server)
   elseif server.name == 'jdtls' then
     opts = get_jdtls_options(server)
   end
+  if server.name == 'jdtls' then
+    vim.env.WORKSPACE = os.getenv 'HOME'
+      .. '/.cache/jdtls-workspace/'
+      .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+  end
   server:setup(c.default(opts))
+  -- vim.env.WORKSPACE = nil
 end)
