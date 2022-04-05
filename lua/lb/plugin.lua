@@ -120,6 +120,13 @@ return packer.startup(function(use)
     end,
   }
 
+  use {
+    'liubang/vim-quickui',
+    config = function()
+      vim.g.quickui_color_scheme = 'gruvbox'
+      vim.g.quickui_border_style = 2
+    end,
+  }
   use { 'skywind3000/asyncrun.vim' }
   use { 'skywind3000/asyncrun.extra' }
   use {
@@ -131,7 +138,6 @@ return packer.startup(function(use)
       vim.g.asynctasks_term_pos = 'floaterm'
       vim.g.asynctasks_term_reuse = 0
     end,
-    cmd = { 'AsyncTask' },
   }
 
   use { 'nvim-lua/plenary.nvim' }
@@ -173,7 +179,6 @@ return packer.startup(function(use)
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }
-  use { 'mfussenegger/nvim-jdtls' }
 
   -- completion
   use { 'windwp/nvim-autopairs' }

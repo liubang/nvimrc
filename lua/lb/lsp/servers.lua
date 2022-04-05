@@ -173,7 +173,7 @@ local function get_jdtls_options(_)
   }
   opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
   opts.init_options = {
-    extendedClientCapabilities = require('jdtls').extendedClientCapabilities,
+    extendedClientCapabilities = require('lb.lsp.jdtls.opts').extendedClientCapabilities,
   }
   return opts
 end
