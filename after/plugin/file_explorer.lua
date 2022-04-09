@@ -11,13 +11,24 @@ local nvim_tree = require 'nvim-tree'
 
 _G.lb_nvim_tree_context_menu = function()
   vim.cmd 'redraw! | echo | redraw!'
-  local actions = { 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }
-  local section = vim.fn.confirm(
-    'Action?',
-    '&New file/directory\n&Rename\n&Copy\n&Move\n&Paste\n&Delete'
-  )
-  vim.cmd 'redraw!'
-  require('nvim-tree').on_keypress(actions[section])
+  -- stylua: ignore
+  local maps = {
+    create = 'action: create   key: a',
+    rename = 'action: rename   key: r',
+    copy   = 'action: copy     key: c',
+    cut    = 'action: cut      key: x',
+    paste  = 'action: paste    key: p',
+    remove = 'action: remove   key: d',
+  }
+  vim.ui.select({ 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }, {
+    prompt = 'Choose Action',
+    format_item = function(item)
+      return maps[item]
+    end,
+  }, function(choice)
+    vim.cmd 'redraw!'
+    require('nvim-tree').on_keypress(choice)
+  end)
 end
 
 vim.g.nvim_tree_respect_buf_cwd = 0
