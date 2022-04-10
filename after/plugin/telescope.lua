@@ -49,6 +49,7 @@ telescope.setup {
 }
 
 telescope.load_extension 'fzf'
+telescope.load_extension 'dap'
 telescope.load_extension 'bazel'
 telescope.load_extension 'tasks'
 telescope.load_extension 'project'

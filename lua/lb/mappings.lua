@@ -178,3 +178,18 @@ keymap.set('n', '<Leader>be', telescope_extensions.bazel.bazel_binaries, { silen
 keymap.set('n', '<Leader>wo', function()
   telescope_extensions.project.project { change_dir = true }
 end, { silent = true })
+
+-- dap
+local dap = require 'dap'
+keymap.set('n', '<Leader>db', dap.toggle_breakpoint, { silent = true })
+keymap.set('n', '<F5>', dap.continue, { silent = true })
+keymap.set('n', '<F6>', dap.step_into, { silent = true })
+keymap.set('n', '<F7>', dap.step_over, { silent = true })
+keymap.set('n', '<F8>', dap.step_out, { silent = true })
+keymap.set('n', '<F9>', dap.run_last, { silent = true })
+keymap.set('n', '<F10>', function()
+  dap.close()
+  require('dap.repl').close()
+  require('dapui').close()
+  vim.cmd 'DapVirtualTextForceRefresh'
+end, { silent = true })
