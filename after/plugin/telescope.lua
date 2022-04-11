@@ -30,6 +30,16 @@ telescope.setup {
       n = { ['<esc>'] = actions.close },
     },
   },
+  pickers = {
+    find_files = {
+      follow = true,
+    },
+    buffers = {
+      sort_mru = true,
+    },
+    lsp_code_actions = themes.get_cursor(),
+    lsp_range_code_actions = themes.get_cursor(),
+  },
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching

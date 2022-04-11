@@ -105,7 +105,27 @@ dap.listeners.before.event_exited['dapui_config'] = function()
   dap.repl.close()
 end
 
-vim.fn.sign_define('DapBreakpoint', { text = '奈', texthl = '', linehl = '', numhl = '' })
-vim.fn.sign_define('DapBreakpointCondition', { text = '懶', texthl = '', linehl = '', numhl = '' })
--- Setup cool Among Us as avatar
-vim.fn.sign_define('DapStopped', { text = '', texthl = 'Error' })
+vim.fn.sign_define(
+  'DapBreakpoint',
+  { text = ' ', texthl = 'debugBreakpoint', linehl = '', numhl = '' }
+)
+vim.fn.sign_define(
+  'DapBreakpointCondition',
+  { text = ' ', texthl = 'DiagnosticWarn', linehl = '', numhl = '' }
+)
+vim.fn.sign_define(
+  'DapBreakpointRejected',
+  { text = ' ', texthl = 'DiagnosticError', linehl = '', numhl = '' }
+)
+vim.fn.sign_define(
+  'DapLogPoint',
+  { text = ' ', texthl = 'debugBreakpoint', linehl = '', numhl = '' }
+)
+vim.fn.sign_define(
+  'DapStopped',
+  { text = '', texthl = 'debugBreakpoint', linehl = 'debugPC', numhl = '' }
+)
+
+-- vim.fn.sign_define('DapBreakpoint', { text = '奈', texthl = '', linehl = '', numhl = '' })
+-- vim.fn.sign_define('DapBreakpointCondition', { text = '懶', texthl = '', linehl = '', numhl = '' })
+-- vim.fn.sign_define('DapStopped', { text = '', texthl = 'Error' })

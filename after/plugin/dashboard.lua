@@ -27,7 +27,7 @@ local header = {
   val = h,
   opts = {
     position = 'center',
-    hl = 'Keyword',
+    hl = 'DashboardHeader',
   },
 }
 
@@ -56,7 +56,7 @@ local footer = {
   val = '- enjoy -',
   opts = {
     position = 'center',
-    hl = 'AlphaFooter',
+    hl = 'DashboardFooter',
   },
 }
 
@@ -71,7 +71,7 @@ local function button(sc, txt, keybind)
     width = 50,
     align_shortcut = 'right',
     hl_shortcut = 'AlphaButtons',
-    hl = 'AlphaButtons',
+    hl = 'Keyword',
   }
   if keybind then
     opts.keymap = { 'n', sc_, keybind, { noremap = true, silent = true } }

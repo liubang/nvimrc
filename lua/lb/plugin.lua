@@ -33,6 +33,7 @@ return packer.startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'goolord/alpha-nvim' }
   use { 'sainnhe/gruvbox-material' }
+  use { 'rebelot/kanagawa.nvim' }
   use { 'akinsho/nvim-bufferline.lua' }
   use { 'kyazdani42/nvim-tree.lua' }
   use { 'nvim-lualine/lualine.nvim' }
@@ -90,7 +91,7 @@ return packer.startup(function(use)
       vim.g.floaterm_width = 0.8
       vim.g.floaterm_height = 0.8
       vim.g.floaterm_title = 'terminal [$1/$2]'
-      vim.cmd 'hi FloatermBorder guibg=#32302f guifg=#e78a4e'
+      -- vim.cmd 'hi FloatermBorder guibg=#32302f guifg=#e78a4e'
     end,
   }
 

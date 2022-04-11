@@ -18,6 +18,8 @@ end
 -- use space as leader key
 vim.g.mapleader = ' '
 
+vim.g.color_scheme = 'kanagawa'
+
 -- disable distribution plugins
 -- vim.g.did_load_filetypes = 1
 vim.g.loaded_matchparen = 1

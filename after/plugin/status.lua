@@ -61,7 +61,7 @@ end
 
 require('lualine').setup {
   options = {
-    theme = 'gruvbox-material',
+    theme = vim.g.color_scheme,
     component_separators = '',
     section_separators = '',
     always_divide_middle = true,

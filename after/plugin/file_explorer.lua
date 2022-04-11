@@ -9,6 +9,36 @@
 
 local nvim_tree = require 'nvim-tree'
 
+vim.g.nvim_tree_icons = {
+  default = '',
+  symlink = '',
+  git = {
+    unstaged = '✗',
+    staged = '✓',
+    unmerged = '',
+    renamed = '➜',
+    untracked = '★',
+    deleted = '',
+    ignored = '◌',
+  },
+  folder = {
+    arrow_open = '',
+    arrow_closed = '',
+    default = '',
+    open = '',
+    empty = '',
+    empty_open = '',
+    symlink = '',
+    symlink_open = '',
+  },
+  lsp = {
+    hint = '',
+    info = '',
+    warning = '',
+    error = '',
+  },
+}
+
 _G.lb_nvim_tree_context_menu = function()
   vim.cmd 'redraw! | echo | redraw!'
   -- stylua: ignore
