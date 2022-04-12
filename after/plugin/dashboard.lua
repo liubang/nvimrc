@@ -27,7 +27,7 @@ local header = {
   val = h,
   opts = {
     position = 'center',
-    hl = 'DashboardHeader',
+    hl = 'Keyword',
   },
 }
 
@@ -71,7 +71,7 @@ local function button(sc, txt, keybind)
     width = 50,
     align_shortcut = 'right',
     hl_shortcut = 'AlphaButtons',
-    hl = 'Keyword',
+    hl = '',
   }
   if keybind then
     opts.keymap = { 'n', sc_, keybind, { noremap = true, silent = true } }

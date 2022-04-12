@@ -18,7 +18,7 @@ end
 -- use space as leader key
 vim.g.mapleader = ' '
 
-vim.g.color_scheme = 'kanagawa'
+vim.g.color_scheme = 'gruvbox-material'
 
 -- disable distribution plugins
 -- vim.g.did_load_filetypes = 1
