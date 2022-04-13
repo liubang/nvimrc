@@ -69,7 +69,9 @@ cmp.setup {
       return vim_item
     end,
   },
-  documentation = false,
+  window = {
+    documentation = false,
+  },
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
