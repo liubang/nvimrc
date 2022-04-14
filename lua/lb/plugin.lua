@@ -51,11 +51,14 @@ return packer.startup(function(use)
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
+  -- use { 'ravenxrz/DAPInstall.nvim' }
 
-  use {
-    'rhysd/accelerated-jk',
-    event = { 'VimEnter *' },
-  }
+  use { 'rainbowhxch/accelerated-jk.nvim' }
+
+  -- use {
+  --   'rhysd/accelerated-jk',
+  --   event = { 'VimEnter *' },
+  -- }
 
   use {
     'liubang/surround.nvim',
@@ -91,7 +94,6 @@ return packer.startup(function(use)
       vim.g.floaterm_width = 0.8
       vim.g.floaterm_height = 0.8
       vim.g.floaterm_title = 'terminal [$1/$2]'
-      -- vim.cmd 'hi FloatermBorder guibg=#32302f guifg=#e78a4e'
     end,
   }
 
