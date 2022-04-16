@@ -7,13 +7,6 @@
 --
 -- =====================================================================
 
--- saga.init_lsp_saga {
---   error_sign = '',
---   warn_sign = '',
---   hint_sign = '',
---   infor_sign = '',
--- }
-
 vim.diagnostic.config {
   underline = false,
   virtual_text = false,

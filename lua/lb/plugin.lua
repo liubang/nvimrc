@@ -8,9 +8,7 @@
 -- =====================================================================
 
 local utils = require 'lb.utils.plugin'
-
 PACKER_BOOTSTRAP = utils.bootstrap_packer()
-
 local packer = require 'packer'
 
 packer.init {
@@ -51,14 +49,7 @@ return packer.startup(function(use)
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
-  -- use { 'ravenxrz/DAPInstall.nvim' }
-
   use { 'rainbowhxch/accelerated-jk.nvim' }
-
-  -- use {
-  --   'rhysd/accelerated-jk',
-  --   event = { 'VimEnter *' },
-  -- }
 
   use {
     'liubang/surround.nvim',

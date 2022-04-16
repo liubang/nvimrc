@@ -10,7 +10,6 @@ local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
 local lsp_installer = require 'nvim-lsp-installer'
 local util = require 'lspconfig.util'
-local sysname = vim.loop.os_uname().sysname
 
 --- for cpp
 local get_default_driver = function()
@@ -76,56 +75,9 @@ local function get_lua_runtime()
 end
 
 -- for java
-local function get_jdtls_config()
-  if sysname:match 'Linux' then
-    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
-  elseif sysname:match 'Darwin' then
-    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_mac')
-  elseif sysname:match 'Windows' then
-    return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_win')
-  end
-  return util.path.join(vim.fn.stdpath 'data', '/lsp_servers/jdtls/config_linux')
-end
-
-local function progress_report(_, result, ctx)
-  local info = {
-    client_id = ctx.client_id,
-  }
-
-  local kind = 'report'
-  if result.complete then
-    kind = 'end'
-  elseif result.workDone == 0 then
-    kind = 'begin'
-  elseif result.workDone > 0 and result.workDone < result.totalWork then
-    kind = 'report'
-  else
-    kind = 'end'
-  end
-
-  local percentage = 0
-  if result.totalWork > 0 and result.workDone >= 0 then
-    percentage = result.workDone / result.totalWork * 100
-  end
-
-  local msg = {
-    token = result.id,
-    value = {
-      kind = kind,
-      percentage = percentage,
-      title = result.subTask,
-      message = result.subTask,
-    },
-  }
-  vim.lsp.handlers['$/progress'](nil, msg, info)
-end
-
 local function get_jdtls_options(_)
   local opts = {
     name = 'jdtls',
-    handlers = {
-      -- ['language/progressReport'] = progress_report,
-    },
     settings = {
       ['java.format.settings.url'] = vim.fn.stdpath 'config'
         .. '/static/lsf/eclipse-java-google-style.xml',
@@ -228,5 +180,4 @@ lsp_installer.on_server_ready(function(server)
       .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
   end
   server:setup(c.default(opts))
-  -- vim.env.WORKSPACE = nil
 end)
