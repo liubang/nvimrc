@@ -50,6 +50,7 @@ return packer.startup(function(use)
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'rainbowhxch/accelerated-jk.nvim' }
+  use { 'rcarriga/nvim-notify' }
 
   use {
     'liubang/surround.nvim',
@@ -175,6 +176,7 @@ return packer.startup(function(use)
   use { 'hrsh7th/cmp-calc' }
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-cmdline' }
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/nvim-cmp' }
 

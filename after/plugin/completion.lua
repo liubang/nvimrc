@@ -56,15 +56,14 @@ cmp.setup {
   },
 
   formatting = {
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
       vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
       vim_item.menu = ({
-        buffer = '[buffer]',
-        path = '[path]',
-        nvim_lsp = '[lsp]',
-        luasnip = '[snip]',
-        nvim_lua = '[lua]',
-        latex_symbols = '[latex]',
+        buffer = '[B]',
+        path = '[P]',
+        nvim_lsp = '[L]',
+        luasnip = '[S]',
       })[entry.source.name]
       return vim_item
     end,
@@ -113,9 +112,23 @@ cmp.setup {
     { name = 'calc' },
   },
   experimental = {
-    native_menu = false,
+    -- native_menu = false,
   },
 }
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' },
+  },
+})
+
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'cmdline' },
+  }, {
+    { name = 'path' },
+  }),
+})
 
 -- autopairs
 require('nvim-autopairs').setup {

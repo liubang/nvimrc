@@ -84,7 +84,6 @@ opt.fillchars = {
   foldclose = '▸',
 }
 opt.synmaxcol = 2500
--- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
   - 'a' -- Auto formatting is BAD.
   - 't' -- Don't auto format my code. I got linters for that.

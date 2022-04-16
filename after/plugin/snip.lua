@@ -146,3 +146,15 @@ ls.add_snippets('lua', {
     t { '', 'end' },
   }),
 }, { type = 'snippets', key = 'lua' })
+
+vim.keymap.set({ 'i', 's' }, '<C-n>', function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+
+vim.keymap.set({ 'i', 's' }, '<C-p>', function()
+  if ls.choice_active() then
+    ls.change_choice(-1)
+  end
+end)

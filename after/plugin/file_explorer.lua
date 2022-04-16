@@ -31,12 +31,6 @@ vim.g.nvim_tree_icons = {
     symlink = '',
     symlink_open = '',
   },
-  lsp = {
-    hint = '',
-    info = '',
-    warning = '',
-    error = '',
-  },
 }
 
 _G.lb_nvim_tree_context_menu = function()
@@ -116,3 +110,7 @@ nvim_tree.setup {
     },
   },
 }
+
+require('nvim-tree.events').on_file_created(function(file)
+  vim.cmd('edit ' .. file.fname)
+end)
