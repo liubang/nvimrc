@@ -1,6 +1,6 @@
 --=====================================================================
 --
--- customs.lua - 
+-- customs.lua -
 --
 -- Created by liubang on 2022/04/16 22:09
 -- Last Modified: 2022/04/16 22:09
@@ -36,7 +36,7 @@ local custom_attach = function(client, _)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0 })
   if client.resolved_capabilities.document_formatting then
     vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
-    vim.cmd [[command! -buffer -nargs=0 Format :lua vim.lsp.buf.formatting_sync()]]
+    vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })
   end
   if client.resolved_capabilities.document_range_formatting then
     vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { buffer = 0 })
@@ -49,9 +49,9 @@ local custom_attach = function(client, _)
   end
 
   if client.name == 'jdtls' then
-    vim.cmd [[command! -buffer JdtOrgImport :lua require'jdtls'.organize_imports()]]
-    vim.cmd [[command! -buffer JdtBytecode lua require'jdtls'.javap()]]
-    vim.cmd [[command! -buffer JdtJshell lua require'jdtls'.jshell()]]
+    vim.api.nvim_buf_create_user_command(0, 'JdtOrgImport', require('jdtls').organize_imports, {})
+    vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', require('jdtls').javap, {})
+    vim.api.nvim_buf_create_user_command(0, 'JdtJshell', require('jdtls').jshell, {})
   end
 end
 

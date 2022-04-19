@@ -7,15 +7,47 @@
 --
 -- =====================================================================
 vim.schedule(function()
-  vim.cmd [[command! -nargs=0 -bar Filepath echo expand('%:p')]]
-  vim.cmd [[command! -nargs=0 -bar CopyRight :lua require('lb.utils.comment').copy_right('liubang')]]
-  vim.cmd [[command! -nargs=0 -bar CopyRightUpdate :lua require('lb.utils.comment').copy_right_update()]]
-  vim.cmd [[command! -nargs=0 -bar Tasks :lua require('telescope').extensions.tasks.tasks()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelRules :lua require('telescope').extensions.bazel.bazel_rules()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelTests :lua require('telescope').extensions.bazel.bazel_rules()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelBinaries :lua require('telescope').extensions.bazel.bazel_rules()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelCCRules :lua require('telescope').extensions.bazel.bazel_cc_rules()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelCCTests :lua require('telescope').extensions.bazel.bazel_cc_tests()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar BazelCCBinaries :lua require('telescope').extensions.bazel.bazel_cc_binaries()<CR>]]
-  vim.cmd [[command! -nargs=0 -bar LspDebug :lua vim.lsp.set_log_level("debug")<CR>]]
+  vim.api.nvim_create_user_command('Filepath', function()
+    vim.fn.expand '%:p'
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('CopyRight', function()
+    require('lb.utils.comment').copy_right 'liubang'
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('CopyRightUpdate', function()
+    require('lb.utils.comment').copy_right_update()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('Tasks', function()
+    require('telescope').extensions.tasks.tasks()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelRules', function()
+    require('telescope').expand.bazel.bazel_rules()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelTests', function()
+    require('telescope').expand.bazel.bazel_tests()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelBinaries', function()
+    require('telescope').expand.bazel.bazel_binaries()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelCCRules', function()
+    require('telescope').expand.bazel.bazel_cc_rules()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelCCTests', function()
+    require('telescope').expand.bazel.bazel_cc_tests()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('BazelCCBinaries', function()
+    require('telescope').expand.bazel.bazel_cc_binaries()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('LspDebug', function()
+    vim.lsp.set_log_level 'debug'
+  end, { nargs = 0 })
 end)
