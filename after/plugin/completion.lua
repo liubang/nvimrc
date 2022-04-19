@@ -118,19 +118,19 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' },
-  },
-})
-
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'cmdline' },
-  }, {
-    { name = 'path' },
-  }),
-})
+-- cmp.setup.cmdline('/', {
+--   sources = {
+--     { name = 'buffer' },
+--   },
+-- })
+--
+-- cmp.setup.cmdline(':', {
+--   sources = cmp.config.sources({
+--     { name = 'cmdline' },
+--   }, {
+--     { name = 'path' },
+--   }),
+-- })
 
 -- autopairs
 require('nvim-autopairs').setup {
