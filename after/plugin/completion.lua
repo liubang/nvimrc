@@ -71,9 +71,11 @@ cmp.setup {
   window = {
     documentation = false,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert {
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+    ['<CR>'] = cmp.mapping.confirm { select = true },
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
