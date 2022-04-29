@@ -8,8 +8,7 @@
 -- =====================================================================
 local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
-local lsp_installer = require 'nvim-lsp-installer'
-local util = require 'lspconfig.util'
+local lspconfig = require 'lspconfig'
 
 --- for cpp
 local get_default_driver = function()
@@ -29,37 +28,6 @@ local get_default_driver = function()
   return result
 end
 
--- for golang
-local get_gopls_opts = function(server)
-  -- https://github.com/ray-x/go.nvim/blob/master/lua/go/gopls.lua
-  return {
-    cmd = { vim.fn.expand(server.root_dir .. '/gopls'), '-remote.debug=:0' },
-    filetypes = { 'go', 'gomod' },
-    flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
-    settings = {
-      gopls = {
-        analyses = { unusedparams = true, unreachable = false },
-        codelenses = {
-          generate = true, -- show the `go generate` lens.
-          gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-          test = true,
-          tidy = true,
-        },
-        usePlaceholders = true,
-        completeUnimported = true,
-        staticcheck = true,
-        matcher = 'Fuzzy',
-        diagnosticsDelay = '500ms',
-        experimentalWatchedFileDelay = '100ms',
-        symbolMatcher = 'fuzzy',
-        ['local'] = '',
-        gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-        buildFlags = { '-tags', 'integration' },
-      },
-    },
-  }
-end
-
 -- for lua
 local function get_lua_runtime()
   local result = {}
@@ -74,110 +42,64 @@ local function get_lua_runtime()
   return result
 end
 
--- for java
-local function get_jdtls_options(_)
-  local opts = {
-    name = 'jdtls',
-    settings = {
-      ['java.format.settings.url'] = vim.fn.stdpath 'config'
-        .. '/static/lsf/eclipse-java-google-style.xml',
-      ['java.format.settings.profile'] = 'GoogleStyle',
-      java = {
-        eclipse = {
-          downloadSources = true,
-        },
-        maven = {
-          downloadSources = true,
-          updateSnapshots = true,
-        },
-        progressReports = { enabled = true },
-        signatureHelp = { enabled = true },
-        configuration = {
-          maven = {
-            userSettings = os.getenv 'HOME' .. '/.m2/settings.xml',
-          },
-        },
-      },
-    },
-  }
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  )
-  local extra_capabilities = {
-    textDocument = {
-      completion = {
-        completionItem = {
-          snippetSupport = true,
-        },
-      },
-      codeAction = {
-        codeActionLiteralSupport = {
-          codeActionKind = {
-            valueSet = {
-              'source.generate.toString',
-              'source.generate.hashCodeEquals',
-              'source.organizeImports',
-            },
-          },
-        },
-      },
-    },
-  }
-  opts.capabilities = vim.tbl_deep_extend('keep', capabilities, extra_capabilities)
-  opts.init_options = {
-    extendedClientCapabilities = require('lb.lsp.jdtls.opts').extendedClientCapabilities,
-  }
-  return opts
-end
+require('nvim-lsp-installer').setup {}
 
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == 'sumneko_lua' then
-    opts.settings = {
-      Lua = {
-        runtime = {
-          version = 'LuaJIT',
-        },
-        format = { enable = false },
-        completion = {
-          keywordSnippet = 'Disable',
-          showWord = 'Disable',
-        },
-        diagnostics = { enable = true, globals = { 'vim', 'packer_plugins' } },
-        workspace = {
-          library = vim.list_extend(get_lua_runtime(), {}),
-          maxPreload = 100000,
-          preloadFileSize = 10000,
-        },
+lspconfig.clangd.setup(c.default {
+  cmd = {
+    'clangd',
+    '--background-index',
+    '-j=4',
+    '--suggest-missing-includes',
+    '--clang-tidy',
+    '--header-insertion=never',
+    '--query-driver=' .. get_default_driver(),
+  },
+})
+
+lspconfig.gopls.setup(c.default {
+  cmd = { 'gopls', '-remote.debug=:0' },
+  filetypes = { 'go', 'gomod' },
+  flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
+  settings = {
+    gopls = {
+      analyses = { unusedparams = true, unreachable = false },
+      codelenses = {
+        generate = true, -- show the `go generate` lens.
+        gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+        test = true,
+        tidy = true,
       },
-    }
-  elseif server.name == 'clangd' then
-    local cmd = {
-      vim.fn.expand(server.root_dir .. '/clangd/bin/clangd'),
-      '--background-index',
-      '-j=4',
-      '--suggest-missing-includes',
-      '--clang-tidy',
-      '--header-insertion=never',
-    }
-    local driver = get_default_driver()
-    if driver ~= nil then
-      table.insert(cmd, string.format('--query-driver=%s', driver))
-    end
-    opts.cmd = cmd
-  elseif server.name == 'gopls' then
-    opts = get_gopls_opts(server)
-  elseif server.name == 'zeta_note' then
-    opts.cmd = { vim.fn.expand(server.root_dir .. '/zeta-note') }
-    opts.filetypes = { 'markdown', 'md' }
-    opts.root_dir = util.root_pattern { '.zeta.toml', '.git/' }
-  elseif server.name == 'jdtls' then
-    opts = get_jdtls_options(server)
-  end
-  if server.name == 'jdtls' then
-    vim.env.WORKSPACE = os.getenv 'HOME'
-      .. '/.cache/jdtls-workspace/'
-      .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-  end
-  server:setup(c.default(opts))
-end)
+      usePlaceholders = true,
+      completeUnimported = true,
+      staticcheck = true,
+      matcher = 'Fuzzy',
+      diagnosticsDelay = '500ms',
+      experimentalWatchedFileDelay = '100ms',
+      symbolMatcher = 'fuzzy',
+      ['local'] = '',
+      gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+      buildFlags = { '-tags', 'integration' },
+    },
+  },
+})
+
+lspconfig.sumneko_lua.setup(c.default {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      format = { enable = false },
+      completion = {
+        keywordSnippet = 'Disable',
+        showWord = 'Disable',
+      },
+      diagnostics = { enable = true, globals = { 'vim', 'packer_plugins' } },
+      workspace = {
+        library = vim.list_extend(get_lua_runtime(), {}),
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
+    },
+  },
+})
