@@ -103,3 +103,8 @@ lspconfig.sumneko_lua.setup(c.default {
     },
   },
 })
+
+lspconfig.bashls.setup(c.default())
+lspconfig.cmake.setup(c.default())
+lspconfig.texlab.setup(c.default())
+lspconfig.intelephense.setup(c.default())
