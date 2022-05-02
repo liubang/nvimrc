@@ -72,7 +72,7 @@ cmp.setup {
     documentation = false,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm { select = true },
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -117,20 +117,6 @@ cmp.setup {
     -- native_menu = false,
   },
 }
-
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' },
---   },
--- })
---
--- cmp.setup.cmdline(':', {
---   sources = cmp.config.sources({
---     { name = 'cmdline' },
---   }, {
---     { name = 'path' },
---   }),
--- })
 
 -- autopairs
 require('nvim-autopairs').setup {
