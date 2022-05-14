@@ -13,48 +13,48 @@ vim.g.nvim_tree_icons = {
   default = '',
   symlink = '',
   git = {
-    unstaged = '✗',
-    staged = '✓',
-    unmerged = '',
-    renamed = '➜',
-    untracked = '★',
     deleted = '',
     ignored = '◌',
+    renamed = '➜',
+    staged = '✓',
+    unmerged = '',
+    unstaged = '✗',
+    untracked = '★',
   },
   folder = {
+    default = '',
+    empty = '',
+    empty_open = '',
+    open = '',
+    symlink = '',
+    symlink_open = '',
     arrow_open = '',
     arrow_closed = '',
-    default = '',
-    open = '',
-    empty = '',
-    empty_open = '',
-    symlink = '',
-    symlink_open = '',
   },
 }
 
-_G.lb_nvim_tree_context_menu = function()
-  vim.cmd 'redraw! | echo | redraw!'
-  -- stylua: ignore
-  local maps = {
-    create = 'action: create   key: a',
-    rename = 'action: rename   key: r',
-    copy   = 'action: copy     key: c',
-    cut    = 'action: cut      key: x',
-    paste  = 'action: paste    key: p',
-    remove = 'action: remove   key: d',
-  }
-  vim.ui.select({ 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }, {
-    prompt = 'Choose Action',
-    format_item = function(item)
-      return maps[item]
-    end,
-  }, function(choice)
-    vim.cmd 'redraw!'
-    require('nvim-tree').on_keypress(choice)
-  end)
-end
-
+-- _G.lb_nvim_tree_context_menu = function()
+--   vim.cmd 'redraw! | echo | redraw!'
+--   -- stylua: ignore
+--   local maps = {
+--     create = 'action: create   key: a',
+--     rename = 'action: rename   key: r',
+--     copy   = 'action: copy     key: c',
+--     cut    = 'action: cut      key: x',
+--     paste  = 'action: paste    key: p',
+--     remove = 'action: remove   key: d',
+--   }
+--   vim.ui.select({ 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }, {
+--     prompt = 'Choose Action',
+--     format_item = function(item)
+--       return maps[item]
+--     end,
+--   }, function(choice)
+--     vim.cmd 'redraw!'
+--     require('nvim-tree').on_keypress(choice)
+--   end)
+-- end
+--
 vim.g.nvim_tree_respect_buf_cwd = 0
 vim.g.nvim_tree_group_empty = 1
 
@@ -90,7 +90,7 @@ nvim_tree.setup {
     mappings = {
       custom_only = true,
       list = {
-        { key = 'm', cb = ':lua _G.lb_nvim_tree_context_menu()<CR>' },
+        -- { key = 'm', cb = ':lua _G.lb_nvim_tree_context_menu()<CR>' },
         { key = { '<CR>', 'o' }, action = 'edit' },
         { key = 'a', action = 'create' },
         { key = 'v', action = 'vsplit' },

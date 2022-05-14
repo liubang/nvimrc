@@ -15,31 +15,31 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 local kind_icons = {
-  Text = '',
-  Method = 'm',
+  Text = '',
+  Method = '',
   Function = '',
-  Constructor = '',
-  Field = '',
-  Variable = '',
-  Class = '',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = 'ﴯ',
   Interface = '',
   Module = '',
-  Property = '',
+  Property = 'ﰠ',
   Unit = '',
   Value = '',
   Enum = '',
   Keyword = '',
-  Snippet = '',
+  Snippet = '',
   Color = '',
   File = '',
   Reference = '',
   Folder = '',
   EnumMember = '',
-  Constant = '',
+  Constant = '',
   Struct = '',
   Event = '',
   Operator = '',
-  TypeParameter = '',
+  TypeParameter = '',
 }
 
 local has_words_before = function()
@@ -49,27 +49,28 @@ local has_words_before = function()
 end
 
 cmp.setup {
+  window = {
+    documentation = false,
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
-
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
-      vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+      -- Kind icons
+      vim_item.kind = kind_icons[vim_item.kind]
+      -- Source
       vim_item.menu = ({
-        buffer = '[B]',
-        path = '[P]',
-        nvim_lsp = '[L]',
-        luasnip = '[S]',
+        buffer = '[Buffer]',
+        nvim_lsp = '[LSP]',
+        luasnip = '[LuaSnip]',
+        nvim_lua = '[Lua]',
+        latex_symbols = '[LaTeX]',
       })[entry.source.name]
       return vim_item
     end,
-  },
-  window = {
-    documentation = false,
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-e>'] = cmp.mapping.abort(),
