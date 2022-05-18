@@ -126,7 +126,8 @@ lspconfig.sumneko_lua.setup(c.default {
   },
 })
 
-lspconfig.bashls.setup(c.default())
-lspconfig.cmake.setup(c.default())
-lspconfig.texlab.setup(c.default())
-lspconfig.intelephense.setup(c.default())
+local servers = { 'bashls', 'cmake', 'texlab', 'intelephense', 'rust_analyzer' }
+
+for _, server in pairs(servers) do
+  lspconfig[server].setup(c.default())
+end
