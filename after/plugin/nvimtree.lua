@@ -9,55 +9,6 @@
 
 local nvim_tree = require 'nvim-tree'
 
-vim.g.nvim_tree_icons = {
-  default = '',
-  symlink = '',
-  git = {
-    deleted = '',
-    ignored = '◌',
-    renamed = '➜',
-    staged = '✓',
-    unmerged = '',
-    unstaged = '✗',
-    untracked = '★',
-  },
-  folder = {
-    default = '',
-    empty = '',
-    empty_open = '',
-    open = '',
-    symlink = '',
-    symlink_open = '',
-    arrow_open = '',
-    arrow_closed = '',
-  },
-}
-
--- _G.lb_nvim_tree_context_menu = function()
---   vim.cmd 'redraw! | echo | redraw!'
---   -- stylua: ignore
---   local maps = {
---     create = 'action: create   key: a',
---     rename = 'action: rename   key: r',
---     copy   = 'action: copy     key: c',
---     cut    = 'action: cut      key: x',
---     paste  = 'action: paste    key: p',
---     remove = 'action: remove   key: d',
---   }
---   vim.ui.select({ 'create', 'rename', 'copy', 'cut', 'paste', 'remove' }, {
---     prompt = 'Choose Action',
---     format_item = function(item)
---       return maps[item]
---     end,
---   }, function(choice)
---     vim.cmd 'redraw!'
---     require('nvim-tree').on_keypress(choice)
---   end)
--- end
---
-vim.g.nvim_tree_respect_buf_cwd = 0
-vim.g.nvim_tree_group_empty = 1
-
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -66,6 +17,10 @@ nvim_tree.setup {
   hijack_cursor = false,
   update_cwd = false,
   auto_reload_on_write = true,
+  respect_buf_cwd = false,
+  renderer = {
+    group_empty = true,
+  },
   update_focused_file = {
     enable = true,
     update_cwd = false,
