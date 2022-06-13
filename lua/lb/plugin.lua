@@ -118,13 +118,6 @@ return packer.startup(function(use)
     end,
   }
 
-  use {
-    'liubang/vim-quickui',
-    config = function()
-      vim.g.quickui_color_scheme = 'gruvbox'
-      vim.g.quickui_border_style = 2
-    end,
-  }
   use { 'skywind3000/asyncrun.vim' }
   use { 'skywind3000/asyncrun.extra' }
   use {
