@@ -45,9 +45,9 @@ return packer.startup(function(use)
   use { 'lewis6991/impatient.nvim' }
 
   -- tools
-  use { 'mfussenegger/nvim-dap' }
-  use { 'rcarriga/nvim-dap-ui' }
-  use { 'theHamsta/nvim-dap-virtual-text' }
+  -- use { 'mfussenegger/nvim-dap' }
+  -- use { 'rcarriga/nvim-dap-ui' }
+  -- use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'rainbowhxch/accelerated-jk.nvim' }
   use { 'rcarriga/nvim-notify' }
 
@@ -141,7 +141,7 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'nvim-telescope/telescope.nvim' }
   use { 'nvim-telescope/telescope-ui-select.nvim' }
-  use { 'nvim-telescope/telescope-dap.nvim' }
+  -- use { 'nvim-telescope/telescope-dap.nvim' }
 
   use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
   use { 'numToStr/Comment.nvim' }
