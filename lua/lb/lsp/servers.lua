@@ -100,7 +100,7 @@ lspconfig.gopls.setup(c.default {
       experimentalWatchedFileDelay = '100ms',
       symbolMatcher = 'fuzzy',
       ['local'] = '',
-      gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+      gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
       -- buildFlags = { '-tags', 'integration' },
     },
   },
