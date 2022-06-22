@@ -171,6 +171,7 @@ return packer.startup(function(use)
   -- use { 'hrsh7th/cmp-cmdline' }
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/nvim-cmp' }
+  use { 'lukas-reineke/cmp-under-comparator' }
 
   -- ft
   use { 'cespare/vim-toml', ft = { 'toml' } }

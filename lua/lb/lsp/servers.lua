@@ -79,8 +79,9 @@ lspconfig.clangd.setup(c.default {
 })
 
 lspconfig.gopls.setup(c.default {
+  -- share the gopls instance if there is one already
   cmd = { 'gopls', '-remote.debug=:0' },
-  filetypes = { 'go', 'gomod' },
+  filetypes = { 'go', 'gomod', 'gosum', 'gotmpl', 'gohtmltmpl', 'gotexttmpl' },
   flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
   settings = {
     gopls = {
@@ -100,7 +101,7 @@ lspconfig.gopls.setup(c.default {
       symbolMatcher = 'fuzzy',
       ['local'] = '',
       gofumpt = false, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-      buildFlags = { '-tags', 'integration' },
+      -- buildFlags = { '-tags', 'integration' },
     },
   },
 })
