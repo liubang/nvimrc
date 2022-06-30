@@ -138,7 +138,10 @@ return packer.startup(function(use)
   use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
 
   use { 'nvim-telescope/telescope-project.nvim' }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+  }
   use { 'nvim-telescope/telescope.nvim' }
   use { 'nvim-telescope/telescope-ui-select.nvim' }
   -- use { 'nvim-telescope/telescope-dap.nvim' }
