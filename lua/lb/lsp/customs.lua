@@ -15,6 +15,7 @@ end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
+custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client, _)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = 0 })
@@ -33,7 +34,7 @@ local custom_attach = function(client, _)
     require('telescope.builtin').diagnostics { bufnr = 0 }
   end, { buffer = 0 })
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0, desc = 'lsp:hover' })
+  vim.keymap.set('n', '<C-k>', require('hover').hover, { buffer = 0, desc = 'lsp:hover' })
   if client.resolved_capabilities.document_formatting then
     vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
     vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })

@@ -157,6 +157,8 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
+  use { 'folke/lua-dev.nvim' }
+  use { 'lewis6991/hover.nvim' }
   use { 'tami5/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
@@ -164,16 +166,16 @@ return packer.startup(function(use)
   use { 'jose-elias-alvarez/null-ls.nvim' }
 
   -- completion
-  use { 'windwp/nvim-autopairs' }
-  use { 'L3MON4D3/LuaSnip' }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-calc' }
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-nvim-lsp' }
-  -- use { 'hrsh7th/cmp-cmdline' }
-  use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/nvim-cmp' }
+
+  use { 'windwp/nvim-autopairs' }
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'saadparwaiz1/cmp_luasnip' }
 
   -- ft
   use { 'cespare/vim-toml', ft = { 'toml' } }
