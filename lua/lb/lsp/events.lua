@@ -17,27 +17,27 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = 'CustomLspEvents',
-  pattern = 'java',
-  callback = function()
-    require('lb.lsp.jdtls.setup').setup()
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = 'CustomLspEvents',
+--   pattern = 'java',
+--   callback = function()
+--     require('lb.lsp.jdtls.setup').setup()
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = 'CustomLspEvents',
-  pattern = { '*.java' },
-  callback = function()
-    require('lb.lsp.jdtls.setup').organize_imports()
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   group = 'CustomLspEvents',
+--   pattern = { '*.java' },
+--   callback = function()
+--     require('lb.lsp.jdtls.setup').organize_imports()
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd('BufReadCmd', {
-  group = 'CustomLspEvents',
-  pattern = 'jdt://*',
-  callback = function()
-    print(vim.fn.expand '<amatch>')
-    require('lb.lsp.jdtls.setup').open_jdt_link(vim.fn.expand '<amatch>')
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufReadCmd', {
+--   group = 'CustomLspEvents',
+--   pattern = 'jdt://*',
+--   callback = function()
+--     print(vim.fn.expand '<amatch>')
+--     require('lb.lsp.jdtls.setup').open_jdt_link(vim.fn.expand '<amatch>')
+--   end,
+-- })

@@ -7,7 +7,13 @@
 --
 -- =====================================================================
 
-require 'lb.lsp.servers'
-require 'lb.lsp.null-ls'
-require 'lb.lsp.handlers'
-require 'lb.lsp.events'
+local setup = function()
+  require 'lb.lsp.servers'
+  require 'lb.lsp.null-ls'
+  require 'lb.lsp.handlers'
+  require 'lb.lsp.events'
+end
+
+return {
+  setup = setup,
+}
