@@ -8,7 +8,7 @@
 -- =====================================================================
 vim.schedule(function()
   vim.api.nvim_create_user_command('Filepath', function()
-    vim.fn.expand '%:p'
+    print(vim.fn.expand '%:p')
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('CopyRight', function()
@@ -17,6 +17,22 @@ vim.schedule(function()
 
   vim.api.nvim_create_user_command('CopyRightUpdate', function()
     require('lb.utils.comment').copy_right_update()
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('GoAddTagsJson', function()
+    require('lb.go.tags').add('json', '-transform', 'snakecase', '--skip-unexported')
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('GoAddTagsXml', function()
+    require('lb.go.tags').add('xml', '-transform', 'snakecase', '--skip-unexported')
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('GoRmTagsJson', function()
+    require('lb.go.tags').rm 'json'
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('GoRmTagsXml', function()
+    require('lb.go.tags').rm 'xml'
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('Tasks', function()

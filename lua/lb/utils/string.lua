@@ -7,12 +7,14 @@
 --
 --=====================================================================
 
-function string:split(sep)
-  sep = sep or ':'
-  local fields = {}
-  local pattern = string.format('([^%s]+)', sep)
-  self:gsub(pattern, function(c)
-    fields[#fields + 1] = c
-  end)
-  return fields
+local M = {}
+
+M.rtrim = function(s)
+  local n = #s
+  while n > 0 and s:find('^%s', n) do
+    n = n - 1
+  end
+  return s:sub(1, n)
 end
+
+return M

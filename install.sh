@@ -80,12 +80,13 @@ elif [ $ostype == 'linux' ]; then
 fi
 
 # install shfmt
-GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
-# install go tools
-GO111MODULE=on go get -u golang.org/x/tools/gopls
-GO111MODULE=on go get -u golang.org/x/tools/cmd/...
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+
 # buildifier
-GO111MODULE=on go get github.com/bazelbuild/buildtools/buildifier
+go install github.com/bazelbuild/buildtools/buildifier@latest
+
+go install github.com/fatih/gomodifytags@latest
+
 # luarocks install --server=https://luarocks.org/dev luaformatter
 
 npm i -g bash-language-server
