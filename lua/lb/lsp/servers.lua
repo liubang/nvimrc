@@ -70,22 +70,22 @@ lspconfig.gopls.setup(c.default {
   settings = {
     gopls = {
       experimentalPostfixCompletions = true,
-      analyses = { unusedparams = true, unreachable = false, shadow = true },
+      analyses = {
+        unusedparams = true,
+        unreachable = true,
+        shadow = true,
+      },
       codelenses = {
-        generate = true, -- show the `go generate` lens.
-        gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+        generate = true,
+        gc_details = true,
         test = true,
         tidy = true,
       },
       usePlaceholders = true,
       completeUnimported = true,
       staticcheck = true,
-      matcher = 'Fuzzy',
-      diagnosticsDelay = '500ms',
-      experimentalWatchedFileDelay = '100ms',
-      symbolMatcher = 'fuzzy',
+      gofumpt = true,
       ['local'] = '',
-      gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
     },
   },
 })
