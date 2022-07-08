@@ -34,7 +34,12 @@ local custom_attach = function(client, _)
     require('telescope.builtin').diagnostics { bufnr = 0 }
   end, { buffer = 0 })
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-  vim.keymap.set('n', '<C-k>', require('hover').hover, { buffer = 0, desc = 'lsp:hover' })
+  vim.keymap.set(
+    'n',
+    '<C-k>',
+    require('lspsaga.hover').render_hover_doc,
+    { buffer = 0, desc = 'lsp:hover' }
+  )
   if client.resolved_capabilities.document_formatting then
     vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
     vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })

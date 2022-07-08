@@ -157,9 +157,9 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
+  -- use { 'lewis6991/hover.nvim' }
   use { 'folke/lua-dev.nvim' }
-  use { 'lewis6991/hover.nvim' }
-  use { 'tami5/lspsaga.nvim' }
+  use { 'kkharji/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }

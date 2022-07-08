@@ -197,6 +197,11 @@ else
   vim.cmd 'colorscheme kanagawa'
 end
 
+vim.cmd [[ highlight! link LspSagaHoverBorder Grey ]]
+vim.cmd [[ highlight! link LspSagaDocTruncateLine Grey ]]
+vim.cmd [[ highlight! link LspSagaDiagnosticBorder Grey ]]
+vim.cmd [[ highlight! link LspSagaDiagnosticTruncateLine Grey ]]
+
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
