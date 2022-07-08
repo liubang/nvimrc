@@ -43,7 +43,5 @@ GoOrgImports = function(timeoutms)
     end
   end
 
-  vim.defer_fn(function()
-    vim.lsp.buf.formatting_sync(nil, 1000)
-  end, 1000)
+  vim.lsp.buf.formatting_sync(nil, 1000)
 end
