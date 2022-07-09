@@ -21,7 +21,6 @@ vim.g.mapleader = ' '
 vim.g.color_scheme = 'gruvbox-material'
 
 -- disable distribution plugins
--- vim.g.did_load_filetypes = 1
 vim.g.loaded_matchparen = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1
@@ -40,6 +39,12 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
+
+-- set shada path
+vim.schedule(function()
+  vim.opt.shadafile = vim.fn.stdpath 'data' .. '/shada/main.shada'
+  vim.cmd [[ silent! rsh ]]
+end)
 
 -- global functions
 _G.P = function(v)

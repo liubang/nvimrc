@@ -97,10 +97,11 @@ require('nvim-gps').setup {
   -- Any language not disabled here is enabled by default
   languages = {
     ['html'] = false,
+    ['java'] = false,
     ['c'] = true,
     ['cpp'] = true,
     ['go'] = true,
-    ['java'] = true,
+    ['php'] = true,
     ['javascript'] = true,
     ['lua'] = true,
     ['python'] = true,

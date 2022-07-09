@@ -120,7 +120,7 @@ opt.cursorline = true
 opt.cursorcolumn = false
 
 --- {{{neowide
-vim.cmd [[set guifont=Operator\ Mono\ Lig:h19,Hack\ Nerd\ Font:h19]]
+vim.cmd [[set guifont=Operator\ Mono\ Lig:h16,Hack\ Nerd\ Font:h16]]
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_cursor_vfx_mode = 'railgun'
 vim.g.neovide_no_idle = true
