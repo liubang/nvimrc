@@ -12,7 +12,14 @@ PACKER_BOOTSTRAP = utils.bootstrap_packer()
 local packer = require 'packer'
 
 packer.init {
+  auto_clean = true,
+  compile_on_sync = true,
   display = {
+    working_sym = 'ﲊ',
+    error_sym = '✗ ',
+    done_sym = ' ',
+    removed_sym = ' ',
+    moved_sym = '',
     open_fn = function()
       return require('packer.util').float { border = 'single' }
     end,
