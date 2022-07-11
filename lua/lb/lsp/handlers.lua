@@ -20,18 +20,20 @@ vim.lsp.handlers['textDocument/definition'] = function(_, result)
     print '[LSP] Could not find definition'
     return
   end
+  local enc = vim.lsp.util._get_offset_encoding(0)
   if vim.tbl_islist(result) then
-    vim.lsp.util.jump_to_location(result[1], 'utf-16')
+    vim.lsp.util.jump_to_location(result[1], enc)
   else
-    vim.lsp.util.jump_to_location(result, 'utf-16')
+    vim.lsp.util.jump_to_location(result, enc)
   end
 end
 
 -- golang organize imports
 GoOrgImports = function(timeoutms)
   local context = { source = { organizeImports = true } }
+  local enc = vim.lsp.util._get_offset_encoding(0)
   vim.validate { context = { context, 't', true } }
-  local params = vim.lsp.util.make_range_params(0, 'utf-16')
+  local params = vim.lsp.util.make_range_params(0, enc)
   params.context = context
   local method = 'textDocument/codeAction'
   local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
@@ -39,9 +41,9 @@ GoOrgImports = function(timeoutms)
     local result = resp[1].result
     if result and result[1] then
       local edit = result[1].edit
-      vim.lsp.util.apply_workspace_edit(edit, 'utf-16')
+      vim.lsp.util.apply_workspace_edit(edit, enc)
     end
   end
 
-  vim.lsp.buf.formatting_sync(nil, 1000)
+  vim.lsp.buf.formatting_sync(nil, 3000)
 end
