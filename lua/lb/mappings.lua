@@ -63,10 +63,34 @@ mappings.window = {
     ['<Leader>w='] = { '<C-W>=', 'make all windows size equally' },
     ['<Leader>ws'] = { '<C-W>s', 'split current window in two' },
     ['<Leader>wv'] = { '<C-W>v', 'split vertically current window' },
-    ['<Leader>w+'] = { '<C-W>5+', 'increase window height' },
-    ['<Leader>w-'] = { '<C-W>5-', 'decrease window height' },
-    ['<Leader>w.'] = { '<C-W>5>', 'increase window width' },
-    ['<Leader>w,'] = { '<C-W>5<', 'decrease window width' },
+    ['<C-Up>'] = {
+      function()
+        require('smart-splits').resize_up()
+      end,
+      'Resize split up',
+    },
+    ['<C-Down>'] = {
+      function()
+        require('smart-splits').resize_down()
+      end,
+      'Resize split down',
+    },
+    ['<C-Left>'] = {
+      function()
+        require('smart-splits').resize_left()
+      end,
+      'Resize split left',
+    },
+    ['<C-Right>'] = {
+      function()
+        require('smart-splits').resize_right()
+      end,
+      'Resize split right',
+    },
+    -- ['<Leader>w+'] = { '<C-W>5+', 'increase window height' },
+    -- ['<Leader>w-'] = { '<C-W>5-', 'decrease window height' },
+    -- ['<Leader>w.'] = { '<C-W>5>', 'increase window width' },
+    -- ['<Leader>w,'] = { '<C-W>5<', 'decrease window width' },
   },
 }
 

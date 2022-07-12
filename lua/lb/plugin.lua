@@ -58,6 +58,7 @@ return packer.startup(function(use)
   use { 'folke/which-key.nvim' }
   use { 'rainbowhxch/accelerated-jk.nvim' }
   use { 'rcarriga/nvim-notify' }
+  use { 'mrjones2014/smart-splits.nvim' }
 
   use {
     'liubang/surround.nvim',
