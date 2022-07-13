@@ -63,25 +63,25 @@ mappings.window = {
     ['<Leader>w='] = { '<C-W>=', 'make all windows size equally' },
     ['<Leader>ws'] = { '<C-W>s', 'split current window in two' },
     ['<Leader>wv'] = { '<C-W>v', 'split vertically current window' },
-    ['<C-Up>'] = {
+    ['<C-S-Up>'] = {
       function()
         require('smart-splits').resize_up()
       end,
       'Resize split up',
     },
-    ['<C-Down>'] = {
+    ['<C-S-Down>'] = {
       function()
         require('smart-splits').resize_down()
       end,
       'Resize split down',
     },
-    ['<C-Left>'] = {
+    ['<C-S-Left>'] = {
       function()
         require('smart-splits').resize_left()
       end,
       'Resize split left',
     },
-    ['<C-Right>'] = {
+    ['<C-S-Right>'] = {
       function()
         require('smart-splits').resize_right()
       end,
