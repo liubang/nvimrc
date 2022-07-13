@@ -59,14 +59,7 @@ return packer.startup(function(use)
   use { 'rainbowhxch/accelerated-jk.nvim' }
   use { 'rcarriga/nvim-notify' }
   use { 'mrjones2014/smart-splits.nvim' }
-
-  use {
-    'liubang/surround.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      require('surround').setup { mappings_style = 'sandwich' }
-    end,
-  }
+  use { 'kylechui/nvim-surround' }
 
   use {
     'norcalli/nvim-colorizer.lua',
