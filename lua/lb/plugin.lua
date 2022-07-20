@@ -166,6 +166,7 @@ return packer.startup(function(use)
   use { 'williamboman/nvim-lsp-installer' }
   use { 'j-hui/fidget.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }
+  use { 'simrat39/rust-tools.nvim' }
 
   -- completion
   use { 'hrsh7th/cmp-buffer' }

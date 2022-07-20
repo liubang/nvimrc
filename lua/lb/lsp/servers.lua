@@ -50,6 +50,7 @@ local get_default_driver = function()
   return result
 end
 
+-- clangd
 lspconfig.clangd.setup(c.default {
   cmd = {
     'clangd',
@@ -62,6 +63,7 @@ lspconfig.clangd.setup(c.default {
   },
 })
 
+-- gopls
 lspconfig.gopls.setup(c.default {
   -- share the gopls instance if there is one already
   cmd = { 'gopls', '-remote.debug=:0' },
@@ -90,9 +92,37 @@ lspconfig.gopls.setup(c.default {
   },
 })
 
+-- for rust
+require('rust-tools').setup {
+  tools = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      show_parameter_hints = false,
+      parameter_hints_prefix = '',
+      other_hints_prefix = '',
+    },
+  },
+
+  -- all the opts to send to nvim-lspconfig
+  server = c.default {
+    settings = {
+      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+      ['rust-analyzer'] = {
+        -- enable clippy on save
+        checkOnSave = {
+          command = 'clippy',
+        },
+      },
+    },
+  },
+}
+
+-- sumneko_lua
 lspconfig.sumneko_lua.setup(c.default(require('lua-dev').setup()))
 
-local servers = { 'bashls', 'cmake', 'texlab', 'intelephense', 'rust_analyzer' }
+-- some others use default config
+local servers = { 'bashls', 'cmake', 'texlab', 'intelephense' }
 
 for _, server in pairs(servers) do
   lspconfig[server].setup(c.default())
