@@ -7,6 +7,7 @@
 --
 --=====================================================================
 local M = {}
+local navic = require 'nvim-navic'
 
 local custom_init = function(client)
   client.config.flags = client.config.flags or {}
@@ -17,7 +18,9 @@ local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
 custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_attach = function(client, _)
+local custom_attach = function(client, bufnr)
+  navic.attach(client, bufnr)
+
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { buffer = 0 })

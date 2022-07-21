@@ -6,7 +6,7 @@
 -- Last Modified: 2022/02/24 20:57
 --
 --=====================================================================
-local gps = require 'nvim-gps'
+local navic = require 'nvim-navic'
 
 local lineinfo = function()
   local line = vim.fn.line '.'
@@ -88,7 +88,7 @@ require('lualine').setup {
         },
       },
       { filesize },
-      { gps.get_location, cond = gps.is_available },
+      { navic.get_location, cond = navic.is_available },
     },
     lualine_x = {
       lineinfo,

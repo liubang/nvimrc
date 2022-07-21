@@ -84,28 +84,39 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- nvim-gps
-require('nvim-gps').setup {
+-- nvim-navic
+vim.g.navic_silence = true
+require('nvim-navic').setup {
   icons = {
-    ['class-name'] = ' ', -- Classes and class-like objects
-    ['function-name'] = ' ', -- Functions
-    ['method-name'] = ' ', -- Methods (functions inside class-like objects)
-    ['container-name'] = ' ', -- Containers (example: lua tables)
-    ['tag-name'] = '炙', -- Tags (example: html tags)
+    File = ' ',
+    Module = ' ',
+    Namespace = ' ',
+    Package = ' ',
+    Class = ' ',
+    Method = ' ',
+    Property = ' ',
+    Field = ' ',
+    Constructor = ' ',
+    Enum = '練',
+    Interface = '練',
+    Function = ' ',
+    Variable = ' ',
+    Constant = ' ',
+    String = ' ',
+    Number = ' ',
+    Boolean = '◩ ',
+    Array = ' ',
+    Object = ' ',
+    Key = ' ',
+    Null = 'ﳠ ',
+    EnumMember = ' ',
+    Struct = ' ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ' ',
   },
-  -- Disable any languages individually over here
-  -- Any language not disabled here is enabled by default
-  languages = {
-    ['html'] = false,
-    ['java'] = false,
-    ['c'] = true,
-    ['cpp'] = true,
-    ['go'] = true,
-    ['php'] = true,
-    ['javascript'] = true,
-    ['lua'] = true,
-    ['python'] = true,
-    ['rust'] = true,
-  },
-  depth = 3,
+  highlight = false,
+  separator = ' > ',
+  depth_limit = 3,
+  depth_limit_indicator = '..',
 }

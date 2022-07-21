@@ -128,7 +128,7 @@ return packer.startup(function(use)
   -- treesitter
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   use { 'p00f/nvim-ts-rainbow' }
-  use { 'SmiteshP/nvim-gps' }
+  use { 'SmiteshP/nvim-navic' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
