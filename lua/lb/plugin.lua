@@ -78,34 +78,11 @@ return packer.startup(function(use)
     end,
   }
 
-  use {
-    'voldikss/vim-floaterm',
-    cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermKill' },
-    config = function()
-      vim.g.floaterm_wintype = 'floating'
-      vim.g.floaterm_position = 'center'
-      vim.g.floaterm_autoinsert = true
-      vim.g.floaterm_width = 0.8
-      vim.g.floaterm_height = 0.8
-      vim.g.floaterm_title = 'terminal [$1/$2]'
-    end,
-  }
-
   use { 'anuvyklack/pretty-fold.nvim' }
-
+  use { 'voldikss/vim-floaterm' }
   use { 'skywind3000/asyncrun.vim' }
   use { 'skywind3000/asyncrun.extra' }
-  use {
-    'skywind3000/asynctasks.vim',
-    config = function()
-      vim.g.asyncrun_open = 25
-      vim.g.asyncrun_bell = 1
-      vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', '_darcs', 'build.xml' }
-      vim.g.asynctasks_term_pos = 'floaterm'
-      vim.g.asynctasks_term_reuse = 0
-    end,
-  }
-
+  use { 'skywind3000/asynctasks.vim' }
   use { 'nvim-lua/plenary.nvim' }
   use { 'sindrets/diffview.nvim' }
   use { 'lewis6991/gitsigns.nvim' }
