@@ -9,6 +9,32 @@
 
 local notify = require 'notify'
 local devicons = require 'nvim-web-devicons'
+local fold = require 'pretty-fold'
+
+fold.setup {
+  fill_char = '-',
+  comment_signs = {},
+  keep_indentation = false,
+  sections = {
+    left = {
+      '+',
+      function()
+        return string.rep('-', vim.v.foldlevel)
+      end,
+      'content',
+    },
+    right = {
+      ' ',
+      'number_of_folded_lines',
+      ': ',
+      'percentage',
+      ' ',
+      function(config)
+        return config.fill_char:rep(3)
+      end,
+    },
+  },
+}
 
 notify.setup {
   -- Animation style (see below for details)
@@ -50,7 +76,6 @@ notify.setup {
 }
 
 vim.notify = notify
-vim.o.background = 'dark'
 
 devicons.setup {
   override = {
@@ -167,35 +192,18 @@ devicons.setup {
 
 ---------------- color_scheme ----------------
 
-if vim.g.color_scheme == 'gruvbox-material' then
-  vim.g.gruvbox_filetype_hi_groups = 1
-  vim.g.gruvbox_plugin_hi_groups = 1
-  vim.g.gruvbox_transp_bg = 1
-  vim.g.gruvbox_material_enable_italic = 0
-  vim.g.gruvbox_material_disable_italic_comment = 0
-  vim.g.gruvbox_material_background = 'soft'
-  vim.g.gruvbox_material_better_performance = 1
-  -- vim.g.gruvbox_material_transparent_background = 1
-  vim.cmd 'colorscheme gruvbox-material'
-else
-  require('kanagawa').setup {
-    undercurl = true, -- enable undercurls
-    commentStyle = 'italic',
-    functionStyle = 'NONE',
-    keywordStyle = 'NONE',
-    statementStyle = 'bold',
-    typeStyle = 'NONE',
-    variablebuiltinStyle = 'bold',
-    specialReturn = true, -- special highlight for the return keyword
-    specialException = true, -- special highlight for exception handling keywords
-    transparent = false, -- do not set background color
-    dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-    globalStatus = true, -- adjust window separators highlight for laststatus=3
-    colors = {},
-    overrides = {},
-  }
-  vim.cmd 'colorscheme kanagawa'
-end
+-- if vim.g.color_scheme == 'gruvbox-material' then
+vim.o.background = 'dark'
+vim.g.gruvbox_material_foreground = 'material'
+vim.g.gruvbox_filetype_hi_groups = 1
+vim.g.gruvbox_plugin_hi_groups = 1
+vim.g.gruvbox_transp_bg = 1
+vim.g.gruvbox_material_enable_italic = 0
+vim.g.gruvbox_material_disable_italic_comment = 0
+vim.g.gruvbox_material_background = 'soft'
+vim.g.gruvbox_material_better_performance = 1
+-- vim.g.gruvbox_material_transparent_background = 1
+vim.cmd 'colorscheme gruvbox-material'
 
 vim.cmd [[ highlight! link LspSagaHoverBorder Grey ]]
 vim.cmd [[ highlight! link LspSagaDocTruncateLine Grey ]]

@@ -71,6 +71,7 @@ return packer.startup(function(use)
 
   use {
     'phaazon/hop.nvim',
+    branch = 'v2',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('hop').setup {}
@@ -90,35 +91,7 @@ return packer.startup(function(use)
     end,
   }
 
-  use {
-    'anuvyklack/pretty-fold.nvim',
-    config = function()
-      require('pretty-fold').setup {
-        fill_char = '-',
-        comment_signs = {},
-        keep_indentation = false,
-        sections = {
-          left = {
-            '+',
-            function()
-              return string.rep('-', vim.v.foldlevel)
-            end,
-            'content',
-          },
-          right = {
-            ' ',
-            'number_of_folded_lines',
-            ': ',
-            'percentage',
-            ' ',
-            function(config)
-              return config.fill_char:rep(3)
-            end,
-          },
-        },
-      }
-    end,
-  }
+  use { 'anuvyklack/pretty-fold.nvim' }
 
   use { 'skywind3000/asyncrun.vim' }
   use { 'skywind3000/asyncrun.extra' }

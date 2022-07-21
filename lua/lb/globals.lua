@@ -18,8 +18,6 @@ end
 -- use space as leader key
 vim.g.mapleader = ' '
 
-vim.g.color_scheme = 'gruvbox-material'
-
 -- disable distribution plugins
 vim.g.loaded_matchparen = 1
 vim.g.loaded_gzip = 1
@@ -51,4 +49,3 @@ _G.P = function(v)
   print(vim.inspect(v))
   return v
 end
--- _G.folds_render = require('lb.utils.folds').render
