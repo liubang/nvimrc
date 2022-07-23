@@ -12,10 +12,14 @@ local mp = require 'lb.mappings'
 
 wk.setup {
   plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    marks = false, -- shows a list of your marks on ' and `
+    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    spelling = {
+      enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      suggestions = 20, -- how many suggestions should be shown in the list?
+    },
     presets = {
-      operators = false, -- adds help for operators like d, y, ...
+      operators = true, -- adds help for operators like d, y, ...
       motions = false, -- adds help for motions
       text_objects = false, -- help for text objects triggered after entering an operator
       windows = true,
@@ -30,6 +34,12 @@ wk.setup {
     group = '+', -- symbol prepended to a group
   },
 
+  operators = {
+    gb = 'Togggle block comment',
+    gbc = 'Toggle block comment',
+    gc = 'Toggle line comment',
+    gcc = 'Toggle line comment',
+  },
   popup_mappings = {
     scroll_down = '<C-d>',
     scroll_up = '<C-u>',
@@ -38,7 +48,6 @@ wk.setup {
   window = {
     border = 'single', -- none/single/double/shadow
   },
-
   layout = {
     height = { min = 4, max = 50 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
@@ -59,18 +68,15 @@ wk.setup {
   hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' },
 
   triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
     i = { 'j', 'k' },
     v = { 'j', 'k' },
   },
 }
 
-local c = 0
 for _, section in pairs(mp) do
   for mode, mode_mp in pairs(section) do
     for b, i in pairs(mode_mp) do
       wk.register({ [b] = i }, { mode = mode })
-      c = c + 1
     end
   end
 end

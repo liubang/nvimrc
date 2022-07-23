@@ -164,7 +164,7 @@ mappings.hop = {
       end,
       'hint the beginning of each lines',
     },
-    ['<Leader>jj'] = {
+    ['<leader>jj'] = {
       function()
         require('hop').hint_lines()
       end,
