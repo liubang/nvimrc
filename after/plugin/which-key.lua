@@ -67,6 +67,7 @@ wk.setup {
 
   hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' },
 
+  triggers = {},
   triggers_blacklist = {
     i = { 'j', 'k' },
     v = { 'j', 'k' },
