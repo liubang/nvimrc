@@ -18,7 +18,7 @@ require('null-ls').setup {
       extra_args = { '-i', '2', '-ci' },
     },
     null_ls.builtins.formatting.prettier.with {
-      filetypes = { 'json', 'yaml', 'markdown' },
+      filetypes = { 'json', 'yaml', 'markdown', 'php' },
     },
   },
 }

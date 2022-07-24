@@ -136,11 +136,18 @@ require('rust-tools').setup {
   },
 }
 
+-- phpactor
+lspconfig.phpactor.setup(c.default {
+  init_options = {
+    ['language_server_phpstan.enabled'] = true,
+  },
+})
+
 -- sumneko_lua
 lspconfig.sumneko_lua.setup(c.default(require('lua-dev').setup()))
 
 -- some others use default config
-local servers = { 'bashls', 'cmake', 'texlab', 'intelephense' }
+local servers = { 'bashls', 'cmake', 'texlab' }
 
 for _, server in pairs(servers) do
   lspconfig[server].setup(c.default())
