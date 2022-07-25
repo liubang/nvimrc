@@ -6,4 +6,4 @@
 -- Last Modified: 2022/03/28 14:06
 --
 --=====================================================================
-vim.cmd 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2'
+vim.cmd 'setlocal noexpandtab tabstop=2 shiftwidth=2 softtabstop=2'

@@ -10,26 +10,41 @@ local c = require 'lb.lsp.customs'
 local Job = require 'plenary.job'
 local lspconfig = require 'lspconfig'
 
-require('nvim-lsp-installer').setup {
-  automatic_installation = true,
+require('mason').setup {
   ui = {
-    check_outdated_servers_on_open = true,
+    border = 'single',
     icons = {
-      server_installed = ' ',
-      server_pending = ' ',
-      server_uninstalled = ' ﮊ',
+      package_installed = ' ',
+      package_pending = ' ',
+      package_uninstalled = ' ﮊ',
     },
     keymaps = {
-      toggle_server_expand = '<CR>',
-      install_server = 'i',
-      update_server = 'u',
-      check_server_version = 'c',
-      update_all_servers = 'U',
-      check_outdated_servers = 'C',
-      uninstall_server = 'X',
+      -- Keymap to expand a package
+      toggle_package_expand = '<CR>',
+      -- Keymap to install the package under the current cursor position
+      install_package = 'i',
+      -- Keymap to reinstall/update the package under the current cursor position
+      update_package = 'u',
+      -- Keymap to check for new version for the package under the current cursor position
+      check_package_version = 'c',
+      -- Keymap to update all installed packages
+      update_all_packages = 'U',
+      -- Keymap to check which installed packages are outdated
+      check_outdated_packages = 'C',
+      -- Keymap to uninstall a package
+      uninstall_package = 'X',
+      -- Keymap to cancel a package installation
+      cancel_installation = '<C-c>',
+      -- Keymap to apply language filter
+      apply_language_filter = '<C-f>',
     },
   },
-  max_concurrent_installers = 20,
+  max_concurrent_installers = 4,
+}
+
+require('mason-lspconfig').setup {
+  ensure_installed = {},
+  automatic_installation = true,
 }
 
 --- for cpp
