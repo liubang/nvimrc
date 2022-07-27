@@ -7,6 +7,7 @@
 --
 --=====================================================================
 require('nvim-treesitter.install').prefer_git = true
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -26,7 +27,7 @@ require('nvim-treesitter.configs').setup {
   },
 
   indent = {
-    enable = false,
+    enable = true,
   },
 
   context_commentstring = {
@@ -35,6 +36,7 @@ require('nvim-treesitter.configs').setup {
   },
 
   textobjects = {
+    lsp_interop = { enable = false },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
@@ -57,7 +59,6 @@ require('nvim-treesitter.configs').setup {
     },
     select = {
       enable = true,
-
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
       keymaps = {
@@ -67,13 +68,6 @@ require('nvim-treesitter.configs').setup {
         ['ac'] = '@class.outer',
         ['ic'] = '@class.inner',
       },
-    },
-  },
-
-  textsubjects = {
-    enable = true,
-    keymaps = {
-      ['<cr>'] = 'textsubjects-smart', -- works in visual mode
     },
   },
 

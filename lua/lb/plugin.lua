@@ -103,10 +103,10 @@ return packer.startup(function(use)
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
   -- treesitter
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   use { 'p00f/nvim-ts-rainbow' }
   use { 'SmiteshP/nvim-navic' }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- lsp
   -- use { 'lewis6991/hover.nvim' }
