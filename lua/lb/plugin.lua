@@ -113,7 +113,7 @@ return packer.startup(function(use)
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
   use { 'folke/lua-dev.nvim' }
-  use { 'kkharji/lspsaga.nvim' }
+  use { 'glepnir/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'j-hui/fidget.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }

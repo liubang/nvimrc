@@ -111,7 +111,7 @@ lspconfig.gopls.setup(c.default {
         upgrade_dependency = true,
       },
       experimentalUseInvalidMetadata = true,
-      hoverKind = 'Structured',
+      hoverKind = 'FullDocumentation',
       usePlaceholders = true,
       completeUnimported = true,
       staticcheck = true,
