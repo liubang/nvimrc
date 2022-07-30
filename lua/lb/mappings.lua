@@ -300,12 +300,6 @@ mappings.telescope = {
       end,
       'find commands',
     },
-    ['<Leader>es'] = {
-      function()
-        require('telescope.builtin').diagnostics { bufnr = 0 }
-      end,
-      'show diagnostics in current buffer',
-    },
     ['<Leader>ts'] = {
       function()
         require('telescope').extensions.tasks.tasks()

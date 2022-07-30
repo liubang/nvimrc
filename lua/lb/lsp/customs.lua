@@ -26,17 +26,17 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gr', require('telescope.builtin').lsp_references, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>rn', require('lspsaga.rename').lsp_rename, { buffer = 0 })
   vim.keymap.set(
     'n',
     '<Leader>ee',
     require('lspsaga.diagnostic').show_line_diagnostics,
     { buffer = 0 }
   )
-  vim.keymap.set('n', '<Leader>ef', function()
+  vim.keymap.set('n', '<Leader>es', function()
     require('telescope.builtin').diagnostics { bufnr = 0 }
   end, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>ca', require('lspsaga.codeaction').code_action, { buffer = 0 })
   vim.keymap.set(
     'n',
     '<C-k>',
