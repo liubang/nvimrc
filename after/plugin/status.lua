@@ -18,24 +18,6 @@ local mode = function()
   return '\u{e7c5} ' .. require('lualine.utils.mode').get_mode()
 end
 
-local filesize = function()
-  local file = vim.fn.expand '%:p'
-  if file == nil or #file == 0 then
-    return ''
-  end
-  local size = vim.fn.getfsize(file)
-  if size <= 0 then
-    return ''
-  end
-  local sufixes = { 'B', 'K', 'M', 'G' }
-  local i = 1
-  while size > 1024 and i < #sufixes do
-    size = size / 1024
-    i = i + 1
-  end
-  return string.format('%.1f%s', size, sufixes[i])
-end
-
 local lspprovider = function()
   local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
   local clients = vim.lsp.get_active_clients()
@@ -87,7 +69,7 @@ require('lualine').setup {
           unnamed = '[No Name]',
         },
       },
-      { filesize },
+      { 'filesize' },
       { navic.get_location, cond = navic.is_available },
     },
     lualine_x = {
