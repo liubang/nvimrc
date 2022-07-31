@@ -47,7 +47,7 @@ mappings.buffer = {
     ['<Leader>bn'] = { '<cmd>bnext<CR>', 'goto next buffer' },
     ['<Leader>bf'] = { '<cmd>bfirst<CR>', 'goto first buffer' },
     ['<Leader>bl'] = { '<cmd>blast<CR>', 'goto last buffer' },
-    ['<Leader>bd'] = { '<cmd>bdelete<CR>', 'delete current buffer' },
+    ['<Leader>bd'] = { '<cmd>Bdelete<CR>', 'delete current buffer' },
   },
 }
 

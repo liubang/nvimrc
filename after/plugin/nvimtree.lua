@@ -45,7 +45,6 @@ nvim_tree.setup {
     mappings = {
       custom_only = true,
       list = {
-        -- { key = 'm', cb = ':lua _G.lb_nvim_tree_context_menu()<CR>' },
         { key = { '<CR>', 'o' }, action = 'edit' },
         { key = 'a', action = 'create' },
         { key = 'v', action = 'vsplit' },
@@ -64,6 +63,7 @@ nvim_tree.setup {
   },
 }
 
-require('nvim-tree.events').on_file_created(function(file)
-  vim.cmd('edit ' .. file.fname)
+local api = require 'nvim-tree.api'
+api.events.subscribe(api.events.Event.FileCreated, function(data)
+  vim.cmd('edit ' .. data.fname)
 end)
