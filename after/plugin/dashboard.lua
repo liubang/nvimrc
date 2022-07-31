@@ -93,22 +93,22 @@ local buttons = {
   val = {
     button(
       'SPC ff',
-      '  > Find file',
+      '  > Find file',
       [[:lua require('telescope.builtin').find_files({previewer = false})<CR>]]
     ),
     button(
       'SPC bb',
-      '  > List buffers',
+      '  > List buffers',
       [[:lua require('telescope.builtin').buffers({previewer = false})<CR>]]
     ),
-    button('SPC ag', ' > Find word', [[:lua require('telescope.builtin').live_grep()<CR>]]),
+    button('SPC ag', '  > Find word', [[:lua require('telescope.builtin').live_grep()<CR>]]),
     button(
       'SPC wo',
       '  > List projects',
       [[:lua require('telescope').extensions.project.project({change_dir = true})<CR>]]
     ),
-    button('e', '  > New file', ':ene <BAR> startinsert <CR>'),
-    button('q', '  > Quit NVIM', ':qa<CR>'),
+    button('e', '  > New file', ':ene <BAR> startinsert <CR>'),
+    button('q', '  > Quit NVIM', ':qa<CR>'),
   },
   opts = {
     spacing = 1,
