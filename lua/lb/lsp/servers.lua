@@ -72,9 +72,14 @@ lspconfig.clangd.setup(c.default {
     '--background-index',
     '-j=4',
     '--suggest-missing-includes',
+    '--function-arg-placeholders',
     '--clang-tidy',
     '--header-insertion=never',
+    '--completion-style=detailed',
     '--query-driver=' .. get_default_driver(),
+    '--offset-encoding=utf-32',
+    '--enable-config',
+    '--fallback-style=google',
   },
 })
 
