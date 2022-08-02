@@ -93,7 +93,7 @@ local buttons = {
   val = {
     button(
       'SPC ff',
-      '  > Find file',
+      '  > Find file',
       [[:lua require('telescope.builtin').find_files({previewer = false})<CR>]]
     ),
     button(
