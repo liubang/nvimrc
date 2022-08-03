@@ -72,6 +72,9 @@ cmp.setup {
       return vim_item
     end,
   },
+  view = {
+    entries = { name = 'custom', selection_order = 'near_cursor' },
+  },
   mapping = cmp.mapping.preset.insert {
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm { select = true },
@@ -105,7 +108,6 @@ cmp.setup {
       's',
     }),
   },
-
   sources = {
     { name = 'luasnip' },
     { name = 'nvim_lua' },
@@ -113,9 +115,6 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'calc' },
-  },
-  experimental = {
-    -- native_menu = false,
   },
 }
 
