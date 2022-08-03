@@ -113,9 +113,12 @@ mappings.terminal = {
 
 --------- plugins key mappings
 
-mappings.nvimtree = {
+mappings.neotree = {
   n = {
-    ['<Leader>ft'] = { '<cmd>NvimTreeToggle<CR>', '   toggle nvimtree' },
+    ['<Leader>ft'] = {
+      '<cmd>Neotree action=show source=filesystem position=left toggle=true reveal=true<CR>',
+      '   toggle neotree',
+    },
   },
 }
 

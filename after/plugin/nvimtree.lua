@@ -7,6 +7,10 @@
 --
 -- =====================================================================
 
+if true then
+  return
+end
+
 local nvim_tree = require 'nvim-tree'
 
 nvim_tree.setup {
