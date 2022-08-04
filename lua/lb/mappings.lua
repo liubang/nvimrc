@@ -116,7 +116,7 @@ mappings.terminal = {
 mappings.neotree = {
   n = {
     ['<Leader>ft'] = {
-      '<cmd>Neotree action=show source=filesystem position=left toggle=true reveal=true<CR>',
+      '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>',
       '   toggle neotree',
     },
   },
