@@ -43,7 +43,7 @@ return packer.startup(function(use)
   use { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } }
   -- use { 'kyazdani42/nvim-tree.lua' }
   use { 'MunifTanjim/nui.nvim' }
-  use { 's1n7ax/nvim-window-picker' }
+  use { 's1n7ax/nvim-window-picker', tag = '1.*' }
   use { 'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x' }
 
   -- performance
