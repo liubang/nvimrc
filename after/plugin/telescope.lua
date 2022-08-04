@@ -11,13 +11,15 @@ local actions = require 'telescope.actions'
 local telescope = require 'telescope'
 
 local dropdown_borderchars = {
-  results = { '▔', '▕', '▁', '▏', '🭽', '🭾', '🭿', '🭼' },
-  prompt = { '▔', '▕', '▁', '▏', '🭽', '🭾', '🭿', '🭼' },
+  { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+  results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
+  prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
+  preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
 }
 
 local dropdown_layout_config = {
-  width = 0.6,
-  height = 20,
+  width = 0.55,
+  height = 25,
 }
 
 telescope.setup {
@@ -97,6 +99,14 @@ telescope.setup {
       layout_config = dropdown_layout_config,
     },
     grep_string = {
+      theme = 'dropdown',
+      previewer = false,
+      prompt_title = false,
+      results_title = false,
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
+    },
+    live_grep = {
       theme = 'dropdown',
       previewer = false,
       prompt_title = false,
