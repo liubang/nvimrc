@@ -108,8 +108,8 @@ require('neo-tree').setup {
     icon = {
       folder_closed = '',
       folder_open = '',
-      folder_empty = 'ﰊ',
-      default = '*',
+      folder_empty = '',
+      default = '',
       highlight = 'NeoTreeFileIcon',
     },
     modified = {

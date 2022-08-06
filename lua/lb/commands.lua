@@ -40,27 +40,27 @@ vim.schedule(function()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelRules', function()
-    require('telescope').expand.bazel.bazel_rules()
+    require('telescope').extensions.bazel.bazel_rules()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelTests', function()
-    require('telescope').expand.bazel.bazel_tests()
+    require('telescope').extensions.bazel.bazel_tests()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelBinaries', function()
-    require('telescope').expand.bazel.bazel_binaries()
+    require('telescope').extensions.bazel.bazel_binaries()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelCCRules', function()
-    require('telescope').expand.bazel.bazel_cc_rules()
+    require('telescope').extensions.bazel.bazel_cc_rules()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelCCTests', function()
-    require('telescope').expand.bazel.bazel_cc_tests()
+    require('telescope').extensions.bazel.bazel_cc_tests()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('BazelCCBinaries', function()
-    require('telescope').expand.bazel.bazel_cc_binaries()
+    require('telescope').extensions.bazel.bazel_cc_binaries()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('LspDebug', function()

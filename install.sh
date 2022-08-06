@@ -51,8 +51,8 @@ if [ $ostype == 'macos' ]; then
 elif [ $ostype == 'linux' ]; then
   if [ $linux_type == 'centos' ]; then
     # install rg
-    sudo yum-config-manager \ 
-    --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+    sudo yum-config-manager \
+      --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
     sudo yum install ripgrep -y
     # install yarn
     curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
@@ -63,7 +63,7 @@ elif [ $ostype == 'linux' ]; then
     sudo systemctl enable --now snapd.socket
     sudo ln -s /var/lib/snapd/snap /snap
     sudo snap install ccls --classic
-  elif [$linux_type == 'ubuntu' ]; then
+  elif [ $linux_type == 'ubuntu' ]; then
     # install rg
     sudo apt-get install ripgrep xclip -y
     # install yarn

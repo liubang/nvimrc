@@ -19,14 +19,17 @@ local actions = require 'telescope.actions'
 
 local bazel_finder = function(opts, title, kind)
   -- check if bazel installed
-  if 1 ~= vim.fn.executable 'bazel' then
-    print 'ERROR: You need to install bazel'
+  if vim.fn.executable 'bazel' ~= 1 then
+    vim.notify('You need to install bazel', vim.log.levels.ERROR)
     return
   end
 
   local root = vim.fn['asyncrun#get_root'](vim.fn.expand '%', { 'WORKSPACE' }, 1)
   if root == '' or 0 == vim.fn.filereadable(string.format('%s/WORKSPACE', vim.fn.expand(root))) then
-    print 'ERROR: The "bazel" command is only supported from within a workspace (below a directory having a WORKSPACE file).'
+    vim.notify(
+      'The bazel command is only supported within a workspace (below a directory having a WORKSPACE file)',
+      vim.log.levels.ERROR
+    )
     return
   end
 
@@ -40,29 +43,31 @@ local bazel_finder = function(opts, title, kind)
     '--output=label',
   }
 
-  pickers.new(opts, {
-    prompt_title = title,
-    finder = finders.new_oneshot_job(find_command, opts),
-    sorter = sorters.get_fzy_sorter(),
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        local selection = actions.get_selected_entry()
-        actions.close(prompt_bufnr)
-        if selection.value ~= '' then
-          local cmd = 'AsyncRun -mode=term -pos=right'
-          if kind:match 'test' ~= nil then
-            cmd = string.format('%s bazel test %s', cmd, selection.value)
-          elseif kind:match 'binary' ~= nil then
-            cmd = string.format('%s bazel run %s', cmd, selection.value)
-          else
-            cmd = string.format('%s bazel build %s', cmd, selection.value)
+  pickers
+    .new(opts, {
+      prompt_title = title,
+      finder = finders.new_oneshot_job(find_command, opts),
+      sorter = sorters.get_fzy_sorter(),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          local selection = actions.get_selected_entry()
+          actions.close(prompt_bufnr)
+          if selection.value ~= '' then
+            local cmd = 'AsyncRun -mode=term -pos=right'
+            if kind:match 'test' ~= nil then
+              cmd = string.format('%s bazel test %s', cmd, selection.value)
+            elseif kind:match 'binary' ~= nil then
+              cmd = string.format('%s bazel run %s', cmd, selection.value)
+            else
+              cmd = string.format('%s bazel build %s', cmd, selection.value)
+            end
+            vim.cmd(cmd)
           end
-          vim.cmd(cmd)
-        end
-      end)
-      return true
-    end,
-  }):find()
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 local bazel_rules = function(opts)

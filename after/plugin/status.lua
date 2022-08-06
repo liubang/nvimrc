@@ -71,7 +71,6 @@ lualine.setup {
     component_separators = '',
     section_separators = '',
     always_divide_middle = true,
-    disabled_filetypes = { 'NvimTree', 'Outline' },
     globalstatus = true,
   },
   sections = {
@@ -129,12 +128,15 @@ lualine.setup {
 fidget.setup {
   text = {
     spinner = 'dots',
-    done = ' ',
+    done = '✔',
   },
   align = {
     bottom = true,
+    right = true,
   },
   window = {
-    relative = 'editor',
+    relative = 'win',
+    blend = 100,
+    zindex = nil,
   },
 }

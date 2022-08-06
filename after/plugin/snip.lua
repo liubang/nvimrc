@@ -13,15 +13,26 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
+local rep = require('luasnip.extras').rep
+local fmt = require('luasnip.extras.fmt').fmt
 local fmta = require('luasnip.extras.fmt').fmta
 local calculate_comment_string = require('Comment.ft').calculate
 local region = require('Comment.utils').get_region
+local types = require 'luasnip.util.types'
+local author = 'liubang'
 
 ls.config.setup {
   history = true,
   updateevents = 'TextChanged,TextChangedI',
   delete_check_events = 'TextChanged',
-  ext_opts = {},
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { 'choiceNode', 'Comment' } },
+      },
+    },
+  },
+  store_selection_keys = '<Tab>',
 }
 
 local get_cstring = function(ctype)
@@ -38,7 +49,7 @@ local todo_snippet_nodes = function(aliases, opts)
     return i(nil, alias)
   end, aliases)
   -- format them into the actual snippet
-  local comment_node = fmta('<> <>(liubang): <> <>', {
+  local comment_node = fmta('<> <>(' .. author .. '): <> <>', {
     f(function()
       return get_cstring(opts.ctype)[1]
     end),
@@ -70,13 +81,13 @@ local todo_snippet_specs = {
   { { trig = 'todo' }, 'TODO' },
   { { trig = 'fix' }, { 'FIX', 'BUG', 'ISSUE', 'FIXIT' } },
   { { trig = 'hack' }, 'HACK' },
-  { { trig = 'warn' }, { 'WARN', 'WARNING', 'XXX' } },
+  { { trig = 'warn' }, { 'WARN', 'WARNING' } },
   { { trig = 'perf' }, { 'PERF', 'PERFORMANCE', 'OPTIM', 'OPTIMIZE' } },
   { { trig = 'note' }, { 'NOTE', 'INFO' } },
   { { trig = 'todob' }, 'TODO', { ctype = 2 } },
   { { trig = 'fixb' }, { 'FIX', 'BUG', 'ISSUE', 'FIXIT' }, { ctype = 2 } },
   { { trig = 'hackb' }, 'HACK', { ctype = 2 } },
-  { { trig = 'warnb' }, { 'WARN', 'WARNING', 'XXX' }, { ctype = 2 } },
+  { { trig = 'warnb' }, { 'WARN', 'WARNING' }, { ctype = 2 } },
   { { trig = 'perfb' }, { 'PERF', 'PERFORMANCE', 'OPTIM', 'OPTIMIZE' }, { ctype = 2 } },
   { { trig = 'noteb' }, { 'NOTE', 'INFO' }, { ctype = 2 } },
 }
@@ -113,7 +124,7 @@ ls.add_snippets('cpp', {
     i(1, { '// put your code hare' }),
     t { '', '\treturn 0;', '}' },
   }),
-  s({ trig = 'ignore' }, {
+  s({ trig = 'formatoff' }, {
     t { '// clang-format off', '' },
     i(1, { '' }),
     t { '', '// clang-format on' },
@@ -135,7 +146,7 @@ ls.add_snippets('c', {
 }, { type = 'snippets', key = 'c' })
 
 ls.add_snippets('lua', {
-  s({ trig = 'ignore' }, {
+  s({ trig = 'formatoff' }, {
     t '-- stylua: ignore',
   }),
   s({ trig = 'fun' }, {
@@ -146,6 +157,49 @@ ls.add_snippets('lua', {
     t { '', 'end' },
   }),
 }, { type = 'snippets', key = 'lua' })
+
+ls.add_snippets('markdown', {
+  -- Markdown: Definition comment tag
+  s(
+    'defn',
+    fmt(
+      [[
+          <!-- Definition: {} -->
+
+          > **{}:** {}
+      ]],
+      {
+        i(1),
+        rep(1),
+        i(0),
+      }
+    )
+  ),
+  -- Markdown: Embed image
+  s('img', {
+    t '![](./',
+    i(0),
+    t ')',
+  }),
+  -- Markdown: Left arrow
+  s('<-', t '←'),
+  -- Markdown: Right arrow
+  s('->', t '→'),
+  -- Markdown: Left double arrow
+  s('<=', t '⇐'),
+  -- Markdown: Right double arrow
+  s('=>', t '⇒'),
+  -- Markdown: Less than or equal to
+  s('<=', t '≤'),
+  -- Markdown: Greater than or equal to
+  s('>=', t '≥'),
+  -- Markdown: Headers
+  s({ trig = '^%s*h(%d)', regTrig = true }, {
+    f(function(_, snip)
+      return string.rep('#', snip.captures[1])
+    end),
+  }),
+})
 
 vim.keymap.set({ 'i', 's' }, '<C-n>', function()
   if ls.choice_active() then

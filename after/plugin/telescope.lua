@@ -11,9 +11,8 @@ local actions = require 'telescope.actions'
 local telescope = require 'telescope'
 
 local dropdown_borderchars = {
-  { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-  results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
   prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
+  results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
   preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
 }
 
@@ -154,6 +153,20 @@ telescope.setup {
     },
     project = {
       hidden_files = true,
+      previewer = false,
+      results_title = false,
+      theme = 'dropdown',
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
+    },
+    tasks = {
+      theme = 'dropdown',
+      prompt_position = 'top',
+      previewer = false,
+      prompt_title = false,
+      results_title = false,
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
     },
   },
 }
