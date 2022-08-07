@@ -7,10 +7,10 @@
 --
 --=====================================================================
 
-local M = {}
+local tags = {}
 local gomodify = 'gomodifytags'
 
-M.modify = function(...)
+tags.modify = function(...)
   local fname = vim.fn.expand '%' -- %:p:h ? %:p
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local ns = require('lb.ts.go').get_struct_node_at_pos(row, col)
@@ -72,7 +72,7 @@ M.modify = function(...)
 end
 
 -- e.g {"json,xml", "-transform", "camelcase"}
-M.add = function(...)
+tags.add = function(...)
   local cmd = { '-add-tags' }
   local arg = { ... }
   if #arg == 0 then
@@ -83,10 +83,10 @@ M.add = function(...)
     table.insert(cmd, v)
   end
 
-  M.modify(unpack(cmd))
+  tags.modify(unpack(cmd))
 end
 
-M.rm = function(...)
+tags.rm = function(...)
   local cmd = { '-remove-tags' }
   local arg = { ... }
   if #arg == 0 then
@@ -95,12 +95,12 @@ M.rm = function(...)
   for _, v in ipairs(arg) do
     table.insert(cmd, v)
   end
-  M.modify(unpack(cmd))
+  tags.modify(unpack(cmd))
 end
 
-M.clear = function()
+tags.clear = function()
   local cmd = { '-clear-tags' }
-  M.modify(unpack(cmd))
+  tags.modify(unpack(cmd))
 end
 
-return M
+return tags

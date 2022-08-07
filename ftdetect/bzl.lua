@@ -1,1 +1,1 @@
-vim.cmd [[autocmd BufNewFile,BufRead .bazelrc set filetype=bzl]]
+vim.cmd [[autocmd BufNewFile,BufRead .bazelrc,BUILD,WORKSPACE set filetype=bzl]]

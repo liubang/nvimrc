@@ -24,6 +24,7 @@ local sources = {
     filetypes = { 'markdown' },
   },
   b.diagnostics.shellcheck,
+  b.diagnostics.buildifier,
 }
 
 local setup = function()

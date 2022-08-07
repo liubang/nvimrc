@@ -12,6 +12,16 @@ require('window-picker').setup()
 require('neo-tree').setup {
   enable_diagnostics = false,
   close_if_last_window = true,
+  event_handlers = {
+    {
+      event = 'file_added',
+      handler = function(arg)
+        if vim.fn.isdirectory(arg) then
+          vim.cmd('e ' .. arg)
+        end
+      end,
+    },
+  },
   filesystem = {
     follow_current_file = true,
     use_libuv_file_watcher = false,
