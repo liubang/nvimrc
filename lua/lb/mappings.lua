@@ -147,9 +147,9 @@ mappings.floaterm = {
 
 mappings.asynctask = {
   n = {
-    ['<C-x>'] = { '<cmd>AsyncTask file-build-and-run<CR>', 'build and execute current file' },
-    ['<C-b>'] = { '<cmd>AsyncTask file-build<CR>', 'build current file' },
-    ['<C-r>'] = { '<cmd>AsyncTask file-run<CR>', 'execute current file' },
+    ['<C-x>'] = { '<cmd>AsyncTask build-and-run<CR>', 'build and execute current file' },
+    ['<C-b>'] = { '<cmd>AsyncTask build<CR>', 'build current file' },
+    ['<C-r>'] = { '<cmd>AsyncTask run<CR>', 'execute current file' },
   },
 }
 
