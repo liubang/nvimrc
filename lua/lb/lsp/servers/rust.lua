@@ -11,24 +11,25 @@ local c = require 'lb.lsp.customs'
 local setup = function()
   require('rust-tools').setup {
     tools = {
-      autoSetHints = true,
-      hover_with_actions = true,
       inlay_hints = {
+        auto = true,
         show_parameter_hints = false,
-        parameter_hints_prefix = '',
-        other_hints_prefix = '',
+        parameter_hints_prefix = '<- ',
+        other_hints_prefix = '=> ',
+        highlight = 'Comment',
       },
     },
 
     -- all the opts to send to nvim-lspconfig
     server = c.default {
+      standalone = false,
       settings = {
         -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
         ['rust-analyzer'] = {
           -- enable clippy on save
-          checkOnSave = {
-            command = 'clippy',
-          },
+          -- checkOnSave = {
+          --   command = 'clippy',
+          -- },
         },
       },
     },
