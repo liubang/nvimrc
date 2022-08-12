@@ -9,7 +9,6 @@
 
 local actions = require 'telescope.actions'
 local telescope = require 'telescope'
-local themes = require 'telescope.themes'
 
 local dropdown_borderchars = {
   prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
@@ -24,7 +23,6 @@ local dropdown_layout_config = {
 
 telescope.setup {
   defaults = {
-    theme = 'dropdown',
     prompt_prefix = '   ',
     prompt_title = false,
     results_title = false,
@@ -139,7 +137,14 @@ telescope.setup {
       borderchars = dropdown_borderchars,
       layout_config = dropdown_layout_config,
     },
-
+    diagnostics = {
+      theme = 'dropdown',
+      previewer = false,
+      prompt_title = false,
+      results_title = false,
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
+    },
     man_pages = { sections = { '2', '3' } },
     lsp_document_symbols = { path_display = { 'hidden' } },
     lsp_workspace_symbols = { path_display = { 'shorten' } },

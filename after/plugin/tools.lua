@@ -21,3 +21,31 @@ vim.g.asyncrun_bell = 1
 vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
 vim.g.asynctasks_term_pos = 'floaterm'
 vim.g.asynctasks_term_reuse = 1
+
+-- nvim-surround
+require('nvim-surround').setup {
+  keymaps = { -- vim-surround style keymaps
+    insert = false,
+    insert_line = false,
+    visual = 'S',
+    delete = 'ds',
+    change = 'cs',
+  },
+}
+
+-- smart-splits
+require('smart-splits').setup {
+  ignored_filetypes = {
+    'nofile',
+    'quickfix',
+    'NvimTree',
+    'Outline',
+    'qf',
+    'prompt',
+  },
+  ignored_buftypes = { 'NvimTree', 'Outline' },
+  resize_mode = {
+    quit_key = '<ESC>',
+    silent = true,
+  },
+}
