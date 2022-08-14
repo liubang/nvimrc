@@ -16,7 +16,7 @@ packer.init {
   compile_on_sync = true,
   display = {
     working_sym = 'ﲊ',
-    error_sym = '✗ ',
+    error_sym = ' ',
     done_sym = ' ',
     removed_sym = ' ',
     moved_sym = '',
@@ -38,9 +38,8 @@ return packer.startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'goolord/alpha-nvim' }
   use { 'sainnhe/gruvbox-material' }
-  use { 'akinsho/nvim-bufferline.lua', tag = 'v2.*' }
+  use { 'romgrk/barbar.nvim' }
   use { 'nvim-lualine/lualine.nvim' }
-  use { 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } }
   -- use { 'kyazdani42/nvim-tree.lua' }
   use { 'MunifTanjim/nui.nvim' }
   use { 's1n7ax/nvim-window-picker', tag = '1.*' }

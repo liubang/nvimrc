@@ -7,7 +7,6 @@
 --
 --=====================================================================
 
-local lsp = require 'lb.lsp'
 local saga = require 'lspsaga'
 local navic = require 'nvim-navic'
 
@@ -64,6 +63,3 @@ navic.setup {
   depth_limit = 3,
   depth_limit_indicator = '..',
 }
-
--- lsp setup
-lsp.setup()

@@ -91,7 +91,6 @@ vim.g.gruvbox_material_enable_italic = 0
 vim.g.gruvbox_material_disable_italic_comment = 0
 vim.g.gruvbox_material_background = 'soft'
 vim.g.gruvbox_material_better_performance = 1
--- vim.g.gruvbox_material_transparent_background = 1
 vim.cmd 'colorscheme gruvbox-material'
 
 vim.cmd [[ highlight! link LspSagaHoverBorder Grey ]]
@@ -105,3 +104,20 @@ vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSi
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
+-- override some plugins color
+local configuration = vim.fn['gruvbox_material#get_configuration']()
+local palette = vim.fn['gruvbox_material#get_palette'](
+  configuration.background,
+  configuration.foreground,
+  configuration.colors_override
+)
+
+vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
+  bold = false,
+  bg = palette.bg_statusline1[1],
+  fg = palette.fg1[1],
+  -- ctermbg = palette.red[2],
+  -- ctermfg = palette.red[2],
+  default = false,
+})

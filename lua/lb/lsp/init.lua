@@ -7,13 +7,7 @@
 --
 -- =====================================================================
 
-local setup = function()
-  require 'lb.lsp.servers'
-  require 'lb.lsp.handlers'
-  require 'lb.lsp.events'
-  require 'lb.lsp.installer'
-end
-
-return {
-  setup = setup,
-}
+require 'lb.lsp.servers'
+require 'lb.lsp.handlers'
+require 'lb.lsp.events'
+require 'lb.lsp.installer'
