@@ -113,11 +113,51 @@ local palette = vim.fn['gruvbox_material#get_palette'](
   configuration.colors_override
 )
 
+vim.api.nvim_set_hl(0, 'BufferCurrent', {
+  bold = true,
+  bg = palette.grey2[1],
+  fg = palette.bg0[1],
+  default = false,
+})
+
+vim.api.nvim_set_hl(0, 'BufferCurrentIndex', {
+  bold = true,
+  bg = palette.grey2[1],
+  fg = palette.bg0[1],
+  default = false,
+})
+
+vim.api.nvim_set_hl(0, 'BufferCurrentTarget', {
+  bold = false,
+  bg = palette.grey2[1],
+  fg = palette.bg0[1],
+  default = false,
+})
+
+vim.api.nvim_set_hl(0, 'BufferCurrentSign', {
+  bold = false,
+  bg = palette.grey2[1],
+  fg = palette.bg0[1],
+  default = false,
+})
+
+vim.api.nvim_set_hl(0, 'BufferCurrentIcon', {
+  bold = false,
+  bg = palette.grey2[1],
+  fg = palette.bg0[1],
+  default = false,
+})
+
 vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
   bold = false,
   bg = palette.bg_statusline1[1],
   fg = palette.fg1[1],
-  -- ctermbg = palette.red[2],
-  -- ctermfg = palette.red[2],
+  default = false,
+})
+
+vim.api.nvim_set_hl(0, 'BufferInactive', {
+  bold = false,
+  bg = palette.bg_statusline3[1],
+  fg = palette.fg1[1],
   default = false,
 })
