@@ -11,7 +11,16 @@ local notify = require 'notify'
 local devicons = require 'nvim-web-devicons'
 local fold = require 'pretty-fold'
 
-devicons.setup {}
+devicons.setup {
+  override = {
+    default_icon = {
+      icon = ' ',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Default',
+    },
+  },
+}
 
 fold.setup {
   fill_char = '-',
@@ -106,58 +115,58 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSig
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 -- override some plugins color
-local configuration = vim.fn['gruvbox_material#get_configuration']()
-local palette = vim.fn['gruvbox_material#get_palette'](
-  configuration.background,
-  configuration.foreground,
-  configuration.colors_override
-)
-
-vim.api.nvim_set_hl(0, 'BufferCurrent', {
-  bold = true,
-  bg = palette.grey2[1],
-  fg = palette.bg0[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferCurrentIndex', {
-  bold = true,
-  bg = palette.grey2[1],
-  fg = palette.bg0[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferCurrentTarget', {
-  bold = false,
-  bg = palette.grey2[1],
-  fg = palette.bg0[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferCurrentSign', {
-  bold = false,
-  bg = palette.grey2[1],
-  fg = palette.bg0[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferCurrentIcon', {
-  bold = false,
-  bg = palette.grey2[1],
-  fg = palette.bg0[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
-  bold = false,
-  bg = palette.bg_statusline1[1],
-  fg = palette.fg1[1],
-  default = false,
-})
-
-vim.api.nvim_set_hl(0, 'BufferInactive', {
-  bold = false,
-  bg = palette.bg_statusline3[1],
-  fg = palette.fg1[1],
-  default = false,
-})
+-- local configuration = vim.fn['gruvbox_material#get_configuration']()
+-- local palette = vim.fn['gruvbox_material#get_palette'](
+--   configuration.background,
+--   configuration.foreground,
+--   configuration.colors_override
+-- )
+--
+-- vim.api.nvim_set_hl(0, 'BufferCurrent', {
+--   bold = true,
+--   bg = palette.grey2[1],
+--   fg = palette.bg0[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferCurrentIndex', {
+--   bold = true,
+--   bg = palette.grey2[1],
+--   fg = palette.bg0[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferCurrentTarget', {
+--   bold = false,
+--   bg = palette.grey2[1],
+--   fg = palette.bg0[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferCurrentSign', {
+--   bold = false,
+--   bg = palette.grey2[1],
+--   fg = palette.bg0[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferCurrentIcon', {
+--   bold = false,
+--   bg = palette.grey2[1],
+--   fg = palette.bg0[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
+--   bold = false,
+--   bg = palette.bg_statusline1[1],
+--   fg = palette.fg1[1],
+--   default = false,
+-- })
+--
+-- vim.api.nvim_set_hl(0, 'BufferInactive', {
+--   bold = false,
+--   bg = palette.bg_statusline3[1],
+--   fg = palette.fg1[1],
+--   default = false,
+-- })
