@@ -6,7 +6,7 @@
 -- Last Modified: 2022/03/02 16:58
 --
 --=====================================================================
-vim.g.symbols_outline = {
+local opts = {
   highlight_hovered_item = false,
   show_guides = true,
   auto_preview = false,
@@ -54,3 +54,5 @@ vim.g.symbols_outline = {
     TypeParameter = { icon = '', hl = 'TSParameter' },
   },
 }
+
+require('symbols-outline').setup(opts)
