@@ -112,11 +112,9 @@ return packer.startup(function(use)
   use { 'SmiteshP/nvim-navic' }
 
   -- lsp
-  -- use { 'lewis6991/hover.nvim' }
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
   use { 'folke/lua-dev.nvim' }
-  use { 'glepnir/lspsaga.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'j-hui/fidget.nvim' }
   use { 'jose-elias-alvarez/null-ls.nvim' }

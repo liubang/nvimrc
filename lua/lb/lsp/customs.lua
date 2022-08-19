@@ -26,27 +26,23 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { buffer = 0 })
   vim.keymap.set('n', '<Leader>gr', require('telescope.builtin').lsp_references, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>rn', require('lspsaga.rename').lsp_rename, { buffer = 0 })
-  vim.keymap.set(
-    'n',
-    '<Leader>ee',
-    require('lspsaga.diagnostic').show_line_diagnostics,
-    { buffer = 0 }
-  )
+  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { buffer = 0 })
+  vim.keymap.set('n', '<Leader>ee', function()
+    vim.diagnostic.open_float(nil, { scope = 'line' })
+  end, { buffer = 0 })
+
   vim.keymap.set('n', '<Leader>es', function()
     require('telescope.builtin').diagnostics { bufnr = 0 }
   end, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>ca', require('lspsaga.codeaction').code_action, { buffer = 0 })
-  vim.keymap.set(
-    'n',
-    '<C-k>',
-    require('lspsaga.hover').render_hover_doc,
-    { buffer = 0, desc = 'lsp:hover' }
-  )
+
+  vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0, desc = 'lsp:hover' })
+
   if client.resolved_capabilities.document_formatting then
     vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
     vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })
   end
+
   if client.resolved_capabilities.document_range_formatting then
     vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { buffer = 0 })
   end

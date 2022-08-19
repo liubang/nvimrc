@@ -102,12 +102,12 @@ vim.g.gruvbox_material_background = 'soft'
 vim.g.gruvbox_material_better_performance = 1
 vim.cmd 'colorscheme gruvbox-material'
 
-vim.cmd [[ highlight! link LspSagaHoverBorder Grey ]]
-vim.cmd [[ highlight! link LspSagaDocTruncateLine Grey ]]
-vim.cmd [[ highlight! link LspSagaDiagnosticBorder Grey ]]
-vim.cmd [[ highlight! link LspSagaDiagnosticTruncateLine Grey ]]
-vim.cmd [[ highlight! link LspSagaRenameBorder Grey ]]
-vim.cmd [[ highlight! link LspSagaCodeActionBorder Grey ]]
+-- vim.cmd [[ highlight! link LspSagaHoverBorder Grey ]]
+-- vim.cmd [[ highlight! link LspSagaDocTruncateLine Grey ]]
+-- vim.cmd [[ highlight! link LspSagaDiagnosticBorder Grey ]]
+-- vim.cmd [[ highlight! link LspSagaDiagnosticTruncateLine Grey ]]
+-- vim.cmd [[ highlight! link LspSagaRenameBorder Grey ]]
+-- vim.cmd [[ highlight! link LspSagaCodeActionBorder Grey ]]
 
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })

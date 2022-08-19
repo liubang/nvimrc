@@ -9,6 +9,7 @@
 
 local actions = require 'telescope.actions'
 local telescope = require 'telescope'
+local themes = require 'telescope.themes'
 
 local dropdown_borderchars = {
   prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
@@ -167,21 +168,34 @@ telescope.setup {
       case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
     },
     project = {
-      hidden_files = true,
-      previewer = false,
-      results_title = false,
-      theme = 'dropdown',
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
+      themes.get_dropdown {
+        prompt_position = 'top',
+        previewer = false,
+        prompt_title = false,
+        results_title = false,
+        borderchars = dropdown_borderchars,
+        layout_config = dropdown_layout_config,
+      },
     },
     tasks = {
-      theme = 'dropdown',
-      prompt_position = 'top',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
+      themes.get_dropdown {
+        prompt_position = 'top',
+        previewer = false,
+        prompt_title = false,
+        results_title = false,
+        borderchars = dropdown_borderchars,
+        layout_config = dropdown_layout_config,
+      },
+    },
+    ['ui-select'] = {
+      themes.get_dropdown {
+        prompt_position = 'top',
+        previewer = false,
+        prompt_title = false,
+        results_title = false,
+        borderchars = dropdown_borderchars,
+        layout_config = dropdown_layout_config,
+      },
     },
   },
 }

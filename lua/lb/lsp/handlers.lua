@@ -8,11 +8,19 @@
 -- =====================================================================
 
 vim.diagnostic.config {
-  underline = false,
-  virtual_text = false,
+  source = true,
   signs = true,
-  update_in_insert = false,
+  virtual_text = false,
   severity_sort = true,
+  update_in_insert = false,
+  underline = true,
+  float = {
+    border = 'single',
+    focusable = false,
+    header = '  Diagnostics: ',
+    scope = 'line',
+    source = true,
+  },
 }
 
 vim.lsp.handlers['textDocument/definition'] = function(_, result)
@@ -27,6 +35,14 @@ vim.lsp.handlers['textDocument/definition'] = function(_, result)
     vim.lsp.util.jump_to_location(result, enc)
   end
 end
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = 'single',
+})
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = 'single',
+})
 
 -- golang organize imports
 GoOrgImports = function(timeoutms)

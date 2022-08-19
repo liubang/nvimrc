@@ -7,26 +7,26 @@
 --
 --=====================================================================
 
-local saga = require 'lspsaga'
 local navic = require 'nvim-navic'
+-- local saga = require 'lspsaga'
 
 -- lspsaga
-saga.init_lsp_saga {
-  border_style = 'single',
-  saga_winblend = 0,
-  move_in_saga = { prev = '<C-p>', next = '<C-n>' },
-  show_diagnostic_source = true,
-  code_action_icon = '  ',
-  code_action_num_shortcut = true,
-  code_action_keys = {
-    quit = '<ESC>',
-    exec = '<CR>',
-  },
-  code_action_lightbulb = {
-    enable = false,
-  },
-  rename_action_quit = '<ESC>',
-}
+-- saga.init_lsp_saga {
+--   border_style = 'single',
+--   saga_winblend = 0,
+--   move_in_saga = { prev = '<C-p>', next = '<C-n>' },
+--   show_diagnostic_source = true,
+--   code_action_icon = '  ',
+--   code_action_num_shortcut = true,
+--   code_action_keys = {
+--     quit = '<ESC>',
+--     exec = '<CR>',
+--   },
+--   code_action_lightbulb = {
+--     enable = false,
+--   },
+--   rename_action_quit = '<ESC>',
+-- }
 
 -- nvim-navic
 vim.g.navic_silence = true
