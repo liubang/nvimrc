@@ -25,6 +25,7 @@ local dropdown_layout_config = {
 telescope.setup {
   defaults = {
     prompt_prefix = '   ',
+    selection_caret = ' ',
     prompt_title = false,
     results_title = false,
     preview_title = false,
