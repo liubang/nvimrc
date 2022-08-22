@@ -13,7 +13,7 @@ vim.diagnostic.config {
   virtual_text = false,
   severity_sort = true,
   update_in_insert = false,
-  underline = true,
+  underline = false,
   float = {
     border = 'single',
     focusable = false,
