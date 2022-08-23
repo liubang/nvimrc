@@ -52,6 +52,10 @@ cmp.setup {
   window = {
     documentation = false,
   },
+  completion = {
+    autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
+    completeopt = 'menu,menuone,noselect',
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -68,6 +72,8 @@ cmp.setup {
         luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',
         latex_symbols = '[LaTeX]',
+        dictionary = '[Dic]',
+        path = '[Path]',
       })[entry.source.name]
       return vim_item
     end,
@@ -77,7 +83,7 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm { select = true },
+    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<Tab>'] = cmp.mapping(function(fallback)
@@ -113,9 +119,11 @@ cmp.setup {
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
-    { name = 'path' },
+    { name = 'dictionary', keyword_length = 3 },
     { name = 'calc' },
+    { name = 'path' },
   },
+  experimental = { ghost_text = true },
 }
 
 -- autopairs
@@ -126,3 +134,17 @@ require('nvim-autopairs').setup {
 
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+require('cmp_dictionary').setup {
+  dic = {
+    ['*'] = { '/usr/share/dict/words' },
+  },
+  -- The following are default values.
+  exact = 2,
+  first_case_insensitive = false,
+  document = false,
+  document_command = 'wn %s -over',
+  async = false,
+  capacity = 5,
+  debug = false,
+}

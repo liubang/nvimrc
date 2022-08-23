@@ -8,8 +8,9 @@
 -- =====================================================================
 
 local utils = require 'lb.utils.plugin'
-PACKER_BOOTSTRAP = utils.bootstrap_packer()
 local packer = require 'packer'
+
+utils.bootstrap_packer()
 
 packer.init {
   auto_clean = true,
@@ -126,6 +127,7 @@ return packer.startup(function(use)
   use { 'hrsh7th/cmp-calc' }
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'uga-rosa/cmp-dictionary' }
   use { 'hrsh7th/nvim-cmp' }
 
   use { 'windwp/nvim-autopairs' }
@@ -135,8 +137,4 @@ return packer.startup(function(use)
   -- ft
   use { 'cespare/vim-toml', ft = { 'toml' } }
   use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
-
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
 end)
