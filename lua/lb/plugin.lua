@@ -40,7 +40,7 @@ return packer.startup(function(use)
   use { 'goolord/alpha-nvim' }
   use { 'sainnhe/gruvbox-material' }
   use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
-  use {'famiu/bufdelete.nvim'}
+  use { 'famiu/bufdelete.nvim' }
   use { 'nvim-lualine/lualine.nvim' }
   -- use { 'kyazdani42/nvim-tree.lua' }
   use { 'MunifTanjim/nui.nvim' }
@@ -103,7 +103,7 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope-ui-select.nvim' }
   -- use { 'nvim-telescope/telescope-dap.nvim' }
 
-  use { 'simrat39/symbols-outline.nvim', cmd = { 'SymbolsOutline' } }
+  use { 'simrat39/symbols-outline.nvim' }
   use { 'numToStr/Comment.nvim' }
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
