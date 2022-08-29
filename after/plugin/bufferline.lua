@@ -78,6 +78,21 @@ require('bufferline').setup {
       bold = true,
       italic = false,
     },
+    duplicate_selected = {
+      fg = '#32302f',
+      bg = '#a89984',
+      italic = false,
+    },
+    duplicate_visible = {
+      fg = '#ddc7a1',
+      bg = '#5b534d',
+      italic = false,
+    },
+    duplicate = {
+      fg = '#ddc7a1',
+      bg = '#5b534d',
+      italic = false,
+    },
     close_button = {
       fg = '#ddc7a1',
       bg = '#5b534d',
