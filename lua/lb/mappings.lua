@@ -231,41 +231,41 @@ mappings.markdown = {
 
 mappings.bufferline = {
   n = {
-    ['<Leader>bd'] = { '<cmd>BufferClose<CR>', 'delete current buffer' },
+    ['<Leader>bd'] = { '<cmd>Bdelete<CR>', 'delete current buffer' },
     ['<Leader>1'] = {
-      '<cmd>BufferGoto 1<CR>',
+      '<cmd>BufferLineGoToBuffer 1<CR>',
       'jump to the visible position 1 of the buffer',
     },
     ['<Leader>2'] = {
-      '<cmd>BufferGoto 2<CR>',
+      '<cmd>BufferLineGoToBuffer 2<CR>',
       'jump to the visible position 2 of the buffer',
     },
     ['<Leader>3'] = {
-      '<cmd>BufferGoto 3<CR>',
+      '<cmd>BufferLineGoToBuffer 3<CR>',
       'jump to the visible position 3 of the buffer',
     },
     ['<Leader>4'] = {
-      '<cmd>BufferGoto 4<CR>',
+      '<cmd>BufferLineGoToBuffer 4<CR>',
       'jump to the visible position 4 of the buffer',
     },
     ['<Leader>5'] = {
-      '<cmd>BufferGoto 5<CR>',
+      '<cmd>BufferLineGoToBuffer 5<CR>',
       'jump to the visible position 5 of the buffer',
     },
     ['<Leader>6'] = {
-      '<cmd>BufferGoto 6<CR>',
+      '<cmd>BufferLineGoToBuffer 6<CR>',
       'jump to the visible position 6 of the buffer',
     },
     ['<Leader>7'] = {
-      '<cmd>BufferGoto 7<CR>',
+      '<cmd>BufferLineGoToBuffer 7<CR>',
       'jump to the visible position 7 of the buffer',
     },
     ['<Leader>8'] = {
-      '<cmd>BufferGoto 8<CR>',
+      '<cmd>BufferLineGoToBuffer 8<CR>',
       'jump to the visible position 8 of the buffer',
     },
     ['<Leader>9'] = {
-      '<cmd>BufferGoto 9<CR>',
+      '<cmd>BufferLineGoToBuffer 9<CR>',
       'jump to the visible position 9 of the buffer',
     },
   },

@@ -192,16 +192,18 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSig
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 -- override some plugins color
-local configuration = vim.fn['gruvbox_material#get_configuration']()
-local palette = vim.fn['gruvbox_material#get_palette'](
-  configuration.background,
-  configuration.foreground,
-  configuration.colors_override
-)
-
-vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
-  bold = false,
-  bg = palette.bg_statusline1[1],
-  fg = palette.fg1[1],
-  default = false,
-})
+-- local configuration = vim.fn['gruvbox_material#get_configuration']()
+-- local palette = vim.fn['gruvbox_material#get_palette'](
+--   configuration.background,
+--   configuration.foreground,
+--   configuration.colors_override
+-- )
+--
+-- P(palette)
+--
+-- vim.api.nvim_set_hl(0, 'BufferTabpageFill', {
+--   bold = false,
+--   bg = palette.bg_statusline1[1],
+--   fg = palette.fg1[1],
+--   default = false,
+-- })

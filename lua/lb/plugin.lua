@@ -39,7 +39,8 @@ return packer.startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'goolord/alpha-nvim' }
   use { 'sainnhe/gruvbox-material' }
-  use { 'romgrk/barbar.nvim' }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
+  use {'famiu/bufdelete.nvim'}
   use { 'nvim-lualine/lualine.nvim' }
   -- use { 'kyazdani42/nvim-tree.lua' }
   use { 'MunifTanjim/nui.nvim' }
