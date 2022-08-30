@@ -119,7 +119,6 @@ cmp.setup {
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
-    { name = 'dictionary', keyword_length = 3 },
     { name = 'calc' },
     { name = 'path' },
   },
@@ -135,16 +134,3 @@ require('nvim-autopairs').setup {
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
-require('cmp_dictionary').setup {
-  dic = {
-    ['*'] = { '/usr/share/dict/words' },
-  },
-  -- The following are default values.
-  exact = 2,
-  first_case_insensitive = false,
-  document = false,
-  document_command = 'wn %s -over',
-  async = false,
-  capacity = 5,
-  debug = false,
-}

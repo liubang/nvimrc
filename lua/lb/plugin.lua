@@ -128,7 +128,6 @@ return packer.startup(function(use)
   use { 'hrsh7th/cmp-calc' }
   use { 'hrsh7th/cmp-nvim-lua' }
   use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'uga-rosa/cmp-dictionary' }
   use { 'hrsh7th/nvim-cmp' }
 
   use { 'windwp/nvim-autopairs' }
