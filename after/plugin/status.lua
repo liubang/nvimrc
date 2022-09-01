@@ -13,7 +13,7 @@ local fidget = require 'fidget'
 local lineinfo = function()
   local line = vim.fn.line '.'
   local column = vim.fn.col '.'
-  return string.format('\u{e0a1} %d:%d %s', line, column, '[%p%%]')
+  return string.format('%d:%d %s', line, column, '[%p%%]')
 end
 
 local filesize = function()
@@ -34,7 +34,7 @@ local filesize = function()
     i = i + 1
   end
 
-  local format = i == 1 and '%d%s' or '%.1f%s'
+  local format = i == 1 and '[%d%s]' or '[%.1f%s]'
   return string.format(format, size, suffixes[i])
 end
 

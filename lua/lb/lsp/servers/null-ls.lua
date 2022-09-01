@@ -23,8 +23,12 @@ local sources = {
   b.formatting.prettier.with {
     filetypes = { 'markdown' },
   },
-  b.diagnostics.shellcheck,
-  b.diagnostics.buildifier,
+  b.diagnostics.shellcheck.with {
+    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  },
+  b.diagnostics.buildifier.with {
+    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  },
 }
 
 local setup = function()
