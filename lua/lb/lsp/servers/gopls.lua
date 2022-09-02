@@ -9,6 +9,18 @@
 local lspconfig = require 'lspconfig'
 local c = require 'lb.lsp.customs'
 
+local get_current_gomod = function()
+  local file = io.open('go.mod', 'r')
+  if file == nil then
+    return nil
+  end
+
+  local first_line = file:read()
+  local mod_name = first_line:gsub('module ', '')
+  file:close()
+  return mod_name
+end
+
 local setup = function()
   lspconfig.gopls.setup(c.default {
     -- share the gopls instance if there is one already
@@ -41,8 +53,6 @@ local setup = function()
           regenerate_cgo = true,
           upgrade_dependency = true,
         },
-        experimentalUseInvalidMetadata = true,
-        hoverKind = 'FullDocumentation',
         usePlaceholders = true,
         completeUnimported = true,
         staticcheck = true,
@@ -50,6 +60,7 @@ local setup = function()
         diagnosticsDelay = '500ms',
         experimentalWatchedFileDelay = '200ms',
         symbolMatcher = 'fuzzy',
+        ['local'] = get_current_gomod(),
         gofumpt = true, -- true|false, -- turn on for new repos, gofmpt is good but also create code turmoils
         buildFlags = { '-tags', 'integration' },
       },
@@ -57,6 +68,13 @@ local setup = function()
   })
 end
 
+local org_imports = function(wait_ms)
+  local codeaction = require('lb.lsp.lsp').codeaction
+  codeaction('gopls', '', 'source.organizeImports', wait_ms)
+  vim.lsp.buf.formatting_sync(nil, 5000)
+end
+
 return {
   setup = setup,
+  org_imports = org_imports,
 }
