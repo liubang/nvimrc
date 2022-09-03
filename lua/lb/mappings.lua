@@ -69,7 +69,6 @@ keymap.set('c', '<C-l>', '<Right>')
 keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 
 --------- plugins key mappings
-
 --- neotree
 keymap.set(
   'n',
@@ -89,7 +88,6 @@ keymap.set('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
 keymap.set('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
 keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
 keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
-
 
 --- asynctask
 keymap.set('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
