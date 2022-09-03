@@ -8,7 +8,7 @@
 --=====================================================================
 
 local lspconfig = require 'lspconfig'
-local c = require 'lb.lsp.customs'
+local c = require 'lb.plugins.lsp.customs'
 
 for _, server in ipairs {
   'clangd',
@@ -18,7 +18,7 @@ for _, server in ipairs {
   'sumneko_lua',
   'null-ls',
 } do
-  require('lb.lsp.servers.' .. server).setup()
+  require('lb.plugins.lsp.servers.' .. server).setup()
 end
 
 -- some others use default config

@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-local c = require 'lb.lsp.customs'
+local c = require 'lb.plugins.lsp.customs'
 local lspconfig = require 'lspconfig'
 local Job = require 'plenary.job'
 

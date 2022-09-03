@@ -7,7 +7,7 @@
 --
 --=====================================================================
 local lspconfig = require 'lspconfig'
-local c = require 'lb.lsp.customs'
+local c = require 'lb.plugins.lsp.customs'
 
 local setup = function()
   lspconfig.sumneko_lua.setup(c.default(require('lua-dev').setup()))

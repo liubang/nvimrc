@@ -7,7 +7,7 @@
 --
 --=====================================================================
 local lspconfig = require 'lspconfig'
-local c = require 'lb.lsp.customs'
+local c = require 'lb.plugins.lsp.customs'
 
 local get_current_gomod = function()
   local file = io.open('go.mod', 'r')

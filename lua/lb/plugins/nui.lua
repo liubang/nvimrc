@@ -12,7 +12,6 @@ local event = require('nui.utils.autocmd').event
 
 local function override_ui_input()
   local UIInput = nui_input:extend 'UIInput'
-
   function UIInput:init(opts, on_done)
     local default_value = tostring(opts.default)
     UIInput.super.init(self, {
@@ -82,4 +81,9 @@ local function override_ui_input()
   end
 end
 
-override_ui_input()
+local async_load_plugin = nil
+async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
+  override_ui_input()
+  async_load_plugin:close()
+end))
+async_load_plugin:send()

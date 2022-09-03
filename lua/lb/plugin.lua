@@ -146,7 +146,7 @@ packer.startup(function(use)
   use {
     'mrjones2014/smart-splits.nvim',
     config = function()
-      require 'lb.plugins.smart-split'
+      require 'lb.plugins.smartsplit'
     end,
     event = { 'BufReadPre', 'BufNewFile' },
   }
@@ -212,7 +212,10 @@ packer.startup(function(use)
 
   use {
     'junegunn/vim-easy-align',
-    keys = { 'ga' },
+    config = function()
+      require 'lb.plugins.easyalign'
+    end,
+    event = { 'BufReadPre', 'BufNewFile' },
   }
 
   -- MixedCase/PascalCase:   gsm/gsp
@@ -285,10 +288,18 @@ packer.startup(function(use)
     requires = {
       { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' },
       { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' },
+      {
+        'nvim-treesitter/playground',
+        run = ':TSInstall query',
+        cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
+      },
     },
     run = ':TSUpdate',
     cmd = 'TSUpdate',
     event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    config = function()
+      require 'lb.plugins.treesitter'
+    end,
   }
 
   -- lsp
@@ -332,7 +343,7 @@ packer.startup(function(use)
       'cmp-nvim-lsp',
     },
     config = function()
-      require 'lb.lsp'
+      require 'lb.plugins.lsp'
     end,
   }
 

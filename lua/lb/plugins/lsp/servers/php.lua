@@ -7,7 +7,7 @@
 --
 --=====================================================================
 local lspconfig = require 'lspconfig'
-local c = require 'lb.lsp.customs'
+local c = require 'lb.plugins.lsp.customs'
 local M = {}
 
 M.setup = function()

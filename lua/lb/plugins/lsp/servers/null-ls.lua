@@ -36,7 +36,7 @@ local sources = {
 M.setup = function()
   null_ls.setup {
     debug = true,
-    on_attach = require('lb.lsp.customs').default({}).on_attach,
+    on_attach = require('lb.plugins.lsp.customs').default({}).on_attach,
     sources = sources,
   }
 end
