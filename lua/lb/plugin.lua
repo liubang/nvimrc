@@ -15,6 +15,7 @@ utils.bootstrap_packer()
 packer.init {
   auto_clean = true,
   compile_on_sync = true,
+  ensure_dependencies = true,
   display = {
     title = ' packer.nvim',
     non_interactive = false,
@@ -102,9 +103,9 @@ packer.startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = {
-      'fidget.nvim',
-      'nvim-web-devicons',
-      'nvim-navic',
+      'j-hui/fidget.nvim',
+      'kyazdani42/nvim-web-devicons',
+      'SmiteshP/nvim-navic',
     },
     after = {
       'nvim-navic',
@@ -112,7 +113,6 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.lualine'
     end,
-    event = { 'UIEnter' },
   }
 
   use {
@@ -127,7 +127,7 @@ packer.startup(function(use)
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
     requires = {
-      'nvim-web-devicons',
+      'kyazdani42/nvim-web-devicons',
       { 'MunifTanjim/nui.nvim' },
       { 's1n7ax/nvim-window-picker', tag = '1.*' },
     },
@@ -294,11 +294,12 @@ packer.startup(function(use)
   -- lsp
   use {
     'folke/lua-dev.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
+
   use {
     'simrat39/rust-tools.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   use {
@@ -314,13 +315,13 @@ packer.startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
-    wants = {
-      'mason.nvim',
-      'rust-tools.nvim',
-      'lua-dev.nvim',
-      'null-ls.nvim',
-      'nvim-cmp',
-      'cmp-nvim-lsp',
+    requires = {
+      'williamboman/mason.nvim',
+      'simrat39/rust-tools.nvim',
+      'folke/lua-dev.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
     },
     after = {
       'mason.nvim',
@@ -333,7 +334,6 @@ packer.startup(function(use)
     config = function()
       require 'lb.lsp'
     end,
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   use {
@@ -347,49 +347,51 @@ packer.startup(function(use)
 
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    requires = { 'plenary.nvim', 'nvim-lspconfig' },
+    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     event = { 'BufRead', 'BufNewFile' },
   }
 
   -- completion
   use {
+    'L3MON4D3/LuaSnip',
+    requires = {
+      'Comment.nvim',
+      'nvim-treesitter',
+    },
+    after = { 'Comment.nvim', 'nvim-treesitter' },
+    config = function()
+      require 'lb.plugins.snip'
+    end,
+  }
+
+  use {
     'hrsh7th/nvim-cmp',
     requires = {
+      'L3MON4D3/LuaSnip',
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
-      {
-        'L3MON4D3/LuaSnip',
-        requires = {
-          'Comment.nvim',
-        },
-        after = { 'Comment.nvim' },
-        config = function()
-          require 'lb.plugins.snip'
-        end,
-        event = 'InsertEnter',
-      },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
     after = { 'LuaSnip', 'nvim-treesitter' },
-    wants = { 'LuaSnip' },
     config = function()
       require 'lb.plugins.cmp'
     end,
-    event = 'InsertEnter',
   }
 
   use {
     'windwp/nvim-autopairs',
-    wants = { 'nvim-cmp', 'nvim-treesitter' },
+    requires = {
+      'hrsh7th/nvim-cmp',
+      'nvim-treesitter/nvim-treesitter',
+    },
     after = { 'nvim-cmp', 'nvim-treesitter' },
     config = function()
       require 'lb.plugins.autopairs'
     end,
-    event = 'InsertEnter',
   }
 
   -- ft
