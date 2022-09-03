@@ -8,8 +8,9 @@
 --=====================================================================
 local lspconfig = require 'lspconfig'
 local c = require 'lb.lsp.customs'
+local M = {}
 
-local setup = function()
+M.setup = function()
   lspconfig.phpactor.setup(c.default {
     init_options = {
       ['language_server_phpstan.enabled'] = true,
@@ -17,6 +18,4 @@ local setup = function()
   })
 end
 
-return {
-  setup = setup,
-}
+return M

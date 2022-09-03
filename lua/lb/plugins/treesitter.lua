@@ -6,17 +6,28 @@
 -- Last Modified: 2022/03/02 16:58
 --
 --=====================================================================
-require('nvim-treesitter.install').prefer_git = true
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.indentexpr = 'nvim_treesitter#indent()'
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { 'haskell' }, -- list of parsers to ignore installing
+  ensure_installed = {},
+  sync_install = false,
+  ignore_install = { 'haskell' },
   highlight = {
     enable = true,
-    disable = { 'html', 'json' }, -- list of language that will be disabled
+    use_languagetree = false,
+    disable = { 'html', 'json' },
+    custom_captures = {
+      ['function.call'] = 'TSFunction',
+      ['function.bracket'] = 'Type',
+      ['namespace.type'] = 'Namespace',
+    },
   },
-
+  fold = {
+    enable = true,
+  },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -25,16 +36,19 @@ require('nvim-treesitter.configs').setup {
       node_decremental = 'V',
     },
   },
-
   indent = {
     enable = false,
   },
-
+  autopairs = {
+    enable = true,
+  },
+  matchup = {
+    enable = true,
+  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
   },
-
   textobjects = {
     lsp_interop = { enable = false },
     move = {

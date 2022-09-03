@@ -16,10 +16,10 @@ vim.diagnostic.config {
   underline = false,
   float = {
     border = 'single',
-    focusable = false,
+    focusable = true,
     header = '  Diagnostics: ',
     scope = 'line',
-    source = true,
+    source = 'always',
   },
 }
 

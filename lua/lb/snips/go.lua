@@ -24,28 +24,32 @@ end
 
 local is_in_function = require('lb.ts.go').in_func
 
+local not_in_function = function()
+  return not is_in_function()
+end
+
 local is_in_test_function = function()
   return is_in_test_file() and is_in_function()
 end
 
 local in_test_fn = {
-  show_condition = is_in_test_function(),
-  condition = is_in_test_function(),
+  show_condition = is_in_test_function,
+  condition = is_in_test_function,
 }
 
 local in_test_file = {
-  show_condition = is_in_test_function(),
-  condition = is_in_test_function(),
+  show_condition = is_in_test_file,
+  condition = is_in_test_file,
 }
 
 local in_fn = {
-  show_condition = is_in_function(),
-  condition = is_in_function(),
+  show_condition = is_in_function,
+  condition = is_in_function,
 }
 
 local not_in_fn = {
-  show_condition = is_in_function(),
-  condition = is_in_function(),
+  show_condition = not_in_function,
+  condition = not_in_function,
 }
 
 local query_is_set = false

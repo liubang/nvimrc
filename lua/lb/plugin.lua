@@ -16,11 +16,15 @@ packer.init {
   auto_clean = true,
   compile_on_sync = true,
   display = {
-    working_sym = 'ﲊ',
-    error_sym = ' ',
-    done_sym = ' ',
-    removed_sym = ' ',
-    moved_sym = '',
+    title = ' packer.nvim',
+    non_interactive = false,
+    header_lines = 2,
+    working_sym = ' ',
+    moved_sym = ' ',
+    error_sym = '',
+    done_sym = '',
+    removed_sym = '',
+    show_all_info = true,
     open_fn = function()
       return require('packer.util').float { border = 'single' }
     end,
@@ -31,21 +35,11 @@ packer.init {
   },
 }
 
-return packer.startup(function(use)
+packer.startup(function(use)
   -- have packer manage itself
   use { 'wbthomason/packer.nvim' }
-
-  -- appearance
-  use { 'kyazdani42/nvim-web-devicons' }
-  use { 'goolord/alpha-nvim' }
-  use { 'sainnhe/gruvbox-material' }
-  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
-  use { 'famiu/bufdelete.nvim' }
-  use { 'nvim-lualine/lualine.nvim' }
-  -- use { 'kyazdani42/nvim-tree.lua' }
-  use { 'MunifTanjim/nui.nvim' }
-  use { 's1n7ax/nvim-window-picker', tag = '1.*' }
-  use { 'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x' }
+  use { 'nvim-lua/plenary.nvim' }
+  use { 'lewis6991/impatient.nvim' }
 
   -- performance
   use {
@@ -54,87 +48,360 @@ return packer.startup(function(use)
       vim.g.cursorhold_updatetime = 100
     end,
   }
-  use { 'lewis6991/impatient.nvim' }
 
-  -- tools
-  -- use { 'mfussenegger/nvim-dap' }
-  -- use { 'rcarriga/nvim-dap-ui' }
-  -- use { 'theHamsta/nvim-dap-virtual-text' }
-  use { 'folke/which-key.nvim' }
-  use { 'rainbowhxch/accelerated-jk.nvim' }
-  use { 'rcarriga/nvim-notify' }
-  use { 'mrjones2014/smart-splits.nvim' }
-  use { 'kylechui/nvim-surround' }
-
+  -- appearance
   use {
-    'norcalli/nvim-colorizer.lua',
-    cmd = { 'ColorizerToggle' },
+    'sainnhe/gruvbox-material',
     config = function()
-      require('colorizer').setup()
+      require 'lb.plugins.theme'
     end,
   }
+
+  use {
+    'kyazdani42/nvim-web-devicons',
+    event = 'UIEnter',
+  }
+
+  use {
+    'goolord/alpha-nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require 'lb.plugins.dashboard'
+    end,
+    event = 'BufWinEnter',
+  }
+
+  use {
+    'rcarriga/nvim-notify',
+    config = function()
+      return 'lb.plugins.notify'
+    end,
+    event = 'UIEnter',
+  }
+
+  use {
+    'akinsho/bufferline.nvim',
+    tag = 'v2.*',
+    requires = { 'famiu/bufdelete.nvim' },
+    config = function()
+      require 'lb.plugins.bufferline'
+    end,
+    event = { 'UIEnter' },
+  }
+
+  use {
+    'SmiteshP/nvim-navic',
+    config = function()
+      require 'lb.plugins.nvim-navic'
+    end,
+    event = { 'UIEnter' },
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'fidget.nvim',
+      'nvim-web-devicons',
+      'nvim-navic',
+    },
+    after = {
+      'nvim-navic',
+    },
+    config = function()
+      require 'lb.plugins.lualine'
+    end,
+    event = { 'UIEnter' },
+  }
+
+  use {
+    'MunifTanjim/nui.nvim',
+    config = function()
+      require 'lb.plugins.nui'
+    end,
+    event = 'UIEnter',
+  }
+
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    requires = {
+      'nvim-web-devicons',
+      { 'MunifTanjim/nui.nvim' },
+      { 's1n7ax/nvim-window-picker', tag = '1.*' },
+    },
+    config = function()
+      require 'lb.plugins.neo-tree'
+    end,
+    cmd = { 'Neotree' },
+  }
+
+  -- tools
+  use {
+    'rainbowhxch/accelerated-jk.nvim',
+    event = { 'BufEnter' },
+  }
+
+  use {
+    'mrjones2014/smart-splits.nvim',
+    config = function()
+      require 'lb.plugins.smart-split'
+    end,
+    event = { 'BufReadPre', 'BufNewFile' },
+  }
+
+  use { 'willchao612/vim-diagon', cmd = 'Diagon' }
+  use { 'jbyuki/venn.nvim', keys = { '<leader>v' } }
 
   use {
     'phaazon/hop.nvim',
     branch = 'v2',
-    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('hop').setup {}
     end,
+    event = { 'BufReadPre', 'BufNewFile' },
   }
 
-  use { 'anuvyklack/pretty-fold.nvim' }
-  use { 'voldikss/vim-floaterm' }
-  use { 'skywind3000/asyncrun.vim' }
-  use { 'skywind3000/asyncrun.extra' }
-  use { 'skywind3000/asynctasks.vim' }
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'sindrets/diffview.nvim' }
-  use { 'lewis6991/gitsigns.nvim' }
-  use { 'itchyny/vim-cursorword', event = { 'BufReadPre', 'BufNewFile' } }
-  use { 'junegunn/vim-easy-align', keys = { '<Plug>(EasyAlign)' } }
-
-  use { 'nvim-telescope/telescope-project.nvim' }
   use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require 'lb.plugins.fold'
+    end,
+    event = { 'BufNewFile', 'BufRead' },
   }
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
-  -- use { 'nvim-telescope/telescope-dap.nvim' }
 
-  use { 'simrat39/symbols-outline.nvim' }
-  use { 'numToStr/Comment.nvim' }
+  use {
+    'voldikss/vim-floaterm',
+    config = function()
+      vim.g.floaterm_wintype = 'float'
+      vim.g.floaterm_position = 'bottom'
+      vim.g.floaterm_autoinsert = true
+      vim.g.floaterm_width = 0.999
+      vim.g.floaterm_height = 0.7
+      vim.g.floaterm_title = '─────  Floaterm [$1|$2] '
+    end,
+  }
+  use {
+    'skywind3000/asynctasks.vim',
+    requires = {
+      'skywind3000/asyncrun.vim',
+      'skywind3000/asyncrun.extra',
+    },
+    config = function()
+      vim.g.asyncrun_open = 25
+      vim.g.asyncrun_bell = 1
+      vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
+      vim.g.asynctasks_term_pos = 'floaterm'
+      vim.g.asynctasks_term_reuse = 1
+    end,
+  }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require 'lb.plugins.git'
+    end,
+    event = { 'BufNewFile', 'BufRead' },
+  }
+
+  use {
+    'itchyny/vim-cursorword',
+    event = { 'BufReadPre', 'BufNewFile' },
+  }
+
+  use {
+    'junegunn/vim-easy-align',
+    keys = { 'ga' },
+  }
+
+  -- MixedCase/PascalCase:   gsm/gsp
+  -- camelCase:              gsc
+  -- snake_case:             gs_
+  -- UPPER_CASE:             gsu/gsU
+  -- Title Case:             gst
+  -- Sentence case:          gss
+  -- space case:             gs<space>
+  -- dash-case/kebab-case:   gs-/gsk
+  -- Title-Dash/Title-Kebab: gsK
+  -- dot.case:               gs.
+  use { 'arthurxavierx/vim-caser', keys = { 'gs' } }
+
+  use {
+    'sQVe/sort.nvim',
+    config = function()
+      require('sort').setup {
+        delimiters = { ',', '|', ';', ':', 's', 't' },
+      }
+    end,
+    cmd = { 'Sort' },
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = {
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        before = { 'telescope.nvim' },
+      },
+      {
+        'nvim-telescope/telescope-ui-select.nvim',
+        before = { 'telescope.nvim' },
+      },
+    },
+    config = function()
+      require 'lb.plugins.telescope'
+    end,
+  }
+
+  use {
+    'simrat39/symbols-outline.nvim',
+    after = {
+      'nvim-lspconfig',
+    },
+    config = function()
+      require 'lb.plugins.outline'
+    end,
+    events = { 'BufNewFile', 'BufRead' },
+    cmd = { 'SymbolsOutline' },
+  }
+
+  use {
+    'numToStr/Comment.nvim',
+    after = { 'nvim-treesitter' },
+    config = function()
+      require 'lb.plugins.comment'
+    end,
+    events = { 'InsertEnter' },
+  }
+
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
 
   -- treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
-  use { 'p00f/nvim-ts-rainbow' }
-  use { 'SmiteshP/nvim-navic' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' },
+      { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' },
+    },
+    run = ':TSUpdate',
+    cmd = 'TSUpdate',
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+  }
 
   -- lsp
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
-  use { 'folke/lua-dev.nvim' }
-  use { 'neovim/nvim-lspconfig' }
-  use { 'j-hui/fidget.nvim' }
-  use { 'jose-elias-alvarez/null-ls.nvim' }
-  use { 'simrat39/rust-tools.nvim' }
+  use {
+    'folke/lua-dev.nvim',
+    event = { 'BufRead', 'BufNewFile' },
+  }
+  use {
+    'simrat39/rust-tools.nvim',
+    event = { 'BufRead', 'BufNewFile' },
+  }
+
+  use {
+    'williamboman/mason.nvim',
+    requires = {
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function()
+      require 'lb.plugins.installer'
+    end,
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+  }
+
+  use {
+    'neovim/nvim-lspconfig',
+    wants = {
+      'mason.nvim',
+      'rust-tools.nvim',
+      'lua-dev.nvim',
+      'null-ls.nvim',
+      'nvim-cmp',
+      'cmp-nvim-lsp',
+    },
+    after = {
+      'mason.nvim',
+      'rust-tools.nvim',
+      'lua-dev.nvim',
+      'null-ls.nvim',
+      'nvim-cmp',
+      'cmp-nvim-lsp',
+    },
+    config = function()
+      require 'lb.lsp'
+    end,
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+  }
+
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require 'lb.plugins.fidget'
+    end,
+    after = { 'nvim-lspconfig' },
+    event = { 'BufRead', 'BufNewFile' },
+  }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'plenary.nvim', 'nvim-lspconfig' },
+    event = { 'BufRead', 'BufNewFile' },
+  }
 
   -- completion
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-calc' }
-  use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/nvim-cmp' }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
+      {
+        'L3MON4D3/LuaSnip',
+        requires = {
+          'Comment.nvim',
+        },
+        after = { 'Comment.nvim' },
+        config = function()
+          require 'lb.plugins.snip'
+        end,
+        event = 'InsertEnter',
+      },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+    },
+    after = { 'LuaSnip', 'nvim-treesitter' },
+    wants = { 'LuaSnip' },
+    config = function()
+      require 'lb.plugins.cmp'
+    end,
+    event = 'InsertEnter',
+  }
 
-  use { 'windwp/nvim-autopairs' }
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'saadparwaiz1/cmp_luasnip' }
+  use {
+    'windwp/nvim-autopairs',
+    wants = { 'nvim-cmp', 'nvim-treesitter' },
+    after = { 'nvim-cmp', 'nvim-treesitter' },
+    config = function()
+      require 'lb.plugins.autopairs'
+    end,
+    event = 'InsertEnter',
+  }
 
   -- ft
   use { 'cespare/vim-toml', ft = { 'toml' } }
-  use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+  use {
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    run = function()
+      vim.fn['mkdp#util#install']()
+    end,
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+  }
 end)

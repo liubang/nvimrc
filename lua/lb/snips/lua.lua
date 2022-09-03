@@ -9,7 +9,21 @@
 
 local ls = require 'luasnip'
 local fmt = require('luasnip.extras.fmt').fmt
-local util = require 'settings.luasnip.util'
+
+local last_lua_module_section = function(args) --{{{
+  local text = args[1][1] or ''
+  local split = vim.split(text, '.', { plain = true })
+
+  local options = {}
+  for len = 0, #split - 1 do
+    local node = ls.t(table.concat(vim.list_slice(split, #split - len, #split), '_'))
+    table.insert(options, node)
+  end
+
+  return ls.sn(nil, {
+    ls.c(1, options),
+  })
+end --}}}
 
 ls.add_snippets('lua', {
   ls.s( -- Ignore stylua {{{
@@ -45,7 +59,7 @@ ls.add_snippets('lua', {
   ls.s( -- Require Module {{{
     { trig = 'req', name = 'Require', dscr = 'Choices are on the variable name' },
     fmt([[local {} = require("{}")]], {
-      ls.d(2, util.last_lua_module_section, { 1 }),
+      ls.d(2, last_lua_module_section, { 1 }),
       ls.i(1),
     })
   ), --}}}

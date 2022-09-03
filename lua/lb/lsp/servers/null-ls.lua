@@ -9,6 +9,7 @@
 
 local null_ls = require 'null-ls'
 local b = null_ls.builtins
+local M = {}
 
 local sources = {
   b.formatting.protolint,
@@ -29,9 +30,10 @@ local sources = {
   b.diagnostics.buildifier.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
+  b.diagnostics.golangci_lint,
 }
 
-local setup = function()
+M.setup = function()
   null_ls.setup {
     debug = true,
     on_attach = require('lb.lsp.customs').default({}).on_attach,
@@ -39,6 +41,4 @@ local setup = function()
   }
 end
 
-return {
-  setup = setup,
-}
+return M

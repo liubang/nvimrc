@@ -10,4 +10,3 @@
 require 'lb.lsp.servers'
 require 'lb.lsp.handlers'
 require 'lb.lsp.events'
-require 'lb.lsp.installer'

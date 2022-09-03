@@ -8,308 +8,149 @@
 -- =====================================================================
 
 local keymap = vim.keymap
-
 local mappings = {}
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-- stylua: ignore start
 -- clear default
 keymap.set('n', ',', '', { silent = true })
 keymap.set('n', 'm', '', { silent = true })
 keymap.set('x', ',', '', { silent = true })
 keymap.set('x', 'm', '', { silent = true })
 
-mappings.general = {
-  v = {
-    ['<Tab>'] = { '>gv|', '-> move right' },
-    ['<S-Tab>'] = { '<gv', '<- move left' },
-  },
-  n = {
-    ['<Tab>'] = { '>>_', '-> move right' },
-    ['<S-Tab>'] = { '<<_', '<- move left' },
-  },
-  x = {
-    ['<'] = { '<gv' },
-    ['>'] = { '>gv' },
-  },
-  -- bash like
-  i = {
-    ['<C-a>'] = { '<Home>', 'beginning of line' },
-    ['<C-e>'] = { '<End>', 'end of line' },
-  },
-}
+keymap.set('v', '<Tab>', '>gv|')
+keymap.set('v', '<S-Tab>', '<gv')
+keymap.set('n', '<Tab>', '>>_')
+keymap.set('n', '<S-Tab>', '<<_')
+keymap.set('x', '<', '<gv')
+keymap.set('x', '>', '>gv')
 
-mappings.buffer = {
-  n = {
-    ['<Leader>bp'] = { '<cmd>bprevious<CR>', 'goto previous buffer' },
-    ['<Leader>bn'] = { '<cmd>bnext<CR>', 'goto next buffer' },
-    ['<Leader>bf'] = { '<cmd>bfirst<CR>', 'goto first buffer' },
-    ['<Leader>bl'] = { '<cmd>blast<CR>', 'goto last buffer' },
-  },
-}
+-- bash like
+keymap.set('i', '<C-a>', '<Home>')
+keymap.set('i', '<C-e>', '<End>')
 
-mappings.window = {
-  n = {
-    ['<Leader>ww'] = { '<C-W>w', 'move cursor to window below/right' },
-    ['<Leader>wr'] = { '<C-W>r', 'rotate windows downwards/rightwards' },
-    ['<Leader>wq'] = { '<C-W>q', 'quit current window' },
-    ['<Leader>wh'] = { '<C-W>h', ' window left' },
-    ['<Leader>wl'] = { '<C-W>l', ' window right' },
-    ['<Leader>wj'] = { '<C-W>j', ' window down' },
-    ['<Leader>wk'] = { '<C-W>k', ' window up' },
-    ['<Leader>w='] = { '<C-W>=', 'make all windows size equally' },
-    ['<Leader>ws'] = { '<C-W>s', 'split current window in two' },
-    ['<Leader>wv'] = { '<C-W>v', 'split vertically current window' },
-    ['<C-S-Up>'] = {
-      function()
-        require('smart-splits').resize_up()
-      end,
-      'Resize split up',
-    },
-    ['<C-S-Down>'] = {
-      function()
-        require('smart-splits').resize_down()
-      end,
-      'Resize split down',
-    },
-    ['<C-S-Left>'] = {
-      function()
-        require('smart-splits').resize_left()
-      end,
-      'Resize split left',
-    },
-    ['<C-S-Right>'] = {
-      function()
-        require('smart-splits').resize_right()
-      end,
-      'Resize split right',
-    },
-    -- ['<Leader>w+'] = { '<C-W>5+', 'increase window height' },
-    -- ['<Leader>w-'] = { '<C-W>5-', 'decrease window height' },
-    -- ['<Leader>w.'] = { '<C-W>5>', 'increase window width' },
-    -- ['<Leader>w,'] = { '<C-W>5<', 'decrease window width' },
-  },
-}
+-- buffer
+keymap.set('n', '<Leader>bp', '<cmd>bprevious<CR>')
+keymap.set('n', '<Leader>bn', '<cmd>bnext<CR>')
+keymap.set('n', '<Leader>bf', '<cmd>bfirst<CR>')
+keymap.set('n', '<Leader>bl', '<cmd>blast<CR>')
 
-mappings.command = {
-  c = {
-    ['<C-a>'] = { '<Home>', '' },
-    ['<C-e>'] = { '<End>', '' },
-    ['<C-b>'] = { '<S-Left>', '' },
-    ['<C-f>'] = { '<S-Right>', '' },
-    ['<C-h>'] = { '<Left>', '' },
-    ['<C-l>'] = { '<Right>', '' },
-  },
-}
+-- window
+keymap.set('n', '<Leader>ww', '<C-W>w')
+keymap.set('n', '<Leader>wr', '<C-W>r')
+keymap.set('n', '<Leader>wq', '<C-W>q')
+keymap.set('n', '<Leader>wh', '<C-W>h')
+keymap.set('n', '<Leader>wl', '<C-W>l')
+keymap.set('n', '<Leader>wj', '<C-W>j')
+keymap.set('n', '<Leader>wk', '<C-W>k')
+keymap.set('n', '<Leader>w=', '<C-W>=')
+keymap.set('n', '<Leader>ws', '<C-W>s')
+keymap.set('n', '<Leader>wv', '<C-W>v')
+keymap.set('n', '<C-S-Up>', function() require('smart-splits').resize_up() end)
+keymap.set('n', '<C-S-Down>', function() require('smart-splits').resize_down() end)
+keymap.set('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
+keymap.set('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 
-mappings.terminal = {
-  t = {
-    ['<Esc>'] = { termcodes '<C-\\><C-N>', '   escape terminal mode' },
-  },
-}
+-- command
+keymap.set('c', '<C-a>', '<Home>')
+keymap.set('c', '<C-e>', '<End>')
+keymap.set('c', '<C-b>', '<S-Left>')
+keymap.set('c', '<C-f>', '<S-Right>')
+keymap.set('c', '<C-h>', '<Left>')
+keymap.set('c', '<C-l>', '<Right>')
+
+-- terminal
+keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 
 --------- plugins key mappings
 
-mappings.neotree = {
-  n = {
-    ['<Leader>ft'] = {
-      '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>',
-      '   toggle neotree',
-    },
-  },
-}
+--- neotree
+keymap.set(
+  'n',
+  '<Leader>ft',
+  '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
+)
 
-mappings.easyalign = {
-  n = {
-    ['ga'] = { '<Plug>(EasyAlign)', 'start interactive EasyAlign for a motion/text object' },
-  },
-  x = {
-    ['ga'] = { '<Plug>(EasyAlign)', 'start interactive EasyAlign in visual mode' },
-  },
-}
+--- easyalign
+keymap.set('n', 'ga', '<Plug>(EasyAlign)')
+keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 
-mappings.floaterm = {
-  n = {
-    ['<Leader>tw'] = { '<cmd>FloatermNew<CR>', 'create a new terminal window' },
-    ['<C-t>'] = { '<cmd>FloatermToggle<CR>', 'toggle terminal' },
-  },
-  t = {
-    ['<C-n>'] = { termcodes '<C-\\><C-N>:FloatermNew<CR>', 'create a new terminal window' },
-    ['<C-k>'] = { termcodes '<C-\\><C-N>:FloatermPrev<CR>', 'goto previous terminal window' },
-    ['<C-j>'] = { termcodes '<C-\\><C-N>:FloatermNext<CR>', 'goto next terminal window' },
-    ['<C-t>'] = { termcodes '<C-\\><C-N>:FloatermToggle<CR>', 'toggle terminal' },
-    ['<C-d>'] = { termcodes '<C-\\><C-N>:FloatermKill<CR>', 'close current terminal window' },
-  },
-}
+--- floaterm
+keymap.set('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
+keymap.set('n', '<C-t>', '<cmd>FloatermToggle<CR>')
+keymap.set('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
+keymap.set('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
+keymap.set('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
+keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
+keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
 
-mappings.asynctask = {
-  n = {
-    ['<C-x>'] = { '<cmd>AsyncTask build-and-run<CR>', 'build and execute current file' },
-    ['<C-b>'] = { '<cmd>AsyncTask build<CR>', 'build current file' },
-    ['<C-r>'] = { '<cmd>AsyncTask run<CR>', 'execute current file' },
-  },
-}
 
-mappings.outline = {
-  n = {
-    ['<Leader>tl'] = { '<cmd>SymbolsOutline<CR>', 'toggle symbols outline window' },
-  },
-}
+--- asynctask
+keymap.set('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
+keymap.set('n', '<C-b>', '<cmd>AsyncTask build<CR>')
+keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
-mappings.hop = {
-  n = {
-    ['<leader>kk'] = {
-      function()
-        require('hop').hint_lines()
-      end,
-      'hint the beginning of each lines',
-    },
-    ['<leader>jj'] = {
-      function()
-        require('hop').hint_lines()
-      end,
-      'hint the beginning of each lines',
-    },
-    ['<Leader>ss'] = {
-      function()
-        require('hop').hint_patterns()
-      end,
-      'annotate all matched patterns in current window',
-    },
-    ['<leader>ll'] = {
-      function()
-        require('hop').hint_words {
-          direction = require('hop.hint').HintDirection.AFTER_CURSOR,
-          current_line_only = true,
-        }
-      end,
-      'annotate all words in the current window with key sequences',
-    },
-    ['<leader>hh'] = {
-      function()
-        require('hop').hint_words {
-          direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-          current_line_only = true,
-        }
-      end,
-      'annotate all words in the current window with key sequences',
-    },
-  },
-}
+--- outline
+keymap.set('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
 
-mappings.accelerate = {
-  n = {
-    ['j'] = { '<Plug>(accelerated_jk_gj)', '' },
-    ['k'] = { '<Plug>(accelerated_jk_gk)', '' },
-  },
-}
+--- hop
+keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)
+keymap.set('n', '<Leader>jj', function() require('hop').hint_lines() end)
+keymap.set('n', '<Leader>ss', function() require('hop').hint_patterns() end)
+keymap.set(
+  'n',
+  '<Leader>ll',
+  function()
+    require('hop').hint_words {
+      direction = require('hop.hint').HintDirection.AFTER_CURSOR,
+      current_line_only = true,
+    }
+  end
+)
+keymap.set('n', '<Leader>hh',
+  function()
+    require('hop').hint_words {
+      direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
+      current_line_only = true,
+    }
+  end
+)
 
-mappings.git = {
-  n = {
-    ['<Leader>hb'] = {
-      function()
-        require('gitsigns').blame_line { full = true }
-      end,
-      'git blame on current line',
-    },
-    ['<Leader>hd'] = {
-      function()
-        require('gitsigns').diffthis()
-      end,
-      'perform a vimdiff on the given file',
-    },
-  },
-}
+--- accelerate
+keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)')
+keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)')
 
-mappings.markdown = {
-  n = {
-    ['<Leader>mp'] = { '<cmd>MarkdownPreview<CR>', 'show markdown preview' },
-  },
-}
+--- git
+keymap.set('n', '<Leader>bb', function() require('gitsigns').blame_line {full = true} end)
+keymap.set('n', '<Leader>bb', function() require('gitsigns').diffthis() end)
 
-mappings.bufferline = {
-  n = {
-    ['<Leader>bd'] = { '<cmd>Bdelete<CR>', 'delete current buffer' },
-    ['<Leader>1'] = {
-      '<cmd>BufferLineGoToBuffer 1<CR>',
-      'jump to the visible position 1 of the buffer',
-    },
-    ['<Leader>2'] = {
-      '<cmd>BufferLineGoToBuffer 2<CR>',
-      'jump to the visible position 2 of the buffer',
-    },
-    ['<Leader>3'] = {
-      '<cmd>BufferLineGoToBuffer 3<CR>',
-      'jump to the visible position 3 of the buffer',
-    },
-    ['<Leader>4'] = {
-      '<cmd>BufferLineGoToBuffer 4<CR>',
-      'jump to the visible position 4 of the buffer',
-    },
-    ['<Leader>5'] = {
-      '<cmd>BufferLineGoToBuffer 5<CR>',
-      'jump to the visible position 5 of the buffer',
-    },
-    ['<Leader>6'] = {
-      '<cmd>BufferLineGoToBuffer 6<CR>',
-      'jump to the visible position 6 of the buffer',
-    },
-    ['<Leader>7'] = {
-      '<cmd>BufferLineGoToBuffer 7<CR>',
-      'jump to the visible position 7 of the buffer',
-    },
-    ['<Leader>8'] = {
-      '<cmd>BufferLineGoToBuffer 8<CR>',
-      'jump to the visible position 8 of the buffer',
-    },
-    ['<Leader>9'] = {
-      '<cmd>BufferLineGoToBuffer 9<CR>',
-      'jump to the visible position 9 of the buffer',
-    },
-  },
-}
+--- markdown
+keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
 
-mappings.telescope = {
-  n = {
-    ['<Leader>ff'] = {
-      function()
-        require('telescope.builtin').find_files { previewers = false }
-      end,
-      'find files',
-    },
-    ['<Leader>ag'] = {
-      function()
-        require('telescope.builtin').live_grep()
-      end,
-      'live grep',
-    },
-    ['<Leader>Ag'] = {
-      function()
-        require('telescope.builtin').grep_string()
-      end,
-      'grep string',
-    },
-    ['<Leader>bb'] = {
-      function()
-        require('telescope.builtin').buffers { previewers = false }
-      end,
-      'find buffers',
-    },
-    ['<Leader>fc'] = {
-      function()
-        require('telescope.builtin').commands { previewers = false }
-      end,
-      'find commands',
-    },
-    ['<Leader>ts'] = {
-      function()
-        require('telescope').extensions.tasks.tasks()
-      end,
-      'show task lists',
-    },
-  },
-}
+--- bufferline
+keymap.set('n', '<Leader>bd', '<cmd>Bdelete<CR>')
+keymap.set('n', '<Leader>1', '<cmd>BufferLineGoToBuffer 1<CR>')
+keymap.set('n', '<Leader>2', '<cmd>BufferLineGoToBuffer 2<CR>')
+keymap.set('n', '<Leader>3', '<cmd>BufferLineGoToBuffer 3<CR>')
+keymap.set('n', '<Leader>4', '<cmd>BufferLineGoToBuffer 4<CR>')
+keymap.set('n', '<Leader>5', '<cmd>BufferLineGoToBuffer 5<CR>')
+keymap.set('n', '<Leader>6', '<cmd>BufferLineGoToBuffer 6<CR>')
+keymap.set('n', '<Leader>7', '<cmd>BufferLineGoToBuffer 7<CR>')
+keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
+keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
 
-return mappings
+--- telescope
+keymap.set('n', '<Leader>ff', function() require('telescope.builtin').find_files() end)
+keymap.set('n', '<Leader>ag', function() require('telescope.builtin').live_grep() end)
+keymap.set('n', '<Leader>Ag', function() require('telescope.builtin').grep_string() end)
+keymap.set('n', '<Leader>bb', function() require('telescope.builtin').buffers() end)
+keymap.set('n', '<Leader>fc', function() require('telescope.builtin').commands() end)
+keymap.set('n', '<Leader>ts', function() require('telescope').extensions.tasks.tasks() end)
+
+-- stylua: ignore end

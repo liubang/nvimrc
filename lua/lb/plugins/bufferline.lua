@@ -11,9 +11,8 @@ require('bufferline').setup {
   options = {
     mode = 'buffers',
     numbers = 'ordinal',
-    -- close_command = 'bdelete! %d',
-    -- right_mouse_command = 'bdelete! %d',
-    -- left_mouse_command = 'buffer %d',
+    close_command = 'Bdelete',
+    right_mouse_command = 'Bdelete',
     middle_mouse_command = nil,
     indicator = {
       icon = '',

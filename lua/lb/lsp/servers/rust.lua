@@ -7,8 +7,9 @@
 --
 --=====================================================================
 local c = require 'lb.lsp.customs'
+local M = {}
 
-local setup = function()
+M.setup = function()
   require('rust-tools').setup {
     tools = {
       inlay_hints = {
@@ -34,6 +35,4 @@ local setup = function()
   }
 end
 
-return {
-  setup = setup,
-}
+return M

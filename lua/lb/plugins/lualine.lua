@@ -6,9 +6,7 @@
 -- Last Modified: 2022/02/24 20:57
 --
 --=====================================================================
-local navic = require 'nvim-navic'
 local lualine = require 'lualine'
-local fidget = require 'fidget'
 
 local lineinfo = function()
   local line = vim.fn.line '.'
@@ -93,7 +91,7 @@ lualine.setup {
         },
       },
       { filesize },
-      { navic.get_location, cond = navic.is_available },
+      { require('nvim-navic').get_location, cond = require('nvim-navic').is_available },
     },
     lualine_x = {
       lineinfo,
@@ -122,21 +120,5 @@ lualine.setup {
     lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {},
-  },
-}
-
-fidget.setup {
-  text = {
-    spinner = 'dots',
-    done = '',
-  },
-  align = {
-    bottom = true,
-    right = true,
-  },
-  window = {
-    relative = 'win',
-    blend = 100,
-    zindex = nil,
   },
 }
