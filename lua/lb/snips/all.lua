@@ -8,11 +8,13 @@
 --=====================================================================
 
 local ls = require 'luasnip'
+local util = require 'lb.utils.util'
 -- some shorthands...
 local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
+local F = require('luasnip.nodes.functionNode').F
 local fmta = require('luasnip.extras.fmt').fmta
 local calculate_comment_string = require('Comment.ft').calculate
 local region = require('Comment.utils').get_region
@@ -75,9 +77,32 @@ local todo_snippet_specs = {
   { { trig = 'noteb' }, { 'NOTE', 'INFO' }, { ctype = 2 } },
 }
 
-local todo_comment_snippets = {}
-for _, v in ipairs(todo_snippet_specs) do
-  table.insert(todo_comment_snippets, todo_snippet(v[1], v[2], v[3]))
+local partial = function(func, ...)
+  return F(function(_, _, ...)
+    return func(...)
+  end, {}, { user_args = { ... } })
 end
 
-ls.add_snippets('all', todo_comment_snippets, { type = 'snippets', key = 'todo_comments' })
+local snippets = {
+  ls.s('time', partial(vim.fn.strftime, '%H:%M:%S')),
+  ls.s('date', partial(vim.fn.strftime, '%Y-%m-%d')),
+  ls.s('pwd', { partial(util.shell, 'pwd') }),
+  ls.s({ trig = 'uuid', wordTrig = true }, { ls.f(util.uuid), ls.i(0) }),
+  ls.s('shrug', { ls.t '¯\\_(ツ)_/¯' }),
+  ls.s('angry', { ls.t '(╯°□°）╯︵ ┻━┻' }),
+  ls.s('happy', { ls.t 'ヽ(´▽`)/' }),
+  ls.s('sad', { ls.t '(－‸ლ)' }),
+  ls.s('confused', { ls.t '(｡･ω･｡)' }),
+  ls.s({ trig = 'rstr(%d+)', regTrig = true }, {
+    ls.f(function(_, snip)
+      return util.random_string(snip.captures[1])
+    end),
+    ls.i(0),
+  }),
+}
+
+for _, v in ipairs(todo_snippet_specs) do
+  table.insert(snippets, todo_snippet(v[1], v[2], v[3]))
+end
+
+ls.add_snippets('all', snippets, { type = 'snippets', key = 'todo_comments' })

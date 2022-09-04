@@ -13,6 +13,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = 'CustomLspEvents',
   pattern = '*.go',
   callback = function()
-    require('lb.lsp.servers.gopls').org_imports(5000)
+    require('lb.plugins.lsp.servers.gopls').org_imports(5000)
   end,
 })

@@ -30,7 +30,6 @@ local sources = {
   b.diagnostics.buildifier.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
-  b.diagnostics.golangci_lint,
 }
 
 M.setup = function()
