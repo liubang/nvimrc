@@ -5,6 +5,6 @@
 
 Configuration for neovim :rose:.
 
-![nvim](./static/1.png)
+![nvim](./static/1.1.png)
 
 ![nvim](./static/2.png)
