@@ -7,6 +7,6 @@
 --
 -- =====================================================================
 
-require 'lb.plugins.lsp.servers'
 require 'lb.plugins.lsp.handlers'
+require 'lb.plugins.lsp.servers'
 require 'lb.plugins.lsp.events'

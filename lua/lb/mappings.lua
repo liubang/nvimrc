@@ -125,8 +125,8 @@ keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)')
 keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)')
 
 --- git
-keymap.set('n', '<Leader>bb', function() require('gitsigns').blame_line {full = true} end)
-keymap.set('n', '<Leader>bb', function() require('gitsigns').diffthis() end)
+keymap.set('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
+keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
 
 --- markdown
 keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
