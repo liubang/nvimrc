@@ -7,10 +7,9 @@
 --
 -- =====================================================================
 
-local utils = require 'lb.utils.plugin'
-local packer = require 'packer'
+require('lb.utils.plugin').bootstrap_packer()
 
-utils.bootstrap_packer()
+local packer = require 'packer'
 
 packer.init {
   auto_clean = true,
