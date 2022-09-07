@@ -130,7 +130,7 @@ packer.startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons',
       { 'MunifTanjim/nui.nvim' },
-      { 's1n7ax/nvim-window-picker', tag = '1.*', cmd = { 'Neotree' } },
+      { 's1n7ax/nvim-window-picker', tag = '1.*' },
     },
     config = function()
       require 'lb.plugins.neo-tree'
