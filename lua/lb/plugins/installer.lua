@@ -11,9 +11,9 @@ require('mason').setup {
   ui = {
     border = 'single',
     icons = {
-      package_installed = ' ',
-      package_pending = ' ',
-      package_uninstalled = ' ﮊ',
+      package_uninstalled = '',
+      package_installed = '',
+      package_pending = ' ',
     },
     keymaps = {
       -- Keymap to expand a package

@@ -84,7 +84,9 @@ packer.startup(function(use)
   use {
     'akinsho/bufferline.nvim',
     tag = 'v2.*',
-    requires = { 'famiu/bufdelete.nvim' },
+    requires = {
+      'famiu/bufdelete.nvim',
+    },
     config = function()
       require 'lb.plugins.bufferline'
     end,
@@ -321,6 +323,7 @@ packer.startup(function(use)
       require 'lb.plugins.installer'
     end,
     event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    cmd = { 'Mason' },
   }
 
   use {
@@ -357,7 +360,10 @@ packer.startup(function(use)
 
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
     event = { 'BufRead', 'BufNewFile' },
   }
 
@@ -365,8 +371,8 @@ packer.startup(function(use)
   use {
     'L3MON4D3/LuaSnip',
     requires = {
-      'Comment.nvim',
-      'nvim-treesitter',
+      'numToStr/Comment.nvim',
+      'nvim-treesitter/nvim-treesitter',
     },
     after = { 'Comment.nvim', 'nvim-treesitter' },
     config = function()
