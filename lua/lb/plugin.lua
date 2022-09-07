@@ -130,7 +130,7 @@ packer.startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons',
       { 'MunifTanjim/nui.nvim' },
-      { 's1n7ax/nvim-window-picker', tag = '1.*' },
+      { 's1n7ax/nvim-window-picker', tag = '1.*', cmd = { 'Neotree' } },
     },
     config = function()
       require 'lb.plugins.neo-tree'
@@ -149,7 +149,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.smartsplit'
     end,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile' },
   }
 
   use { 'willchao612/vim-diagon', cmd = 'Diagon' }
@@ -161,7 +161,7 @@ packer.startup(function(use)
     config = function()
       require('hop').setup {}
     end,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile' },
   }
 
   use {
@@ -169,7 +169,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.fold'
     end,
-    event = { 'BufNewFile', 'BufRead' },
+    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
   }
 
   use {
@@ -182,12 +182,14 @@ packer.startup(function(use)
       vim.g.floaterm_height = 0.7
       vim.g.floaterm_title = '─────  Floaterm [$1|$2] '
     end,
+    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
   }
   use {
     'skywind3000/asynctasks.vim',
     requires = {
-      'skywind3000/asyncrun.vim',
-      'skywind3000/asyncrun.extra',
+      'voldikss/vim-floaterm',
+      { 'skywind3000/asyncrun.vim', event = { 'BufNewFile', 'BufRead', 'InsertEnter' } },
+      { 'skywind3000/asyncrun.extra', event = { 'BufNewFile', 'BufRead', 'InsertEnter' } },
     },
     config = function()
       vim.g.asyncrun_open = 25
@@ -196,6 +198,7 @@ packer.startup(function(use)
       vim.g.asynctasks_term_pos = 'floaterm'
       vim.g.asynctasks_term_reuse = 1
     end,
+    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
   }
 
   use {
@@ -208,7 +211,7 @@ packer.startup(function(use)
 
   use {
     'itchyny/vim-cursorword',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile' },
   }
 
   use {
@@ -216,7 +219,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.easyalign'
     end,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile' },
   }
 
   -- MixedCase/PascalCase:   gsm/gsp
@@ -297,10 +300,10 @@ packer.startup(function(use)
     },
     run = ':TSUpdate',
     cmd = 'TSUpdate',
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
     config = function()
       require 'lb.plugins.treesitter'
     end,
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   -- lsp
