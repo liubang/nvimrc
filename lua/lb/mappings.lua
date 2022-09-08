@@ -145,11 +145,11 @@ keymap('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
 keymap('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
 
 --- telescope
-keymap('n', '<Leader>ff', function() require('telescope.builtin').find_files() end)
-keymap('n', '<Leader>ag', function() require('telescope.builtin').live_grep() end)
-keymap('n', '<Leader>Ag', function() require('telescope.builtin').grep_string() end)
-keymap('n', '<Leader>bb', function() require('telescope.builtin').buffers() end)
-keymap('n', '<Leader>fc', function() require('telescope.builtin').commands() end)
-keymap('n', '<Leader>ts', function() require('telescope').extensions.tasks.tasks() end)
+keymap('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
+keymap('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
+keymap('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
+keymap('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
+keymap('n', '<Leader>fc', "<cmd>Telescope command<CR>")
+keymap('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
 
 -- stylua: ignore end
