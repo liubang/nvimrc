@@ -85,7 +85,7 @@ packer.startup(function(use)
     'akinsho/bufferline.nvim',
     tag = 'v2.*',
     requires = {
-      'famiu/bufdelete.nvim',
+      { 'famiu/bufdelete.nvim', cmd = 'Bdelete' },
     },
     config = function()
       require 'lb.plugins.bufferline'
