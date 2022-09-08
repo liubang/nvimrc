@@ -13,7 +13,7 @@ local c = require 'lb.plugins.lsp.customs'
 for _, server in ipairs {
   'clangd',
   'gopls',
-  'php',
+  -- 'php',
   'rust',
   'sumneko_lua',
   'null-ls',

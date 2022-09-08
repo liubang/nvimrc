@@ -336,16 +336,16 @@ packer.startup(function(use)
       'simrat39/rust-tools.nvim',
       'folke/lua-dev.nvim',
       'jose-elias-alvarez/null-ls.nvim',
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-nvim-lsp',
+      -- 'hrsh7th/nvim-cmp',
+      -- 'hrsh7th/cmp-nvim-lsp',
     },
     after = {
       'mason.nvim',
       'rust-tools.nvim',
       'lua-dev.nvim',
       'null-ls.nvim',
-      'nvim-cmp',
-      'cmp-nvim-lsp',
+      -- 'nvim-cmp',
+      -- 'cmp-nvim-lsp',
     },
     config = function()
       require 'lb.plugins.lsp'
