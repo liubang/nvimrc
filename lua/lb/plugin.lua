@@ -26,7 +26,9 @@ packer.init {
     removed_sym = '',
     show_all_info = true,
     open_fn = function()
-      return require('packer.util').float { border = 'single' }
+      return require('packer.util').float {
+        border = 'single',
+      }
     end,
   },
   git = {
@@ -44,9 +46,7 @@ packer.startup(function(use)
   -- performance
   use {
     'antoinemadec/FixCursorHold.nvim',
-    run = function()
-      vim.g.cursorhold_updatetime = 100
-    end,
+    config = 'vim.g.cursorhold_updatetime = 100',
   }
 
   -- appearance
@@ -59,7 +59,7 @@ packer.startup(function(use)
 
   use {
     'kyazdani42/nvim-web-devicons',
-    event = 'UIEnter',
+    event = { 'UIEnter' },
   }
 
   use {
@@ -70,7 +70,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.dashboard'
     end,
-    event = 'BufWinEnter',
+    event = { 'BufWinEnter' },
   }
 
   use {
@@ -78,7 +78,7 @@ packer.startup(function(use)
     config = function()
       return 'lb.plugins.notify'
     end,
-    event = 'UIEnter',
+    event = { 'UIEnter' },
   }
 
   use {
@@ -89,14 +89,6 @@ packer.startup(function(use)
     },
     config = function()
       require 'lb.plugins.bufferline'
-    end,
-    event = { 'UIEnter' },
-  }
-
-  use {
-    'SmiteshP/nvim-navic',
-    config = function()
-      require 'lb.plugins.nvim-navic'
     end,
     event = { 'UIEnter' },
   }
@@ -114,6 +106,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.lualine'
     end,
+    event = { 'UIEnter' },
   }
 
   use {
@@ -121,7 +114,13 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.nui'
     end,
-    event = 'UIEnter',
+    event = { 'UIEnter' },
+  }
+
+  use {
+    's1n7ax/nvim-window-picker',
+    tag = '1.*',
+    event = { 'UIEnter' },
   }
 
   use {
@@ -129,8 +128,8 @@ packer.startup(function(use)
     branch = 'v2.x',
     requires = {
       'kyazdani42/nvim-web-devicons',
-      { 'MunifTanjim/nui.nvim' },
-      { 's1n7ax/nvim-window-picker', tag = '1.*' },
+      'MunifTanjim/nui.nvim',
+      's1n7ax/nvim-window-picker',
     },
     config = function()
       require 'lb.plugins.neo-tree'
@@ -141,7 +140,7 @@ packer.startup(function(use)
   -- tools
   use {
     'rainbowhxch/accelerated-jk.nvim',
-    event = { 'BufEnter' },
+    event = { 'BufEnter', 'BufNewFile', 'InsertEnter' },
   }
 
   use {
@@ -149,7 +148,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.smartsplit'
     end,
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   use { 'willchao612/vim-diagon', cmd = 'Diagon' }
@@ -161,7 +160,7 @@ packer.startup(function(use)
     config = function()
       require('hop').setup {}
     end,
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   use {
@@ -184,6 +183,7 @@ packer.startup(function(use)
     end,
     event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
   }
+
   use {
     'skywind3000/asynctasks.vim',
     requires = {
@@ -206,12 +206,12 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.git'
     end,
-    event = { 'BufNewFile', 'BufRead' },
+    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
   }
 
   use {
     'itchyny/vim-cursorword',
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   use {
@@ -219,7 +219,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.easyalign'
     end,
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   -- MixedCase/PascalCase:   gsm/gsp
@@ -233,16 +233,6 @@ packer.startup(function(use)
   -- Title-Dash/Title-Kebab: gsK
   -- dot.case:               gs.
   use { 'arthurxavierx/vim-caser', keys = { 'gs' } }
-
-  use {
-    'sQVe/sort.nvim',
-    config = function()
-      require('sort').setup {
-        delimiters = { ',', '|', ';', ':', 's', 't' },
-      }
-    end,
-    cmd = { 'Sort' },
-  }
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -271,7 +261,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.outline'
     end,
-    events = { 'BufNewFile', 'BufRead' },
+    -- events = { 'BufNewFile', 'BufRead' },
     cmd = { 'SymbolsOutline' },
   }
 
@@ -299,22 +289,25 @@ packer.startup(function(use)
       },
     },
     run = ':TSUpdate',
-    cmd = 'TSUpdate',
     config = function()
       require 'lb.plugins.treesitter'
     end,
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
   }
 
   -- lsp
   use {
-    'folke/lua-dev.nvim',
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    'SmiteshP/nvim-navic',
+    config = function()
+      require 'lb.plugins.nvim-navic'
+    end,
   }
-
+  use { 'folke/lua-dev.nvim' }
+  use { 'simrat39/rust-tools.nvim' }
   use {
-    'simrat39/rust-tools.nvim',
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    },
   }
 
   use {
@@ -325,8 +318,6 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.installer'
     end,
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
-    cmd = { 'Mason' },
   }
 
   use {
@@ -336,16 +327,6 @@ packer.startup(function(use)
       'simrat39/rust-tools.nvim',
       'folke/lua-dev.nvim',
       'jose-elias-alvarez/null-ls.nvim',
-      -- 'hrsh7th/nvim-cmp',
-      -- 'hrsh7th/cmp-nvim-lsp',
-    },
-    after = {
-      'mason.nvim',
-      'rust-tools.nvim',
-      'lua-dev.nvim',
-      'null-ls.nvim',
-      -- 'nvim-cmp',
-      -- 'cmp-nvim-lsp',
     },
     config = function()
       require 'lb.plugins.lsp'
@@ -358,15 +339,6 @@ packer.startup(function(use)
       require 'lb.plugins.fidget'
     end,
     after = { 'nvim-lspconfig' },
-    event = { 'BufRead', 'BufNewFile' },
-  }
-
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig',
-    },
     event = { 'BufRead', 'BufNewFile' },
   }
 
