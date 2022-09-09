@@ -267,11 +267,10 @@ packer.startup(function(use)
 
   use {
     'numToStr/Comment.nvim',
-    after = { 'nvim-treesitter' },
+    events = { 'InsertEnter' },
     config = function()
       require 'lb.plugins.comment'
     end,
-    events = { 'InsertEnter' },
   }
 
   use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
@@ -349,7 +348,8 @@ packer.startup(function(use)
       'numToStr/Comment.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
-    after = { 'Comment.nvim', 'nvim-treesitter' },
+    after = { 'Comment.nvim' },
+    events = { 'InsertEnter' },
     config = function()
       require 'lb.plugins.snip'
     end,
@@ -367,7 +367,8 @@ packer.startup(function(use)
       { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
-    after = { 'LuaSnip', 'nvim-treesitter' },
+    after = { 'LuaSnip' },
+    events = { 'InsertEnter' },
     config = function()
       require 'lb.plugins.cmp'
     end,

@@ -29,13 +29,13 @@ vim.keymap.set({ 'i', 's' }, '<C-n>', function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
-end)
+end, {})
 
 vim.keymap.set({ 'i', 's' }, '<C-p>', function()
   if ls.choice_active() then
     ls.change_choice(-1)
   end
-end)
+end, {})
 
 require 'lb.snips.all'
 require 'lb.snips.c'

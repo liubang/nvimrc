@@ -22,7 +22,7 @@ local sources = {
     extra_args = { '-i', '2', '-ci' },
   },
   b.formatting.prettier.with {
-    filetypes = { 'markdown' },
+    filetypes = { 'markdown', 'css', 'javascript', 'html' },
   },
   b.diagnostics.shellcheck.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,

@@ -30,46 +30,80 @@ custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-local custom_attach = function(client, bufnr)
-  navic.attach(client, bufnr)
+local augroup_format = vim.api.nvim_create_augroup('my_lsp_format', { clear = true })
+local autocmd_format = function(async, filter)
+  vim.api.nvim_clear_autocmds { buffer = 0, group = augroup_format }
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    buffer = 0,
+    callback = function()
+      vim.lsp.buf.format { async = async, filter = filter }
+    end,
+  })
+end
 
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>gr', require('telescope.builtin').lsp_references, { buffer = 0 })
-  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { buffer = 0 })
+local filetype_attach = setmetatable({
+  cpp = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end,
+
+  go = function(client, bufnr)
+    navic.attach(client, bufnr)
+    -- autocmd_format(false)
+  end,
+
+  rust = function(client, bufnr)
+    navic.attach(client, bufnr)
+    autocmd_format(false)
+  end,
+
+  lua = function(client, bufnr)
+    if client.name ~= 'null-ls' then
+      navic.attach(client, bufnr)
+    end
+
+    autocmd_format(false, function(client)
+      return client.name == 'null-ls'
+    end)
+  end,
+}, {
+  __index = function()
+    return function(client, bufnr) end
+  end,
+})
+
+local custom_attach = function(client, bufnr)
+  local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<Leader>gr', require('telescope.builtin').lsp_references, bufopts)
+  vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<Leader>ee', function()
     vim.diagnostic.open_float(nil, { scope = 'line' })
   end, { buffer = 0 })
 
   vim.keymap.set('n', '<Leader>es', function()
     require('telescope.builtin').diagnostics { bufnr = 0 }
-  end, { buffer = 0 })
+  end, bufopts)
 
-  vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0, desc = 'lsp:hover' })
-
-  if client.server_capabilities.document_formatting then
-    vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
-    vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })
-  end
-
-  if client.server_capabilities.document_range_formatting then
-    vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { buffer = 0 })
-  end
+  vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, bufopts)
 
   -- disable sumneko_lua format
   if client.name == 'sumneko_lua' then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
   end
 
-  if client.name == 'jdtls' then
-    vim.api.nvim_buf_create_user_command(0, 'JdtOrgImport', require('jdtls').organize_imports, {})
-    vim.api.nvim_buf_create_user_command(0, 'JdtBytecode', require('jdtls').javap, {})
-    vim.api.nvim_buf_create_user_command(0, 'JdtJshell', require('jdtls').jshell, {})
+  if client.server_capabilities.documentFormattingProvider then
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format { async = false }
+    end, bufopts)
+    vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting, { nargs = 0 })
   end
+
+  filetype_attach[filetype](client, bufnr)
 end
 
 M.default = function(configs)

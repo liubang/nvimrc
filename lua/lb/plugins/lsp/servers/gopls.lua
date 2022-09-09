@@ -66,7 +66,7 @@ end
 local org_imports = function(wait_ms)
   local codeaction = require('lb.lsp.lsp').codeaction
   codeaction('gopls', '', 'source.organizeImports', wait_ms)
-  vim.lsp.buf.formatting_sync(nil, 5000)
+  vim.lsp.buf.format { async = false, timeout_ms = wait_ms }
 end
 
 return {
