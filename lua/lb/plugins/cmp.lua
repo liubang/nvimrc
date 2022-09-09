@@ -107,13 +107,20 @@ cmp.setup {
         dap = 'DAP',
         neorg = 'ORG',
       })[entry.source.name] or entry.source.name, client_name)
-      vim_item.kind = string.format('%s %-9s', kind_icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = kind_icons[vim_item.kind]
       vim_item.dup = {
         buffer = 1,
         path = 1,
         nvim_lsp = 0,
         luasnip = 1,
       }
+      local ELLIPSIS_CHAR = '…'
+      local MAX_LABEL_WIDTH = 100
+      local label = vim_item.abbr
+      local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+      if truncated_label ~= label then
+        vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+      end
       return vim_item
     end,
   },
