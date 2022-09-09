@@ -50,19 +50,19 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { buffer = 0, desc = 'lsp:hover' })
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.keymap.set('n', '<Leader>fm', vim.lsp.buf.formatting_sync, { buffer = 0 })
     vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting_sync, { nargs = 0 })
   end
 
-  if client.resolved_capabilities.document_range_formatting then
+  if client.server_capabilities.document_range_formatting then
     vim.keymap.set('v', '<Leader>fm', vim.lsp.buf.range_formatting, { buffer = 0 })
   end
 
   -- disable sumneko_lua format
   if client.name == 'sumneko_lua' then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   if client.name == 'jdtls' then
