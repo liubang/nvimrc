@@ -75,5 +75,7 @@ navic.setup({ --{{{
   },
   separator = ' > ',
   highlight = true,
+  depth_limit = 3,
+  depth_limit_indicator = "..",
 }) --}}}
 -- stylua: ignore end
