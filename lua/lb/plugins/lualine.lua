@@ -65,6 +65,7 @@ end
 
 lualine.setup {
   options = {
+    icons_enabled = true,
     theme = 'gruvbox-material',
     component_separators = '',
     section_separators = '',
@@ -91,7 +92,6 @@ lualine.setup {
         },
       },
       { filesize },
-      { require('nvim-navic').get_location, cond = require('nvim-navic').is_available },
     },
     lualine_x = {
       lineinfo,
@@ -120,5 +120,16 @@ lualine.setup {
     lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {},
+  },
+  -- tabline = {
+  --   lualine_a = {
+  --     { 'buffers', mode = 2 },
+  --   },
+  --   lualine_z = { 'tabs' },
+  -- },
+  winbar = {
+    lualine_a = {
+      { require('nvim-navic').get_location, cond = require('nvim-navic').is_available },
+    },
   },
 }
