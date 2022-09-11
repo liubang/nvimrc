@@ -40,28 +40,39 @@ local mode = function()
   return '\u{e7c5} ' .. require('lualine.utils.mode').get_mode()
 end
 
-local lspprovider = function()
-  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-  local clients = vim.lsp.get_active_clients()
-  if next(clients) == nil then
-    return ''
+local lsp_names = { --{{{
+  ['null-ls'] = 'Null',
+  ['diagnostics_on_open'] = 'Diagnostics',
+  ['diagnostics_on_save'] = 'Diagnostics',
+  bashls = 'Bash',
+  clangd = 'C++',
+  dockerls = 'Docker',
+  gopls = 'GoPLS',
+  golangci_lint_ls = 'GolangCI',
+  html = 'HTML',
+  jedi_language_server = 'Python',
+  jsonls = 'JSON',
+  sqls = 'SQL',
+  sumneko_lua = 'Lua',
+  tsserver = 'TS',
+  vimls = 'Vim',
+  yamlls = 'YAML',
+  rust_analyzer = 'Rust',
+}
+--}}}
+
+local lsp_clients = function()
+  local clients = {}
+  for _, client in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+    local name = lsp_names[client.name] or client.name
+    clients[#clients + 1] = name
   end
-  local cm = {}
-  for _, client in ipairs(clients) do
-    local filetypes = client.config.filetypes
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      cm[client.name] = client.name
-    end
-  end
-  local cs = {}
-  for key, _ in pairs(cm) do
-    table.insert(cs, key)
-  end
-  if #cs > 0 then
-    return '\u{f817} ' .. table.concat(cs, ',')
-  end
-  return ''
+  return ' ' .. table.concat(clients, ' 珞 ')
 end
+
+local is_lsp_attached = function() --{{{
+  return next(vim.lsp.get_active_clients { bufnr = 0 }) ~= nil
+end --}}}
 
 lualine.setup {
   options = {
@@ -80,6 +91,7 @@ lualine.setup {
       { 'diagnostics', colored = true },
     },
     lualine_c = {
+      '%=', -- center
       {
         'filename',
         path = 1,
@@ -95,7 +107,12 @@ lualine.setup {
     },
     lualine_x = {
       lineinfo,
-      lspprovider,
+      {
+        lsp_clients,
+        cond = function()
+          return is_lsp_attached()
+        end,
+      },
     },
     lualine_y = {
       { 'filetype', icon_only = true, colored = true },
@@ -121,15 +138,11 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {},
   },
-  -- tabline = {
-  --   lualine_a = {
-  --     { 'buffers', mode = 2 },
-  --   },
-  --   lualine_z = { 'tabs' },
-  -- },
   winbar = {
     lualine_a = {
       { require('nvim-navic').get_location, cond = require('nvim-navic').is_available },
     },
   },
 }
+
+-- vim: foldmethod=marker foldlevel=0
