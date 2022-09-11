@@ -91,7 +91,7 @@ lualine.setup {
       { 'diagnostics', colored = true },
     },
     lualine_c = {
-      '%=', -- center
+      -- '%=', -- center
       {
         'filename',
         path = 1,
