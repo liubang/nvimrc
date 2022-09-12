@@ -13,7 +13,6 @@ local c = require 'lb.plugins.lsp.customs'
 for _, server in ipairs {
   'clangd',
   'gopls',
-  -- 'php',
   'rust',
   'sumneko_lua',
   'null-ls',
@@ -28,6 +27,7 @@ for _, server in ipairs {
   'texlab',
   'jsonls',
   'yamlls',
+  'vimls',
 } do
   lspconfig[server].setup(c.default())
 end

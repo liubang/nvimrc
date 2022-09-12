@@ -44,6 +44,9 @@ local setup = function()
       '--enable-config',
       '--fallback-style=google',
     },
+    init_options = {
+      clangdFileStatus = true,
+    },
   })
 end
 

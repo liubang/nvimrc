@@ -21,7 +21,7 @@ custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport 
 custom_capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
 custom_capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 custom_capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-custom_capabilities.textDocument.completion.completionItem.tagSupport = true
+custom_capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = 1 }
 custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
     'documentation',

@@ -140,7 +140,10 @@ lualine.setup {
   },
   winbar = {
     lualine_a = {
-      { require('nvim-navic').get_location, cond = require('nvim-navic').is_available },
+      {
+        require('nvim-navic').get_location,
+        cond = require('nvim-navic').is_available,
+      },
     },
   },
 }
