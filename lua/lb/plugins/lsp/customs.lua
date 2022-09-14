@@ -100,7 +100,9 @@ local custom_attach = function(client, bufnr)
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format { async = false }
     end, bufopts)
-    vim.api.nvim_buf_create_user_command(0, 'Format', vim.lsp.buf.formatting, { nargs = 0 })
+    vim.api.nvim_buf_create_user_command(0, 'Format', function()
+      vim.lsp.buf.format { async = false }
+    end, { nargs = 0 })
   end
 
   filetype_attach[filetype](client, bufnr)
