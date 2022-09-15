@@ -30,7 +30,7 @@ telescope.setup {
     results_title = false,
     preview_title = false,
     multi_icon = '',
-    layout_strategy = 'flex',
+    layout_strategy = 'vertical',
     scroll_strategy = 'cycle',
     selection_strategy = 'reset',
     winblend = 0,
@@ -38,15 +38,16 @@ telescope.setup {
     color_devicons = true,
     layout_config = {
       vertical = {
-        mirror = true,
+        prompt_position = 'top',
+        mirror = false,
       },
       center = {
-        mirror = true,
+        prompt_position = 'top',
+        mirror = false,
       },
     },
-    file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
+    file_ignore_patterns = { 'build', 'tags' },
     hl_result_eol = false,
-    preview = false,
     cache = false,
     mappings = {
       i = {
@@ -101,7 +102,6 @@ telescope.setup {
     },
     grep_string = {
       theme = 'dropdown',
-      previewer = false,
       prompt_title = false,
       results_title = false,
       borderchars = dropdown_borderchars,
@@ -109,7 +109,6 @@ telescope.setup {
     },
     live_grep = {
       theme = 'dropdown',
-      previewer = false,
       prompt_title = false,
       results_title = false,
       borderchars = dropdown_borderchars,
@@ -133,7 +132,7 @@ telescope.setup {
     },
     lsp_references = {
       theme = 'dropdown',
-      previewer = false,
+      -- previewer = true,
       prompt_title = false,
       results_title = false,
       borderchars = dropdown_borderchars,
@@ -170,7 +169,6 @@ telescope.setup {
     },
     project = {
       themes.get_dropdown {
-        prompt_position = 'top',
         previewer = false,
         prompt_title = false,
         results_title = false,
@@ -180,7 +178,6 @@ telescope.setup {
     },
     tasks = {
       themes.get_dropdown {
-        prompt_position = 'top',
         previewer = false,
         prompt_title = false,
         results_title = false,
@@ -190,7 +187,6 @@ telescope.setup {
     },
     ['ui-select'] = {
       themes.get_dropdown {
-        prompt_position = 'top',
         previewer = false,
         prompt_title = false,
         results_title = false,
