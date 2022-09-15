@@ -103,6 +103,10 @@ lualine.setup {
         },
       },
       { filesize },
+      {
+        require('nvim-navic').get_location,
+        cond = require('nvim-navic').is_available,
+      },
     },
     lualine_x = {
       lineinfo,
@@ -138,12 +142,12 @@ lualine.setup {
     lualine_z = {},
   },
   winbar = {
-    lualine_a = {
-      {
-        require('nvim-navic').get_location,
-        cond = require('nvim-navic').is_available,
-      },
-    },
+    -- lualine_a = {
+    --   {
+    --     require('nvim-navic').get_location,
+    --     cond = require('nvim-navic').is_available,
+    --   },
+    -- },
   },
 }
 

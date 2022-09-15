@@ -74,6 +74,7 @@ navic.setup({ --{{{
     Variable      = icons.variable,
   },
   separator = ' > ',
+  depth_limit = 3,
   highlight = true,
   depth_limit_indicator = "..",
 }) --}}}
