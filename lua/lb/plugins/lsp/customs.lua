@@ -56,13 +56,23 @@ local filetype_attach = setmetatable({
     autocmd_format(false)
   end,
 
+  yaml = function(client, bufnr)
+    if client.name ~= 'null-ls' then
+      navic.attach(client, bufnr)
+    end
+
+    autocmd_format(false, function(c)
+      return c.name == 'null-ls'
+    end)
+  end,
+
   lua = function(client, bufnr)
     if client.name ~= 'null-ls' then
       navic.attach(client, bufnr)
     end
 
-    autocmd_format(false, function(client)
-      return client.name == 'null-ls'
+    autocmd_format(false, function(c)
+      return c.name == 'null-ls'
     end)
   end,
 }, {
