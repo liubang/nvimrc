@@ -248,10 +248,8 @@ local function java_generate_delegate_methods_prompt(_, outer_ctx)
       for _, x in pairs(field.delegateMethods) do
         table.insert(lines, string.format('%s(%s)', x.name, table.concat(x.parameters, ',')))
       end
-      local idxs = vim.fn['quickui#checkbox#open'](
-        lines,
-        { title = 'Generate delegate for methods' }
-      )
+      local idxs =
+        vim.fn['quickui#checkbox#open'](lines, { title = 'Generate delegate for methods' })
       local methods = {}
       for _, idx in pairs(idxs) do
         table.insert(methods, field.delegateMethods[tonumber(idx) + 1])
