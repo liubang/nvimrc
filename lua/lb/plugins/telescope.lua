@@ -6,6 +6,8 @@
 -- Last Modified: 2020/12/13 13:38
 --
 -- =====================================================================
+vim.cmd [[packadd telescope-fzf-native.nvim]]
+vim.cmd [[packadd telescope-ui-select.nvim]]
 
 local actions = require 'telescope.actions'
 local telescope = require 'telescope'

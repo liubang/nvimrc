@@ -251,13 +251,18 @@ packer.startup(function(use)
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-        before = { 'telescope.nvim' },
+        after = { 'telescope.nvim' },
+        opt = true,
       },
       {
         'nvim-telescope/telescope-ui-select.nvim',
-        before = { 'telescope.nvim' },
+        after = { 'telescope.nvim' },
+        opt = true,
       },
     },
+    opt = true,
+    module = 'telescope',
+    cmd = 'Telescope',
     config = function()
       require 'lb.plugins.telescope'
     end,
@@ -370,7 +375,7 @@ packer.startup(function(use)
 
   use {
     'L3MON4D3/LuaSnip',
-    after = 'nvim-cmp',
+    after = { 'nvim-cmp', 'Comment.nvim' },
     config = function()
       require 'lb.plugins.snip'
     end,
