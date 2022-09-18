@@ -44,16 +44,24 @@ end
 local filetype_attach = setmetatable({
   cpp = function(client, bufnr)
     navic.attach(client, bufnr)
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format { async = false }
+    end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   go = function(client, bufnr)
     navic.attach(client, bufnr)
-    -- autocmd_format(false)
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format { async = false }
+    end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   rust = function(client, bufnr)
     navic.attach(client, bufnr)
     autocmd_format(false)
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format { async = false }
+    end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   yaml = function(client, bufnr)
@@ -64,6 +72,15 @@ local filetype_attach = setmetatable({
     autocmd_format(false, function(c)
       return c.name == 'null-ls'
     end)
+
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format {
+        async = false,
+        filter = function(c)
+          return c.name == 'null-ls'
+        end,
+      }
+    end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   lua = function(client, bufnr)
@@ -71,9 +88,23 @@ local filetype_attach = setmetatable({
       navic.attach(client, bufnr)
     end
 
+    -- disable sumneko_lua format
+    if client.name == 'sumneko_lua' then
+      client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+    end
+
     autocmd_format(false, function(c)
       return c.name == 'null-ls'
     end)
+
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format {
+        async = false,
+        filter = function(c)
+          return c.name == 'null-ls'
+        end,
+      }
+    end, { noremap = true, silent = true, buffer = bufnr })
   end,
 }, {
   __index = function()
@@ -84,6 +115,8 @@ local filetype_attach = setmetatable({
 local custom_attach = function(client, bufnr)
   local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  -- common keymaps
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, bufopts)
@@ -92,29 +125,14 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<Leader>ee', function()
     vim.diagnostic.open_float(nil, { scope = 'line' })
-  end, { buffer = 0 })
-
+  end, bufopts)
   vim.keymap.set('n', '<Leader>es', function()
     require('telescope.builtin').diagnostics { bufnr = 0 }
   end, bufopts)
-
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, bufopts)
 
-  -- disable sumneko_lua format
-  if client.name == 'sumneko_lua' then
-    client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
-  end
-
-  if client.server_capabilities.documentFormattingProvider then
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format { async = false }
-    end, bufopts)
-    vim.api.nvim_buf_create_user_command(0, 'Format', function()
-      vim.lsp.buf.format { async = false }
-    end, { nargs = 0 })
-  end
-
+  -- filetype config
   filetype_attach[filetype](client, bufnr)
 end
 
