@@ -13,8 +13,7 @@ vim.opt.shortmess:append 'c'
 
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
-local luasnip = require 'luasnip'
-
+-- local luasnip = require 'luasnip'
 
 --               ⌘  ⌂              ﲀ  練  ﴲ    ﰮ    
 --       ﳤ          ƒ          了    ﬌      <    >  ⬤      襁
@@ -48,6 +47,10 @@ local kind_icons = {--{{{
   Variable      = " ",
   Text          = " ",
 }--}}}
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -152,8 +155,9 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      elseif require('luasnip').expand_or_jumpable() then
+        vim.fn.feedkeys(t '<Plug>luasnip-expand-or-jump', '')
+        -- luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -167,8 +171,9 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif require('luasnip').jumpable(-1) then
+        vim.fn.feedkeys(t '<Plug>luasnip-jump-prev', '')
+        -- luasnip.jump(-1)
       else
         fallback()
       end

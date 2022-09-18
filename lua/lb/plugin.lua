@@ -271,13 +271,12 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.outline'
     end,
-    -- events = { 'BufNewFile', 'BufRead' },
     cmd = { 'SymbolsOutline' },
   }
 
   use {
     'numToStr/Comment.nvim',
-    events = { 'InsertEnter' },
+    event = { 'InsertEnter' },
     config = function()
       require 'lb.plugins.comment'
     end,
@@ -353,22 +352,8 @@ packer.startup(function(use)
 
   -- completion
   use {
-    'L3MON4D3/LuaSnip',
-    requires = {
-      'numToStr/Comment.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    after = { 'Comment.nvim' },
-    events = { 'InsertEnter' },
-    config = function()
-      require 'lb.plugins.snip'
-    end,
-  }
-
-  use {
     'hrsh7th/nvim-cmp',
     requires = {
-      'L3MON4D3/LuaSnip',
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
@@ -377,27 +362,29 @@ packer.startup(function(use)
       { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
-    after = { 'LuaSnip' },
-    events = { 'InsertEnter' },
+    event = { 'InsertEnter' },
     config = function()
       require 'lb.plugins.cmp'
     end,
   }
 
   use {
+    'L3MON4D3/LuaSnip',
+    after = 'nvim-cmp',
+    config = function()
+      require 'lb.plugins.snip'
+    end,
+  }
+
+  use {
     'windwp/nvim-autopairs',
-    requires = {
-      'hrsh7th/nvim-cmp',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    after = { 'nvim-cmp', 'nvim-treesitter' },
+    after = 'nvim-cmp',
     config = function()
       require 'lb.plugins.autopairs'
     end,
   }
 
   -- ft
-  use { 'cespare/vim-toml', ft = { 'toml' } }
   use {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
