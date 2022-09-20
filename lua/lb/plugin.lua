@@ -281,7 +281,7 @@ packer.startup(function(use)
 
   use {
     'numToStr/Comment.nvim',
-    event = { 'InsertEnter' },
+    event = { 'InsertEnter', 'BufRead', 'BufNewFile' },
     config = function()
       require 'lb.plugins.comment'
     end,
