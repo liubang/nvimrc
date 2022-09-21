@@ -12,8 +12,7 @@ local gomodify = 'gomodifytags'
 
 tags.modify = function(...)
   local fname = vim.fn.expand '%' -- %:p:h ? %:p
-  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local ns = require('lb.ts.go').get_struct_node_at_pos(row, col)
+  local ns = require('lb.ts.go').get_struct_node_at_pos()
   if require('lb.utils.objects').empty(ns) then
     return
   end

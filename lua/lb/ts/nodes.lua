@@ -93,8 +93,17 @@ local intersects = function(row, col, sRow, sCol, eRow, eCol)
   return true
 end
 
--- Array<node_wrapper>
-local intersect_nodes = function(nodes, row, col)
+M.count_parents = function(node)
+  local count = 0
+  local n = node.declaring_node
+  while n ~= nil do
+    n = n:parent()
+    count = count + 1
+  end
+  return count
+end
+
+M.intersect_nodes = function(nodes, row, col)
   local found = {}
   for idx = 1, #nodes do
     local node = nodes[idx]
@@ -111,29 +120,18 @@ local intersect_nodes = function(nodes, row, col)
   return found
 end
 
-local count_parents = function(node)
-  local count = 0
-  local n = node.declaring_node
-  while n ~= nil do
-    n = n:parent()
-    count = count + 1
-  end
-  return count
-end
-
-local sort_nodes = function(nodes)
+M.sort_nodes = function(nodes)
   table.sort(nodes, function(a, b)
-    return count_parents(a) < count_parents(b)
+    return M.count_parents(a) < M.count_parents(b)
   end)
   return nodes
 end
 
-M.nodes_at_cursor = function(query, default, bufnr, row, col)
+M.nodes_at_cursor = function(query, default, bufnr)
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  row, col = row, col + 1
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
-  if row == nil or col == nil then
-    row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  end
   local nodes = M.get_all_nodes(query, ft, default, bufnr, row, col)
   if nodes == nil then
     vim.notify(
@@ -143,8 +141,8 @@ M.nodes_at_cursor = function(query, default, bufnr, row, col)
     return nil
   end
 
-  nodes = sort_nodes(intersect_nodes(nodes, row, col))
-  if nodes == nil or #nodes == 0 then
+  local nodes_at_cursor = M.sort_nodes(M.intersect_nodes(nodes, row, col))
+  if nodes_at_cursor == nil or #nodes_at_cursor == 0 then
     vim.notify(
       'Unable to find any nodes at pos. ' .. tostring(row) .. ':' .. tostring(col),
       vim.lsp.log_levels.DEBUG
@@ -152,6 +150,21 @@ M.nodes_at_cursor = function(query, default, bufnr, row, col)
     return nil
   end
 
+  return nodes_at_cursor
+end
+
+M.nodes_in_buf = function(query, default, bufnr, row, col)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
+  if row == nil or col == nil then
+    row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    row, col = row, col + 1
+  end
+  local nodes = M.get_all_nodes(query, ft, default, bufnr, row, col, true)
+  if nodes == nil then
+    vim.notify('Unable to find any nodes.', vim.lsp.log_levels.DEBUG)
+    return nil
+  end
   return nodes
 end
 

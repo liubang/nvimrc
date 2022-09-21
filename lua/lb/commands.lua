@@ -6,6 +6,7 @@
 -- Last Modified: 2022/04/05 03:55
 --
 -- =====================================================================
+
 vim.schedule(function()
   vim.api.nvim_create_user_command('Filepath', function()
     print(vim.fn.expand '%:p')
@@ -34,6 +35,10 @@ vim.schedule(function()
   vim.api.nvim_create_user_command('GoRmTagsXml', function()
     require('lb.go.tags').rm 'xml'
   end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('GoImpl', function(opts)
+    require('lb.go.impl').run(unpack(opts.fargs))
+  end, { complete = require('lb.complete').impl_complete, nargs = '*' })
 
   vim.api.nvim_create_user_command('Tasks', function()
     require('telescope').extensions.tasks.tasks()
