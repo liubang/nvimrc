@@ -21,7 +21,7 @@ local function get_node_text(bufnr, node)
   return ts_utils.get_node_text(node)[1]
 end
 
-M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, custom)
+M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, type_only)
   bufnr = bufnr or 0
   pos_row = pos_row or 30000
   local success, parsed_query = pcall(function()
@@ -35,37 +35,51 @@ M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, custo
   local root = parser:parse()[1]:root()
   local start_row, _, end_row, _ = root:range()
   local results = {}
+  local node_type
   for match in ts_query.iter_prepared_matches(parsed_query, root, bufnr, start_row, end_row) do
     local sRow, sCol, eRow, eCol
     local declaration_node
+    local type_node
     local type = ''
     local name = ''
     local op = ''
-
     locals.recurse_local_nodes(match, function(_, node, path)
-      local idx = string.find(path, '.[^.]*$') -- find last .
+      local idx = string.find(path, '.[^.]*$') -- find last `.`
       op = string.sub(path, idx + 1, #path)
       local a1, b1, c1, d1 = ts_utils.get_node_range(node)
       local dbg_txt = get_node_text(node, bufnr) or ''
       if #dbg_txt > 100 then
         dbg_txt = string.sub(dbg_txt, 1, 100) .. '...'
       end
-      type = string.sub(path, 1, idx - 1)
+      type = string.sub(path, 1, idx - 1) -- e.g. struct.name, type is struct
+      if type:find 'type' and op == 'type' then -- type_declaration.type
+        node_type = get_node_text(node, bufnr)
+      end
 
       -- may not handle complex node
       if op == 'name' then
         name = get_node_text(node, bufnr) or ''
+        type_node = node
       elseif op == 'declaration' or op == 'clause' then
         declaration_node = node
         sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(node) }, bufnr)
+      else
+        vim.notify('unknown op: ' .. op, vim.log.levels.WARN)
       end
     end)
     if declaration_node ~= nil then
-      -- if sRow > pos_row then
-      --   -- break
-      -- end
       table.insert(results, {
         declaring_node = declaration_node,
+        dim = { s = { r = sRow, c = sCol }, e = { r = eRow, c = eCol } },
+        name = name,
+        operator = op,
+        type = node_type or type,
+      })
+    end
+    if type_node ~= nil and type_only then
+      sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(type_node) }, bufnr)
+      table.insert(results, {
+        type_node = type_node,
         dim = { s = { r = sRow, c = sCol }, e = { r = eRow, c = eCol } },
         name = name,
         operator = op,
@@ -162,7 +176,7 @@ M.nodes_in_buf = function(query, default, bufnr, row, col)
   end
   local nodes = M.get_all_nodes(query, ft, default, bufnr, row, col, true)
   if nodes == nil then
-    vim.notify('Unable to find any nodes.', vim.lsp.log_levels.DEBUG)
+    vim.notify('Unable to find any nodes.', vim.lsp.log_levels.ERROR)
     return nil
   end
   return nodes

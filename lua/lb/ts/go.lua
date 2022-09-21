@@ -9,13 +9,13 @@
 
 local nodes = require 'lb.ts.nodes'
 
-local qs = {
+local M = {
   query_struct = '(type_spec name:(type_identifier) @definition.struct type: (struct_type))',
   query_package = '(package_clause (package_identifier)@package.name)@package.clause',
   query_struct_id = '(type_spec name:(type_identifier) @definition.struct  (struct_type))',
   query_em_struct_id = '(field_declaration name:(field_identifier) @definition.struct (struct_type))',
   query_struct_block = [[((type_declaration (type_spec name:(type_identifier) @struct.name type: (struct_type)))@struct.declaration)]],
-  query_type_declaration = [[((type_declaration (type_spec name:(type_identifier)@type.name)))]],
+  query_type_declaration = [[((type_declaration (type_spec name:(type_identifier)@type_decl.name type:(type_identifier)@type_decl.type))@type_decl.declaration)]], -- rename to gotype so not confuse with type
   query_em_struct_block = [[(field_declaration name:(field_identifier)@struct.name type: (struct_type)) @struct.declaration]],
   query_struct_block_from_id = [[(((type_spec name:(type_identifier) type: (struct_type)))@block.struct_from_id)]],
   query_interface_id = [[((type_declaration (type_spec name:(type_identifier) @interface.name type:(interface_type)))@interface.declaration)]],
@@ -104,14 +104,12 @@ local qs = {
       (#match? @_param_name "T"))]],
 }
 
-local M = {}
-
 local function get_name_defaults()
   return { ['func'] = 'function', ['if'] = 'if', ['else'] = 'else', ['for'] = 'for' }
 end
 
 M.get_struct_node_at_pos = function(bufnr)
-  local query = qs.query_struct_block .. ' ' .. qs.query_em_struct_block
+  local query = M.query_struct_block .. ' ' .. M.query_em_struct_block
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
   if ns == nil then
@@ -122,7 +120,7 @@ M.get_struct_node_at_pos = function(bufnr)
 end
 
 M.get_type_node_at_pos = function(bufnr)
-  local query = qs.query_type_declaration
+  local query = M.query_type_declaration
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
   if ns == nil then
@@ -133,7 +131,7 @@ M.get_type_node_at_pos = function(bufnr)
 end
 
 M.get_interface_node_at_pos = function(bufnr)
-  local query = qs.query_interface_id
+  local query = M.query_interface_id
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
   if ns == nil then
@@ -144,7 +142,7 @@ M.get_interface_node_at_pos = function(bufnr)
 end
 
 M.get_interface_node_at_pos = function(bufnr)
-  local query = qs.query_interface_id
+  local query = M.query_interface_id
 
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)

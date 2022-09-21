@@ -146,7 +146,7 @@ local function complete(_, cmdline, _)
   local query = tsgo.query_type_declaration
   local bufnr = vim.api.nvim_get_current_buf()
   if iface ~= nil then
-    local nodes = tsnodes.nodes_in_buf(query, 'go', bufnr, 100000, 100000)
+    local nodes = tsnodes.nodes_in_buf(query, nil, bufnr, 100000, 100000)
     local ns = {}
     for _, node in ipairs(nodes) do
       table.insert(ns, node.name)

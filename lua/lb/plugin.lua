@@ -76,7 +76,7 @@ packer.startup(function(use)
   use {
     'rcarriga/nvim-notify',
     config = function()
-      return 'lb.plugins.notify'
+      require 'lb.plugins.notify'
     end,
     event = { 'UIEnter' },
   }
