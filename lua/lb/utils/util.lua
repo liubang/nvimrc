@@ -13,6 +13,7 @@ local os_name = vim.loop.os_uname().sysname
 local is_windows = os_name == 'Windows' or os_name == 'Windows_NT'
 
 math.randomseed(os.time())
+
 M.uuid = function() --{{{
   local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
   local out
