@@ -9,11 +9,13 @@
 
 local tags = {}
 local gomodify = 'gomodifytags'
+local tsgo = require 'lb.ts.go'
+local uobjects = require 'lb.utils.objects'
 
 tags.modify = function(...)
   local fname = vim.fn.expand '%' -- %:p:h ? %:p
-  local ns = require('lb.ts.go').get_struct_node_at_pos()
-  if require('lb.utils.objects').empty(ns) then
+  local ns = tsgo.get_struct_node_at_pos()
+  if uobjects.empty(ns) then
     return
   end
 

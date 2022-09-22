@@ -88,4 +88,22 @@ M.sep = function()
   return '/'
 end
 
+M.rel_path = function(folder)
+  local mod = '%:p'
+  if folder then
+    mod = '%:p:h'
+  end
+  local fpath = vim.fn.expand(mod)
+  local workfolders = vim.lsp.buf.list_workspace_folders()
+  if vim.fn.empty(workfolders) == 0 then
+    fpath = '.' .. fpath:sub(#workfolders[1] + 1)
+  else
+    fpath = vim.fn.fnamemodify(vim.fn.expand(mod), ':p:.')
+  end
+  if fpath:sub(#fpath) == M.sep() then
+    fpath = fpath:sub(1, #fpath - 1)
+  end
+  return fpath
+end
+
 return M

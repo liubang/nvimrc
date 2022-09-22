@@ -40,35 +40,10 @@ vim.schedule(function()
     require('lb.go.impl').run(unpack(opts.fargs))
   end, { complete = require('lb.complete').impl_complete, nargs = '*' })
 
-  vim.api.nvim_create_user_command('Tasks', function()
-    require('telescope').extensions.tasks.tasks()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelRules', function()
-    require('telescope').extensions.bazel.bazel_rules()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelTests', function()
-    require('telescope').extensions.bazel.bazel_tests()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelBinaries', function()
-    require('telescope').extensions.bazel.bazel_binaries()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelCCRules', function()
-    require('telescope').extensions.bazel.bazel_cc_rules()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelCCTests', function()
-    require('telescope').extensions.bazel.bazel_cc_tests()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('BazelCCBinaries', function()
-    require('telescope').extensions.bazel.bazel_cc_binaries()
-  end, { nargs = 0 })
-
-  vim.api.nvim_create_user_command('LspDebug', function()
-    vim.lsp.set_log_level 'debug'
-  end, { nargs = 0 })
+  vim.api.nvim_create_user_command('GoMockGen', require('lb.go.mockgen').run, {
+    nargs = '*',
+    complete = function(_, _, _)
+      return { '-p', '-d', '-i', '-s' }
+    end,
+  })
 end)

@@ -132,7 +132,6 @@ local function match_iface_name(part)
     vim.notify('go doc failed' .. vim.inspect(doc), vim.log.levels.WARN)
     return
   end
-
   local ifaces = {}
   local pat = string.format('^type (%s.*) interface', iface)
   for _, line in ipairs(doc) do
@@ -148,9 +147,9 @@ local function complete(_, cmdline, _)
   local words = vim.split(cmdline, [[%s+]])
   local last = words[#words]
   local iface = get_interface_name()
-  local query = tsgo.query_type_declaration
-  local bufnr = vim.api.nvim_get_current_buf()
   if iface ~= nil then
+    local query = tsgo.query_type_declaration
+    local bufnr = vim.api.nvim_get_current_buf()
     local nodes = tsnodes.nodes_in_buf(query, bufnr)
     local ns = {}
     for _, node in ipairs(nodes) do
@@ -158,14 +157,12 @@ local function complete(_, cmdline, _)
     end
     return vim.fn.uniq(ns)
   end
-
   if string.match(last, '^.+%..*') ~= nil then
     local part = match_iface_name(last)
     if part ~= nil then
       return part
     end
   end
-
   return vim.fn.uniq(vim.fn.sort(gopls.list_pkgs()))
 end
 
