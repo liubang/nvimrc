@@ -21,16 +21,14 @@ local function get_node_text(bufnr, node)
   return ts_utils.get_node_text(node)[1]
 end
 
-M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, type_only)
+M.get_all_nodes = function(query, lang, bufnr, type_only)
   bufnr = bufnr or 0
-  pos_row = pos_row or 30000
   local success, parsed_query = pcall(function()
     return vim.treesitter.parse_query(lang, query)
   end)
   if not success then
     return nil
   end
-
   local parser = parsers.get_parser(bufnr, lang)
   local root = parser:parse()[1]:root()
   local start_row, _, end_row, _ = root:range()
@@ -46,7 +44,6 @@ M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, type_
     locals.recurse_local_nodes(match, function(_, node, path)
       local idx = string.find(path, '.[^.]*$') -- find last `.`
       op = string.sub(path, idx + 1, #path)
-      local a1, b1, c1, d1 = ts_utils.get_node_range(node)
       local dbg_txt = get_node_text(node, bufnr) or ''
       if #dbg_txt > 100 then
         dbg_txt = string.sub(dbg_txt, 1, 100) .. '...'
@@ -55,7 +52,6 @@ M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, type_
       if type:find 'type' and op == 'type' then -- type_declaration.type
         node_type = get_node_text(node, bufnr)
       end
-
       -- may not handle complex node
       if op == 'name' then
         name = get_node_text(node, bufnr) or ''
@@ -64,7 +60,7 @@ M.get_all_nodes = function(query, lang, defaults, bufnr, pos_row, pos_col, type_
         declaration_node = node
         sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(node) }, bufnr)
       else
-        vim.notify('unknown op: ' .. op, vim.log.levels.WARN)
+        -- vim.notify('unknown op: ' .. op, vim.log.levels.WARN)
       end
     end)
     if declaration_node ~= nil then
@@ -141,16 +137,16 @@ M.sort_nodes = function(nodes)
   return nodes
 end
 
-M.nodes_at_cursor = function(query, default, bufnr)
+M.nodes_at_cursor = function(query, bufnr)
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   row, col = row, col + 1
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
-  local nodes = M.get_all_nodes(query, ft, default, bufnr, row, col)
+  local nodes = M.get_all_nodes(query, ft, bufnr)
   if nodes == nil then
     vim.notify(
       'Unable to find any nodes. place your cursor on a go symbol and try again',
-      vim.lsp.log_levels.DEBUG
+      vim.log.levels.DEBUG
     )
     return nil
   end
@@ -159,7 +155,7 @@ M.nodes_at_cursor = function(query, default, bufnr)
   if nodes_at_cursor == nil or #nodes_at_cursor == 0 then
     vim.notify(
       'Unable to find any nodes at pos. ' .. tostring(row) .. ':' .. tostring(col),
-      vim.lsp.log_levels.DEBUG
+      vim.log.levels.DEBUG
     )
     return nil
   end
@@ -167,16 +163,12 @@ M.nodes_at_cursor = function(query, default, bufnr)
   return nodes_at_cursor
 end
 
-M.nodes_in_buf = function(query, default, bufnr, row, col)
+M.nodes_in_buf = function(query, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
-  if row == nil or col == nil then
-    row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    row, col = row, col + 1
-  end
-  local nodes = M.get_all_nodes(query, ft, default, bufnr, row, col, true)
+  local nodes = M.get_all_nodes(query, ft, bufnr, true)
   if nodes == nil then
-    vim.notify('Unable to find any nodes.', vim.lsp.log_levels.ERROR)
+    vim.notify('Unable to find any nodes.', vim.log.levels.ERROR)
     return nil
   end
   return nodes

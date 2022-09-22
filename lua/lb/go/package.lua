@@ -7,8 +7,8 @@
 --
 --=====================================================================
 
-local M = {}
 local util = require 'lb.utils.util'
+local M = {}
 
 M.pkg_from_path = function(pkg, bufnr)
   local cmd = { 'go', 'list' }

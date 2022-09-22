@@ -10,7 +10,7 @@
 local M = {}
 
 M.impl_complete = function(arglead, cmdline, cursorpos)
-  return table.concat(require('lb.go.impl').complete(arglead, cmdline, cursorpos), '\n')
+  return require('lb.go.impl').complete(arglead, cmdline, cursorpos)
 end
 
 return M

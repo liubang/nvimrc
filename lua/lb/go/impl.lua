@@ -12,6 +12,7 @@ local job = require 'lb.utils.job'
 local runner = require 'lb.go.runner'
 local gopls = require 'lb.go.gopls'
 local tsnodes = require 'lb.ts.nodes'
+local impl = 'impl'
 
 local function get_type_name()
   local name = tsgo.get_struct_node_at_pos()
@@ -48,7 +49,6 @@ local function get_interface_name()
 end
 
 local run = function(...)
-  local impl_cmd = 'impl'
   local iface = ''
   local recv_name = ''
   local arg = { ... }
@@ -60,7 +60,10 @@ local run = function(...)
     iface = vim.fn.input 'Impl: generating method stubs for interface: '
     vim.cmd 'redraw!'
     if iface == '' then
-      vim.notify 'Impl: please input interface name e.g. io.Reader or receiver name e.g. GoImpl MyType'
+      vim.notify(
+        'Impl: please input interface name e.g. io.Reader or receiver name e.g. GoImpl MyType',
+        log.levels.WARN
+      )
     end
   elseif #arg == 1 then
     -- " i.e: ':GoImpl io.Writer'
@@ -72,7 +75,10 @@ local run = function(...)
       iface = select(1, ...)
     end
     if recv == '' and iface == '' then
-      vim.notify 'put cursor on struct or a interface or specify a receiver & interface'
+      vim.notify(
+        'put cursor on struct or a interface or specify a receiver & interface',
+        vim.log.levels.WARN
+      )
     end
     vim.cmd 'redraw!'
   elseif #arg == 2 then
@@ -95,7 +101,7 @@ local run = function(...)
   end
 
   local dir = vim.fn.fnameescape(vim.fn.expand '%:p:h')
-  impl_cmd = { impl_cmd, '-dir', dir, recv, iface }
+  local impl_cmd = { impl, '-dir', dir, recv, iface }
   local opts = {
     update_buffer = true,
     on_exit = function(code, signal, data)
@@ -108,7 +114,6 @@ local run = function(...)
       if not data then
         return
       end
-      --
       vim.schedule(function()
         local pos = vim.fn.getcurpos()[2]
         table.insert(data, 1, '')
@@ -146,7 +151,7 @@ local function complete(_, cmdline, _)
   local query = tsgo.query_type_declaration
   local bufnr = vim.api.nvim_get_current_buf()
   if iface ~= nil then
-    local nodes = tsnodes.nodes_in_buf(query, nil, bufnr, 100000, 100000)
+    local nodes = tsnodes.nodes_in_buf(query, bufnr)
     local ns = {}
     for _, node in ipairs(nodes) do
       table.insert(ns, node.name)

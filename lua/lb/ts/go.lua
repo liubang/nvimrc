@@ -15,7 +15,7 @@ local M = {
   query_struct_id = '(type_spec name:(type_identifier) @definition.struct  (struct_type))',
   query_em_struct_id = '(field_declaration name:(field_identifier) @definition.struct (struct_type))',
   query_struct_block = [[((type_declaration (type_spec name:(type_identifier) @struct.name type: (struct_type)))@struct.declaration)]],
-  query_type_declaration = [[((type_declaration (type_spec name:(type_identifier)@type_decl.name type:(type_identifier)@type_decl.type))@type_decl.declaration)]], -- rename to gotype so not confuse with type
+  query_type_declaration = [[((type_declaration (type_spec name:(type_identifier)@type_decl.name type:(struct_type)@type_decl.type))@type_decl.declaration)]],
   query_em_struct_block = [[(field_declaration name:(field_identifier)@struct.name type: (struct_type)) @struct.declaration]],
   query_struct_block_from_id = [[(((type_spec name:(type_identifier) type: (struct_type)))@block.struct_from_id)]],
   query_interface_id = [[((type_declaration (type_spec name:(type_identifier) @interface.name type:(interface_type)))@interface.declaration)]],
@@ -104,14 +104,10 @@ local M = {
       (#match? @_param_name "T"))]],
 }
 
-local function get_name_defaults()
-  return { ['func'] = 'function', ['if'] = 'if', ['else'] = 'else', ['for'] = 'for' }
-end
-
 M.get_struct_node_at_pos = function(bufnr)
   local query = M.query_struct_block .. ' ' .. M.query_em_struct_block
   local bufn = bufnr or vim.api.nvim_get_current_buf()
-  local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
+  local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
     print 'struct not found'
   else
@@ -122,7 +118,7 @@ end
 M.get_type_node_at_pos = function(bufnr)
   local query = M.query_type_declaration
   local bufn = bufnr or vim.api.nvim_get_current_buf()
-  local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
+  local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
     print 'type not found'
   else
@@ -133,7 +129,7 @@ end
 M.get_interface_node_at_pos = function(bufnr)
   local query = M.query_interface_id
   local bufn = bufnr or vim.api.nvim_get_current_buf()
-  local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
+  local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
     print 'interface not found'
   else
@@ -141,19 +137,7 @@ M.get_interface_node_at_pos = function(bufnr)
   end
 end
 
-M.get_interface_node_at_pos = function(bufnr)
-  local query = M.query_interface_id
-
-  local bufn = bufnr or vim.api.nvim_get_current_buf()
-  local ns = nodes.nodes_at_cursor(query, get_name_defaults(), bufn)
-  if ns == nil then
-    print 'interface not found'
-  else
-    return ns[#ns]
-  end
-end
-
-function M.in_func()
+M.in_func = function()
   local ok, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
   if not ok then
     return false

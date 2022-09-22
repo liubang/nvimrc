@@ -47,12 +47,14 @@ tags.modify = function(...)
       end
       local tagged = vim.fn.json_decode(data)
       if
-        tagged.errors ~= nil
+        tagged == nil
+        or tagged.errors ~= nil
         or tagged.lines == nil
         or tagged['start'] == nil
         or tagged['start'] == 0
       then
         vim.notify('failed to set tags' .. vim.inspect(tagged), vim.lsp.log_levels.ERROR)
+        return
       end
       for index, value in ipairs(tagged.lines) do
         tagged.lines[index] = require('lb.utils.string').rtrim(value)

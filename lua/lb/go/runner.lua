@@ -40,7 +40,7 @@ local run = function(cmd, opts)
   local function update_chunk_fn(err, chunk)
     if err then
       vim.schedule(function()
-        vim.notify('error ' .. tostring(err) .. vim.inspect(chunk or ''), vim.lsp.log_levels.WARN)
+        vim.notify('error ' .. tostring(err) .. vim.inspect(chunk or ''), vim.log.levels.ERROR)
       end)
     end
     if chunk then
@@ -60,12 +60,11 @@ local run = function(cmd, opts)
 
       stderr:read_stop()
       stderr:close()
-
       handle:close()
 
       if output_stderr ~= '' then
         vim.schedule(function()
-          vim.notify(output_stderr)
+          vim.notify(output_stderr, vim.log.levels.ERROR)
         end)
       end
       if opts and opts.on_exit then
@@ -78,7 +77,7 @@ local run = function(cmd, opts)
         output_buf = output_buf or ''
         vim.notify(
           cmd_str .. ' failed exit code ' .. tostring(code) .. output_buf,
-          vim.lsp.log_levels.WARN
+          vim.log.levels.WARN
         )
       end
       if output_buf ~= '' then
@@ -94,7 +93,7 @@ local run = function(cmd, opts)
         if #lines > 0 then
           vim.schedule(function()
             vim.fn.setloclist(0, {}, ' ', locopts)
-            util.quickfix 'lopen'
+            vim.cmd 'lopen'
           end)
         end
       end

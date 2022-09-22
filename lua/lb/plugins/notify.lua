@@ -11,7 +11,14 @@ local async_load_plugin = nil
 async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
   local notify = require 'notify'
   notify.setup {
-    timeout = 3000,
+    timeout = 2000,
+    icons = {
+      ERROR = ' ',
+      WARN = ' ',
+      INFO = ' ',
+      DEBUG = ' ',
+      TRACE = ' ',
+    },
   }
   vim.notify = notify
   async_load_plugin:close()
