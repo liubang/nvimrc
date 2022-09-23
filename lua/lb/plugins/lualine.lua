@@ -141,14 +141,6 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {},
   },
-  winbar = {
-    -- lualine_a = {
-    --   {
-    --     require('nvim-navic').get_location,
-    --     cond = require('nvim-navic').is_available,
-    --   },
-    -- },
-  },
 }
 
 -- vim: foldmethod=marker foldlevel=0

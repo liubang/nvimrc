@@ -254,11 +254,11 @@ packer.startup(function(use)
         after = { 'telescope.nvim' },
         opt = true,
       },
-      {
-        'nvim-telescope/telescope-ui-select.nvim',
-        after = { 'telescope.nvim' },
-        opt = true,
-      },
+      -- {
+      --   'nvim-telescope/telescope-ui-select.nvim',
+      --   after = { 'telescope.nvim' },
+      --   opt = true,
+      -- },
     },
     opt = true,
     module = 'telescope',
