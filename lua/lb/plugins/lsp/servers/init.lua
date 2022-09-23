@@ -28,6 +28,7 @@ for _, server in ipairs {
   'jsonls',
   'yamlls',
   'vimls',
+  'pyright',
 } do
   lspconfig[server].setup(c.default())
 end
