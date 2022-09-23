@@ -22,7 +22,6 @@ ls.config.setup {
       },
     },
   },
-  store_selection_keys = '<Tab>',
 }
 
 vim.keymap.set({ 'i', 's' }, '<C-n>', function()
