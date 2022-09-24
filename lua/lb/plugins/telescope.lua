@@ -7,6 +7,7 @@
 --
 -- =====================================================================
 vim.cmd [[packadd telescope-fzf-native.nvim]]
+vim.cmd [[packadd telescope-ui-select.nvim]]
 
 local actions = require 'telescope.actions'
 local telescope = require 'telescope'
@@ -163,9 +164,18 @@ telescope.setup {
   extensions = {
     fzf = {
       fuzzy = false,
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = 'smart_case',
+    },
+    ['ui-select'] = {
+      themes.get_dropdown {
+        previewer = false,
+        prompt_title = false,
+        results_title = false,
+        borderchars = dropdown_borderchars,
+        layout_config = dropdown_layout_config,
+      },
     },
     tasks = {
       themes.get_dropdown {
@@ -182,3 +192,4 @@ telescope.setup {
 telescope.load_extension 'fzf'
 telescope.load_extension 'bazel'
 telescope.load_extension 'tasks'
+telescope.load_extension 'ui-select'

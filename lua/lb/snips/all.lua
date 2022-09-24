@@ -20,6 +20,30 @@ local calculate_comment_string = require('Comment.ft').calculate
 local region = require('Comment.utils').get_region
 local author = 'liubang'
 
+local partial = function(func, ...)
+  return F(function(_, _, ...)
+    return func(...)
+  end, {}, { user_args = { ... } })
+end
+
+local snippets = {
+  ls.s('time', partial(vim.fn.strftime, '%H:%M:%S')),
+  ls.s('date', partial(vim.fn.strftime, '%Y-%m-%d')),
+  ls.s('pwd', { partial(util.shell, 'pwd') }),
+  ls.s({ trig = 'uuid', wordTrig = true }, { ls.f(util.uuid), ls.i(0) }),
+  ls.s('shrug', { ls.t '¯\\_(ツ)_/¯' }),
+  ls.s('angry', { ls.t '(╯°□°）╯︵ ┻━┻' }),
+  ls.s('happy', { ls.t 'ヽ(´▽`)/' }),
+  ls.s('sad', { ls.t '(－‸ლ)' }),
+  ls.s('confused', { ls.t '(｡･ω･｡)' }),
+  ls.s({ trig = 'randstr(%d+)', regTrig = true }, {
+    ls.f(function(_, snip)
+      return util.random_string(snip.captures[1])
+    end),
+    ls.i(0),
+  }),
+}
+
 local get_cstring = function(ctype)
   local cstring = calculate_comment_string { ctype = ctype, range = region() } or ''
   local cstring_table = vim.split(cstring, '%s', { plain = true, trimempty = true })
@@ -75,30 +99,6 @@ local todo_snippet_specs = {
   { { trig = 'warnb' }, { 'WARN', 'WARNING' }, { ctype = 2 } },
   { { trig = 'perfb' }, { 'PERF', 'PERFORMANCE', 'OPTIM', 'OPTIMIZE' }, { ctype = 2 } },
   { { trig = 'noteb' }, { 'NOTE', 'INFO' }, { ctype = 2 } },
-}
-
-local partial = function(func, ...)
-  return F(function(_, _, ...)
-    return func(...)
-  end, {}, { user_args = { ... } })
-end
-
-local snippets = {
-  ls.s('time', partial(vim.fn.strftime, '%H:%M:%S')),
-  ls.s('date', partial(vim.fn.strftime, '%Y-%m-%d')),
-  ls.s('pwd', { partial(util.shell, 'pwd') }),
-  ls.s({ trig = 'uuid', wordTrig = true }, { ls.f(util.uuid), ls.i(0) }),
-  ls.s('shrug', { ls.t '¯\\_(ツ)_/¯' }),
-  ls.s('angry', { ls.t '(╯°□°）╯︵ ┻━┻' }),
-  ls.s('happy', { ls.t 'ヽ(´▽`)/' }),
-  ls.s('sad', { ls.t '(－‸ლ)' }),
-  ls.s('confused', { ls.t '(｡･ω･｡)' }),
-  ls.s({ trig = 'rstr(%d+)', regTrig = true }, {
-    ls.f(function(_, snip)
-      return util.random_string(snip.captures[1])
-    end),
-    ls.i(0),
-  }),
 }
 
 for _, v in ipairs(todo_snippet_specs) do

@@ -150,7 +150,7 @@ packer.startup(function(use)
   -- tools
   use {
     'rainbowhxch/accelerated-jk.nvim',
-    event = { 'BufEnter', 'BufNewFile', 'InsertEnter' },
+    keys = { '<Plug>(accelerated_jk_gj)', '<Plug>(accelerated_jk_gk)' },
   }
 
   use {
@@ -191,24 +191,25 @@ packer.startup(function(use)
       vim.g.floaterm_height = 0.7
       vim.g.floaterm_title = '─────  Floaterm [$1|$2] '
     end,
-    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
+    cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext' },
   }
 
   use {
     'skywind3000/asynctasks.vim',
     requires = {
-      'voldikss/vim-floaterm',
-      { 'skywind3000/asyncrun.vim', event = { 'BufNewFile', 'BufRead', 'InsertEnter' } },
-      { 'skywind3000/asyncrun.extra', event = { 'BufNewFile', 'BufRead', 'InsertEnter' } },
+      { 'skywind3000/asyncrun.vim', opt = true },
+      { 'skywind3000/asyncrun.extra', opt = true },
     },
     config = function()
+      vim.cmd [[packadd asyncrun.vim]]
+      vim.cmd [[packadd asyncrun.extra]]
       vim.g.asyncrun_open = 25
       vim.g.asyncrun_bell = 1
       vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
       vim.g.asynctasks_term_pos = 'floaterm'
       vim.g.asynctasks_term_reuse = 1
     end,
-    event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
+    cmd = 'AsyncTask',
   }
 
   use {
@@ -229,7 +230,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.easyalign'
     end,
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    keys = { '<Plug>(EasyAlign)' },
   }
 
   -- MixedCase/PascalCase:   gsm/gsp
@@ -254,18 +255,18 @@ packer.startup(function(use)
         after = { 'telescope.nvim' },
         opt = true,
       },
-      -- {
-      --   'nvim-telescope/telescope-ui-select.nvim',
-      --   after = { 'telescope.nvim' },
-      --   opt = true,
-      -- },
+      {
+        'nvim-telescope/telescope-ui-select.nvim',
+        after = { 'telescope.nvim' },
+        opt = true,
+      },
     },
     opt = true,
-    module = 'telescope',
-    cmd = 'Telescope',
+    -- module = 'telescope',
     config = function()
       require 'lb.plugins.telescope'
     end,
+    cmd = 'Telescope',
   }
 
   use {
@@ -276,7 +277,7 @@ packer.startup(function(use)
     config = function()
       require 'lb.plugins.outline'
     end,
-    cmd = { 'SymbolsOutline' },
+    cmd = 'SymbolsOutline',
   }
 
   use {
@@ -287,7 +288,10 @@ packer.startup(function(use)
     end,
   }
 
-  use { 'dstein64/vim-startuptime', cmd = { 'StartupTime' } }
+  use {
+    'dstein64/vim-startuptime',
+    cmd = { 'StartupTime' },
+  }
 
   -- treesitter
   use {
@@ -314,8 +318,11 @@ packer.startup(function(use)
       require 'lb.plugins.nvim-navic'
     end,
   }
+
   use { 'folke/lua-dev.nvim' }
+
   use { 'simrat39/rust-tools.nvim' }
+
   use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = {
