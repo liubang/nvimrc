@@ -41,11 +41,11 @@ vim.schedule(function()
   end, { complete = require('lb.complete').impl_complete, nargs = '*' })
 
   vim.api.nvim_create_user_command('GoTestFile', function()
-    require('lb.go.tests').run_file()
+    require('lb.go.gotest').run_file()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('GoTest', function()
-    require('lb.go.tests').list_tests()
+    require('lb.go.gotest').list_tests()
   end, { nargs = 0 })
 
   vim.api.nvim_create_user_command('GoMockGen', require('lb.go.mockgen').run, {

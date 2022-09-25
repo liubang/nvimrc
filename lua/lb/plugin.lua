@@ -209,7 +209,7 @@ packer.startup(function(use)
       vim.g.asynctasks_term_pos = 'floaterm'
       vim.g.asynctasks_term_reuse = 1
     end,
-    cmd = 'AsyncTask',
+    cmd = { 'AsyncTask', 'AsyncRun' },
   }
 
   use {
@@ -262,7 +262,7 @@ packer.startup(function(use)
       },
     },
     opt = true,
-    -- module = 'telescope',
+    module = 'telescope', -- 不能删
     config = function()
       require 'lb.plugins.telescope'
     end,
