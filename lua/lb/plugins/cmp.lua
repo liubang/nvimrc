@@ -7,46 +7,47 @@
 --
 -- =====================================================================
 
-vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.cmd [[packadd lspkind.nvim]]
+
+-- vim.opt.completeopt = { 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
-vim.opt.shortmess:append 'c'
+-- vim.opt.shortmess:append 'c'
 
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
--- local luasnip = require 'luasnip'
 
 --               ⌘  ⌂              ﲀ  練  ﴲ    ﰮ    
 --       ﳤ          ƒ          了    ﬌      <    >  ⬤      襁
 --                                                 
 -- stylua: ignore
-local kind_icons = {--{{{
-  Buffers       = " ",
-  Class         = " ",
-  Color         = " ",
-  Constant      = " ",
-  Constructor   = " ",
-  Enum          = " ",
-  EnumMember    = " ",
-  Event         = " ",
-  Field         = "ﰠ ",
-  File          = " ",
-  Folder        = " ",
-  Function      = "ƒ ",
-  Interface     = " ",
-  Keyword       = " ",
-  Method        = " ",
-  Module        = " ",
-  Operator      = " ",
-  Property      = " ",
-  Reference     = " ",
-  Snippet       = " ",
-  Struct        = " ",
-  TypeParameter = " ",
-  Unit          = "塞",
-  Value         = " ",
-  Variable      = " ",
-  Text          = " ",
-}--}}}
+-- local kind_icons = {--{{{
+--   Buffers       = " ",
+--   Class         = " ",
+--   Color         = " ",
+--   Constant      = " ",
+--   Constructor   = " ",
+--   Enum          = " ",
+--   EnumMember    = " ",
+--   Event         = " ",
+--   Field         = "ﰠ ",
+--   File          = " ",
+--   Folder        = " ",
+--   Function      = "ƒ ",
+--   Interface     = " ",
+--   Keyword       = " ",
+--   Method        = " ",
+--   Module        = " ",
+--   Operator      = " ",
+--   Property      = " ",
+--   Reference     = " ",
+--   Snippet       = " ",
+--   Struct        = " ",
+--   TypeParameter = " ",
+--   Unit          = "塞",
+--   Value         = " ",
+--   Variable      = " ",
+--   Text          = " ",
+-- }--}}}
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -58,9 +59,24 @@ local has_words_before = function()
     and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 
+local item_format = function(entry, vim_item)
+  local kind =
+    require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
+  local strings = vim.split(kind.kind, '%s', { trimempty = true })
+  kind.kind = ' ' .. strings[1] .. ' '
+  kind.menu = '    (' .. strings[2] .. ')'
+
+  return kind
+end
+
 cmp.setup {
   window = {
     documentation = false,
+    completion = {
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      col_offset = -3,
+      side_padding = 0,
+    },
   },
   completion = {
     autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
@@ -91,41 +107,8 @@ cmp.setup {
     { name = 'calc' },
   },
   formatting = {
-    format = function(entry, vim_item)
-      local client_name = ''
-      if entry.source.name == 'nvim_lsp' then
-        client_name = '/' .. entry.source.source.client.name
-      end
-      vim_item.menu = string.format('[%s%s]', ({
-        buffer = 'Buffer',
-        nvim_lsp = 'LSP',
-        luasnip = 'LuaSnip',
-        vsnip = 'VSnip',
-        nvim_lua = 'Lua',
-        latex_symbols = 'LaTeX',
-        path = 'Path',
-        rg = 'RG',
-        omni = 'Omni',
-        copilot = 'Copilot',
-        dap = 'DAP',
-        neorg = 'ORG',
-      })[entry.source.name] or entry.source.name, client_name)
-      vim_item.kind = kind_icons[vim_item.kind]
-      vim_item.dup = {
-        buffer = 1,
-        path = 1,
-        nvim_lsp = 0,
-        luasnip = 1,
-      }
-      local ELLIPSIS_CHAR = '…'
-      local MAX_LABEL_WIDTH = 100
-      local label = vim_item.abbr
-      local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
-      if truncated_label ~= label then
-        vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
-      end
-      return vim_item
-    end,
+    fields = { 'kind', 'abbr', 'menu' },
+    format = item_format,
   },
   view = {
     max_height = 20,
@@ -157,7 +140,6 @@ cmp.setup {
         cmp.select_next_item()
       elseif require('luasnip').expand_or_jumpable() then
         vim.fn.feedkeys(t '<Plug>luasnip-expand-or-jump', '')
-        -- luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -173,7 +155,6 @@ cmp.setup {
         cmp.select_prev_item()
       elseif require('luasnip').jumpable(-1) then
         vim.fn.feedkeys(t '<Plug>luasnip-jump-prev', '')
-        -- luasnip.jump(-1)
       else
         fallback()
       end
@@ -183,5 +164,23 @@ cmp.setup {
     }),
   },
 }
+
+for _, v in pairs { '/', '?' } do
+  cmp.setup.cmdline(v, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'fuzzy_buffer', max_item_count = 15 },
+    },
+  })
+end
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path', max_item_count = 5 },
+  }, {
+    { name = 'cmdline', max_item_count = 10 },
+  }),
+})
 
 -- vim: fdm=marker fdl=0
