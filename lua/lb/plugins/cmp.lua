@@ -65,7 +65,6 @@ local item_format = function(entry, vim_item)
   local strings = vim.split(kind.kind, '%s', { trimempty = true })
   kind.kind = ' ' .. strings[1] .. ' '
   kind.menu = '    (' .. strings[2] .. ')'
-
   return kind
 end
 
@@ -174,13 +173,13 @@ for _, v in pairs { '/', '?' } do
   })
 end
 
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path', max_item_count = 5 },
-  }, {
-    { name = 'cmdline', max_item_count = 10 },
-  }),
-})
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = 'path', max_item_count = 5 },
+--   }, {
+--     { name = 'cmdline', max_item_count = 10 },
+--   }),
+-- })
 
 -- vim: fdm=marker fdl=0
