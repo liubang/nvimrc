@@ -59,23 +59,18 @@ local has_words_before = function()
     and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 
-local item_format = function(entry, vim_item)
-  local kind =
-    require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
-  local strings = vim.split(kind.kind, '%s', { trimempty = true })
-  kind.kind = ' ' .. strings[1] .. ' '
-  kind.menu = '    (' .. strings[2] .. ')'
-  return kind
-end
+-- local item_format = function(entry, vim_item)
+--   local kind =
+--     require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
+--   local strings = vim.split(kind.kind, '%s', { trimempty = true })
+--   kind.kind = ' ' .. strings[1] .. ' '
+--   kind.menu = '    (' .. strings[2] .. ')'
+--   return kind
+-- end
 
 cmp.setup {
   window = {
     documentation = false,
-    completion = {
-      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-      col_offset = -3,
-      side_padding = 0,
-    },
   },
   completion = {
     autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
@@ -106,8 +101,11 @@ cmp.setup {
     { name = 'calc' },
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
-    format = item_format,
+    format = require('lspkind').cmp_format {
+      mode = 'symbol_text',
+      maxwidth = 80,
+      ellipsis_char = '...',
+    },
   },
   view = {
     max_height = 20,
@@ -172,14 +170,5 @@ for _, v in pairs { '/', '?' } do
     },
   })
 end
-
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path', max_item_count = 5 },
---   }, {
---     { name = 'cmdline', max_item_count = 10 },
---   }),
--- })
 
 -- vim: fdm=marker fdl=0
