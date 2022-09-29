@@ -32,14 +32,11 @@ require('packer').startup {
 
     use {
       'kyazdani42/nvim-web-devicons',
-      event = { 'UIEnter' },
+      opt = true,
     }
 
     use {
       'goolord/alpha-nvim',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-      },
       config = function()
         require 'lb.plugins.dashboard'
       end,
@@ -56,7 +53,6 @@ require('packer').startup {
 
     use {
       'romgrk/barbar.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function()
         require 'lb.plugins.barbar'
       end,
@@ -82,9 +78,6 @@ require('packer').startup {
         'j-hui/fidget.nvim',
         'kyazdani42/nvim-web-devicons',
         'SmiteshP/nvim-navic',
-      },
-      after = {
-        'nvim-navic',
       },
       config = function()
         require 'lb.plugins.lualine'
@@ -112,7 +105,7 @@ require('packer').startup {
       requires = {
         'kyazdani42/nvim-web-devicons',
         'MunifTanjim/nui.nvim',
-        's1n7ax/nvim-window-picker',
+        { 's1n7ax/nvim-window-picker', opt = true },
       },
       config = function()
         require 'lb.plugins.neo-tree'
@@ -346,7 +339,6 @@ require('packer').startup {
         { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
         { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-        { 'onsails/lspkind.nvim', opt = true },
       },
       event = { 'InsertEnter' },
       config = function()

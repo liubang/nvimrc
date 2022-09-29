@@ -7,47 +7,41 @@
 --
 -- =====================================================================
 
-vim.cmd [[packadd lspkind.nvim]]
-
--- vim.opt.completeopt = { 'menuone', 'noselect' }
--- Don't show the dumb matching stuff.
--- vim.opt.shortmess:append 'c'
-
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
 
---               ⌘  ⌂              ﲀ  練  ﴲ    ﰮ    
---       ﳤ          ƒ          了    ﬌      <    >  ⬤      襁
---                                                 
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+-- Don't show the dumb matching stuff.
+vim.opt.shortmess:append 'c'
+
 -- stylua: ignore
--- local kind_icons = {--{{{
---   Buffers       = " ",
---   Class         = " ",
---   Color         = " ",
---   Constant      = " ",
---   Constructor   = " ",
---   Enum          = " ",
---   EnumMember    = " ",
---   Event         = " ",
---   Field         = "ﰠ ",
---   File          = " ",
---   Folder        = " ",
---   Function      = "ƒ ",
---   Interface     = " ",
---   Keyword       = " ",
---   Method        = " ",
---   Module        = " ",
---   Operator      = " ",
---   Property      = " ",
---   Reference     = " ",
---   Snippet       = " ",
---   Struct        = " ",
---   TypeParameter = " ",
---   Unit          = "塞",
---   Value         = " ",
---   Variable      = " ",
---   Text          = " ",
--- }--}}}
+local kind_icons = {--{{{
+  Text          = "",
+  Method        = "",
+  Function      = "",
+  Constructor   = "",
+  Field         = "ﰠ",
+  Variable      = "",
+  Class         = "ﴯ",
+  Interface     = "",
+  Module        = "",
+  Property      = "ﰠ",
+  Unit          = "塞",
+  Value         = "",
+  Enum          = "",
+  Keyword       = "",
+  Snippet       = "",
+  Color         = "",
+  File          = "",
+  Reference     = "",
+  Folder        = "",
+  EnumMember    = "",
+  Constant      = "",
+  Struct        = "פּ",
+  Event         = "",
+  Operator      = "",
+  TypeParameter = "",
+}--}}}
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -59,18 +53,13 @@ local has_words_before = function()
     and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 
--- local item_format = function(entry, vim_item)
---   local kind =
---     require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
---   local strings = vim.split(kind.kind, '%s', { trimempty = true })
---   kind.kind = ' ' .. strings[1] .. ' '
---   kind.menu = '    (' .. strings[2] .. ')'
---   return kind
--- end
-
 cmp.setup {
   window = {
     documentation = false,
+    completion = {
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      side_padding = 1,
+    },
   },
   completion = {
     autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
@@ -101,11 +90,18 @@ cmp.setup {
     { name = 'calc' },
   },
   formatting = {
-    format = require('lspkind').cmp_format {
-      mode = 'symbol_text',
-      maxwidth = 80,
-      ellipsis_char = '...',
-    },
+    fields = { 'kind', 'abbr', 'menu' },
+    format = function(_, vim_item)
+      local abbr = vim_item.abbr
+      local len = string.len(abbr)
+      if len >= 81 then
+        abbr = string.sub(abbr, 1, 80) .. '…'
+      end
+      vim_item.abbr = abbr
+      vim_item.menu = '(' .. vim_item.kind .. ')'
+      vim_item.kind = kind_icons[vim_item.kind]
+      return vim_item
+    end,
   },
   view = {
     max_height = 20,

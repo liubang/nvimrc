@@ -6,6 +6,9 @@
 -- Last Modified: 2022/02/24 20:57
 --
 --=====================================================================
+
+vim.cmd [[packadd nvim-web-devicons]]
+
 local lualine = require 'lualine'
 
 local lineinfo = function()

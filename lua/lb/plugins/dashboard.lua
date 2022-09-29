@@ -7,6 +7,8 @@
 --
 -- =====================================================================
 
+vim.cmd [[packadd nvim-web-devicons]]
+
 local alpha = require 'alpha'
 
 local h = {

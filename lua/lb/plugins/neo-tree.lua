@@ -7,6 +7,9 @@
 --
 --=====================================================================
 
+vim.cmd [[packadd nvim-web-devicons]]
+vim.cmd [[packadd nvim-window-picker]]
+
 require('window-picker').setup()
 
 require('neo-tree').setup {

@@ -7,6 +7,8 @@
 --
 --=====================================================================
 
+vim.cmd [[packadd nvim-web-devicons]]
+
 -- Set barbar's options
 require('bufferline').setup {
   -- Enable/disable animations
