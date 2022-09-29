@@ -14,35 +14,6 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append 'c'
 
--- stylua: ignore
-local kind_icons = {--{{{
-  Text          = "",
-  Method        = "",
-  Function      = "",
-  Constructor   = "",
-  Field         = "ﰠ",
-  Variable      = "",
-  Class         = "ﴯ",
-  Interface     = "",
-  Module        = "",
-  Property      = "ﰠ",
-  Unit          = "塞",
-  Value         = "",
-  Enum          = "",
-  Keyword       = "",
-  Snippet       = "",
-  Color         = "",
-  File          = "",
-  Reference     = "",
-  Folder        = "",
-  EnumMember    = "",
-  Constant      = "",
-  Struct        = "פּ",
-  Event         = "",
-  Operator      = "",
-  TypeParameter = "",
-}--}}}
-
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -89,20 +60,20 @@ cmp.setup {
     },
     { name = 'calc' },
   },
-  formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
-    format = function(_, vim_item)
-      local abbr = vim_item.abbr
-      local len = string.len(abbr)
-      if len >= 81 then
-        abbr = string.sub(abbr, 1, 80) .. '…'
-      end
-      vim_item.abbr = abbr
-      vim_item.menu = '(' .. vim_item.kind .. ')'
-      vim_item.kind = kind_icons[vim_item.kind]
-      return vim_item
-    end,
-  },
+  -- formatting = {
+  --   fields = { 'abbr', 'menu' },
+  --   format = function(_, vim_item)
+  --     local abbr = vim_item.abbr
+  --     local len = string.len(abbr)
+  --     if len >= 81 then
+  --       abbr = string.sub(abbr, 1, 80) .. '…'
+  --     end
+  --     vim_item.abbr = abbr
+  --     vim_item.menu = '(' .. vim_item.kind .. ')'
+  --     -- vim_item.kind = kind_icons[vim_item.kind]
+  --     return vim_item
+  --   end,
+  -- },
   view = {
     max_height = 20,
     entries = { name = 'custom', selection_order = 'near_cursor' },
