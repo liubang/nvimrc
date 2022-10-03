@@ -329,6 +329,7 @@ require('packer').startup {
     }
 
     -- completion
+    use { 'onsails/lspkind.nvim', opt = true }
     use {
       'hrsh7th/nvim-cmp',
       requires = {

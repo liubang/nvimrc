@@ -69,9 +69,9 @@ local filetype_attach = setmetatable({
       navic.attach(client, bufnr)
     end
 
-    autocmd_format(false, function(c)
-      return c.name == 'null-ls'
-    end)
+    -- autocmd_format(false, function(c)
+    --   return c.name == 'null-ls'
+    -- end)
 
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format {

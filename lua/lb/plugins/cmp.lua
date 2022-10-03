@@ -7,8 +7,13 @@
 --
 -- =====================================================================
 
+vim.cmd [[packadd lspkind.nvim]]
+
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
+local lspkind = require 'lspkind'
+
+lspkind.init()
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
@@ -27,14 +32,6 @@ end
 cmp.setup {
   window = {
     documentation = false,
-    completion = {
-      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-      side_padding = 1,
-    },
-  },
-  completion = {
-    autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
-    completeopt = 'menu,menuone,noselect',
   },
   snippet = {
     expand = function(args)
@@ -60,25 +57,25 @@ cmp.setup {
     },
     { name = 'calc' },
   },
-  -- formatting = {
-  --   fields = { 'abbr', 'menu' },
-  --   format = function(_, vim_item)
-  --     local abbr = vim_item.abbr
-  --     local len = string.len(abbr)
-  --     if len >= 81 then
-  --       abbr = string.sub(abbr, 1, 80) .. '…'
-  --     end
-  --     vim_item.abbr = abbr
-  --     vim_item.menu = '(' .. vim_item.kind .. ')'
-  --     -- vim_item.kind = kind_icons[vim_item.kind]
-  --     return vim_item
-  --   end,
-  -- },
+  formatting = {
+    format = lspkind.cmp_format {
+      mode = 'symbol',
+      maxwidth = 80,
+      ellipsis_char = '...',
+      menu = {
+        buffer = '[BUF]',
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[API]',
+        path = '[PATH]',
+        luasnip = '[SNIP]',
+      },
+    },
+  },
   view = {
     max_height = 20,
-    entries = { name = 'custom', selection_order = 'near_cursor' },
+    entries = { name = 'native', selection_order = 'near_cursor' },
   },
-  sorting = { --{{{
+  sorting = {
     comparators = {
       function(...)
         return require('cmp_buffer'):compare_locality(...)
@@ -92,8 +89,11 @@ cmp.setup {
       compare.length,
       compare.order,
     },
-  }, --}}}
-  experimental = { ghost_text = true },
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
   mapping = cmp.mapping.preset.insert {
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
