@@ -83,6 +83,51 @@ local filetype_attach = setmetatable({
     end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
+  javascript = function(client, bufnr)
+    if client.name ~= 'null-ls' then
+      navic.attach(client, bufnr)
+    end
+
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format {
+        async = false,
+        filter = function(c)
+          return c.name == 'null-ls'
+        end,
+      }
+    end, { noremap = true, silent = true, buffer = bufnr })
+  end,
+
+  typescript = function(client, bufnr)
+    if client.name ~= 'null-ls' then
+      navic.attach(client, bufnr)
+    end
+
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format {
+        async = false,
+        filter = function(c)
+          return c.name == 'null-ls'
+        end,
+      }
+    end, { noremap = true, silent = true, buffer = bufnr })
+  end,
+
+  typescriptreact = function(client, bufnr)
+    if client.name ~= 'null-ls' then
+      navic.attach(client, bufnr)
+    end
+
+    vim.keymap.set('n', '<Leader>fm', function()
+      vim.lsp.buf.format {
+        async = false,
+        filter = function(c)
+          return c.name == 'null-ls'
+        end,
+      }
+    end, { noremap = true, silent = true, buffer = bufnr })
+  end,
+
   lua = function(client, bufnr)
     if client.name ~= 'null-ls' then
       navic.attach(client, bufnr)
