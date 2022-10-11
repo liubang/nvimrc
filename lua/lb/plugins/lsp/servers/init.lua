@@ -28,6 +28,7 @@ for _, server in ipairs {
   'jsonls',
   'yamlls',
   'vimls',
+  'cssls',
   'tsserver',
   'pyright',
 } do
