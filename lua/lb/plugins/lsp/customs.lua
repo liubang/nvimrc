@@ -136,6 +136,7 @@ local filetype_attach = setmetatable({
     -- disable sumneko_lua format
     if client.name == 'sumneko_lua' then
       client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+      client.server_capabilities.documentRangeFormattingProvider = false
     end
 
     autocmd_format(false, function(c)
