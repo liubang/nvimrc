@@ -285,7 +285,7 @@ require('packer').startup {
       end,
     }
 
-    use { 'folke/lua-dev.nvim' }
+    use { 'folke/neodev.nvim' }
 
     use { 'simrat39/rust-tools.nvim' }
 
@@ -311,7 +311,7 @@ require('packer').startup {
       requires = {
         'williamboman/mason.nvim',
         'simrat39/rust-tools.nvim',
-        'folke/lua-dev.nvim',
+        'folke/neodev.nvim',
         'jose-elias-alvarez/null-ls.nvim',
       },
       config = function()
