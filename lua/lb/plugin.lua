@@ -82,7 +82,7 @@ require('packer').startup {
       config = function()
         require 'lb.plugins.lualine'
       end,
-      event = { 'UIEnter' },
+      event = { 'LspAttach' },
     }
 
     use {
@@ -127,8 +127,11 @@ require('packer').startup {
       event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
     }
 
-    use { 'willchao612/vim-diagon', cmd = 'Diagon' }
-    use { 'jbyuki/venn.nvim', keys = { '<leader>v' } }
+    use {
+      'jbyuki/venn.nvim',
+      keys = { '<leader>v' },
+      config = function() end,
+    }
 
     use {
       'phaazon/hop.nvim',
@@ -366,7 +369,7 @@ require('packer').startup {
     -- ft
     use {
       'iamcco/markdown-preview.nvim',
-      ft = 'markdown',
+      ft = { 'markdown' },
       run = function()
         vim.fn['mkdp#util#install']()
       end,
