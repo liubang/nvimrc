@@ -39,6 +39,7 @@ cmp.setup {
     documentation = false,
     completion = cmp.config.window.bordered {
       winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None',
+      border = 'single',
     },
   },
   snippet = {

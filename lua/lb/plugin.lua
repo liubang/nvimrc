@@ -130,7 +130,15 @@ require('packer').startup {
     use {
       'jbyuki/venn.nvim',
       keys = { '<leader>v' },
-      config = function() end,
+      config = function()
+        require 'lb.plugins.venn'
+      end,
+    }
+
+    -- https://github.com/ArthurSonzogni/Diagon
+    use {
+      'willchao612/vim-diagon',
+      cmd = 'Diagon',
     }
 
     use {
