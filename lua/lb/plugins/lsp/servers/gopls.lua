@@ -9,18 +9,6 @@
 local lspconfig = require 'lspconfig'
 local c = require 'lb.plugins.lsp.customs'
 
-local get_current_gomod = function()
-  local file = io.open('go.mod', 'r')
-  if file == nil then
-    return nil
-  end
-
-  local first_line = file:read()
-  local mod_name = first_line:gsub('module ', '')
-  file:close()
-  return mod_name
-end
-
 local setup = function()
   lspconfig.gopls.setup(c.default {
     -- share the gopls instance if there is one already
@@ -85,15 +73,23 @@ local setup = function()
           gc_details = true, -- Show a code lens toggling the display of gc's choices.
           test = true,
           tidy = true,
-          vendor = true,
           regenerate_cgo = true,
+          run_vulncheck_exp = true,
           upgrade_dependency = true,
         },
+        directoryFilters = {
+          '-**/node_modules',
+          '-/tmp',
+        },
         usePlaceholders = true,
+        verboseOutput = false, -- useful for debugging when true.
+        semanticTokens = true,
         completeUnimported = true,
+        completionDocumentation = true,
         staticcheck = true,
-        -- ['local'] = get_current_gomod(),
         gofumpt = true,
+        linksInHover = true,
+        buildFlags = { '-tags=integration,e2e' },
       },
     },
   })

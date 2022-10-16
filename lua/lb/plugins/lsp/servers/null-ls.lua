@@ -12,25 +12,22 @@ local b = null_ls.builtins
 local M = {}
 
 local sources = {
-  b.formatting.protolint,
+  b.formatting.buf,
   b.formatting.phpcsfixer,
   b.formatting.stylua,
   b.formatting.cmake_format,
   b.formatting.asmfmt,
   b.formatting.buildifier,
+  b.formatting.fixjson,
+  b.formatting.autopep8,
   b.formatting.shfmt.with {
     extra_args = { '-i', '2', '-ci' },
   },
   b.formatting.prettier.with {
-    filetypes = {
-      'markdown',
-      'css',
-      'javascript',
-      'html',
-      'yaml',
-      'typescriptreact',
-      'typescript',
-    },
+    disabled_filetypes = { 'html' },
+  },
+  b.diagnostics.buf.with {
+    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
   b.diagnostics.shellcheck.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,

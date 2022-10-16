@@ -40,16 +40,6 @@ local gopls_with_result = {
   'gopls.list_imports',
 }
 
-local function check_for_error(msg)
-  if msg ~= nil and type(msg[1]) == 'table' then
-    for k, _ in pairs(msg[1]) do
-      if k == 'error' then
-        break
-      end
-    end
-  end
-end
-
 for _, value in ipairs(gopls_cmds) do
   local fname = string.sub(value, #'gopls.' + 1)
   cmds[fname] = function(arg)
@@ -68,7 +58,6 @@ for _, value in ipairs(gopls_cmds) do
         command = value,
         arguments = arguments,
       }, 2000)
-      check_for_error(resp)
       return resp
     end
 
@@ -77,7 +66,6 @@ for _, value in ipairs(gopls_cmds) do
         command = value,
         arguments = arguments,
       }
-      check_for_error(resp)
     end)
   end
 end

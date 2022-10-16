@@ -6,6 +6,9 @@
 -- Last Modified: 2022/04/16 22:09
 --
 --=====================================================================
+
+vim.cmd [[packadd cmp_nvim_lsp]]
+
 local M = {}
 local navic = require 'nvim-navic'
 
@@ -14,21 +17,12 @@ local custom_init = function(client)
   client.config.flags.allow_incremental_sync = true
 end
 
-local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
-custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
-custom_capabilities.textDocument.completion.completionItem.preselectSupport = true
-custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-custom_capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-custom_capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-custom_capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-custom_capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = 1 }
-custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  },
-}
+-- Enable (broadcasting) snippet capability for completion.
+local capabilities = require('cmp_nvim_lsp').update_capabilities( --{{{
+  vim.lsp.protocol.make_client_capabilities()
+)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+--}}}
 
 local augroup_format = vim.api.nvim_create_augroup('my_lsp_format', { clear = true })
 local autocmd_format = function(async, filter)
@@ -158,7 +152,26 @@ local filetype_attach = setmetatable({
   end,
 })
 
+local fix_null_errors = function()
+  local default_exe_handler = vim.lsp.handlers['workspace/executeCommand']
+  vim.lsp.handlers['workspace/executeCommand'] = function(err, ...)
+    -- supress NULL_LS error msg
+    local prefix = 'NULL_LS'
+    if err and err.message:sub(1, #prefix) == prefix then
+      return
+    end
+    return default_exe_handler(err, ...)
+  end
+end
+
 local custom_attach = function(client, bufnr)
+  -- The first time some LSP servers are not attached currectly, therefore we
+  -- force another read just once.
+  if not vim.g._lsp_loaded_successfully then
+    vim.g._lsp_loaded_successfully = true
+    vim.api.nvim_exec_autocmds('BufRead', {})
+  end
+
   local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -178,13 +191,14 @@ local custom_attach = function(client, bufnr)
 
   -- filetype config
   filetype_attach[filetype](client, bufnr)
+  fix_null_errors()
 end
 
 M.default = function(configs)
   local custom_config = {
     on_init = custom_init,
     on_attach = custom_attach,
-    capabilities = custom_capabilities,
+    capabilities = capabilities,
   }
   if configs ~= nil then
     for key, value in pairs(configs) do
