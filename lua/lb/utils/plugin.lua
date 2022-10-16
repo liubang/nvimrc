@@ -21,7 +21,7 @@ M.bootstrap_packer = function()
       'https://github.com/wbthomason/packer.nvim',
       install_path,
     }
-    vim.cmd [[packadd packer.nvim]]
+    vim.cmd.packadd 'packer.nvim'
     return true
   end
   return false

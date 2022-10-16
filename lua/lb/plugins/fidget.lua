@@ -43,3 +43,5 @@ require('fidget').setup {
     end,
   },
 }
+
+vim.api.nvim_create_autocmd('VimLeavePre', { command = 'FidgetClose' })

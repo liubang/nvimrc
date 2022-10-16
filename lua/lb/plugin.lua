@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2021/04/19 11:00
+-- Last Modified: 2022/10/16 15:51
 --
 -- =====================================================================
 
@@ -167,8 +167,8 @@ require('packer').startup {
         { 'skywind3000/asyncrun.extra', opt = true },
       },
       config = function()
-        vim.cmd [[packadd asyncrun.vim]]
-        vim.cmd [[packadd asyncrun.extra]]
+        vim.cmd.packadd 'asyncrun.vim'
+        vim.cmd.packadd 'asyncrun.extra'
         vim.g.asyncrun_open = 25
         vim.g.asyncrun_bell = 1
         vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
@@ -192,11 +192,11 @@ require('packer').startup {
     }
 
     use {
-      'junegunn/vim-easy-align',
+      'echasnovski/mini.nvim',
+      event = { 'User LoadTicker' },
       config = function()
-        require 'lb.plugins.easyalign'
+        require 'lb.plugins.mini-nvim'
       end,
-      keys = { '<Plug>(EasyAlign)' },
     }
 
     -- MixedCase/PascalCase:   gsm/gsp

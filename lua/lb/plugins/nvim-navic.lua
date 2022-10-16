@@ -10,6 +10,7 @@ local navic = require 'nvim-navic'
 
 -- stylua: ignore start
 vim.g.navic_silence = true
+local separator = " %#CmpItemKindDefault#▶ %*"
 local icons = { --{{{
   array         = " ",
   boolean       = "◩ ",
@@ -73,9 +74,32 @@ navic.setup({ --{{{
     TypeParameter = icons.typeParameter,
     Variable      = icons.variable,
   },
-  separator = ' > ',
+  -- separator = ' > ',
+  separator = separator,
   depth_limit = 3,
   highlight = true,
   depth_limit_indicator = "..",
 }) --}}}
+
+local ignore_navic = {
+  bashls = true,
+  dockerls = true,
+  ["null-ls"] = true,
+}
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    if args.data == nil then
+      return
+    end
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if ignore_navic[client.name] then
+      return
+    end
+    if not client.server_capabilities.documentSymbolProvider then
+      return
+    end
+    navic.attach(client, args.buf)
+  end,
+})
 -- stylua: ignore end

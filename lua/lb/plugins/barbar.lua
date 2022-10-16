@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-vim.cmd [[packadd nvim-web-devicons]]
+vim.cmd.packadd 'nvim-web-devicons'
 
 -- Set barbar's options
 require('bufferline').setup {

@@ -3,14 +3,13 @@
 -- customs.lua -
 --
 -- Created by liubang on 2022/04/16 22:09
--- Last Modified: 2022/04/16 22:09
+-- Last Modified: 2022/10/16 15:50
 --
 --=====================================================================
 
-vim.cmd [[packadd cmp_nvim_lsp]]
+vim.cmd.packadd 'cmp-nvim-lsp'
 
 local M = {}
-local navic = require 'nvim-navic'
 
 local custom_init = function(client)
   client.config.flags = client.config.flags or {}
@@ -18,9 +17,7 @@ local custom_init = function(client)
 end
 
 -- Enable (broadcasting) snippet capability for completion.
-local capabilities = require('cmp_nvim_lsp').update_capabilities( --{{{
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 --}}}
 
@@ -37,36 +34,26 @@ end
 
 local filetype_attach = setmetatable({
   cpp = function(client, bufnr)
-    navic.attach(client, bufnr)
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format { async = false }
     end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   go = function(client, bufnr)
-    navic.attach(client, bufnr)
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format { async = false }
     end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   rust = function(client, bufnr)
-    navic.attach(client, bufnr)
     autocmd_format(false)
+
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format { async = false }
     end, { noremap = true, silent = true, buffer = bufnr })
   end,
 
   yaml = function(client, bufnr)
-    if client.name ~= 'null-ls' then
-      navic.attach(client, bufnr)
-    end
-
-    -- autocmd_format(false, function(c)
-    --   return c.name == 'null-ls'
-    -- end)
-
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format {
         async = false,
@@ -78,10 +65,6 @@ local filetype_attach = setmetatable({
   end,
 
   javascript = function(client, bufnr)
-    if client.name ~= 'null-ls' then
-      navic.attach(client, bufnr)
-    end
-
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format {
         async = false,
@@ -93,10 +76,6 @@ local filetype_attach = setmetatable({
   end,
 
   typescript = function(client, bufnr)
-    if client.name ~= 'null-ls' then
-      navic.attach(client, bufnr)
-    end
-
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format {
         async = false,
@@ -108,10 +87,6 @@ local filetype_attach = setmetatable({
   end,
 
   typescriptreact = function(client, bufnr)
-    if client.name ~= 'null-ls' then
-      navic.attach(client, bufnr)
-    end
-
     vim.keymap.set('n', '<Leader>fm', function()
       vim.lsp.buf.format {
         async = false,
@@ -123,10 +98,6 @@ local filetype_attach = setmetatable({
   end,
 
   lua = function(client, bufnr)
-    if client.name ~= 'null-ls' then
-      navic.attach(client, bufnr)
-    end
-
     -- disable sumneko_lua format
     if client.name == 'sumneko_lua' then
       client.server_capabilities.documentFormattingProvider = false -- 0.8 and later

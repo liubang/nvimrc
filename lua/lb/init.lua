@@ -13,3 +13,7 @@ require 'lb.plugin'
 require 'lb.commands'
 require 'lb.events'
 require 'lb.mappings'
+
+vim.defer_fn(function()
+  vim.cmd.doautocmd 'User LoadTicker'
+end, 200)

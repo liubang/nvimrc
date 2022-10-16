@@ -7,17 +7,18 @@
 --
 -- =====================================================================
 
-vim.cmd [[packadd lspkind.nvim]]
+vim.cmd.packadd 'lspkind.nvim'
 
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
 local lspkind = require 'lspkind'
+local ls = require 'luasnip'
 
 lspkind.init()
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
-vim.opt.shortmess:append 'c'
+-- vim.opt.shortmess:append 'c'
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -30,12 +31,19 @@ local has_words_before = function()
 end
 
 cmp.setup {
+  performance = {
+    debounce = 50,
+    throttle = 10,
+  },
   window = {
     documentation = false,
+    completion = cmp.config.window.bordered {
+      winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None',
+    },
   },
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
   preselect = cmp.PreselectMode.None,
@@ -58,6 +66,7 @@ cmp.setup {
     { name = 'calc' },
   },
   formatting = {
+    fields = { 'abbr', 'kind', 'menu' },
     format = lspkind.cmp_format {
       mode = 'symbol',
       maxwidth = 80,
@@ -73,17 +82,19 @@ cmp.setup {
   },
   view = {
     max_height = 20,
-    entries = { name = 'native', selection_order = 'near_cursor' },
+    -- entries = { name = 'native', selection_order = 'near_cursor' },
   },
   sorting = {
+    priority_weight = 2,
     comparators = {
+      compare.offset,
+      compare.score,
+      compare.exact,
+      compare.recently_used,
+      compare.locality,
       function(...)
         return require('cmp_buffer'):compare_locality(...)
       end,
-      compare.offset,
-      compare.exact,
-      compare.score,
-      compare.recently_used,
       compare.kind,
       compare.sort_text,
       compare.length,
@@ -128,13 +139,20 @@ cmp.setup {
   },
 }
 
-for _, v in pairs { '/', '?' } do
-  cmp.setup.cmdline(v, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'fuzzy_buffer', max_item_count = 15 },
-    },
-  })
-end
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' },
+  },
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' },
+  }, {
+    { name = 'cmdline' },
+  }),
+})
 
 -- vim: fdm=marker fdl=0

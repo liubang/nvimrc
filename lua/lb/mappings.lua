@@ -59,12 +59,12 @@ keymap('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
 keymap('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 
 -- command
-keymap('c', '<C-a>', '<Home>')
-keymap('c', '<C-e>', '<End>')
-keymap('c', '<C-b>', '<S-Left>')
-keymap('c', '<C-f>', '<S-Right>')
-keymap('c', '<C-h>', '<Left>')
-keymap('c', '<C-l>', '<Right>')
+-- keymap('c', '<C-a>', '<Home>')
+-- keymap('c', '<C-e>', '<End>')
+-- keymap('c', '<C-b>', '<S-Left>')
+-- keymap('c', '<C-f>', '<S-Right>')
+-- keymap('c', '<C-h>', '<Left>')
+-- keymap('c', '<C-l>', '<Right>')
 
 -- terminal
 keymap('t', '<Esc>', termcodes '<C-\\><C-N>')
