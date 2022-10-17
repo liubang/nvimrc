@@ -10,6 +10,7 @@
 local health = vim.health or require 'health'
 local M = {}
 
+-- {{{
 local check_executable = function(bin, name, advice)
   if vim.fn.executable(bin) == 0 then
     health.report_error(string.format('Please install %s, %s', name, advice))
@@ -17,6 +18,7 @@ local check_executable = function(bin, name, advice)
     health.report_ok(string.format('%s is installed', name))
   end
 end
+-- }}}
 
 M.check = function()
   health.report_start 'Checking nvim configuration requirements'

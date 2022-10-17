@@ -19,11 +19,13 @@ local function termcodes(str)
 end
 
 -- stylua: ignore start
--- clear default
+
+-- clear default {{{
 keymap('n', ',', '')
 keymap('n', 'm', '')
 keymap('x', ',', '')
 keymap('x', 'm', '')
+-- }}}
 
 keymap('v', '<Tab>', '>gv|')
 keymap('v', '<S-Tab>', '<gv')
@@ -32,17 +34,19 @@ keymap('n', '<S-Tab>', '<<_')
 keymap('x', '<', '<gv')
 keymap('x', '>', '>gv')
 
--- bash like
+-- bash like {{{
 keymap('i', '<C-a>', '<Home>')
 keymap('i', '<C-e>', '<End>')
+-- }}}
 
--- buffer
+-- buffer {{{
 keymap('n', '<Leader>bp', '<cmd>bprevious<CR>')
 keymap('n', '<Leader>bn', '<cmd>bnext<CR>')
 keymap('n', '<Leader>bf', '<cmd>bfirst<CR>')
 keymap('n', '<Leader>bl', '<cmd>blast<CR>')
+-- }}}
 
--- window
+-- window {{{
 keymap('n', '<Leader>ww', '<C-W>w')
 keymap('n', '<Leader>wr', '<C-W>r')
 keymap('n', '<Leader>wq', '<C-W>q')
@@ -57,6 +61,7 @@ keymap('n', '<C-S-Up>', function() require('smart-splits').resize_up() end)
 keymap('n', '<C-S-Down>', function() require('smart-splits').resize_down() end)
 keymap('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
 keymap('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
+-- }}}
 
 -- command
 -- keymap('c', '<C-a>', '<Home>')
@@ -70,18 +75,18 @@ keymap('n', '<C-S-Right>', function() require('smart-splits').resize_right() end
 keymap('t', '<Esc>', termcodes '<C-\\><C-N>')
 
 --------- plugins key mappings
---- neotree
+-- neotree
 keymap(
   'n',
   '<Leader>ft',
   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
 )
 
---- easyalign
+-- easyalign
 keymap('n', 'ga', '<Plug>(EasyAlign)')
 keymap('x', 'ga', '<Plug>(EasyAlign)')
 
---- floaterm
+-- floaterm
 keymap('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
 keymap('n', '<C-t>', '<cmd>FloatermToggle<CR>')
 keymap('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
@@ -90,15 +95,15 @@ keymap('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
 keymap('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
 keymap('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
 
---- asynctask
+-- asynctask
 keymap('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
 keymap('n', '<C-b>', '<cmd>AsyncTask build<CR>')
 keymap('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
---- outline
+-- outline
 keymap('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
 
---- hop
+-- hop
 keymap('n', '<Leader>kk', function() require('hop').hint_lines() end)
 keymap('n', '<Leader>jj', function() require('hop').hint_lines() end)
 keymap('n', '<Leader>ss', function() require('hop').hint_patterns() end)
@@ -121,18 +126,18 @@ keymap('n', '<Leader>hh',
   end
 )
 
---- accelerate
+-- accelerate
 keymap('n', 'j', '<Plug>(accelerated_jk_gj)')
 keymap('n', 'k', '<Plug>(accelerated_jk_gk)')
 
---- git
+-- git
 keymap('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
 keymap('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
 
---- markdown
+-- markdown
 keymap('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
 
---- bufferline
+-- bufferline {{{
 keymap('n', '<Leader>bd', '<cmd>BufferClose<CR>')
 keymap('n', '<Leader>bc', '<cmd>BufferCloseAllButPinned<CR>')
 keymap('n', '<Leader>bm', '<cmd>BufferPin<CR>')
@@ -145,13 +150,17 @@ keymap('n', '<Leader>6', '<cmd>BufferGoto 6<CR>')
 keymap('n', '<Leader>7', '<cmd>BufferGoto 7<CR>')
 keymap('n', '<Leader>8', '<cmd>BufferGoto 8<CR>')
 keymap('n', '<Leader>9', '<cmd>BufferGoto 9<CR>')
+-- }}}
 
---- telescope
+-- telescope {{{
 keymap('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
 keymap('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
 keymap('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
 keymap('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
 keymap('n', '<Leader>fc', "<cmd>Telescope command<CR>")
 keymap('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
+-- }}}
 
 -- stylua: ignore end
+
+-- vim: fdm=marker fdl=0

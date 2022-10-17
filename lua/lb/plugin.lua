@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/10/16 15:51
+-- Last Modified: 2022/10/17 23:22
 --
 -- =====================================================================
 
@@ -204,7 +204,7 @@ require('packer').startup {
 
     use {
       'echasnovski/mini.nvim',
-      event = { 'User LoadTicker' },
+      event = { 'User LoadTicker2' },
       config = function()
         require 'lb.plugins.mini-nvim'
       end,
@@ -352,7 +352,8 @@ require('packer').startup {
         { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
         { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       },
-      event = { 'InsertEnter' },
+      -- event = { 'InsertEnter' },
+      event = { 'User LoadTicker1' },
       config = function()
         require 'lb.plugins.cmp'
       end,
