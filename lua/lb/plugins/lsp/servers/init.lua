@@ -11,6 +11,7 @@ local lspconfig = require 'lspconfig'
 local c = require 'lb.plugins.lsp.customs'
 
 for _, server in ipairs {
+  'php',
   'jsonls',
   'yamlls',
   'clangd',

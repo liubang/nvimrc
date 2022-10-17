@@ -11,11 +11,12 @@ local c = require 'lb.plugins.lsp.customs'
 local M = {}
 
 M.setup = function()
-  lspconfig.phpactor.setup(c.default {
-    init_options = {
-      ['language_server_phpstan.enabled'] = true,
-    },
-  })
+  -- lspconfig.phpactor.setup(c.default {
+  --   init_options = {
+  --     ['language_server_phpstan.enabled'] = true,
+  --   },
+  -- })
+  lspconfig.intelephense.setup(c.default{})
 end
 
 return M
