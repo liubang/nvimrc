@@ -3,11 +3,11 @@
 -- init.lua -
 --
 -- Created by liubang on 2021/11/30 22:45
--- Last Modified: 2022/10/18 00:38
+-- Last Modified: 2022/10/18 23:27
 --
 --=====================================================================
 
-require 'lb.plugin'
+require 'lb.plugins'
 require 'lb.options'
 require 'lb.autocmd'
 
