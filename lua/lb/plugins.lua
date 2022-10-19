@@ -7,12 +7,31 @@
 --
 -- =====================================================================
 
-local packer_bootstrap = require('lb.utils.plugin').bootstrap_packer()
+local packer_bootstrap = false
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  packer_bootstrap = vim.fn.system {
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  }
+end
 
-require('packer').startup {
+vim.cmd.packadd 'packer.nvim'
+
+local packer = require 'packer'
+
+packer.startup {
   function(use)
     -- have packer manage itself
-    use { 'wbthomason/packer.nvim' }
+    use {
+      'wbthomason/packer.nvim',
+      event = { 'VimEnter' },
+    }
+
     use { 'nvim-lua/plenary.nvim' }
     use { 'lewis6991/impatient.nvim' }
 
