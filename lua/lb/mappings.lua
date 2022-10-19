@@ -3,12 +3,9 @@
 -- mappings.lua -
 --
 -- Created by liubang on 2020/12/12 12:56
--- Last Modified: 2020/12/12 12:56
+-- Last Modified: 2022/10/19 13:06
 --
 -- =====================================================================
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 local keymap = function(m, l, r)
   local opts = { silent = true }
   vim.keymap.set(m, l, r, opts)

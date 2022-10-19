@@ -3,9 +3,12 @@
 -- init.lua -
 --
 -- Created by liubang on 2021/11/30 22:45
--- Last Modified: 2022/10/18 23:27
+-- Last Modified: 2022/10/19 13:06
 --
 --=====================================================================
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 require 'lb.plugins'
 require 'lb.options'

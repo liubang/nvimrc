@@ -129,7 +129,7 @@ require('packer').startup {
 
     use {
       'jbyuki/venn.nvim',
-      keys = { '<leader>v' },
+      keys = { '<Leader>v' },
       config = function()
         require 'lb.cfg.venn'
       end,
