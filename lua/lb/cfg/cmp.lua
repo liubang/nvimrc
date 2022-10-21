@@ -13,7 +13,27 @@ local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
 local lspkind = require 'lspkind'
 
-lspkind.init()
+lspkind.init {
+  symbol_map = {
+    NONE = '',
+    Array = '',
+    Boolean = '⊨',
+    Class = '',
+    Constructor = '',
+    Key = '',
+    Namespace = '',
+    Null = 'NULL',
+    Number = '#',
+    Object = '⦿',
+    Package = '',
+    Property = '',
+    Reference = '',
+    Snippet = '',
+    String = '𝓐',
+    TypeParameter = '',
+    Unit = '',
+  },
+}
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.
@@ -66,7 +86,8 @@ cmp.setup {
     { name = 'calc' },
   },
   formatting = {
-    fields = { 'abbr', 'kind', 'menu' },
+    -- fields = { 'abbr', 'kind', 'menu' },
+    fields = { 'kind', 'abbr', 'menu' },
     format = lspkind.cmp_format {
       mode = 'symbol',
       maxwidth = 80,

@@ -7,10 +7,6 @@
 --
 --=====================================================================
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.indentexpr = 'nvim_treesitter#indent()'
-
 require('nvim-treesitter.configs').setup {
   ensure_installed = {},
   sync_install = false,

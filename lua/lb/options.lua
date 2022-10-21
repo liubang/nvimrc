@@ -142,9 +142,12 @@ opt.breakindent = true
 opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
--- Folding {{{
+-- Folding and indent {{{
 vim.opt.foldnestmax = 3
-vim.opt.foldlevelstart = 1
+vim.opt.foldlevelstart = 100
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.indentexpr = 'nvim_treesitter#indent()'
 --}}}
 
 -- python {{{
