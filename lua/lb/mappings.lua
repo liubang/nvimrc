@@ -3,13 +3,9 @@
 -- mappings.lua -
 --
 -- Created by liubang on 2020/12/12 12:56
--- Last Modified: 2022/10/19 13:06
+-- Last Modified: 2022/10/22 00:25
 --
 -- =====================================================================
-local keymap = function(m, l, r)
-  local opts = { silent = true }
-  vim.keymap.set(m, l, r, opts)
-end
 
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -18,93 +14,121 @@ end
 -- stylua: ignore start
 
 -- clear default {{{
-keymap('n', ',', '')
-keymap('n', 'm', '')
-keymap('x', ',', '')
-keymap('x', 'm', '')
+vim.keymap.set('n', ',', '<Nop>')
+vim.keymap.set('n', 'm', '<Nop>')
+vim.keymap.set('x', ',', '<Nop>')
+vim.keymap.set('x', 'm', '<Nop>')
 -- }}}
 
-keymap('v', '<Tab>', '>gv|')
-keymap('v', '<S-Tab>', '<gv')
-keymap('n', '<Tab>', '>>_')
-keymap('n', '<S-Tab>', '<<_')
-keymap('x', '<', '<gv')
-keymap('x', '>', '>gv')
+vim.keymap.set('v', '<Tab>', '>gv|')
+vim.keymap.set('v', '<S-Tab>', '<gv')
+vim.keymap.set('n', '<Tab>', '>>_')
+vim.keymap.set('n', '<S-Tab>', '<<_')
+
+vim.keymap.set("n", "<S-j>", [[:<c-u>execute 'm +'. v:count1<cr>==]], { silent = true, desc = "move lines down" })
+vim.keymap.set("n", "<S-k>", [[:<c-u>execute 'm -1-'. v:count1<cr>==]], { silent = true, desc = "move lines up" })
+vim.keymap.set("v", "<S-j>", [[:m '>+1<CR>gv=gv]], { silent = true, desc = "move lines down" })
+vim.keymap.set("v", "<S-k>", [[:m '<-2<CR>gv=gv]], { silent = true, desc = "move lines up" })
+
+vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
+vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
+vim.keymap.set("n", "g,", "m'g,zz", { desc = "auto re-centre when moving around" })
+
+vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hlsearch" })
+
+vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when indenting" })
+vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
+
+vim.keymap.set("n", "<leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
+
+vim.keymap.set("n", "&", ":&&<CR>", { desc = "repeat last substitute command" })
+vim.keymap.set("x", "&", ":&&<CR>", { desc = "repeat last substitute command" })
+
+-- Yank related {{{
+vim.keymap.set("n", "<Leader>y", '"+y')
+vim.keymap.set("x", "<Leader>y", '"+y')
+vim.keymap.set("n", "<Leader>p", '"+p')
+vim.keymap.set("n", "<Leader>P", '"+P')
+
+vim.keymap.set("v", "p", '"_dP',
+  { desc = 'replace visually selected with the " contents' }
+)
+--}}}
 
 -- bash like {{{
-keymap('i', '<C-a>', '<Home>')
-keymap('i', '<C-e>', '<End>')
+vim.keymap.set('i', '<C-a>', '<Home>')
+vim.keymap.set('i', '<C-e>', '<End>')
 -- }}}
 
 -- buffer {{{
-keymap('n', '<Leader>bp', '<cmd>bprevious<CR>')
-keymap('n', '<Leader>bn', '<cmd>bnext<CR>')
-keymap('n', '<Leader>bf', '<cmd>bfirst<CR>')
-keymap('n', '<Leader>bl', '<cmd>blast<CR>')
+vim.keymap.set('n', '<Leader>bp', '<cmd>bprevious<CR>')
+vim.keymap.set('n', '<Leader>bn', '<cmd>bnext<CR>')
+vim.keymap.set('n', '<Leader>bf', '<cmd>bfirst<CR>')
+vim.keymap.set('n', '<Leader>bl', '<cmd>blast<CR>')
 -- }}}
 
 -- window {{{
-keymap('n', '<Leader>ww', '<C-W>w')
-keymap('n', '<Leader>wr', '<C-W>r')
-keymap('n', '<Leader>wq', '<C-W>q')
-keymap('n', '<Leader>wh', '<C-W>h')
-keymap('n', '<Leader>wl', '<C-W>l')
-keymap('n', '<Leader>wj', '<C-W>j')
-keymap('n', '<Leader>wk', '<C-W>k')
-keymap('n', '<Leader>w=', '<C-W>=')
-keymap('n', '<Leader>ws', '<C-W>s')
-keymap('n', '<Leader>wv', '<C-W>v')
-keymap('n', '<C-S-Up>', function() require('smart-splits').resize_up() end)
-keymap('n', '<C-S-Down>', function() require('smart-splits').resize_down() end)
-keymap('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
-keymap('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
+vim.keymap.set('n', '<Leader>ww', '<C-W>w')
+vim.keymap.set('n', '<Leader>wr', '<C-W>r')
+vim.keymap.set('n', '<Leader>wq', '<C-W>q')
+vim.keymap.set('n', '<Leader>wh', '<C-W>h')
+vim.keymap.set('n', '<Leader>wl', '<C-W>l')
+vim.keymap.set('n', '<Leader>wj', '<C-W>j')
+vim.keymap.set('n', '<Leader>wk', '<C-W>k')
+vim.keymap.set('n', '<Leader>w=', '<C-W>=')
+vim.keymap.set('n', '<Leader>ws', '<C-W>s')
+vim.keymap.set('n', '<Leader>wv', '<C-W>v')
+vim.keymap.set('n', '<C-S-Up>', function() require('smart-splits').resize_up() end)
+vim.keymap.set('n', '<C-S-Down>', function() require('smart-splits').resize_down() end)
+vim.keymap.set('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
+vim.keymap.set('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 -- }}}
 
 -- command
--- keymap('c', '<C-a>', '<Home>')
--- keymap('c', '<C-e>', '<End>')
--- keymap('c', '<C-b>', '<S-Left>')
--- keymap('c', '<C-f>', '<S-Right>')
--- keymap('c', '<C-h>', '<Left>')
--- keymap('c', '<C-l>', '<Right>')
+-- vim.keymap.set('c', '<C-a>', '<Home>')
+-- vim.keymap.set('c', '<C-e>', '<End>')
+-- vim.keymap.set('c', '<C-b>', '<S-Left>')
+-- vim.keymap.set('c', '<C-f>', '<S-Right>')
+-- vim.keymap.set('c', '<C-h>', '<Left>')
+-- vim.keymap.set('c', '<C-l>', '<Right>')
 
 -- terminal
-keymap('t', '<Esc>', termcodes '<C-\\><C-N>')
+vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 
 --------- plugins key mappings
 -- neotree
-keymap(
+vim.keymap.set(
   'n',
   '<Leader>ft',
   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
 )
 
 -- easyalign
-keymap('n', 'ga', '<Plug>(EasyAlign)')
-keymap('x', 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 
 -- floaterm
-keymap('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
-keymap('n', '<C-t>', '<cmd>FloatermToggle<CR>')
-keymap('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
-keymap('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
-keymap('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
-keymap('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
-keymap('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
+vim.keymap.set('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
+vim.keymap.set('n', '<C-t>', '<cmd>FloatermToggle<CR>')
+vim.keymap.set('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
+vim.keymap.set('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
+vim.keymap.set('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
+vim.keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
+vim.keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
 
 -- asynctask
-keymap('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
-keymap('n', '<C-b>', '<cmd>AsyncTask build<CR>')
-keymap('n', '<C-r>', '<cmd>AsyncTask run<CR>')
+vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
+vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask build<CR>')
+vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
 -- outline
-keymap('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
+vim.keymap.set('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
 
 -- hop
-keymap('n', '<Leader>kk', function() require('hop').hint_lines() end)
-keymap('n', '<Leader>jj', function() require('hop').hint_lines() end)
-keymap('n', '<Leader>ss', function() require('hop').hint_patterns() end)
-keymap(
+vim.keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)
+vim.keymap.set('n', '<Leader>jj', function() require('hop').hint_lines() end)
+vim.keymap.set('n', '<Leader>ss', function() require('hop').hint_patterns() end)
+vim.keymap.set(
   'n',
   '<Leader>ll',
   function()
@@ -114,7 +138,7 @@ keymap(
     }
   end
 )
-keymap('n', '<Leader>hh',
+vim.keymap.set('n', '<Leader>hh',
   function()
     require('hop').hint_words {
       direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
@@ -124,38 +148,38 @@ keymap('n', '<Leader>hh',
 )
 
 -- accelerate
-keymap('n', 'j', '<Plug>(accelerated_jk_gj)')
-keymap('n', 'k', '<Plug>(accelerated_jk_gk)')
+vim.keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)')
+vim.keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)')
 
 -- git
-keymap('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
-keymap('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
+vim.keymap.set('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
+vim.keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
 
 -- markdown
-keymap('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
+vim.keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
 
 -- bufferline {{{
-keymap('n', '<Leader>bd', '<cmd>BufferClose<CR>')
-keymap('n', '<Leader>bc', '<cmd>BufferCloseAllButPinned<CR>')
-keymap('n', '<Leader>bm', '<cmd>BufferPin<CR>')
-keymap('n', '<Leader>1', '<cmd>BufferGoto 1<CR>')
-keymap('n', '<Leader>2', '<cmd>BufferGoto 2<CR>')
-keymap('n', '<Leader>3', '<cmd>BufferGoto 3<CR>')
-keymap('n', '<Leader>4', '<cmd>BufferGoto 4<CR>')
-keymap('n', '<Leader>5', '<cmd>BufferGoto 5<CR>')
-keymap('n', '<Leader>6', '<cmd>BufferGoto 6<CR>')
-keymap('n', '<Leader>7', '<cmd>BufferGoto 7<CR>')
-keymap('n', '<Leader>8', '<cmd>BufferGoto 8<CR>')
-keymap('n', '<Leader>9', '<cmd>BufferGoto 9<CR>')
+vim.keymap.set('n', '<Leader>bd', '<cmd>BufferClose<CR>')
+vim.keymap.set('n', '<Leader>bc', '<cmd>BufferCloseAllButPinned<CR>')
+vim.keymap.set('n', '<Leader>bm', '<cmd>BufferPin<CR>')
+vim.keymap.set('n', '<Leader>1', '<cmd>BufferGoto 1<CR>')
+vim.keymap.set('n', '<Leader>2', '<cmd>BufferGoto 2<CR>')
+vim.keymap.set('n', '<Leader>3', '<cmd>BufferGoto 3<CR>')
+vim.keymap.set('n', '<Leader>4', '<cmd>BufferGoto 4<CR>')
+vim.keymap.set('n', '<Leader>5', '<cmd>BufferGoto 5<CR>')
+vim.keymap.set('n', '<Leader>6', '<cmd>BufferGoto 6<CR>')
+vim.keymap.set('n', '<Leader>7', '<cmd>BufferGoto 7<CR>')
+vim.keymap.set('n', '<Leader>8', '<cmd>BufferGoto 8<CR>')
+vim.keymap.set('n', '<Leader>9', '<cmd>BufferGoto 9<CR>')
 -- }}}
 
 -- telescope {{{
-keymap('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
-keymap('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
-keymap('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
-keymap('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
-keymap('n', '<Leader>fc', "<cmd>Telescope command<CR>")
-keymap('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
+vim.keymap.set('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
+vim.keymap.set('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
+vim.keymap.set('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
+vim.keymap.set('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
+vim.keymap.set('n', '<Leader>fc', "<cmd>Telescope command<CR>")
+vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
 -- }}}
 
 -- stylua: ignore end

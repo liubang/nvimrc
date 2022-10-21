@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/10/18 23:26
+-- Last Modified: 2022/10/22 00:25
 --
 -- =====================================================================
 
@@ -407,7 +407,7 @@ packer.startup {
     }
 
     if packer_bootstrap then
-      require('packer').sync()
+      packer.sync()
     end
   end,
   config = {
