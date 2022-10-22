@@ -21,9 +21,7 @@ require('nvim-treesitter.configs').setup {
       ['namespace.type'] = 'Namespace',
     },
   },
-  fold = {
-    enable = true,
-  },
+  fold = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -32,15 +30,9 @@ require('nvim-treesitter.configs').setup {
       node_decremental = 'V',
     },
   },
-  indent = {
-    enable = false,
-  },
-  autopairs = {
-    enable = true,
-  },
-  matchup = {
-    enable = true,
-  },
+  indent = { enable = false },
+  autopairs = { enable = true },
+  matchup = { enable = true },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

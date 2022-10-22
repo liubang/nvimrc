@@ -3,7 +3,7 @@
 -- venn.lua -
 --
 -- Created by liubang on 2022/10/16 18:15
--- Last Modified: 2022/10/18 23:29
+-- Last Modified: 2022/10/23 02:51
 --
 --=====================================================================
 
@@ -11,7 +11,7 @@ vim.keymap.set('n', '<leader>v', function()
   local venn_enabled = vim.inspect(vim.b.venn_enabled)
   if venn_enabled == 'nil' then
     vim.b.venn_enabled = true
-    vim.cmd [[setlocal ve=all]]
+    vim.opt_local.ve = 'all'
     -- draw a line on HJKL keystokes
     vim.api.nvim_buf_set_keymap(0, 'n', 'J', '<C-v>j:VBox<CR>', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<C-v>k:VBox<CR>', { noremap = true })
@@ -23,8 +23,8 @@ vim.keymap.set('n', '<leader>v', function()
     vim.api.nvim_buf_set_keymap(0, 'v', 'o', ':VBoxO<CR>', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'v', 'd', ':VBoxD<CR>', { noremap = true })
   else
-    vim.cmd [[setlocal ve=]]
-    vim.cmd [[mapclear <buffer>]]
+    vim.opt_local.ve = ''
+    vim.cmd.mapclear '<buffer>'
     vim.b.venn_enabled = nil
   end
 end, {})

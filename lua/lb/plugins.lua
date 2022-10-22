@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/10/22 00:25
+-- Last Modified: 2022/10/23 02:45
 --
 -- =====================================================================
 
@@ -291,6 +291,14 @@ packer.startup {
       'SmiteshP/nvim-navic',
       config = function()
         require 'lb.cfg.nvim-navic'
+      end,
+      event = { 'LspAttach' },
+    }
+
+    use {
+      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+      config = function()
+        require 'lb.cfg.lsp_lines-nvim'
       end,
       event = { 'LspAttach' },
     }
