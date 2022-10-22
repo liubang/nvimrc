@@ -79,29 +79,15 @@ packer.startup {
     }
 
     use {
-      'akinsho/bufferline.nvim',
-      tag = 'v2.*',
-      disable = true,
-      requires = {
-        { 'famiu/bufdelete.nvim', cmd = 'Bdelete' },
-      },
-      config = function()
-        require 'lb.cfg.bufferline'
-      end,
-      event = { 'UIEnter' },
-    }
-
-    use {
       'nvim-lualine/lualine.nvim',
       requires = {
-        'j-hui/fidget.nvim',
         'kyazdani42/nvim-web-devicons',
         'SmiteshP/nvim-navic',
       },
       config = function()
         require 'lb.cfg.lualine'
       end,
-      event = { 'LspAttach' },
+      event = { 'UIEnter' },
     }
 
     use {
@@ -167,14 +153,6 @@ packer.startup {
         require('hop').setup {}
       end,
       event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
-    }
-
-    use {
-      'anuvyklack/pretty-fold.nvim',
-      config = function()
-        require 'lb.cfg.fold'
-      end,
-      event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
     }
 
     use {
@@ -305,6 +283,7 @@ packer.startup {
       config = function()
         require 'lb.cfg.treesitter'
       end,
+      event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
     }
 
     -- lsp
@@ -313,6 +292,7 @@ packer.startup {
       config = function()
         require 'lb.cfg.nvim-navic'
       end,
+      event = { 'LspAttach' },
     }
 
     use { 'folke/neodev.nvim' }
@@ -380,10 +360,10 @@ packer.startup {
     use {
       'L3MON4D3/LuaSnip',
       after = { 'nvim-cmp', 'Comment.nvim' },
-      -- event = { 'User LoadTicker1' },
       config = function()
         require 'lb.cfg.snip'
       end,
+      event = { 'User LoadTicker1' },
     }
 
     use {

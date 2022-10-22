@@ -8,6 +8,7 @@
 --=====================================================================
 
 vim.cmd.packadd 'nvim-web-devicons'
+vim.cmd.packadd 'nvim-navic'
 
 local lualine = require 'lualine'
 
