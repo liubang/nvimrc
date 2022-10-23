@@ -3,7 +3,7 @@
 -- mappings.lua -
 --
 -- Created by liubang on 2020/12/12 12:56
--- Last Modified: 2022/10/22 00:25
+-- Last Modified: 2022/10/23 17:46
 --
 -- =====================================================================
 
@@ -27,8 +27,8 @@ vim.keymap.set('n', '<S-Tab>', '<<_')
 
 vim.keymap.set("n", "<S-j>", [[:<c-u>execute 'm +'. v:count1<cr>==]], { silent = true, desc = "move lines down" })
 vim.keymap.set("n", "<S-k>", [[:<c-u>execute 'm -1-'. v:count1<cr>==]], { silent = true, desc = "move lines up" })
-vim.keymap.set("v", "<S-j>", [[:m '>+1<CR>gv=gv]], { silent = true, desc = "move lines down" })
-vim.keymap.set("v", "<S-k>", [[:m '<-2<CR>gv=gv]], { silent = true, desc = "move lines up" })
+vim.keymap.set("v", "<S-j>", [[:m '>+1<CR><CR>gv=gv]], { silent = true, desc = "move lines down" })
+vim.keymap.set("v", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "move lines up" })
 
 vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
 vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
@@ -40,9 +40,6 @@ vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when i
 vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
 
 vim.keymap.set("n", "<leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
-
-vim.keymap.set("n", "&", ":&&<CR>", { desc = "repeat last substitute command" })
-vim.keymap.set("x", "&", ":&&<CR>", { desc = "repeat last substitute command" })
 
 -- Yank related {{{
 vim.keymap.set("n", "<Leader>y", '"+y')

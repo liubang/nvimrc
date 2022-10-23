@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/10/23 02:45
+-- Last Modified: 2022/10/23 17:45
 --
 -- =====================================================================
 
@@ -402,6 +402,11 @@ packer.startup {
     auto_clean = true,
     compile_on_sync = true,
     ensure_dependencies = true,
+    auto_reload_compiled = true,
+    profile = {
+      enable = false,
+      threshold = 1,
+    },
     display = {
       title = ' packer.nvim',
       non_interactive = false,
@@ -413,9 +418,7 @@ packer.startup {
       removed_sym = '',
       show_all_info = true,
       open_fn = function()
-        return require('packer.util').float {
-          border = 'single',
-        }
+        return require('packer.util').float { border = 'single' }
       end,
     },
     git = {
