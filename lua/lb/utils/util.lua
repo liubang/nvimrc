@@ -3,7 +3,7 @@
 -- util.lua -
 --
 -- Created by liubang on 2022/09/04 17:33
--- Last Modified: 2022/09/04 17:33
+-- Last Modified: 2022/10/29 02:08
 --
 --=====================================================================
 
@@ -105,6 +105,20 @@ M.rel_path = function(folder)
     fpath = fpath:sub(1, #fpath - 1)
   end
   return fpath
+end
+
+M.trim_whitespace = function()
+  if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == 'diff' then
+    return
+  end
+  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, 'DISABLE_TRIM_WHITESPACES')
+  if ok and val then
+    return
+  end
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  vim.api.nvim_command [[keeppatterns %s/\s\+$//e]]
+  vim.api.nvim_command [[silent! %s#\($\n\s*\)\+\%$##]]
+  vim.api.nvim_win_set_cursor(0, cursor)
 end
 
 return M

@@ -61,7 +61,7 @@ telescope.setup {
         ['<C-/>'] = 'which_key',
       },
       n = {
-        ['<esc>'] = actions.close,
+        ['<Esc>'] = actions.close,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
       },
