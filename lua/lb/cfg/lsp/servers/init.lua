@@ -32,6 +32,7 @@ for _, server in ipairs {
   'cssls',
   'tsserver',
   'pyright',
+  'eslint',
 } do
   lspconfig[server].setup(c.default())
 end

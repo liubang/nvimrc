@@ -38,9 +38,6 @@ local sources = {
   b.diagnostics.actionlint.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
-  b.diagnostics.eslint.with {
-    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-  },
 }
 
 M.setup = function()
