@@ -3,37 +3,41 @@
 -- comment.lua -
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2022/04/05 03:55
+-- Last Modified: 2022/10/31 00:08
 --
 -- =====================================================================
 
--- LuaFormatter off
+-- stylua: ignore start
 local prefix_mappings = {
-  ['c'] = '//',
-  ['cpp'] = '//',
-  ['rust'] = '//',
-  ['go'] = '//',
-  ['php'] = '//',
-  ['java'] = '//',
-  ['lua'] = '--',
-  ['sql'] = '--',
-  ['vim'] = '"',
-  ['python'] = '#',
-  ['sh'] = '#',
-  ['zsh'] = '#',
-  ['bash'] = '#',
-  ['make'] = '#',
-  ['ruby'] = '#',
+  ['c']               = '//',
+  ['cpp']             = '//',
+  ['rust']            = '//',
+  ['go']              = '//',
+  ['php']             = '//',
+  ['java']            = '//',
+  ['lua']             = '--',
+  ['sql']             = '--',
+  ['vim']             = '"',
+  ['python']          = '#',
+  ['sh']              = '#',
+  ['zsh']             = '#',
+  ['bash']            = '#',
+  ['make']            = '#',
+  ['ruby']            = '#',
+  ['javascript']      = '//',
+  ['typescript']      = '//',
+  ['javascriptreact'] = '//',
+  ['typescriptreact'] = '//',
 }
 
 local header_mappings = {
-  ['php'] = { '<?php' },
-  ['sh'] = { '#! /bin/sh' },
-  ['bash'] = { '#! /usr/bin/env bash' },
-  ['zsh'] = { '#! /usr/bin/env zsh' },
+  ['php']    = { '<?php' },
+  ['sh']     = { '#! /bin/sh' },
+  ['bash']   = { '#! /usr/bin/env bash' },
+  ['zsh']    = { '#! /usr/bin/env zsh' },
   ['python'] = { '#! /usr/bin/env python', '# -*- coding: utf-8 -*-' },
 }
--- LuaFormatter on
+-- stylua: ignore end
 
 local comment_prefix = function()
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -65,7 +69,7 @@ local copy_right = function(author)
   end
   table.insert(text, complete)
   table.insert(text, c)
-  table.insert(text, c .. ' ' .. filename .. ' - ')
+  table.insert(text, c .. ' ' .. filename .. ' -')
   table.insert(text, c)
   table.insert(text, c .. ' Created by ' .. author .. ' on ' .. t)
   table.insert(text, c .. ' Last Modified: ' .. t)
