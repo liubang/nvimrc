@@ -31,70 +31,28 @@ local autocmd_format = function(async, filter)
     end,
   })
 end
+local format_mapping = function(client, bufnr, filter)
+  vim.keymap.set('n', '<Leader>fm', function()
+    vim.lsp.buf.format { async = false, filter = filter }
+  end, { noremap = true, silent = true, buffer = bufnr })
+end
+
+local nullls_filter = function(c)
+  return c.name == 'null-ls'
+end
 
 local filetype_attach = setmetatable({
   cpp = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format { async = false }
-    end, { noremap = true, silent = true, buffer = bufnr })
+    format_mapping(client, bufnr)
   end,
 
   go = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format { async = false }
-    end, { noremap = true, silent = true, buffer = bufnr })
+    format_mapping(client, bufnr)
   end,
 
   rust = function(client, bufnr)
     autocmd_format(false)
-
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format { async = false }
-    end, { noremap = true, silent = true, buffer = bufnr })
-  end,
-
-  yaml = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format {
-        async = false,
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      }
-    end, { noremap = true, silent = true, buffer = bufnr })
-  end,
-
-  javascript = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format {
-        async = false,
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      }
-    end, { noremap = true, silent = true, buffer = bufnr })
-  end,
-
-  typescript = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format {
-        async = false,
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      }
-    end, { noremap = true, silent = true, buffer = bufnr })
-  end,
-
-  typescriptreact = function(client, bufnr)
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format {
-        async = false,
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      }
-    end, { noremap = true, silent = true, buffer = bufnr })
+    format_mapping(client, bufnr)
   end,
 
   lua = function(client, bufnr)
@@ -104,18 +62,36 @@ local filetype_attach = setmetatable({
       client.server_capabilities.documentRangeFormattingProvider = false
     end
 
-    autocmd_format(false, function(c)
-      return c.name == 'null-ls'
-    end)
+    autocmd_format(false, nullls_filter)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
 
-    vim.keymap.set('n', '<Leader>fm', function()
-      vim.lsp.buf.format {
-        async = false,
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      }
-    end, { noremap = true, silent = true, buffer = bufnr })
+  yaml = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  css = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  scss = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  less = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  javascript = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  typescript = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  typescriptreact = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
   end,
 }, {
   __index = function()

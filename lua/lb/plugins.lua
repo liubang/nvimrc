@@ -383,6 +383,26 @@ packer.startup {
     }
 
     -- ft
+    local colorizer_ft = {
+      'css',
+      'scss',
+      'sass',
+      'html',
+      'lua',
+      'markdown',
+      'javascript',
+      'typescript',
+      'typescriptreact',
+      'javascriptreact',
+    }
+    use {
+      'norcalli/nvim-colorizer.lua',
+      ft = colorizer_ft,
+      config = function()
+        require('colorizer').setup(colorizer_ft)
+      end,
+    }
+
     use {
       'iamcco/markdown-preview.nvim',
       ft = { 'markdown' },

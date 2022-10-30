@@ -52,12 +52,7 @@ require('neo-tree').setup {
         ['v'] = 'open_vsplit',
         ['o'] = 'open',
         ['w'] = 'open_with_window_picker',
-        ['a'] = {
-          'add',
-          config = {
-            show_path = 'relative',
-          },
-        },
+        ['a'] = { 'add', config = { show_path = 'relative' } },
         ['A'] = 'add_directory',
         ['d'] = 'delete',
         ['r'] = 'rename',
