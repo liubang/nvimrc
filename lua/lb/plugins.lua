@@ -396,10 +396,16 @@ packer.startup {
       'javascriptreact',
     }
     use {
-      'norcalli/nvim-colorizer.lua',
+      'NvChad/nvim-colorizer.lua',
       ft = colorizer_ft,
       config = function()
-        require('colorizer').setup(colorizer_ft)
+        require('colorizer').setup {
+          filetypes = colorizer_ft,
+          user_default_options = {
+            mode = 'virtualtext',
+            virtualtext = '■',
+          },
+        }
       end,
     }
 
