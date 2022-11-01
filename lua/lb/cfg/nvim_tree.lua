@@ -3,13 +3,9 @@
 -- nvim-tree.lua -
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/11/01 23:20
 --
 -- =====================================================================
-
-if true then
-  return
-end
 
 local nvim_tree = require 'nvim-tree'
 
@@ -22,9 +18,6 @@ nvim_tree.setup {
   update_cwd = false,
   auto_reload_on_write = true,
   respect_buf_cwd = false,
-  renderer = {
-    group_empty = true,
-  },
   update_focused_file = {
     enable = true,
     update_cwd = false,
@@ -38,8 +31,29 @@ nvim_tree.setup {
     ignore = true,
     timeout = 500,
   },
+  renderer = {
+    highlight_git = true,
+    group_empty = true,
+    icons = {
+      glyphs = {
+        git = { --{{{
+          deleted = '',
+          ignored = '◌',
+          renamed = '➜',
+          staged = '✓',
+          unmerged = '',
+          unstaged = '',
+          untracked = '★',
+        }, --}}}
+        folder = { --{{{
+          arrow_open = '▾',
+          arrow_closed = '▸',
+        }, --}}}
+      },
+    },
+  },
   view = {
-    width = 40,
+    width = 35,
     side = 'left',
     number = false,
     relativenumber = false,
@@ -71,3 +85,16 @@ local api = require 'nvim-tree.api'
 api.events.subscribe(api.events.Event.FileCreated, function(data)
   vim.cmd('edit ' .. data.fname)
 end)
+
+vim.keymap.set('n', '<Leader>ft', nvim_tree.toggle, { silent = true, desc = 'toggle tree view' })
+
+vim.api.nvim_create_autocmd('BufEnter', { --{{{
+  nested = true,
+  callback = function()
+    if vim.fn.winnr '$' == 1 and vim.fn.bufname() == 'NvimTree_' .. vim.fn.tabpagenr() then
+      vim.api.nvim_command ':silent q'
+    end
+  end,
+}) --}}}
+
+-- vim: fdm=marker fdl=0

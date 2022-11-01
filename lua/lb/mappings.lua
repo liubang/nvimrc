@@ -94,11 +94,13 @@ vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 
 --------- plugins key mappings
 -- neotree
-vim.keymap.set(
-  'n',
-  '<Leader>ft',
-  '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
-)
+-- vim.keymap.set(
+--   'n',
+--   '<Leader>ft',
+--   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
+-- )
+
+-- vim.keymap.set('n', '<Leader>ft', function() require('nvim-tree').toggle() end)
 
 -- easyalign
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')

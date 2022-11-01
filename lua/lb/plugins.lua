@@ -105,18 +105,28 @@ packer.startup {
     }
 
     use {
-      'nvim-neo-tree/neo-tree.nvim',
-      branch = 'v2.x',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-        'MunifTanjim/nui.nvim',
-        { 's1n7ax/nvim-window-picker', opt = true },
-      },
+      'kyazdani42/nvim-tree.lua',
+      requires = { 'nvim-web-devicons' },
       config = function()
-        require 'lb.cfg.neo-tree'
+        require 'lb.cfg.nvim_tree'
       end,
-      cmd = { 'Neotree' },
+      cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
+      keys = { '<leader>ft' },
     }
+
+    -- use {
+    --   'nvim-neo-tree/neo-tree.nvim',
+    --   branch = 'v2.x',
+    --   requires = {
+    --     'kyazdani42/nvim-web-devicons',
+    --     'MunifTanjim/nui.nvim',
+    --     { 's1n7ax/nvim-window-picker', opt = true },
+    --   },
+    --   config = function()
+    --     require 'lb.cfg.neo-tree'
+    --   end,
+    --   cmd = { 'Neotree' },
+    -- }
 
     -- tools
     use {
