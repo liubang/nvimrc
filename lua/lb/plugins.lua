@@ -99,12 +99,6 @@ packer.startup {
     }
 
     use {
-      's1n7ax/nvim-window-picker',
-      tag = '1.*',
-      event = { 'UIEnter' },
-    }
-
-    use {
       'kyazdani42/nvim-tree.lua',
       requires = { 'nvim-web-devicons' },
       config = function()
@@ -113,6 +107,12 @@ packer.startup {
       cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
       keys = { '<leader>ft' },
     }
+
+    -- use {
+    --   's1n7ax/nvim-window-picker',
+    --   tag = '1.*',
+    --   event = { 'UIEnter' },
+    -- }
 
     -- use {
     --   'nvim-neo-tree/neo-tree.nvim',
