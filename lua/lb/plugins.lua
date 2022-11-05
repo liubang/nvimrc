@@ -90,13 +90,13 @@ packer.startup {
       event = { 'UIEnter' },
     }
 
-    use {
-      'MunifTanjim/nui.nvim',
-      config = function()
-        require 'lb.cfg.nui'
-      end,
-      event = { 'UIEnter' },
-    }
+    -- use {
+    --   'MunifTanjim/nui.nvim',
+    --   config = function()
+    --     require 'lb.cfg.nui'
+    --   end,
+    --   event = { 'UIEnter' },
+    -- }
 
     use {
       'kyazdani42/nvim-tree.lua',
