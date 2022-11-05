@@ -30,7 +30,7 @@ require('nvim-treesitter.configs').setup {
       node_decremental = 'V',
     },
   },
-  indent = { enable = false },
+  indent = { enable = true },
   autopairs = { enable = true },
   matchup = { enable = true },
   context_commentstring = {
