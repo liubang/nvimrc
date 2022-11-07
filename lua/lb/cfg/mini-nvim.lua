@@ -12,13 +12,13 @@ require('mini.surround').setup {
   highlight_duration = 1000,
 
   mappings = {
-    add = 'ys',
-    delete = 'ds',
-    replace = 'cs',
-    find = 'yf',
-    find_left = 'yF',
-    highlight = 'yh',
-    update_n_lines = 'yn',
+    add = 'sa',
+    delete = 'sd',
+    replace = 'sc',
+    -- find = 'yf',
+    -- find_left = 'yF',
+    -- highlight = 'yh',
+    -- update_n_lines = 'yn',
   },
 }
 

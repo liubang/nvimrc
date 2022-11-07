@@ -9,6 +9,8 @@
 
 -- stylua: ignore start
 -- vim.opt.shortmess = 'aoOTIcF'
+-- local os_name = vim.loop.os_uname().sysname
+
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 vim.opt.shortmess:append 'filmnrxoOtTAIc'
@@ -62,8 +64,8 @@ vim.opt.viewoptions:append("localoptions")
 vim.opt.sessionoptions = 'curdir,help,tabpages,winsize'
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.mouse = 'v'
+-- vim.opt.clipboard = 'unnamedplus'
+vim.opt.mouse = nil
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 vim.opt.scrolloff = 3 -- keep 3 lines visible while scrolling
@@ -161,24 +163,54 @@ if python3_host_prog ~= nil then
 end
 -- }}}
 
+-- stylua: ignore end
+
+-- if os_name == 'Darwin' then
+--   vim.g.clipboard = {
+--     copy = {
+--       ['+'] = 'pbcopy',
+--       ['*'] = 'pbcopy',
+--     },
+--     paste = {
+--       ['+'] = 'pbpaste',
+--       ['*'] = 'pbpaste',
+--     },
+--     cache_enabled = true,
+--   }
+-- else
+--   vim.g.clipboard = {
+--     copy = {
+--       ['+'] = 'xclip -ib',
+--       ['*'] = 'xclip -ip',
+--     },
+--     paste = {
+--       ['+'] = 'xclip -ob',
+--       ['*'] = 'xclip -op',
+--     },
+--     cache_enabled = true,
+--   }
+-- end
+
+-- stylua: ignore start
+
 -- disable distribution plugins {{{
-vim.g.loaded_matchparen        = 1
-vim.g.loaded_gzip              = 1
-vim.g.loaded_tar               = 1
-vim.g.loaded_tarPlugin         = 1
-vim.g.loaded_zip               = 1
-vim.g.loaded_zipPlugin         = 1
-vim.g.loaded_getscript         = 1
-vim.g.loaded_getscriptPlugin   = 1
-vim.g.loaded_vimball           = 1
-vim.g.loaded_vimballPlugin     = 1
-vim.g.loaded_matchit           = 1
-vim.g.loaded_2html_plugin      = 1
-vim.g.loaded_logiPat           = 1
-vim.g.loaded_rrhelper          = 1
-vim.g.loaded_netrw             = 1
-vim.g.loaded_netrwPlugin       = 1
-vim.g.loaded_netrwSettings     = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 -- stylua: ignore end
 -- }}}
