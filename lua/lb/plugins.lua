@@ -251,6 +251,7 @@ packer.startup {
         require 'lb.cfg.telescope'
       end,
       cmd = 'Telescope',
+      event = { 'User LoadTicker2' },
     }
 
     use {
