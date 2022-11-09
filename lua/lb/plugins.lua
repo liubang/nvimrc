@@ -71,12 +71,21 @@ packer.startup {
     }
 
     use {
-      'romgrk/barbar.nvim',
+      'akinsho/bufferline.nvim',
+      tag = 'v3.*',
       config = function()
-        require 'lb.cfg.barbar'
+        require 'lb.cfg.bufferline'
       end,
       event = { 'UIEnter' },
     }
+
+    -- use {
+    --   'romgrk/barbar.nvim',
+    --   config = function()
+    --     require 'lb.cfg.barbar'
+    --   end,
+    --   event = { 'UIEnter' },
+    -- }
 
     use {
       'nvim-lualine/lualine.nvim',

@@ -157,21 +157,6 @@ vim.keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
 -- markdown
 vim.keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
 
--- bufferline {{{
-vim.keymap.set('n', '<Leader>bd', '<cmd>BufferClose<CR>')
-vim.keymap.set('n', '<Leader>bc', '<cmd>BufferCloseAllButPinned<CR>')
-vim.keymap.set('n', '<Leader>bm', '<cmd>BufferPin<CR>')
-vim.keymap.set('n', '<Leader>1', '<cmd>BufferGoto 1<CR>')
-vim.keymap.set('n', '<Leader>2', '<cmd>BufferGoto 2<CR>')
-vim.keymap.set('n', '<Leader>3', '<cmd>BufferGoto 3<CR>')
-vim.keymap.set('n', '<Leader>4', '<cmd>BufferGoto 4<CR>')
-vim.keymap.set('n', '<Leader>5', '<cmd>BufferGoto 5<CR>')
-vim.keymap.set('n', '<Leader>6', '<cmd>BufferGoto 6<CR>')
-vim.keymap.set('n', '<Leader>7', '<cmd>BufferGoto 7<CR>')
-vim.keymap.set('n', '<Leader>8', '<cmd>BufferGoto 8<CR>')
-vim.keymap.set('n', '<Leader>9', '<cmd>BufferGoto 9<CR>')
--- }}}
-
 -- telescope {{{
 vim.keymap.set('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
 vim.keymap.set('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")

@@ -3,3 +3,4 @@ sessions
 .netrwhist
 undo
 plugin/packer_compiled.lua
+.luarc.json
