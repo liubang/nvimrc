@@ -66,6 +66,10 @@ local filetype_attach = setmetatable({
     format_mapping(client, bufnr, nullls_filter)
   end,
 
+  markdown = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
   yaml = function(client, bufnr)
     format_mapping(client, bufnr, nullls_filter)
   end,
