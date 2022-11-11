@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/10/23 17:45
+-- Last Modified: 2022/11/12 01:14
 --
 -- =====================================================================
 
@@ -35,12 +35,6 @@ packer.startup {
     use { 'nvim-lua/plenary.nvim' }
     use { 'lewis6991/impatient.nvim' }
 
-    -- performance
-    use {
-      'antoinemadec/FixCursorHold.nvim',
-      config = 'vim.g.cursorhold_updatetime = 100',
-    }
-
     -- appearance
     use {
       'sainnhe/gruvbox-material',
@@ -67,7 +61,7 @@ packer.startup {
       config = function()
         require 'lb.cfg.notify'
       end,
-      event = { 'UIEnter' },
+      event = { 'User LoadTicker2' },
     }
 
     use {
@@ -78,14 +72,6 @@ packer.startup {
       end,
       event = { 'UIEnter' },
     }
-
-    -- use {
-    --   'romgrk/barbar.nvim',
-    --   config = function()
-    --     require 'lb.cfg.barbar'
-    --   end,
-    --   event = { 'UIEnter' },
-    -- }
 
     use {
       'nvim-lualine/lualine.nvim',
@@ -99,14 +85,6 @@ packer.startup {
       event = { 'UIEnter' },
     }
 
-    -- use {
-    --   'MunifTanjim/nui.nvim',
-    --   config = function()
-    --     require 'lb.cfg.nui'
-    --   end,
-    --   event = { 'UIEnter' },
-    -- }
-
     use {
       'kyazdani42/nvim-tree.lua',
       requires = { 'nvim-web-devicons' },
@@ -117,26 +95,6 @@ packer.startup {
       keys = { '<leader>ft' },
     }
 
-    -- use {
-    --   's1n7ax/nvim-window-picker',
-    --   tag = '1.*',
-    --   event = { 'UIEnter' },
-    -- }
-
-    -- use {
-    --   'nvim-neo-tree/neo-tree.nvim',
-    --   branch = 'v2.x',
-    --   requires = {
-    --     'kyazdani42/nvim-web-devicons',
-    --     'MunifTanjim/nui.nvim',
-    --     { 's1n7ax/nvim-window-picker', opt = true },
-    --   },
-    --   config = function()
-    --     require 'lb.cfg.neo-tree'
-    --   end,
-    --   cmd = { 'Neotree' },
-    -- }
-
     -- tools
     use {
       'rainbowhxch/accelerated-jk.nvim',
@@ -144,25 +102,33 @@ packer.startup {
     }
 
     use {
+      'ibhagwan/smartyank.nvim',
+      config = function()
+        require 'lb.cfg.smartyank'
+      end,
+      event = { 'User LoadTicker4' },
+    }
+
+    use {
       'mrjones2014/smart-splits.nvim',
       config = function()
         require 'lb.cfg.smartsplit'
       end,
-      event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+      event = { 'User LoadTicker4' },
     }
 
     use {
       'jbyuki/venn.nvim',
-      keys = { '<Leader>v' },
       config = function()
         require 'lb.cfg.venn'
       end,
+      keys = { '<Leader>v' },
     }
 
     -- https://github.com/ArthurSonzogni/Diagon
     use {
       'willchao612/vim-diagon',
-      cmd = 'Diagon',
+      cmd = { 'Diagon' },
     }
 
     use {
@@ -171,18 +137,13 @@ packer.startup {
       config = function()
         require('hop').setup {}
       end,
-      event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+      event = { 'User LoadTicker3' },
     }
 
     use {
       'voldikss/vim-floaterm',
       config = function()
-        vim.g.floaterm_wintype = 'float'
-        vim.g.floaterm_position = 'bottom'
-        vim.g.floaterm_autoinsert = true
-        vim.g.floaterm_width = 0.999
-        vim.g.floaterm_height = 0.7
-        vim.g.floaterm_title = '─────  Floaterm [$1|$2] '
+        require 'lb.cfg.floaterm'
       end,
       cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext' },
     }
@@ -194,13 +155,7 @@ packer.startup {
         { 'skywind3000/asyncrun.extra', opt = true },
       },
       config = function()
-        vim.cmd.packadd 'asyncrun.vim'
-        vim.cmd.packadd 'asyncrun.extra'
-        vim.g.asyncrun_open = 25
-        vim.g.asyncrun_bell = 1
-        vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
-        vim.g.asynctasks_term_pos = 'floaterm'
-        vim.g.asynctasks_term_reuse = 1
+        require 'lb.cfg.asynctasks'
       end,
       cmd = { 'AsyncTask', 'AsyncRun' },
     }
@@ -220,10 +175,10 @@ packer.startup {
 
     use {
       'echasnovski/mini.nvim',
-      event = { 'User LoadTicker2' },
       config = function()
         require 'lb.cfg.mini-nvim'
       end,
+      event = { 'User LoadTicker3' },
     }
 
     -- MixedCase/PascalCase:   gsm/gsp
@@ -246,15 +201,12 @@ packer.startup {
           'nvim-telescope/telescope-fzf-native.nvim',
           run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
           after = { 'telescope.nvim' },
-          opt = true,
         },
         {
           'nvim-telescope/telescope-ui-select.nvim',
           after = { 'telescope.nvim' },
-          opt = true,
         },
       },
-      opt = true,
       module = 'telescope', -- 不能删
       config = function()
         require 'lb.cfg.telescope'
@@ -303,7 +255,7 @@ packer.startup {
       config = function()
         require 'lb.cfg.treesitter'
       end,
-      event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
+      event = { 'User LoadTicker1', 'BufReadPost', 'BufNewFile' },
     }
 
     -- lsp
@@ -379,10 +331,10 @@ packer.startup {
         { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
         { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       },
-      event = { 'User LoadTicker1' },
       config = function()
         require 'lb.cfg.cmp'
       end,
+      event = { 'User LoadTicker1' },
     }
 
     use {
@@ -391,7 +343,7 @@ packer.startup {
       config = function()
         require 'lb.cfg.snip'
       end,
-      event = { 'User LoadTicker1' },
+      event = { 'User LoadTicker2' },
     }
 
     use {

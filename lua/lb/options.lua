@@ -8,8 +8,7 @@
 -- =====================================================================
 
 -- stylua: ignore start
--- vim.opt.shortmess = 'aoOTIcF'
--- local os_name = vim.loop.os_uname().sysname
+local os_name = vim.loop.os_uname().sysname
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
@@ -64,7 +63,6 @@ vim.opt.viewoptions:append("localoptions")
 vim.opt.sessionoptions = 'curdir,help,tabpages,winsize'
 vim.opt.splitright = true
 vim.opt.splitbelow = true
--- vim.opt.clipboard = 'unnamedplus'
 vim.opt.mouse = nil
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
@@ -105,6 +103,10 @@ vim.opt.wildignorecase = true
 vim.opt.wildcharm = vim.fn.char2nr '	' -- tab
 vim.opt.shada = '!,\'10000,<1000,s100,h,f1,:100000,@10000,/1000'
 vim.opt.inccommand = 'nosplit'
+vim.opt.diffopt:append("indent-heuristic")
+vim.opt.diffopt:append("algorithm:patience")
+vim.opt.diffopt:append("context:3")
+vim.opt.diffopt:append("foldcolumn:1")
 vim.opt.fillchars = {
   vert = '│',
   fold = '·',
@@ -164,7 +166,7 @@ end
 -- }}}
 
 -- stylua: ignore end
-
+vim.opt.clipboard = 'unnamedplus'
 -- if os_name == 'Darwin' then
 --   vim.g.clipboard = {
 --     copy = {
