@@ -3,9 +3,10 @@
 -- luasnip.lua -
 --
 -- Created by liubang on 2021/09/04 21:07
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/11/12 23:19
 --
 -- =====================================================================
+
 local ls = require 'luasnip'
 local types = require 'luasnip.util.types'
 
@@ -39,6 +40,7 @@ end, {})
 require 'lb.snips.all'
 require 'lb.snips.c'
 require 'lb.snips.cpp'
+require 'lb.snips.rust'
 require 'lb.snips.go'
 require 'lb.snips.lua'
 require 'lb.snips.markdown'

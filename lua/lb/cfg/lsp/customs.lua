@@ -120,7 +120,6 @@ local custom_attach = function(client, bufnr)
   -- force another read just once.
   if not vim.g._lsp_loaded_successfully then
     vim.g._lsp_loaded_successfully = true
-    vim.api.nvim_exec_autocmds('BufRead', {})
   end
 
   local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')

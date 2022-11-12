@@ -345,7 +345,7 @@ packer.startup {
       'L3MON4D3/LuaSnip',
       after = { 'nvim-cmp', 'Comment.nvim' },
       config = function()
-        require 'lb.cfg.snip'
+        require 'lb.cfg.luasnip'
       end,
       event = { 'User LoadTicker2' },
     }

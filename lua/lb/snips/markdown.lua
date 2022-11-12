@@ -3,7 +3,7 @@
 -- markdown.lua -
 --
 -- Created by liubang on 2022/09/03 03:40
--- Last Modified: 2022/09/03 03:40
+-- Last Modified: 2022/11/12 23:11
 --
 --=====================================================================
 local ls = require 'luasnip'
@@ -30,19 +30,83 @@ ls.add_snippets('markdown', {
     })
   ), --}}}
 
+  ls.s(
+    'blogmeta',
+    fmt(
+      [[
+      ---
+      title: "{}"
+      date: "{}"
+      categories:
+        - {}
+      tags:
+        - {}
+      ---
+      {}
+      ]],
+      {
+        i(1, 'title'),
+        i(2, vim.fn.strftime '%Y-%m-%d'),
+        i(3),
+        i(4),
+        i(0),
+      }
+    )
+  ),
+
+  ls.s(
+    'alert',
+    fmt(
+      [[
+        {{{{< alert {} >}}}}
+        {}
+        {{{{< /alert >}}}}
+      ]],
+      {
+        ls.c(1, {
+          i(nil, 'info'),
+          i(nil, 'success'),
+          i(nil, 'warning'),
+          i(nil, 'danger'),
+        }),
+        i(0),
+      }
+    )
+  ),
+
+  ls.s(
+    'alertmd',
+    fmt(
+      [[
+      {{{{% alert {} %}}}}
+      {}
+      {{{{% /alert %}}}}
+      ]],
+      {
+        ls.c(1, {
+          i(nil, 'info'),
+          i(nil, 'success'),
+          i(nil, 'warning'),
+          i(nil, 'danger'),
+        }),
+        i(0),
+      }
+    )
+  ),
+
   ls.s( -- Codeblock {{{
-    {
-      trig = 'codeblock',
-      name = 'Make code block',
-      dscr = 'Select text, press <C-s>, type codeblock.',
-    },
+    'codeblock',
     fmt('```{}\n{}\n```\n{}', {
-      ls.i(1, 'Language'),
-      ls.f(function(_, snip)
-        local tmp = snip.env.TM_SELECTED_TEXT
-        tmp[0] = nil
-        return tmp or {}
-      end, {}),
+      ls.c(1, {
+        i(nil, 'cpp'),
+        i(nil, 'c'),
+        i(nil, 'go'),
+        i(nil, 'rust'),
+        i(nil, 'java'),
+        i(nil, 'javascript'),
+        i(nil, 'typescript'),
+      }),
+      ls.i(2),
       ls.i(0),
     })
   ), --}}}
