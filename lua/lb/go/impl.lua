@@ -8,7 +8,7 @@
 --=====================================================================
 local tsgo = require 'lb.ts.go'
 local gopackage = require 'lb.go.package'
-local job = require 'lb.utils.job'
+local goutils = require 'lb.go.utils'
 local runner = require 'lb.go.runner'
 local gopls = require 'lb.go.gopls'
 local tsnodes = require 'lb.ts.nodes'
@@ -110,7 +110,7 @@ local run = function(...)
         return
       end
       data = vim.split(data, '\n')
-      data = job.handle_job_data(data)
+      data = goutils.handle_job_data(data)
       if not data then
         return
       end

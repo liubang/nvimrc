@@ -3,7 +3,7 @@
 -- util.lua -
 --
 -- Created by liubang on 2022/09/04 17:33
--- Last Modified: 2022/10/29 02:08
+-- Last Modified: 2022/11/13 02:05
 --
 --=====================================================================
 
@@ -119,6 +119,25 @@ M.trim_whitespace = function()
   vim.api.nvim_command [[keeppatterns %s/\s\+$//e]]
   vim.api.nvim_command [[silent! %s#\($\n\s*\)\+\%$##]]
   vim.api.nvim_win_set_cursor(0, cursor)
+end
+
+M.rtrim = function(s)
+  local n = #s
+  while n > 0 and s:find('^%s', n) do
+    n = n - 1
+  end
+  return s:sub(1, n)
+end
+
+M.ltrim = function(s)
+  return (s:gsub('^%s*', ''))
+end
+
+M.trim = function(s)
+  if s then
+    s = M.ltrim(s)
+    return M.rtrim(s)
+  end
 end
 
 return M

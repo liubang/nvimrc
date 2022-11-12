@@ -9,7 +9,7 @@
 
 local uv = vim.loop
 local util = require 'lb.utils.util'
-local job = require 'lb.utils.job'
+local goutils = require 'lb.go.utils'
 
 local run = function(cmd, opts)
   opts = opts or {}
@@ -82,7 +82,7 @@ local run = function(cmd, opts)
       end
       if output_buf ~= '' then
         local lines = vim.split(output_buf, '\n', true)
-        lines = job.handle_job_data(lines)
+        lines = goutils.handle_job_data(lines)
         local locopts = {
           title = vim.inspect(cmd),
           lines = lines,

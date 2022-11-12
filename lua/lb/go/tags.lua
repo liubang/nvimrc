@@ -10,12 +10,21 @@
 local tags = {}
 local gomodify = 'gomodifytags'
 local tsgo = require 'lb.ts.go'
-local uobjects = require 'lb.utils.objects'
+
+local empty = function(t)
+  if t == nil then
+    return true
+  end
+  if type(t) ~= 'table' then
+    return false
+  end
+  return next(t) == nil
+end
 
 tags.modify = function(...)
   local fname = vim.fn.expand '%' -- %:p:h ? %:p
   local ns = tsgo.get_struct_node_at_pos()
-  if uobjects.empty(ns) then
+  if empty(ns) then
     return
   end
 
@@ -43,7 +52,7 @@ tags.modify = function(...)
 
   vim.fn.jobstart(setup, {
     on_stdout = function(_, data, _)
-      data = require('lb.utils.job').handle_job_data(data)
+      data = require('lb.go.utils').handle_job_data(data)
       if not data then
         return
       end
@@ -59,7 +68,7 @@ tags.modify = function(...)
         return
       end
       for index, value in ipairs(tagged.lines) do
-        tagged.lines[index] = require('lb.utils.string').rtrim(value)
+        tagged.lines[index] = require('lb.utils.util').rtrim(value)
       end
       vim.api.nvim_buf_set_lines(
         0,

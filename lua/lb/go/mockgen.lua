@@ -10,7 +10,7 @@
 local mockgen = 'mockgen'
 local tsgo = require 'lb.ts.go'
 local util = require 'lb.utils.util'
-local job = require 'lb.utils.job'
+local goutils = require 'lb.go.utils'
 local runner = require 'lb.go.runner'
 local package = require 'lb.go.package'
 local gopts = require 'lb.go.opts'
@@ -90,7 +90,7 @@ local run = function(opts)
         return
       end
       data = vim.split(data, '\n')
-      data = job.handle_job_data(data)
+      data = goutils.handle_job_data(data)
       if not data then
         return
       end
