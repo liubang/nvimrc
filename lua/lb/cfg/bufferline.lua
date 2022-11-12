@@ -9,6 +9,7 @@
 
 require('bufferline').setup {
   options = {
+    view = 'multiwindow',
     mode = 'buffers',
     numbers = 'ordinal',
     close_command = 'Bdelete',
@@ -36,7 +37,7 @@ require('bufferline').setup {
     show_tab_indicators = false,
     persist_buffer_sort = true,
     separator_style = 'thin',
-    enforce_regular_tabs = false,
+    enforce_regular_tabs = true,
     always_show_bufferline = true,
     sort_by = 'insert_at_end',
   },
