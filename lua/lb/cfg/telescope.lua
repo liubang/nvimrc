@@ -139,6 +139,22 @@ telescope.setup {
       borderchars = dropdown_borderchars,
       layout_config = dropdown_layout_config,
     },
+    lsp_definitions = {
+      theme = 'dropdown',
+      previewer = false,
+      prompt_title = false,
+      results_title = false,
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
+    },
+    lsp_implementations = {
+      theme = 'dropdown',
+      previewer = false,
+      prompt_title = false,
+      results_title = false,
+      borderchars = dropdown_borderchars,
+      layout_config = dropdown_layout_config,
+    },
     diagnostics = {
       theme = 'dropdown',
       previewer = false,
