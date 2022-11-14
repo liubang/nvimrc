@@ -79,6 +79,10 @@ local filetype_attach = setmetatable({
     format_mapping(client, bufnr, nullls_filter)
   end,
 
+  html = function(client, bufnr)
+    format_mapping(client, bufnr, nullls_filter)
+  end,
+
   css = function(client, bufnr)
     format_mapping(client, bufnr, nullls_filter)
   end,

@@ -20,11 +20,9 @@ local sources = {
   b.formatting.buildifier,
   b.formatting.fixjson,
   b.formatting.autopep8,
+  b.formatting.prettier,
   b.formatting.shfmt.with {
     extra_args = { '-i', '2', '-ci' },
-  },
-  b.formatting.prettier.with {
-    disabled_filetypes = { 'html' },
   },
   b.diagnostics.buf.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
