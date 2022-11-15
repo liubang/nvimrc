@@ -49,6 +49,53 @@ ls.add_snippets('cpp', {
       }
     )
   ),
+  s('once', {
+    t { '#pragma once', '' },
+    i(1),
+  }),
+  s('ns', {
+    t 'namespace ',
+    i(1),
+  }),
+  s(
+    'class',
+    fmt(
+      [[
+      class <> {
+       public:
+        <>
+
+       private:
+        <>
+      };
+      ]],
+      {
+        i(1, ''),
+        i(3, ''),
+        i(2, ''),
+      },
+      {
+        delimiters = '<>',
+      }
+    )
+  ),
+  s(
+    'struct',
+    fmt(
+      [[
+      struct <> {
+        <>
+      };
+      ]],
+      {
+        i(1, ''),
+        i(2, ''),
+      },
+      {
+        delimiters = '<>',
+      }
+    )
+  ),
   s({ trig = 'formatoff' }, {
     t { '// clang-format off', '' },
     i(1, { '' }),
