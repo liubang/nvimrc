@@ -44,7 +44,7 @@ packer.startup {
     }
 
     use {
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       opt = true,
     }
 
@@ -76,7 +76,7 @@ packer.startup {
     use {
       'nvim-lualine/lualine.nvim',
       requires = {
-        'kyazdani42/nvim-web-devicons',
+        'nvim-tree/nvim-web-devicons',
         'SmiteshP/nvim-navic',
       },
       config = function()
@@ -86,7 +86,7 @@ packer.startup {
     }
 
     use {
-      'kyazdani42/nvim-tree.lua',
+      'nvim-tree/nvim-tree.lua',
       requires = { 'nvim-web-devicons' },
       config = function()
         require 'lb.cfg.nvim_tree'
