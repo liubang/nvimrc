@@ -3,7 +3,7 @@
 -- lspconfig.lua -
 --
 -- Created by liubang on 2021/02/06 00:05
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/11/18 22:04
 --
 -- =====================================================================
 
@@ -40,6 +40,11 @@ require('mason').setup {
 }
 
 require('mason-lspconfig').setup {
-  ensure_installed = {},
+  ensure_installed = {
+    'clangd',
+    'gopls',
+    'sumneko_lua',
+    'rust_analyzer',
+  },
   automatic_installation = true,
 }

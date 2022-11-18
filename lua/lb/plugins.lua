@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/11/12 01:14
+-- Last Modified: 2022/11/18 22:04
 --
 -- =====================================================================
 
@@ -296,7 +296,7 @@ packer.startup {
         'williamboman/mason-lspconfig.nvim',
       },
       config = function()
-        require 'lb.cfg.installer'
+        require 'lb.cfg.mason'
       end,
     }
 

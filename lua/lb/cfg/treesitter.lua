@@ -8,7 +8,13 @@
 --=====================================================================
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {},
+  ensure_installed = {
+    'c',
+    'cpp',
+    'lua',
+    'rust',
+    'go',
+  },
   sync_install = false,
   ignore_install = { 'haskell' },
   highlight = {
