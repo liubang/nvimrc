@@ -3,38 +3,54 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/11/18 22:04
+-- Last Modified: 2022/11/20 01:20
 --
 -- =====================================================================
 
-local packer_bootstrap = false
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+
+local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system {
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
+  is_bootstrap = true
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd.packadd 'packer.nvim'
 end
 
-vim.cmd.packadd 'packer.nvim'
+local config = {
+  auto_clean = true,
+  compile_on_sync = true,
+  ensure_dependencies = true,
+  auto_reload_compiled = true,
+  profile = {
+    enable = false,
+    threshold = 1,
+  },
+  display = {
+    title = ' packer.nvim',
+    non_interactive = false,
+    header_lines = 2,
+    working_sym = ' ',
+    moved_sym = ' ',
+    error_sym = '',
+    done_sym = '',
+    removed_sym = '',
+    show_all_info = true,
+    open_fn = function()
+      return require('packer.util').float { border = 'single' }
+    end,
+  },
+  git = {
+    depth = 1,
+    clone_timeout = 300,
+  },
+}
 
-local packer = require 'packer'
-
-packer.startup {
+require('packer').startup {
   function(use)
     -- have packer manage itself
-    use {
-      'wbthomason/packer.nvim',
-      event = { 'VimEnter' },
-    }
-
+    use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'lewis6991/impatient.nvim' }
-
     -- appearance
     use {
       'sainnhe/gruvbox-material',
@@ -42,11 +58,7 @@ packer.startup {
         require 'lb.cfg.theme'
       end,
     }
-
-    use {
-      'nvim-tree/nvim-web-devicons',
-      opt = true,
-    }
+    use { 'nvim-tree/nvim-web-devicons', opt = true }
 
     use {
       'goolord/alpha-nvim',
@@ -396,36 +408,18 @@ packer.startup {
       end,
     }
 
-    if packer_bootstrap then
-      packer.sync()
+    if is_bootstrap then
+      require('packer').sync()
     end
   end,
-  config = {
-    auto_clean = true,
-    compile_on_sync = true,
-    ensure_dependencies = true,
-    auto_reload_compiled = true,
-    profile = {
-      enable = false,
-      threshold = 1,
-    },
-    display = {
-      title = ' packer.nvim',
-      non_interactive = false,
-      header_lines = 2,
-      working_sym = ' ',
-      moved_sym = ' ',
-      error_sym = '',
-      done_sym = '',
-      removed_sym = '',
-      show_all_info = true,
-      open_fn = function()
-        return require('packer.util').float { border = 'single' }
-      end,
-    },
-    git = {
-      depth = 1,
-      clone_timeout = 300,
-    },
-  },
+  config = config,
 }
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
