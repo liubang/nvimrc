@@ -46,5 +46,5 @@ require('mason-lspconfig').setup {
     'sumneko_lua',
     'rust_analyzer',
   },
-  automatic_installation = true,
+  automatic_installation = false,
 }
