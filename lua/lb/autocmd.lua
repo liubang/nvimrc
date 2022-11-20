@@ -3,7 +3,7 @@
 -- autocmd.lua -
 --
 -- Created by liubang on 2022/10/18 00:39
--- Last Modified: 2022/10/29 01:41
+-- Last Modified: 2022/11/20 23:41
 --
 --=====================================================================
 
@@ -22,14 +22,6 @@ vim.filetype.add {
 }
 
 local filetype_commands_group = vim.api.nvim_create_augroup('FILETYPE_COMMANDS', { clear = true })
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   group = filetype_commands_group,
---   desc = 'highlihgt yanking',
---   callback = function()
---     vim.highlight.on_yank { higroup = 'Substitute', timeout = 300 }
---   end,
--- })
-
 vim.api.nvim_create_autocmd('FileType', {
   group = filetype_commands_group,
   pattern = { 'lspinfo', 'lsp-installer', 'null-ls-info', 'help', 'qf' },
@@ -47,7 +39,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = reload_configs_group,
   pattern = '*/lua/lb/*.lua',
   callback = function(args)
-    vim.notify('Reloaded ' .. args.file)
+    -- vim.notify('Reloaded ' .. args.file)
     vim.cmd.source '<afile>'
   end,
 })

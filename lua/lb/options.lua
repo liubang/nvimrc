@@ -3,12 +3,12 @@
 -- vim.options.lua -
 --
 -- Created by liubang on 2020/12/12 13:01
--- Last Modified: 2022/10/22 00:25
+-- Last Modified: 2022/11/20 23:41
 --
 -- =====================================================================
 
 -- stylua: ignore start
-local os_name = vim.loop.os_uname().sysname
+-- local os_name = vim.loop.os_uname().sysname
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
@@ -215,13 +215,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 -- stylua: ignore end
--- }}}
-
--- global functions {{{
-_G.P = function(v)
-  print(vim.inspect(v))
-  return v
-end
 -- }}}
 
 -- vim: fdm=marker fdl=0
