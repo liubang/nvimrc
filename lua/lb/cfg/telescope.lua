@@ -9,46 +9,40 @@
 vim.cmd.packadd 'telescope-fzf-native.nvim'
 vim.cmd.packadd 'telescope-ui-select.nvim'
 
-local actions = require 'telescope.actions'
 local telescope = require 'telescope'
+local actions = require 'telescope.actions'
 local themes = require 'telescope.themes'
-
-local dropdown_borderchars = {
-  prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
-  results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
-  preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-}
-
-local dropdown_layout_config = {
-  width = 0.55,
-  height = 25,
-}
 
 telescope.setup {
   defaults = {
-    prompt_prefix = '   ',
+    prompt_prefix = '   ',
     selection_caret = ' ',
-    prompt_title = false,
-    results_title = false,
-    preview_title = false,
+    entry_prefix = '  ',
     multi_icon = '',
-    layout_strategy = 'vertical',
-    scroll_strategy = 'cycle',
+    set_env = { ['COLORTERM'] = 'truecolor' },
+    results_title = false,
+    sorting_strategy = 'ascending',
     selection_strategy = 'reset',
-    winblend = 0,
-    dynamic_preview_title = true,
-    color_devicons = true,
+    layout_strategy = 'horizontal',
+    use_less = true,
+    path_display = { truncate = 3 },
     layout_config = {
-      vertical = {
+      width = function(_, max_columns, _)
+        return math.min(max_columns, 120)
+      end,
+      height = function(_, _, max_lines)
+        return math.min(max_lines, 28)
+      end,
+      horizontal = {
         prompt_position = 'top',
         mirror = false,
+        preview_width = 0.55,
+        results_width = 0.8,
       },
-      center = {
-        prompt_position = 'top',
+      vertical = {
         mirror = false,
       },
     },
-    hl_result_eol = false,
     cache = false,
     mappings = {
       i = {
@@ -70,112 +64,14 @@ telescope.setup {
   pickers = {
     buffers = {
       sort_mru = true,
-      theme = 'dropdown',
       previewer = false,
-      prompt_title = false,
-      results_title = false,
       mappings = {
         i = { ['<c-d>'] = actions.delete_buffer },
       },
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    frecency = {
-      previewer = false,
-      prompt_title = '',
-      results_title = '',
-    },
-    projects = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    find_files = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    grep_string = {
-      theme = 'dropdown',
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    live_grep = {
-      theme = 'dropdown',
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    git_files = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    reloader = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    lsp_references = {
-      theme = 'dropdown',
-      -- previewer = true,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    lsp_definitions = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    lsp_implementations = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    diagnostics = {
-      theme = 'dropdown',
-      previewer = false,
-      prompt_title = false,
-      results_title = false,
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
     },
     man_pages = { sections = { '2', '3' } },
     lsp_document_symbols = { path_display = { 'hidden' } },
     lsp_workspace_symbols = { path_display = { 'shorten' } },
-    lsp_code_actions = {
-      theme = 'dropdown',
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
-    current_buffer_fuzzy_find = {
-      theme = 'dropdown',
-      borderchars = dropdown_borderchars,
-      layout_config = dropdown_layout_config,
-    },
   },
   extensions = {
     fzf = {
@@ -184,24 +80,6 @@ telescope.setup {
       override_file_sorter = true,
       case_mode = 'smart_case',
     },
-    ['ui-select'] = {
-      themes.get_dropdown {
-        previewer = false,
-        prompt_title = false,
-        results_title = false,
-        borderchars = dropdown_borderchars,
-        layout_config = dropdown_layout_config,
-      },
-    },
-    tasks = {
-      themes.get_dropdown {
-        previewer = false,
-        prompt_title = false,
-        results_title = false,
-        borderchars = dropdown_borderchars,
-        layout_config = dropdown_layout_config,
-      },
-    },
   },
 }
 
@@ -209,3 +87,93 @@ telescope.load_extension 'fzf'
 telescope.load_extension 'bazel'
 telescope.load_extension 'tasks'
 telescope.load_extension 'ui-select'
+
+local colors = {
+  white = '#ebdbb2',
+  darker_black = '#222222',
+  black = '#282828', --  nvim bg
+  black2 = '#2e2e2e',
+  one_bg = '#323232',
+  one_bg2 = '#3b3b3b',
+  one_bg3 = '#434343',
+  grey = '#505050',
+  grey_fg = '#5a5a5a',
+  grey_fg2 = '#646464',
+  light_grey = '#6c6c6c',
+  red = '#ea6962',
+  baby_pink = '#ce8196',
+  pink = '#ff75a0',
+  line = '#373737', -- for lines like vertsplit
+  green = '#89b482',
+  vibrant_green = '#a9b665',
+  nord_blue = '#6f8faf',
+  blue = '#6d8dad',
+  yellow = '#d8a657',
+  sun = '#eab869',
+  purple = '#d3869b',
+  dark_purple = '#d3869b',
+  teal = '#749689',
+  orange = '#e78a4e',
+  cyan = '#89b482',
+  statusline_bg = '#2c2c2c',
+  lightbg = '#393939',
+  pmenu_bg = '#89b482',
+  folder_bg = '#6d8dad',
+}
+
+local TelescopePrompt = {
+  TelescopeBorder = {
+    fg = colors.darker_black,
+    bg = colors.darker_black,
+  },
+
+  TelescopePromptBorder = {
+    fg = colors.black2,
+    bg = colors.black2,
+  },
+
+  TelescopePromptNormal = {
+    fg = colors.white,
+    bg = colors.black2,
+  },
+
+  TelescopePromptPrefix = {
+    fg = colors.red,
+    bg = colors.black2,
+  },
+
+  TelescopeNormal = { bg = colors.darker_black },
+
+  TelescopePreviewTitle = {
+    fg = colors.black,
+    bg = colors.green,
+  },
+
+  TelescopePromptTitle = {
+    fg = colors.black,
+    bg = colors.red,
+  },
+
+  TelescopeResultsTitle = {
+    fg = colors.darker_black,
+    bg = colors.darker_black,
+  },
+
+  TelescopeSelection = { bg = colors.black2, fg = colors.white },
+
+  TelescopeResultsDiffAdd = {
+    fg = colors.green,
+  },
+
+  TelescopeResultsDiffChange = {
+    fg = colors.yellow,
+  },
+
+  TelescopeResultsDiffDelete = {
+    fg = colors.red,
+  },
+}
+
+for hl, col in pairs(TelescopePrompt) do
+  vim.api.nvim_set_hl(0, hl, col)
+end

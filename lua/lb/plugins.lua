@@ -207,7 +207,7 @@ require('packer').startup {
 
     use {
       'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
+      -- branch = '0.1.x',
       requires = {
         {
           'nvim-telescope/telescope-fzf-native.nvim',
