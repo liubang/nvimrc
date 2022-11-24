@@ -15,8 +15,8 @@ local themes = require 'telescope.themes'
 
 telescope.setup {
   defaults = {
-    prompt_prefix = '   ',
-    selection_caret = ' ',
+    prompt_prefix = '   ',
+    selection_caret = ' ',
     entry_prefix = '  ',
     multi_icon = '',
     set_env = { ['COLORTERM'] = 'truecolor' },
@@ -25,8 +25,11 @@ telescope.setup {
     selection_strategy = 'reset',
     layout_strategy = 'horizontal',
     use_less = true,
+    border = {},
+    preview = false,
     path_display = { truncate = 3 },
     layout_config = {
+      prompt_position = 'top',
       width = function(_, max_columns, _)
         return math.min(max_columns, 120)
       end,
@@ -49,26 +52,35 @@ telescope.setup {
         ['<C-x>'] = false,
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<Esc>'] = actions.close,
         ['<C-c>'] = actions.close,
         ['<C-s>'] = actions.select_horizontal,
         ['<C-v>'] = actions.select_vertical,
+        ['<C-t>'] = actions.select_tab,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
         ['<C-/>'] = 'which_key',
       },
       n = {
         ['<Esc>'] = actions.close,
-        ['<C-j>'] = actions.move_selection_next,
-        ['<C-k>'] = actions.move_selection_previous,
+        ['j'] = actions.move_selection_next,
+        ['k'] = actions.move_selection_previous,
+        ['H'] = actions.move_to_top,
+        ['M'] = actions.move_to_middle,
+        ['L'] = actions.move_to_bottom,
+        ['?'] = actions.which_key,
       },
     },
   },
   pickers = {
     buffers = {
       sort_mru = true,
-      previewer = false,
       mappings = {
         i = { ['<c-d>'] = actions.delete_buffer },
       },
     },
+    live_grep = { preview = true },
+    grep_string = { preview = true },
     man_pages = { sections = { '2', '3' } },
     lsp_document_symbols = { path_display = { 'hidden' } },
     lsp_workspace_symbols = { path_display = { 'shorten' } },
@@ -92,7 +104,7 @@ local colors = {
   white = '#ebdbb2',
   darker_black = '#222222',
   black = '#282828', --  nvim bg
-  black2 = '#2e2e2e',
+  black2 = '#3c3836',
   one_bg = '#323232',
   one_bg2 = '#3b3b3b',
   one_bg3 = '#434343',

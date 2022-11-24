@@ -377,6 +377,7 @@ require('packer').startup {
       'sass',
       'html',
       'lua',
+      'vim',
       'markdown',
       'javascript',
       'typescript',

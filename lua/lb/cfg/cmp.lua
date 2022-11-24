@@ -57,7 +57,8 @@ cmp.setup {
   window = {
     documentation = false,
     completion = cmp.config.window.bordered {
-      winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None',
+      -- winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None',
+      winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
       border = 'single',
     },
   },
@@ -103,7 +104,6 @@ cmp.setup {
   },
   view = {
     max_height = 20,
-    -- entries = { name = 'native', selection_order = 'near_cursor' },
   },
   sorting = {
     priority_weight = 2,
