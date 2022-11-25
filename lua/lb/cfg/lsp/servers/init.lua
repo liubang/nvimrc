@@ -25,14 +25,15 @@ end
 
 -- some others use default config
 for _, server in ipairs {
-  'bashls',
-  'cmake',
-  'texlab',
-  'vimls',
+  'html',
   'cssls',
   'tsserver',
   'pyright',
   'eslint',
+  'bashls',
+  'cmake',
+  'texlab',
+  'vimls',
 } do
   lspconfig[server].setup(c.default())
 end
