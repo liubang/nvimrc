@@ -66,7 +66,7 @@ require('packer').startup {
     use {
       'goolord/alpha-nvim',
       config = function()
-        require 'lb.cfg.dashboard'
+        require 'lb.cfg.alpha'
       end,
       event = { 'BufWinEnter' },
     }
@@ -216,9 +216,7 @@ require('packer').startup {
     }
     use {
       'simrat39/symbols-outline.nvim',
-      after = {
-        'nvim-lspconfig',
-      },
+      after = { 'nvim-lspconfig' },
       config = function()
         require 'lb.cfg.outline'
       end,
@@ -263,36 +261,37 @@ require('packer').startup {
     -- }}}
 
     -- lsp {{{
-    use { 'folke/neodev.nvim' }
-    use { 'simrat39/rust-tools.nvim' }
-    use {
-      'jose-elias-alvarez/null-ls.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-      },
-    }
-
+    use { 'folke/neodev.nvim', opt = true }
+    use { 'simrat39/rust-tools.nvim', opt = true }
+    use { 'b0o/schemastore.nvim', opt = true }
+    use { 'jose-elias-alvarez/null-ls.nvim', opt = true }
     use {
       'williamboman/mason.nvim',
-      requires = {
+      {
         'williamboman/mason-lspconfig.nvim',
       },
-      config = function()
-        require 'lb.cfg.mason'
-      end,
-    }
-
-    use {
-      'neovim/nvim-lspconfig',
-      requires = {
-        'williamboman/mason.nvim',
-        'simrat39/rust-tools.nvim',
-        'folke/neodev.nvim',
-        'jose-elias-alvarez/null-ls.nvim',
+      {
+        'neovim/nvim-lspconfig',
+        -- requires = {
+        --   'williamboman/mason.nvim',
+        --   'williamboman/mason-lspconfig',
+        --   'simrat39/rust-tools.nvim',
+        --   'folke/neodev.nvim',
+        --   'jose-elias-alvarez/null-ls.nvim',
+        --   'b0o/schemastore.nvim',
+        -- },
+        config = function()
+          -- It's important that you set up the plugins in the following order:
+          -- 1. mason.nvim
+          -- 2. mason-lspconfig.nvim
+          -- Setup servers via lspconfig
+          require 'lb.cfg.mason'
+          require 'lb.cfg.lsp'
+        end,
+        event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
       },
-      config = function()
-        require 'lb.cfg.lsp'
-      end,
+      wants = { 'nvim-lspconfig' },
+      after = { 'nvim-lspconfig' },
     }
 
     use {

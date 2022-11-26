@@ -9,6 +9,8 @@
 local c = require 'lb.cfg.lsp.customs'
 local M = {}
 
+vim.cmd.packadd 'rust-tools.nvim'
+
 M.setup = function()
   require('rust-tools').setup {
     tools = {

@@ -9,6 +9,8 @@
 local lspconfig = require 'lspconfig'
 local c = require 'lb.cfg.lsp.customs'
 
+vim.cmd.packadd 'neodev.nvim'
+
 local setup = function()
   require('neodev').setup {
     library = {
