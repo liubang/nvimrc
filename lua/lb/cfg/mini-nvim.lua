@@ -3,7 +3,7 @@
 -- mini-nvim.lua -
 --
 -- Created by liubang on 2022/10/16 15:44
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/11/26 17:14
 --
 --=====================================================================
 
@@ -15,14 +15,12 @@ require('mini.surround').setup {
     add = 'sa',
     delete = 'sd',
     replace = 'sc',
-    -- find = 'yf',
-    -- find_left = 'yF',
-    -- highlight = 'yh',
-    -- update_n_lines = 'yn',
   },
 }
 
 require('mini.trailspace').setup {}
+
+require('mini.cursorword').setup {}
 
 require('mini.align').setup {
   mappings = {

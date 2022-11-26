@@ -3,18 +3,19 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/11/20 01:20
+-- Last Modified: 2022/11/26 17:18
 --
 -- =====================================================================
 
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
 
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-  vim.cmd.packadd 'packer.nvim'
 end
+
+vim.cmd.packadd 'packer.nvim'
 
 local config = {
   auto_clean = true,
@@ -47,19 +48,21 @@ local config = {
 
 require('packer').startup {
   function(use)
+    -- Libraries {{{
     -- have packer manage itself
-    use { 'wbthomason/packer.nvim' }
+    use { 'wbthomason/packer.nvim', event = { 'VimEnter' } }
     use { 'nvim-lua/plenary.nvim' }
     use { 'lewis6991/impatient.nvim' }
-    -- appearance
+    -- }}}
+
+    -- appearance {{{
+    use { 'nvim-tree/nvim-web-devicons', opt = true }
     use {
       'sainnhe/gruvbox-material',
       config = function()
         require 'lb.cfg.theme'
       end,
     }
-    use { 'nvim-tree/nvim-web-devicons', opt = true }
-
     use {
       'goolord/alpha-nvim',
       config = function()
@@ -67,7 +70,6 @@ require('packer').startup {
       end,
       event = { 'BufWinEnter' },
     }
-
     use {
       'rcarriga/nvim-notify',
       config = function()
@@ -75,7 +77,6 @@ require('packer').startup {
       end,
       event = { 'User LoadTicker2' },
     }
-
     use {
       'akinsho/bufferline.nvim',
       tag = 'v3.*',
@@ -84,7 +85,6 @@ require('packer').startup {
       end,
       event = { 'UIEnter' },
     }
-
     use {
       'nvim-lualine/lualine.nvim',
       requires = {
@@ -96,23 +96,22 @@ require('packer').startup {
       end,
       event = { 'UIEnter' },
     }
-
     use {
       'nvim-tree/nvim-tree.lua',
-      requires = { 'nvim-web-devicons' },
+      requires = { 'nvim-tree/nvim-web-devicons' },
       config = function()
         require 'lb.cfg.nvim_tree'
       end,
-      cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
       keys = { '<leader>ft' },
+      cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
     }
+    -- }}}
 
-    -- tools
+    -- tools {{{
     use {
       'rainbowhxch/accelerated-jk.nvim',
       keys = { '<Plug>(accelerated_jk_gj)', '<Plug>(accelerated_jk_gk)' },
     }
-
     use {
       'ibhagwan/smartyank.nvim',
       config = function()
@@ -120,7 +119,6 @@ require('packer').startup {
       end,
       event = { 'User LoadTicker4' },
     }
-
     use {
       'mrjones2014/smart-splits.nvim',
       config = function()
@@ -128,7 +126,6 @@ require('packer').startup {
       end,
       event = { 'User LoadTicker4' },
     }
-
     use {
       'jbyuki/venn.nvim',
       config = function()
@@ -136,13 +133,11 @@ require('packer').startup {
       end,
       keys = { '<Leader>v' },
     }
-
     -- https://github.com/ArthurSonzogni/Diagon
     use {
       'willchao612/vim-diagon',
       cmd = { 'Diagon' },
     }
-
     use {
       'phaazon/hop.nvim',
       branch = 'v2',
@@ -151,7 +146,6 @@ require('packer').startup {
       end,
       event = { 'User LoadTicker3' },
     }
-
     use {
       'voldikss/vim-floaterm',
       config = function()
@@ -159,7 +153,6 @@ require('packer').startup {
       end,
       cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext' },
     }
-
     use {
       'skywind3000/asynctasks.vim',
       requires = {
@@ -171,7 +164,6 @@ require('packer').startup {
       end,
       cmd = { 'AsyncTask', 'AsyncRun' },
     }
-
     use {
       'lewis6991/gitsigns.nvim',
       config = function()
@@ -179,12 +171,6 @@ require('packer').startup {
       end,
       event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
     }
-
-    use {
-      'itchyny/vim-cursorword',
-      event = { 'CursorHold' },
-    }
-
     use {
       'echasnovski/mini.nvim',
       config = function()
@@ -192,7 +178,6 @@ require('packer').startup {
       end,
       event = { 'User LoadTicker3' },
     }
-
     -- MixedCase/PascalCase:   gsm/gsp
     -- camelCase:              gsc
     -- snake_case:             gs_
@@ -204,7 +189,6 @@ require('packer').startup {
     -- Title-Dash/Title-Kebab: gsK
     -- dot.case:               gs.
     use { 'arthurxavierx/vim-caser', keys = { 'gs' } }
-
     use {
       'nvim-telescope/telescope.nvim',
       -- branch = '0.1.x',
@@ -230,7 +214,6 @@ require('packer').startup {
       cmd = 'Telescope',
       event = { 'User LoadTicker2' },
     }
-
     use {
       'simrat39/symbols-outline.nvim',
       after = {
@@ -241,26 +224,25 @@ require('packer').startup {
       end,
       cmd = { 'SymbolsOutline' },
     }
-
-    use {
-      'numToStr/Comment.nvim',
-      config = function()
-        require 'lb.cfg.comment'
-      end,
-      event = { 'User LoadTicker1' },
-    }
-
     use {
       'dstein64/vim-startuptime',
       cmd = { 'StartupTime' },
     }
+    -- }}}
 
-    -- treesitter
+    -- treesitter {{{
     use {
       'nvim-treesitter/nvim-treesitter',
       requires = {
-        { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' },
+        {
+          'nvim-treesitter/nvim-treesitter-textobjects',
+          after = 'nvim-treesitter',
+          config = function()
+            require 'lb.cfg.treesitter'
+          end,
+        },
         { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' },
+        { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' },
         {
           'nvim-treesitter/playground',
           run = ':TSInstall query',
@@ -268,33 +250,21 @@ require('packer').startup {
         },
       },
       run = ':TSUpdate',
-      config = function()
-        require 'lb.cfg.treesitter'
-      end,
       event = { 'User LoadTicker1', 'BufReadPost', 'BufNewFile' },
     }
 
-    -- lsp
     use {
-      'SmiteshP/nvim-navic',
+      'numToStr/Comment.nvim',
+      after = { 'nvim-ts-context-commentstring', 'nvim-treesitter' },
       config = function()
-        require 'lb.cfg.nvim-navic'
+        require 'lb.cfg.comment'
       end,
-      event = { 'LspAttach' },
     }
+    -- }}}
 
-    use {
-      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-      config = function()
-        require 'lb.cfg.lsp_lines-nvim'
-      end,
-      event = { 'LspAttach' },
-    }
-
+    -- lsp {{{
     use { 'folke/neodev.nvim' }
-
     use { 'simrat39/rust-tools.nvim' }
-
     use {
       'jose-elias-alvarez/null-ls.nvim',
       requires = {
@@ -334,7 +304,24 @@ require('packer').startup {
       event = { 'BufRead', 'BufNewFile' },
     }
 
-    -- completion
+    use {
+      'SmiteshP/nvim-navic',
+      config = function()
+        require 'lb.cfg.nvim-navic'
+      end,
+      event = { 'LspAttach' },
+    }
+
+    use {
+      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+      config = function()
+        require 'lb.cfg.lsp_lines-nvim'
+      end,
+      event = { 'LspAttach' },
+    }
+    -- }}}
+
+    -- completion {{{
     use { 'onsails/lspkind.nvim', opt = true }
     use {
       'hrsh7th/nvim-cmp',
@@ -380,8 +367,9 @@ require('packer').startup {
       after = { 'nvim-cmp' },
       wants = { 'nvim-cmp' },
     }
+    -- }}}
 
-    -- ft
+    -- ft {{{
     local colorizer_ft = {
       'css',
       'scss',
@@ -419,6 +407,7 @@ require('packer').startup {
         vim.g.mkdp_filetypes = { 'markdown' }
       end,
     }
+    -- }}}
 
     if is_bootstrap then
       require('packer').sync()
@@ -435,3 +424,5 @@ if is_bootstrap then
   print '=================================='
   return
 end
+
+-- vim: fdm=marker fdl=2

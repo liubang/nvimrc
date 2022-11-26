@@ -3,7 +3,7 @@
 -- treesitter.lua -
 --
 -- Created by liubang on 2022/03/02 16:58
--- Last Modified: 2022/10/18 23:29
+-- Last Modified: 2022/11/26 17:14
 --
 --=====================================================================
 
@@ -20,7 +20,6 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     use_languagetree = false,
-    disable = { 'html', 'json' },
     custom_captures = {
       ['function.call'] = 'TSFunction',
       ['function.bracket'] = 'Type',

@@ -8,23 +8,9 @@
 -- =====================================================================
 
 require('Comment').setup {
-  ---LHS of toggle mappings in NORMAL + VISUAL mode
-  ---@type table
-  toggler = {
-    ---line-comment keymap
-    line = 'gcc',
-    ---block-comment keymap
-    block = 'gbc',
-  },
+  padding = true,
 
-  ---LHS of operator-pending mappings in NORMAL + VISUAL mode
-  ---@type table
-  opleader = {
-    ---line-comment keymap
-    line = 'gc',
-    ---block-comment keymap
-    block = 'gb',
-  },
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 
   ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
   ---@type table
@@ -36,8 +22,5 @@ require('Comment').setup {
     ---extra mapping
     ---Includes `gco`, `gcO`, `gcA`
     extra = false,
-    ---extended mapping
-    ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
-    extended = false,
   },
 }
