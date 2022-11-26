@@ -20,15 +20,15 @@ vim.keymap.set('x', ',', '<Nop>')
 vim.keymap.set('x', 'm', '<Nop>')
 -- }}}
 
-vim.keymap.set('v', '<Tab>', '>gv|')
-vim.keymap.set('v', '<S-Tab>', '<gv')
+vim.keymap.set('x', '<Tab>', '>gv|')
+vim.keymap.set('x', '<S-Tab>', '<gv')
 vim.keymap.set('n', '<Tab>', '>>_')
 vim.keymap.set('n', '<S-Tab>', '<<_')
 
 vim.keymap.set("n", "<S-j>", [[:<c-u>execute 'm +'. v:count1<cr>==]], { silent = true, desc = "move lines down" })
 vim.keymap.set("n", "<S-k>", [[:<c-u>execute 'm -1-'. v:count1<cr>==]], { silent = true, desc = "move lines up" })
-vim.keymap.set("v", "<S-j>", [[:m '>+1<CR><CR>gv=gv]], { silent = true, desc = "move lines down" })
-vim.keymap.set("v", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "move lines up" })
+vim.keymap.set("x", "<S-j>", [[:m '>+1<CR><CR>gv=gv]], { silent = true, desc = "move lines down" })
+vim.keymap.set("x", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "move lines up" })
 
 vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
 vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
@@ -47,7 +47,7 @@ vim.keymap.set("x", "<Leader>y", '"+y')
 vim.keymap.set("n", "<Leader>p", '"+p')
 vim.keymap.set("n", "<Leader>P", '"+P')
 
-vim.keymap.set("v", "p", '"_dP',
+vim.keymap.set("x", "p", '"_dP',
   { desc = 'replace visually selected with the " contents' }
 )
 --}}}

@@ -85,6 +85,7 @@ cmp.setup {
       },
     },
     { name = 'calc' },
+    { name = 'crates' },
   },
   formatting = {
     -- fields = { 'abbr', 'kind', 'menu' },

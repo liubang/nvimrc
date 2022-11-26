@@ -18,10 +18,10 @@ vim.keymap.set('n', '<leader>v', function()
     vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<C-v>l:VBox<CR>', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'H', '<C-v>h:VBox<CR>', { noremap = true })
     -- draw a box by pressing "f" with visual selection
-    vim.api.nvim_buf_set_keymap(0, 'v', 'f', ':VBox<CR>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'v', 'F', ':VBoxH<CR>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'v', 'o', ':VBoxO<CR>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'v', 'd', ':VBoxD<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'x', 'f', ':VBox<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'x', 'F', ':VBoxH<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'x', 'o', ':VBoxO<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'x', 'd', ':VBoxD<CR>', { noremap = true })
   else
     vim.opt_local.ve = ''
     vim.cmd.mapclear '<buffer>'

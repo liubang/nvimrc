@@ -370,6 +370,17 @@ require('packer').startup {
       end,
     }
 
+    use {
+      'saecki/crates.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require 'lb.cfg.crates-nvim'
+      end,
+      event = { 'BufRead Cargo.toml' },
+      after = { 'nvim-cmp' },
+      wants = { 'nvim-cmp' },
+    }
+
     -- ft
     local colorizer_ft = {
       'css',
