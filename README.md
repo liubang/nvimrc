@@ -4,6 +4,9 @@
     <a href="https://github.com/neovim/neovim">
         <img src="https://img.shields.io/badge/Neovim-0.8.1-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
     </a>
+    <a href="https://github.com/liubang/nvimrc/actions">
+        <img src="https://img.shields.io/github/workflow/status/liubang/nvimrc/style%20check?style=flat-square" alt="Build" />
+    </a>
     <a href="#">
         <img src="https://img.shields.io/badge/platform-linux%20macOS-blue?style=flat-square" alt="Platform"/>
     </a>
@@ -13,9 +16,6 @@
     <a href="https://github.com/liubang/nvimrc/releases">
         <img src="https://img.shields.io/github/v/release/liubang/nvimrc?style=flat-square" alt="Release" />
     </a>
-    <a href="#">
-        <img src="https://img.shields.io/github/repo-size/liubang/nvimrc?style=flat-square" alt="Repo Size" />
-    </a>
     <a href="https://github.com/liubang/nvimrc/blob/main/LICENSE">
         <img src="https://img.shields.io/github/license/liubang/nvimrc?style=flat-square&logo=MIT&label=License" alt="License"/>
     </a>
@@ -24,7 +24,6 @@
 ![nvim](./static/1.png)
 
 ![nvim](./static/2.png)
-
 
 ## Try out
 
