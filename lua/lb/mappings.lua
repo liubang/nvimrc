@@ -121,7 +121,8 @@ vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask build<CR>')
 vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
 -- outline
-vim.keymap.set('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
+-- vim.keymap.set('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
+vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
 
 -- hop
 vim.keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)

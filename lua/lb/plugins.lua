@@ -215,13 +215,20 @@ require('packer').startup {
       cmd = 'Telescope',
       event = { 'User LoadTicker2' },
     }
+    -- use {
+    --   'simrat39/symbols-outline.nvim',
+    --   after = { 'nvim-lspconfig' },
+    --   config = function()
+    --     require 'lb.cfg.outline'
+    --   end,
+    --   cmd = { 'SymbolsOutline' },
+    -- }
     use {
-      'simrat39/symbols-outline.nvim',
-      after = { 'nvim-lspconfig' },
+      'stevearc/aerial.nvim',
       config = function()
-        require 'lb.cfg.outline'
+        require 'lb.cfg.aerial'
       end,
-      cmd = { 'SymbolsOutline' },
+      cmd = { 'AerialToggle' },
     }
     use {
       'dstein64/vim-startuptime',
