@@ -25,6 +25,17 @@
 
 ![nvim](./static/2.png)
 
+**Pros:**
+
+- Fast. Less than **30ms** to start (Depends on SSD and CPU, tested on Intel NUC11BTMi9).
+- Simple. Run out of the box.
+- Modern. Pure lua to config.
+- Powerful. Full functionality to code.
+
+![nvim](./static/3.png)
+
+(Tested with [rhysd/vim-startuptime](https://github.com/rhysd/vim-startuptime))
+
 ## Try out
 
 If you have [Docker](https://www.docker.com/) on your system you can try out this config via the provided `Dockerfile`
@@ -34,7 +45,6 @@ If you have [Docker](https://www.docker.com/) on your system you can try out thi
 ```bash
 docker run -it --rm liubang/nvim
 ```
-
 ### Mount a local directory and start nvim
 
 ```bash
