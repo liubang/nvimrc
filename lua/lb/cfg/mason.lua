@@ -3,9 +3,12 @@
 -- lspconfig.lua -
 --
 -- Created by liubang on 2021/02/06 00:05
--- Last Modified: 2022/11/18 22:04
+-- Last Modified: 2022/11/28 01:46
 --
 -- =====================================================================
+
+vim.cmd.packadd 'mason.nvim'
+vim.cmd.packadd 'mason-lspconfig.nvim'
 
 require('mason').setup {
   ui = {

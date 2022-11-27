@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/11/26 17:18
+-- Last Modified: 2022/11/28 01:46
 --
 -- =====================================================================
 
@@ -166,10 +166,11 @@ require('packer').startup {
     }
     use {
       'lewis6991/gitsigns.nvim',
+      requires = 'plenary.nvim',
       config = function()
         require 'lb.cfg.git'
       end,
-      event = { 'BufNewFile', 'BufRead', 'InsertEnter' },
+      event = { 'User LoadTicker3' },
     }
     use {
       'echasnovski/mini.nvim',
@@ -261,48 +262,37 @@ require('packer').startup {
     -- }}}
 
     -- lsp {{{
-    use { 'folke/neodev.nvim', opt = true }
     use { 'simrat39/rust-tools.nvim', opt = true }
     use { 'b0o/schemastore.nvim', opt = true }
     use { 'jose-elias-alvarez/null-ls.nvim', opt = true }
+    use { 'williamboman/mason.nvim', opt = true }
+    use { 'williamboman/mason-lspconfig.nvim', opt = true }
     use {
-      'williamboman/mason.nvim',
-      {
-        'williamboman/mason-lspconfig.nvim',
-      },
-      {
-        'neovim/nvim-lspconfig',
-        -- requires = {
-        --   'williamboman/mason.nvim',
-        --   'williamboman/mason-lspconfig',
-        --   'simrat39/rust-tools.nvim',
-        --   'folke/neodev.nvim',
-        --   'jose-elias-alvarez/null-ls.nvim',
-        --   'b0o/schemastore.nvim',
-        -- },
-        config = function()
-          -- It's important that you set up the plugins in the following order:
-          -- 1. mason.nvim
-          -- 2. mason-lspconfig.nvim
-          -- Setup servers via lspconfig
-          require 'lb.cfg.mason'
-          require 'lb.cfg.lsp'
-        end,
-        event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
-      },
-      wants = { 'nvim-lspconfig' },
-      after = { 'nvim-lspconfig' },
+      'neovim/nvim-lspconfig',
+      -- requires = {
+      --   'williamboman/mason.nvim',
+      --   'williamboman/mason-lspconfig',
+      --   'simrat39/rust-tools.nvim',
+      --   'jose-elias-alvarez/null-ls.nvim',
+      --   'b0o/schemastore.nvim',
+      -- },
+      config = function()
+        -- It's important that you set up the plugins in the following order:
+        -- 1. mason.nvim
+        -- 2. mason-lspconfig.nvim
+        -- Setup servers via lspconfig
+        require 'lb.cfg.mason'
+        require 'lb.cfg.lsp'
+      end,
+      event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
     }
-
     use {
       'j-hui/fidget.nvim',
       config = function()
         require 'lb.cfg.fidget'
       end,
       after = { 'nvim-lspconfig' },
-      event = { 'BufRead', 'BufNewFile' },
     }
-
     use {
       'SmiteshP/nvim-navic',
       config = function()
@@ -350,10 +340,11 @@ require('packer').startup {
 
     use {
       'windwp/nvim-autopairs',
-      after = 'nvim-cmp',
       config = function()
         require 'lb.cfg.autopairs'
       end,
+      after = { 'nvim-cmp' },
+      wants = { 'nvim-cmp' },
     }
 
     use {

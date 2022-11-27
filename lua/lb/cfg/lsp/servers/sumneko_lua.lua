@@ -3,24 +3,29 @@
 -- sumneko_lua.lua -
 --
 -- Created by liubang on 2022/08/06 00:26
--- Last Modified: 2022/08/06 00:26
+-- Last Modified: 2022/11/28 01:45
 --
 --=====================================================================
 local lspconfig = require 'lspconfig'
 local c = require 'lb.cfg.lsp.customs'
 
-vim.cmd.packadd 'neodev.nvim'
+-- vim.cmd.packadd 'neodev.nvim'
 
 local setup = function()
-  require('neodev').setup {
-    library = {
-      enabled = true, -- when not enabled, lua-dev will not change any settings to the LSP server
-      runtime = true, -- runtime path
-      types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-      plugins = true, -- installed opt or start plugins in packpath
+  lspconfig.sumneko_lua.setup(c.default {
+    settings = {
+      Lua = {
+        telemetry = { enable = false },
+        runtime = { version = 'LuaJIT' },
+        diagnostics = {
+          globals = { 'vim', 'packer_plugins', 'planery' },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+      },
     },
-  }
-  lspconfig.sumneko_lua.setup(c.default())
+  })
 end
 
 return {
