@@ -3,7 +3,7 @@ HAVE_PODMAN := $(shell which podman 2>/dev/null)
 
 build:
 ifdef HAVE_DOCKER
-	docker build -t liubang/nvim -f Dockerfile .
+	docker buildx build -t liubang/nvim -f Dockerfile .
 else
 ifdef HAVE_PODMAN
 	podman build -t liubang/nvim -f Dockerfile .

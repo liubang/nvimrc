@@ -3,7 +3,7 @@
 -- completion.lua -
 --
 -- Created by liubang on 2021/09/04 21:05
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/11/28 22:04
 --
 -- =====================================================================
 
@@ -57,9 +57,10 @@ cmp.setup {
   window = {
     documentation = false,
     completion = cmp.config.window.bordered {
-      -- winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None',
-      winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
       border = 'single',
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      col_offset = -3,
+      side_padding = 0,
     },
   },
   snippet = {
@@ -88,20 +89,17 @@ cmp.setup {
     { name = 'crates' },
   },
   formatting = {
-    -- fields = { 'abbr', 'kind', 'menu' },
     fields = { 'kind', 'abbr', 'menu' },
-    format = lspkind.cmp_format {
-      mode = 'symbol',
-      maxwidth = 80,
-      ellipsis_char = '...',
-      menu = {
-        buffer = '[BUF]',
-        nvim_lsp = '[LSP]',
-        nvim_lua = '[API]',
-        path = '[PATH]',
-        luasnip = '[SNIP]',
-      },
-    },
+    format = function(entry, vim_item)
+      local kind = lspkind.cmp_format {
+        mode = 'symbol_text',
+        maxwidth = 80,
+      }(entry, vim_item)
+      local strings = vim.split(kind.kind, '%s', { trimempty = true })
+      kind.kind = ' ' .. strings[1] .. ' '
+      kind.menu = '    (' .. strings[2] .. ')'
+      return kind
+    end,
   },
   view = {
     max_height = 20,
