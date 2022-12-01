@@ -7,8 +7,7 @@
 --
 -- =====================================================================
 
-local _, impatient = pcall(require, 'impatient')
-
-impatient.enable_profile()
-
+-- local _, impatient =
+pcall(require, 'impatient')
+-- impatient.enable_profile()
 require 'lb'
