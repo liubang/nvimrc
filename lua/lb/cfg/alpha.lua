@@ -3,12 +3,14 @@
 -- dashboard-nvim.lua -
 --
 -- Created by liubang on 2021/04/19 11:15
--- Last Modified: 2022/11/26 22:06
+-- Last Modified: 2022/12/01 23:47
 --
 -- =====================================================================
 
-vim.cmd.packadd 'nvim-web-devicons'
-
+local ok, _ = pcall(require, 'nvim-web-devicons')
+if not ok then
+  require('packer').loader 'nvim-web-devicons'
+end
 local alpha = require 'alpha'
 
 local h = {

@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/11/28 01:46
+-- Last Modified: 2022/12/02 00:09
 --
 -- =====================================================================
 
@@ -276,13 +276,6 @@ require('packer').startup {
     use { 'williamboman/mason-lspconfig.nvim', opt = true }
     use {
       'neovim/nvim-lspconfig',
-      -- requires = {
-      --   'williamboman/mason.nvim',
-      --   'williamboman/mason-lspconfig',
-      --   'simrat39/rust-tools.nvim',
-      --   'jose-elias-alvarez/null-ls.nvim',
-      --   'b0o/schemastore.nvim',
-      -- },
       config = function()
         -- It's important that you set up the plugins in the following order:
         -- 1. mason.nvim
@@ -307,18 +300,17 @@ require('packer').startup {
       end,
       event = { 'LspAttach' },
     }
-
-    use {
-      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-      config = function()
-        require 'lb.cfg.lsp_lines-nvim'
-      end,
-      event = { 'LspAttach' },
-    }
     -- }}}
 
     -- completion {{{
-    use { 'onsails/lspkind.nvim', opt = true }
+    use {
+      'onsails/lspkind.nvim',
+      opt = true,
+      config = function()
+        require 'lb.cfg.lspkind'
+      end,
+    }
+
     use {
       'hrsh7th/nvim-cmp',
       requires = {

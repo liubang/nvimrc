@@ -10,7 +10,6 @@ local navic = require 'nvim-navic'
 
 -- stylua: ignore start
 vim.g.navic_silence = true
-local separator = " %#CmpItemKindDefault#▶ %*"
 local icons = { --{{{
   array         = " ",
   boolean       = "◩ ",

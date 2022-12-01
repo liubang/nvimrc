@@ -3,11 +3,11 @@
 -- customs.lua -
 --
 -- Created by liubang on 2022/04/16 22:09
--- Last Modified: 2022/10/16 15:50
+-- Last Modified: 2022/12/01 22:26
 --
 --=====================================================================
 
-vim.cmd.packadd 'cmp-nvim-lsp'
+require('packer').loader 'cmp-nvim-lsp'
 
 local M = {}
 
@@ -19,7 +19,6 @@ end
 -- Enable (broadcasting) snippet capability for completion.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
---}}}
 
 local augroup_format = vim.api.nvim_create_augroup('my_lsp_format', { clear = true })
 local autocmd_format = function(async, filter)
@@ -31,6 +30,7 @@ local autocmd_format = function(async, filter)
     end,
   })
 end
+
 local format_mapping = function(client, bufnr, filter)
   vim.keymap.set('n', '<Leader>fm', function()
     vim.lsp.buf.format { async = false, filter = filter }

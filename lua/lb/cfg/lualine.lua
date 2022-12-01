@@ -3,12 +3,19 @@
 -- status.lua -
 --
 -- Created by liubang on 2022/02/24 20:57
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/12/01 23:47
 --
 --=====================================================================
 
-vim.cmd.packadd 'nvim-web-devicons'
-vim.cmd.packadd 'nvim-navic'
+local ok, _ = pcall(require, 'nvim-web-devicons')
+if not ok then
+  require('packer').loader 'nvim-web-devicons'
+end
+
+ok, _ = pcall(require, 'nvim-navic')
+if not ok then
+  require('packer').loader 'nvim-navic'
+end
 
 local lualine = require 'lualine'
 

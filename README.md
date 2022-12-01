@@ -38,13 +38,14 @@
 
 ## Try out
 
-If you have [Docker](https://www.docker.com/) on your system you can try out this config via the provided `Dockerfile`
+If you have [Docker](https://www.docker.com/) on your system you can try out this config via docker
 
 ### Just start nvim
 
 ```bash
 docker run -it --rm liubang/nvim
 ```
+
 ### Mount a local directory and start nvim
 
 ```bash

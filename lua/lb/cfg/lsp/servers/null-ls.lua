@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-vim.cmd.packadd 'null-ls.nvim'
+require('packer').loader 'null-ls.nvim'
 
 local null_ls = require 'null-ls'
 local b = null_ls.builtins

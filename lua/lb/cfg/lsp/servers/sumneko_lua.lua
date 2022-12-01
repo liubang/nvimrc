@@ -3,13 +3,11 @@
 -- sumneko_lua.lua -
 --
 -- Created by liubang on 2022/08/06 00:26
--- Last Modified: 2022/11/28 01:45
+-- Last Modified: 2022/12/01 23:57
 --
 --=====================================================================
 local lspconfig = require 'lspconfig'
 local c = require 'lb.cfg.lsp.customs'
-
--- vim.cmd.packadd 'neodev.nvim'
 
 local setup = function()
   lspconfig.sumneko_lua.setup(c.default {

@@ -3,37 +3,18 @@
 -- completion.lua -
 --
 -- Created by liubang on 2021/09/04 21:05
--- Last Modified: 2022/11/28 22:04
+-- Last Modified: 2022/12/02 00:04
 --
 -- =====================================================================
 
-vim.cmd.packadd 'lspkind.nvim'
+local ok, lspkind = pcall(require, 'lspkind')
+if not ok then
+  require('packer').loader 'lspkind.nvim'
+  lspkind = require 'lspkind'
+end
 
 local cmp = require 'cmp'
 local compare = require 'cmp.config.compare'
-local lspkind = require 'lspkind'
-
-lspkind.init {
-  symbol_map = {
-    NONE = '',
-    Array = '',
-    Boolean = '⊨',
-    Class = '',
-    Constructor = '',
-    Key = '',
-    Namespace = '',
-    Null = 'NULL',
-    Number = '#',
-    Object = '⦿',
-    Package = '',
-    Property = '',
-    Reference = '',
-    Snippet = '',
-    String = '𝓐',
-    TypeParameter = '',
-    Unit = '',
-  },
-}
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- Don't show the dumb matching stuff.

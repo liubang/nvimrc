@@ -3,11 +3,13 @@
 -- nvim-telescope.lua -
 --
 -- Created by liubang on 2020/12/13 13:38
--- Last Modified: 2022/10/18 23:29
+-- Last Modified: 2022/12/01 23:56
 --
 -- =====================================================================
-vim.cmd.packadd 'telescope-fzf-native.nvim'
-vim.cmd.packadd 'telescope-ui-select.nvim'
+
+local packer = require 'packer'
+packer.loader 'telescope-fzf-native.nvim'
+packer.loader 'telescope-ui-select.nvim'
 
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'

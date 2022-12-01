@@ -16,4 +16,11 @@ require('aerial').setup {
   attach_mode = 'global', -- 'window' | 'global'
   nerd_font = 'auto',
   show_guides = true,
+  keymaps = {
+    ['<CR>'] = false,
+    ['o'] = 'actions.jump',
+    ['<C-j>'] = 'actions.down_and_scroll',
+    ['<C-k>'] = 'actions.up_and_scroll',
+    ['O'] = 'actions.tree_toggle',
+  },
 }

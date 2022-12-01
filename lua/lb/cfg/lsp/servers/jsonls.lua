@@ -7,10 +7,10 @@
 --
 --=====================================================================
 
+require('packer').loader 'schemastore.nvim'
+
 local c = require 'lb.cfg.lsp.customs'
 local lspconfig = require 'lspconfig'
-
-vim.cmd.packadd 'schemastore.nvim'
 
 local setup = function()
   lspconfig.jsonls.setup(c.default {
