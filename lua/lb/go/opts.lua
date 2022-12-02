@@ -3,7 +3,7 @@
 -- opts.lua -
 --
 -- Created by liubang on 2022/09/22 20:32
--- Last Modified: 2022/09/22 20:32
+-- Last Modified: 2022/12/03 01:57
 --
 --=====================================================================
 
@@ -118,11 +118,13 @@ M.get_opts = function(arg, sh_opts, long_opts)
   if optarg == nil then
     return
   end
-  for i, v in ipairs(opts) do
-    if optarg[i] then
-      ret[v] = optarg[i]
-    else
-      ret[v] = true
+  if opts ~= nil then
+    for i, v in ipairs(opts) do
+      if optarg[i] then
+        ret[v] = optarg[i]
+      else
+        ret[v] = true
+      end
     end
   end
   return ret, optind, unparsed

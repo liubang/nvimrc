@@ -3,24 +3,17 @@
 -- autopairs.lua -
 --
 -- Created by liubang on 2022/09/03 17:42
--- Last Modified: 2022/10/18 23:27
+-- Last Modified: 2022/12/03 01:37
 --
 --=====================================================================
--- autopairs
 
-local autopairs = require 'nvim-autopairs'
-local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-local cmp = require 'cmp'
-
-autopairs.setup {
+require('nvim-autopairs').setup {
   check_ts = true,
-  -- will ignore alphanumeric and `.` symbol
   ignored_next_char = '[%w%.]',
   ts_config = {
     lua = { 'string', 'source' },
   },
   fast_wrap = {
-    map = '<M-e>',
     chars = { '{', '[', '(', '"', '\'' },
     pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
     offset = 0, -- Offset from pattern match
@@ -33,4 +26,7 @@ autopairs.setup {
   disable_filetype = { 'TelescopePrompt', 'vim' },
 }
 
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
+require('cmp').event:on(
+  'confirm_done',
+  require('nvim-autopairs.completion.cmp').on_confirm_done { map_char = { tex = '' } }
+)

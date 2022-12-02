@@ -3,7 +3,7 @@
 -- theme.lua -
 --
 -- Created by liubang on 2020/12/12 21:20
--- Last Modified: 2022/10/23 02:09
+-- Last Modified: 2022/12/03 00:45
 --
 -- =====================================================================
 
@@ -23,6 +23,7 @@ vim.g.neovide_cursor_vfx_particle_speed = 20.0
 vim.g.neovide_cursor_vfx_particle_density = 5.0
 -- }}}
 
+-- theme {{{
 vim.g.gruvbox_material_foreground = 'material'
 vim.g.gruvbox_filetype_hi_groups = 1
 vim.g.gruvbox_plugin_hi_groups = 1
@@ -31,11 +32,15 @@ vim.g.gruvbox_material_enable_italic = 0
 vim.g.gruvbox_material_disable_italic_comment = 0
 vim.g.gruvbox_material_background = 'soft'
 vim.g.gruvbox_material_better_performance = 1
+-- }}}
 
-vim.api.nvim_create_autocmd('UIEnter', {
+vim.api.nvim_create_autocmd('UIEnter', { --{{{
   callback = function()
     vim.cmd.colorscheme 'gruvbox-material'
-    _G.custom_foldtext = require('lb.utils.fold').foldtext
-    vim.opt.foldtext = 'v:lua.custom_foldtext()'
+    -- _G.custom_foldtext = require('lb.utils.fold').foldtext
+    -- vim.opt.foldtext = 'v:lua.custom_foldtext()'
+    vim.o.foldtext = 'v:lua.require("lb.utils.fold").foldtext()'
   end,
-})
+}) --}}}
+
+-- vim: fdm=marker fdl=0

@@ -3,7 +3,7 @@
 -- impl.lua -
 --
 -- Created by liubang on 2022/09/21 21:36
--- Last Modified: 2022/09/21 21:36
+-- Last Modified: 2022/12/03 01:56
 --
 --=====================================================================
 local tsgo = require 'lb.ts.go'
@@ -49,12 +49,11 @@ local function get_interface_name()
 end
 
 local run = function(...)
-  local iface = ''
+  local iface = nil
   local recv_name = ''
   local arg = { ... }
 
   local recv = get_type_name()
-  iface = get_interface_name()
 
   if #arg == 0 then
     iface = vim.fn.input 'Impl: generating method stubs for interface: '
@@ -66,6 +65,7 @@ local run = function(...)
       )
     end
   elseif #arg == 1 then
+    iface = get_interface_name()
     -- " i.e: ':GoImpl io.Writer'
     if iface ~= nil then
       recv = select(1, ...)
@@ -152,8 +152,10 @@ local function complete(_, cmdline, _)
     local bufnr = vim.api.nvim_get_current_buf()
     local nodes = tsnodes.nodes_in_buf(query, bufnr)
     local ns = {}
-    for _, node in ipairs(nodes) do
-      table.insert(ns, node.name)
+    if nodes ~= nil then
+      for _, node in ipairs(nodes) do
+        table.insert(ns, node.name)
+      end
     end
     return vim.fn.uniq(ns)
   end

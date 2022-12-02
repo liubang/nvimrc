@@ -3,7 +3,7 @@
 -- nvim-telescope.lua -
 --
 -- Created by liubang on 2020/12/13 13:38
--- Last Modified: 2022/12/01 23:56
+-- Last Modified: 2022/12/03 00:44
 --
 -- =====================================================================
 
@@ -13,10 +13,9 @@ packer.loader 'telescope-ui-select.nvim'
 
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
-local themes = require 'telescope.themes'
 
 telescope.setup {
-  defaults = {
+  defaults = { --{{{
     prompt_prefix = '   ',
     selection_caret = ' ',
     entry_prefix = '  ',
@@ -73,8 +72,8 @@ telescope.setup {
         ['?'] = actions.which_key,
       },
     },
-  },
-  pickers = {
+  }, --}}}
+  pickers = { --{{{
     buffers = {
       sort_mru = true,
       mappings = {
@@ -86,15 +85,15 @@ telescope.setup {
     man_pages = { sections = { '2', '3' } },
     lsp_document_symbols = { path_display = { 'hidden' } },
     lsp_workspace_symbols = { path_display = { 'shorten' } },
-  },
-  extensions = {
+  }, --}}}
+  extensions = { --{{{
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = 'smart_case',
     },
-  },
+  }, --}}}
 }
 
 telescope.load_extension 'fzf'
@@ -102,7 +101,7 @@ telescope.load_extension 'bazel'
 telescope.load_extension 'tasks'
 telescope.load_extension 'ui-select'
 
-local colors = {
+local colors = { --{{{
   white = '#ebdbb2',
   darker_black = '#222222',
   black = '#282828', --  nvim bg
@@ -133,9 +132,9 @@ local colors = {
   lightbg = '#393939',
   pmenu_bg = '#89b482',
   folder_bg = '#6d8dad',
-}
+} --}}}
 
-local TelescopePrompt = {
+local TelescopePrompt = { --{{{
   TelescopeBorder = {
     fg = colors.darker_black,
     bg = colors.darker_black,
@@ -186,8 +185,10 @@ local TelescopePrompt = {
   TelescopeResultsDiffDelete = {
     fg = colors.red,
   },
-}
+} --}}}
 
 for hl, col in pairs(TelescopePrompt) do
   vim.api.nvim_set_hl(0, hl, col)
 end
+
+-- vim: fdm=marker fdl=0

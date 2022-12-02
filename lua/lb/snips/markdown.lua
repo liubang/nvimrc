@@ -3,7 +3,7 @@
 -- markdown.lua -
 --
 -- Created by liubang on 2022/09/03 03:40
--- Last Modified: 2022/11/12 23:11
+-- Last Modified: 2022/12/03 01:35
 --
 --=====================================================================
 local ls = require 'luasnip'
@@ -133,18 +133,6 @@ ls.add_snippets('markdown', {
     i(0),
     t ')',
   }),
-  -- Markdown: Left arrow
-  s('<-', t '←'),
-  -- Markdown: Right arrow
-  s('->', t '→'),
-  -- Markdown: Left double arrow
-  s('<=', t '⇐'),
-  -- Markdown: Right double arrow
-  s('=>', t '⇒'),
-  -- Markdown: Less than or equal to
-  s('<=', t '≤'),
-  -- Markdown: Greater than or equal to
-  s('>=', t '≥'),
   -- Markdown: Headers
   s({ trig = '^%s*h(%d)', regTrig = true }, {
     f(function(_, snip)

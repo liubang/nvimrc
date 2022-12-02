@@ -3,7 +3,7 @@
 -- nvim-tree.lua -
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2022/12/02 20:40
+-- Last Modified: 2022/12/03 00:42
 --
 -- =====================================================================
 
@@ -20,34 +20,34 @@ nvim_tree.setup {
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
   ignore_ft_on_setup = { 'alpha' },
-  update_focused_file = {
+  update_focused_file = { --{{{
     enable = true,
     update_cwd = false,
-  },
-  diagnostics = {
+  }, --}}}
+  diagnostics = { --{{{
     enable = false,
-  },
-  git = {
+  }, --}}}
+  git = { --{{{
     enable = true,
     ignore = true,
     timeout = 500,
-  },
-  filesystem_watchers = {
+  }, --}}}
+  filesystem_watchers = { --{{{
     enable = true,
-  },
-  actions = {
+  }, --}}}
+  actions = { --{{{
     open_file = {
       resize_window = true,
     },
-  },
-  renderer = {
+  }, --}}}
+  renderer = { --{{{
     highlight_git = true,
     group_empty = true,
     icons = {
       glyphs = {
         default = '',
         symlink = '',
-        folder = {
+        folder = { --{{{
           default = '',
           empty = '',
           empty_open = '',
@@ -56,7 +56,7 @@ nvim_tree.setup {
           symlink_open = '',
           arrow_open = '',
           arrow_closed = '',
-        },
+        }, --}}}
         git = { --{{{
           deleted = '',
           ignored = '◌',
@@ -68,8 +68,8 @@ nvim_tree.setup {
         }, --}}}
       },
     },
-  },
-  view = {
+  }, --}}}
+  view = { --{{{
     width = 35,
     side = 'left',
     adaptive_size = true,
@@ -92,21 +92,12 @@ nvim_tree.setup {
         { key = '<C-k>', action = 'toggle_file_info' },
       },
     },
-  },
+  }, --}}}
 }
 
-local api = require 'nvim-tree.api'
+local api = require 'nvim-tree.api' --{{{
 api.events.subscribe(api.events.Event.FileCreated, function(data)
   vim.cmd('edit ' .. data.fname)
-end)
-
--- vim.api.nvim_create_autocmd('BufEnter', { --{{{
---   nested = true,
---   callback = function()
---     if vim.fn.winnr '$' == 1 and vim.fn.bufname() == 'NvimTree_' .. vim.fn.tabpagenr() then
---       vim.api.nvim_command ':silent q'
---     end
---   end,
--- }) --}}}
+end) --}}}
 
 -- vim: fdm=marker fdl=0

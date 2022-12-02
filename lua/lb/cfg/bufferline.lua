@@ -3,7 +3,7 @@
 -- bufferline.lua -
 --
 -- Created by liubang on 2022/03/02 16:58
--- Last Modified: 2022/10/18 23:27
+-- Last Modified: 2022/12/03 01:51
 --
 --=====================================================================
 
@@ -42,13 +42,3 @@ require('bufferline').setup {
     sort_by = 'insert_at_end',
   },
 }
-
-vim.keymap.set('n', '<Leader>1', '<cmd>BufferLineGoToBuffer 1<CR>')
-vim.keymap.set('n', '<Leader>2', '<cmd>BufferLineGoToBuffer 2<CR>')
-vim.keymap.set('n', '<Leader>3', '<cmd>BufferLineGoToBuffer 3<CR>')
-vim.keymap.set('n', '<Leader>4', '<cmd>BufferLineGoToBuffer 4<CR>')
-vim.keymap.set('n', '<Leader>5', '<cmd>BufferLineGoToBuffer 5<CR>')
-vim.keymap.set('n', '<Leader>6', '<cmd>BufferLineGoToBuffer 6<CR>')
-vim.keymap.set('n', '<Leader>7', '<cmd>BufferLineGoToBuffer 7<CR>')
-vim.keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
-vim.keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')

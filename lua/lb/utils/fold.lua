@@ -31,7 +31,7 @@ end
 --
 -- The marker is cut. If there are any comments before it, will go in the text.
 -- selene: allow(global_usage)
-local function foldtext()
+local function foldtext() --{{{
   local line = vim.fn.getline(vim.v.foldstart)
   local line_text = line:gsub(' *', '', 1)
 
@@ -69,10 +69,8 @@ local function foldtext()
     '[' .. icon,
     folded_line_num .. ']',
   }, ' ')
-end
+end --}}}
 
 return {
   foldtext = foldtext,
 }
-
--- vim: fdm=marker fdl=0

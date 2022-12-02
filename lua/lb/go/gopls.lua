@@ -3,7 +3,7 @@
 -- gopls.lua -
 --
 -- Created by liubang on 2022/09/21 22:07
--- Last Modified: 2022/09/21 22:07
+-- Last Modified: 2022/12/03 01:58
 --
 --=====================================================================
 
@@ -62,7 +62,7 @@ for _, value in ipairs(gopls_cmds) do
     end
 
     vim.schedule(function()
-      local resp = vim.lsp.buf.execute_command {
+      vim.lsp.buf.execute_command {
         command = value,
         arguments = arguments,
       }

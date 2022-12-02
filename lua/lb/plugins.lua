@@ -17,7 +17,7 @@ end
 
 vim.cmd.packadd 'packer.nvim'
 
-local config = {
+local config = { --{{{
   auto_clean = true,
   compile_on_sync = true,
   ensure_dependencies = true,
@@ -44,7 +44,7 @@ local config = {
     depth = 1,
     clone_timeout = 300,
   },
-}
+} --}}}
 
 require('packer').startup {
   function(use)
@@ -414,4 +414,4 @@ if is_bootstrap then
   return
 end
 
--- vim: fdm=marker fdl=2
+-- vim: fdm=marker fdl=0

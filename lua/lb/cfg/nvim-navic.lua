@@ -3,7 +3,7 @@
 -- nvim-navic.lua -
 --
 -- Created by liubang on 2022/09/03 17:31
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/12/03 00:42
 --
 --=====================================================================
 local navic = require 'nvim-navic'
@@ -80,11 +80,11 @@ navic.setup({ --{{{
   depth_limit_indicator = "..",
 }) --}}}
 
-local ignore_navic = {
+local ignore_navic = { --{{{
   bashls = true,
   dockerls = true,
   ["null-ls"] = true,
-}
+} --}}}
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -102,3 +102,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 -- stylua: ignore end
+
+-- vim: fdm=marker fdl=0

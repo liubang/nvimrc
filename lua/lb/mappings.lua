@@ -3,7 +3,7 @@
 -- mappings.lua -
 --
 -- Created by liubang on 2020/12/12 12:56
--- Last Modified: 2022/10/23 17:46
+-- Last Modified: 2022/12/03 01:51
 --
 -- =====================================================================
 
@@ -111,6 +111,17 @@ vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
 -- aerial
 vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
+
+-- bufferline
+vim.keymap.set('n', '<Leader>1', '<cmd>BufferLineGoToBuffer 1<CR>')
+vim.keymap.set('n', '<Leader>2', '<cmd>BufferLineGoToBuffer 2<CR>')
+vim.keymap.set('n', '<Leader>3', '<cmd>BufferLineGoToBuffer 3<CR>')
+vim.keymap.set('n', '<Leader>4', '<cmd>BufferLineGoToBuffer 4<CR>')
+vim.keymap.set('n', '<Leader>5', '<cmd>BufferLineGoToBuffer 5<CR>')
+vim.keymap.set('n', '<Leader>6', '<cmd>BufferLineGoToBuffer 6<CR>')
+vim.keymap.set('n', '<Leader>7', '<cmd>BufferLineGoToBuffer 7<CR>')
+vim.keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
+vim.keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
 
 -- hop
 vim.keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)
