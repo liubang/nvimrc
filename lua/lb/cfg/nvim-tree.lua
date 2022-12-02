@@ -3,7 +3,7 @@
 -- nvim-tree.lua -
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2022/11/01 23:20
+-- Last Modified: 2022/12/02 20:40
 --
 -- =====================================================================
 
@@ -99,8 +99,6 @@ local api = require 'nvim-tree.api'
 api.events.subscribe(api.events.Event.FileCreated, function(data)
   vim.cmd('edit ' .. data.fname)
 end)
-
-vim.keymap.set('n', '<Leader>ft', nvim_tree.toggle, { silent = true, desc = 'toggle tree view' })
 
 -- vim.api.nvim_create_autocmd('BufEnter', { --{{{
 --   nested = true,

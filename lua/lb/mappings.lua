@@ -39,7 +39,7 @@ vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hls
 vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when indenting" })
 vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
 
-vim.keymap.set("n", "<leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
+-- vim.keymap.set("n", "<Leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
 
 -- Yank related {{{
 vim.keymap.set("n", "<Leader>y", '"+y')
@@ -81,14 +81,6 @@ vim.keymap.set('n', '<C-S-Left>', function() require('smart-splits').resize_left
 vim.keymap.set('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 -- }}}
 
--- command
--- vim.keymap.set('c', '<C-a>', '<Home>')
--- vim.keymap.set('c', '<C-e>', '<End>')
--- vim.keymap.set('c', '<C-b>', '<S-Left>')
--- vim.keymap.set('c', '<C-f>', '<S-Right>')
--- vim.keymap.set('c', '<C-h>', '<Left>')
--- vim.keymap.set('c', '<C-l>', '<Right>')
-
 -- terminal
 vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 
@@ -100,11 +92,8 @@ vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
 --   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
 -- )
 
--- vim.keymap.set('n', '<Leader>ft', function() require('nvim-tree').toggle() end)
-
--- easyalign
-vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
-vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
+-- nvim-tree
+vim.keymap.set('n', '<Leader>ft', ":NvimTreeToggle<CR>", { silent = true, desc = 'toggle tree view' })
 
 -- floaterm
 vim.keymap.set('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
@@ -120,8 +109,7 @@ vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
 vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask build<CR>')
 vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
 
--- outline
--- vim.keymap.set('n', '<Leader>tl', '<cmd>SymbolsOutline<CR>')
+-- aerial
 vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
 
 -- hop

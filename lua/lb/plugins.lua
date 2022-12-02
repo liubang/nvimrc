@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/02 00:09
+-- Last Modified: 2022/12/02 20:41
 --
 -- =====================================================================
 
@@ -100,9 +100,9 @@ require('packer').startup {
       'nvim-tree/nvim-tree.lua',
       requires = { 'nvim-tree/nvim-web-devicons' },
       config = function()
-        require 'lb.cfg.nvim_tree'
+        require 'lb.cfg.nvim-tree'
       end,
-      keys = { '<leader>ft' },
+      -- keys = { '<Leader>ft' },
       cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
     }
     -- }}}

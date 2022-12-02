@@ -3,7 +3,7 @@
 -- status.lua -
 --
 -- Created by liubang on 2022/02/24 20:57
--- Last Modified: 2022/12/01 23:47
+-- Last Modified: 2022/12/02 20:28
 --
 --=====================================================================
 
@@ -52,7 +52,7 @@ local mode = function()
 end
 
 local lsp_names = { --{{{
-  ['null-ls'] = 'Null',
+  ['null-ls'] = 'NLS',
   ['diagnostics_on_open'] = 'Diagnostics',
   ['diagnostics_on_save'] = 'Diagnostics',
   bashls = 'Bash',
@@ -67,6 +67,7 @@ local lsp_names = { --{{{
   tsserver = 'TS',
   vimls = 'Vim',
   yamlls = 'YAML',
+  intelephense = 'PHP',
   rust_analyzer = 'Rust',
 }
 --}}}
