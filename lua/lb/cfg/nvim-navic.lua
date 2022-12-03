@@ -3,12 +3,13 @@
 -- nvim-navic.lua -
 --
 -- Created by liubang on 2022/09/03 17:31
--- Last Modified: 2022/12/03 00:42
+-- Last Modified: 2022/12/04 03:40
 --
 --=====================================================================
 local navic = require 'nvim-navic'
 
 -- stylua: ignore start
+
 vim.g.navic_silence = true
 local icons = { --{{{
   array         = " ",
@@ -86,7 +87,7 @@ local ignore_navic = { --{{{
   ["null-ls"] = true,
 } --}}}
 
-vim.api.nvim_create_autocmd("LspAttach", {
+vim.api.nvim_create_autocmd("LspAttach", { -- {{{
   callback = function(args)
     if args.data == nil then
       return
@@ -100,7 +101,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     navic.attach(client, args.buf)
   end,
-})
+}) -- }}}
+
 -- stylua: ignore end
 
 -- vim: fdm=marker fdl=0

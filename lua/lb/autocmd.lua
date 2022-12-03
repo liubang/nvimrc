@@ -13,11 +13,14 @@ vim.filetype.add {
     ['.bazelrc'] = 'bzl',
     ['BUILD'] = 'bzl',
     ['WORKSPACE'] = 'bzl',
-    ['.gitignore'] = 'conf',
+    ['.gitignore'] = 'gitconfig',
+    ['go.sum'] = 'gosum',
+    ['go.mod'] = 'gomod',
   },
   extension = {
     log = 'log',
     thrift = 'thrift',
+    wiki = 'markdown',
   },
 }
 
@@ -39,7 +42,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = reload_configs_group,
   pattern = '*/lua/lb/*.lua',
   callback = function(args)
-    -- vim.notify('Reloaded ' .. args.file)
     vim.cmd.source '<afile>'
   end,
 })

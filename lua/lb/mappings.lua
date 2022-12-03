@@ -164,6 +164,8 @@ vim.keymap.set('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
 vim.keymap.set('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
 vim.keymap.set('n', '<Leader>fc', "<cmd>Telescope command<CR>")
 vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
+vim.keymap.set('n', '<Leader>br', "<cmd>Telescope bazel bazel_run<CR>")
+vim.keymap.set('n', '<Leader>bt', "<cmd>Telescope bazel bazel_tests<CR>")
 -- }}}
 
 -- stylua: ignore end

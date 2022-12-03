@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/02 20:41
+-- Last Modified: 2022/12/04 03:42
 --
 -- =====================================================================
 
@@ -70,6 +70,7 @@ require('packer').startup {
       end,
       event = { 'BufWinEnter' },
     }
+
     use {
       'rcarriga/nvim-notify',
       config = function()
@@ -405,6 +406,7 @@ require('packer').startup {
   config = config,
 }
 
+-- print messages when bootstrap {{{
 if is_bootstrap then
   print '=================================='
   print '    Plugins are being installed'
