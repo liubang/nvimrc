@@ -3,13 +3,12 @@
 -- lspconfig.lua -
 --
 -- Created by liubang on 2021/02/06 00:05
--- Last Modified: 2022/12/02 00:04
+-- Last Modified: 2022/12/05 00:56
 --
 -- =====================================================================
 
-local packer = require "packer"
-packer.loader "mason.nvim"
-packer.loader "mason-lspconfig.nvim"
+vim.cmd.packadd "mason.nvim"
+vim.cmd.packadd "mason-lspconfig.nvim"
 
 require("mason").setup {
   ui = {
@@ -49,6 +48,8 @@ require("mason-lspconfig").setup {
     "gopls",
     "sumneko_lua",
     "rust_analyzer",
+    "bashls",
+    "pyright",
   },
   automatic_installation = false,
 }

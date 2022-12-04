@@ -111,6 +111,9 @@ require("packer").startup {
     -- tools {{{
     use {
       "rainbowhxch/accelerated-jk.nvim",
+      config = function()
+        require "lb.cfg.accelerated-jk"
+      end,
       keys = { "<Plug>(accelerated_jk_gj)", "<Plug>(accelerated_jk_gk)" },
     }
     use {
@@ -251,6 +254,7 @@ require("packer").startup {
         },
         { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
         { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+        { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
         {
           "nvim-treesitter/playground",
           run = ":TSInstall query",
@@ -323,6 +327,7 @@ require("packer").startup {
         { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         { "hrsh7th/cmp-calc", after = "nvim-cmp" },
         { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+        { "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
       },
       config = function()
         require "lb.cfg.cmp"

@@ -3,7 +3,7 @@
 -- treesitter.lua -
 --
 -- Created by liubang on 2022/03/02 16:58
--- Last Modified: 2022/11/26 17:14
+-- Last Modified: 2022/12/05 00:57
 --
 --=====================================================================
 
@@ -14,6 +14,15 @@ require("nvim-treesitter.configs").setup {
     "lua",
     "rust",
     "go",
+    "gomod",
+    "json",
+    "html",
+    "yaml",
+    "python",
+    "latex",
+    "css",
+    "javascript",
+    "typescript",
   },
   sync_install = false,
   ignore_install = { "haskell" },
@@ -76,6 +85,11 @@ require("nvim-treesitter.configs").setup {
         ["ic"] = "@class.inner",
       },
     },
+  },
+
+  autotag = {
+    enable = true,
+    filetypes = { "html", "xml", "javascript", "typescript", "markdown" },
   },
 
   rainbow = {

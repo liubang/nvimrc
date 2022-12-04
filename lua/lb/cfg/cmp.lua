@@ -65,8 +65,9 @@ cmp.setup {
         end,
       },
     },
-    { name = "calc" },
     { name = "crates" },
+    { name = "latex_symbols" },
+    { name = "calc" },
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
