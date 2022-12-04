@@ -3,7 +3,7 @@
 -- bazel.lua -
 --
 -- Created by liubang on 2021/01/03 19:02
--- Last Modified: 2022/12/04 04:42
+-- Last Modified: 2022/12/04 17:11
 --
 -- =====================================================================
 local has_telescope, telescope = pcall(require, 'telescope')
@@ -46,14 +46,14 @@ local bazel_finder = function(opts, title, kind)
   pickers
     .new(opts, {
       prompt_title = title,
+      sorter = sorters.get_fzy_sorter(opts),
       finder = finders.new_oneshot_job(find_command, opts),
-      sorter = sorters.get_fzy_sorter(),
-      attach_mappings = function(prompt_bufnr, map)
+      attach_mappings = function(prompt_bufnr, _)
         actions.select_default:replace(function()
           local selection = actions_state.get_selected_entry()
           actions.close(prompt_bufnr)
           if selection.value ~= '' then
-            local cmd = 'AsyncRun -mode=term -pos=right'
+            local cmd = 'AsyncRun -mode=term -pos=floaterm'
             if kind:match 'test' ~= nil then
               cmd = string.format('%s bazel test %s', cmd, selection.value)
             elseif kind:match 'binary' ~= nil then
@@ -61,7 +61,6 @@ local bazel_finder = function(opts, title, kind)
             else
               cmd = string.format('%s bazel build %s', cmd, selection.value)
             end
-            print(cmd)
             vim.cmd(cmd)
           end
         end)

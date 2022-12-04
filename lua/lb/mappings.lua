@@ -105,9 +105,9 @@ vim.keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
 vim.keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
 
 -- asynctask
-vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask build-and-run<CR>')
-vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask build<CR>')
-vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask run<CR>')
+vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask file-build<CR>')
+vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask file-run<CR>')
+vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask file-build-run<CR>')
 
 -- aerial
 vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
@@ -166,6 +166,7 @@ vim.keymap.set('n', '<Leader>fc', "<cmd>Telescope command<CR>")
 vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
 vim.keymap.set('n', '<Leader>br', "<cmd>Telescope bazel bazel_run<CR>")
 vim.keymap.set('n', '<Leader>bt', "<cmd>Telescope bazel bazel_tests<CR>")
+vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
 -- }}}
 
 -- stylua: ignore end

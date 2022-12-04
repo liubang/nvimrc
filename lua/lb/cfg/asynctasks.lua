@@ -10,9 +10,8 @@
 local packer = require 'packer'
 packer.loader 'asyncrun.vim'
 packer.loader 'asyncrun.extra'
+packer.loader 'vim-floaterm'
 
-vim.g.asyncrun_open = 25
 vim.g.asyncrun_bell = 1
 vim.g.asyncrun_rootmarks = { '.svn', '.git', '.root', 'build.xml' }
 vim.g.asynctasks_term_pos = 'floaterm'
-vim.g.asynctasks_term_reuse = 1

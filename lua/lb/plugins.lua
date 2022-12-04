@@ -159,6 +159,7 @@ require('packer').startup {
       requires = {
         { 'skywind3000/asyncrun.vim', opt = true },
         { 'skywind3000/asyncrun.extra', opt = true },
+        { 'voldikss/vim-floaterm' },
       },
       config = function()
         require 'lb.cfg.asynctasks'
