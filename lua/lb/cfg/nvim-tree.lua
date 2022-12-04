@@ -7,7 +7,7 @@
 --
 -- =====================================================================
 
-local nvim_tree = require 'nvim-tree'
+local nvim_tree = require "nvim-tree"
 
 nvim_tree.setup {
   disable_netrw = true,
@@ -19,7 +19,7 @@ nvim_tree.setup {
   hijack_cursor = true,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  ignore_ft_on_setup = { 'alpha' },
+  ignore_ft_on_setup = { "alpha" },
   update_focused_file = { --{{{
     enable = true,
     update_cwd = false,
@@ -45,59 +45,59 @@ nvim_tree.setup {
     group_empty = true,
     icons = {
       glyphs = {
-        default = '',
-        symlink = '',
+        default = "",
+        symlink = "",
         folder = { --{{{
-          default = '',
-          empty = '',
-          empty_open = '',
-          open = '',
-          symlink = '',
-          symlink_open = '',
-          arrow_open = '',
-          arrow_closed = '',
+          default = "",
+          empty = "",
+          empty_open = "",
+          open = "",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = "",
+          arrow_closed = "",
         }, --}}}
         git = { --{{{
-          deleted = '',
-          ignored = '◌',
-          renamed = '➜',
-          staged = '✓',
-          unmerged = '',
-          unstaged = '',
-          untracked = '★',
+          deleted = "",
+          ignored = "◌",
+          renamed = "➜",
+          staged = "✓",
+          unmerged = "",
+          unstaged = "",
+          untracked = "★",
         }, --}}}
       },
     },
   }, --}}}
   view = { --{{{
     width = 35,
-    side = 'left',
+    side = "left",
     adaptive_size = true,
     hide_root_folder = false,
     mappings = {
       custom_only = true,
       list = {
-        { key = { '<CR>', 'o' }, action = 'edit' },
-        { key = 'a', action = 'create' },
-        { key = 'v', action = 'vsplit' },
-        { key = 's', action = 'split' },
-        { key = 'r', action = 'rename' },
-        { key = 'x', action = 'cut' },
-        { key = 'c', action = 'copy' },
-        { key = 'p', action = 'paste' },
-        { key = 'R', action = 'refresh' },
-        { key = 'y', action = 'copy_name' },
-        { key = 'Y', action = 'copy_path' },
-        { key = 'd', action = 'remove' },
-        { key = '<C-k>', action = 'toggle_file_info' },
+        { key = { "<CR>", "o" }, action = "edit" },
+        { key = "a", action = "create" },
+        { key = "v", action = "vsplit" },
+        { key = "s", action = "split" },
+        { key = "r", action = "rename" },
+        { key = "x", action = "cut" },
+        { key = "c", action = "copy" },
+        { key = "p", action = "paste" },
+        { key = "R", action = "refresh" },
+        { key = "y", action = "copy_name" },
+        { key = "Y", action = "copy_path" },
+        { key = "d", action = "remove" },
+        { key = "<C-k>", action = "toggle_file_info" },
       },
     },
   }, --}}}
 }
 
-local api = require 'nvim-tree.api' --{{{
+local api = require "nvim-tree.api" --{{{
 api.events.subscribe(api.events.Event.FileCreated, function(data)
-  vim.cmd('edit ' .. data.fname)
+  vim.cmd("edit " .. data.fname)
 end) --}}}
 
 -- vim: fdm=marker fdl=0

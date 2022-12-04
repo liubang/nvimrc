@@ -7,16 +7,16 @@
 --
 --=====================================================================
 
-local notify = require 'notify'
+local notify = require "notify"
 notify.setup { -- {{{
   timeout = 500,
-  stages = 'fade',
+  stages = "fade",
   icons = {
-    DEBUG = '',
-    ERROR = '',
-    INFO = '',
-    TRACE = '✎',
-    WARN = '',
+    DEBUG = "",
+    ERROR = "",
+    INFO = "",
+    TRACE = "✎",
+    WARN = "",
   },
 } -- }}}
 vim.notify = notify

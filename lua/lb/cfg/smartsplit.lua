@@ -6,18 +6,18 @@
 -- Last Modified: 2022/10/18 23:28
 --
 --=====================================================================
-require('smart-splits').setup {
+require("smart-splits").setup {
   ignored_filetypes = {
-    'nofile',
-    'quickfix',
-    'NvimTree',
-    'Outline',
-    'qf',
-    'prompt',
+    "nofile",
+    "quickfix",
+    "NvimTree",
+    "Outline",
+    "qf",
+    "prompt",
   },
-  ignored_buftypes = { 'NvimTree', 'Outline' },
+  ignored_buftypes = { "NvimTree", "Outline" },
   resize_mode = {
-    quit_key = '<ESC>',
+    quit_key = "<ESC>",
     silent = true,
   },
 }

@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-local gitsigns = require 'gitsigns'
+local gitsigns = require "gitsigns"
 
 -- stylua: ignore start
 gitsigns.setup({

@@ -8,35 +8,35 @@
 --=====================================================================
 
 local tags = {}
-local gomodify = 'gomodifytags'
-local tsgo = require 'lb.ts.go'
+local gomodify = "gomodifytags"
+local tsgo = require "lb.ts.go"
 
 local empty = function(t)
   if t == nil then
     return true
   end
-  if type(t) ~= 'table' then
+  if type(t) ~= "table" then
     return false
   end
   return next(t) == nil
 end
 
 tags.modify = function(...)
-  local fname = vim.fn.expand '%' -- %:p:h ? %:p
+  local fname = vim.fn.expand "%" -- %:p:h ? %:p
   local ns = tsgo.get_struct_node_at_pos()
   if empty(ns) then
     return
   end
 
   local struct_name = ns.name
-  local setup = { gomodify, '-format', 'json', '-file', fname, '-w' }
+  local setup = { gomodify, "-format", "json", "-file", fname, "-w" }
 
   if struct_name == nil then
-    local _, csrow, _, _ = unpack(vim.fn.getpos '.')
-    table.insert(setup, '-line')
+    local _, csrow, _, _ = unpack(vim.fn.getpos ".")
+    table.insert(setup, "-line")
     table.insert(setup, csrow)
   else
-    table.insert(setup, '-struct')
+    table.insert(setup, "-struct")
     table.insert(setup, struct_name)
   end
 
@@ -46,13 +46,13 @@ tags.modify = function(...)
     table.insert(setup, v)
   end
 
-  if #arg == 1 and arg[1] ~= '-clear-tags' then
-    table.insert(setup, 'json')
+  if #arg == 1 and arg[1] ~= "-clear-tags" then
+    table.insert(setup, "json")
   end
 
   vim.fn.jobstart(setup, {
     on_stdout = function(_, data, _)
-      data = require('lb.go.utils').handle_job_data(data)
+      data = require("lb.go.utils").handle_job_data(data)
       if not data then
         return
       end
@@ -61,34 +61,28 @@ tags.modify = function(...)
         tagged == nil
         or tagged.errors ~= nil
         or tagged.lines == nil
-        or tagged['start'] == nil
-        or tagged['start'] == 0
+        or tagged["start"] == nil
+        or tagged["start"] == 0
       then
-        vim.notify('failed to set tags' .. vim.inspect(tagged), vim.lsp.log_levels.ERROR)
+        vim.notify("failed to set tags" .. vim.inspect(tagged), vim.lsp.log_levels.ERROR)
         return
       end
       for index, value in ipairs(tagged.lines) do
-        tagged.lines[index] = require('lb.utils.util').rtrim(value)
+        tagged.lines[index] = require("lb.utils.util").rtrim(value)
       end
-      vim.api.nvim_buf_set_lines(
-        0,
-        tagged['start'] - 1,
-        tagged['start'] - 1 + #tagged.lines,
-        false,
-        tagged.lines
-      )
-      vim.cmd 'write'
-      vim.notify('struct updated ', vim.lsp.log_levels.DEBUG)
+      vim.api.nvim_buf_set_lines(0, tagged["start"] - 1, tagged["start"] - 1 + #tagged.lines, false, tagged.lines)
+      vim.cmd "write"
+      vim.notify("struct updated ", vim.lsp.log_levels.DEBUG)
     end,
   })
 end
 
 -- e.g {"json,xml", "-transform", "camelcase"}
 tags.add = function(...)
-  local cmd = { '-add-tags' }
+  local cmd = { "-add-tags" }
   local arg = { ... }
   if #arg == 0 then
-    arg = { 'json' }
+    arg = { "json" }
   end
 
   for _, v in ipairs(arg) do
@@ -99,10 +93,10 @@ tags.add = function(...)
 end
 
 tags.rm = function(...)
-  local cmd = { '-remove-tags' }
+  local cmd = { "-remove-tags" }
   local arg = { ... }
   if #arg == 0 then
-    arg = { 'json' }
+    arg = { "json" }
   end
   for _, v in ipairs(arg) do
     table.insert(cmd, v)
@@ -111,7 +105,7 @@ tags.rm = function(...)
 end
 
 tags.clear = function()
-  local cmd = { '-clear-tags' }
+  local cmd = { "-clear-tags" }
   tags.modify(unpack(cmd))
 end
 

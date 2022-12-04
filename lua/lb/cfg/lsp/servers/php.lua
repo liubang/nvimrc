@@ -6,8 +6,8 @@
 -- Last Modified: 2022/08/06 00:25
 --
 --=====================================================================
-local lspconfig = require 'lspconfig'
-local c = require 'lb.cfg.lsp.customs'
+local lspconfig = require "lspconfig"
+local c = require "lb.cfg.lsp.customs"
 local M = {}
 
 M.setup = function()

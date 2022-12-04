@@ -7,5 +7,5 @@
 --
 -- =====================================================================
 
-pcall(require, 'impatient')
-require 'lb'
+pcall(require, "impatient")
+require "lb"

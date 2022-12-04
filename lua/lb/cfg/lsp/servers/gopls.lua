@@ -6,14 +6,14 @@
 -- Last Modified: 2022/08/06 00:23
 --
 --=====================================================================
-local lspconfig = require 'lspconfig'
-local c = require 'lb.cfg.lsp.customs'
+local lspconfig = require "lspconfig"
+local c = require "lb.cfg.lsp.customs"
 
 local setup = function()
   lspconfig.gopls.setup(c.default {
     -- share the gopls instance if there is one already
-    cmd = { 'gopls', '-remote.debug=:0' },
-    filetypes = { 'go', 'gomod', 'gosum', 'gotmpl', 'gohtmltmpl', 'gotexttmpl' },
+    cmd = { "gopls", "-remote.debug=:0" },
+    filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
     message_level = vim.lsp.protocol.MessageType.Error,
     flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
     settings = {
@@ -78,8 +78,8 @@ local setup = function()
           upgrade_dependency = true,
         },
         directoryFilters = {
-          '-**/node_modules',
-          '-/tmp',
+          "-**/node_modules",
+          "-/tmp",
         },
         usePlaceholders = true,
         verboseOutput = false, -- useful for debugging when true.
@@ -89,15 +89,15 @@ local setup = function()
         staticcheck = true,
         gofumpt = true,
         linksInHover = true,
-        buildFlags = { '-tags=integration,e2e' },
+        buildFlags = { "-tags=integration,e2e" },
       },
     },
   })
 end
 
 local org_imports = function(wait_ms)
-  local codeaction = require('lb.lsp.lsp').codeaction
-  codeaction('gopls', '', 'source.organizeImports', wait_ms)
+  local codeaction = require("lb.lsp.lsp").codeaction
+  codeaction("gopls", "", "source.organizeImports", wait_ms)
   vim.lsp.buf.format { async = false, timeout_ms = wait_ms }
 end
 

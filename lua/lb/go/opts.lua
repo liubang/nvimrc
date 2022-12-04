@@ -11,7 +11,7 @@ local M = {}
 
 local function convert_short2long(opts)
   local ret = {}
-  for short_opt, accept_arg in opts:gmatch '(%w)(:?)' do
+  for short_opt, accept_arg in opts:gmatch "(%w)(:?)" do
     ret[short_opt] = #accept_arg
   end
   return ret
@@ -25,7 +25,7 @@ local function canonize(options, opt)
   if not options[opt] then
     err_unknown_opt(opt)
   end
-  while type(options[opt]) == 'string' do
+  while type(options[opt]) == "string" do
     opt = options[opt]
     if not options[opt] then
       err_unknown_opt(opt)
@@ -48,18 +48,18 @@ M.get_ordered_opts = function(arg, sh_opts, long_opts)
   local unparsed = {}
   while i <= #arg do
     local a = arg[i]
-    if a == '--' then
+    if a == "--" then
       i = i + 1
       break
-    elseif a == '-' then
+    elseif a == "-" then
       break
-    elseif a:sub(1, 2) == '--' then
-      local pos = a:find('=', 1, true)
+    elseif a:sub(1, 2) == "--" then
+      local pos = a:find("=", 1, true)
       if pos then
         local opt = a:sub(3, pos - 1)
         opt = canonize(options, opt)
         if options[opt] == 0 then
-          vim.notify('Bad usage of option `' .. a, vim.lsp.log_levels.ERROR)
+          vim.notify("Bad usage of option `" .. a, vim.lsp.log_levels.ERROR)
         end
         optarg[count] = a:sub(pos + 1)
         opts[count] = opt
@@ -70,7 +70,7 @@ M.get_ordered_opts = function(arg, sh_opts, long_opts)
           opts[count] = opt
         else
           if i == #arg then
-            vim.notify('Missed value for option `' .. a, vim.lsp.log_levels.ERROR)
+            vim.notify("Missed value for option `" .. a, vim.lsp.log_levels.ERROR)
             return
           end
 
@@ -80,7 +80,7 @@ M.get_ordered_opts = function(arg, sh_opts, long_opts)
         end
       end
       count = count + 1
-    elseif a:sub(1, 1) == '-' then
+    elseif a:sub(1, 1) == "-" then
       for j = 2, a:len() do
         local opt = canonize(options, a:sub(j, j))
         if options[opt] == 0 then
@@ -88,7 +88,7 @@ M.get_ordered_opts = function(arg, sh_opts, long_opts)
           count = count + 1
         elseif a:len() == j then
           if i == #arg then
-            vim.notify('Missed value for option `-' .. opt, vim.lsp.log_levels.ERROR)
+            vim.notify("Missed value for option `-" .. opt, vim.lsp.log_levels.ERROR)
           end
           optarg[count] = arg[i + 1]
           opts[count] = opt

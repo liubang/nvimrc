@@ -7,23 +7,23 @@
 --
 --=====================================================================
 
-require('bufferline').setup {
+require("bufferline").setup {
   options = {
-    view = 'multiwindow',
-    mode = 'buffers',
-    numbers = 'ordinal',
-    close_command = 'Bdelete',
-    right_mouse_command = 'Bdelete',
+    view = "multiwindow",
+    mode = "buffers",
+    numbers = "ordinal",
+    close_command = "Bdelete",
+    right_mouse_command = "Bdelete",
     middle_mouse_command = nil,
     indicator = {
-      icon = '▎',
-      style = 'icon',
+      icon = "▎",
+      style = "icon",
     },
-    buffer_close_icon = '',
-    modified_icon = '●',
-    close_icon = '',
-    left_trunc_marker = '',
-    right_trunc_marker = '',
+    buffer_close_icon = "",
+    modified_icon = "●",
+    close_icon = "",
+    left_trunc_marker = "",
+    right_trunc_marker = "",
     max_name_length = 15,
     max_prefix_length = 14,
     tab_size = 15,
@@ -36,9 +36,9 @@ require('bufferline').setup {
     show_close_icon = false,
     show_tab_indicators = false,
     persist_buffer_sort = true,
-    separator_style = 'thin',
+    separator_style = "thin",
     enforce_regular_tabs = true,
     always_show_bufferline = true,
-    sort_by = 'insert_at_end',
+    sort_by = "insert_at_end",
   },
 }

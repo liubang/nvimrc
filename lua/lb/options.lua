@@ -166,7 +166,7 @@ end
 -- }}}
 
 -- stylua: ignore end
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 -- if os_name == 'Darwin' then
 --   vim.g.clipboard = {
 --     copy = {

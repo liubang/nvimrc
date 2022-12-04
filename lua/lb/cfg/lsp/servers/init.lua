@@ -7,33 +7,33 @@
 --
 --=====================================================================
 
-local lspconfig = require 'lspconfig'
-local c = require 'lb.cfg.lsp.customs'
+local lspconfig = require "lspconfig"
+local c = require "lb.cfg.lsp.customs"
 
 for _, server in ipairs {
-  'php',
-  'jsonls',
-  'yamlls',
-  'clangd',
-  'gopls',
-  'rust',
-  'sumneko_lua',
-  'null-ls',
+  "php",
+  "jsonls",
+  "yamlls",
+  "clangd",
+  "gopls",
+  "rust",
+  "sumneko_lua",
+  "null-ls",
 } do
-  require('lb.cfg.lsp.servers.' .. server).setup()
+  require("lb.cfg.lsp.servers." .. server).setup()
 end
 
 -- some others use default config
 for _, server in ipairs {
-  'html',
-  'cssls',
-  'tsserver',
-  'pyright',
-  'eslint',
-  'bashls',
-  'cmake',
-  'texlab',
-  'vimls',
+  "html",
+  "cssls",
+  "tsserver",
+  "pyright",
+  "eslint",
+  "bashls",
+  "cmake",
+  "texlab",
+  "vimls",
 } do
   lspconfig[server].setup(c.default())
 end

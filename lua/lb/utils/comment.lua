@@ -40,11 +40,11 @@ local header_mappings = {
 -- stylua: ignore end
 
 local comment_prefix = function()
-  local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   if prefix_mappings[filetype] ~= nil then
     return prefix_mappings[filetype]
   end
-  return '#'
+  return "#"
 end
 
 local comment_line = function(c, r)
@@ -57,10 +57,10 @@ end
 
 local copy_right = function(author)
   local c = comment_prefix()
-  local complete = comment_line('=', 71)
-  local filename = vim.fn.expand '%:t'
-  local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
-  local t = os.date '%Y/%m/%d %H:%M'
+  local complete = comment_line("=", 71)
+  local filename = vim.fn.expand "%:t"
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local t = os.date "%Y/%m/%d %H:%M"
   local text = {}
   if header_mappings[filetype] ~= nil then
     for _, v in pairs(header_mappings[filetype]) do
@@ -69,10 +69,10 @@ local copy_right = function(author)
   end
   table.insert(text, complete)
   table.insert(text, c)
-  table.insert(text, c .. ' ' .. filename .. ' -')
+  table.insert(text, c .. " " .. filename .. " -")
   table.insert(text, c)
-  table.insert(text, c .. ' Created by ' .. author .. ' on ' .. t)
-  table.insert(text, c .. ' Last Modified: ' .. t)
+  table.insert(text, c .. " Created by " .. author .. " on " .. t)
+  table.insert(text, c .. " Last Modified: " .. t)
   table.insert(text, c)
   table.insert(text, complete)
   vim.fn.append(0, text)
@@ -80,15 +80,9 @@ end
 
 local copy_right_update = function()
   local pos = vim.api.nvim_win_get_cursor(0)
-  local n = math.min(10, vim.fn.line '$')
-  local timestamp = os.date '%Y/%m/%d %H:%M'
-  vim.cmd(
-    'keepjumps silent execute \'1,'
-      .. n
-      .. 's%^.*Last Modified:\\s*\\zs.*\\ze.*$%'
-      .. timestamp
-      .. '%e\''
-  )
+  local n = math.min(10, vim.fn.line "$")
+  local timestamp = os.date "%Y/%m/%d %H:%M"
+  vim.cmd("keepjumps silent execute '1," .. n .. "s%^.*Last Modified:\\s*\\zs.*\\ze.*$%" .. timestamp .. "%e'")
   vim.api.nvim_win_set_cursor(0, pos)
   -- clear last search pattern register
   vim.cmd [[let @/=""]]

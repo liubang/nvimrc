@@ -7,16 +7,16 @@
 --
 --=====================================================================
 
-require('packer').loader 'schemastore.nvim'
+require("packer").loader "schemastore.nvim"
 
-local c = require 'lb.cfg.lsp.customs'
-local lspconfig = require 'lspconfig'
+local c = require "lb.cfg.lsp.customs"
+local lspconfig = require "lspconfig"
 
 local setup = function()
   lspconfig.jsonls.setup(c.default {
     settings = {
       json = {
-        schemas = require('schemastore').json.schemas(),
+        schemas = require("schemastore").json.schemas(),
         validate = { enable = true },
       },
     },

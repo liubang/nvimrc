@@ -7,9 +7,9 @@
 --
 --=====================================================================
 
-require('packer').loader 'null-ls.nvim'
+require("packer").loader "null-ls.nvim"
 
-local null_ls = require 'null-ls'
+local null_ls = require "null-ls"
 local b = null_ls.builtins
 local M = {}
 
@@ -24,7 +24,7 @@ local sources = {
   b.formatting.autopep8,
   b.formatting.prettier,
   b.formatting.shfmt.with {
-    extra_args = { '-i', '2', '-ci' },
+    extra_args = { "-i", "2", "-ci" },
   },
   b.diagnostics.buf.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
@@ -43,7 +43,7 @@ local sources = {
 M.setup = function()
   null_ls.setup {
     debug = true,
-    on_attach = require('lb.cfg.lsp.customs').default({}).on_attach,
+    on_attach = require("lb.cfg.lsp.customs").default({}).on_attach,
     sources = sources,
   }
 end

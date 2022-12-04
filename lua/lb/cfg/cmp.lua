@@ -7,16 +7,16 @@
 --
 -- =====================================================================
 
-local ok, lspkind = pcall(require, 'lspkind')
+local ok, lspkind = pcall(require, "lspkind")
 if not ok then
-  require('packer').loader 'lspkind.nvim'
-  lspkind = require 'lspkind'
+  require("packer").loader "lspkind.nvim"
+  lspkind = require "lspkind"
 end
 
-local cmp = require 'cmp'
-local compare = require 'cmp.config.compare'
+local cmp = require "cmp"
+local compare = require "cmp.config.compare"
 
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff.
 -- vim.opt.shortmess:append 'c'
 
@@ -26,8 +26,7 @@ end
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0
-    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
 cmp.setup {
@@ -38,25 +37,25 @@ cmp.setup {
   window = {
     documentation = false,
     completion = cmp.config.window.bordered {
-      border = 'single',
-      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      border = "single",
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
     },
   },
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   preselect = cmp.PreselectMode.None,
   sources = {
-    { name = 'nvim_lua', priority = 80 },
-    { name = 'nvim_lsp', priority = 80 },
-    { name = 'luasnip', priority = 10 },
-    { name = 'path', priority = 40, max_item_count = 4 },
+    { name = "nvim_lua", priority = 80 },
+    { name = "nvim_lsp", priority = 80 },
+    { name = "luasnip", priority = 10 },
+    { name = "path", priority = 40, max_item_count = 4 },
     {
-      name = 'buffer',
+      name = "buffer",
       priority = 5,
       keywork_length = 3,
       max_item_count = 5,
@@ -66,19 +65,19 @@ cmp.setup {
         end,
       },
     },
-    { name = 'calc' },
-    { name = 'crates' },
+    { name = "calc" },
+    { name = "crates" },
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       local kind = lspkind.cmp_format {
-        mode = 'symbol_text',
+        mode = "symbol_text",
         maxwidth = 80,
       }(entry, vim_item)
-      local strings = vim.split(kind.kind, '%s', { trimempty = true })
-      kind.kind = ' ' .. strings[1] .. ' '
-      kind.menu = '    (' .. strings[2] .. ')'
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = "    (" .. strings[2] .. ")"
       return kind
     end,
   },
@@ -94,7 +93,7 @@ cmp.setup {
       compare.recently_used,
       compare.locality,
       function(...)
-        return require('cmp_buffer'):compare_locality(...)
+        return require("cmp_buffer"):compare_locality(...)
       end,
       compare.kind,
       compare.sort_text,
@@ -106,53 +105,53 @@ cmp.setup {
     ghost_text = true,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif require('luasnip').expand_or_jumpable() then
-        vim.fn.feedkeys(t '<Plug>luasnip-expand-or-jump', '')
+      elseif require("luasnip").expand_or_jumpable() then
+        vim.fn.feedkeys(t "<Plug>luasnip-expand-or-jump", "")
       elseif has_words_before() then
         cmp.complete()
       else
         fallback()
       end
     end, {
-      'i',
-      's',
+      "i",
+      "s",
     }),
 
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif require('luasnip').jumpable(-1) then
-        vim.fn.feedkeys(t '<Plug>luasnip-jump-prev', '')
+      elseif require("luasnip").jumpable(-1) then
+        vim.fn.feedkeys(t "<Plug>luasnip-jump-prev", "")
       else
         fallback()
       end
     end, {
-      'i',
-      's',
+      "i",
+      "s",
     }),
   },
 }
 
-cmp.setup.cmdline({ '/', '?' }, {
+cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer', keyword_length = 2 },
+    { name = "buffer", keyword_length = 2 },
   },
 })
 
-cmp.setup.cmdline(':', {
+cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path' },
+    { name = "path" },
   }, {
-    { name = 'cmdline', keyword_length = 2 },
+    { name = "cmdline", keyword_length = 2 },
   }),
 })
 

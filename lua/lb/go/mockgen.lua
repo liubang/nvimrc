@@ -7,19 +7,19 @@
 --
 --=====================================================================
 
-local mockgen = 'mockgen'
-local tsgo = require 'lb.ts.go'
-local util = require 'lb.utils.util'
-local goutils = require 'lb.go.utils'
-local runner = require 'lb.go.runner'
-local package = require 'lb.go.package'
-local gopts = require 'lb.go.opts'
+local mockgen = "mockgen"
+local tsgo = require "lb.ts.go"
+local util = require "lb.utils.util"
+local goutils = require "lb.go.utils"
+local runner = require "lb.go.runner"
+local package = require "lb.go.package"
+local gopts = require "lb.go.opts"
 
 -- use ts to get name
 local function get_interface_name()
   local name = tsgo.get_interface_node_at_pos()
   if name == nil then
-    return ''
+    return ""
   end
   local node_name = name.name
   local dim = name.dim.e
@@ -30,13 +30,13 @@ end
 
 local run = function(opts)
   local long_opts = {
-    package = 'p',
-    source = 's',
-    destination = 'd',
-    interface = 'i',
+    package = "p",
+    source = "s",
+    destination = "d",
+    interface = "i",
   }
 
-  local short_opts = 'p:d:i:s'
+  local short_opts = "p:d:i:s"
   local args = opts.fargs or {}
 
   local optarg, _, _ = gopts.get_opts(args, short_opts, long_opts)
@@ -46,42 +46,42 @@ local run = function(opts)
 
   assert(optarg ~= nil)
 
-  if optarg['i'] ~= nil and #optarg['i'] > 0 then
-    ifname = optarg['i']
+  if optarg["i"] ~= nil and #optarg["i"] > 0 then
+    ifname = optarg["i"]
   end
 
-  if optarg['s'] ~= nil then
-    ifname = ''
+  if optarg["s"] ~= nil then
+    ifname = ""
   end
   local fpath = util.rel_path(true)
-  local sname = vim.fn.expand '%:t'
+  local sname = vim.fn.expand "%:t"
 
-  if fpath ~= '' then
+  if fpath ~= "" then
     fpath = fpath .. sep
   end
 
-  if ifname == '' or ifname == nil then
+  if ifname == "" or ifname == nil then
     -- source mode default
-    table.insert(mockgen_cmd, '-source')
+    table.insert(mockgen_cmd, "-source")
     table.insert(mockgen_cmd, fpath .. sname)
   else
     -- need to get the import path
     local bufnr = vim.api.nvim_get_current_buf()
     local pkg = package.pkg_from_path(nil, bufnr)
-    if pkg ~= nil and type(pkg) == 'table' and pkg[1] then
+    if pkg ~= nil and type(pkg) == "table" and pkg[1] then
       table.insert(mockgen_cmd, pkg[1])
     else
-      table.insert(mockgen_cmd, '.')
+      table.insert(mockgen_cmd, ".")
     end
     table.insert(mockgen_cmd, ifname)
   end
 
-  local pkgname = optarg['p'] or 'mocks'
-  table.insert(mockgen_cmd, '-package')
+  local pkgname = optarg["p"] or "mocks"
+  table.insert(mockgen_cmd, "-package")
   table.insert(mockgen_cmd, pkgname)
 
-  local dname = fpath .. pkgname .. sep .. 'mock_' .. sname
-  table.insert(mockgen_cmd, '-destination')
+  local dname = fpath .. pkgname .. sep .. "mock_" .. sname
+  table.insert(mockgen_cmd, "-destination")
   table.insert(mockgen_cmd, dname)
 
   local mock_opts = {
@@ -89,16 +89,13 @@ local run = function(opts)
       if code ~= 0 or signal ~= 0 then
         return
       end
-      data = vim.split(data, '\n')
+      data = vim.split(data, "\n")
       data = goutils.handle_job_data(data)
       if not data then
         return
       end
       vim.schedule(function()
-        vim.notify(
-          vim.fn.join(mockgen_cmd, ' ') .. ' finished ' .. vim.fn.join(data, ' '),
-          vim.log.levels.INFO
-        )
+        vim.notify(vim.fn.join(mockgen_cmd, " ") .. " finished " .. vim.fn.join(data, " "), vim.log.levels.INFO)
       end)
     end,
   }

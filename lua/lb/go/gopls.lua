@@ -11,50 +11,50 @@ local M = {}
 local cmds = {}
 
 local gopls_cmds = {
-  'gopls.add_dependency',
-  'gopls.add_import',
-  'gopls.apply_fix',
-  'gopls.check_upgrades',
-  'gopls.gc_details',
-  'gopls.generate',
-  'gopls.generate_gopls_mod',
-  'gopls.go_get_package',
-  'gopls.list_known_packages',
-  'gopls.list_imports',
-  'gopls.regenerate_cgo',
-  'gopls.remove_dependency',
-  'gopls.run_tests',
-  'gopls.start_debugging',
-  'gopls.test',
-  'gopls.tidy',
-  'gopls.toggle_gc_details',
-  'gopls.update_go_sum',
-  'gopls.upgrade_dependency',
-  'gopls.vendor',
-  'gopls.workspace_metadata',
+  "gopls.add_dependency",
+  "gopls.add_import",
+  "gopls.apply_fix",
+  "gopls.check_upgrades",
+  "gopls.gc_details",
+  "gopls.generate",
+  "gopls.generate_gopls_mod",
+  "gopls.go_get_package",
+  "gopls.list_known_packages",
+  "gopls.list_imports",
+  "gopls.regenerate_cgo",
+  "gopls.remove_dependency",
+  "gopls.run_tests",
+  "gopls.start_debugging",
+  "gopls.test",
+  "gopls.tidy",
+  "gopls.toggle_gc_details",
+  "gopls.update_go_sum",
+  "gopls.upgrade_dependency",
+  "gopls.vendor",
+  "gopls.workspace_metadata",
 }
 
 local gopls_with_result = {
-  'gopls.gc_details',
-  'gopls.list_known_packages',
-  'gopls.list_imports',
+  "gopls.gc_details",
+  "gopls.list_known_packages",
+  "gopls.list_imports",
 }
 
 for _, value in ipairs(gopls_cmds) do
-  local fname = string.sub(value, #'gopls.' + 1)
+  local fname = string.sub(value, #"gopls." + 1)
   cmds[fname] = function(arg)
     local b = vim.api.nvim_get_current_buf()
     local uri = vim.uri_from_bufnr(b)
     local arguments = { { URI = uri } }
 
     local ft = vim.bo.filetype
-    if ft == 'gomod' or ft == 'gosum' then
+    if ft == "gomod" or ft == "gosum" then
       arguments = { { URIs = { uri } } }
     end
 
-    arguments = { vim.tbl_extend('keep', arguments[1], arg or {}) }
+    arguments = { vim.tbl_extend("keep", arguments[1], arg or {}) }
     if vim.tbl_contains(gopls_with_result, value) then
-      local resp = vim.lsp.buf_request_sync(b, 'workspace/executeCommand', {
+      local resp = vim.lsp.buf_request_sync(b, "workspace/executeCommand", {
         command = value,
         arguments = arguments,
       }, 2000)

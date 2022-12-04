@@ -7,10 +7,10 @@
 --
 --=====================================================================
 
-local ts_utils = require 'nvim-treesitter.ts_utils'
-local ts_query = require 'nvim-treesitter.query'
-local parsers = require 'nvim-treesitter.parsers'
-local locals = require 'nvim-treesitter.locals'
+local ts_utils = require "nvim-treesitter.ts_utils"
+local ts_query = require "nvim-treesitter.query"
+local parsers = require "nvim-treesitter.parsers"
+local locals = require "nvim-treesitter.locals"
 
 local M = {}
 
@@ -38,25 +38,25 @@ M.get_all_nodes = function(query, lang, bufnr, type_only)
     local sRow, sCol, eRow, eCol
     local declaration_node
     local type_node
-    local type = ''
-    local name = ''
-    local op = ''
+    local type = ""
+    local name = ""
+    local op = ""
     locals.recurse_local_nodes(match, function(_, node, path)
-      local idx = string.find(path, '.[^.]*$') -- find last `.`
+      local idx = string.find(path, ".[^.]*$") -- find last `.`
       op = string.sub(path, idx + 1, #path)
-      local dbg_txt = get_node_text(node, bufnr) or ''
+      local dbg_txt = get_node_text(node, bufnr) or ""
       if #dbg_txt > 100 then
-        dbg_txt = string.sub(dbg_txt, 1, 100) .. '...'
+        dbg_txt = string.sub(dbg_txt, 1, 100) .. "..."
       end
       type = string.sub(path, 1, idx - 1) -- e.g. struct.name, type is struct
-      if type:find 'type' and op == 'type' then -- type_declaration.type
+      if type:find "type" and op == "type" then -- type_declaration.type
         node_type = get_node_text(node, bufnr)
       end
       -- may not handle complex node
-      if op == 'name' then
-        name = get_node_text(node, bufnr) or ''
+      if op == "name" then
+        name = get_node_text(node, bufnr) or ""
         type_node = node
-      elseif op == 'declaration' or op == 'clause' then
+      elseif op == "declaration" or op == "clause" then
         declaration_node = node
         sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(node) }, bufnr)
       else
@@ -141,22 +141,16 @@ M.nodes_at_cursor = function(query, bufnr)
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   row, col = row, col + 1
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
+  local ft = vim.api.nvim_buf_get_option(bufnr, "ft")
   local nodes = M.get_all_nodes(query, ft, bufnr)
   if nodes == nil then
-    vim.notify(
-      'Unable to find any nodes. place your cursor on a go symbol and try again',
-      vim.log.levels.DEBUG
-    )
+    vim.notify("Unable to find any nodes. place your cursor on a go symbol and try again", vim.log.levels.DEBUG)
     return nil
   end
 
   local nodes_at_cursor = M.sort_nodes(M.intersect_nodes(nodes, row, col))
   if nodes_at_cursor == nil or #nodes_at_cursor == 0 then
-    vim.notify(
-      'Unable to find any nodes at pos. ' .. tostring(row) .. ':' .. tostring(col),
-      vim.log.levels.DEBUG
-    )
+    vim.notify("Unable to find any nodes at pos. " .. tostring(row) .. ":" .. tostring(col), vim.log.levels.DEBUG)
     return nil
   end
 
@@ -165,10 +159,10 @@ end
 
 M.nodes_in_buf = function(query, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
+  local ft = vim.api.nvim_buf_get_option(bufnr, "ft")
   local nodes = M.get_all_nodes(query, ft, bufnr, true)
   if nodes == nil then
-    vim.notify('Unable to find any nodes.', vim.log.levels.ERROR)
+    vim.notify("Unable to find any nodes.", vim.log.levels.ERROR)
     return nil
   end
   return nodes

@@ -24,9 +24,9 @@ M.codeaction = function(clname, action, only, wait_ms)
   if only then
     params.context = { only = { only } }
   end
-  local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   if not result or next(result) == nil then
-    print 'nil result'
+    print "nil result"
     return
   end
   local c = M.client_by_name(clname)
@@ -35,10 +35,10 @@ M.codeaction = function(clname, action, only, wait_ms)
       if r.edit and not vim.tbl_isempty(r.edit) then
         vim.lsp.util.apply_workspace_edit(r.edit, c.offset_encoding)
       end
-      if type(r.command) == 'table' then
-        if type(r.command) == 'table' and r.command.arguments then
+      if type(r.command) == "table" then
+        if type(r.command) == "table" and r.command.arguments then
           for _, arg in pairs(r.command.arguments) do
-            if action == nil or arg['Fix'] == action then
+            if action == nil or arg["Fix"] == action then
               vim.lsp.buf.execute_command(r.command)
               return
             end

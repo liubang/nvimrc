@@ -7,14 +7,14 @@
 --
 --=====================================================================
 
-local ls = require 'luasnip'
+local ls = require "luasnip"
 local s = ls.snippet
 local i = ls.insert_node
-local fmt = require('luasnip.extras.fmt').fmt
+local fmt = require("luasnip.extras.fmt").fmt
 
-ls.add_snippets('rust', {
+ls.add_snippets("rust", {
   s(
-    'main',
+    "main",
     fmt(
       [[
       fn main() {
@@ -25,12 +25,12 @@ ls.add_snippets('rust', {
         i(1, 'println!("hello world")'),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
   ls.s(
-    { trig = 'testmod', name = 'Create a test module' },
+    { trig = "testmod", name = "Create a test module" },
     fmt(
       [[
       #[cfg(test)]

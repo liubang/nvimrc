@@ -6,13 +6,13 @@
 -- Last Modified: 2022/08/06 00:24
 --
 --=====================================================================
-require('packer').loader 'rust-tools.nvim'
+require("packer").loader "rust-tools.nvim"
 
-local c = require 'lb.cfg.lsp.customs'
+local c = require "lb.cfg.lsp.customs"
 local M = {}
 
 M.setup = function()
-  require('rust-tools').setup {
+  require("rust-tools").setup {
     tools = {
       inlay_hints = {
         auto = true,
@@ -26,7 +26,7 @@ M.setup = function()
       standalone = false,
       settings = {
         -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-        ['rust-analyzer'] = {
+        ["rust-analyzer"] = {
           -- enable clippy on save
           -- checkOnSave = {
           --   command = 'clippy',

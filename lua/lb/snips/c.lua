@@ -6,14 +6,14 @@
 -- Last Modified: 2022/11/12 23:11
 --
 --=====================================================================
-local ls = require 'luasnip'
+local ls = require "luasnip"
 local s = ls.snippet
 local i = ls.insert_node
-local fmt = require('luasnip.extras.fmt').fmt
+local fmt = require("luasnip.extras.fmt").fmt
 
-ls.add_snippets('c', {
+ls.add_snippets("c", {
   s(
-    'main',
+    "main",
     fmt(
       [[
       int main(int argc, char *argv[]) {
@@ -22,15 +22,15 @@ ls.add_snippets('c', {
       }
       ]],
       {
-        i(1, '// put your code hare'),
+        i(1, "// put your code hare"),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
   s(
-    'pmain',
+    "pmain",
     fmt(
       [[
       #include <<stdio.h>>
@@ -41,10 +41,10 @@ ls.add_snippets('c', {
       }
       ]],
       {
-        i(1, '// put your code hare'),
+        i(1, "// put your code hare"),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),

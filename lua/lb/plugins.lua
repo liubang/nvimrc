@@ -7,15 +7,15 @@
 --
 -- =====================================================================
 
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim'
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
 
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.cmd.packadd 'packer.nvim'
+vim.cmd.packadd "packer.nvim"
 
 local config = { --{{{
   auto_clean = true,
@@ -27,17 +27,17 @@ local config = { --{{{
     threshold = 1,
   },
   display = {
-    title = ' packer.nvim',
+    title = " packer.nvim",
     non_interactive = false,
     header_lines = 2,
-    working_sym = ' ',
-    moved_sym = ' ',
-    error_sym = '',
-    done_sym = '',
-    removed_sym = '',
+    working_sym = " ",
+    moved_sym = " ",
+    error_sym = "",
+    done_sym = "",
+    removed_sym = "",
     show_all_info = true,
     open_fn = function()
-      return require('packer.util').float { border = 'single' }
+      return require("packer.util").float { border = "single" }
     end,
   },
   git = {
@@ -46,140 +46,140 @@ local config = { --{{{
   },
 } --}}}
 
-require('packer').startup {
+require("packer").startup {
   function(use)
     -- Libraries {{{
     -- have packer manage itself
-    use { 'wbthomason/packer.nvim', event = { 'VimEnter' } }
-    use { 'nvim-lua/plenary.nvim' }
-    use { 'lewis6991/impatient.nvim' }
+    use { "wbthomason/packer.nvim", event = { "VimEnter" } }
+    use { "nvim-lua/plenary.nvim" }
+    use { "lewis6991/impatient.nvim" }
     -- }}}
 
     -- appearance {{{
-    use { 'nvim-tree/nvim-web-devicons', opt = true }
+    use { "nvim-tree/nvim-web-devicons", opt = true }
     use {
-      'sainnhe/gruvbox-material',
+      "sainnhe/gruvbox-material",
       config = function()
-        require 'lb.cfg.theme'
+        require "lb.cfg.theme"
       end,
     }
     use {
-      'goolord/alpha-nvim',
+      "goolord/alpha-nvim",
       config = function()
-        require 'lb.cfg.alpha'
+        require "lb.cfg.alpha"
       end,
-      event = { 'BufWinEnter' },
+      event = { "BufWinEnter" },
     }
 
     use {
-      'rcarriga/nvim-notify',
+      "rcarriga/nvim-notify",
       config = function()
-        require 'lb.cfg.notify'
+        require "lb.cfg.notify"
       end,
-      event = { 'User LoadTicker2' },
+      event = { "User LoadTicker2" },
     }
     use {
-      'akinsho/bufferline.nvim',
-      tag = 'v3.*',
+      "akinsho/bufferline.nvim",
+      tag = "v3.*",
       config = function()
-        require 'lb.cfg.bufferline'
+        require "lb.cfg.bufferline"
       end,
-      event = { 'UIEnter' },
+      event = { "UIEnter" },
     }
     use {
-      'nvim-lualine/lualine.nvim',
+      "nvim-lualine/lualine.nvim",
       requires = {
-        'nvim-tree/nvim-web-devicons',
-        'SmiteshP/nvim-navic',
+        "nvim-tree/nvim-web-devicons",
+        "SmiteshP/nvim-navic",
       },
       config = function()
-        require 'lb.cfg.lualine'
+        require "lb.cfg.lualine"
       end,
-      event = { 'UIEnter' },
+      event = { "UIEnter" },
     }
     use {
-      'nvim-tree/nvim-tree.lua',
-      requires = { 'nvim-tree/nvim-web-devicons' },
+      "nvim-tree/nvim-tree.lua",
+      requires = { "nvim-tree/nvim-web-devicons" },
       config = function()
-        require 'lb.cfg.nvim-tree'
+        require "lb.cfg.nvim-tree"
       end,
       -- keys = { '<Leader>ft' },
-      cmd = { 'NvimTreeOpen', 'NvimTreeToggle', 'NvimTreeFindFile' },
+      cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFile" },
     }
     -- }}}
 
     -- tools {{{
     use {
-      'rainbowhxch/accelerated-jk.nvim',
-      keys = { '<Plug>(accelerated_jk_gj)', '<Plug>(accelerated_jk_gk)' },
+      "rainbowhxch/accelerated-jk.nvim",
+      keys = { "<Plug>(accelerated_jk_gj)", "<Plug>(accelerated_jk_gk)" },
     }
     use {
-      'ibhagwan/smartyank.nvim',
+      "ibhagwan/smartyank.nvim",
       config = function()
-        require 'lb.cfg.smartyank'
+        require "lb.cfg.smartyank"
       end,
-      event = { 'User LoadTicker4' },
+      event = { "User LoadTicker4" },
     }
     use {
-      'mrjones2014/smart-splits.nvim',
+      "mrjones2014/smart-splits.nvim",
       config = function()
-        require 'lb.cfg.smartsplit'
+        require "lb.cfg.smartsplit"
       end,
-      event = { 'User LoadTicker4' },
+      event = { "User LoadTicker4" },
     }
     use {
-      'jbyuki/venn.nvim',
+      "jbyuki/venn.nvim",
       config = function()
-        require 'lb.cfg.venn'
+        require "lb.cfg.venn"
       end,
-      keys = { '<Leader>v' },
+      keys = { "<Leader>v" },
     }
     -- https://github.com/ArthurSonzogni/Diagon
     use {
-      'willchao612/vim-diagon',
-      cmd = { 'Diagon' },
+      "willchao612/vim-diagon",
+      cmd = { "Diagon" },
     }
     use {
-      'phaazon/hop.nvim',
-      branch = 'v2',
+      "phaazon/hop.nvim",
+      branch = "v2",
       config = function()
-        require('hop').setup {}
+        require("hop").setup {}
       end,
-      event = { 'User LoadTicker3' },
+      event = { "User LoadTicker3" },
     }
     use {
-      'voldikss/vim-floaterm',
+      "voldikss/vim-floaterm",
       config = function()
-        require 'lb.cfg.floaterm'
+        require "lb.cfg.floaterm"
       end,
-      cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext' },
+      cmd = { "FloatermNew", "FloatermToggle", "FloatermPrev", "FloatermNext" },
     }
     use {
-      'skywind3000/asynctasks.vim',
+      "skywind3000/asynctasks.vim",
       requires = {
-        { 'skywind3000/asyncrun.vim', opt = true },
-        { 'skywind3000/asyncrun.extra', opt = true },
-        { 'voldikss/vim-floaterm' },
+        { "skywind3000/asyncrun.vim", opt = true },
+        { "skywind3000/asyncrun.extra", opt = true },
+        { "voldikss/vim-floaterm" },
       },
       config = function()
-        require 'lb.cfg.asynctasks'
+        require "lb.cfg.asynctasks"
       end,
-      cmd = { 'AsyncTask', 'AsyncRun' },
+      cmd = { "AsyncTask", "AsyncRun" },
     }
     use {
-      'lewis6991/gitsigns.nvim',
-      requires = 'plenary.nvim',
+      "lewis6991/gitsigns.nvim",
+      requires = "plenary.nvim",
       config = function()
-        require 'lb.cfg.git'
+        require "lb.cfg.git"
       end,
-      event = { 'User LoadTicker3' },
+      event = { "User LoadTicker3" },
     }
     use {
-      'echasnovski/mini.nvim',
+      "echasnovski/mini.nvim",
       config = function()
-        require 'lb.cfg.mini-nvim'
+        require "lb.cfg.mini-nvim"
       end,
-      event = { 'User LoadTicker3' },
+      event = { "User LoadTicker3" },
     }
     -- MixedCase/PascalCase:   gsm/gsp
     -- camelCase:              gsc
@@ -191,31 +191,31 @@ require('packer').startup {
     -- dash-case/kebab-case:   gs-/gsk
     -- Title-Dash/Title-Kebab: gsK
     -- dot.case:               gs.
-    use { 'arthurxavierx/vim-caser', keys = { 'gs' } }
+    use { "arthurxavierx/vim-caser", keys = { "gs" } }
     use {
-      'nvim-telescope/telescope.nvim',
+      "nvim-telescope/telescope.nvim",
       -- branch = '0.1.x',
       requires = {
         {
-          'nvim-telescope/telescope-fzf-native.nvim',
+          "nvim-telescope/telescope-fzf-native.nvim",
           run = [[
                   cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release \
                      && cmake --build build --config Release \
                      && cmake --install build --prefix build
                 ]],
-          after = { 'telescope.nvim' },
+          after = { "telescope.nvim" },
         },
         {
-          'nvim-telescope/telescope-ui-select.nvim',
-          after = { 'telescope.nvim' },
+          "nvim-telescope/telescope-ui-select.nvim",
+          after = { "telescope.nvim" },
         },
       },
-      module = 'telescope', -- 不能删
+      module = "telescope", -- 不能删
       config = function()
-        require 'lb.cfg.telescope'
+        require "lb.cfg.telescope"
       end,
-      cmd = 'Telescope',
-      event = { 'User LoadTicker2' },
+      cmd = "Telescope",
+      event = { "User LoadTicker2" },
     }
     -- use {
     --   'simrat39/symbols-outline.nvim',
@@ -226,182 +226,182 @@ require('packer').startup {
     --   cmd = { 'SymbolsOutline' },
     -- }
     use {
-      'stevearc/aerial.nvim',
+      "stevearc/aerial.nvim",
       config = function()
-        require 'lb.cfg.aerial'
+        require "lb.cfg.aerial"
       end,
-      cmd = { 'AerialToggle' },
+      cmd = { "AerialToggle" },
     }
     use {
-      'dstein64/vim-startuptime',
-      cmd = { 'StartupTime' },
+      "dstein64/vim-startuptime",
+      cmd = { "StartupTime" },
     }
     -- }}}
 
     -- treesitter {{{
     use {
-      'nvim-treesitter/nvim-treesitter',
+      "nvim-treesitter/nvim-treesitter",
       requires = {
         {
-          'nvim-treesitter/nvim-treesitter-textobjects',
-          after = 'nvim-treesitter',
+          "nvim-treesitter/nvim-treesitter-textobjects",
+          after = "nvim-treesitter",
           config = function()
-            require 'lb.cfg.treesitter'
+            require "lb.cfg.treesitter"
           end,
         },
-        { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' },
-        { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' },
+        { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
+        { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
         {
-          'nvim-treesitter/playground',
-          run = ':TSInstall query',
-          cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
+          "nvim-treesitter/playground",
+          run = ":TSInstall query",
+          cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
         },
       },
-      run = ':TSUpdate',
-      event = { 'User LoadTicker1', 'BufReadPost', 'BufNewFile' },
+      run = ":TSUpdate",
+      event = { "User LoadTicker1", "BufReadPost", "BufNewFile" },
     }
 
     use {
-      'numToStr/Comment.nvim',
-      after = { 'nvim-ts-context-commentstring', 'nvim-treesitter' },
+      "numToStr/Comment.nvim",
+      after = { "nvim-ts-context-commentstring", "nvim-treesitter" },
       config = function()
-        require 'lb.cfg.comment'
+        require "lb.cfg.comment"
       end,
     }
     -- }}}
 
     -- lsp {{{
-    use { 'simrat39/rust-tools.nvim', opt = true }
-    use { 'b0o/schemastore.nvim', opt = true }
-    use { 'jose-elias-alvarez/null-ls.nvim', opt = true }
-    use { 'williamboman/mason.nvim', opt = true }
-    use { 'williamboman/mason-lspconfig.nvim', opt = true }
+    use { "simrat39/rust-tools.nvim", opt = true }
+    use { "b0o/schemastore.nvim", opt = true }
+    use { "jose-elias-alvarez/null-ls.nvim", opt = true }
+    use { "williamboman/mason.nvim", opt = true }
+    use { "williamboman/mason-lspconfig.nvim", opt = true }
     use {
-      'neovim/nvim-lspconfig',
+      "neovim/nvim-lspconfig",
       config = function()
         -- It's important that you set up the plugins in the following order:
         -- 1. mason.nvim
         -- 2. mason-lspconfig.nvim
         -- Setup servers via lspconfig
-        require 'lb.cfg.mason'
-        require 'lb.cfg.lsp'
+        require "lb.cfg.mason"
+        require "lb.cfg.lsp"
       end,
-      event = { 'User LoadTicker2', 'BufReadPost', 'BufNewFile' },
+      event = { "User LoadTicker2", "BufReadPost", "BufNewFile" },
     }
     use {
-      'j-hui/fidget.nvim',
+      "j-hui/fidget.nvim",
       config = function()
-        require 'lb.cfg.fidget'
+        require "lb.cfg.fidget"
       end,
-      after = { 'nvim-lspconfig' },
+      after = { "nvim-lspconfig" },
     }
     use {
-      'SmiteshP/nvim-navic',
+      "SmiteshP/nvim-navic",
       config = function()
-        require 'lb.cfg.nvim-navic'
+        require "lb.cfg.nvim-navic"
       end,
-      event = { 'LspAttach' },
+      event = { "LspAttach" },
     }
     -- }}}
 
     -- completion {{{
     use {
-      'onsails/lspkind.nvim',
+      "onsails/lspkind.nvim",
       opt = true,
       config = function()
-        require 'lb.cfg.lspkind'
+        require "lb.cfg.lspkind"
       end,
     }
 
     use {
-      'hrsh7th/nvim-cmp',
+      "hrsh7th/nvim-cmp",
       requires = {
-        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-calc', after = 'nvim-cmp' },
-        { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+        { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+        { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+        { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+        { "hrsh7th/cmp-path", after = "nvim-cmp" },
+        { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+        { "hrsh7th/cmp-calc", after = "nvim-cmp" },
+        { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
       },
       config = function()
-        require 'lb.cfg.cmp'
+        require "lb.cfg.cmp"
       end,
-      event = { 'User LoadTicker1' },
+      event = { "User LoadTicker1" },
     }
 
     use {
-      'L3MON4D3/LuaSnip',
-      after = { 'nvim-cmp', 'Comment.nvim' },
+      "L3MON4D3/LuaSnip",
+      after = { "nvim-cmp", "Comment.nvim" },
       config = function()
-        require 'lb.cfg.luasnip'
+        require "lb.cfg.luasnip"
       end,
-      event = { 'User LoadTicker2' },
+      event = { "User LoadTicker2" },
     }
 
     use {
-      'windwp/nvim-autopairs',
+      "windwp/nvim-autopairs",
       config = function()
-        require 'lb.cfg.autopairs'
+        require "lb.cfg.autopairs"
       end,
-      after = { 'nvim-cmp' },
-      wants = { 'nvim-cmp' },
+      after = { "nvim-cmp" },
+      wants = { "nvim-cmp" },
     }
 
     use {
-      'saecki/crates.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
+      "saecki/crates.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
       config = function()
-        require 'lb.cfg.crates-nvim'
+        require "lb.cfg.crates-nvim"
       end,
-      event = { 'BufRead Cargo.toml' },
-      after = { 'nvim-cmp' },
-      wants = { 'nvim-cmp' },
+      event = { "BufRead Cargo.toml" },
+      after = { "nvim-cmp" },
+      wants = { "nvim-cmp" },
     }
     -- }}}
 
     -- ft {{{
     local colorizer_ft = {
-      'css',
-      'scss',
-      'sass',
-      'html',
-      'lua',
-      'vim',
-      'markdown',
-      'javascript',
-      'typescript',
-      'typescriptreact',
-      'javascriptreact',
+      "css",
+      "scss",
+      "sass",
+      "html",
+      "lua",
+      "vim",
+      "markdown",
+      "javascript",
+      "typescript",
+      "typescriptreact",
+      "javascriptreact",
     }
     use {
-      'NvChad/nvim-colorizer.lua',
+      "NvChad/nvim-colorizer.lua",
       ft = colorizer_ft,
       config = function()
-        require('colorizer').setup {
+        require("colorizer").setup {
           filetypes = colorizer_ft,
           user_default_options = {
-            mode = 'virtualtext',
-            virtualtext = '■',
+            mode = "virtualtext",
+            virtualtext = "■",
           },
         }
       end,
     }
 
     use {
-      'iamcco/markdown-preview.nvim',
-      ft = { 'markdown' },
+      "iamcco/markdown-preview.nvim",
+      ft = { "markdown" },
       run = function()
-        vim.fn['mkdp#util#install']()
+        vim.fn["mkdp#util#install"]()
       end,
       setup = function()
-        vim.g.mkdp_filetypes = { 'markdown' }
+        vim.g.mkdp_filetypes = { "markdown" }
       end,
     }
     -- }}}
 
     if is_bootstrap then
-      require('packer').sync()
+      require("packer").sync()
     end
   end,
   config = config,
@@ -409,11 +409,11 @@ require('packer').startup {
 
 -- print messages when bootstrap {{{
 if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
+  print "=================================="
+  print "    Plugins are being installed"
+  print "    Wait until Packer completes,"
+  print "       then restart nvim"
+  print "=================================="
   return
 end
 

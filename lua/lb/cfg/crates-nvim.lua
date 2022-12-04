@@ -1,1 +1,1 @@
-require('crates').setup()
+require("crates").setup()

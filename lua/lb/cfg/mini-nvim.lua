@@ -7,32 +7,32 @@
 --
 --=====================================================================
 
-require('mini.surround').setup {
+require("mini.surround").setup {
   n_lines = 40,
   highlight_duration = 1000,
 
   mappings = {
-    add = 'sa',
-    delete = 'sd',
-    replace = 'sc',
+    add = "sa",
+    delete = "sd",
+    replace = "sc",
   },
 }
 
-require('mini.trailspace').setup {}
+require("mini.trailspace").setup {}
 
-require('mini.cursorword').setup {}
+require("mini.cursorword").setup {}
 
-require('mini.align').setup {
+require("mini.align").setup {
   mappings = {
-    start = 'ga',
-    start_with_preview = 'gA',
+    start = "ga",
+    start_with_preview = "gA",
   },
 
   -- Default options controlling alignment process
   options = {
-    split_pattern = '',
-    justify_side = 'left',
-    merge_delimiter = '',
+    split_pattern = "",
+    justify_side = "left",
+    merge_delimiter = "",
   },
 
   -- Default steps performing alignment (if `nil`, default is used)

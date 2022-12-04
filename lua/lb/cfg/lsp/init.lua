@@ -7,6 +7,6 @@
 --
 -- =====================================================================
 
-require 'lb.cfg.lsp.handlers'
-require 'lb.cfg.lsp.servers'
-require 'lb.cfg.lsp.autocmd'
+require "lb.cfg.lsp.handlers"
+require "lb.cfg.lsp.servers"
+require "lb.cfg.lsp.autocmd"

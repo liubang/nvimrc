@@ -7,13 +7,13 @@
 --
 --=====================================================================
 
-local c = require 'lb.cfg.lsp.customs'
-local lspconfig = require 'lspconfig'
-local Job = require 'plenary.job'
+local c = require "lb.cfg.lsp.customs"
+local lspconfig = require "lspconfig"
+local Job = require "plenary.job"
 
 local get_default_driver = function()
-  local gcc = Job:new { command = 'which', args = { 'g++' } }
-  local llvm = Job:new { command = 'which', args = { 'clang++' } }
+  local gcc = Job:new { command = "which", args = { "g++" } }
+  local llvm = Job:new { command = "which", args = { "clang++" } }
   local _, result = pcall(function()
     local gcct = gcc:sync()
     local llvmt = llvm:sync()
@@ -31,18 +31,18 @@ end
 local setup = function()
   lspconfig.clangd.setup(c.default {
     cmd = {
-      'clangd',
-      '--background-index',
-      '-j=4',
-      '--suggest-missing-includes',
-      '--function-arg-placeholders',
-      '--clang-tidy',
-      '--header-insertion=never',
-      '--completion-style=detailed',
-      '--query-driver=' .. get_default_driver(),
-      '--offset-encoding=utf-32',
-      '--enable-config',
-      '--fallback-style=google',
+      "clangd",
+      "--background-index",
+      "-j=4",
+      "--suggest-missing-includes",
+      "--function-arg-placeholders",
+      "--clang-tidy",
+      "--header-insertion=never",
+      "--completion-style=detailed",
+      "--query-driver=" .. get_default_driver(),
+      "--offset-encoding=utf-32",
+      "--enable-config",
+      "--fallback-style=google",
     },
     init_options = {
       clangdFileStatus = true,

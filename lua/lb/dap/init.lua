@@ -7,5 +7,5 @@
 --
 --=====================================================================
 
-require 'lb.dap.config'
-require 'lb.dap.dap-ui'
+require "lb.dap.config"
+require "lb.dap.dap-ui"

@@ -18,7 +18,7 @@ M.extendedClientCapabilities = {
   generateConstructorsPromptSupport = true,
   generateDelegateMethodsPromptSupport = true,
   moveRefactoringSupport = true,
-  inferSelectionSupport = { 'extractMethod', 'extractVariable', 'extractConstant' },
+  inferSelectionSupport = { "extractMethod", "extractVariable", "extractConstant" },
 }
 
 return M

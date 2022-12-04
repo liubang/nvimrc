@@ -6,7 +6,7 @@
 -- Last Modified: 2022/12/04 03:40
 --
 --=====================================================================
-local navic = require 'nvim-navic'
+local navic = require "nvim-navic"
 
 -- stylua: ignore start
 

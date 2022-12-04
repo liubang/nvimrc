@@ -7,11 +7,11 @@
 --
 --=====================================================================
 
-local util = require 'lb.utils.util'
+local util = require "lb.utils.util"
 local M = {}
 
 M.pkg_from_path = function(pkg, bufnr)
-  local cmd = { 'go', 'list' }
+  local cmd = { "go", "list" }
   if pkg ~= nil then
     table.insert(cmd, pkg)
   end

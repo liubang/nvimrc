@@ -7,21 +7,21 @@
 --
 --=====================================================================
 
-local nodes = require 'lb.ts.nodes'
+local nodes = require "lb.ts.nodes"
 
 local M = {
-  query_struct = '(type_spec name:(type_identifier) @definition.struct type: (struct_type))',
-  query_package = '(package_clause (package_identifier)@package.name)@package.clause',
-  query_struct_id = '(type_spec name:(type_identifier) @definition.struct  (struct_type))',
-  query_em_struct_id = '(field_declaration name:(field_identifier) @definition.struct (struct_type))',
+  query_struct = "(type_spec name:(type_identifier) @definition.struct type: (struct_type))",
+  query_package = "(package_clause (package_identifier)@package.name)@package.clause",
+  query_struct_id = "(type_spec name:(type_identifier) @definition.struct  (struct_type))",
+  query_em_struct_id = "(field_declaration name:(field_identifier) @definition.struct (struct_type))",
   query_struct_block = [[((type_declaration (type_spec name:(type_identifier) @struct.name type: (struct_type)))@struct.declaration)]],
   query_type_declaration = [[((type_declaration (type_spec name:(type_identifier)@type_decl.name type:(struct_type)@type_decl.type))@type_decl.declaration)]],
   query_em_struct_block = [[(field_declaration name:(field_identifier)@struct.name type: (struct_type)) @struct.declaration]],
   query_struct_block_from_id = [[(((type_spec name:(type_identifier) type: (struct_type)))@block.struct_from_id)]],
   query_interface_id = [[((type_declaration (type_spec name:(type_identifier) @interface.name type:(interface_type)))@interface.declaration)]],
   query_interface_method = [[((method_spec name: (field_identifier)@method.name)@interface.method.declaration)]],
-  query_func = '((function_declaration name: (identifier)@function.name) @function.declaration)',
-  query_method = '(method_declaration receiver: (parameter_list (parameter_declaration name:(identifier)@method.receiver.name type:(type_identifier)@method.receiver.type)) name:(field_identifier)@method.name)@method.declaration',
+  query_func = "((function_declaration name: (identifier)@function.name) @function.declaration)",
+  query_method = "(method_declaration receiver: (parameter_list (parameter_declaration name:(identifier)@method.receiver.name type:(type_identifier)@method.receiver.type)) name:(field_identifier)@method.name)@method.declaration",
   query_method_name = [[((method_declaration
      receiver: (parameter_list)@method.receiver
      name: (field_identifier)@method.name
@@ -105,11 +105,11 @@ local M = {
 }
 
 M.get_struct_node_at_pos = function(bufnr)
-  local query = M.query_struct_block .. ' ' .. M.query_em_struct_block
+  local query = M.query_struct_block .. " " .. M.query_em_struct_block
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
-    print 'struct not found'
+    print "struct not found"
   else
     return ns[#ns]
   end
@@ -120,7 +120,7 @@ M.get_type_node_at_pos = function(bufnr)
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
-    print 'type not found'
+    print "type not found"
   else
     return ns[#ns]
   end
@@ -131,14 +131,14 @@ M.get_interface_node_at_pos = function(bufnr)
   local bufn = bufnr or vim.api.nvim_get_current_buf()
   local ns = nodes.nodes_at_cursor(query, bufn)
   if ns == nil then
-    print 'interface not found'
+    print "interface not found"
   else
     return ns[#ns]
   end
 end
 
 M.in_func = function()
-  local ok, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
+  local ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
   if not ok then
     return false
   end
@@ -149,7 +149,7 @@ M.in_func = function()
   local expr = current_node
 
   while expr do
-    if expr:type() == 'function_declaration' or expr:type() == 'method_declaration' then
+    if expr:type() == "function_declaration" or expr:type() == "method_declaration" then
       return true
     end
     expr = expr:parent()

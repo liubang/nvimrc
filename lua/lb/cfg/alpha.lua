@@ -7,11 +7,11 @@
 --
 -- =====================================================================
 
-local ok, _ = pcall(require, 'nvim-web-devicons')
+local ok, _ = pcall(require, "nvim-web-devicons")
 if not ok then
-  require('packer').loader 'nvim-web-devicons'
+  require("packer").loader "nvim-web-devicons"
 end
-local alpha = require 'alpha'
+local alpha = require "alpha"
 
 local h = {
   [[ ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓]],
@@ -27,92 +27,84 @@ local h = {
 }
 
 local header = {
-  type = 'text',
+  type = "text",
   val = h,
   opts = {
-    position = 'center',
-    hl = 'Keyword',
+    position = "center",
+    hl = "Keyword",
   },
 }
 
 local plugins = #vim.tbl_keys(packer_plugins)
 local plugin_count = {
-  type = 'text',
-  val = '└─   ' .. plugins .. ' plugins in total ─┘',
+  type = "text",
+  val = "└─   " .. plugins .. " plugins in total ─┘",
   opts = {
-    position = 'center',
-    hl = 'AlphaHeader',
+    position = "center",
+    hl = "AlphaHeader",
   },
 }
 
-local datetime = os.date '%Y-%m-%d'
+local datetime = os.date "%Y-%m-%d"
 local heading = {
-  type = 'text',
-  val = '┌─   Today is ' .. datetime .. ' ─┐',
+  type = "text",
+  val = "┌─   Today is " .. datetime .. " ─┐",
   opts = {
-    position = 'center',
-    hl = 'AlphaHeader',
+    position = "center",
+    hl = "AlphaHeader",
   },
 }
 
 local footer = {
-  type = 'text',
-  val = '- enjoy -',
+  type = "text",
+  val = "- enjoy -",
   opts = {
-    position = 'center',
-    hl = 'DashboardFooter',
+    position = "center",
+    hl = "DashboardFooter",
   },
 }
 
 local function button(sc, txt, keybind)
-  local sc_ = sc:gsub('%s', ''):gsub('SPC', '<leader>')
+  local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
   local opts = {
-    position = 'center',
+    position = "center",
     text = txt,
     shortcut = sc,
     cursor = 5,
     width = 50,
-    align_shortcut = 'right',
-    hl_shortcut = 'AlphaButtons',
-    hl = '',
+    align_shortcut = "right",
+    hl_shortcut = "AlphaButtons",
+    hl = "",
   }
   if keybind then
-    opts.keymap = { 'n', sc_, keybind, { noremap = true, silent = true } }
+    opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
   end
 
   return {
-    type = 'button',
+    type = "button",
     val = txt,
     on_press = function()
       local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
-      vim.api.nvim_feedkeys(key, 'normal', false)
+      vim.api.nvim_feedkeys(key, "normal", false)
     end,
     opts = opts,
   }
 end
 
 local buttons = {
-  type = 'group',
+  type = "group",
   val = {
+    button("SPC ff", "  > Find file", [[:lua require('telescope.builtin').find_files({previewer = false})<CR>]]),
+    button("SPC bb", "  > List buffers", [[:lua require('telescope.builtin').buffers({previewer = false})<CR>]]),
+    button("SPC ag", "  > Find word", [[:lua require('telescope.builtin').live_grep()<CR>]]),
     button(
-      'SPC ff',
-      '  > Find file',
-      [[:lua require('telescope.builtin').find_files({previewer = false})<CR>]]
-    ),
-    button(
-      'SPC bb',
-      '  > List buffers',
-      [[:lua require('telescope.builtin').buffers({previewer = false})<CR>]]
-    ),
-    button('SPC ag', '  > Find word', [[:lua require('telescope.builtin').live_grep()<CR>]]),
-    button(
-      'SPC wo',
-      '  > List projects',
+      "SPC wo",
+      "  > List projects",
       [[:lua require('telescope').extensions.project.project({change_dir = true})<CR>]]
     ),
-    button('e', '  > New file', ':ene <BAR> startinsert <CR>'),
-    button('q', '  > Quit NVIM', ':qa<CR>'),
+    button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
+    button("q", "  > Quit NVIM", ":qa<CR>"),
   },
   opts = {
     spacing = 1,
@@ -129,14 +121,14 @@ local section = {
 
 local opts = {
   layout = {
-    { type = 'padding', val = 1 },
+    { type = "padding", val = 1 },
     section.header,
-    { type = 'padding', val = 1 },
+    { type = "padding", val = 1 },
     section.heading,
     section.plugin_count,
-    { type = 'padding', val = 1 },
+    { type = "padding", val = 1 },
     section.buttons,
-    { type = 'padding', val = 1 },
+    { type = "padding", val = 1 },
     section.footer,
   },
   opts = {

@@ -6,15 +6,15 @@
 -- Last Modified: 2022/09/03 03:37
 --
 --=====================================================================
-local ls = require 'luasnip'
+local ls = require "luasnip"
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
-local fmt = require('luasnip.extras.fmt').fmt
+local fmt = require("luasnip.extras.fmt").fmt
 
-ls.add_snippets('cpp', {
+ls.add_snippets("cpp", {
   s(
-    'main',
+    "main",
     fmt(
       [[
       int main(int argc, char *argv[]) {
@@ -23,15 +23,15 @@ ls.add_snippets('cpp', {
       }
       ]],
       {
-        i(1, '// put your code hare'),
+        i(1, "// put your code hare"),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
   s(
-    'pmain',
+    "pmain",
     fmt(
       [[
       #include <<iostream>>
@@ -42,23 +42,23 @@ ls.add_snippets('cpp', {
       }
       ]],
       {
-        i(1, '// put your code hare'),
+        i(1, "// put your code hare"),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
-  s('once', {
-    t { '#pragma once', '' },
+  s("once", {
+    t { "#pragma once", "" },
     i(1),
   }),
-  s('ns', {
-    t 'namespace ',
+  s("ns", {
+    t "namespace ",
     i(1),
   }),
   s(
-    'class',
+    "class",
     fmt(
       [[
       class <> {
@@ -70,17 +70,17 @@ ls.add_snippets('cpp', {
       };
       ]],
       {
-        i(1, ''),
-        i(3, ''),
-        i(2, ''),
+        i(1, ""),
+        i(3, ""),
+        i(2, ""),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
   s(
-    'struct',
+    "struct",
     fmt(
       [[
       struct <> {
@@ -88,17 +88,17 @@ ls.add_snippets('cpp', {
       };
       ]],
       {
-        i(1, ''),
-        i(2, ''),
+        i(1, ""),
+        i(2, ""),
       },
       {
-        delimiters = '<>',
+        delimiters = "<>",
       }
     )
   ),
-  s({ trig = 'formatoff' }, {
-    t { '// clang-format off', '' },
-    i(1, { '' }),
-    t { '', '// clang-format on' },
+  s({ trig = "formatoff" }, {
+    t { "// clang-format off", "" },
+    i(1, { "" }),
+    t { "", "// clang-format on" },
   }),
 })

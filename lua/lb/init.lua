@@ -7,16 +7,16 @@
 --
 --=====================================================================
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-require 'lb.plugins'
-require 'lb.options'
-require 'lb.autocmd'
+require "lb.plugins"
+require "lb.options"
+require "lb.autocmd"
 
 vim.schedule(function()
-  require 'lb.commands'
-  require 'lb.mappings'
+  require "lb.commands"
+  require "lb.mappings"
 end)
 
 -- stylua: ignore start

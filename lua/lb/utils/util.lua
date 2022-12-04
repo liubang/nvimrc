@@ -8,18 +8,18 @@
 --=====================================================================
 
 local M = {}
-local is_windows = vim.loop.os_uname().version:match 'Windows'
+local is_windows = vim.loop.os_uname().version:match "Windows"
 
 math.randomseed(os.time())
 
 M.uuid = function() --{{{
-  local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+  local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
   local out
   local function subs(c)
-    local v = (((c == 'x') and math.random(0, 15)) or math.random(8, 11))
-    return string.format('%x', v)
+    local v = (((c == "x") and math.random(0, 15)) or math.random(8, 11))
+    return string.format("%x", v)
   end
-  out = template:gsub('[xy]', subs)
+  out = template:gsub("[xy]", subs)
   return out
 end --}}}
 
@@ -35,7 +35,7 @@ for i = 97, 122 do
 end
 M.random_string = function(length)
   if length == 0 then
-    return ''
+    return ""
   end
   return M.random_string(length - 1) .. charset[math.random(1, #charset)]
 end --}}}
@@ -44,7 +44,7 @@ end --}}}
 -- @param command string
 -- @return table
 M.shell = function(command) --{{{
-  local file = io.popen(command, 'r')
+  local file = io.popen(command, "r")
   local res = {}
   if file ~= nil then
     for line in file:lines() do
@@ -55,25 +55,25 @@ M.shell = function(command) --{{{
 end --}}}
 
 M.chdir = function(dir)
-  if vim.fn.exists '*chdir' then
+  if vim.fn.exists "*chdir" then
     return vim.fn.chdir(dir)
   end
 
   local oldir = vim.fn.getcwd()
-  local cd = 'cd'
-  if vim.fn.exists '*haslocaldir' and vim.fn.haslocaldir() then
-    cd = 'lcd'
-    vim.cmd(cd .. ' ' .. vim.fn.fnameescape(dir))
+  local cd = "cd"
+  if vim.fn.exists "*haslocaldir" and vim.fn.haslocaldir() then
+    cd = "lcd"
+    vim.cmd(cd .. " " .. vim.fn.fnameescape(dir))
     return oldir
   end
 end
 
 M.exec_in_path = function(cmd, bufnr, ...)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  local path = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ':p:h')
+  local path = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":p:h")
   local dir = M.chdir(path)
   local result
-  if type(cmd) == 'function' then
+  if type(cmd) == "function" then
     result = cmd(bufnr, ...)
   else
     result = vim.fn.systemlist(cmd, ...)
@@ -84,22 +84,22 @@ end
 
 M.sep = function()
   if is_windows then
-    return '\\'
+    return "\\"
   end
-  return '/'
+  return "/"
 end
 
 M.rel_path = function(folder)
-  local mod = '%:p'
+  local mod = "%:p"
   if folder then
-    mod = '%:p:h'
+    mod = "%:p:h"
   end
   local fpath = vim.fn.expand(mod)
   local workfolders = vim.lsp.buf.list_workspace_folders()
   if vim.fn.empty(workfolders) == 0 then
-    fpath = '.' .. fpath:sub(#workfolders[1] + 1)
+    fpath = "." .. fpath:sub(#workfolders[1] + 1)
   else
-    fpath = vim.fn.fnamemodify(vim.fn.expand(mod), ':p:.')
+    fpath = vim.fn.fnamemodify(vim.fn.expand(mod), ":p:.")
   end
   if fpath:sub(#fpath) == M.sep() then
     fpath = fpath:sub(1, #fpath - 1)
@@ -108,10 +108,10 @@ M.rel_path = function(folder)
 end
 
 M.trim_whitespace = function()
-  if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == 'diff' then
+  if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == "diff" then
     return
   end
-  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, 'DISABLE_TRIM_WHITESPACES')
+  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, "DISABLE_TRIM_WHITESPACES")
   if ok and val then
     return
   end
@@ -123,14 +123,14 @@ end
 
 M.rtrim = function(s)
   local n = #s
-  while n > 0 and s:find('^%s', n) do
+  while n > 0 and s:find("^%s", n) do
     n = n - 1
   end
   return s:sub(1, n)
 end
 
 M.ltrim = function(s)
-  return (s:gsub('^%s*', ''))
+  return (s:gsub("^%s*", ""))
 end
 
 M.trim = function(s)
@@ -143,13 +143,13 @@ end
 -- @Ref https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/util.lua
 M.path = (function()
   local function escape_wildcards(path)
-    return path:gsub('([%[%]%?%*])', '\\%1')
+    return path:gsub("([%[%]%?%*])", "\\%1")
   end
 
   local function sanitize(path)
     if is_windows then
       path = path:sub(1, 1):upper() .. path:sub(2)
-      path = path:gsub('\\', '/')
+      path = path:gsub("\\", "/")
     end
     return path
   end
@@ -160,48 +160,48 @@ M.path = (function()
   end
 
   local function is_dir(filename)
-    return exists(filename) == 'directory'
+    return exists(filename) == "directory"
   end
 
   local function is_file(filename)
-    return exists(filename) == 'file'
+    return exists(filename) == "file"
   end
 
   local function is_fs_root(path)
     if is_windows then
-      return path:match '^%a:$'
+      return path:match "^%a:$"
     else
-      return path == '/'
+      return path == "/"
     end
   end
 
   local function is_absolute(filename)
     if is_windows then
-      return filename:match '^%a:' or filename:match '^\\\\'
+      return filename:match "^%a:" or filename:match "^\\\\"
     else
-      return filename:match '^/'
+      return filename:match "^/"
     end
   end
 
   local function dirname(path)
-    local strip_dir_pat = '/([^/]+)$'
-    local strip_sep_pat = '/$'
+    local strip_dir_pat = "/([^/]+)$"
+    local strip_sep_pat = "/$"
     if not path or #path == 0 then
       return
     end
-    local result = path:gsub(strip_sep_pat, ''):gsub(strip_dir_pat, '')
+    local result = path:gsub(strip_sep_pat, ""):gsub(strip_dir_pat, "")
     if #result == 0 then
       if is_windows then
         return path:sub(1, 2):upper()
       else
-        return '/'
+        return "/"
       end
     end
     return result
   end
 
   local function path_join(...)
-    return table.concat(vim.tbl_flatten { ... }, '/')
+    return table.concat(vim.tbl_flatten { ... }, "/")
   end
 
   -- Traverse the path calling cb along the way.
@@ -255,7 +255,7 @@ M.path = (function()
     return dir == root
   end
 
-  local path_separator = is_windows and ';' or ':'
+  local path_separator = is_windows and ";" or ":"
 
   return {
     escape_wildcards = escape_wildcards,
@@ -277,9 +277,7 @@ function M.root_pattern(...)
   local patterns = vim.tbl_flatten { ... }
   local function matcher(path)
     for _, pattern in ipairs(patterns) do
-      for _, p in
-        ipairs(vim.fn.glob(M.path.join(M.path.escape_wildcards(path), pattern), true, true))
-      do
+      for _, p in ipairs(vim.fn.glob(M.path.join(M.path.escape_wildcards(path), pattern), true, true)) do
         if M.path.exists(p) then
           return path
         end
@@ -293,7 +291,7 @@ function M.root_pattern(...)
 end
 
 function M.search_ancestors(startpath, func)
-  vim.validate { func = { func, 'f' } }
+  vim.validate { func = { func, "f" } }
   if func(startpath) then
     return startpath
   end
@@ -315,8 +313,8 @@ end
 -- Other paths are returned unaltered.
 function M.strip_archive_subpath(path)
   -- Matches regex from zip.vim / tar.vim
-  path = vim.fn.substitute(path, 'zipfile://\\(.\\{-}\\)::[^\\\\].*$', '\\1', '')
-  path = vim.fn.substitute(path, 'tarfile:\\(.\\{-}\\)::.*$', '\\1', '')
+  path = vim.fn.substitute(path, "zipfile://\\(.\\{-}\\)::[^\\\\].*$", "\\1", "")
+  path = vim.fn.substitute(path, "tarfile:\\(.\\{-}\\)::.*$", "\\1", "")
   return path
 end
 
