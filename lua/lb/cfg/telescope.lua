@@ -87,7 +87,7 @@ telescope.setup {
   }, --}}}
   extensions = { --{{{
     fzf = {
-      fuzzy = true,
+      fuzzy = false,
       override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = "smart_case",
@@ -96,9 +96,9 @@ telescope.setup {
 }
 
 telescope.load_extension "fzf"
+telescope.load_extension "ui-select"
 telescope.load_extension "bazel"
 telescope.load_extension "tasks"
-telescope.load_extension "ui-select"
 
 local colors = { --{{{
   white = "#ebdbb2",
@@ -133,6 +133,7 @@ local colors = { --{{{
   folder_bg = "#6d8dad",
 } --}}}
 
+-- colors {{{
 local TelescopePrompt = { --{{{
   TelescopeBorder = {
     fg = colors.darker_black,
@@ -189,5 +190,6 @@ local TelescopePrompt = { --{{{
 for hl, col in pairs(TelescopePrompt) do
   vim.api.nvim_set_hl(0, hl, col)
 end
+-- }}}
 
 -- vim: fdm=marker fdl=0

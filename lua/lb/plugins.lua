@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/04 03:42
+-- Last Modified: 2022/12/06 00:39
 --
 -- =====================================================================
 
@@ -162,7 +162,7 @@ require("packer").startup {
       requires = {
         { "skywind3000/asyncrun.vim", opt = true },
         { "skywind3000/asyncrun.extra", opt = true },
-        { "voldikss/vim-floaterm" },
+        { "voldikss/vim-floaterm", opt = true },
       },
       config = function()
         require "lb.cfg.asynctasks"
@@ -197,7 +197,7 @@ require("packer").startup {
     use { "arthurxavierx/vim-caser", keys = { "gs" } }
     use {
       "nvim-telescope/telescope.nvim",
-      -- branch = '0.1.x',
+      branch = "0.1.x",
       requires = {
         {
           "nvim-telescope/telescope-fzf-native.nvim",
@@ -218,16 +218,9 @@ require("packer").startup {
         require "lb.cfg.telescope"
       end,
       cmd = "Telescope",
-      event = { "User LoadTicker2" },
+      -- event = { "User LoadTicker2" },
     }
-    -- use {
-    --   'simrat39/symbols-outline.nvim',
-    --   after = { 'nvim-lspconfig' },
-    --   config = function()
-    --     require 'lb.cfg.outline'
-    --   end,
-    --   cmd = { 'SymbolsOutline' },
-    -- }
+
     use {
       "stevearc/aerial.nvim",
       config = function()

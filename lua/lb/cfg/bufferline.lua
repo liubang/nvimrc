@@ -3,7 +3,7 @@
 -- bufferline.lua -
 --
 -- Created by liubang on 2022/03/02 16:58
--- Last Modified: 2022/12/03 01:51
+-- Last Modified: 2022/12/06 00:39
 --
 --=====================================================================
 
@@ -15,10 +15,6 @@ require("bufferline").setup {
     close_command = "Bdelete",
     right_mouse_command = "Bdelete",
     middle_mouse_command = nil,
-    indicator = {
-      icon = "▎",
-      style = "icon",
-    },
     buffer_close_icon = "",
     modified_icon = "●",
     close_icon = "",
