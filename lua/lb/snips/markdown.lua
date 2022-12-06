@@ -3,7 +3,7 @@
 -- markdown.lua -
 --
 -- Created by liubang on 2022/09/03 03:40
--- Last Modified: 2022/12/03 01:35
+-- Last Modified: 2022/12/06 22:27
 --
 --=====================================================================
 local ls = require "luasnip"
@@ -37,7 +37,12 @@ ls.add_snippets("markdown", {
       ---
       title: "{}"
       date: "{}"
+      toc: true
+      authors:
+        - {}
       categories:
+        - {}
+      series:
         - {}
       tags:
         - {}
@@ -47,8 +52,10 @@ ls.add_snippets("markdown", {
       {
         i(1, "title"),
         i(2, vim.fn.strftime "%Y-%m-%d"),
-        i(3),
+        i(3, "liubang"),
         i(4),
+        i(5),
+        i(6),
         i(0),
       }
     )
