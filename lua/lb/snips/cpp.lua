@@ -3,7 +3,7 @@
 -- cpp.lua -
 --
 -- Created by liubang on 2022/09/03 03:37
--- Last Modified: 2022/09/03 03:37
+-- Last Modified: 2022/12/06 22:22
 --
 --=====================================================================
 local ls = require "luasnip"
@@ -22,12 +22,8 @@ ls.add_snippets("cpp", {
         return 0;
       }
       ]],
-      {
-        i(1, "// put your code hare"),
-      },
-      {
-        delimiters = "<>",
-      }
+      { i(1, "// put your code here") },
+      { delimiters = "<>" }
     )
   ),
   s(
@@ -41,12 +37,8 @@ ls.add_snippets("cpp", {
         return 0;
       }
       ]],
-      {
-        i(1, "// put your code hare"),
-      },
-      {
-        delimiters = "<>",
-      }
+      { i(1, "// put your code here") },
+      { delimiters = "<>" }
     )
   ),
   s("once", {
@@ -70,13 +62,11 @@ ls.add_snippets("cpp", {
       };
       ]],
       {
-        i(1, ""),
+        i(1, "ClassName"),
         i(3, ""),
         i(2, ""),
       },
-      {
-        delimiters = "<>",
-      }
+      { delimiters = "<>" }
     )
   ),
   s(
@@ -91,9 +81,35 @@ ls.add_snippets("cpp", {
         i(1, ""),
         i(2, ""),
       },
-      {
-        delimiters = "<>",
+      { delimiters = "<>" }
+    )
+  ),
+  s(
+    "leetcode",
+    fmt(
+      [[
+      #include <<gtest/gtest.h>>
+
+      namespace {
+      class Solution {
+      public:
+        <> <>(<>) {
+          <>
+        }
+      };
+      } // namespace
+
+      TEST(Leetcode, leetcode) {
+        EXPECT_TRUE(true);
       }
+      ]],
+      {
+        i(1, "void"),
+        i(2, "func"),
+        i(3, "void"),
+        i(4, "// put your code here"),
+      },
+      { delimiters = "<>" }
     )
   ),
   s({ trig = "formatoff" }, {

@@ -3,7 +3,7 @@
 -- c.lua -
 --
 -- Created by liubang on 2022/09/03 03:39
--- Last Modified: 2022/11/12 23:11
+-- Last Modified: 2022/12/06 22:21
 --
 --=====================================================================
 local ls = require "luasnip"
@@ -22,11 +22,9 @@ ls.add_snippets("c", {
       }
       ]],
       {
-        i(1, "// put your code hare"),
+        i(1, "// put your code here"),
       },
-      {
-        delimiters = "<>",
-      }
+      { delimiters = "<>" }
     )
   ),
   s(
@@ -41,11 +39,9 @@ ls.add_snippets("c", {
       }
       ]],
       {
-        i(1, "// put your code hare"),
+        i(1, "// put your code here"),
       },
-      {
-        delimiters = "<>",
-      }
+      { delimiters = "<>" }
     )
   ),
 })

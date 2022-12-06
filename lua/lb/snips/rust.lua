@@ -3,7 +3,7 @@
 -- rust.lua -
 --
 -- Created by liubang on 2022/11/12 23:13
--- Last Modified: 2022/11/12 23:13
+-- Last Modified: 2022/12/06 22:22
 --
 --=====================================================================
 
@@ -21,12 +21,8 @@ ls.add_snippets("rust", {
           <>
       }
       ]],
-      {
-        i(1, 'println!("hello world")'),
-      },
-      {
-        delimiters = "<>",
-      }
+      { i(1, 'println!("hello world")') },
+      { delimiters = "<>" }
     )
   ),
   ls.s(
