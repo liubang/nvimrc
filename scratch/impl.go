@@ -8,4 +8,13 @@ type Foo interface {
 	io.Writer
 }
 
+// GoImpl Foo
 type mockFoo struct{}
+
+func (mockfoo *mockFoo) Read(p []byte) (n int, err error) {
+	panic("not implemented") // TODO: Implement
+}
+
+func (mockfoo *mockFoo) Write(p []byte) (n int, err error) {
+	panic("not implemented") // TODO: Implement
+}

@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/06 00:39
+-- Last Modified: 2022/12/07 19:49
 --
 -- =====================================================================
 
@@ -197,7 +197,7 @@ require("packer").startup {
     use { "arthurxavierx/vim-caser", keys = { "gs" } }
     use {
       "nvim-telescope/telescope.nvim",
-      branch = "0.1.x",
+      -- branch = "0.1.x",
       requires = {
         {
           "nvim-telescope/telescope-fzf-native.nvim",

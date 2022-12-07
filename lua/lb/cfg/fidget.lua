@@ -3,7 +3,7 @@
 -- fidget.lua -
 --
 -- Created by liubang on 2022/09/03 16:53
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/12/07 19:49
 --
 --=====================================================================
 
@@ -38,5 +38,3 @@ require("fidget").setup {
     end,
   },
 }
-
--- vim.api.nvim_create_autocmd('VimLeavePre', { command = 'FidgetClose' })

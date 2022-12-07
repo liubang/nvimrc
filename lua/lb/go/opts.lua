@@ -17,8 +17,8 @@ local function convert_short2long(opts)
   return ret
 end
 
-local function err_unknown_opt(_)
-  -- vim.notify("Unknown option `-" .. (#opt > 1 and "-" or "") .. opt, vim.lsp.log_levels.INFO)
+local function err_unknown_opt(opt)
+  vim.notify("Unknown option `-" .. (#opt > 1 and "-" or "") .. opt, vim.lsp.log_levels.INFO)
 end
 
 local function canonize(options, opt)

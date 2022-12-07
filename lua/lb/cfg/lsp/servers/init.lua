@@ -3,7 +3,7 @@
 -- init.lua -
 --
 -- Created by liubang on 2022/08/06 00:26
--- Last Modified: 2022/10/16 15:50
+-- Last Modified: 2022/12/07 19:49
 --
 --=====================================================================
 
@@ -25,6 +25,7 @@ end
 
 -- some others use default config
 for _, server in ipairs {
+  "taplo", -- for toml
   "html",
   "cssls",
   "tsserver",

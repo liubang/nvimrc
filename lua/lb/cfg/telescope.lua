@@ -3,7 +3,7 @@
 -- nvim-telescope.lua -
 --
 -- Created by liubang on 2020/12/13 13:38
--- Last Modified: 2022/12/05 00:56
+-- Last Modified: 2022/12/07 19:49
 --
 -- =====================================================================
 
@@ -26,6 +26,7 @@ telescope.setup {
     layout_strategy = "horizontal",
     use_less = true,
     border = {},
+    preview = false,
     path_display = { truncate = 3 },
     layout_config = {
       prompt_position = "top",

@@ -61,7 +61,7 @@ local run = function(...)
     if iface == "" then
       vim.notify(
         "Impl: please input interface name e.g. io.Reader or receiver name e.g. GoImpl MyType",
-        log.levels.WARN
+        vim.log.levels.WARN
       )
     end
   elseif #arg == 1 then

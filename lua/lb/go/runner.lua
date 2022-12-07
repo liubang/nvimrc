@@ -53,11 +53,12 @@ local run = function(cmd, opts)
     cmd,
     { stdio = { stdin, stdout, stderr }, args = job_options.args },
     function(code, signal) -- on exit
+      -- stdin
       stdin:close()
-
+      -- stdout
       stdout:read_stop()
       stdout:close()
-
+      -- stderr
       stderr:read_stop()
       stderr:close()
       handle:close()
