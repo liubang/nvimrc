@@ -3,7 +3,7 @@
 -- gopls.lua -
 --
 -- Created by liubang on 2022/08/06 00:23
--- Last Modified: 2022/08/06 00:23
+-- Last Modified: 2022/12/07 23:39
 --
 --=====================================================================
 local lspconfig = require "lspconfig"
@@ -96,8 +96,7 @@ local setup = function()
 end
 
 local org_imports = function(wait_ms)
-  local codeaction = require("lb.lsp.lsp").codeaction
-  codeaction("gopls", "", "source.organizeImports", wait_ms)
+  vim.lsp.buf.code_action { context = { only = { "source.organizeImports" } }, apply = true }
   vim.lsp.buf.format { async = false, timeout_ms = wait_ms }
 end
 
