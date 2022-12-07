@@ -268,6 +268,7 @@ require("packer").startup {
     -- }}}
 
     -- lsp {{{
+    use { "folke/neodev.nvim", opt = true }
     use { "simrat39/rust-tools.nvim", opt = true }
     use { "b0o/schemastore.nvim", opt = true }
     use { "jose-elias-alvarez/null-ls.nvim", opt = true }

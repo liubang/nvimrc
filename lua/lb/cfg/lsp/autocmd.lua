@@ -3,11 +3,20 @@
 -- autocmd.lua -
 --
 -- Created by liubang on 2022/10/18 00:38
--- Last Modified: 2022/10/18 00:38
+-- Last Modified: 2022/12/07 22:35
 --
 --=====================================================================
 
 local lsp_events_group = vim.api.nvim_create_augroup("LSP_EVENTS", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = lsp_events_group,
+  pattern = "go.mod",
+  callback = function(_) -- args
+    require("lb.go.gopls").tidy()
+  end,
+  desc = "run go mod tidy on save",
+})
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_events_group,
@@ -17,9 +26,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+vim.api.nvim_create_autocmd("FileType", {
   group = lsp_events_group,
-  pattern = { "*.go", "go.mod" },
+  pattern = { "go", "gomod" },
   callback = function()
     vim.api.nvim_create_user_command("GoAddTagsJson", function()
       require("lb.go.tags").add("json", "-transform", "snakecase", "--skip-unexported")
@@ -56,13 +65,4 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
       end,
     })
   end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = lsp_events_group,
-  pattern = "go.mod",
-  callback = function(args)
-    require("lb.go.gopls").tidy()
-  end,
-  desc = "run go mod tidy on save",
 })
