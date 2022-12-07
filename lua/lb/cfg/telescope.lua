@@ -26,7 +26,6 @@ telescope.setup {
     layout_strategy = "horizontal",
     use_less = true,
     border = {},
-    preview = false,
     path_display = { truncate = 3 },
     layout_config = {
       prompt_position = "top",
