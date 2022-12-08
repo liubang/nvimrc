@@ -2,6 +2,14 @@
 --
 -- gopls.lua -
 --
+-- Created by liubang on 2022/12/08 17:33
+-- Last Modified: 2022/12/08 17:33
+--
+--=====================================================================
+--=====================================================================
+--
+-- gopls.lua -
+--
 -- Created by liubang on 2022/09/21 22:07
 -- Last Modified: 2022/12/03 01:58
 --
@@ -10,6 +18,7 @@
 local M = {}
 local cmds = {}
 
+-- @Ref https://go.googlesource.com/tools/+/refs/heads/master/gopls/doc/commands.md
 local gopls_cmds = {
   -- "gopls.add_dependency",
   -- "gopls.add_import",
@@ -85,6 +94,52 @@ end
 
 M.tidy = function()
   cmds.tidy()
+end
+
+local client = function()
+  local clients = vim.lsp.get_active_clients()
+  for _, cl in pairs(clients) do
+    if cl.name == "gopls" then
+      return cl
+    end
+  end
+end
+
+local codeaction = function(action, only, wait_ms)
+  wait_ms = wait_ms or 1000
+  local params = vim.lsp.util.make_range_params()
+  if only then
+    params.context = { only = { only } }
+  end
+
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  if not result or next(result) == nil then
+    return
+  end
+
+  local c = client()
+  for _, res in pairs(result) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit and not vim.tbl_isempty(r.edit) then
+        local re = vim.lsp.util.apply_workspace_edit(r.edit, c.offset_encoding)
+      end
+      if type(r.command) == "table" then
+        if type(r.command) == "table" and r.command.arguments then
+          for _, arg in pairs(r.command.arguments) do
+            if action == nil or arg["Fix"] == action then
+              vim.lsp.buf.execute_command(r.command)
+              return
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+M.org_imports = function(wait_ms)
+  codeaction("", "source.organizeImports", wait_ms)
+  vim.lsp.buf.format { async = false, timeout_ms = wait_ms }
 end
 
 return M

@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_events_group,
   pattern = "*.go",
   callback = function()
-    require("lb.cfg.lsp.servers.gopls").org_imports(5000)
+    require("lb.go.gopls").org_imports(5000)
   end,
 })
 
@@ -30,6 +30,10 @@ vim.api.nvim_create_autocmd("FileType", {
   group = lsp_events_group,
   pattern = { "go", "gomod" },
   callback = function()
+    vim.api.nvim_create_user_command("GoTidy", function()
+      require("lb.go.gopls").tidy()
+    end, { nargs = 0 })
+
     vim.api.nvim_create_user_command("GoAddTagsJson", function()
       require("lb.go.tags").add("json", "-transform", "snakecase", "--skip-unexported")
     end, { nargs = 0 })
