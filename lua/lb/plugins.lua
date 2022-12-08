@@ -218,7 +218,7 @@ require("packer").startup {
         require "lb.cfg.telescope"
       end,
       cmd = "Telescope",
-      -- event = { "User LoadTicker2" },
+      event = { "User LoadTicker3" }, -- for auto load telescope-ui-select
     }
 
     use {

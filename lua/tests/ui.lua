@@ -1,21 +1,15 @@
 --=====================================================================
 --
--- func.lua -
+-- ui.lua -
 --
 -- Created by liubang on 2022/09/03 22:10
--- Last Modified: 2022/09/03 22:10
+-- Last Modified: 2022/12/08 22:47
 --
 --=====================================================================
 
--- local C = function(name)
---   print(name)
---   return function()
---     print(name)
---   end
--- end
---
--- local fn = C 'Ok'
--- fn()
+vim.ui.input({ prompt = "Enter value for shiftwidth: " }, function(input)
+  print(input)
+end)
 
 vim.ui.select({ "tabs", "spaces" }, {
   prompt = "Select tabs or spaces:",
@@ -24,8 +18,4 @@ vim.ui.select({ "tabs", "spaces" }, {
   end,
 }, function(choice)
   print(choice)
-end)
-
-vim.ui.input({ prompt = "Enter value for shiftwidth: " }, function(input)
-  print(input)
 end)
