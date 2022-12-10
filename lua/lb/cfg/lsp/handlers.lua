@@ -3,11 +3,11 @@
 -- handlers.lua -
 --
 -- Created by liubang on 2021/02/10 10:06
--- Last Modified: 2022/12/01 22:43
+-- Last Modified: 2022/12/10 15:54
 --
 -- =====================================================================
 
-vim.diagnostic.config {
+vim.diagnostic.config { -- {{{
   source = true,
   signs = true,
   virtual_text = false,
@@ -21,8 +21,9 @@ vim.diagnostic.config {
     scope = "line",
     source = "always",
   },
-}
+} -- }}}
 
+-- {{{
 local signs = {
   Error = "🔥",
   Warn = "💩",
@@ -40,13 +41,16 @@ for type, icon in pairs(signs) do
     numhl = nr,
   })
 end
+-- }}}
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { -- {{{
   stylize_markdown = true,
   syntax = "lsp_markdown",
   border = "single",
-})
+}) -- }}}
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { -- {{{
   border = "single",
-})
+}) -- }}}
+
+-- vim: foldmethod=marker foldlevel=0

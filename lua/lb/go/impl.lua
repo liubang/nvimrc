@@ -3,16 +3,18 @@
 -- impl.lua -
 --
 -- Created by liubang on 2022/09/21 21:36
--- Last Modified: 2022/12/03 01:56
+-- Last Modified: 2022/12/11 00:09
 --
 --=====================================================================
 local tsgo = require "lb.ts.go"
 local gopackage = require "lb.go.package"
-local goutils = require "lb.go.utils"
-local runner = require "lb.go.runner"
 local gopls = require "lb.go.gopls"
 local tsnodes = require "lb.ts.nodes"
 local impl = "impl"
+local Job = require "plenary.job"
+
+-- notify title
+local title = { title = "impl" }
 
 local function get_type_name()
   local name = tsgo.get_struct_node_at_pos()
@@ -61,7 +63,8 @@ local run = function(...)
     if iface == "" then
       vim.notify(
         "Impl: please input interface name e.g. io.Reader or receiver name e.g. GoImpl MyType",
-        vim.log.levels.WARN
+        vim.log.levels.WARN,
+        title
       )
     end
   elseif #arg == 1 then
@@ -75,7 +78,7 @@ local run = function(...)
       iface = select(1, ...)
     end
     if recv == "" and iface == "" then
-      vim.notify("put cursor on struct or a interface or specify a receiver & interface", vim.log.levels.WARN)
+      vim.notify("put cursor on struct or a interface or specify a receiver & interface", vim.log.levels.WARN, title)
     end
     vim.cmd "redraw!"
   elseif #arg == 2 then
@@ -98,27 +101,26 @@ local run = function(...)
   end
 
   local dir = vim.fn.fnameescape(vim.fn.expand "%:p:h")
-  local impl_cmd = { impl, "-dir", dir, recv, iface }
-  local opts = {
-    update_buffer = true,
-    on_exit = function(code, signal, data)
-      if code ~= 0 or signal ~= 0 then
-        vim.notify("impl failed" .. vim.inspect(data))
-        return
-      end
-      data = vim.split(data, "\n")
-      data = goutils.handle_job_data(data)
-      if not data then
-        return
-      end
-      vim.schedule(function()
-        local pos = vim.fn.getcurpos()[2]
-        table.insert(data, 1, "")
-        vim.fn.append(pos, data)
-      end)
-    end,
+  local job = Job:new {
+    command = impl,
+    args = { "-dir", dir, recv, iface },
   }
-  runner.run(impl_cmd, opts)
+
+  local data = job:sync()
+  if job.code ~= 0 then
+    vim.notify("impl failed exit code " .. job.code, vim.log.levels.ERROR, title)
+    return
+  end
+
+  if not data then
+    return
+  end
+
+  vim.schedule(function()
+    local pos = vim.fn.getcurpos()[2]
+    table.insert(data, 1, "")
+    vim.fn.append(pos, data)
+  end)
 end
 
 local function match_iface_name(part)
@@ -126,7 +128,7 @@ local function match_iface_name(part)
   local cmd = string.format("go doc %s", pkg)
   local doc = vim.fn.systemlist(cmd)
   if vim.v.shell_error ~= 0 then
-    vim.notify("go doc failed" .. vim.inspect(doc), vim.log.levels.WARN)
+    vim.notify("go doc failed" .. vim.inspect(doc), vim.log.levels.WARN, title)
     return
   end
   local ifaces = {}

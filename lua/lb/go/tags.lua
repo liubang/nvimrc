@@ -3,13 +3,17 @@
 -- tags.lua -
 --
 -- Created by liubang on 2022/07/09 02:21
--- Last Modified: 2022/07/09 02:21
+-- Last Modified: 2022/12/11 00:09
 --
 --=====================================================================
 
 local tags = {}
 local gomodify = "gomodifytags"
 local tsgo = require "lb.ts.go"
+local Job = require "plenary.job"
+
+-- notify title
+local title = { title = "GoModifyTags" }
 
 local empty = function(t)
   if t == nil then
@@ -22,59 +26,55 @@ local empty = function(t)
 end
 
 tags.modify = function(...)
-  local fname = vim.fn.expand "%" -- %:p:h ? %:p
+  local fname = vim.fn.expand "%:p"
   local ns = tsgo.get_struct_node_at_pos()
   if empty(ns) then
     return
   end
 
   local struct_name = ns.name
-  local setup = { gomodify, "-format", "json", "-file", fname, "-w" }
+  local args = { "-format", "json", "-file", fname, "-w" }
 
   if struct_name == nil then
     local _, csrow, _, _ = unpack(vim.fn.getpos ".")
-    table.insert(setup, "-line")
-    table.insert(setup, csrow)
+    table.insert(args, "-line")
+    table.insert(args, csrow)
   else
-    table.insert(setup, "-struct")
-    table.insert(setup, struct_name)
+    table.insert(args, "-struct")
+    table.insert(args, struct_name)
   end
 
   local arg = { ... }
 
   for _, v in ipairs(arg) do
-    table.insert(setup, v)
+    table.insert(args, v)
   end
 
   if #arg == 1 and arg[1] ~= "-clear-tags" then
-    table.insert(setup, "json")
+    table.insert(args, "json")
   end
 
-  vim.fn.jobstart(setup, {
-    on_stdout = function(_, data, _)
-      data = require("lb.go.utils").handle_job_data(data)
-      if not data then
-        return
-      end
-      local tagged = vim.fn.json_decode(data)
-      if
-        tagged == nil
-        or tagged.errors ~= nil
-        or tagged.lines == nil
-        or tagged["start"] == nil
-        or tagged["start"] == 0
-      then
-        vim.notify("failed to set tags" .. vim.inspect(tagged), vim.lsp.log_levels.ERROR)
-        return
-      end
-      for index, value in ipairs(tagged.lines) do
-        tagged.lines[index] = require("lb.utils.util").rtrim(value)
-      end
-      vim.api.nvim_buf_set_lines(0, tagged["start"] - 1, tagged["start"] - 1 + #tagged.lines, false, tagged.lines)
-      vim.cmd "write"
-      vim.notify("struct updated ", vim.lsp.log_levels.DEBUG)
-    end,
-  })
+  local job = Job:new {
+    command = gomodify,
+    args = args,
+  }
+
+  local data = job:sync()
+  if job.code ~= 0 then
+    vim.notify("modifytags failed exit code " .. job.code, vim.log.levels.ERROR, title)
+    return
+  end
+  data = table.concat(data, "")
+  local json = vim.fn.json_decode(data)
+  if json == nil or json.lines == nil then
+    return
+  end
+  for idx, value in ipairs(json.lines) do
+    json.lines[idx] = require("lb.utils.util").rtrim(value)
+  end
+  vim.api.nvim_buf_set_lines(0, json["start"] - 1, json["start"] - 1 + #json.lines, false, json.lines)
+  vim.cmd.write()
+  vim.notify("struct updated", vim.log.levels.DEBUG, title)
 end
 
 -- e.g {"json,xml", "-transform", "camelcase"}

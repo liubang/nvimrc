@@ -8,9 +8,9 @@
 -- =====================================================================
 
 vim.opt.background = "dark"
+vim.opt.guifont = "Operator Mono Lig:h16,Hack Nerd Font:h16"
 
 -- neowide {{{
-vim.opt.guifont = "Operator Mono Lig:h16,Hack Nerd Font:h16"
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_no_idle = true
@@ -37,8 +37,6 @@ vim.g.gruvbox_material_better_performance = 1
 vim.api.nvim_create_autocmd("UIEnter", { --{{{
   callback = function()
     vim.cmd.colorscheme "gruvbox-material"
-    -- _G.custom_foldtext = require('lb.utils.fold').foldtext
-    -- vim.opt.foldtext = 'v:lua.custom_foldtext()'
     vim.o.foldtext = 'v:lua.require("lb.utils.fold").foldtext()'
   end,
 }) --}}}

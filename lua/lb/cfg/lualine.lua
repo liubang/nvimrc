@@ -3,7 +3,7 @@
 -- status.lua -
 --
 -- Created by liubang on 2022/02/24 20:57
--- Last Modified: 2022/12/02 20:28
+-- Last Modified: 2022/12/10 15:52
 --
 --=====================================================================
 
@@ -55,20 +55,23 @@ local lsp_names = { --{{{
   ["null-ls"] = "NLS",
   ["diagnostics_on_open"] = "Diagnostics",
   ["diagnostics_on_save"] = "Diagnostics",
-  bashls = "Bash",
   clangd = "C++",
-  dockerls = "Docker",
   gopls = "Go",
-  html = "HTML",
+  rust_analyzer = "Rust",
+  sumneko_lua = "Lua",
+  intelephense = "PHP",
   jedi_language_server = "Python",
+  bashls = "Bash",
+  dockerls = "Docker",
+  tsserver = "TS",
   jsonls = "JSON",
   sqls = "SQL",
-  sumneko_lua = "Lua",
-  tsserver = "TS",
+  texlab = "LaTeX",
+  taplo = "TOML",
+  html = "HTML",
   vimls = "Vim",
   yamlls = "YAML",
-  intelephense = "PHP",
-  rust_analyzer = "Rust",
+  cssls = "CSS",
 }
 --}}}
 

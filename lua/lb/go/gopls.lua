@@ -2,16 +2,8 @@
 --
 -- gopls.lua -
 --
--- Created by liubang on 2022/12/08 17:33
--- Last Modified: 2022/12/08 17:33
---
---=====================================================================
---=====================================================================
---
--- gopls.lua -
---
 -- Created by liubang on 2022/09/21 22:07
--- Last Modified: 2022/12/03 01:58
+-- Last Modified: 2022/12/11 00:09
 --
 --=====================================================================
 
@@ -121,7 +113,7 @@ local codeaction = function(action, only, wait_ms)
   for _, res in pairs(result) do
     for _, r in pairs(res.result or {}) do
       if r.edit and not vim.tbl_isempty(r.edit) then
-        local re = vim.lsp.util.apply_workspace_edit(r.edit, c.offset_encoding)
+        vim.lsp.util.apply_workspace_edit(r.edit, c.offset_encoding)
       end
       if type(r.command) == "table" then
         if type(r.command) == "table" and r.command.arguments then

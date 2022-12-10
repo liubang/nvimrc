@@ -10,9 +10,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require "lb.plugins"
-require "lb.options"
-require "lb.autocmd"
+require "lb.options" -- global options
+require "lb.plugins" -- plugins spec
+require "lb.autocmd" -- events
 
 vim.schedule(function()
   require "lb.commands"

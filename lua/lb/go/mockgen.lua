@@ -3,17 +3,19 @@
 -- mockgen.lua -
 --
 -- Created by liubang on 2022/09/22 20:20
--- Last Modified: 2022/09/22 20:20
+-- Last Modified: 2022/12/11 00:09
 --
 --=====================================================================
 
 local mockgen = "mockgen"
 local tsgo = require "lb.ts.go"
 local util = require "lb.utils.util"
-local goutils = require "lb.go.utils"
-local runner = require "lb.go.runner"
 local package = require "lb.go.package"
 local gopts = require "lb.go.opts"
+local Job = require "plenary.job"
+
+-- notify title
+local title = { title = "GoMockgen" }
 
 -- use ts to get name
 local function get_interface_name()
@@ -40,7 +42,7 @@ local run = function(opts)
   local args = opts.fargs or {}
 
   local optarg, _, _ = gopts.get_opts(args, short_opts, long_opts)
-  local mockgen_cmd = { mockgen }
+  local mockgen_args = { mockgen }
   local sep = util.sep()
   local ifname = get_interface_name()
 
@@ -62,45 +64,42 @@ local run = function(opts)
 
   if ifname == "" or ifname == nil then
     -- source mode default
-    table.insert(mockgen_cmd, "-source")
-    table.insert(mockgen_cmd, fpath .. sname)
+    table.insert(mockgen_args, "-source")
+    table.insert(mockgen_args, fpath .. sname)
   else
     -- need to get the import path
     local bufnr = vim.api.nvim_get_current_buf()
     local pkg = package.pkg_from_path(nil, bufnr)
     if pkg ~= nil and type(pkg) == "table" and pkg[1] then
-      table.insert(mockgen_cmd, pkg[1])
+      table.insert(mockgen_args, pkg[1])
     else
-      table.insert(mockgen_cmd, ".")
+      table.insert(mockgen_args, ".")
     end
-    table.insert(mockgen_cmd, ifname)
+    table.insert(mockgen_args, ifname)
   end
 
   local pkgname = optarg["p"] or "mocks"
-  table.insert(mockgen_cmd, "-package")
-  table.insert(mockgen_cmd, pkgname)
+  table.insert(mockgen_args, "-package")
+  table.insert(mockgen_args, pkgname)
 
   local dname = fpath .. pkgname .. sep .. "mock_" .. sname
-  table.insert(mockgen_cmd, "-destination")
-  table.insert(mockgen_cmd, dname)
+  table.insert(mockgen_args, "-destination")
+  table.insert(mockgen_args, dname)
 
-  local mock_opts = {
-    on_exit = function(code, signal, data)
-      if code ~= 0 or signal ~= 0 then
-        return
-      end
-      data = vim.split(data, "\n")
-      data = goutils.handle_job_data(data)
-      if not data then
-        return
-      end
-      vim.schedule(function()
-        vim.notify(vim.fn.join(mockgen_cmd, " ") .. " finished " .. vim.fn.join(data, " "), vim.log.levels.INFO)
-      end)
-    end,
+  local job = Job:new {
+    command = mockgen,
+    args = mockgen_args,
   }
-  runner.run(mockgen_cmd, mock_opts)
-  return mockgen_cmd
+  local data = job:sync()
+  if job.code ~= 0 then
+    vim.notify("mockgen failed exit code " .. job.code, vim.log.levels.ERROR, title)
+    return
+  end
+  vim.notify(
+    "mockgen " .. table.concat(mockgen_args, " ") .. " finished\n" .. table.concat(data, "\n"),
+    vim.log.levels.INOF,
+    title
+  )
 end
 
 return { run = run }

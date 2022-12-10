@@ -3,7 +3,7 @@
 -- autocmd.lua -
 --
 -- Created by liubang on 2022/10/18 00:38
--- Last Modified: 2022/12/07 22:35
+-- Last Modified: 2022/12/10 20:49
 --
 --=====================================================================
 
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_events_group,
   pattern = "*.go",
   callback = function()
-    require("lb.go.gopls").org_imports(5000)
+    require("lb.go.gopls").org_imports(1000)
   end,
 })
 
@@ -32,6 +32,14 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.api.nvim_create_user_command("GoTidy", function()
       require("lb.go.gopls").tidy()
+    end, { nargs = 0 })
+
+    vim.api.nvim_create_user_command("GoInstallBinaries", function()
+      require("lb.go.installer").install_all()
+    end, { nargs = 0 })
+
+    vim.api.nvim_create_user_command("GoUpdateBinaries", function()
+      require("lb.go.installer").update_all()
     end, { nargs = 0 })
 
     vim.api.nvim_create_user_command("GoAddTagsJson", function()
