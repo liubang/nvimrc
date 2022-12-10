@@ -8,7 +8,6 @@
 --=====================================================================
 local Job = require "plenary.job"
 
-local installer = {}
 local urls = {
   gomodifytags = "github.com/fatih/gomodifytags",
   impl = "github.com/josharian/impl",
@@ -16,6 +15,7 @@ local urls = {
   mockgen = "github.com/golang/mock/mockgen",
 }
 
+local installer = {}
 -- notify title
 local title = { title = "GoInstaller" }
 

@@ -6,7 +6,6 @@
 -- Last Modified: 2022/07/09 02:07
 --
 --=====================================================================
-
 local ts_utils = require "nvim-treesitter.ts_utils"
 local ts_query = require "nvim-treesitter.query"
 local parsers = require "nvim-treesitter.parsers"

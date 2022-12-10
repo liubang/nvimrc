@@ -3,7 +3,7 @@
 -- completion.lua -
 --
 -- Created by liubang on 2021/09/04 21:05
--- Last Modified: 2022/12/02 00:04
+-- Last Modified: 2022/12/11 03:40
 --
 -- =====================================================================
 
@@ -139,21 +139,5 @@ cmp.setup {
     }),
   },
 }
-
-cmp.setup.cmdline({ "/", "?" }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = "buffer", keyword_length = 2 },
-  },
-})
-
-cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = "path" },
-  }, {
-    { name = "cmdline", keyword_length = 2 },
-  }),
-})
 
 -- vim: fdm=marker fdl=0

@@ -54,34 +54,6 @@ M.shell = function(command) --{{{
   return res
 end --}}}
 
-M.chdir = function(dir)
-  if vim.fn.exists "*chdir" then
-    return vim.fn.chdir(dir)
-  end
-
-  local oldir = vim.fn.getcwd()
-  local cd = "cd"
-  if vim.fn.exists "*haslocaldir" and vim.fn.haslocaldir() then
-    cd = "lcd"
-    vim.cmd(cd .. " " .. vim.fn.fnameescape(dir))
-    return oldir
-  end
-end
-
-M.exec_in_path = function(cmd, bufnr, ...)
-  bufnr = bufnr or vim.api.nvim_get_current_buf()
-  local path = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":p:h")
-  local dir = M.chdir(path)
-  local result
-  if type(cmd) == "function" then
-    result = cmd(bufnr, ...)
-  else
-    result = vim.fn.systemlist(cmd, ...)
-  end
-  M.chdir(dir)
-  return result
-end
-
 M.sep = function()
   if is_windows then
     return "\\"

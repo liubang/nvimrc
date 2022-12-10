@@ -228,6 +228,7 @@ require("packer").startup {
       end,
       cmd = { "AerialToggle" },
     }
+
     use {
       "dstein64/vim-startuptime",
       cmd = { "StartupTime" },
@@ -318,7 +319,6 @@ require("packer").startup {
         { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
         { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
         { "hrsh7th/cmp-path", after = "nvim-cmp" },
-        { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         { "hrsh7th/cmp-calc", after = "nvim-cmp" },
         { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
         { "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
@@ -356,6 +356,15 @@ require("packer").startup {
       event = { "BufRead Cargo.toml" },
       after = { "nvim-cmp" },
       wants = { "nvim-cmp" },
+    }
+
+    use {
+      "gelguy/wilder.nvim",
+      requires = { "romgrk/fzy-lua-native", opt = true, run = "make" },
+      config = function()
+        require "lb.cfg.wilder"
+      end,
+      event = { "CmdlineEnter" },
     }
     -- }}}
 

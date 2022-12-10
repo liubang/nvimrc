@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_create_user_command("GoMockGen", require("lb.go.mockgen").run, {
       nargs = "*",
       complete = function(_, _, _)
-        return { "-p", "-d", "-i", "-s" }
+        return { "-package", "-destination", "-interface", "-source" }
       end,
     })
   end,

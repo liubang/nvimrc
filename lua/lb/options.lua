@@ -40,7 +40,7 @@ vim.opt.showmatch = true
 vim.opt.matchtime = 2
 vim.opt.report = 0
 vim.opt.linespace = 0
-vim.opt.pumheight = 20
+vim.opt.pumheight = 10
 vim.opt.winminheight = 0
 vim.opt.backspace = 'eol,start,indent'
 vim.opt.whichwrap:append("h,l")

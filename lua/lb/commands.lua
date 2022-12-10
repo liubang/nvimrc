@@ -3,13 +3,13 @@
 -- commands.lua -
 --
 -- Created by liubang on 2020/12/12 18:32
--- Last Modified: 2022/11/20 23:41
+-- Last Modified: 2022/12/11 00:33
 --
 -- =====================================================================
 
 vim.api.nvim_create_user_command("Filepath", function()
   ---@diagnostic disable-next-line: param-type-mismatch
-  vim.notify(vim.fn.expand "%:p", vim.lsp.log_levels.INFO, {
+  vim.notify(vim.fn.expand "%:p", vim.log.levels.INFO, {
     title = "Filename",
     timeout = 3000,
   })

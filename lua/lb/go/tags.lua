@@ -6,12 +6,11 @@
 -- Last Modified: 2022/12/11 00:09
 --
 --=====================================================================
-
-local tags = {}
 local gomodify = "gomodifytags"
 local tsgo = require "lb.ts.go"
 local Job = require "plenary.job"
 
+local tags = {}
 -- notify title
 local title = { title = "GoModifyTags" }
 
