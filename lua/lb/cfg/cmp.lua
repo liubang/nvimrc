@@ -18,7 +18,7 @@ local compare = require "cmp.config.compare"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff.
--- vim.opt.shortmess:append 'c'
+vim.opt.shortmess:append "c"
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -37,7 +37,7 @@ cmp.setup {
   window = {
     documentation = false,
     completion = cmp.config.window.bordered {
-      border = "single",
+      border = "none",
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
@@ -50,7 +50,6 @@ cmp.setup {
   },
   preselect = cmp.PreselectMode.None,
   sources = {
-    { name = "nvim_lua", priority = 80 },
     { name = "nvim_lsp", priority = 80 },
     { name = "luasnip", priority = 10 },
     { name = "path", priority = 40, max_item_count = 4 },
@@ -103,7 +102,7 @@ cmp.setup {
     },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
   mapping = cmp.mapping.preset.insert {
     ["<C-e>"] = cmp.mapping.abort(),

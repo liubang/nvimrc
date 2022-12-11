@@ -30,6 +30,8 @@ wilder.set_option(
   "renderer",
   wilder.renderer_mux {
     [":"] = wilder.popupmenu_renderer {
+      max_width = 14,
+      max_height = 17,
       highlighter = wilder.lua_fzy_highlighter(),
       left = {
         " ",

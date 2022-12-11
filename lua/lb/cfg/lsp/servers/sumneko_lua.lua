@@ -34,6 +34,9 @@ local setup = function()
   lspconfig.sumneko_lua.setup(c.default {
     settings = {
       Lua = {
+        format = {
+          enable = false,
+        },
         completion = {
           callSnippet = "Replace",
         },
