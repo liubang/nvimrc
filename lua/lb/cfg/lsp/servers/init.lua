@@ -28,6 +28,7 @@ for _, server in ipairs {
   "taplo", -- for toml
   "html",
   "cssls",
+  "emmet_ls", -- emmet YYDS!
   "tsserver",
   "pyright",
   "eslint",

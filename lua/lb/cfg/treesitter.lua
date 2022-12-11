@@ -87,11 +87,6 @@ require("nvim-treesitter.configs").setup {
     },
   },
 
-  autotag = {
-    enable = true,
-    filetypes = { "html", "xml", "javascript", "typescript", "markdown" },
-  },
-
   rainbow = {
     enable = true,
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
