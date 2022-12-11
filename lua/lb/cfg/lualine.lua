@@ -60,7 +60,7 @@ local lsp_names = { --{{{
   rust_analyzer = "Rust",
   sumneko_lua = "Lua",
   intelephense = "PHP",
-  jedi_language_server = "Python",
+  pyright = "Python",
   bashls = "Bash",
   dockerls = "Docker",
   tsserver = "TS",
@@ -72,6 +72,7 @@ local lsp_names = { --{{{
   vimls = "Vim",
   yamlls = "YAML",
   cssls = "CSS",
+  emmet_ls = "EMMET",
 }
 --}}}
 
