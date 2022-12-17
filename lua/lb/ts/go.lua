@@ -156,4 +156,18 @@ M.in_func = function()
   return false
 end
 
+M.list_test_func = function(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  local tree = vim.treesitter.get_parser(bufnr):parse()[1]
+  local query = vim.treesitter.parse_query("go", M.query_test_func)
+  local test_funcs = {}
+  for id, node, _ in query:iter_captures(tree:root(), bufnr, 0, -1) do
+    local name = query.captures[id]
+    if name == "test_name" then
+      table.insert(test_funcs, vim.treesitter.get_node_text(node, bufnr))
+    end
+  end
+  return test_funcs
+end
+
 return M

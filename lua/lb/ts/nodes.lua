@@ -86,7 +86,6 @@ M.get_all_nodes = function(query, lang, bufnr, type_only)
 end
 
 local intersects = function(row, col, sRow, sCol, eRow, eCol)
-  -- ulog(row, col, sRow, sCol, eRow, eCol)
   if sRow > row or eRow < row then
     return false
   end

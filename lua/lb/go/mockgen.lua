@@ -64,6 +64,8 @@ local run = function(opts)
   if args["source"] == nil then
     ifname = get_interface_name()
     if ifname == "" then
+      vim.notify("move your cursor in a interface", vim.log.levels.ERROR, title)
+      return
     end
   end
 

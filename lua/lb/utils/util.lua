@@ -106,10 +106,7 @@ M.ltrim = function(s)
 end
 
 M.trim = function(s)
-  if s then
-    s = M.ltrim(s)
-    return M.rtrim(s)
-  end
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
 -- @Ref https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/util.lua

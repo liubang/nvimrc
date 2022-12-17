@@ -11,3 +11,7 @@ local util = require "lb.utils.util"
 local root = util.root_pattern(".git", "init.lua", "task.ini")(vim.fn.expand "%:p")
 vim.pretty_print(vim.fn.expand "%")
 vim.pretty_print(root)
+local fpath = vim.fn.expand "%:p"
+print(fpath)
+
+vim.pretty_print(fpath.find(root, 1))

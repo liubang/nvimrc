@@ -254,7 +254,9 @@ require("packer").startup {
           cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
         },
       },
-      run = ":TSUpdate",
+      run = function()
+        pcall(require("nvim-treesitter.install").update { with_sync = true })
+      end,
       event = { "User LoadTicker1", "BufReadPost", "BufNewFile" },
     }
 

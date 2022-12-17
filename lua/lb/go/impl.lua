@@ -14,7 +14,7 @@ local impl = "impl"
 local Job = require "plenary.job"
 
 -- notify title
-local title = { title = "impl" }
+local title = { title = "GoImpl" }
 
 local function get_type_name()
   local name = tsgo.get_struct_node_at_pos()
