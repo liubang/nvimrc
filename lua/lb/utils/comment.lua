@@ -18,6 +18,7 @@ local prefix_mappings = {
   ['lua']             = '--',
   ['sql']             = '--',
   ['vim']             = '"',
+  ['bzl']             = '#',
   ['python']          = '#',
   ['sh']              = '#',
   ['zsh']             = '#',

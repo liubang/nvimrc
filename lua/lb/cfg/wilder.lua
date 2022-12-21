@@ -41,9 +41,15 @@ wilder.set_option(
         " ",
         wilder.popupmenu_scrollbar(),
       },
+      highlights = {
+        accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#ea6962" } }),
+      },
     },
     ["/"] = wilder.wildmenu_renderer {
       highlighter = wilder.lua_fzy_highlighter(),
+      highlights = {
+        accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#ea6962" } }),
+      },
     },
   }
 )
