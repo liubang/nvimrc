@@ -3,11 +3,14 @@
 -- comment.lua -
 --
 -- Created by liubang on 2021/08/31 22:41
--- Last Modified: 2022/10/18 23:28
+-- Last Modified: 2022/12/22 19:16
 --
 -- =====================================================================
 
-require("Comment").setup {
+local comment = require "Comment"
+local ft = require "Comment.ft"
+
+comment.setup {
   padding = true,
 
   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -24,3 +27,5 @@ require("Comment").setup {
     extra = false,
   },
 }
+
+ft.set("rust", "///%s")
