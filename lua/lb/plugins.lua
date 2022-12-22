@@ -70,13 +70,12 @@ require("packer").startup {
       end,
       event = { "BufWinEnter" },
     }
-
     use {
       "rcarriga/nvim-notify",
       config = function()
         require "lb.cfg.notify"
       end,
-      event = { "User LoadTicker2" },
+      event = { "UIEnter" },
     }
     use {
       "akinsho/bufferline.nvim",
@@ -121,7 +120,7 @@ require("packer").startup {
       config = function()
         require "lb.cfg.smartyank"
       end,
-      event = { "User LoadTicker4" },
+      event = { "BufReadPost" },
     }
     use {
       "mrjones2014/smart-splits.nvim",
@@ -148,7 +147,7 @@ require("packer").startup {
       config = function()
         require("hop").setup {}
       end,
-      event = { "User LoadTicker3" },
+      event = { "BufReadPost" },
     }
     use {
       "voldikss/vim-floaterm",
@@ -257,7 +256,7 @@ require("packer").startup {
       run = function()
         pcall(require("nvim-treesitter.install").update { with_sync = true })
       end,
-      event = { "User LoadTicker1", "BufReadPost", "BufNewFile" },
+      event = { "BufReadPost", "BufNewFile" },
     }
 
     use {
@@ -326,7 +325,8 @@ require("packer").startup {
       config = function()
         require "lb.cfg.cmp"
       end,
-      event = { "User LoadTicker1" },
+      -- event = { "User LoadTicker1" },
+      event = { "InsertEnter" },
     }
 
     use {
