@@ -3,7 +3,7 @@
 -- plugins.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/07 19:49
+-- Last Modified: 2022/12/23 14:32
 --
 -- =====================================================================
 
@@ -102,7 +102,6 @@ require("packer").startup {
       config = function()
         require "lb.cfg.nvim-tree"
       end,
-      -- keys = { '<Leader>ft' },
       cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFile" },
     }
     -- }}}
@@ -127,7 +126,7 @@ require("packer").startup {
       config = function()
         require "lb.cfg.smartsplit"
       end,
-      event = { "User LoadTicker4" },
+      event = { "BufReadPost" },
     }
     use {
       "jbyuki/venn.nvim",
@@ -174,14 +173,14 @@ require("packer").startup {
       config = function()
         require "lb.cfg.git"
       end,
-      event = { "User LoadTicker3" },
+      event = { "BufReadPost", "BufNewFile" },
     }
     use {
       "echasnovski/mini.nvim",
       config = function()
         require "lb.cfg.mini-nvim"
       end,
-      event = { "User LoadTicker3" },
+      event = { "BufReadPost", "BufNewFile" },
     }
     -- MixedCase/PascalCase:   gsm/gsp
     -- camelCase:              gsc
@@ -285,7 +284,7 @@ require("packer").startup {
         require "lb.cfg.mason"
         require "lb.cfg.lsp"
       end,
-      event = { "User LoadTicker2", "BufReadPost", "BufNewFile" },
+      event = { "User LoadTicker3", "BufReadPost", "BufNewFile" },
     }
     use {
       "j-hui/fidget.nvim",
@@ -325,7 +324,6 @@ require("packer").startup {
       config = function()
         require "lb.cfg.cmp"
       end,
-      -- event = { "User LoadTicker1" },
       event = { "InsertEnter" },
     }
 
@@ -335,7 +333,7 @@ require("packer").startup {
       config = function()
         require "lb.cfg.luasnip"
       end,
-      event = { "User LoadTicker2" },
+      event = { "InsertEnter" },
     }
 
     use {
@@ -395,7 +393,6 @@ require("packer").startup {
         }
       end,
     }
-
     use {
       "iamcco/markdown-preview.nvim",
       ft = { "markdown" },
@@ -414,15 +411,5 @@ require("packer").startup {
   end,
   config = config,
 }
-
--- print messages when bootstrap {{{
-if is_bootstrap then
-  print "=================================="
-  print "    Plugins are being installed"
-  print "    Wait until Packer completes,"
-  print "       then restart nvim"
-  print "=================================="
-  return
-end
 
 -- vim: fdm=marker fdl=0
