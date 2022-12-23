@@ -3,15 +3,36 @@
 -- completion.lua -
 --
 -- Created by liubang on 2021/09/04 21:05
--- Last Modified: 2022/12/11 03:40
+-- Last Modified: 2022/12/23 15:33
 --
 -- =====================================================================
 
-local ok, lspkind = pcall(require, "lspkind")
-if not ok then
-  require("packer").loader "lspkind.nvim"
-  lspkind = require "lspkind"
-end
+vim.cmd.packadd "lspkind.nvim"
+local lspkind = require "lspkind"
+
+-- stylua: ignore start
+lspkind.init {
+  symbol_map = {
+    NONE          = "",
+    Array         = "",
+    Boolean       = "⊨",
+    Class         = "",
+    Constructor   = "",
+    Key           = "",
+    Namespace     = "",
+    Null          = "NULL",
+    Number        = "#",
+    Object        = "⦿",
+    Package       = "",
+    Property      = "",
+    Reference     = "",
+    Snippet       = "",
+    String        = "𝓐",
+    TypeParameter = "",
+    Unit          = "",
+  },
+}
+-- stylua: ignore end
 
 local cmp = require "cmp"
 local compare = require "cmp.config.compare"

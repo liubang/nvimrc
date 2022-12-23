@@ -303,14 +303,7 @@ require("packer").startup {
     -- }}}
 
     -- completion {{{
-    use {
-      "onsails/lspkind.nvim",
-      opt = true,
-      config = function()
-        require "lb.cfg.lspkind"
-      end,
-    }
-
+    use { "onsails/lspkind.nvim", opt = true }
     use {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -352,8 +345,6 @@ require("packer").startup {
         require "lb.cfg.crates-nvim"
       end,
       event = { "BufRead Cargo.toml" },
-      after = { "nvim-cmp" },
-      wants = { "nvim-cmp" },
     }
 
     use {
