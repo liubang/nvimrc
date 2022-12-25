@@ -86,6 +86,10 @@ require("packer").startup {
       event = { "UIEnter" },
     }
     use {
+      "famiu/bufdelete.nvim",
+      event = { "BufWinEnter" },
+    }
+    use {
       "nvim-lualine/lualine.nvim",
       requires = {
         "nvim-tree/nvim-web-devicons",
@@ -176,6 +180,11 @@ require("packer").startup {
       event = { "BufReadPost", "BufNewFile" },
     }
     use {
+      "tpope/vim-fugitive",
+      requires = { "tpope/vim-git" },
+      cmd = { "Git", "G", "Ggrep", "0Git", "Gclog", "Gllog", "Gsplit", "Gvsplit", "Gdiffsplit" },
+    }
+    use {
       "echasnovski/mini.nvim",
       config = function()
         require "lb.cfg.mini-nvim"
@@ -206,10 +215,7 @@ require("packer").startup {
                 ]],
           after = { "telescope.nvim" },
         },
-        {
-          "nvim-telescope/telescope-ui-select.nvim",
-          after = { "telescope.nvim" },
-        },
+        { "nvim-telescope/telescope-ui-select.nvim", after = { "telescope.nvim" } },
       },
       module = "telescope", -- 不能删
       config = function()
@@ -225,6 +231,15 @@ require("packer").startup {
         require "lb.cfg.aerial"
       end,
       cmd = { "AerialToggle" },
+    }
+
+    use {
+      "mbbill/undotree",
+      branch = "search",
+      config = function()
+        require "lb.cfg.undotree"
+      end,
+      cmd = { "UndotreeShow", "UndotreeToggle" },
     }
 
     use {

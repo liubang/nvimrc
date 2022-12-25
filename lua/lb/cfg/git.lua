@@ -36,6 +36,7 @@ gitsigns.setup({
     internal = true,
     algorithm = "patience",
     indent_heuristic = true,
+    linematch = 60,
   },
 
   on_attach = function(bufnr)

@@ -7,9 +7,11 @@
 --
 -- =====================================================================
 
+-- termcodes helper function {{{
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+-- }}}
 
 -- stylua: ignore start
 
@@ -20,6 +22,7 @@ vim.keymap.set('x', ',', '<Nop>')
 vim.keymap.set('x', 'm', '<Nop>')
 -- }}}
 
+-- some useful keymaps {{{
 vim.keymap.set('x', '<Tab>', '>gv|')
 vim.keymap.set('x', '<S-Tab>', '<gv')
 vim.keymap.set('n', '<Tab>', '>>_')
@@ -38,8 +41,8 @@ vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hls
 
 vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when indenting" })
 vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
-
 -- vim.keymap.set("n", "<Leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
+-- }}}
 
 -- Yank related {{{
 vim.keymap.set("n", "<Leader>y", '"+y')
@@ -81,21 +84,31 @@ vim.keymap.set('n', '<C-S-Left>', function() require('smart-splits').resize_left
 vim.keymap.set('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 -- }}}
 
--- terminal
+-- terminal {{{
 vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
+-- }}}
 
---------- plugins key mappings
--- neotree
+-- buffer delete {{{
+vim.keymap.set('n', '<Leader>bd', '<cmd>Bwipeout<CR>')
+-- }}}
+
+-- neotree {{{
 -- vim.keymap.set(
 --   'n',
 --   '<Leader>ft',
 --   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
 -- )
+-- }}}
 
--- nvim-tree
+-- undo tree {{{
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
+-- }}}
+
+-- nvim-tree {{{
 vim.keymap.set('n', '<Leader>ft', ":NvimTreeToggle<CR>", { silent = true, desc = 'toggle tree view' })
+-- }}}
 
--- floaterm
+-- floaterm {{{
 vim.keymap.set('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
 vim.keymap.set('n', '<C-t>', '<cmd>FloatermToggle<CR>')
 vim.keymap.set('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
@@ -103,16 +116,19 @@ vim.keymap.set('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
 vim.keymap.set('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
 vim.keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
 vim.keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
+-- }}}
 
--- asynctask
+-- asynctask {{{
 vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask file-build<CR>')
 vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask file-run<CR>')
 vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask file-build-run<CR>')
+-- }}}
 
--- aerial
+-- aerial {{{
 vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
+-- }}}
 
--- bufferline
+-- bufferline {{{
 vim.keymap.set('n', '<Leader>1', '<cmd>BufferLineGoToBuffer 1<CR>')
 vim.keymap.set('n', '<Leader>2', '<cmd>BufferLineGoToBuffer 2<CR>')
 vim.keymap.set('n', '<Leader>3', '<cmd>BufferLineGoToBuffer 3<CR>')
@@ -122,8 +138,9 @@ vim.keymap.set('n', '<Leader>6', '<cmd>BufferLineGoToBuffer 6<CR>')
 vim.keymap.set('n', '<Leader>7', '<cmd>BufferLineGoToBuffer 7<CR>')
 vim.keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
 vim.keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
+-- }}}
 
--- hop
+-- hop {{{
 vim.keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)
 vim.keymap.set('n', '<Leader>jj', function() require('hop').hint_lines() end)
 vim.keymap.set('n', '<Leader>ss', function() require('hop').hint_patterns() end)
@@ -145,17 +162,23 @@ vim.keymap.set('n', '<Leader>hh',
     }
   end
 )
+-- }}}
 
--- accelerate
+-- accelerate {{{
 vim.keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)')
 vim.keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)')
+-- }}}
 
--- git
+-- git {{{
 vim.keymap.set('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
 vim.keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
+vim.keymap.set('n', '<Leader>hr', function() require('gitsigns').reset_hunk() end)
+vim.keymap.set('n', '<Leader>hs', function() require('gitsigns').stage_hunk() end)
+-- }}}
 
--- markdown
+-- markdown {{{
 vim.keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
+-- }}}
 
 -- telescope {{{
 vim.keymap.set('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
