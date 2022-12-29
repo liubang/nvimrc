@@ -7,7 +7,7 @@
 --
 -- =====================================================================
 
-vim.cmd.packadd "lspkind.nvim"
+-- vim.cmd.packadd "lspkind.nvim"
 local lspkind = require "lspkind"
 
 -- stylua: ignore start

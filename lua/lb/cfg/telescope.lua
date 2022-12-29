@@ -7,8 +7,8 @@
 --
 -- =====================================================================
 
-vim.cmd.packadd "telescope-fzf-native.nvim"
-vim.cmd.packadd "telescope-ui-select.nvim"
+-- vim.cmd.packadd "telescope-fzf-native.nvim"
+-- vim.cmd.packadd "telescope-ui-select.nvim"
 
 local telescope = require "telescope"
 local actions = require "telescope.actions"

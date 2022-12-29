@@ -7,8 +7,6 @@
 --
 --=====================================================================
 
-require("packer").loader "cmp-nvim-lsp"
-
 local M = {}
 
 local custom_init = function(client)

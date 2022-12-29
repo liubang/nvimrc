@@ -7,8 +7,8 @@
 --
 -- =====================================================================
 
-vim.cmd.packadd "mason.nvim"
-vim.cmd.packadd "mason-lspconfig.nvim"
+-- vim.cmd.packadd "mason.nvim"
+-- vim.cmd.packadd "mason-lspconfig.nvim"
 
 require("mason").setup {
   ui = {

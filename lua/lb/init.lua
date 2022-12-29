@@ -18,9 +18,3 @@ vim.schedule(function()
   require "lb.commands"
   require "lb.mappings"
 end)
-
--- stylua: ignore start
--- vim.defer_fn(function()vim.cmd.doautocmd 'User LoadTicker1' end, 100)
--- vim.defer_fn(function()vim.cmd.doautocmd 'User LoadTicker2' end, 300)
-vim.defer_fn(function()vim.cmd.doautocmd 'User LoadTicker3' end, 900)
--- stylua: ignore end

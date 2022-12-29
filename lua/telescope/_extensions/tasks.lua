@@ -3,15 +3,13 @@
 -- async_tasks.lua -
 --
 -- Created by liubang on 2021/01/03 19:02
--- Last Modified: 2022/12/04 17:11
+-- Last Modified: 2022/12/29 09:03
 --
 -- =====================================================================
 local has_telescope, telescope = pcall(require, "telescope")
 if not has_telescope then
   error "This plugins require nvim-telescope/telescope.nvim"
 end
-
-require("packer").loader "asynctasks.vim"
 
 local finders = require "telescope.finders"
 local pickers = require "telescope.pickers"

@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-vim.cmd.packadd "fzy-lua-native"
+-- vim.cmd.packadd "fzy-lua-native"
 
 local wilder = require "wilder"
 

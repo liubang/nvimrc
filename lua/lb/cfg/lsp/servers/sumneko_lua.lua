@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-vim.cmd.packadd "neodev.nvim"
+-- vim.cmd.packadd "neodev.nvim"
 
 local neodev = require "neodev"
 local lspconfig = require "lspconfig"

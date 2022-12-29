@@ -34,11 +34,7 @@ vim.g.gruvbox_material_background = "soft"
 vim.g.gruvbox_material_better_performance = 1
 -- }}}
 
-vim.api.nvim_create_autocmd("UIEnter", { --{{{
-  callback = function()
-    vim.cmd.colorscheme "gruvbox-material"
-    vim.o.foldtext = 'v:lua.require("lb.utils.fold").foldtext()'
-  end,
-}) --}}}
+vim.cmd.colorscheme "gruvbox-material"
+vim.o.foldtext = 'v:lua.require("lb.utils.fold").foldtext()'
 
 -- vim: fdm=marker fdl=0

@@ -7,16 +7,6 @@
 --
 --=====================================================================
 
-local ok, _ = pcall(require, "nvim-web-devicons")
-if not ok then
-  require("packer").loader "nvim-web-devicons"
-end
-
-ok, _ = pcall(require, "nvim-navic")
-if not ok then
-  require("packer").loader "nvim-navic"
-end
-
 local lualine = require "lualine"
 
 local lineinfo = function()

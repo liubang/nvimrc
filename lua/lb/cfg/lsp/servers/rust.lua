@@ -6,7 +6,7 @@
 -- Last Modified: 2022/08/06 00:24
 --
 --=====================================================================
-require("packer").loader "rust-tools.nvim"
+-- require("packer").loader "rust-tools.nvim"
 
 local c = require "lb.cfg.lsp.customs"
 local M = {}

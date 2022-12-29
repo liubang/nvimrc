@@ -3,9 +3,8 @@
 -- init.lua -
 --
 -- Created by liubang on 2020/12/11
--- Last Modified: 2020/12/11 00:22
+-- Last Modified: 2022/12/29 09:03
 --
 -- =====================================================================
 
-pcall(require, "impatient")
 require "lb"

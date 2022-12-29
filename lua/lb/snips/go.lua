@@ -14,11 +14,7 @@ local rep = require("luasnip.extras").rep
 local ai = require "luasnip.nodes.absolute_indexer"
 local partial = require("luasnip.extras").partial
 
-local ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-if not ok then
-  require("packer").loader "nvim-treesitter"
-  ts_utils = require "nvim-treesitter.ts_utils"
-end
+local ts_utils = require "nvim-treesitter.ts_utils"
 local ts_locals = require "nvim-treesitter.locals"
 
 -- the snip leverage lots of setup/snip from https://github.com/arsham/shark/blob/master/lua/settings/luasnip/go.lua

@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-vim.cmd.packadd "schemastore.nvim"
+-- vim.cmd.packadd "schemastore.nvim"
 
 local c = require "lb.cfg.lsp.customs"
 local lspconfig = require "lspconfig"

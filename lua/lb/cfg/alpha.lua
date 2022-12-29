@@ -7,10 +7,6 @@
 --
 -- =====================================================================
 
-local ok, _ = pcall(require, "nvim-web-devicons")
-if not ok then
-  require("packer").loader "nvim-web-devicons"
-end
 local alpha = require "alpha"
 
 local h = {
@@ -35,10 +31,11 @@ local header = {
   },
 }
 
-local plugins = #vim.tbl_keys(packer_plugins)
+-- local plugins = #vim.tbl_keys(packer_plugins)
+local plugins = require("lazy.stats").stats()
 local plugin_count = {
   type = "text",
-  val = "└─   " .. plugins .. " plugins in total ─┘",
+  val = "└─   " .. plugins.count .. " plugins in total ─┘",
   opts = {
     position = "center",
     hl = "AlphaHeader",
