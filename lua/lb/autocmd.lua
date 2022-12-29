@@ -37,15 +37,6 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "close lspinfo popup and help,qf buffers with q",
 })
 
--- local reload_configs_group = vim.api.nvim_create_augroup("RELOAD_CONFIGS", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   group = reload_configs_group,
---   pattern = "*/lua/lb/*.lua",
---   callback = function(args)
---     vim.cmd.source "<afile>"
---   end,
--- })
-
 local special_settings_group = vim.api.nvim_create_augroup("SPECIAL_SETTINGS", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = special_settings_group,

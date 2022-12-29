@@ -8,16 +8,35 @@ return {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
+    lazy = false,
     config = function()
       require "lb.cfg.accelerated-jk"
     end,
   },
   {
-    "ibhagwan/smartyank.nvim",
+    "gbprod/yanky.nvim",
+    event = "BufReadPost",
+    dependencies = {
+      "kkharji/sqlite.lua",
+    },
     config = function()
-      require "lb.cfg.smartyank"
+      require("yanky").setup {
+        system_clipboard = {
+          sync_with_ring = true,
+        },
+        highlight = {
+          on_put = true,
+          on_yank = true,
+          timer = 300,
+        },
+        preserve_cursor_position = {
+          enabled = true,
+        },
+        ring = {
+          storage = jit.os:find "Windows" and "shada" or "sqlite",
+        },
+      }
     end,
-    event = { "BufReadPost" },
   },
   {
     "mrjones2014/smart-splits.nvim",
@@ -69,7 +88,7 @@ return {
     config = function()
       require "lb.cfg.git"
     end,
-    event = { "BufReadPost", "BufNewFile" },
+    event = "BufReadPre",
   },
   {
     "tpope/vim-fugitive",
@@ -80,7 +99,7 @@ return {
     config = function()
       require "lb.cfg.mini-nvim"
     end,
-    event = { "BufReadPost", "BufNewFile" },
+    event = "VeryLazy",
   },
   -- MixedCase/PascalCase:   gsm/gsp
   -- camelCase:              gsc
@@ -96,20 +115,13 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = [[
-                  cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release \
-                     && cmake --build build --config Release \
-                     && cmake --install build --prefix build
-                ]],
-      },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       require "lb.cfg.telescope"
     end,
-    -- cmd = "Telescope",
+    cmd = "Telescope",
     event = "VeryLazy",
   },
 
@@ -118,7 +130,7 @@ return {
     config = function()
       require "lb.cfg.aerial"
     end,
-    cmd = { "AerialToggle" },
+    cmd = "AerialToggle",
   },
 
   {

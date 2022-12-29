@@ -39,15 +39,15 @@ gitsigns.setup({
     linematch = 60,
   },
 
-  on_attach = function(bufnr)
-    local name = vim.api.nvim_buf_get_name(bufnr)
-    if vim.fn.expand("%:t") == "lsp.log" or vim.bo.filetype == "help" then
-      return false
-    end
-    local size = vim.fn.getfsize(name)
-    if size > 1024 * 1024 * 5 then
-      return false
-    end
-  end,
+  -- on_attach = function(bufnr)
+  --   local name = vim.api.nvim_buf_get_name(bufnr)
+  --   if vim.fn.expand("%:t") == "lsp.log" or vim.bo.filetype == "help" then
+  --     return false
+  --   end
+  --   local size = vim.fn.getfsize(name)
+  --   if size > 1024 * 1024 * 5 then
+  --     return false
+  --   end
+  -- end,
 })
 -- stylua: ignore end

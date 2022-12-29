@@ -1,9 +1,9 @@
 -- =====================================================================
 --
--- plugins.lua -
+-- lazy.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/23 14:32
+-- Last Modified: 2022/12/30 00:20
 --
 -- =====================================================================
 
@@ -20,23 +20,28 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup("custom.plugins", {
-  defaults = {
-    lazy = false,
-  },
+require("lazy").setup("lb.plugins", {
+  defaults = { lazy = true },
+  install = { colorscheme = { "gruvbox-material" } },
   ui = {
-    icons = {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
+    border = "single",
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "nvim-treesitter-textobjects",
+      },
     },
   },
 })

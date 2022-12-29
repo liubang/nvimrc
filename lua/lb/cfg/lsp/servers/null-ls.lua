@@ -38,8 +38,6 @@ local sources = {
   b.diagnostics.actionlint.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
-
-  b.code_actions.gitsigns,
 }
 
 M.setup = function()

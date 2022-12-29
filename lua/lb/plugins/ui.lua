@@ -2,23 +2,25 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   {
     "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1000,
     config = function()
       require "lb.cfg.theme"
     end,
   },
   {
     "goolord/alpha-nvim",
+    lazy = false,
     config = function()
       require "lb.cfg.alpha"
     end,
-    event = { "BufWinEnter" },
   },
   {
     "rcarriga/nvim-notify",
     config = function()
       require "lb.cfg.notify"
     end,
-    event = { "UIEnter" },
+    event = "VeryLazy",
   },
   {
     "akinsho/bufferline.nvim",
@@ -26,9 +28,9 @@ return {
     config = function()
       require "lb.cfg.bufferline"
     end,
-    event = { "UIEnter" },
+    event = "BufAdd",
   },
-  { "famiu/bufdelete.nvim", event = { "BufWinEnter" } },
+  { "famiu/bufdelete.nvim", event = "BufAdd" },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -38,7 +40,7 @@ return {
     config = function()
       require "lb.cfg.lualine"
     end,
-    event = { "UIEnter" },
+    event = "VeryLazy",
   },
   {
     "nvim-tree/nvim-tree.lua",
