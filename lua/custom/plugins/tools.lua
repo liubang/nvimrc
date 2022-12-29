@@ -1,5 +1,12 @@
 return {
   {
+    "numToStr/Comment.nvim",
+    event = "InsertEnter",
+    config = function()
+      require "lb.cfg.comment"
+    end,
+  },
+  {
     "rainbowhxch/accelerated-jk.nvim",
     config = function()
       require "lb.cfg.accelerated-jk"
@@ -102,7 +109,7 @@ return {
     config = function()
       require "lb.cfg.telescope"
     end,
-    cmd = "Telescope",
+    -- cmd = "Telescope",
     event = "VeryLazy",
   },
 

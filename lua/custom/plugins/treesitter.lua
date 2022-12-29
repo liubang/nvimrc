@@ -17,11 +17,4 @@ return {
       pcall(require("nvim-treesitter.install").update { with_sync = true })
     end,
   },
-
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require "lb.cfg.comment"
-    end,
-  },
 }

@@ -46,7 +46,9 @@ return {
     dependencies = {
       "romgrk/fzy-lua-native",
       build = "make",
+      lazy = true,
     },
+    event = "CmdlineEnter",
     config = function()
       require "lb.cfg.wilder"
     end,
