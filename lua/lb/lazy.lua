@@ -22,9 +22,41 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("lb.plugins", {
   defaults = { lazy = true },
-  install = { colorscheme = { "gruvbox-material" } },
+  install = { missing = true, colorscheme = { "gruvbox-material" } },
+  git = {
+    log = { "-5" }, -- show the last 10 commits
+  },
+  dev = {
+    -- directory where you store your local plugin projects
+    path = "~/workspace/vim",
+    ---@type string[] plugins that match these patterns will use your local versions
+    -- instead of being fetched from GitHub
+    patterns = {},
+  },
   ui = {
     border = "single",
+    icons = {
+      loaded = "●",
+      not_loaded = "○",
+      cmd = " ",
+      config = " ",
+      event = "",
+      ft = " ",
+      init = " ",
+      keys = " ",
+      plugin = " ",
+      runtime = " ",
+      source = " ",
+      start = "",
+      task = " ",
+      lazy = "鈴 ",
+      list = {
+        "●",
+        "➜",
+        "★",
+        "‒",
+      },
+    },
   },
   performance = {
     cache = {
@@ -43,5 +75,14 @@ require("lazy").setup("lb.plugins", {
         "nvim-treesitter-textobjects",
       },
     },
+  },
+  -- lazy can generate helptags from the headings in markdown readme files,
+  -- so :help works even for plugins that don't have vim docs.
+  -- when the readme opens with :help it will be correctly displayed as markdown
+  readme = {
+    root = vim.fn.stdpath "state" .. "/lazy/readme",
+    files = { "README.md" },
+    -- only generate markdown helptags for plugins that dont have docs
+    skip_if_doc_exists = true,
   },
 })

@@ -8,7 +8,7 @@
 --=====================================================================
 return {
   "rainbowhxch/accelerated-jk.nvim",
-  lazy = false,
+  keys = { "<Plug>(accelerated_jk_gj)", "<Plug>(accelerated_jk_gk)" },
   config = function()
     require("accelerated-jk").setup {
       mode = "time_driven",
