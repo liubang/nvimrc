@@ -38,6 +38,12 @@ local setup = function()
         completion = {
           callSnippet = "Replace",
         },
+        workspace = {
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
       },
     },
   })

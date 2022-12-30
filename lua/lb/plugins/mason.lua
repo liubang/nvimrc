@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-local M = { "williamboman/mason.nvim" }
+local M = { "williamboman/mason.nvim", cmd = "Mason" }
 
 function M.config()
   require("mason").setup {

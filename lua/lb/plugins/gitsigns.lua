@@ -9,15 +9,15 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPre",
+  cmd = "Gitsigns",
   config = function()
     local gitsigns = require "gitsigns"
-    -- stylua: ignore start
     gitsigns.setup {
       signs = {
-        add          = { text = "▌", show_count = true },
-        change       = { text = "▌", show_count = true },
-        delete       = { text = "▐", show_count = true },
-        topdelete    = { text = "▛", show_count = true },
+        add = { text = "▌", show_count = true },
+        change = { text = "▌", show_count = true },
+        delete = { text = "▐", show_count = true },
+        topdelete = { text = "▛", show_count = true },
         changedelete = { text = "▚", show_count = true },
       },
       sign_priority = 10,
@@ -33,15 +33,17 @@ return {
         [9] = "₉",
         ["+"] = "₊",
       },
-
-      diff_opts = {
-        internal = true,
-        algorithm = "patience",
-        indent_heuristic = true,
-        linematch = 60,
+      preview_config = {
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+      },
+      yadm = {
+        enable = false,
       },
     }
-    -- stylua: ignore end
   end,
 }
 
