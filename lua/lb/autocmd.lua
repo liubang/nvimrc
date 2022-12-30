@@ -37,6 +37,26 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "close lspinfo popup and help,qf buffers with q",
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = {
+    "qf",
+    "help",
+    "man",
+    "notify",
+    "lspinfo",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "PlenaryTestPopup",
+  },
+  group = filetype_commands_group,
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    -- vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
+
 local special_settings_group = vim.api.nvim_create_augroup("SPECIAL_SETTINGS", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = special_settings_group,
@@ -52,6 +72,20 @@ vim.api.nvim_create_autocmd("BufNewFile", {
         end
       end,
       desc = "create missing parent directories automatically",
+    })
+  end,
+})
+
+-- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd("BufReadPre", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "<buffer>",
+      once = true,
+      callback = function()
+        vim.cmd [[if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]]
+      end,
     })
   end,
 })

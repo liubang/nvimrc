@@ -12,9 +12,12 @@ vim.g.maplocalleader = " "
 
 require "lb.options" -- global options
 require "lb.lazy" -- plugins spec
-require "lb.autocmd" -- events
 
-vim.schedule(function()
-  require "lb.commands"
-  require "lb.mappings"
-end)
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    require "lb.autocmd" -- events
+    require "lb.commands"
+    require "lb.mappings"
+  end,
+})

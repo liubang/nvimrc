@@ -108,7 +108,6 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.mouse = nil
 vim.opt.laststatus = 2
-vim.opt.showtabline = 2
 vim.opt.scrolloff = 3 -- keep 3 lines visible while scrolling
 vim.opt.sidescrolloff = 15
 vim.opt.sidescroll = 1

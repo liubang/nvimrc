@@ -33,9 +33,9 @@ vim.keymap.set("n", "<S-k>", [[:<c-u>execute 'm -1-'. v:count1<cr>==]], { silent
 vim.keymap.set("x", "<S-j>", [[:m '>+1<CR><CR>gv=gv]], { silent = true, desc = "move lines down" })
 vim.keymap.set("x", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "move lines up" })
 
-vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
-vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
-vim.keymap.set("n", "g,", "m'g,zz", { desc = "auto re-centre when moving around" })
+-- vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
+-- vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
+-- vim.keymap.set("n", "g,", "m'g,zz", { desc = "auto re-centre when moving around" })
 
 vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hlsearch" })
 
