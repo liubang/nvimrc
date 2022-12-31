@@ -8,14 +8,14 @@
 --=====================================================================
 
 return {
+  "JoosepAlviste/nvim-ts-context-commentstring",
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "VeryLazy" },
+    event = "BufReadPost",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
       require("nvim-treesitter.configs").setup {

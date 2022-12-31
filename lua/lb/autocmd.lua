@@ -3,11 +3,11 @@
 -- autocmd.lua -
 --
 -- Created by liubang on 2022/10/18 00:39
--- Last Modified: 2022/12/18 00:31
+-- Last Modified: 2022/12/31 22:28
 --
 --=====================================================================
 
-vim.filetype.add {
+vim.filetype.add { -- {{{
   filename = {
     ["BCLOUD"] = "bzl",
     [".bazelrc"] = "bzl",
@@ -22,9 +22,11 @@ vim.filetype.add {
     thrift = "thrift",
     wiki = "markdown",
   },
-}
+} -- }}}
 
 local filetype_commands_group = vim.api.nvim_create_augroup("FILETYPE_COMMANDS", { clear = true })
+
+-- close lspinfo popup and help,qf buffers with q {{{
 vim.api.nvim_create_autocmd("FileType", {
   group = filetype_commands_group,
   pattern = { "lspinfo", "lsp-installer", "null-ls-info", "help", "qf" },
@@ -35,28 +37,11 @@ vim.api.nvim_create_autocmd("FileType", {
     end, opts)
   end,
   desc = "close lspinfo popup and help,qf buffers with q",
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = {
-    "qf",
-    "help",
-    "man",
-    "notify",
-    "lspinfo",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "PlenaryTestPopup",
-  },
-  group = filetype_commands_group,
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-})
+}) -- }}}
 
 local special_settings_group = vim.api.nvim_create_augroup("SPECIAL_SETTINGS", { clear = true })
+
+-- create missing parent directories automatically {{{
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = special_settings_group,
   callback = function()
@@ -73,20 +58,27 @@ vim.api.nvim_create_autocmd("BufNewFile", {
       desc = "create missing parent directories automatically",
     })
   end,
-})
+}) -- }}}
 
--- go to last loc when opening a buffer
+-- go to last loc when opening a buffer {{{
 vim.api.nvim_create_autocmd("BufReadPre", {
   pattern = "*",
+  group = special_settings_group,
   callback = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "<buffer>",
       once = true,
       callback = function()
-        vim.cmd [[if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]]
+        local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+        if filetype ~= "commit" and filetype ~= "rebase" then
+          local mark = vim.fn.line "'\""
+          if mark > 1 and mark <= vim.fn.line "$" then
+            vim.cmd 'normal! g`"'
+          end
+        end
       end,
     })
   end,
-})
+}) -- }}}
 
 -- vim: fdm=marker fdl=0

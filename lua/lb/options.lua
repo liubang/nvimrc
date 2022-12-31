@@ -3,55 +3,9 @@
 -- vim.options.lua -
 --
 -- Created by liubang on 2020/12/12 13:01
--- Last Modified: 2022/12/23 14:32
+-- Last Modified: 2022/12/31 22:32
 --
 -- =====================================================================
-
--- local os_name = vim.loop.os_uname().sysname
-
--- disable distribution plugins {{{
--- disable menu loading
--- vim.g.did_install_default_menus = 1
--- vim.g.did_install_syntax_menu = 1
---
--- Uncomment this if you define your own filetypes in `after/ftplugin`
--- vim.g.did_load_filetypes = 1
-
--- Do not load native syntax completion
--- vim.g.loaded_syntax_completion = 1
-
--- Do not load spell files
--- vim.g.loaded_spellfile_plugin = 1
-
--- Whether to load netrw by default
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwFileHandlers = 1
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_netrwSettings = 1
--- newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
--- vim.g.netrw_liststyle = 3
-
--- Do not load tohtml.vim
--- vim.g.loaded_2html_plugin = 1
-
--- Do not load zipPlugin.vim, gzip.vim and tarPlugin.vim (all these plugins are
--- related to checking files inside compressed files)
--- vim.g.loaded_gzip = 1
--- vim.g.loaded_tar = 1
--- vim.g.loaded_tarPlugin = 1
--- vim.g.loaded_vimball = 1
--- vim.g.loaded_vimballPlugin = 1
--- vim.g.loaded_zip = 1
--- vim.g.loaded_zipPlugin = 1
---
--- Do not use builtin matchit.vim and matchparen.vim since the use of vim-matchup
--- vim.g.loaded_matchit = 1
--- vim.g.loaded_matchparen = 1
-
--- Disable sql omni completion.
--- vim.g.loaded_sql_completion = 1
-
--- }}}
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
@@ -92,13 +46,13 @@ vim.opt.autoread = true
 vim.opt.errorbells = false
 vim.opt.visualbell = false
 vim.opt.list = false
-vim.opt.listchars = {
+vim.opt.listchars = { -- {{{
   tab = "»·",
   nbsp = "+",
   trail = "·",
   extends = "→",
   precedes = "←",
-}
+} -- }}}
 vim.opt.title = true
 vim.opt.switchbuf = "useopen,uselast"
 vim.opt.autochdir = false
@@ -113,7 +67,7 @@ vim.opt.sidescrolloff = 15
 vim.opt.sidescroll = 1
 -- Ignore compiled files
 -- stuff to ignore when tab completing
-vim.opt.wildignore = {
+vim.opt.wildignore = { -- {{{
   "*~",
   "*.o",
   "*.obj",
@@ -149,7 +103,7 @@ vim.opt.diffopt:append "indent-heuristic"
 vim.opt.diffopt:append "algorithm:patience"
 vim.opt.diffopt:append "context:3"
 vim.opt.diffopt:append "foldcolumn:1"
-vim.opt.fillchars = {
+vim.opt.fillchars = { -- {{{
   vert = "│",
   fold = "·",
   diff = "",
@@ -158,9 +112,9 @@ vim.opt.fillchars = {
   foldopen = "▾",
   foldsep = "│",
   foldclose = "▸",
-}
+} -- }}}
 vim.opt.synmaxcol = 2500
-vim.opt.formatoptions = vim.opt.formatoptions
+vim.opt.formatoptions = vim.opt.formatoptions -- {{{
   - "a" -- Auto formatting is BAD.
   - "t" -- Don't auto format my code. I got linters for that.
   + "c" -- In general, I like it when comments respect textwidth
@@ -170,6 +124,7 @@ vim.opt.formatoptions = vim.opt.formatoptions
   + "n" -- Indent past the formatlistpat, not underneath it.
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
+-- }}}
 vim.opt.textwidth = 100
 vim.opt.colorcolumn = { "100" }
 vim.opt.expandtab = true

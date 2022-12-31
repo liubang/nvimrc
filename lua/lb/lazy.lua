@@ -3,7 +3,7 @@
 -- lazy.lua -
 --
 -- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/30 00:20
+-- Last Modified: 2022/12/31 22:30
 --
 -- =====================================================================
 
@@ -17,17 +17,17 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
   install = { missing = true, colorscheme = { "gruvbox-material" } },
-  git = {
+  git = { -- {{{
     log = { "-5" }, -- show the last 10 commits
-  },
-  dev = {
+  }, -- }}}
+  dev = { -- {{{
     -- directory where you store your local plugin projects
     path = "~/workspace/vim",
     ---@type string[] plugins that match these patterns will use your local versions
     -- instead of being fetched from GitHub
     patterns = {},
-  },
-  ui = {
+  }, -- }}}
+  ui = { -- {{{
     border = "single",
     icons = {
       loaded = "●",
@@ -51,8 +51,8 @@ require("lazy").setup("plugins", {
         "‒",
       },
     },
-  },
-  performance = {
+  }, -- }}}
+  performance = { -- {{{
     cache = {
       enabled = true,
     },
@@ -69,16 +69,16 @@ require("lazy").setup("plugins", {
         "nvim-treesitter-textobjects",
       },
     },
-  },
+  }, -- }}}
   -- lazy can generate helptags from the headings in markdown readme files,
   -- so :help works even for plugins that don't have vim docs.
   -- when the readme opens with :help it will be correctly displayed as markdown
-  readme = {
+  readme = { -- {{{
     root = vim.fn.stdpath "state" .. "/lazy/readme",
     files = { "README.md" },
     -- only generate markdown helptags for plugins that dont have docs
     skip_if_doc_exists = true,
-  },
+  }, -- }}}
 })
 
 -- vim: fdm=marker fdl=0

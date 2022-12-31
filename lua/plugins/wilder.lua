@@ -12,7 +12,6 @@ local M = {
     "romgrk/fzy-lua-native",
     build = "make",
   },
-  build = ":lua vim.defer_fn(function() vim.cmd.UpdateRemotePlugins() end, 500)",
   event = "CmdlineEnter",
 }
 

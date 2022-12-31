@@ -3,12 +3,12 @@
 -- health.lua -
 --
 -- Created by liubang on 2022/09/12 01:38
--- Last Modified: 2022/09/12 01:38
+-- Last Modified: 2022/12/31 22:32
 --
 --=====================================================================
 
-local health = vim.health or require "health"
 local M = {}
+local health = vim.health or require "health"
 
 local check_executable = function(bin, name, advice) -- {{{
   if vim.fn.executable(bin) == 0 then

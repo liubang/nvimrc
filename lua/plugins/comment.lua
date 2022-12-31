@@ -9,7 +9,7 @@
 
 return {
   "numToStr/Comment.nvim",
-  event = "InsertEnter",
+  keys = { "gcc", "gcb" },
   config = function()
     local comment = require "Comment"
     local ft = require "Comment.ft"
