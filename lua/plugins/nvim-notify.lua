@@ -9,8 +9,7 @@
 return {
   "rcarriga/nvim-notify",
   config = function()
-    local notify = require "notify"
-    notify.setup { -- {{{
+    require("notify").setup { -- {{{
       timeout = 500,
       stages = "fade",
       icons = {
@@ -21,9 +20,14 @@ return {
         WARN = "",
       },
     } -- }}}
-    vim.notify = notify
   end,
-  event = { "VeryLazy" },
+  init = function()
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.notify = function(...)
+      require("lazy").load { plugins = { "nvim-notify" } }
+      return require "notify"(...)
+    end
+  end,
 }
 
 -- vim: fdm=marker fdl=0

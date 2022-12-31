@@ -41,13 +41,13 @@ return {
       end
     end, {})
 
-    require "lb.snips.all"
-    require "lb.snips.c"
-    require "lb.snips.cpp"
-    require "lb.snips.rust"
-    require "lb.snips.go"
-    require "lb.snips.lua"
-    require "lb.snips.markdown"
+    require "plugins.snips.all"
+    require "plugins.snips.c"
+    require "plugins.snips.cpp"
+    require "plugins.snips.rust"
+    require "plugins.snips.go"
+    require "plugins.snips.lua"
+    require "plugins.snips.markdown"
   end,
 }
 

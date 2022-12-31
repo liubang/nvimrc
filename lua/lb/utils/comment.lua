@@ -8,7 +8,7 @@
 -- =====================================================================
 
 -- stylua: ignore start
-local prefix_mappings = {
+local prefix_mappings = { -- {{{
   ['c']               = '//',
   ['cpp']             = '//',
   ['rust']            = '//',
@@ -29,34 +29,34 @@ local prefix_mappings = {
   ['typescript']      = '//',
   ['javascriptreact'] = '//',
   ['typescriptreact'] = '//',
-}
+} -- }}}
 
-local header_mappings = {
+local header_mappings = { -- {{{
   ['php']    = { '<?php' },
   ['sh']     = { '#! /bin/sh' },
   ['bash']   = { '#! /usr/bin/env bash' },
   ['zsh']    = { '#! /usr/bin/env zsh' },
   ['python'] = { '#! /usr/bin/env python', '# -*- coding: utf-8 -*-' },
-}
+} -- }}}
 -- stylua: ignore end
 
-local comment_prefix = function()
+local comment_prefix = function() -- {{{
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   if prefix_mappings[filetype] ~= nil then
     return prefix_mappings[filetype]
   end
   return "#"
-end
+end -- }}}
 
-local comment_line = function(c, r)
+local comment_line = function(c, r) -- {{{
   local prefix = comment_prefix()
   while string.len(prefix) < r do
     prefix = prefix .. c
   end
   return prefix
-end
+end -- }}}
 
-local copy_right = function(author)
+local copy_right = function(author) -- {{{
   local c = comment_prefix()
   local complete = comment_line("=", 71)
   local filename = vim.fn.expand "%:t"
@@ -77,9 +77,9 @@ local copy_right = function(author)
   table.insert(text, c)
   table.insert(text, complete)
   vim.fn.append(0, text)
-end
+end -- }}}
 
-local copy_right_update = function()
+local copy_right_update = function() -- {{{
   local pos = vim.api.nvim_win_get_cursor(0)
   local n = math.min(10, vim.fn.line "$")
   local timestamp = os.date "%Y/%m/%d %H:%M"
@@ -87,6 +87,11 @@ local copy_right_update = function()
   vim.api.nvim_win_set_cursor(0, pos)
   -- clear last search pattern register
   vim.cmd [[let @/=""]]
-end
+end -- }}}
 
-return { copy_right = copy_right, copy_right_update = copy_right_update }
+return { -- {{{
+  copy_right = copy_right,
+  copy_right_update = copy_right_update,
+} -- }}}
+
+-- vim: fdm=marker fdl=0

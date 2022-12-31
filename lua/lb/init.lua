@@ -21,3 +21,5 @@ vim.api.nvim_create_autocmd("User", {
     require "lb.mappings"
   end,
 })
+
+-- vim: fdm=marker fdl=0

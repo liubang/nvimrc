@@ -54,14 +54,14 @@ M.shell = function(command) --{{{
   return res
 end --}}}
 
-M.sep = function()
+M.sep = function() -- {{{
   if is_windows then
     return "\\"
   end
   return "/"
-end
+end -- }}}
 
-M.rel_path = function(folder)
+M.rel_path = function(folder) -- {{{
   local mod = "%:p"
   if folder then
     mod = "%:p:h"
@@ -77,9 +77,9 @@ M.rel_path = function(folder)
     fpath = fpath:sub(1, #fpath - 1)
   end
   return fpath
-end
+end -- }}}
 
-M.trim_whitespace = function()
+M.trim_whitespace = function() -- {{{
   if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == "diff" then
     return
   end
@@ -91,26 +91,26 @@ M.trim_whitespace = function()
   vim.api.nvim_command [[keeppatterns %s/\s\+$//e]]
   vim.api.nvim_command [[silent! %s#\($\n\s*\)\+\%$##]]
   vim.api.nvim_win_set_cursor(0, cursor)
-end
+end -- }}}
 
-M.rtrim = function(s)
+M.rtrim = function(s) -- {{{
   local n = #s
   while n > 0 and s:find("^%s", n) do
     n = n - 1
   end
   return s:sub(1, n)
-end
+end -- }}}
 
-M.ltrim = function(s)
+M.ltrim = function(s) -- {{{
   return (s:gsub("^%s*", ""))
-end
+end -- }}}
 
-M.trim = function(s)
+M.trim = function(s) -- {{{
   return (s:gsub("^%s*(.-)%s*$", "%1"))
-end
+end -- }}}
 
 -- @Ref https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/util.lua
-M.path = (function()
+M.path = (function() -- {{{
   local function escape_wildcards(path)
     return path:gsub("([%[%]%?%*])", "\\%1")
   end
@@ -240,9 +240,9 @@ M.path = (function()
     is_descendant = is_descendant,
     path_separator = path_separator,
   }
-end)()
+end)() -- }}}
 
-function M.root_pattern(...)
+function M.root_pattern(...) -- {{{
   local patterns = vim.tbl_flatten { ... }
   local function matcher(path)
     for _, pattern in ipairs(patterns) do
@@ -257,9 +257,9 @@ function M.root_pattern(...)
     startpath = M.strip_archive_subpath(startpath)
     return M.search_ancestors(startpath, matcher)
   end
-end
+end -- }}}
 
-function M.search_ancestors(startpath, func)
+function M.search_ancestors(startpath, func) -- {{{
   vim.validate { func = { func, "f" } }
   if func(startpath) then
     return startpath
@@ -276,15 +276,17 @@ function M.search_ancestors(startpath, func)
       return path
     end
   end
-end
+end -- }}}
 
 -- For zipfile: or tarfile: virtual paths, returns the path to the archive.
 -- Other paths are returned unaltered.
-function M.strip_archive_subpath(path)
+function M.strip_archive_subpath(path) -- {{{
   -- Matches regex from zip.vim / tar.vim
   path = vim.fn.substitute(path, "zipfile://\\(.\\{-}\\)::[^\\\\].*$", "\\1", "")
   path = vim.fn.substitute(path, "tarfile:\\(.\\{-}\\)::.*$", "\\1", "")
   return path
-end
+end -- }}}
 
 return M
+
+-- vim: fdm=marker fdl=0

@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-local M = { "echasnovski/mini.nvim", event = "VeryLazy" }
+local M = { "echasnovski/mini.nvim", event = "BufReadPost" }
 
 function M.config()
   require("mini.surround").setup {

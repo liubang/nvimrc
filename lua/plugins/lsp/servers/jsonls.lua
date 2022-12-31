@@ -7,8 +7,8 @@
 --
 --=====================================================================
 
-local c = require "lb.plugins.lsp.customs"
 local lspconfig = require "lspconfig"
+local c = require "plugins.lsp.customs"
 
 local setup = function()
   lspconfig.jsonls.setup(c.default {

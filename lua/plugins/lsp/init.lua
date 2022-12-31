@@ -23,9 +23,9 @@ return {
     -- Setup servers via lspconfig
     -- require "lb.cfg.mason"
     require "mason"
-    require "lb.plugins.lsp.handlers"
-    require "lb.plugins.lsp.servers"
-    require "lb.plugins.lsp.autocmd"
+    require "plugins.lsp.handlers"
+    require "plugins.lsp.servers"
+    require "plugins.lsp.autocmd"
   end,
 }
 

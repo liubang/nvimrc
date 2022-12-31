@@ -38,3 +38,5 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command("P", function(obj)
   vim.pretty_print(vim.fn.luaeval(obj.args))
 end, { nargs = 1 })
+
+-- vim: fdm=marker fdl=0

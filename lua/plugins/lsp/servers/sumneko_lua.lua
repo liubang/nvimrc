@@ -9,7 +9,7 @@
 
 local neodev = require "neodev"
 local lspconfig = require "lspconfig"
-local c = require "lb.plugins.lsp.customs"
+local c = require "plugins.lsp.customs"
 
 neodev.setup {
   library = {
@@ -30,19 +30,39 @@ neodev.setup {
 
 local setup = function()
   lspconfig.sumneko_lua.setup(c.default {
+    single_file_support = true,
     settings = {
       Lua = {
         format = {
           enable = false,
         },
         completion = {
-          callSnippet = "Replace",
+          workspaceWord = true,
+          callSnippet = "Both",
         },
         workspace = {
           checkThirdParty = false,
         },
-        telemetry = {
-          enable = false,
+        diagnostics = {
+          groupSeverity = {
+            strong = "Warning",
+            strict = "Warning",
+          },
+          groupFileStatus = {
+            ["ambiguity"] = "Opened",
+            ["await"] = "Opened",
+            ["codestyle"] = "None",
+            ["duplicate"] = "Opened",
+            ["global"] = "Opened",
+            ["luadoc"] = "Opened",
+            ["redefined"] = "Opened",
+            ["strict"] = "Opened",
+            ["strong"] = "Opened",
+            ["type-check"] = "Opened",
+            ["unbalanced"] = "Opened",
+            ["unused"] = "Opened",
+          },
+          unusedLocalExclude = { "_*" },
         },
       },
     },

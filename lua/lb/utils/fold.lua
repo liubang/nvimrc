@@ -74,3 +74,5 @@ end --}}}
 return {
   foldtext = foldtext,
 }
+
+-- vim: fdm=marker fdl=0

@@ -14,8 +14,15 @@ local M = {
     { "nvim-telescope/telescope-ui-select.nvim" },
   },
   cmd = "Telescope",
-  event = "VeryLazy",
 }
+
+function M.init()
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.ui.select = function(...)
+    require("lazy").load { plugins = { "telescope.nvim" } }
+    return vim.ui.select(...)
+  end
+end
 
 function M.config()
   local telescope = require "telescope"

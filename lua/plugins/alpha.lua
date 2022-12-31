@@ -3,7 +3,7 @@
 -- alpha.lua -
 --
 -- Created by liubang on 2022/12/30 23:29
--- Last Modified: 2022/12/30 23:29
+-- Last Modified: 2022/12/31 11:28
 --
 --=====================================================================
 return {
@@ -33,7 +33,6 @@ return {
       },
     }
 
-    -- local plugins = #vim.tbl_keys(packer_plugins)
     local plugins = require("lazy.stats").stats()
     local plugin_count = {
       type = "text",

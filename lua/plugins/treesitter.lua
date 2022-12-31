@@ -26,6 +26,7 @@ return {
           "lua",
           "rust",
           "python",
+          "cmake",
           "gomod",
           "json",
           "latex",
@@ -41,7 +42,6 @@ return {
           "markdown_inline",
         },
         sync_install = false,
-        ignore_install = { "haskell" },
         highlight = {
           enable = true,
           use_languagetree = false,
