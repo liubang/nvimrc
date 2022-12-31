@@ -67,8 +67,6 @@ RUN mkdir -p $HOME/.config && \
 
 WORKDIR $HOME/workspace
 
-RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' \
-    nvim --headless -c 'TSInstall' +"sleep 30" +qa || true \
-    nvim --headless -c 'TSUpdate' +"sleep 15" +qa || true
+RUN nvim --headless "+Lazy! sync" +qa
 
 ENTRYPOINT ["/bin/bash", "-c", "nvim"]

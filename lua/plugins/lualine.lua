@@ -78,10 +78,6 @@ function M.config()
     return " " .. table.concat(clients, " 珞 ")
   end
 
-  local is_lsp_attached = function() --{{{
-    return next(vim.lsp.get_active_clients { bufnr = 0 }) ~= nil
-  end --}}}
-
   lualine.setup {
     options = {
       icons_enabled = true,
@@ -111,7 +107,16 @@ function M.config()
             unnamed = "[No Name]",
           },
         },
-        { filesize },
+        {
+          filesize,
+          cond = function()
+            local ft = vim.api.nvim_buf_get_option(0, "filetype")
+            if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
+              return false
+            end
+            return true
+          end,
+        },
         {
           require("nvim-navic").get_location,
           cond = require("nvim-navic").is_available,
@@ -122,7 +127,11 @@ function M.config()
         {
           lsp_clients,
           cond = function()
-            return is_lsp_attached()
+            local ft = vim.api.nvim_buf_get_option(0, "filetype")
+            if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
+              return false
+            end
+            return next(vim.lsp.get_active_clients { bufnr = 0 }) ~= nil
           end,
         },
       },
@@ -150,7 +159,7 @@ function M.config()
       lualine_y = {},
       lualine_z = {},
     },
-    extensions = { "nvim-tree", "aerial", "nerdtree" },
+    extensions = { "nvim-tree" },
   }
 end
 
