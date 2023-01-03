@@ -81,6 +81,10 @@ local filetype_attach = setmetatable({
     format_mapping(client, bufnr, nullls_filter)
   end,
 
+  vue = function(client, bufnr)
+    format_mapping(client, bufnr)
+  end,
+
   css = function(client, bufnr)
     format_mapping(client, bufnr, nullls_filter)
   end,

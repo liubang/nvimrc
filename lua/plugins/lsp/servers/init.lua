@@ -12,6 +12,7 @@ local c = require "plugins.lsp.customs"
 
 for _, server in ipairs {
   "php",
+  "vue",
   "jsonls",
   "yamlls",
   "clangd",
