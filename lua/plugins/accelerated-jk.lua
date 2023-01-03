@@ -8,7 +8,8 @@
 --=====================================================================
 return {
   "rainbowhxch/accelerated-jk.nvim",
-  keys = { "<Plug>(accelerated_jk_gj)", "<Plug>(accelerated_jk_gk)" },
+  event = "BufReadPost",
+  enabled = false,
   config = function()
     require("accelerated-jk").setup {
       mode = "time_driven",
