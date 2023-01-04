@@ -3,13 +3,16 @@
 -- accelerated-jk.lua -
 --
 -- Created by liubang on 2022/12/30 22:12
--- Last Modified: 2022/12/30 22:12
+-- Last Modified: 2023/01/04 15:21
 --
 --=====================================================================
 return {
   "rainbowhxch/accelerated-jk.nvim",
-  event = "BufReadPost",
-  enabled = false,
+  -- enabled = false,
+  keys = {
+    { "j", "<Plug>(accelerated_jk_gj)" },
+    { "k", "<Plug>(accelerated_jk_gk)" },
+  },
   config = function()
     require("accelerated-jk").setup {
       mode = "time_driven",

@@ -8,9 +8,14 @@
 --=====================================================================
 return {
   "gbprod/yanky.nvim",
-  event = "BufReadPost",
+  -- event = "BufReadPost",
   dependencies = {
     "kkharji/sqlite.lua",
+  },
+  keys = {
+    { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
+    { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
+    { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
   },
   config = function()
     require("yanky").setup {
