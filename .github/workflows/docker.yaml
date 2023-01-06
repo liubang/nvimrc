@@ -1,8 +1,9 @@
 name: docker
 
 on:
-  release:
-    types: [published, created, released]
+  push:
+    tags:
+      - "*"
 
 jobs:
   docker:
