@@ -32,7 +32,6 @@ for _, server in ipairs {
   "emmet_ls", -- emmet YYDS!
   "tsserver",
   "pyright",
-  "eslint",
   "bashls",
   "cmake",
   "texlab",

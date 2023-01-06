@@ -22,7 +22,30 @@ local sources = {
   b.formatting.buildifier,
   b.formatting.fixjson,
   b.formatting.autopep8,
-  b.formatting.prettier,
+  b.formatting.prettier.with {
+    filetypes = {
+      "css",
+      "scss",
+      "less",
+      "html",
+      "json",
+      "jsonc",
+      "yaml",
+      "markdown",
+      "markdown.mdx",
+      "graphql",
+      "handlebars",
+    },
+  },
+  b.formatting.eslint_d.with {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+    },
+  },
   b.formatting.shfmt.with {
     extra_args = { "-i", "2", "-ci" },
   },
@@ -38,6 +61,7 @@ local sources = {
   b.diagnostics.actionlint.with {
     method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
   },
+  b.diagnostics.eslint_d,
 }
 
 M.setup = function()
