@@ -261,6 +261,21 @@ local snippets = {
     not_in_fn
   ),
 
+  -- Defer Recover {{{
+  ls.s(
+    { trig = "refrec", name = "Defer Recover", dscr = "Defer Recover" },
+    fmta(
+      [[
+        defer func() {{
+          if e := recover(); e != nil {{
+            fmt.Printf("Panic: %v\n%v\n", e, string(debug.Stack()))
+          }}
+        }}()
+      ]]
+    , {}),
+    in_fn
+  ), --}}}
+
   -- If call error
   ls.s(
     { trig = "ifc", name = "if call", dscr = "Call a function and check the error" },

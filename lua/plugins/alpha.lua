@@ -33,10 +33,10 @@ return {
       },
     }
 
-    local plugins = require("lazy.stats").stats()
+    local stats = require("lazy.stats").stats()
     local plugin_count = {
       type = "text",
-      val = "└─   " .. plugins.count .. " plugins in total ─┘",
+      val = "└─   " .. stats.count .. " plugins in total ─┘",
       opts = {
         position = "center",
         hl = "AlphaHeader",
@@ -93,14 +93,10 @@ return {
     local buttons = {
       type = "group",
       val = {
-        button("SPC ff", "  > Find file", [[:lua require('telescope.builtin').find_files({previewer = false})<CR>]]),
-        button("SPC bb", "  > List buffers", [[:lua require('telescope.builtin').buffers({previewer = false})<CR>]]),
-        button("SPC ag", "  > Find word", [[:lua require('telescope.builtin').live_grep()<CR>]]),
-        button(
-          "SPC wo",
-          "  > List projects",
-          [[:lua require('telescope').extensions.project.project({change_dir = true})<CR>]]
-        ),
+        button("SPC ff", "  > Find file", ":Telescope find_files <CR>"),
+        button("SPC bb", "  > List buffers", ":Telescope buffers <CR>"),
+        button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+        button("SPC ag", "  > Find word", ":Telescope live_grep <CR>"),
         button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
         button("q", "  > Quit NVIM", ":qa<CR>"),
       },

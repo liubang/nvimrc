@@ -7,11 +7,10 @@
 --
 --=====================================================================
 
-local lspconfig = require "lspconfig"
 local c = require "plugins.lsp.customs"
 
 local setup = function()
-  lspconfig.jsonls.setup(c.default {
+  require("lspconfig").jsonls.setup(c.default {
     settings = {
       json = {
         schemas = require("schemastore").json.schemas(),

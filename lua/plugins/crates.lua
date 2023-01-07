@@ -8,9 +8,13 @@
 --=====================================================================
 return {
   "saecki/crates.nvim",
-  event = "InsertEnter",
+  event = { "BufReadPre Cargo.toml" },
   config = function()
-    require("crates").setup()
+    require("crates").setup {
+      popup = {
+        autofocus = true,
+      },
+    }
   end,
 }
 

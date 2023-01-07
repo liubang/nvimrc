@@ -6,7 +6,6 @@
 -- Last Modified: 2022/08/06 00:25
 --
 --=====================================================================
-local lspconfig = require "lspconfig"
 local c = require "plugins.lsp.customs"
 local M = {}
 
@@ -16,7 +15,7 @@ M.setup = function()
   --     ['language_server_phpstan.enabled'] = true,
   --   },
   -- })
-  lspconfig.intelephense.setup(c.default {})
+  require("lspconfig").intelephense.setup(c.default {})
 end
 
 return M

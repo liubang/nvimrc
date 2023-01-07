@@ -9,10 +9,9 @@
 
 local M = {}
 local c = require "plugins.lsp.customs"
-local lspconfig = require "lspconfig"
 
 M.setup = function()
-  lspconfig.vuels.setup(c.default {
+  require("lspconfig").vuels.setup(c.default {
     settings = {
       vetur = {
         completion = {

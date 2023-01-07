@@ -6,11 +6,10 @@
 -- Last Modified: 2022/12/08 17:33
 --
 --=====================================================================
-local lspconfig = require "lspconfig"
 local c = require "plugins.lsp.customs"
 
 local setup = function()
-  lspconfig.gopls.setup(c.default {
+  require("lspconfig").gopls.setup(c.default {
     -- share the gopls instance if there is one already
     cmd = { "gopls", "-remote.debug=:0" },
     filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },

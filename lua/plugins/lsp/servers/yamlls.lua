@@ -8,7 +8,6 @@
 --=====================================================================
 
 local c = require "plugins.lsp.customs"
-local lspconfig = require "lspconfig"
 
 local schemas = {
   kubernetes = {
@@ -34,7 +33,7 @@ local schemas = {
 }
 
 local setup = function()
-  lspconfig.yamlls.setup(c.default {
+  require("lspconfig").yamlls.setup(c.default {
     settings = {
       yaml = {
         format = { enable = true, singleQuote = true },

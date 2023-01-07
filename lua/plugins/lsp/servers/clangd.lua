@@ -8,10 +8,9 @@
 --=====================================================================
 
 local c = require "plugins.lsp.customs"
-local lspconfig = require "lspconfig"
-local Job = require "plenary.job"
 
 local get_default_driver = function()
+  local Job = require "plenary.job"
   local gcc = Job:new { command = "which", args = { "g++" } }
   local llvm = Job:new { command = "which", args = { "clang++" } }
   local _, result = pcall(function()
@@ -29,7 +28,7 @@ local get_default_driver = function()
 end
 
 local setup = function()
-  lspconfig.clangd.setup(c.default {
+  require("lspconfig").clangd.setup(c.default {
     cmd = {
       "clangd",
       "--background-index",

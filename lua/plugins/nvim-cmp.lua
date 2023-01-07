@@ -16,7 +16,7 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "kdheepak/cmp-latex-symbols",
   },
-  event = "InsertEnter",
+  event = { "InsertEnter" },
 }
 
 function M.config()

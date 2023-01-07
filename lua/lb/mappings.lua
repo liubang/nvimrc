@@ -38,6 +38,7 @@ vim.keymap.set("x", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "
 -- vim.keymap.set("n", "g,", "m'g,zz", { desc = "auto re-centre when moving around" })
 
 vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hlsearch" })
+vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search in visually selected region" })
 
 vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when indenting" })
 vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
@@ -177,6 +178,7 @@ vim.keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
 
 -- telescope {{{
 vim.keymap.set('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
+vim.keymap.set('n', '<Leader>rf', "<cmd>Telescope oldfiles<CR>")
 vim.keymap.set('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
 vim.keymap.set('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
 vim.keymap.set('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
