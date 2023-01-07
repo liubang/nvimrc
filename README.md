@@ -25,7 +25,7 @@
 
 ![nvim](./static/2.png)
 
-**Pros:**
+## Features
 
 - Fast. Less than **30ms** to start (Depends on SSD and CPU, tested on Intel NUC11BTMi9).
 - Simple. Run out of the box.
@@ -35,6 +35,12 @@
 ![nvim](./static/3.png)
 
 (Tested with [rhysd/vim-startuptime](https://github.com/rhysd/vim-startuptime))
+
+## Requirements
+
+- Neovim >= **0.8.2** (needs to be built with **LuaJIT**)
+- Git >= **2.19.0** (for partial clones support)
+- a [Nerd Font](https://www.nerdfonts.com/) **_(optional)_**
 
 ## Try out
 

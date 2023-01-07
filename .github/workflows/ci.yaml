@@ -40,7 +40,7 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: nvimrc
-          version: "Neovim >= 0.8.0"
+          version: "Neovim >= 0.8.2"
           demojify: true
           treesitter: true
       - name: Push changes
