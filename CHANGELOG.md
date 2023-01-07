@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/liubang/nvimrc/compare/v3.3.0...v3.4.0) (2023-01-07)
+
+
+### Features
+
+* **ci:** automatically build Docker image when a new version is released ([e8428ec](https://github.com/liubang/nvimrc/commit/e8428ec7b4c6c8d6505ec0b9b3c9da9dcbcea5f4))
+
 ## [3.3.0](https://github.com/liubang/nvimrc/compare/3.2.0...v3.3.0) (2023-01-06)
 
 
