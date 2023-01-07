@@ -1,8 +1,10 @@
-*nvimrc.txt*          For Neovim >= 0.8.0         Last change: 2023 January 06
+*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 07
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
 
+  - Features                                                 |nvimrc-features|
+  - Requirements                                         |nvimrc-requirements|
   - Try out                                                   |nvimrc-try-out|
 
 <h1 align="center">
@@ -42,7 +44,7 @@ My Neovim Configuration
 <p class="caption">nvim</p>
 </div>
 
-**Pros:**
+FEATURES                                                     *nvimrc-features*
 
 
 - Fast. Less than **30ms** to start (Depends on SSD and CPU, tested on Intel NUC11BTMi9).
@@ -57,6 +59,14 @@ My Neovim Configuration
 </div>
 
 (Tested with rhysd/vim-startuptime <https://github.com/rhysd/vim-startuptime>)
+
+REQUIREMENTS                                             *nvimrc-requirements*
+
+
+- Neovim >= **0.8.2** (needs to be built with **LuaJIT**)
+- Git >= **2.19.0** (for partial clones support)
+- a Nerd Font <https://www.nerdfonts.com/> **_(optional)_**
+
 
 TRY OUT                                                       *nvimrc-try-out*
 
