@@ -10,19 +10,17 @@ return {
   "rainbowhxch/accelerated-jk.nvim",
   -- enabled = false,
   keys = {
-    { "j", "<Plug>(accelerated_jk_gj)" },
-    { "k", "<Plug>(accelerated_jk_gk)" },
+    { "j", "<Plug>(accelerated_jk_gj)", mode = { "n" } },
+    { "k", "<Plug>(accelerated_jk_gk)", mode = { "n" } },
   },
-  config = function()
-    require("accelerated-jk").setup {
-      mode = "time_driven",
-      enable_deceleration = false,
-      acceleration_motions = {},
-      acceleration_limit = 150,
-      acceleration_table = { 7, 12, 17, 21, 24, 26, 28, 30 },
-      deceleration_table = { { 150, 9999 } },
-    }
-  end,
+  opts = {
+    mode = "time_driven",
+    enable_deceleration = false,
+    acceleration_motions = {},
+    acceleration_limit = 150,
+    acceleration_table = { 7, 12, 17, 21, 24, 26, 28, 30 },
+    deceleration_table = { { 150, 9999 } },
+  },
 }
 
 -- vim: fdm=marker fdl=0

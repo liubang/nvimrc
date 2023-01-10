@@ -9,14 +9,13 @@
 
 return {
   "numToStr/Comment.nvim",
-  keys = { "gcc", "gcb" },
-  config = function()
-    local comment = require "Comment"
+  keys = { { "gcc", mode = { "n", "x" } }, { "gcb", mode = { "n", "x" } } },
+  opts = function()
     local ft = require "Comment.ft"
+    ft.set("rust", "///%s")
 
-    comment.setup {
+    return {
       padding = true,
-
       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 
       ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
@@ -31,8 +30,6 @@ return {
         extra = false,
       },
     }
-
-    ft.set("rust", "///%s")
   end,
 }
 

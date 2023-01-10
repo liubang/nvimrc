@@ -9,13 +9,11 @@
 return {
   "saecki/crates.nvim",
   event = { "BufReadPre Cargo.toml" },
-  config = function()
-    require("crates").setup {
-      popup = {
-        autofocus = true,
-      },
-    }
-  end,
+  opts = {
+    popup = {
+      autofocus = true,
+    },
+  },
 }
 
 -- vim: fdm=marker fdl=0

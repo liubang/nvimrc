@@ -8,19 +8,17 @@
 --=====================================================================
 return {
   "rcarriga/nvim-notify",
-  config = function()
-    require("notify").setup { -- {{{
-      timeout = 500,
-      stages = "fade",
-      icons = {
-        DEBUG = "",
-        ERROR = "",
-        INFO = "",
-        TRACE = "✎",
-        WARN = "",
-      },
-    } -- }}}
-  end,
+  opts = { -- {{{
+    timeout = 500,
+    stages = "fade",
+    icons = {
+      DEBUG = "",
+      ERROR = "",
+      INFO = "",
+      TRACE = "✎",
+      WARN = "",
+    },
+  }, -- }}}
   init = function()
     ---@diagnostic disable-next-line: duplicate-set-field
     vim.notify = function(...)

@@ -9,23 +9,21 @@
 return {
   "mrjones2014/smart-splits.nvim",
   event = { "BufReadPost" },
-  config = function()
-    require("smart-splits").setup {
-      ignored_filetypes = {
-        "nofile",
-        "quickfix",
-        "NvimTree",
-        "Outline",
-        "qf",
-        "prompt",
-      },
-      ignored_buftypes = { "NvimTree", "Outline" },
-      resize_mode = {
-        quit_key = "<ESC>",
-        silent = true,
-      },
-    }
-  end,
+  opts = {
+    ignored_filetypes = {
+      "nofile",
+      "quickfix",
+      "NvimTree",
+      "Outline",
+      "qf",
+      "prompt",
+    },
+    ignored_buftypes = { "NvimTree", "Outline" },
+    resize_mode = {
+      quit_key = "<ESC>",
+      silent = true,
+    },
+  },
 }
 
 -- vim: fdm=marker fdl=0

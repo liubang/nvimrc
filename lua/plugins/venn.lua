@@ -8,7 +8,7 @@
 --=====================================================================
 return {
   "jbyuki/venn.nvim",
-  keys = { "<Leader>v" },
+  keys = { { "<Leader>v", mode = { "n" } } },
   config = function()
     vim.keymap.set("n", "<Leader>v", function()
       local venn_enabled = vim.inspect(vim.b.venn_enabled)

@@ -19,7 +19,7 @@
 -- dot.case:               gs.
 return {
   "arthurxavierx/vim-caser",
-  keys = { "gs" },
+  keys = { { "gs", mode = { "n", "x" } } },
 }
 
 -- vim: fdm=marker fdl=0

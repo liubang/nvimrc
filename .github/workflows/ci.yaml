@@ -42,7 +42,6 @@ jobs:
         with:
           vimdoc: nvimrc
           version: "Neovim >= 0.8.2"
-          demojify: true
           treesitter: true
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v4

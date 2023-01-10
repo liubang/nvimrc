@@ -23,15 +23,13 @@ local ft = {
 return {
   "NvChad/nvim-colorizer.lua",
   ft = ft,
-  config = function()
-    require("colorizer").setup {
-      filetypes = ft,
-      r_default_options = {
-        mode = "virtualtext",
-        virtualtext = "■",
-      },
-    }
-  end,
+  opts = {
+    filetypes = ft,
+    r_default_options = {
+      mode = "virtualtext",
+      virtualtext = "■",
+    },
+  },
 }
 
 -- vim: fdm=marker fdl=0

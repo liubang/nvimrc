@@ -9,25 +9,23 @@
 return {
   "stevearc/aerial.nvim",
   cmd = "AerialToggle",
-  config = function()
-    require("aerial").setup {
-      backends = { "lsp", "treesitter", "markdown" },
-      layout = {
-        default_direction = "prefer_right",
-        placement = "edge",
-      },
-      attach_mode = "global", -- 'window' | 'global'
-      nerd_font = "auto",
-      show_guides = true,
-      keymaps = {
-        ["<CR>"] = false,
-        ["o"] = "actions.jump",
-        ["<C-j>"] = "actions.down_and_scroll",
-        ["<C-k>"] = "actions.up_and_scroll",
-        ["O"] = "actions.tree_toggle",
-      },
-    }
-  end,
+  opts = {
+    backends = { "lsp", "treesitter", "markdown" },
+    layout = {
+      default_direction = "prefer_right",
+      placement = "edge",
+    },
+    attach_mode = "global", -- 'window' | 'global'
+    nerd_font = "auto",
+    show_guides = true,
+    keymaps = {
+      ["<CR>"] = false,
+      ["o"] = "actions.jump",
+      ["<C-j>"] = "actions.down_and_scroll",
+      ["<C-k>"] = "actions.up_and_scroll",
+      ["O"] = "actions.tree_toggle",
+    },
+  },
 }
 
 -- vim: fdm=marker fdl=0

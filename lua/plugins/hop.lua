@@ -10,9 +10,7 @@ return {
   "phaazon/hop.nvim",
   branch = "v2",
   event = { "BufReadPost" },
-  config = function()
-    require("hop").setup {}
-  end,
+  config = true,
 }
 
 -- vim: fdm=marker fdl=0

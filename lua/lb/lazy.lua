@@ -50,12 +50,6 @@ require("lazy").setup("plugins", {
       start = "",
       task = " ",
       lazy = "鈴 ",
-      list = {
-        "●",
-        "➜",
-        "★",
-        "‒",
-      },
     },
   }, -- }}}
   performance = { -- {{{

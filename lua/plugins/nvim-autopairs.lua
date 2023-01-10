@@ -9,8 +9,13 @@
 return {
   "windwp/nvim-autopairs",
   event = { "InsertEnter" },
-  config = function()
-    require("nvim-autopairs").setup {
+  opts = function()
+    require("cmp").event:on(
+      "confirm_done",
+      require("nvim-autopairs.completion.cmp").on_confirm_done { map_char = { tex = "" } }
+    )
+
+    return {
       check_ts = true,
       ignored_next_char = "[%w%.]",
       ts_config = {
@@ -28,11 +33,6 @@ return {
       },
       disable_filetype = { "TelescopePrompt", "vim" },
     }
-
-    require("cmp").event:on(
-      "confirm_done",
-      require("nvim-autopairs.completion.cmp").on_confirm_done { map_char = { tex = "" } }
-    )
   end,
 }
 
