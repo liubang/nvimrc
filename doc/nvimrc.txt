@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 08
+*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 10
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -19,7 +19,7 @@ My Neovim Configuration
 <a href="https://github.com/liubang/nvimrc/actions">
 <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yaml?style=flat-square&branch=main" alt="Build" />
 </a>
-<a href="">
+<a href="#">
 <img src="https://img.shields.io/badge/platform-linux%20macOS-blue?style=flat-square" alt="Platform"/>
 </a>
 <a href="https://github.com/liubang/nvimrc/pulse">
