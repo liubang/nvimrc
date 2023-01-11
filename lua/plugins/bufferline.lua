@@ -8,7 +8,7 @@
 --=====================================================================
 return {
   "akinsho/bufferline.nvim",
-  event = "BufAdd",
+  event = "VeryLazy",
   opts = {
     options = { -- {{{
       view = "multiwindow",
