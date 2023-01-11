@@ -10,7 +10,10 @@
 local c = require "plugins.lsp.customs"
 
 local setup = function()
-  require("neodev").setup()
+  require("neodev").setup {
+    experimental = { pathStrict = true },
+  }
+
   require("lspconfig").sumneko_lua.setup(c.default {
     single_file_support = true,
     settings = {
