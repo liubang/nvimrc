@@ -44,6 +44,10 @@ local filetype_attach = setmetatable({
     format_mapping(client, bufnr)
   end,
 
+  c = function(client, bufnr)
+    format_mapping(client, bufnr)
+  end,
+
   go = function(client, bufnr)
     format_mapping(client, bufnr)
   end,
@@ -62,6 +66,10 @@ local filetype_attach = setmetatable({
 
     autocmd_format(false, nullls_filter)
     format_mapping(client, bufnr, nullls_filter)
+  end,
+
+  php = function(client, bufnr)
+    format_mapping(client, bufnr)
   end,
 
   bzl = function(client, bufnr)
