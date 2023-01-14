@@ -7,53 +7,22 @@
 --
 --=====================================================================
 
-local c = require "plugins.lsp.customs"
+local M = {}
 
-local setup = function()
-  require("neodev").setup {
-    experimental = { pathStrict = true },
-  }
+function M.setup()
+  require("neodev").setup {}
 
+  local c = require "plugins.lsp.customs"
   require("lspconfig").sumneko_lua.setup(c.default {
-    single_file_support = true,
     settings = {
       Lua = {
-        format = {
-          enable = false,
-        },
-        completion = {
-          workspaceWord = true,
-          callSnippet = "Both",
-        },
-        workspace = {
-          checkThirdParty = false,
-        },
-        diagnostics = {
-          groupSeverity = {
-            strong = "Warning",
-            strict = "Warning",
-          },
-          groupFileStatus = {
-            ["ambiguity"] = "Opened",
-            ["await"] = "Opened",
-            ["codestyle"] = "None",
-            ["duplicate"] = "Opened",
-            ["global"] = "Opened",
-            ["luadoc"] = "Opened",
-            ["redefined"] = "Opened",
-            ["strict"] = "Opened",
-            ["strong"] = "Opened",
-            ["type-check"] = "Opened",
-            ["unbalanced"] = "Opened",
-            ["unused"] = "Opened",
-          },
-          unusedLocalExclude = { "_*" },
-        },
+        workspace = { checkThirdParty = false },
+        completion = { callSnippet = "Replace" },
+        telemetry = { enable = false },
+        format = { enable = false },
       },
     },
   })
 end
 
-return {
-  setup = setup,
-}
+return M

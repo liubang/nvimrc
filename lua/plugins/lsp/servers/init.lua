@@ -7,9 +7,6 @@
 --
 --=====================================================================
 
-local lspconfig = require "lspconfig"
-local c = require "plugins.lsp.customs"
-
 for _, server in ipairs {
   "php",
   "vue",
@@ -25,6 +22,9 @@ for _, server in ipairs {
 end
 
 -- some others use default config
+local lspconfig = require "lspconfig"
+local c = require "plugins.lsp.customs"
+
 for _, server in ipairs {
   "taplo", -- for toml
   "html",

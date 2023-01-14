@@ -40,7 +40,7 @@
 
 - Neovim >= **0.8.2** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
-- a [Nerd Font](https://www.nerdfonts.com/) **_(optional)_**
+- a [Nerd Font](https://www.nerdfonts.com/)
 
 ## Try out
 

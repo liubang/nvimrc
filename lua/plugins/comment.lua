@@ -9,7 +9,12 @@
 
 return {
   "numToStr/Comment.nvim",
-  keys = { { "gcc", mode = { "n", "x" } }, { "gcb", mode = { "n", "x" } } },
+  keys = {
+    { "gc", mode = { "x" } },
+    { "gb", mode = { "x" } },
+    { "gcc", mode = { "n" } },
+    { "gcb", mode = { "n" } },
+  },
   opts = function()
     local ft = require "Comment.ft"
     ft.set("rust", "///%s")
