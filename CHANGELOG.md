@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.5.0](https://github.com/liubang/nvimrc/compare/v3.4.0...v3.5.0) (2023-01-14)
+
+
+### Features
+
+* **php:** add lsp formatting keymap for php ([702f9a2](https://github.com/liubang/nvimrc/commit/702f9a27911f57f6f2cac9d57b82654a54c5bb05))
+
+
+### Bug Fixes
+
+* **bufferline:** load bufferline on VeryLazy event ([d79ff21](https://github.com/liubang/nvimrc/commit/d79ff212f4f05d7c941d07c8f5a38528d12c1b25))
+
+
+### Performance Improvements
+
+* **neodev:** enable experimental pathStrict setting for better sumneko performance ([4674356](https://github.com/liubang/nvimrc/commit/467435650b3731d35a8572ec4588f1347fa20586))
+
 ## [3.4.0](https://github.com/liubang/nvimrc/compare/v3.3.0...v3.4.0) (2023-01-07)
 
 
