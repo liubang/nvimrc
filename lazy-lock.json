@@ -31,6 +31,7 @@
   "mini.cursorword": { "branch": "main", "commit": "21af5679b39cf1a6bc6bf4eeaabc35e1b5ee7110" },
   "mini.surround": { "branch": "main", "commit": "aeeb1c4ce4d1c66211bdc74b131c11b8fcbae65e" },
   "neodev.nvim": { "branch": "main", "commit": "0e3f5e763639951f96f9acbdc9f52a9fedf91b46" },
+  "neogen": { "branch": "main", "commit": "0958aeffcddf46e57785c3026be934816b4f39d2" },
   "null-ls.nvim": { "branch": "main", "commit": "915558963709ea17c5aa246ca1c9786bfee6ddb4" },
   "nvim-autopairs": { "branch": "master", "commit": "f00eb3b766c370cb34fdabc29c760338ba9e4c6c" },
   "nvim-cmp": { "branch": "main", "commit": "11a95792a5be0f5a40bab5fc5b670e5b1399a939" },

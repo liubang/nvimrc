@@ -141,30 +141,6 @@ vim.keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
 vim.keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
 -- }}}
 
--- hop {{{
-vim.keymap.set('n', '<Leader>kk', function() require('hop').hint_lines() end)
-vim.keymap.set('n', '<Leader>jj', function() require('hop').hint_lines() end)
-vim.keymap.set('n', '<Leader>ss', function() require('hop').hint_patterns() end)
-vim.keymap.set(
-  'n',
-  '<Leader>ll',
-  function()
-    require('hop').hint_words {
-      direction = require('hop.hint').HintDirection.AFTER_CURSOR,
-      current_line_only = true,
-    }
-  end
-)
-vim.keymap.set('n', '<Leader>hh',
-  function()
-    require('hop').hint_words {
-      direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-      current_line_only = true,
-    }
-  end
-)
--- }}}
-
 -- git {{{
 vim.keymap.set('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
 vim.keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
