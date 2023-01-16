@@ -14,6 +14,14 @@ local M = {
     { "nvim-telescope/telescope-ui-select.nvim" },
   },
   cmd = "Telescope",
+  keys = {
+    { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" } },
+    { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" } },
+    { "<Leader>ag", "<CMD>Telescope live_grep<CR>", mode = { "n" } },
+    { "<Leader>Ag", "<CMD>Telescope grep_string<CR>", mode = { "n" } },
+    { "<Leader>bb", "<CMD>Telescope buffers<CR>", mode = { "n" } },
+    { "<Leader>ts", "<CMD>Telescope tasks<CR>", mode = { "n" } },
+  },
 }
 
 function M.init()

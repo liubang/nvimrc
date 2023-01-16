@@ -9,8 +9,7 @@
 return {
   "goolord/alpha-nvim",
   lazy = false,
-  config = function()
-    local alpha = require "alpha"
+  opts = function()
     local h = {
       [[ ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓]],
       [[ ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒]],
@@ -129,7 +128,6 @@ return {
         margin = 5,
       },
     }
-
-    alpha.setup(opts)
+    return opts
   end,
 }

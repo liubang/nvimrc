@@ -26,6 +26,7 @@ return {
       ["O"] = "actions.tree_toggle",
     },
   },
+  keys = { { "<Leader>tl", "<CMD>AerialToggle<CR>", mode = { "n" } } },
 }
 
 -- vim: fdm=marker fdl=0

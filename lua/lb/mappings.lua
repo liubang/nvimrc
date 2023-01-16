@@ -7,12 +7,6 @@
 --
 -- =====================================================================
 
--- termcodes helper function {{{
-local function termcodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
--- }}}
-
 -- stylua: ignore start
 
 -- clear default {{{
@@ -33,16 +27,11 @@ vim.keymap.set("n", "<S-k>", [[:<c-u>execute 'm -1-'. v:count1<cr>==]], { silent
 vim.keymap.set("x", "<S-j>", [[:m '>+1<CR><CR>gv=gv]], { silent = true, desc = "move lines down" })
 vim.keymap.set("x", "<S-k>", [[:m '<-2<CR><CR>gv=gv]], { silent = true, desc = "move lines up" })
 
--- vim.keymap.set("n", "G", "Gzz",     { desc = "auto re-centre when moving around" })
--- vim.keymap.set("n", "g;", "m'g;zz", { desc = "auto re-centre when moving around" })
--- vim.keymap.set("n", "g,", "m'g,zz", { desc = "auto re-centre when moving around" })
-
 vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true, desc = "clear hlsearch" })
 vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search in visually selected region" })
 
 vim.keymap.set("x", "<", "<gv", { desc = "keep the visually selected area when indenting" })
 vim.keymap.set("x", ">", ">gv", { desc = "keep the visually selected area when indenting" })
--- vim.keymap.set("n", "<Leader>hh", ":h <CR>", { desc = "show help for work under the cursor" })
 -- }}}
 
 -- Yank related {{{
@@ -79,90 +68,10 @@ vim.keymap.set('n', '<Leader>wk', '<C-W>k')
 vim.keymap.set('n', '<Leader>w=', '<C-W>=')
 vim.keymap.set('n', '<Leader>ws', '<C-W>s')
 vim.keymap.set('n', '<Leader>wv', '<C-W>v')
-vim.keymap.set('n', '<C-S-Up>', function() require('smart-splits').resize_up() end)
-vim.keymap.set('n', '<C-S-Down>', function() require('smart-splits').resize_down() end)
-vim.keymap.set('n', '<C-S-Left>', function() require('smart-splits').resize_left() end)
-vim.keymap.set('n', '<C-S-Right>', function() require('smart-splits').resize_right() end)
 -- }}}
 
 -- terminal {{{
-vim.keymap.set('t', '<Esc>', termcodes '<C-\\><C-N>')
--- }}}
-
--- buffer delete {{{
-vim.keymap.set('n', '<Leader>bd', '<cmd>Bwipeout<CR>')
--- }}}
-
--- neotree {{{
--- vim.keymap.set(
---   'n',
---   '<Leader>ft',
---   '<cmd>Neotree action=focus source=filesystem position=left toggle=true reveal=true<CR>'
--- )
--- }}}
-
--- undo tree {{{
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
--- }}}
-
--- nvim-tree {{{
-vim.keymap.set('n', '<Leader>ft', ":NvimTreeToggle<CR>", { silent = true, desc = 'toggle tree view' })
--- }}}
-
--- floaterm {{{
-vim.keymap.set('n', '<Leader>tw', '<cmd>FloatermNew<CR>')
-vim.keymap.set('n', '<C-t>', '<cmd>FloatermToggle<CR>')
-vim.keymap.set('t', '<C-n>', termcodes '<C-\\><C-N>:FloatermNew<CR>')
-vim.keymap.set('t', '<C-k>', termcodes '<C-\\><C-N>:FloatermPrev<CR>')
-vim.keymap.set('t', '<C-j>', termcodes '<C-\\><C-N>:FloatermNext<CR>')
-vim.keymap.set('t', '<C-t>', termcodes '<C-\\><C-N>:FloatermToggle<CR>')
-vim.keymap.set('t', '<C-d>', termcodes '<C-\\><C-N>:FloatermKill<CR>')
--- }}}
-
--- asynctask {{{
-vim.keymap.set('n', '<C-b>', '<cmd>AsyncTask file-build<CR>')
-vim.keymap.set('n', '<C-r>', '<cmd>AsyncTask file-run<CR>')
-vim.keymap.set('n', '<C-x>', '<cmd>AsyncTask file-build-run<CR>')
--- }}}
-
--- aerial {{{
-vim.keymap.set('n', '<Leader>tl', '<cmd>AerialToggle<CR>')
--- }}}
-
--- bufferline {{{
-vim.keymap.set('n', '<Leader>1', '<cmd>BufferLineGoToBuffer 1<CR>')
-vim.keymap.set('n', '<Leader>2', '<cmd>BufferLineGoToBuffer 2<CR>')
-vim.keymap.set('n', '<Leader>3', '<cmd>BufferLineGoToBuffer 3<CR>')
-vim.keymap.set('n', '<Leader>4', '<cmd>BufferLineGoToBuffer 4<CR>')
-vim.keymap.set('n', '<Leader>5', '<cmd>BufferLineGoToBuffer 5<CR>')
-vim.keymap.set('n', '<Leader>6', '<cmd>BufferLineGoToBuffer 6<CR>')
-vim.keymap.set('n', '<Leader>7', '<cmd>BufferLineGoToBuffer 7<CR>')
-vim.keymap.set('n', '<Leader>8', '<cmd>BufferLineGoToBuffer 8<CR>')
-vim.keymap.set('n', '<Leader>9', '<cmd>BufferLineGoToBuffer 9<CR>')
--- }}}
-
--- git {{{
-vim.keymap.set('n', '<Leader>hb', function() require('gitsigns').blame_line {full = true} end)
-vim.keymap.set('n', '<Leader>hd', function() require('gitsigns').diffthis() end)
-vim.keymap.set('n', '<Leader>hr', function() require('gitsigns').reset_hunk() end)
-vim.keymap.set('n', '<Leader>hs', function() require('gitsigns').stage_hunk() end)
--- }}}
-
--- markdown {{{
-vim.keymap.set('n', '<Leader>mp', '<cmd>MarkdownPreview<CR>')
--- }}}
-
--- telescope {{{
-vim.keymap.set('n', '<Leader>ff', "<cmd>Telescope find_files<CR>")
-vim.keymap.set('n', '<Leader>rf', "<cmd>Telescope oldfiles<CR>")
-vim.keymap.set('n', '<Leader>ag', "<cmd>Telescope live_grep<CR>")
-vim.keymap.set('n', '<Leader>Ag', "<cmd>Telescope grep_string<CR>")
-vim.keymap.set('n', '<Leader>bb', "<cmd>Telescope buffers<CR>")
-vim.keymap.set('n', '<Leader>fc', "<cmd>Telescope command<CR>")
-vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
-vim.keymap.set('n', '<Leader>br', "<cmd>Telescope bazel bazel_run<CR>")
-vim.keymap.set('n', '<Leader>bt', "<cmd>Telescope bazel bazel_tests<CR>")
-vim.keymap.set('n', '<Leader>ts', "<cmd>Telescope tasks<CR>")
+vim.keymap.set('t', '<Esc>', vim.api.nvim_replace_termcodes('<C-\\><C-N>', true, true, true))
 -- }}}
 
 -- stylua: ignore end

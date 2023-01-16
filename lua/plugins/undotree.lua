@@ -14,6 +14,9 @@ return {
     vim.g.undotree_CustomUndotreeCmd = "vertical 40 new"
     vim.g.undotree_CustomDiffpanelCmd = "botright 15 new"
   end,
+  keys = {
+    { "<Leader>u", "<CMD>UndotreeToggle<CR>", mode = { "n" } },
+  },
 }
 
 -- vim: fdm=marker fdl=0

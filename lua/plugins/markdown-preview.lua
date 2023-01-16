@@ -15,6 +15,9 @@ return {
   init = function()
     vim.g.mkdp_filetypes = { "markdown" }
   end,
+  keys = {
+    { "<Leader>mp", "<CMD>MarkdownPreview<CR>", mode = { "n" } },
+  },
 }
 
 -- vim: fdm=marker fdl=0

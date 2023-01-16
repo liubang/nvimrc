@@ -44,6 +44,12 @@ return {
       enable = false,
     },
   },
+  keys = {
+    { '<Leader>hb', function() require('gitsigns').blame_line { full = true } end, mode = { 'n' } },
+    { '<Leader>hd', function() require('gitsigns').diffthis() end, mode = { 'n' } },
+    { '<Leader>hr', function() require('gitsigns').reset_hunk() end, mode = { 'n' } },
+    { '<Leader>hs', function() require('gitsigns').stage_hunk() end, mode = { 'n' } },
+  }
 }
 
 -- stylua: ignore end

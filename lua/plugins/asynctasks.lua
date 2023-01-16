@@ -18,6 +18,11 @@ return {
     vim.g.asyncrun_rootmarks = { ".svn", ".git", ".root", "build.xml" }
     vim.g.asynctasks_term_pos = "floaterm"
   end, -- }}}
+  keys = {
+    { "<C-b>", "<CMD>AsyncTask file-build<CR>", mode = { "n" } },
+    { "<C-r>", "<CMD>AsyncTask file-run<CR>", mode = { "n" } },
+    { "<C-x>", "<CMD>AsyncTask file-build-run<CR>", mode = { "n" } },
+  },
 }
 
 -- vim: fdm=marker fdl=0

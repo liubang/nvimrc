@@ -11,7 +11,13 @@ return {
   "onsails/lspkind.nvim",
   "nvim-tree/nvim-web-devicons",
   "williamboman/mason-lspconfig.nvim",
-  { "famiu/bufdelete.nvim", event = "BufAdd" },
+  {
+    "famiu/bufdelete.nvim",
+    cmd = { "Bdelete", "Bwipeout" },
+    keys = {
+      { "<Leader>bd", "<CMD>Bwipeout<CR>", mode = { "n" } },
+    },
+  },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
 }
 
