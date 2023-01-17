@@ -51,23 +51,23 @@ vim.keymap.set('i', '<C-e>', '<End>')
 -- }}}
 
 -- buffer {{{
-vim.keymap.set('n', '<Leader>bp', '<cmd>bprevious<CR>')
-vim.keymap.set('n', '<Leader>bn', '<cmd>bnext<CR>')
-vim.keymap.set('n', '<Leader>bf', '<cmd>bfirst<CR>')
-vim.keymap.set('n', '<Leader>bl', '<cmd>blast<CR>')
+vim.keymap.set('n', '<Leader>bp', '<cmd>bprevious<CR>', { desc = "Previous" })
+vim.keymap.set('n', '<Leader>bn', '<cmd>bnext<CR>', { desc = "Next" })
+vim.keymap.set('n', '<Leader>bf', '<cmd>bfirst<CR>', { desc = "First" })
+vim.keymap.set('n', '<Leader>bl', '<cmd>blast<CR>',{ desc = "Last" })
 -- }}}
 
 -- window {{{
-vim.keymap.set('n', '<Leader>ww', '<C-W>w')
+vim.keymap.set('n', '<Leader>ww', '<C-W>w', { desc = "Toggle between open windows" })
 vim.keymap.set('n', '<Leader>wr', '<C-W>r')
 vim.keymap.set('n', '<Leader>wq', '<C-W>q')
-vim.keymap.set('n', '<Leader>wh', '<C-W>h')
-vim.keymap.set('n', '<Leader>wl', '<C-W>l')
-vim.keymap.set('n', '<Leader>wj', '<C-W>j')
-vim.keymap.set('n', '<Leader>wk', '<C-W>k')
+vim.keymap.set('n', '<Leader>wh', '<C-W>h', { desc = "Move to the left window" })
+vim.keymap.set('n', '<Leader>wl', '<C-W>l', { desc = "Move to the right window" })
+vim.keymap.set('n', '<Leader>wj', '<C-W>j', { desc = "Move to the bottom window" })
+vim.keymap.set('n', '<Leader>wk', '<C-W>k', { desc = "Move to the top window" })
 vim.keymap.set('n', '<Leader>w=', '<C-W>=')
-vim.keymap.set('n', '<Leader>ws', '<C-W>s')
-vim.keymap.set('n', '<Leader>wv', '<C-W>v')
+vim.keymap.set('n', '<Leader>ws', '<C-W>s', { desc = "Split window horizontally" })
+vim.keymap.set('n', '<Leader>wv', '<C-W>v', { desc = "Split window vertically" })
 -- }}}
 
 -- terminal {{{

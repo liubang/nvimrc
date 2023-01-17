@@ -105,7 +105,7 @@ return {
     end)
   end, -- }}}
   keys = {
-    { "<Leader>ft", "<CMD>NvimTreeToggle<CR>", mode = { "n" } },
+    { "<Leader>ft", "<CMD>NvimTreeToggle<CR>", mode = { "n" }, desc = "Explorer nvim-tree" },
   },
 }
 

@@ -15,12 +15,22 @@ local M = {
   },
   cmd = "Telescope",
   keys = {
-    { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" } },
-    { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" } },
-    { "<Leader>ag", "<CMD>Telescope live_grep<CR>", mode = { "n" } },
-    { "<Leader>Ag", "<CMD>Telescope grep_string<CR>", mode = { "n" } },
-    { "<Leader>bb", "<CMD>Telescope buffers<CR>", mode = { "n" } },
-    { "<Leader>ts", "<CMD>Telescope tasks<CR>", mode = { "n" } },
+    { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" }, desc = "List files" },
+    { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" }, desc = "List recent files" },
+    { "<Leader>ag", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Grep in files" },
+    {
+      "<Leader>Ag",
+      "<CMD>Telescope grep_string<CR>",
+      mode = { "n" },
+      desc = "Searches for the string under your cursor (root dir)",
+    },
+    {
+      "<Leader>bb",
+      "<CMD>Telescope buffers<CR>",
+      mode = { "n" },
+      desc = "Lists open buffers in current neovim instance",
+    },
+    { "<Leader>ts", "<CMD>Telescope tasks<CR>", mode = { "n" }, desc = "Lists AsyncTasks for current buffer" },
   },
 }
 
