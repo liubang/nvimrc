@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.6.0](https://github.com/liubang/nvimrc/compare/v3.5.0...v3.6.0) (2023-01-18)
+
+
+### Features
+
+* **ci:** push docker image with latest tag ([6ef1a8c](https://github.com/liubang/nvimrc/commit/6ef1a8c2184fbbe66da4d1c95197c804f0389cb3))
+* **doc:** automatically update readme file ([67c21d4](https://github.com/liubang/nvimrc/commit/67c21d4ebe913842f9de79fd25796eedeeb7a601))
+* **doc:** perfect keymap description and generate keymaps section in README.md ([9dd3f9e](https://github.com/liubang/nvimrc/commit/9dd3f9e741c6dd324d0431a568b4a11a31baa17b))
+* **keymaps:** use lazy keys to manage plugins keymaps ([c8879b5](https://github.com/liubang/nvimrc/commit/c8879b553be799ebce4a797ec918e3fd5ed60253))
+* **plugins:** add neogen ([9d7f94e](https://github.com/liubang/nvimrc/commit/9d7f94e9376ab8b9f2bb624e7bf16376242ae21f))
+* **treesitter:** add tsx ([8da93f2](https://github.com/liubang/nvimrc/commit/8da93f2d932168a2fa6b563707084ff46e611524))
+
 ## [3.5.0](https://github.com/liubang/nvimrc/compare/v3.4.0...v3.5.0) (2023-01-14)
 
 
