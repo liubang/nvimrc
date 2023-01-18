@@ -12,7 +12,7 @@ return {
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    build = ":TSUpdateSync",
     event = "BufReadPost",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
