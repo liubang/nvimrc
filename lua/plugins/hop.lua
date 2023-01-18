@@ -14,9 +14,9 @@ return {
   branch = "v2",
   config = true,
   keys = {
-    { "<Leader>kk", function() require("hop").hint_lines() end, mode = { "n" } },
-    { "<Leader>jj", function() require("hop").hint_lines() end, mode = { "n" } },
-    { "<Leader>ss", function() require("hop").hint_patterns() end, mode = { "n" } },
+    { "<Leader>kk", function() require("hop").hint_lines() end, mode = { "n" }, desc = "Hint the beginning of each lines currently visible in the buffer view and allow to jump to them" },
+    { "<Leader>jj", function() require("hop").hint_lines() end, mode = { "n" }, desc = "Hint the beginning of each lines currently visible in the buffer view and allow to jump to them" },
+    { "<Leader>ss", function() require("hop").hint_patterns() end, mode = { "n" }, desc = "Annotate all matched patterns in the current window with key sequences" },
     {
       "<Leader>ll",
       function()
@@ -25,7 +25,8 @@ return {
           current_line_only = true,
         }
       end,
-      mode = { "n" }
+      mode = { "n" },
+      desc = "Annotate all words in the current line with key sequences"
     },
     {
       "<Leader>hh",
@@ -35,7 +36,8 @@ return {
           current_line_only = true,
         }
       end,
-      mode = { "n" }
+      mode = { "n" },
+      desc = "Annotate all words in the current line with key sequences"
     },
   },
 }

@@ -19,9 +19,9 @@ return {
     vim.g.asynctasks_term_pos = "floaterm"
   end, -- }}}
   keys = {
-    { "<C-b>", "<CMD>AsyncTask file-build<CR>", mode = { "n" } },
-    { "<C-r>", "<CMD>AsyncTask file-run<CR>", mode = { "n" } },
-    { "<C-x>", "<CMD>AsyncTask file-build-run<CR>", mode = { "n" } },
+    { "<C-b>", "<CMD>AsyncTask file-build<CR>", mode = { "n" }, desc = "Build current file" },
+    { "<C-r>", "<CMD>AsyncTask file-run<CR>", mode = { "n" }, desc = "Run current file" },
+    { "<C-x>", "<CMD>AsyncTask file-build-run<CR>", mode = { "n" }, desc = "Build and run current file" },
   },
 }
 

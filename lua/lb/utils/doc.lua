@@ -12,15 +12,12 @@ local core = require("lazy.core.plugin").Spec.new { import = "plugins" }
 local root = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h:h:h:h")
 
 local keymaps = function()
-  local keymap_set = vim.keymap.set
-  ---@type table<string,{mode?:string|string[], keys:string, desc?:string, i:number, group:string}>
   local keymaps = {}
-  ---@type string
   local group = nil
-  ---@type string[]
   local groups = {}
+  local keymap_set = vim.keymap.set
 
-  local function map(mode, lhs, rhs, opts)
+  local function map(mode, lhs, _, opts)
     if not (opts and opts.desc) then
       return
     end
@@ -36,32 +33,38 @@ local keymaps = function()
       keymaps[key] = { mode = mode, keys = lhs, desc = desc, i = vim.tbl_count(keymaps), group = group }
     end
   end
+
+  -- hack vim.keymap.set
   vim.keymap.set = map
 
-  group = "General"
-  dofile(root .. "/lua/lb/mappings.lua")
+  do
+    group = "General"
+    dofile(root .. "/lua/lb/mappings.lua")
+  end
+
+  -- reset vim.keymap.set function
   vim.keymap.set = keymap_set
 
-  group = "Plugins"
-  Util.foreach(core.plugins, function(name, plugin)
-    for _, key in ipairs(plugin.keys or {}) do
-      if type(key) == "table" and key.desc then
-        local desc = key.desc or ""
-        desc = ("[%s](%s)"):format(plugin.name, plugin.url) .. " " .. desc
-        map(key.mode or "n", key[1], key[2], { desc = desc })
+  do
+    group = "Plugins"
+    Util.foreach(core.plugins, function(_, plugin)
+      for _, key in ipairs(plugin.keys or {}) do
+        if type(key) == "table" and key.desc then
+          local desc = key.desc or ""
+          desc = ("[%s](%s)"):format(plugin.name, plugin.url) .. " " .. desc
+          map(key.mode or "n", key[1], key[2], { desc = desc })
+        end
       end
-    end
-  end)
+    end)
+  end
 
   ---@type string[]
   local lines = {}
+  vim.list_extend(lines, { "| Key | Description | Mode |", "| --- | --- | --- |" })
 
-  for _, group in ipairs(groups) do
-    lines[#lines + 1] = "<details><summary>" .. group .. "</summary>"
-    lines[#lines + 1] = ""
-    vim.list_extend(lines, { "| Key | Description | Mode |", "| --- | --- | --- |" })
+  for _, g in ipairs(groups) do
     local mappings = vim.tbl_filter(function(m)
-      return m.group == group and m.desc
+      return m.group == g and m.desc
     end, keymaps)
 
     table.sort(mappings, function(a, b)
@@ -82,13 +85,11 @@ local keymaps = function()
         )
         .. " |"
     end
-    lines[#lines + 1] = ""
-    lines[#lines + 1] = "</details>"
-    lines[#lines + 1] = ""
   end
   return { content = table.concat(lines, "\n") }
 end
 
+--- update README.md file
 local update = function()
   local data = {
     keymaps = keymaps(),

@@ -14,7 +14,12 @@ return {
   },
   cmd = { "Neogen" },
   keys = {
-    { "<Leader>nf", "<CMD>Neogen<CR>", mode = { "n" } },
+    {
+      "<Leader>nf",
+      "<CMD>Neogen<CR>",
+      mode = { "n" },
+      desc = "Generate annotation for the function, class or other relevant type you're currently in",
+    },
   },
 }
 

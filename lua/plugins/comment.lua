@@ -10,12 +10,13 @@
 return {
   "numToStr/Comment.nvim",
   keys = {
-    { "gc", mode = { "x" } },
-    { "gb", mode = { "x" } },
-    { "gcc", mode = { "n" } },
-    { "gcb", mode = { "n" } },
+    { "gc", mode = { "x" }, desc = "Toggle line comment" },
+    { "gb", mode = { "x" }, desc = "Toggle block comment" },
+    { "gcc", mode = { "n" }, desc = "Toggle line comment" },
+    { "gcb", mode = { "n" }, desc = "Toggle block comment" },
   },
   opts = function()
+    -- set rust comment string
     local ft = require "Comment.ft"
     ft.set("rust", "///%s")
 
@@ -24,7 +25,6 @@ return {
       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 
       ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
-      ---@type table
       mappings = {
         ---operator-pending mapping
         ---Includes `gcc`, `gcb`, `gc[count]{motion}` and `gb[count]{motion}`

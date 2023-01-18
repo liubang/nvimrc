@@ -9,8 +9,8 @@
 return {
   "rainbowhxch/accelerated-jk.nvim",
   keys = {
-    { "j", "<Plug>(accelerated_jk_gj)", mode = { "n" } },
-    { "k", "<Plug>(accelerated_jk_gk)", mode = { "n" } },
+    { "j", "<Plug>(accelerated_jk_gj)", mode = { "n" }, desc = "Accelerated gj movement" },
+    { "k", "<Plug>(accelerated_jk_gk)", mode = { "n" }, desc = "Accelerated gk movement" },
   },
   opts = {
     mode = "time_driven",

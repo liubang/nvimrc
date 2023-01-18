@@ -15,7 +15,7 @@ return {
     vim.g.undotree_CustomDiffpanelCmd = "botright 15 new"
   end,
   keys = {
-    { "<Leader>u", "<CMD>UndotreeToggle<CR>", mode = { "n" } },
+    { "<Leader>u", "<CMD>UndotreeToggle<CR>", mode = { "n" }, desc = "Toggle undotree" },
   },
 }
 

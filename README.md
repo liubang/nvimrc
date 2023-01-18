@@ -10,9 +10,6 @@
     <a href="#">
         <img src="https://img.shields.io/badge/platform-linux%20macOS-blue?style=flat-square" alt="Platform"/>
     </a>
-    <a href="https://github.com/liubang/nvimrc/pulse">
-        <img src="https://img.shields.io/github/last-commit/liubang/nvimrc?style=flat-square" alt="Last commit"/>
-    </a>
     <a href="https://github.com/liubang/nvimrc/releases">
         <img src="https://img.shields.io/github/v/release/liubang/nvimrc?style=flat-square" alt="Release" />
     </a>
@@ -25,7 +22,7 @@
 
 ![nvim](./static/2.png)
 
-## ✨ Features
+## Features
 
 - Fast. Less than **30ms** to start (Depends on SSD and CPU, tested on Intel NUC11BTMi9).
 - Simple. Run out of the box.
@@ -36,13 +33,13 @@
 
 (Tested with [rhysd/vim-startuptime](https://github.com/rhysd/vim-startuptime))
 
-## ⚡️ Requirements
+## Requirements
 
 - Neovim >= **0.8.2** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
-## 🚀 Getting Started
+## Getting Started
 
 If you have [Docker](https://www.docker.com/) on your system you can try out this config via docker
 
@@ -58,61 +55,77 @@ docker run -it --rm liubang/nvim
 docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 ```
 
-## ⌨️ Keymaps
+## Keymaps
 
 <!-- keymaps:start -->
 
-<details><summary>General</summary>
-
-| Key          | Description                                    | Mode         |
-| ------------ | ---------------------------------------------- | ------------ |
-| `<S-j>`      | move lines down                                | **n**, **x** |
-| `<S-k>`      | move lines up                                  | **n**, **x** |
-| `<Esc><Esc>` | clear hlsearch                                 | **n**        |
-| `/`          | Search in visually selected region             | **x**        |
-| `<`          | keep the visually selected area when indenting | **x**        |
-| `>`          | keep the visually selected area when indenting | **x**        |
-| `p`          | replace visually selected with the " contents  | **x**        |
-| `<Leader>bp` | Previous                                       | **n**        |
-| `<Leader>bn` | Next                                           | **n**        |
-| `<Leader>bf` | First                                          | **n**        |
-| `<Leader>bl` | Last                                           | **n**        |
-| `<Leader>ww` | Toggle between open windows                    | **n**        |
-| `<Leader>wh` | Move to the left window                        | **n**        |
-| `<Leader>wl` | Move to the right window                       | **n**        |
-| `<Leader>wj` | Move to the bottom window                      | **n**        |
-| `<Leader>wk` | Move to the top window                         | **n**        |
-| `<Leader>ws` | Split window horizontally                      | **n**        |
-| `<Leader>wv` | Split window vertically                        | **n**        |
-
-</details>
-
-<details><summary>Plugins</summary>
-
-| Key          | Description                                                                                                                 | Mode  |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `<Leader>1`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 1th visible buffer                               | **n** |
-| `<Leader>2`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 2th visible buffer                               | **n** |
-| `<Leader>3`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 3th visible buffer                               | **n** |
-| `<Leader>4`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 4th visible buffer                               | **n** |
-| `<Leader>5`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 5th visible buffer                               | **n** |
-| `<Leader>6`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 6th visible buffer                               | **n** |
-| `<Leader>7`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 7th visible buffer                               | **n** |
-| `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 8th visible buffer                               | **n** |
-| `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 9th visible buffer                               | **n** |
-| `<Leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer nvim-tree                                          | **n** |
-| `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                           | **n** |
-| `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                    | **n** |
-| `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                        | **n** |
-| `<Leader>Ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Searches for the string under your cursor (root dir) | **n** |
-| `<Leader>bb` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Lists open buffers in current neovim instance        | **n** |
-| `<Leader>ts` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Lists AsyncTasks for current buffer                  | **n** |
-
-</details>
+| Key          | Description                                                                                                                                         | Mode         |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| `<S-j>`      | move lines down                                                                                                                                     | **n**, **x** |
+| `<S-k>`      | move lines up                                                                                                                                       | **n**, **x** |
+| `<Esc><Esc>` | clear hlsearch                                                                                                                                      | **n**        |
+| `/`          | Search in visually selected region                                                                                                                  | **x**        |
+| `<`          | keep the visually selected area when indenting                                                                                                      | **x**        |
+| `>`          | keep the visually selected area when indenting                                                                                                      | **x**        |
+| `p`          | replace visually selected with the " contents                                                                                                       | **x**        |
+| `<Leader>bp` | Previous                                                                                                                                            | **n**        |
+| `<Leader>bn` | Next                                                                                                                                                | **n**        |
+| `<Leader>bf` | First                                                                                                                                               | **n**        |
+| `<Leader>bl` | Last                                                                                                                                                | **n**        |
+| `<Leader>ww` | Toggle between open windows                                                                                                                         | **n**        |
+| `<Leader>wh` | Move to the left window                                                                                                                             | **n**        |
+| `<Leader>wl` | Move to the right window                                                                                                                            | **n**        |
+| `<Leader>wj` | Move to the bottom window                                                                                                                           | **n**        |
+| `<Leader>wk` | Move to the top window                                                                                                                              | **n**        |
+| `<Leader>ws` | Split window horizontally                                                                                                                           | **n**        |
+| `<Leader>wv` | Split window vertically                                                                                                                             | **n**        |
+| `j`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gj movement                                               | **n**        |
+| `k`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gk movement                                               | **n**        |
+| `<Leader>tl` | [aerial.nvim](https://github.com/stevearc/aerial.nvim.git) Open or close the aerial window                                                          | **n**        |
+| `<C-b>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build current file                                                              | **n**        |
+| `<C-r>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Run current file                                                                | **n**        |
+| `<C-x>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build and run current file                                                      | **n**        |
+| `<Leader>1`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 1th visible buffer                                                       | **n**        |
+| `<Leader>2`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 2th visible buffer                                                       | **n**        |
+| `<Leader>3`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 3th visible buffer                                                       | **n**        |
+| `<Leader>4`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 4th visible buffer                                                       | **n**        |
+| `<Leader>5`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 5th visible buffer                                                       | **n**        |
+| `<Leader>6`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 6th visible buffer                                                       | **n**        |
+| `<Leader>7`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 7th visible buffer                                                       | **n**        |
+| `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 8th visible buffer                                                       | **n**        |
+| `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 9th visible buffer                                                       | **n**        |
+| `gc`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                                                    | **x**        |
+| `gb`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle block comment                                                                   | **x**        |
+| `gcc`        | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                                                    | **n**        |
+| `gcb`        | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle block comment                                                                   | **n**        |
+| `<Leader>hb` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Show the line git blame in a floating window                                        | **n**        |
+| `<Leader>hd` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Perform a `vimdiff` on the given file                                               | **n**        |
+| `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position                                  | **n**        |
+| `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position                                               | **n**        |
+| `<Leader>kk` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Hint the beginning of each lines currently visible in the buffer view and allow to jump to them | **n**        |
+| `<Leader>jj` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Hint the beginning of each lines currently visible in the buffer view and allow to jump to them | **n**        |
+| `<Leader>ss` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all matched patterns in the current window with key sequences                          | **n**        |
+| `<Leader>ll` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all words in the current line with key sequences                                       | **n**        |
+| `<Leader>hh` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all words in the current line with key sequences                                       | **n**        |
+| `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Open markdown preview window                                           | **n**        |
+| `<Leader>nf` | [neogen](https://github.com/danymat/neogen.git) Generate annotation for the function, class or other relevant type you're currently in              | **n**        |
+| `<Leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer nvim-tree                                                                  | **n**        |
+| `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                                                   | **n**        |
+| `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                                            | **n**        |
+| `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                                                | **n**        |
+| `<Leader>Ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Searches for the string under your cursor (root dir)                         | **n**        |
+| `<Leader>bb` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Lists open buffers in current neovim instance                                | **n**        |
+| `<Leader>ts` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Lists AsyncTasks for current buffer                                          | **n**        |
+| `<Leader>u`  | [undotree](https://github.com/mbbill/undotree.git) Toggle undotree                                                                                  | **n**        |
+| `<C-t>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Toggle floaterm                                                                        | **n**, **t** |
+| `<C-n>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Create a new floaterm window                                                           | **t**        |
+| `<C-k>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto previous floaterm window                                                          | **t**        |
+| `<C-j>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto next floaterm window                                                              | **t**        |
+| `<C-d>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Kill floaterm                                                                          | **t**        |
 
 <!-- keymaps:end -->
 
-## 📦 Plugins
+## Plugins
 
 <!-- plugins:start -->
 

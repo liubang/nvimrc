@@ -18,12 +18,37 @@ return {
   end,
   cmd = { "FloatermNew", "FloatermToggle", "FloatermPrev", "FloatermNext" },
   keys = {
-    { "<C-t>", "<CMD>FloatermToggle<CR>" },
-    { "<C-n>", vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermNew<CR>", true, true, true), mode = { "t" } },
-    { "<C-k>", vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermPrev<CR>", true, true, true), mode = { "t" } },
-    { "<C-j>", vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermNext<CR>", true, true, true), mode = { "t" } },
-    { "<C-t>", vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermToggle<CR>", true, true, true), mode = { "t" } },
-    { "<C-d>", vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermKill<CR>", true, true, true), mode = { "t" } },
+    { "<C-t>", "<CMD>FloatermToggle<CR>", desc = "Toggle floaterm" },
+    {
+      "<C-n>",
+      vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermNew<CR>", true, true, true),
+      mode = { "t" },
+      desc = "Create a new floaterm window",
+    },
+    {
+      "<C-k>",
+      vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermPrev<CR>", true, true, true),
+      mode = { "t" },
+      desc = "Goto previous floaterm window",
+    },
+    {
+      "<C-j>",
+      vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermNext<CR>", true, true, true),
+      mode = { "t" },
+      desc = "Goto next floaterm window",
+    },
+    {
+      "<C-t>",
+      vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermToggle<CR>", true, true, true),
+      mode = { "t" },
+      desc = "Toggle floaterm",
+    },
+    {
+      "<C-d>",
+      vim.api.nvim_replace_termcodes("<C-\\><C-N>:FloatermKill<CR>", true, true, true),
+      mode = { "t" },
+      desc = "Kill floaterm",
+    },
   },
 }
 

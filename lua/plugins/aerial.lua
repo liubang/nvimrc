@@ -26,7 +26,7 @@ return {
       ["O"] = "actions.tree_toggle",
     },
   },
-  keys = { { "<Leader>tl", "<CMD>AerialToggle<CR>", mode = { "n" } } },
+  keys = { { "<Leader>tl", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" } },
 }
 
 -- vim: fdm=marker fdl=0
