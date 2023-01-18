@@ -91,4 +91,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: liubang/nvim:${{ steps.release.outputs.tag_name }}
+          tags: liubang/nvim:latest,liubang/nvim:${{ steps.release.outputs.tag_name }}
