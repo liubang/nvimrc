@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.7.2](https://github.com/liubang/nvimrc/compare/v3.7.1...v3.7.2) (2023-01-19)
+
+
+### Bug Fixes
+
+* **ci:** fix build_neovim ([940ff2a](https://github.com/liubang/nvimrc/commit/940ff2a03ed80a6d70337e61e5ab2410af24b45f))
+
+
+### Performance Improvements
+
+* **docker:** optimize docker image construction process ([21e8782](https://github.com/liubang/nvimrc/commit/21e878268e15a2df0ff336322b367dbcc1c801d8))
+
 ## [3.7.1](https://github.com/liubang/nvimrc/compare/v3.7.0...v3.7.1) (2023-01-19)
 
 
