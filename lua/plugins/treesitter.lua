@@ -28,6 +28,8 @@ return {
         "cmake",
         "gomod",
         "json",
+        "json5",
+        "jsonc",
         "latex",
         "css",
         "html",
