@@ -7,9 +7,10 @@ on:
         required: true
 
 jobs:
-  neovim:
+  build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -27,4 +28,4 @@ jobs:
           file: ./docker/build_neovim.Dockerfile
           build-args: NVIM_TAG=${{ github.event.inputs.tag_name }}
           platforms: linux/amd64,linux/arm64
-          tags: liubang/neovim:${{ github.event.inputs.tag_name }}
+          tags: liubang/neovim:latest,liubang/neovim:${{ github.event.inputs.tag_name }}
