@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.1](https://github.com/liubang/nvimrc/compare/v3.7.0...v3.7.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* **ci:** build multi-architecture docker image ([fc0a319](https://github.com/liubang/nvimrc/commit/fc0a319713149482c62f56de43cbb6047c320248))
+
 ## [3.7.0](https://github.com/liubang/nvimrc/compare/v3.6.0...v3.7.0) (2023-01-19)
 
 
