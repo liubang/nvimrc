@@ -91,5 +91,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
+          context: .
+          file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: liubang/nvim:latest,liubang/nvim:${{ steps.release.outputs.tag_name }}

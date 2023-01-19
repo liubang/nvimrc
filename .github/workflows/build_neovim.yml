@@ -1,0 +1,30 @@
+name: BuildNeovim
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Tag name for neovim"
+        required: true
+
+jobs:
+  neovim:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          context: .
+          file: ./docker/build_neovim.Dockerfile
+          build-args: NVIM_TAG=${{ github.event.inputs.tag_name }}
+          platforms: linux/amd64,linux/arm64
+          tags: liubang/neovim:${{ github.event.inputs.tag_name }}
