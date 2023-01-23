@@ -7,6 +7,7 @@
 --
 --=====================================================================
 return {
+  { "folke/lazy.nvim", version = "*" },
   "nvim-lua/plenary.nvim",
   "onsails/lspkind.nvim",
   "nvim-tree/nvim-web-devicons",

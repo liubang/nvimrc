@@ -9,13 +9,14 @@
 
 return {
   "JoosepAlviste/nvim-ts-context-commentstring",
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+  -- { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdateSync",
     event = "BufReadPost",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+    keys = {
+      { "<Leader>v", desc = "Increment selection", mode = "n" },
+      { "V", desc = "Schrink selection", mode = "x" },
     },
     opts = {
       ensure_installed = {
@@ -23,7 +24,9 @@ return {
         "go",
         "cpp",
         "lua",
+        "vim",
         "rust",
+        "regex",
         "python",
         "cmake",
         "gomod",
@@ -35,7 +38,6 @@ return {
         "html",
         "yaml",
         "toml",
-        "vim",
         "vue",
         "tsx",
         "javascript",
@@ -58,42 +60,6 @@ return {
           node_decremental = "V",
         },
       },
-      textobjects = { -- {{{
-        lsp_interop = { enable = false },
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_next_start = {
-            ["]]"] = "@function.outer",
-            ["]m"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]["] = "@function.outer",
-            ["]M"] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[["] = "@function.outer",
-            ["[m"] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[]"] = "@function.outer",
-            ["[M"] = "@class.outer",
-          },
-        },
-        select = {
-          enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
-          lookahead = true,
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
-        },
-      }, -- }}}
-
       playground = { --{{{
         enable = true,
         updatetime = 25,

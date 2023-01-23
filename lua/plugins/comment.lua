@@ -9,11 +9,14 @@
 
 return {
   "numToStr/Comment.nvim",
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
   keys = {
-    { "gc", mode = { "x" }, desc = "Toggle line comment" },
-    { "gb", mode = { "x" }, desc = "Toggle block comment" },
-    { "gcc", mode = { "n" }, desc = "Toggle line comment" },
-    { "gcb", mode = { "n" }, desc = "Toggle block comment" },
+    { "gc", mode = { "n", "x" }, desc = "Toggle line comment" },
+    { "gb", mode = { "n", "x" }, desc = "Toggle block comment" },
+    { "gcc", mode = "n", desc = "Toggle line comment" },
+    { "gcb", mode = "n", desc = "Toggle block comment" },
   },
   opts = function()
     -- set rust comment string
@@ -23,7 +26,6 @@ return {
     return {
       padding = true,
       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-
       ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
       mappings = {
         ---operator-pending mapping

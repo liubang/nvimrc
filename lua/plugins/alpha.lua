@@ -8,7 +8,7 @@
 --=====================================================================
 return {
   "goolord/alpha-nvim",
-  lazy = false,
+  event = "VimEnter",
   opts = function()
     local h = {
       [[ ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓]],
@@ -92,12 +92,13 @@ return {
     local buttons = {
       type = "group",
       val = {
-        button("SPC ff", "  > Find file", ":Telescope find_files <CR>"),
-        button("SPC bb", "  > List buffers", ":Telescope buffers <CR>"),
+        button("SPC ff", " " .. " Find file", ":Telescope find_files <CR>"),
+        button("SPC bb", " " .. " List buffers", ":Telescope buffers <CR>"),
         button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-        button("SPC ag", "  > Find word", ":Telescope live_grep <CR>"),
-        button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-        button("q", "  > Quit NVIM", ":qa<CR>"),
+        button("SPC ag", " " .. " Find text", ":Telescope live_grep <CR>"),
+        button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+        button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+        button("q", " " .. " Quit", ":qa<CR>"),
       },
       opts = {
         spacing = 1,

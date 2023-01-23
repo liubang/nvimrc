@@ -9,11 +9,9 @@
 
 return {
   "L3MON4D3/LuaSnip",
-  config = function()
-    local ls = require "luasnip"
+  opts = function()
     local types = require "luasnip.util.types"
-
-    ls.config.setup {
+    return {
       history = true,
       updateevents = "TextChanged,TextChangedI",
       delete_check_events = "TextChanged",
@@ -27,19 +25,31 @@ return {
         },
       },
     }
-
-    vim.keymap.set({ "i", "s" }, "<C-n>", function()
-      if ls.choice_active() then
-        ls.change_choice(1)
-      end
-    end, {})
-
-    vim.keymap.set({ "i", "s" }, "<C-p>", function()
-      if ls.choice_active() then
-        ls.change_choice(-1)
-      end
-    end, {})
-
+  end,
+  keys = {
+    {
+      "<C-n>",
+      function()
+        local ls = require "luasnip"
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end,
+      mode = { "i", "s" },
+    },
+    {
+      "<C-p>",
+      function()
+        local ls = require "luasnip"
+        if ls.choice_active() then
+          ls.change_choice(-1)
+        end
+      end,
+      mode = { "i", "s" },
+    },
+  },
+  config = function(_, opts)
+    require("luasnip").setup(opts)
     require "plugins.snips.all"
     require "plugins.snips.c"
     require "plugins.snips.cpp"
