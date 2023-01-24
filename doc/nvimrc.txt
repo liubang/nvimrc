@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 20
+*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 24
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -129,8 +129,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
 │<Leader>7     │bufferline.nvim <https://github.com/akinsho/bufferline.nvim.git> Goto the 7th visible buffer                                                      │**n**              │
 │<Leader>8     │bufferline.nvim <https://github.com/akinsho/bufferline.nvim.git> Goto the 8th visible buffer                                                      │**n**              │
 │<Leader>9     │bufferline.nvim <https://github.com/akinsho/bufferline.nvim.git> Goto the 9th visible buffer                                                      │**n**              │
-│gc            │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle line comment                                                                   │**x**              │
-│gb            │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle block comment                                                                  │**x**              │
+│gc            │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle line comment                                                                   │**n**, **x**       │
+│gb            │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle block comment                                                                  │**n**, **x**       │
 │gcc           │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle line comment                                                                   │**n**              │
 │gcb           │Comment.nvim <https://github.com/numToStr/Comment.nvim.git> Toggle block comment                                                                  │**n**              │
 │<Leader>hb    │gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim.git> Show the line git blame in a floating window                                       │**n**              │
@@ -143,8 +143,17 @@ KEYMAPS                                                       *nvimrc-keymaps*
 │<Leader>ll    │hop.nvim <https://github.com/phaazon/hop.nvim.git> Annotate all words in the current line with key sequences                                      │**n**              │
 │<Leader>hh    │hop.nvim <https://github.com/phaazon/hop.nvim.git> Annotate all words in the current line with key sequences                                      │**n**              │
 │<Leader>mp    │markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim.git> Open markdown preview window                                          │**n**              │
+│sa            │mini.surround <https://github.com/echasnovski/mini.surround.git> Add surrounding                                                                  │**n**, **v**       │
+│sd            │mini.surround <https://github.com/echasnovski/mini.surround.git> Delete surrounding                                                               │**n**              │
+│sf            │mini.surround <https://github.com/echasnovski/mini.surround.git> Find right surrounding                                                           │**n**              │
+│sF            │mini.surround <https://github.com/echasnovski/mini.surround.git> Find left surrounding                                                            │**n**              │
+│sh            │mini.surround <https://github.com/echasnovski/mini.surround.git> Highlight surrounding                                                            │**n**              │
+│sr            │mini.surround <https://github.com/echasnovski/mini.surround.git> Replace surrounding                                                              │**n**              │
+│sn            │mini.surround <https://github.com/echasnovski/mini.surround.git> Update MiniSurround.config.n_lines                                               │**n**              │
 │<Leader>nf    │neogen <https://github.com/danymat/neogen.git> Generate annotation for the function, class or other relevant type you’re currently in           │**n**              │
 │<Leader>ft    │nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua.git> Explorer nvim-tree                                                                 │**n**              │
+│<Leader>v     │nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter.git> Increment selection                                                      │**n**              │
+│V             │nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter.git> Schrink selection                                                        │**x**              │
 │<Leader>ff    │telescope.nvim <https://github.com/nvim-telescope/telescope.nvim.git> List files                                                                  │**n**              │
 │<Leader>rf    │telescope.nvim <https://github.com/nvim-telescope/telescope.nvim.git> List recent files                                                           │**n**              │
 │<Leader>ag    │telescope.nvim <https://github.com/nvim-telescope/telescope.nvim.git> Grep in files                                                               │**n**              │
@@ -184,12 +193,14 @@ PLUGINS                                                       *nvimrc-plugins*
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - hex.nvim <https://github.com/RaafatTurki/hex.nvim>
 - hop.nvim <https://github.com/phaazon/hop.nvim>
+- lazy.nvim <https://github.com/folke/lazy.nvim>
 - lspkind.nvim <https://github.com/onsails/lspkind.nvim>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
 - markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim>
 - mason-lspconfig.nvim <https://github.com/williamboman/mason-lspconfig.nvim>
 - mason.nvim <https://github.com/williamboman/mason.nvim>
+- mini.ai <https://github.com/echasnovski/mini.ai>
 - mini.align <https://github.com/echasnovski/mini.align>
 - mini.cursorword <https://github.com/echasnovski/mini.cursorword>
 - mini.surround <https://github.com/echasnovski/mini.surround>
@@ -204,10 +215,8 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
-- nvim-treesitter-textobjects <https://github.com/nvim-treesitter/nvim-treesitter-textobjects>
 - nvim-ts-context-commentstring <https://github.com/JoosepAlviste/nvim-ts-context-commentstring>
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons>
-- playground <https://github.com/nvim-treesitter/playground>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - rust-tools.nvim <https://github.com/simrat39/rust-tools.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
