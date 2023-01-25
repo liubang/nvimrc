@@ -14,25 +14,24 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {
+require("lazy").setup {
+  spec = { import = "plugins" },
   defaults = { lazy = true },
-  install = { missing = true, colorscheme = { "gruvbox-material" } },
-  git = { -- {{{
-    log = { "-5" }, -- show the last 10 commits
-  }, -- }}}
-  dev = { -- {{{
-    -- directory where you store your local plugin projects
+  install = {
+    missing = true,
+    colorscheme = { "gruvbox-material" },
+  },
+  dev = {
     path = "~/workspace/vim",
-    ---@type string[] plugins that match these patterns will use your local versions
-    -- instead of being fetched from GitHub
-    patterns = {},
-  }, -- }}}
+    patterns = { "liubang" },
+    fallback = true,
+  },
   ui = { -- {{{
     border = "single",
     icons = {
@@ -58,6 +57,7 @@ require("lazy").setup("plugins", {
     },
     reset_packpath = true,
     rtp = {
+      reset = true,
       disabled_plugins = {
         "gzip",
         "matchit",
@@ -80,6 +80,6 @@ require("lazy").setup("plugins", {
     -- only generate markdown helptags for plugins that dont have docs
     skip_if_doc_exists = true,
   }, -- }}}
-})
+}
 
 -- vim: fdm=marker fdl=0

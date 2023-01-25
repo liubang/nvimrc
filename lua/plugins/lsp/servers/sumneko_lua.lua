@@ -10,15 +10,20 @@
 local M = {}
 
 function M.setup()
-  require("neodev").setup {}
+  require "neodev"
 
   local c = require "plugins.lsp.customs"
   require("lspconfig").sumneko_lua.setup(c.default {
     settings = {
       Lua = {
-        workspace = { checkThirdParty = false },
+        workspace = {
+          ignoreDir = "tmp/",
+          useGitIgnore = false,
+          maxPreload = 100000000,
+          preloadFileSize = 500000,
+          checkThirdParty = false,
+        },
         completion = { callSnippet = "Replace" },
-        telemetry = { enable = false },
         format = { enable = false },
       },
     },

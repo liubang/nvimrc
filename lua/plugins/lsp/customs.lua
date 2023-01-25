@@ -3,38 +3,16 @@
 -- customs.lua -
 --
 -- Created by liubang on 2022/04/16 22:09
--- Last Modified: 2022/12/01 22:26
+-- Last Modified: 2023/01/25 01:49
 --
 --=====================================================================
 
 local M = {}
+local format = require "plugins.lsp.format"
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-local autoformats = {
-  rust = true,
-  bzl = true,
-  lua = true,
-}
-
-local augroup_format = vim.api.nvim_create_augroup("my_lsp_format", { clear = true })
-
-local format = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local filetype = vim.bo[bufnr].filetype
-  local have_nls = #require("null-ls.sources").get_available(filetype, "NULL_LS_FORMATTING") > 0
-  vim.lsp.buf.format {
-    bufnr = bufnr,
-    filter = function(client)
-      if have_nls then
-        return client.name == "null-ls"
-      end
-      return client.name ~= "null-ls"
-    end,
-  }
-end
 
 local custom_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -52,24 +30,7 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, bufopts)
 
-  -- filetype config
-  if client.supports_method "textDocument/formatting" then
-    vim.keymap.set("n", "<Leader>fm", function()
-      format()
-    end, { noremap = true, silent = true, buffer = bufnr })
-
-    -- auto format
-    if autoformats[vim.bo[bufnr].filetype] then
-      vim.api.nvim_clear_autocmds { buffer = bufnr, group = augroup_format }
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup_format,
-        buffer = bufnr,
-        callback = function()
-          format()
-        end,
-      })
-    end
-  end
+  format.on_attach(client, bufnr)
 end
 
 M.default = function(configs)
