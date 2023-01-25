@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 24
+*nvimrc.txt*          For Neovim >= 0.8.2         Last change: 2023 January 25
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -215,6 +215,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
+- nvim-treesitter-textobjects <https://github.com/nvim-treesitter/nvim-treesitter-textobjects>
 - nvim-ts-context-commentstring <https://github.com/JoosepAlviste/nvim-ts-context-commentstring>
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
@@ -226,7 +227,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - telescope-ui-select.nvim <https://github.com/nvim-telescope/telescope-ui-select.nvim>
 - telescope.nvim <https://github.com/nvim-telescope/telescope.nvim>
 - undotree <https://github.com/mbbill/undotree>
-- venn.nvim <https://github.com/jbyuki/venn.nvim>
 - vim-caser <https://github.com/arthurxavierx/vim-caser>
 - vim-diagon <https://github.com/willchao612/vim-diagon>
 - vim-floaterm <https://github.com/voldikss/vim-floaterm>
