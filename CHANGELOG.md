@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.7.3](https://github.com/liubang/nvimrc/compare/v3.7.2...v3.7.3) (2023-01-25)
+
+
+### Performance Improvements
+
+* **hop:** update keymaps of hop ([5f19fa4](https://github.com/liubang/nvimrc/commit/5f19fa413d3ffcc8e92a34657e1b025598871397))
+* **keymap:** some useful keymaps ([5c0ed9a](https://github.com/liubang/nvimrc/commit/5c0ed9a22e2d34d441ba1852dbcf50016b44a1ab))
+* **plugins:** upgrade plugins ([02886db](https://github.com/liubang/nvimrc/commit/02886db7e1ce89bbeb71e20d0368e87288c73180))
+* **plugins:** upgrade plugins and some trivial optimizations ([7324bf4](https://github.com/liubang/nvimrc/commit/7324bf4e9f1b1beac7e9a9ee107906db925bf6a5))
+* **plugins:** upgrade plugins and some trivial optimizations ([a44daf8](https://github.com/liubang/nvimrc/commit/a44daf84783fee2ca3d464c0c5ce4e060c983ba2))
+
 ## [3.7.2](https://github.com/liubang/nvimrc/compare/v3.7.1...v3.7.2) (2023-01-19)
 
 
