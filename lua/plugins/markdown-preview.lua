@@ -11,7 +11,7 @@ return {
     "iamcco/markdown-preview.nvim",
     ft = { "markdown" },
     enabled = function()
-      return not vim.fn.executable "deno" and vim.fn.executable "npm"
+      return vim.fn.executable "deno" == 0 and vim.fn.executable "npm" == 1
     end,
     build = function()
       vim.fn["mkdp#util#install"]()
@@ -31,7 +31,7 @@ return {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
     enabled = function()
-      return vim.fn.executable "deno"
+      return vim.fn.executable "deno" == 1
     end,
     ft = { "markdown" },
     keys = {
