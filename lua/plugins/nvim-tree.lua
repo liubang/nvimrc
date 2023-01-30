@@ -11,15 +11,12 @@ return {
   cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFile" },
   opts = { -- {{{
     disable_netrw = true,
-    open_on_setup = false,
-    open_on_tab = false,
     update_cwd = false,
     auto_reload_on_write = true,
     respect_buf_cwd = false,
     hijack_cursor = true,
     hijack_netrw = true,
     hijack_unnamed_buffer_when_opening = false,
-    ignore_ft_on_setup = { "alpha" },
     update_focused_file = { --{{{
       enable = true,
       update_cwd = false,
