@@ -41,7 +41,7 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: nvimrc
-          version: "Neovim >= 0.8.2"
+          version: "Neovim >= 0.8.3"
           treesitter: true
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v4
