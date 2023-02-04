@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.8.0](https://github.com/liubang/nvimrc/compare/v3.7.3...v3.8.0) (2023-02-04)
+
+
+### Features
+
+* **ci:** upgrade neovim to 0.8.3 ([8f955d6](https://github.com/liubang/nvimrc/commit/8f955d6f98bc10577af7717928283f8d42aac39e))
+
+
+### Bug Fixes
+
+* **markdown-preview:** fix enabled function ([58c9841](https://github.com/liubang/nvimrc/commit/58c9841c56bad45b0c9cfd2c606a90b39fe92d3f))
+* **nvim-tree:** deprecate open_on_setup.* options ([9839012](https://github.com/liubang/nvimrc/commit/983901269da434b55694ebf1fc32e4d71184a52c))
+
+
+### Performance Improvements
+
+* **markdown-preview:** add peek.nvim ([a4f1fa6](https://github.com/liubang/nvimrc/commit/a4f1fa6446547dd8984287c2f6a45f5f11a9755f))
+* **plugins:** upgrade plugins ([491ad47](https://github.com/liubang/nvimrc/commit/491ad47129e25abff588877536f833032078f530))
+
 ## [3.7.3](https://github.com/liubang/nvimrc/compare/v3.7.2...v3.7.3) (2023-01-25)
 
 
