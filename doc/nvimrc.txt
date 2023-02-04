@@ -1,4 +1,4 @@
-*nvimrc.txt*         For Neovim >= 0.8.2         Last change: 2023 February 02
+*nvimrc.txt*         For Neovim >= 0.8.3         Last change: 2023 February 04
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -16,7 +16,7 @@ My Neovim Configuration
 </h1>
 
 <a href="https://github.com/neovim/neovim">
-<img src="https://img.shields.io/badge/Neovim-0.8.2-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
+<img src="https://img.shields.io/badge/Neovim-0.8.3-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
 </a>
 <a href="https://github.com/liubang/nvimrc/actions">
 <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />
@@ -62,7 +62,7 @@ FEATURES                                                     *nvimrc-features*
 REQUIREMENTS                                             *nvimrc-requirements*
 
 
-- Neovim >= **0.8.2** (needs to be built with **LuaJIT**)
+- Neovim >= **0.8.3** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
