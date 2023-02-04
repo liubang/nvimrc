@@ -16,6 +16,7 @@ for _, server in ipairs {
   "gopls",
   "rust",
   "sumneko_lua",
+  "tsserver",
   "null-ls",
 } do
   require("plugins.lsp.servers." .. server).setup()
@@ -30,7 +31,6 @@ for _, server in ipairs {
   "html",
   "cssls",
   "emmet_ls", -- emmet YYDS!
-  "tsserver",
   "pyright",
   "bashls",
   "cmake",
