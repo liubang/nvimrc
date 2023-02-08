@@ -3,17 +3,16 @@
 -- treesitter.lua -
 --
 -- Created by liubang on 2022/12/30 20:50
--- Last Modified: 2022/12/30 20:50
+-- Last Modified: 2023/02/09 00:43
 --
 --=====================================================================
 
 return {
   "JoosepAlviste/nvim-ts-context-commentstring",
-  -- { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdateSync",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<Leader>v", desc = "Increment selection", mode = "n" },
       { "V", desc = "Schrink selection", mode = "x" },

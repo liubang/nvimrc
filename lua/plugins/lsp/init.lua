@@ -3,7 +3,7 @@
 -- init.lua -
 --
 -- Created by liubang on 2021/02/06 00:10
--- Last Modified: 2023/01/25 01:49
+-- Last Modified: 2023/02/09 00:43
 --
 -- =====================================================================
 
@@ -16,7 +16,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "mason.nvim",
       "mason-lspconfig.nvim",

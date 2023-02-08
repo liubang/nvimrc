@@ -3,14 +3,14 @@
 -- gitsigns.lua -
 --
 -- Created by liubang on 2022/12/30 22:21
--- Last Modified: 2022/12/30 22:21
+-- Last Modified: 2023/02/09 00:43
 --
 --=====================================================================
 
 -- stylua: ignore start
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufReadPre",
+  event = {"BufReadPre", "BufNewFile"},
   cmd = "Gitsigns",
   opts = {
     signs = {
