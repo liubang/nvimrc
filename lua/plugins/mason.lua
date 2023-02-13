@@ -41,7 +41,7 @@ return {
       ensure_installed = {
         "clangd",
         "gopls",
-        "sumneko_lua",
+        "lua_ls",
         "rust_analyzer",
         "bashls",
         "pyright",

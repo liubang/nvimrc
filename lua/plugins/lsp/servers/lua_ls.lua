@@ -1,6 +1,6 @@
 --=====================================================================
 --
--- sumneko_lua.lua -
+-- lua_ls.lua -
 --
 -- Created by liubang on 2022/08/06 00:26
 -- Last Modified: 2022/12/07 22:35
@@ -13,7 +13,7 @@ function M.setup()
   require "neodev"
 
   local c = require "plugins.lsp.customs"
-  require("lspconfig").sumneko_lua.setup(c.default {
+  require("lspconfig").lua_ls.setup(c.default {
     settings = {
       Lua = {
         workspace = {

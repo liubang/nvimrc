@@ -15,7 +15,7 @@ for _, server in ipairs {
   "clangd",
   "gopls",
   "rust",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "null-ls",
 } do

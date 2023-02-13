@@ -51,7 +51,7 @@ function M.config()
     clangd = "C++",
     gopls = "Go",
     rust_analyzer = "Rust",
-    sumneko_lua = "Lua",
+    lua_ls = "Lua",
     intelephense = "PHP",
     pyright = "Python",
     bashls = "Bash",
