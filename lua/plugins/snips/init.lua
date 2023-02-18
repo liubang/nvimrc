@@ -55,6 +55,7 @@ return {
     require "plugins.snips.cpp"
     require "plugins.snips.rust"
     require "plugins.snips.go"
+    require "plugins.snips.java"
     require "plugins.snips.lua"
     require "plugins.snips.markdown"
   end,
