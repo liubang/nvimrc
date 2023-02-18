@@ -1,5 +1,29 @@
 # Changelog
 
+## [3.9.0](https://github.com/liubang/nvimrc/compare/v3.8.0...v3.9.0) (2023-02-18)
+
+
+### Features
+
+* **dap:** add codelldb adapter for cpp and rust ([7a55b21](https://github.com/liubang/nvimrc/commit/7a55b2116778f3df66e086248012808e435ff9af))
+* **dap:** add nvim-dap ([f1447d3](https://github.com/liubang/nvimrc/commit/f1447d3d819b6b4ffe41f2b6b7a89759c20a5669))
+* **dap:** add nvim-dap ([a8a0633](https://github.com/liubang/nvimrc/commit/a8a063390e029dbbeca39694c84b47fb067d7c8e))
+* **icon:** use codicons ([6de492d](https://github.com/liubang/nvimrc/commit/6de492d5202128d9e1bd1f6c511774c72160acc7))
+* **jdtls:** add jdtls ([6dbce3f](https://github.com/liubang/nvimrc/commit/6dbce3f32743cb147ae6589654bc503468f1c82b))
+* **snip:** add java snip ([324de72](https://github.com/liubang/nvimrc/commit/324de726118c3280d26936c8bfdd8aa061832c0e))
+
+
+### Bug Fixes
+
+* **lsp:** sumneko_lua is deprecated, use lua_ls instead ([bd04909](https://github.com/liubang/nvimrc/commit/bd049098d8aeda7d9d52f8845ad3ce907c357f46))
+* **plugins:** lazy-loading on BufReadPre or BufReadPost, should also use BufNewFile ([367b470](https://github.com/liubang/nvimrc/commit/367b4704e9eb26940d421689d102608f544cbe9c))
+
+
+### Performance Improvements
+
+* **plugins:** upgrade plugins ([4121216](https://github.com/liubang/nvimrc/commit/4121216e2add56f34d70d4f2614577ea566954c2))
+* **tsserver:** add typescript.nvim ([12cc81d](https://github.com/liubang/nvimrc/commit/12cc81d0dc980547e64be64d9c7676128660f069))
+
 ## [3.8.0](https://github.com/liubang/nvimrc/compare/v3.7.3...v3.8.0) (2023-02-04)
 
 
