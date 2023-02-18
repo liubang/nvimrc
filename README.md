@@ -122,6 +122,14 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `sr`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Replace surrounding                                                               | **n**               |
 | `sn`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Update `MiniSurround.config.n_lines`                                              | **n**               |
 | `<Leader>nf` | [neogen](https://github.com/danymat/neogen.git) Generate annotation for the function, class or other relevant type you're currently in              | **n**               |
+| `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle breakpoint                                                                          | **n**               |
+| `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                                                   | **n**               |
+| `<leader>di` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step into                                                                                  | **n**               |
+| `<leader>do` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step over                                                                                  | **n**               |
+| `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step back                                                                                  | **n**               |
+| `<leader>dO` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step out                                                                                   | **n**               |
+| `<leader>dq` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Quit                                                                                       | **n**               |
+| `<leader>dU` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle ui                                                                                  | **n**               |
 | `<Leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer nvim-tree                                                                  | **n**               |
 | `<Leader>v`  | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment selection                                                       | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Schrink selection                                                         | **x**               |
@@ -183,6 +191,8 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)

@@ -59,8 +59,14 @@ local real_setup = function()
   local jdtls = require "jdtls"
   local extendedClientCapabilities = jdtls.extendedClientCapabilities
   extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+  local bundles_dir = vim.fn.stdpath "data" .. "/mason/packages/"
+  local bundles = {
+    vim.fn.glob(bundles_dir .. "java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*jar", 1),
+  }
+  vim.list_extend(bundles, vim.split(vim.fn.glob(bundles_dir .. "java-test/extension/server/*.jar", 1), "\n"))
 
   jdtls.setup.add_commands()
+  jdtls.setup_dap { hotcodereplace = "auto" }
   jdtls.start_or_attach(c.default {
     cmd = { "jdtls" },
     flags = {
@@ -71,6 +77,7 @@ local real_setup = function()
       client.notify("workspace/didChangeConfiguration", { settings = settings })
     end,
     init_options = {
+      bundles = bundles,
       extendedClientCapabilities = extendedClientCapabilities,
     },
   })
