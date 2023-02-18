@@ -3,7 +3,7 @@
 -- lualine.lua -
 --
 -- Created by liubang on 2022/12/30 23:34
--- Last Modified: 2022/12/30 23:34
+-- Last Modified: 2023/02/19 00:39
 --
 --=====================================================================
 
@@ -44,31 +44,33 @@ function M.config()
     return "\u{e7c5} " .. require("lualine.utils.mode").get_mode()
   end
 
+  -- stylua: ignore start
   local lsp_names = { --{{{
-    ["null-ls"] = "NLS",
+    ["null-ls"]             = "NLS",
     ["diagnostics_on_open"] = "Diagnostics",
     ["diagnostics_on_save"] = "Diagnostics",
-    clangd = "C++",
-    gopls = "Go",
-    rust_analyzer = "Rust",
-    lua_ls = "Lua",
-    intelephense = "PHP",
-    pyright = "Python",
-    bashls = "Bash",
-    dockerls = "Docker",
-    tsserver = "TS",
-    jsonls = "JSON",
-    sqls = "SQL",
-    texlab = "LaTeX",
-    taplo = "TOML",
-    html = "HTML",
-    vimls = "Vim",
-    yamlls = "YAML",
-    cssls = "CSS",
-    emmet_ls = "EMMET",
-    jdtls = "Java",
+    clangd                  = "C++",
+    gopls                   = "Go",
+    rust_analyzer           = "Rust",
+    lua_ls                  = "Lua",
+    intelephense            = "PHP",
+    pyright                 = "Python",
+    bashls                  = "Bash",
+    dockerls                = "Docker",
+    tsserver                = "TS",
+    jsonls                  = "JSON",
+    sqls                    = "SQL",
+    texlab                  = "LaTeX",
+    taplo                   = "TOML",
+    html                    = "HTML",
+    vimls                   = "Vim",
+    yamlls                  = "YAML",
+    cssls                   = "CSS",
+    emmet_ls                = "EMMET",
+    jdtls                   = "Java",
   }
   --}}}
+  -- stylua: ignore end
 
   local lsp_clients = function()
     local clients = {}

@@ -25,6 +25,7 @@ function M.config()
 
   -- stylua: ignore start
   lspkind.init {
+    preset = 'codicons',
     symbol_map = {
       NONE          = "",
       Array         = "",
