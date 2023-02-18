@@ -1,9 +1,9 @@
 --=====================================================================
 --
--- cpp.lua -
+-- rust.lua -
 --
--- Created by liubang on 2023/02/18 21:37
--- Last Modified: 2023/02/18 21:37
+-- Created by liubang on 2023/02/19 02:22
+-- Last Modified: 2023/02/19 02:22
 --
 --=====================================================================
 
@@ -17,5 +17,6 @@ return {
     end,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
+    args = {},
   },
 }

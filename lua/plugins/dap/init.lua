@@ -7,75 +7,25 @@
 --
 --=====================================================================
 
+-- stylua: ignore start
 return {
   {
     "rcarriga/nvim-dap-ui",
-    config = function(_, _)
-      require "plugins.dap.ui"
-    end,
+    config = function() require "plugins.dap.ui".setup() end,
   },
   {
     "mfussenegger/nvim-dap",
-    config = function()
-      require "plugins.dap.dap"
-    end,
+    config = function() require "plugins.dap.dap".setup() end,
     keys = {
-      {
-        "<leader>db",
-        function()
-          require("dap").toggle_breakpoint()
-        end,
-        desc = "Toggle breakpoint",
-      },
-      {
-        "<leader>dc",
-        function()
-          require("dap").continue()
-        end,
-        desc = "Continue",
-      },
-      {
-        "<leader>di",
-        function()
-          require("dap").step_into()
-        end,
-        desc = "Step into",
-      },
-      {
-        "<leader>do",
-        function()
-          require("dap").step_over()
-        end,
-        desc = "Step over",
-      },
-      {
-        "<leader>dB",
-        function()
-          require("dap").step_back()
-        end,
-        desc = "Step back",
-      },
-      {
-        "<leader>dO",
-        function()
-          require("dap").step_out()
-        end,
-        desc = "Step out",
-      },
-      {
-        "<leader>dq",
-        function()
-          require("dap").close()
-        end,
-        desc = "Quit",
-      },
-      {
-        "<leader>dU",
-        function()
-          require("dapui").toggle()
-        end,
-        desc = "Toggle ui",
-      },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle breakpoint" },
+      { "<leader>dc", function() require("dap").continue() end, desc = "Continue" },
+      { "<leader>di", function() require("dap").step_into() end, desc = "Step into" },
+      { "<leader>do", function() require("dap").step_over() end, desc = "Step over" },
+      { "<leader>dB", function() require("dap").step_back() end, desc = "Step back" },
+      { "<leader>dO", function() require("dap").step_out() end, desc = "Step out" },
+      { "<leader>dq", function() require("dap").close() end, desc = "Quit" },
+      { "<leader>dU", function() require("dapui").toggle() end, desc = "Toggle ui" },
     },
   },
 }
+-- stylua: ignore end
