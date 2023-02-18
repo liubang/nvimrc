@@ -1,4 +1,4 @@
-*nvimrc.txt*         For Neovim >= 0.8.3         Last change: 2023 February 13
+*nvimrc.txt*         For Neovim >= 0.8.3         Last change: 2023 February 18
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -209,6 +209,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-autopairs <https://github.com/windwp/nvim-autopairs>
 - nvim-cmp <https://github.com/hrsh7th/nvim-cmp>
 - nvim-colorizer.lua <https://github.com/NvChad/nvim-colorizer.lua>
+- nvim-jdtls <https://github.com/mfussenegger/nvim-jdtls>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
@@ -226,6 +227,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - telescope-fzf-native.nvim <https://github.com/nvim-telescope/telescope-fzf-native.nvim>
 - telescope-ui-select.nvim <https://github.com/nvim-telescope/telescope-ui-select.nvim>
 - telescope.nvim <https://github.com/nvim-telescope/telescope.nvim>
+- typescript.nvim <https://github.com/jose-elias-alvarez/typescript.nvim>
 - undotree <https://github.com/mbbill/undotree>
 - vim-caser <https://github.com/arthurxavierx/vim-caser>
 - vim-diagon <https://github.com/willchao612/vim-diagon>
