@@ -25,6 +25,7 @@ return {
       "b0o/schemastore.nvim",
       "jose-elias-alvarez/null-ls.nvim",
       "jose-elias-alvarez/typescript.nvim",
+      "mfussenegger/nvim-jdtls",
     },
     config = function()
       -- It's important that you set up the plugins in the following order:

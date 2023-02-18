@@ -66,6 +66,7 @@ function M.config()
     yamlls = "YAML",
     cssls = "CSS",
     emmet_ls = "EMMET",
+    jdtls = "Java",
   }
   --}}}
 
@@ -106,6 +107,13 @@ function M.config()
             readonly = " \u{f023}",
             unnamed = "[No Name]",
           },
+          cond = function()
+            local f = vim.fn.expand "%:p"
+            if f:len() > 6 and f:sub(0, 6) == "jdt://" then
+              return false
+            end
+            return true
+          end,
         },
         {
           filesize,

@@ -18,6 +18,7 @@ for _, server in ipairs {
   "lua_ls",
   "tsserver",
   "null-ls",
+  "jdtls",
 } do
   require("plugins.lsp.servers." .. server).setup()
 end
@@ -36,6 +37,7 @@ for _, server in ipairs {
   "cmake",
   "texlab",
   "vimls",
+  "lemminx", -- for xml
 } do
   lspconfig[server].setup(c.default())
 end
