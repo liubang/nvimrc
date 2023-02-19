@@ -6,8 +6,9 @@
 -- Last Modified: 2023/02/18 21:27
 --
 --=====================================================================
+local dap = require "dap"
 
-return {
+dap.configurations.go = {
   {
     type = "go",
     name = "Debug (from vscode-go)",

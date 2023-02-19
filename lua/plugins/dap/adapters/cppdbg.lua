@@ -6,8 +6,9 @@
 -- Last Modified: 2023/02/18 21:37
 --
 --=====================================================================
+local dap = require "dap"
 
-return {
+dap.adapters.cppdbg = {
   id = "cppdbg",
   type = "executable",
   command = "OpenDebugAD7",

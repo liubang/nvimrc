@@ -1,11 +1,11 @@
 --=====================================================================
 --
--- rust.lua -
+-- c.lua -
 --
--- Created by liubang on 2023/02/19 15:18
--- Last Modified: 2023/02/19 15:18
+-- Created by liubang on 2023/02/19 15:19
+-- Last Modified: 2023/02/19 15:19
 --
 --=====================================================================
 local dap = require "dap"
 
-dap.configurations.rust = dap.configurations.cpp
+dap.configurations.c = dap.configurations.cpp

@@ -6,8 +6,9 @@
 -- Last Modified: 2023/02/18 21:27
 --
 --=====================================================================
+local dap = require "dap"
 
-return {
+dap.adapters.go = {
   type = "server",
   port = "${port}",
   executable = {

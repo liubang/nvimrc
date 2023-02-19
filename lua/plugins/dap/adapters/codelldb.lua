@@ -6,8 +6,9 @@
 -- Last Modified: 2023/02/19 02:13
 --
 --=====================================================================
+local dap = require "dap"
 
-return {
+dap.adapters.codelldb = {
   id = "codelldb",
   type = "server",
   port = "${port}",

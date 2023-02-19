@@ -11,11 +11,76 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
-    config = function() require "plugins.dap.ui".setup() end,
+    opts = {
+      expand_lines = true,
+      icons = { expanded = "", collapsed = "", circular = "" },
+      mappings = {
+        expand = { "<CR>", "<2-LeftMouse>" },
+        open = "o",
+        remove = "d",
+        edit = "e",
+        repl = "r",
+        toggle = "t",
+      },
+      layouts = {
+        {
+          elements = {
+            { id = "scopes", size = 0.25 },
+            { id = "breakpoints", size = 0.25 },
+            { id = "stacks", size = 0.25 },
+            { id = "watches", size = 0.25 },
+          },
+          size = 40,
+          position = "right",
+        },
+        {
+          elements = {
+            { id = "repl", size = 0.5 },
+            { id = "console", size = 0.5 },
+          },
+          size = 10,
+          position = "bottom",
+        },
+      },
+      floating = {
+        max_height = 0.9,
+        max_width = 0.5,
+        border = "single",
+        mappings = {
+          close = { "q", "<Esc>" },
+        },
+      },
+    }
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    opts = {
+      enabled = true,
+      enabled_commands = true,
+      highlight_changed_variables = true,
+      highlight_new_as_changed = true,
+      show_stop_reason = true,
+      commented = false,
+      virt_text_pos = 'eol',
+      all_frames = false,
+      virt_lines = false,
+      virt_text_win_col = nil
+    }
   },
   {
     "mfussenegger/nvim-dap",
-    config = function() require "plugins.dap.dap".setup() end,
+    config = function() require "plugins.dap.dap" end,
+    cmd = {
+      "DapSetLogLevel",
+      "DapShowLog",
+      "DapContinue",
+      "DapToggleBreakpoint",
+      "DapToggleRepl",
+      "DapStepOver",
+      "DapStepInto",
+      "DapStepOut",
+      "DapTerminate",
+    },
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle breakpoint" },
       { "<leader>dc", function() require("dap").continue() end, desc = "Continue" },
