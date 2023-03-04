@@ -3,7 +3,7 @@
 -- nodes.lua -
 --
 -- Created by liubang on 2022/07/09 02:07
--- Last Modified: 2022/07/09 02:07
+-- Last Modified: 2023/03/04 22:35
 --
 --=====================================================================
 local ts_utils = require "nvim-treesitter.ts_utils"
@@ -57,7 +57,7 @@ M.get_all_nodes = function(query, lang, bufnr, type_only)
         type_node = node
       elseif op == "declaration" or op == "clause" then
         declaration_node = node
-        sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(node) }, bufnr)
+        sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ vim.treesitter.get_node_range(node) }, bufnr)
       else
         -- vim.notify('unknown op: ' .. op, vim.log.levels.WARN)
       end
@@ -72,7 +72,7 @@ M.get_all_nodes = function(query, lang, bufnr, type_only)
       })
     end
     if type_node ~= nil and type_only then
-      sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ ts_utils.get_node_range(type_node) }, bufnr)
+      sRow, sCol, eRow, eCol = ts_utils.get_vim_range({ vim.treesitter.get_node_range(type_node) }, bufnr)
       table.insert(results, {
         type_node = type_node,
         dim = { s = { r = sRow, c = sCol }, e = { r = eRow, c = eCol } },
