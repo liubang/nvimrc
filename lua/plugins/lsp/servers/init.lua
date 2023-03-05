@@ -15,6 +15,7 @@ for _, server in ipairs {
   "clangd",
   "gopls",
   "rust",
+  "texlab",
   "lua_ls",
   "tsserver",
   "null-ls",
@@ -35,7 +36,6 @@ for _, server in ipairs {
   "pyright",
   "bashls",
   "cmake",
-  "texlab",
   "vimls",
   "lemminx", -- for xml
 } do
