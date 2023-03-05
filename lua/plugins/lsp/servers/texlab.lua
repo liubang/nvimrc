@@ -21,6 +21,7 @@ M.setup = function()
         build = {
           executable = "latexmk",
           args = {
+            "-xelatex",
             "-pdf",
             "-pdflua",
             "-quiet",
