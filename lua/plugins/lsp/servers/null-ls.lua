@@ -22,6 +22,14 @@ local sources = {
   b.formatting.buildifier,
   b.formatting.fixjson,
   b.formatting.autopep8,
+  b.formatting.latexindent.with {
+    args = {
+      "-g",
+      "/dev/null",
+      "-y",
+      [[defaultIndent: "    "]],
+    },
+  },
   b.formatting.prettier.with {
     filetypes = {
       "css",

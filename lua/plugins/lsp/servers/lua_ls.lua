@@ -16,6 +16,11 @@ function M.setup()
   require("lspconfig").lua_ls.setup(c.default {
     settings = {
       Lua = {
+        hint = {
+          arrayIndex = "Disable",
+          enable = true,
+          setType = true,
+        },
         workspace = {
           ignoreDir = "tmp/",
           useGitIgnore = false,

@@ -12,32 +12,42 @@ local M = {}
 
 M.setup = function()
   require("lspconfig").texlab.setup(c.default {
+    flags = {
+      allow_incremental_sync = false,
+    },
     settings = {
       texlab = {
         rootDirectory = nil,
         build = {
           executable = "latexmk",
-          args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+          args = {
+            "-pdf",
+            "-pdflua",
+            "-quiet",
+            "-interaction=nonstopmode",
+            "-synctex=1",
+            "-shell-escape",
+            "-f",
+            "-outdir=build",
+            "%f",
+          },
           onSave = true,
           forwardSearchAfter = false,
         },
-        auxDirectory = ".",
+        auxDirectory = "build",
+        diagnosticsDelay = 50,
         forwardSearch = {
           executable = "zathura",
           args = { "--synctex-forward", "%l:1:%f", "%p" },
         },
-        chktex = {
-          onOpenAndSave = false,
-          onEdit = false,
-        },
-        diagnosticsDelay = 300,
-        latexFormatter = "latexindent",
-        latexindent = {
-          ["local"] = nil, -- local is a reserved keyword
-          modifyLineBreaks = false,
-        },
-        bibtexFormatter = "texlab",
-        formatterLineLength = 80,
+        chktex = { onOpenAndSave = true, onEdit = false },
+        formatterLineLength = 120,
+        -- latexFormatter = "latexindent",
+        -- latexindent = {
+        --   ["local"] = nil, -- local is a reserved keyword
+        --   modifyLineBreaks = false,
+        -- },
+        -- bibtexFormatter = "texlab",
       },
     },
   })
