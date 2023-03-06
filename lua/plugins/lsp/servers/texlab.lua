@@ -22,9 +22,8 @@ M.setup = function()
           executable = "latexmk",
           args = {
             "-xelatex",
-            "-pdf",
-            "-pdflua",
-            "-quiet",
+            "-file-line-error",
+            "-halt-on-error",
             "-interaction=nonstopmode",
             "-synctex=1",
             "-shell-escape",
