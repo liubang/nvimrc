@@ -193,6 +193,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
