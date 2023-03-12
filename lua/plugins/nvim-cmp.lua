@@ -113,23 +113,23 @@ function M.config()
     view = {
       max_height = 20,
     },
-    sorting = {
-      priority_weight = 2,
-      comparators = {
-        compare.offset,
-        compare.score,
-        compare.exact,
-        compare.recently_used,
-        compare.locality,
-        function(...)
-          return require("cmp_buffer"):compare_locality(...)
-        end,
-        compare.kind,
-        compare.sort_text,
-        compare.length,
-        compare.order,
-      },
-    },
+    -- sorting = {
+    --   priority_weight = 2,
+    --   comparators = {
+    --     compare.offset,
+    --     compare.score,
+    --     compare.exact,
+    --     compare.recently_used,
+    --     compare.locality,
+    --     function(...)
+    --       return require("cmp_buffer"):compare_locality(...)
+    --     end,
+    --     compare.kind,
+    --     compare.sort_text,
+    --     compare.length,
+    --     compare.order,
+    --   },
+    -- },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
