@@ -11,6 +11,19 @@ local c = require "plugins.lsp.customs"
 local M = {}
 
 M.setup = function()
+  local is_mac = vim.loop.os_uname().version:match "Darwin"
+  local forwardSearch = {}
+  if not is_mac then
+    forwardSearch = {
+      executable = "zathura",
+      args = { "--synctex-forward", "%l:1:%f", "%p" },
+    }
+  else
+    forwardSearch = {
+      executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
+      args = { "%l", "%p", "%f" },
+    }
+  end
   require("lspconfig").texlab.setup(c.default {
     flags = {
       allow_incremental_sync = false,
@@ -27,6 +40,7 @@ M.setup = function()
             "-interaction=nonstopmode",
             "-synctex=1",
             "-shell-escape",
+            -- "-pv",
             "-f",
             "-outdir=build",
             "%f",
@@ -36,10 +50,7 @@ M.setup = function()
         },
         auxDirectory = "build",
         diagnosticsDelay = 50,
-        forwardSearch = {
-          executable = "zathura",
-          args = { "--synctex-forward", "%l:1:%f", "%p" },
-        },
+        forwardSearch = forwardSearch,
         chktex = { onOpenAndSave = true, onEdit = false },
         formatterLineLength = 120,
         -- latexFormatter = "latexindent",
