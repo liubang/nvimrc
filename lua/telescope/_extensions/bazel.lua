@@ -6,11 +6,7 @@
 -- Last Modified: 2022/12/04 17:11
 --
 -- =====================================================================
-local has_telescope, telescope = pcall(require, "telescope")
-if not has_telescope then
-  error "This plugins require nvim-telescope/telescope.nvim"
-end
-
+local telescope = require "telescope"
 local finders = require "telescope.finders"
 local pickers = require "telescope.pickers"
 local sorters = require "telescope.sorters"

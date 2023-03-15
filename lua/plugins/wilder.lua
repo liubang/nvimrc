@@ -35,18 +35,18 @@ function M.config()
   wilder.set_option(
     "renderer",
     wilder.renderer_mux {
-      [":"] = wilder.popupmenu_renderer {
-        max_width = 14,
-        max_height = 17,
+      [":"] = wilder.wildmenu_renderer {
+        -- max_width = 14,
+        -- max_height = 17,
         highlighter = wilder.lua_fzy_highlighter(),
-        left = {
-          " ",
-          wilder.popupmenu_devicons(),
-        },
-        right = {
-          " ",
-          wilder.popupmenu_scrollbar(),
-        },
+        -- left = {
+        --   " ",
+        --   wilder.popupmenu_devicons(),
+        -- },
+        -- right = {
+        --   " ",
+        --   wilder.popupmenu_scrollbar(),
+        -- },
         highlights = {
           accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#ea6962" } }),
         },

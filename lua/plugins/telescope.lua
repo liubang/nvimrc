@@ -12,8 +12,9 @@ local M = {
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
+    { "skywind3000/asynctasks.vim" },
   },
-  cmd = "Telescope",
+  cmd = { "Telescope" },
   keys = {
     { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" }, desc = "List files" },
     { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" }, desc = "List recent files" },
