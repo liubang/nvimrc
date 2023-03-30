@@ -14,8 +14,8 @@ local locals = require "nvim-treesitter.locals"
 local M = {}
 
 local function get_node_text(bufnr, node)
-  if vim.treesitter.query ~= nil and vim.treesitter.query.get_node_text ~= nil then
-    return vim.treesitter.query.get_node_text(bufnr, node)
+  if vim.treesitter.query ~= nil and vim.treesitter.get_node_text ~= nil then
+    return vim.treesitter.get_node_text(bufnr, node)
   end
   return ts_utils.get_node_text(node)[1]
 end
@@ -23,7 +23,7 @@ end
 M.get_all_nodes = function(query, lang, bufnr, type_only)
   bufnr = bufnr or 0
   local success, parsed_query = pcall(function()
-    return vim.treesitter.parse_query(lang, query)
+    return vim.treesitter.query.parse(lang, query)
   end)
   if not success then
     return nil

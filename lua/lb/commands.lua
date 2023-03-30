@@ -43,16 +43,16 @@ vim.api.nvim_create_user_command("DocUpdate", function() -- {{{
   require("lb.utils.doc").update()
 end, { nargs = 0 }) -- }}}
 
-vim.api.nvim_create_user_command("Tasks", function()
+vim.api.nvim_create_user_command("Tasks", function() -- {{{
   require("telescope").extensions.tasks.tasks()
-end, { nargs = 0 })
+end, { nargs = 0 }) -- }}}
 
-vim.api.nvim_create_user_command("BazelRun", function()
+vim.api.nvim_create_user_command("BazelRun", function() -- {{{
   require("telescope").extensions.bazel.bazel_run()
-end, { nargs = 0 })
+end, { nargs = 0 }) -- }}}
 
-vim.api.nvim_create_user_command("BazelTests", function()
+vim.api.nvim_create_user_command("BazelTests", function() -- {{{
   require("telescope").extensions.bazel.bazel_tests()
-end, { nargs = 0 })
+end, { nargs = 0 }) -- }}}
 
 -- vim: fdm=marker fdl=0
