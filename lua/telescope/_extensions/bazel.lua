@@ -66,35 +66,35 @@ local bazel_finder = function(opts, title, kind)
     :find()
 end
 
-local bazel_rules = function(opts)
-  bazel_finder(opts, "BazelRules", "")
+local bazel_build = function(opts)
+  bazel_finder(opts, "BazelBuild", "")
 end
 
 local bazel_tests = function(opts)
-  bazel_finder(opts, "BazelTests", ".*_test")
+  bazel_finder(opts, "BazelTest", ".*_test")
 end
 
 local bazel_run = function(opts)
-  bazel_finder(opts, "BazelBinaries", ".*_binary")
+  bazel_finder(opts, "BazelRun", ".*_binary")
 end
 
 local bazel_cc_rules = function(opts)
-  bazel_finder(opts, "BazelCCRules", "cc_.*")
+  bazel_finder(opts, "BazelCCBuild", "cc_.*")
 end
 
 local bazel_cc_tests = function(opts)
-  bazel_finder(opts, "BazelCCTests", "cc_test")
+  bazel_finder(opts, "BazelCCTest", "cc_test")
 end
 
 local bazel_cc_run = function(opts)
-  bazel_finder(opts, "BazelCCBinaries", "cc_run")
+  bazel_finder(opts, "BazelCCRun", "cc_run")
 end
 
 return telescope.register_extension {
   exports = {
     bazel_run = bazel_run,
+    bazel_build = bazel_build,
     bazel_tests = bazel_tests,
-    bazel_rules = bazel_rules,
     bazel_cc_run = bazel_cc_run,
     bazel_cc_rules = bazel_cc_rules,
     bazel_cc_tests = bazel_cc_tests,

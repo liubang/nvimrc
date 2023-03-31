@@ -47,6 +47,10 @@ vim.api.nvim_create_user_command("Tasks", function() -- {{{
   require("telescope").extensions.tasks.tasks()
 end, { nargs = 0 }) -- }}}
 
+vim.api.nvim_create_user_command("BazelBuild", function() -- {{{
+  require("telescope").extensions.bazel.bazel_build()
+end, { nargs = 0 }) -- }}}
+
 vim.api.nvim_create_user_command("BazelRun", function() -- {{{
   require("telescope").extensions.bazel.bazel_run()
 end, { nargs = 0 }) -- }}}
