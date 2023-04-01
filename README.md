@@ -114,6 +114,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>ss` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all matched patterns in the current window with key sequences                          | **n**               |
 | `<Leader>ll` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all words in the current line with key sequences                                       | **n**               |
 | `<Leader>hh` | [hop.nvim](https://github.com/phaazon/hop.nvim.git) Annotate all words in the current line with key sequences                                       | **n**               |
+| `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                                                       | **n**               |
 | `sa`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Add surrounding                                                                   | **n**, **v**        |
 | `sd`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Delete surrounding                                                                | **n**               |
 | `sf`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Find right surrounding                                                            | **n**               |
@@ -130,10 +131,10 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dO` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step out                                                                                   | **n**               |
 | `<leader>dq` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Quit                                                                                       | **n**               |
 | `<leader>dU` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle ui                                                                                  | **n**               |
+| `<leader>sr` | [nvim-spectre](https://github.com/windwp/nvim-spectre.git) Replace in files (Spectre)                                                               | **n**               |
 | `<Leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer nvim-tree                                                                  | **n**               |
 | `<Leader>v`  | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment selection                                                       | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Schrink selection                                                         | **x**               |
-| `<leader>mp` | [peek.nvim](https://github.com/toppair/peek.nvim.git) Peek (Markdown Preview)                                                                       | **n**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                                                   | **n**               |
 | `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                                            | **n**               |
 | `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                                                | **n**               |
@@ -146,6 +147,8 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<C-k>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto previous floaterm window                                                          | **t**               |
 | `<C-j>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto next floaterm window                                                              | **t**               |
 | `<C-d>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Kill floaterm                                                                          | **t**               |
+| `]]`         | [vim-illuminate](https://github.com/RRethy/vim-illuminate.git) Next Reference                                                                       | **n**               |
+| `[[`         | [vim-illuminate](https://github.com/RRethy/vim-illuminate.git) Prev Reference                                                                       | **n**               |
 
 <!-- keymaps:end -->
 
@@ -179,11 +182,11 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mini.ai](https://github.com/echasnovski/mini.ai)
 - [mini.align](https://github.com/echasnovski/mini.align)
-- [mini.cursorword](https://github.com/echasnovski/mini.cursorword)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [neogen](https://github.com/danymat/neogen)
@@ -198,12 +201,12 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [nvim-spectre](https://github.com/windwp/nvim-spectre)
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- [peek.nvim](https://github.com/toppair/peek.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
@@ -219,6 +222,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [vim-floaterm](https://github.com/voldikss/vim-floaterm)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
 - [vim-git](https://github.com/tpope/vim-git)
+- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [vim-startuptime](https://github.com/dstein64/vim-startuptime)
 - [wilder.nvim](https://github.com/gelguy/wilder.nvim)

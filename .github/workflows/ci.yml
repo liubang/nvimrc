@@ -24,8 +24,12 @@ jobs:
       - name: Install Neovim
         shell: bash
         run: |
-          wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb -O /tmp/nvim.deb
-          sudo dpkg -i /tmp/nvim.deb
+          mkdir -p /tmp/nvim
+          wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O /tmp/nvim/nvim.appimage
+          cd /tmp/nvim
+          chmod a+x ./nvim.appimage
+          ./nvim.appimage --appimage-extract
+          echo "/tmp/nvim/squashfs-root/usr/bin/" >> $GITHUB_PATH
       - name: Run Tests
         run: |
           nvim --version
@@ -42,6 +46,7 @@ jobs:
         with:
           vimdoc: nvimrc
           version: "Neovim >= 0.8.3"
+          demojify: true
           treesitter: true
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v4

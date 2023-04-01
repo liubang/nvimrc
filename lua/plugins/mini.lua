@@ -75,14 +75,6 @@ return {
     -- }}}
   },
   {
-    "echasnovski/mini.cursorword", -- {{{
-    event = { "BufReadPre", "BufNewFile" },
-    config = function(_, opts)
-      require("mini.cursorword").setup(opts)
-    end,
-    -- }}}
-  },
-  {
     "echasnovski/mini.ai", -- {{{
     dependencies = {
       {

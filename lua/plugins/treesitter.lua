@@ -11,32 +11,32 @@ return {
   "JoosepAlviste/nvim-ts-context-commentstring",
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdateSync",
+    build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<Leader>v", desc = "Increment selection", mode = "n" },
       { "V", desc = "Schrink selection", mode = "x" },
     },
+    ---@type TSConfig
     opts = {
       ensure_installed = {
         "c",
-        "go",
         "cpp",
-        "lua",
-        "vim",
         "rust",
-        "regex",
-        "python",
-        "cmake",
+        "go",
         "gomod",
-        "json",
-        "json5",
-        "jsonc",
+        "python",
         "latex",
-        "css",
-        "html",
+        "lua",
+        "luap",
+        "luadoc",
+        "bash",
+        "regex",
+        "query",
+        "regex",
         "yaml",
         "toml",
+        "json",
         "vue",
         "tsx",
         "javascript",
@@ -77,10 +77,9 @@ return {
         },
       }, --}}}
     },
+    ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.markdown.filetype_to_parsername = "octo"
     end,
   },
 }
