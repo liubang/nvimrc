@@ -1,5 +1,29 @@
 # Changelog
 
+## [3.9.1](https://github.com/liubang/nvimrc/compare/v3.9.0...v3.9.1) (2023-04-01)
+
+
+### Bug Fixes
+
+* **customs-telescope-extensions:** fix bazel and tasks telescope extension ([5967cc1](https://github.com/liubang/nvimrc/commit/5967cc14e5769b2c62e06bbd9574994ecac316bc))
+
+
+### Performance Improvements
+
+* **bazel:** update bazel telescope extension ([69ae29f](https://github.com/liubang/nvimrc/commit/69ae29f3bc928f3260f181d5f13c7068ab3c05b7))
+* **cmp:** remove custom sorting ([c9b1146](https://github.com/liubang/nvimrc/commit/c9b1146e854d922d8b1dde68aea63b4ae3715a47))
+* **dap:** optimize dap configs ([a87bb50](https://github.com/liubang/nvimrc/commit/a87bb50a2114f0dbe931ffe9b0eeb16207c1db1d))
+* **gomodifytag:** update gomodifytag commands ([2aa0cf5](https://github.com/liubang/nvimrc/commit/2aa0cf57c5e8b8e70e4def9b4a73fad69e121e49))
+* **latex:** using skim on macos to preview ([0f3dc18](https://github.com/liubang/nvimrc/commit/0f3dc188444afc7821e1d6bdf357aee39abd943f))
+* **mix:** some improvements ([2ef939f](https://github.com/liubang/nvimrc/commit/2ef939f08ddc79eb23a180aa799129c1968112bd))
+* **mix:** some improvements ([b84a517](https://github.com/liubang/nvimrc/commit/b84a5170e7725d1619f2425e93b14d8b687d79af))
+* **plugins:** update some plugins config ([616cf2b](https://github.com/liubang/nvimrc/commit/616cf2b5830c79000e317ff91abb90dd71dcfd28))
+* **plugins:** upgrade plugins ([af90bd5](https://github.com/liubang/nvimrc/commit/af90bd55a458a94ab79c4bb698aca68244a2206b))
+* **texlab:** support preview ([4d935f2](https://github.com/liubang/nvimrc/commit/4d935f2cb7ab92fbd7c9d43e58cec0ad2cb7ea3d))
+* **texlab:** update build args ([1aa663a](https://github.com/liubang/nvimrc/commit/1aa663a59ce90ab4c340b328fca7a1b19b8aea21))
+* **texlab:** use null-ls formatting instead ([5af7a9c](https://github.com/liubang/nvimrc/commit/5af7a9c940a0b235f943e7f4c877dffe071113bc))
+* **texlab:** use xelatex ([9061a3e](https://github.com/liubang/nvimrc/commit/9061a3e09453f5adbb0a6250f7d02ef70451ce48))
+
 ## [3.9.0](https://github.com/liubang/nvimrc/compare/v3.8.0...v3.9.0) (2023-02-18)
 
 
