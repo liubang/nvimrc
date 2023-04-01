@@ -12,6 +12,7 @@ return {
   "onsails/lspkind.nvim",
   "nvim-tree/nvim-web-devicons",
   "williamboman/mason-lspconfig.nvim",
+  "MunifTanjim/nui.nvim",
   {
     "famiu/bufdelete.nvim",
     cmd = { "Bdelete", "Bwipeout" },
