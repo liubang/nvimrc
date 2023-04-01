@@ -1,4 +1,4 @@
-*nvimrc.txt*           For Neovim >= 0.8.3          Last change: 2023 March 31
+*nvimrc.txt*           For Neovim >= 0.8.3          Last change: 2023 April 01
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -166,6 +166,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <Leader>hh   hop.nvim Annotate all words in the current line with key   n
                sequences                                                  
 
+  <Leader>mp   markdown-preview.nvim Markdown Preview                     n
+
   sa           mini.surround Add surrounding                              n, v
 
   sd           mini.surround Delete surrounding                           n
@@ -199,13 +201,13 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>dU   nvim-dap Toggle ui                                         n
 
+  <leader>sr   nvim-spectre Replace in files (Spectre)                    n
+
   <Leader>ft   nvim-tree.lua Explorer nvim-tree                           n
 
   <Leader>v    nvim-treesitter Increment selection                        n
 
   V            nvim-treesitter Schrink selection                          x
-
-  <leader>mp   peek.nvim Peek (Markdown Preview)                          n
 
   <Leader>ff   telescope.nvim List files                                  n
 
@@ -232,6 +234,10 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <C-j>        vim-floaterm Goto next floaterm window                     t
 
   <C-d>        vim-floaterm Kill floaterm                                 t
+
+  ]]           vim-illuminate Next Reference                              n
+
+  [[           vim-illuminate Prev Reference                              n
   -------------------------------------------------------------------------------
 
 PLUGINS                                                       *nvimrc-plugins*
@@ -263,11 +269,11 @@ PLUGINS                                                       *nvimrc-plugins*
 - lspkind.nvim <https://github.com/onsails/lspkind.nvim>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
+- markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim>
 - mason-lspconfig.nvim <https://github.com/williamboman/mason-lspconfig.nvim>
 - mason.nvim <https://github.com/williamboman/mason.nvim>
 - mini.ai <https://github.com/echasnovski/mini.ai>
 - mini.align <https://github.com/echasnovski/mini.align>
-- mini.cursorword <https://github.com/echasnovski/mini.cursorword>
 - mini.surround <https://github.com/echasnovski/mini.surround>
 - neodev.nvim <https://github.com/folke/neodev.nvim>
 - neogen <https://github.com/danymat/neogen>
@@ -282,12 +288,12 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
+- nvim-spectre <https://github.com/windwp/nvim-spectre>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - nvim-treesitter-textobjects <https://github.com/nvim-treesitter/nvim-treesitter-textobjects>
 - nvim-ts-context-commentstring <https://github.com/JoosepAlviste/nvim-ts-context-commentstring>
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons>
-- peek.nvim <https://github.com/toppair/peek.nvim>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - rust-tools.nvim <https://github.com/simrat39/rust-tools.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
@@ -303,6 +309,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - vim-floaterm <https://github.com/voldikss/vim-floaterm>
 - vim-fugitive <https://github.com/tpope/vim-fugitive>
 - vim-git <https://github.com/tpope/vim-git>
+- vim-illuminate <https://github.com/RRethy/vim-illuminate>
 - vim-matchup <https://github.com/andymass/vim-matchup>
 - vim-startuptime <https://github.com/dstein64/vim-startuptime>
 - wilder.nvim <https://github.com/gelguy/wilder.nvim>
