@@ -36,7 +36,18 @@ return {
     close_if_last_window = true,
     enable_diagnostics = false,
     enable_git_status = true,
-    filesystem = {
+    event_handlers = { -- {{{
+      {
+        event = "file_added",
+        handler = function(args)
+          local stat = vim.loop.fs_stat(args)
+          if stat and stat.type == "file" then -- ignoring when destination is dir
+            vim.cmd.edit(args)
+          end
+        end,
+      },
+    }, -- }}}
+    filesystem = { -- {{{
       bind_to_cwd = false,
       follow_current_file = true,
       group_empty_dirs = true,
@@ -48,20 +59,15 @@ return {
           "vendor",
         },
       },
-    },
-    window = {
+    }, -- }}}
+    window = { -- {{{{
       mappings = {
         ["<space>"] = "none",
         ["<cr>"] = "open_drop",
         ["o"] = "open_drop",
         ["s"] = "open_split",
         ["v"] = "open_vsplit",
-        ["a"] = {
-          "add",
-          config = {
-            show_path = "none", -- "none", "relative", "absolute"
-          },
-        },
+        ["a"] = { "add", config = { show_path = "none" } },
         ["A"] = "add_directory",
         ["d"] = "delete",
         ["r"] = "rename",
@@ -73,8 +79,8 @@ return {
         ["R"] = "refresh",
         ["?"] = "show_help",
       },
-    },
-    default_component_configs = {
+    }, -- }}}
+    default_component_configs = { -- {{{
       modified = {
         symbol = " ",
         highlight = "NeoTreeModified",
@@ -105,6 +111,8 @@ return {
         expander_expanded = "",
         expander_highlight = "NeoTreeExpander",
       },
-    },
+    }, -- }}}
   },
 }
+
+-- vim: fdm=marker fdl=0
