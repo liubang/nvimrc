@@ -122,6 +122,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `sh`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Highlight surrounding                                                             | **n**               |
 | `sr`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Replace surrounding                                                               | **n**               |
 | `sn`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Update `MiniSurround.config.n_lines`                                              | **n**               |
+| `<leader>ft` | [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim.git) Explorer NeoTree (cwd)                                                          | **n**               |
 | `<Leader>nf` | [neogen](https://github.com/danymat/neogen.git) Generate annotation for the function, class or other relevant type you're currently in              | **n**               |
 | `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle breakpoint                                                                          | **n**               |
 | `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                                                   | **n**               |
@@ -132,7 +133,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dq` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Quit                                                                                       | **n**               |
 | `<leader>dU` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle ui                                                                                  | **n**               |
 | `<leader>sr` | [nvim-spectre](https://github.com/windwp/nvim-spectre.git) Replace in files (Spectre)                                                               | **n**               |
-| `<Leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer nvim-tree                                                                  | **n**               |
 | `<Leader>v`  | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment selection                                                       | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Schrink selection                                                         | **x**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                                                   | **n**               |
@@ -188,8 +188,10 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.ai](https://github.com/echasnovski/mini.ai)
 - [mini.align](https://github.com/echasnovski/mini.align)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
+- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [neogen](https://github.com/danymat/neogen)
+- [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
@@ -202,7 +204,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-spectre](https://github.com/windwp/nvim-spectre)
-- [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
