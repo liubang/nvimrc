@@ -8,10 +8,7 @@
 --=====================================================================
 local M = {
   "gelguy/wilder.nvim",
-  dependencies = {
-    "romgrk/fzy-lua-native",
-    build = "make",
-  },
+  dependencies = { "romgrk/fzy-lua-native" },
   event = "CmdlineEnter",
 }
 

@@ -8,6 +8,7 @@
 --=====================================================================
 return {
   "stevearc/aerial.nvim",
+  branch = "master",
   cmd = "AerialToggle",
   opts = {
     backends = { "lsp", "treesitter", "markdown" },
