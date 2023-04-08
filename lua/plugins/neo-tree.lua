@@ -14,7 +14,7 @@ return {
   deactivate = function()
     vim.cmd [[Neotree close]]
   end,
-  keys = {
+  keys = { -- {{{
     {
       "<leader>ft",
       function()
@@ -22,8 +22,8 @@ return {
       end,
       desc = "Explorer NeoTree (cwd)",
     },
-  },
-  init = function()
+  }, -- }}}
+  init = function() -- {{{
     vim.g.neo_tree_remove_legacy_commands = 1
     if vim.fn.argc() == 1 then
       local stat = vim.loop.fs_stat(vim.fn.argv(0))
@@ -31,7 +31,7 @@ return {
         require "neo-tree"
       end
     end
-  end,
+  end, -- }}}
   opts = {
     close_if_last_window = true,
     enable_diagnostics = false,
@@ -49,14 +49,20 @@ return {
     }, -- }}}
     filesystem = { -- {{{
       bind_to_cwd = false,
-      follow_current_file = true,
       group_empty_dirs = true,
+      follow_current_file = true,
       filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = false,
         hide_by_name = {
           "node_modules",
           ".git",
           "target",
           "vendor",
+        },
+        never_show = {
+          ".DS_Store",
+          "thumbs.db",
         },
       },
     }, -- }}}
