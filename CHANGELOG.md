@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.10.0](https://github.com/liubang/nvimrc/compare/v3.9.1...v3.10.0) (2023-04-08)
+
+
+### Features
+
+* **doc:** upgrade neovim version to 0.9.0 ([04ca3fe](https://github.com/liubang/nvimrc/commit/04ca3fe74ae37d9c2e2b5be92eeb421e36462b1c))
+* **neo-tree:** add neo-tree ([2e58b45](https://github.com/liubang/nvimrc/commit/2e58b45cb7aabafccc7b21fad096eb664c769ad8))
+
+
+### Performance Improvements
+
+* **neo-tree:** add a file and immediately open as a buffer ([8309f1f](https://github.com/liubang/nvimrc/commit/8309f1fb18d07c3af146bffa8229d9bfbf21297d))
+* **neo-tree:** hide only by names ([1467d66](https://github.com/liubang/nvimrc/commit/1467d669f0d741694bb9c7ac0998d3d86abb9c71))
+* **plugins:** update some plugins config ([d5e437a](https://github.com/liubang/nvimrc/commit/d5e437acaa463e6b28761915c349fe046b9a8995))
+
 ## [3.9.1](https://github.com/liubang/nvimrc/compare/v3.9.0...v3.9.1) (2023-04-01)
 
 
