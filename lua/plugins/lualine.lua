@@ -127,9 +127,10 @@ function M.config()
             return true
           end,
         },
+        -- stylua: ignore
         {
-          require("nvim-navic").get_location,
-          cond = require("nvim-navic").is_available,
+          function() return require("nvim-navic").get_location() end,
+          cond = function() return require("nvim-navic").is_available() end,
         },
       },
       lualine_x = {
