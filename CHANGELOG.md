@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.10.1](https://github.com/liubang/nvimrc/compare/v3.10.0...v3.10.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* **navic:** fix nvim-navic ([fef1e9c](https://github.com/liubang/nvimrc/commit/fef1e9c0bd9368e9254c09c00730b35f7e4b6155))
+
 ## [3.10.0](https://github.com/liubang/nvimrc/compare/v3.9.1...v3.10.0) (2023-04-08)
 
 
