@@ -14,8 +14,8 @@ return {
     local types = require "luasnip.util.types"
     return {
       history = true,
-      updateevents = "TextChanged,TextChangedI",
-      delete_check_events = "TextChanged",
+      update_events = "TextChanged,TextChangedI",
+      delete_check_events = "TextChanged,InsertLeave",
       -- Autosnippets:
       enable_autosnippets = true,
       ext_opts = {
