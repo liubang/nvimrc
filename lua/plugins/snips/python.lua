@@ -15,6 +15,16 @@ local c = ls.choice_node
 local d = ls.dynamic_node
 local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+local line_begin = require("luasnip.extras.expand_conditions").line_begin
+
+local get_visual = function(_, parent)
+  if #parent.snippet.env.SELECT_RAW > 0 then
+    return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+  else
+    return sn(nil, i(1, ""))
+  end
+end
 
 -- see latex infinite list for the idea. Allows to keep adding arguments via choice nodes.
 local function py_init()
@@ -57,6 +67,36 @@ local function to_init_assign(args)
 end
 
 ls.add_snippets("python", {
+  s(
+    { trig = "main", snippetType = "autosnippet" },
+    fmta(
+      [[
+      if __name__ == "__main__":
+          <>
+      ]],
+      {
+        d(1, get_visual),
+      }
+    ),
+    { condition = line_begin }
+  ),
+  s(
+    { trig = "class" },
+    fmta(
+      [[
+        class <>(<>):
+            def __init__(self<>):
+                <>
+        ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(4),
+      }
+    ),
+    { condition = line_begin }
+  ),
   s(
     "pyinit",
     fmt([[def __init__(self{}):{}]], {
