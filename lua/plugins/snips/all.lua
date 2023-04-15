@@ -11,6 +11,7 @@ local ls = require "luasnip"
 local util = require "lb.utils.util"
 -- some shorthands...
 local s = ls.snippet
+local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
@@ -24,6 +25,44 @@ local partial = function(func, ...)
   return F(function(_, _, ...)
     return func(...)
   end, {}, { user_args = { ... } })
+end
+
+local function box(opts)
+  local function box_width()
+    return opts.box_width or vim.opt.textwidth:get()
+  end
+
+  local function padding(cs, input_text)
+    local spaces = box_width() - (2 * #cs)
+    spaces = spaces - #input_text
+    return spaces / 2
+  end
+
+  local comment_string = function()
+    return require("luasnip.util.util").buffer_comment_chars()[1]
+  end
+
+  return {
+    f(function()
+      local cs = comment_string()
+      return string.rep(string.sub(cs, 1, 1), box_width())
+    end, { 1 }),
+    t { "", "" },
+    f(function(args)
+      local cs = comment_string()
+      return cs .. string.rep(" ", math.floor(padding(cs, args[1][1])))
+    end, { 1 }),
+    i(1, "placeholder"),
+    f(function(args)
+      local cs = comment_string()
+      return string.rep(" ", math.ceil(padding(cs, args[1][1]))) .. cs
+    end, { 1 }),
+    t { "", "" },
+    f(function()
+      local cs = comment_string()
+      return string.rep(string.sub(cs, 1, 1), box_width())
+    end, { 1 }),
+  }
 end
 
 local snippets = {
@@ -43,6 +82,8 @@ local snippets = {
     end),
     ls.i(0),
   }),
+  s({ trig = "box" }, box { box_width = 24 }),
+  s({ trig = "bbox" }, box {}),
 }
 
 local get_cstring = function(ctype)
@@ -106,4 +147,4 @@ for _, v in ipairs(todo_snippet_specs) do
   table.insert(snippets, todo_snippet(v[1], v[2], v[3]))
 end
 
-ls.add_snippets("all", snippets, { type = "snippets", key = "todo_comments" })
+ls.add_snippets("all", snippets)

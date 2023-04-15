@@ -58,6 +58,7 @@ return {
     require "plugins.snips.go"
     require "plugins.snips.java"
     require "plugins.snips.lua"
+    require "plugins.snips.python"
     require "plugins.snips.markdown"
   end,
 }
