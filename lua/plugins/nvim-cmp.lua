@@ -49,7 +49,7 @@ function M.config()
   -- stylua: ignore end
 
   local cmp = require "cmp"
-  local compare = require "cmp.config.compare"
+  local luasnip = require "luasnip"
 
   vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -113,23 +113,6 @@ function M.config()
     view = {
       max_height = 20,
     },
-    -- sorting = {
-    --   priority_weight = 2,
-    --   comparators = {
-    --     compare.offset,
-    --     compare.score,
-    --     compare.exact,
-    --     compare.recently_used,
-    --     compare.locality,
-    --     function(...)
-    --       return require("cmp_buffer"):compare_locality(...)
-    --     end,
-    --     compare.kind,
-    --     compare.sort_text,
-    --     compare.length,
-    --     compare.order,
-    --   },
-    -- },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -150,32 +133,26 @@ function M.config()
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif require("luasnip").expandable() then
-          require("luasnip").expand()
-        elseif require("luasnip").expand_or_jumpable() then
-          require("luasnip").expand_or_jump()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- they way you will only jump inside the snippet region
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
         elseif has_words_before() then
           cmp.complete()
         else
           fallback()
         end
-      end, {
-        "i",
-        "s",
-      }),
+      end, { "i", "s" }),
 
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif require("luasnip").jumpable(-1) then
-          require("luasnip").jump(-1)
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
-      end, {
-        "i",
-        "s",
-      }),
+      end, { "i", "s" }),
     },
   }
 end
