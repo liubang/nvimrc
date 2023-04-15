@@ -48,6 +48,29 @@ return {
       end,
       mode = { "i", "s" },
     },
+    {
+      "<tab>",
+      function()
+        return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+      end,
+      expr = true,
+      silent = true,
+      mode = "i",
+    },
+    {
+      "<tab>",
+      function()
+        require("luasnip").jump(1)
+      end,
+      mode = "s",
+    },
+    {
+      "<s-tab>",
+      function()
+        require("luasnip").jump(-1)
+      end,
+      mode = { "i", "s" },
+    },
   },
   config = function(_, opts)
     require("luasnip").setup(opts)
@@ -58,6 +81,7 @@ return {
     require "plugins.snips.go"
     require "plugins.snips.java"
     require "plugins.snips.lua"
+    require "plugins.snips.latex"
     require "plugins.snips.python"
     require "plugins.snips.markdown"
   end,
