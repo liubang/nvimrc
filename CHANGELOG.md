@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.10.2](https://github.com/liubang/nvimrc/compare/v3.10.1...v3.10.2) (2023-04-21)
+
+
+### Bug Fixes
+
+* **bufferline:** deprecate show_buffer_default_icon ([1fd19b5](https://github.com/liubang/nvimrc/commit/1fd19b54d937f8851929a452a9544122e130d6db))
+* **luasnip:** update_events ([bdde730](https://github.com/liubang/nvimrc/commit/bdde730fb7c3db456ff9216de40e8c64267ad8d6))
+
+
+### Performance Improvements
+
+* **cmp:** some modifications ([aef9fdd](https://github.com/liubang/nvimrc/commit/aef9fdda08f09e88a726adf4045f561f8497caff))
+* **lazy:** some updates ([b4bab61](https://github.com/liubang/nvimrc/commit/b4bab61cc3bf7185713edafdd7ac9f4769f3a296))
+* **luasnip:** add latex snippets ([2f1878e](https://github.com/liubang/nvimrc/commit/2f1878efd8188d4e9cda761dd9337d62276c3e3a))
+* **luasnip:** add python snippets ([d5fba54](https://github.com/liubang/nvimrc/commit/d5fba542763834e73cb014ee14faf6060e75ccb3))
+* **luasnip:** add rust and python snippets ([d683585](https://github.com/liubang/nvimrc/commit/d68358513ab19540b21213b5617608475bdb3cd1))
+
 ## [3.10.1](https://github.com/liubang/nvimrc/compare/v3.10.0...v3.10.1) (2023-04-12)
 
 
