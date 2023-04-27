@@ -10,7 +10,9 @@ return {
   "goolord/alpha-nvim",
   event = "VimEnter",
   opts = function()
-    local h = {
+    local dashboard = require "alpha.themes.dashboard"
+
+    dashboard.section.header.val = {
       [[ ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓]],
       [[ ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒]],
       [[▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░]],
@@ -23,112 +25,49 @@ return {
       [[                                ░                  ]],
     }
 
-    local header = {
-      type = "text",
-      val = h,
-      opts = {
-        position = "center",
-        hl = "Keyword",
-      },
+    dashboard.section.buttons.val = {
+      dashboard.button("SPC ff", " " .. " Find file", ":Telescope find_files <CR>"),
+      dashboard.button("SPC bb", " " .. " List buffers", ":Telescope buffers <CR>"),
+      dashboard.button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+      dashboard.button("SPC ag", " " .. " Find text", ":Telescope live_grep <CR>"),
+      dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+      dashboard.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+      dashboard.button("q", " " .. " Quit", ":qa<CR>"),
     }
 
-    local stats = require("lazy.stats").stats()
-    local plugin_count = {
-      type = "text",
-      val = "└─   " .. stats.count .. " plugins in total ─┘",
-      opts = {
-        position = "center",
-        hl = "AlphaHeader",
-      },
-    }
-
-    local datetime = os.date "%Y-%m-%d"
-    local heading = {
-      type = "text",
-      val = "┌─   Today is " .. datetime .. " ─┐",
-      opts = {
-        position = "center",
-        hl = "AlphaHeader",
-      },
-    }
-
-    local footer = {
-      type = "text",
-      val = "- enjoy -",
-      opts = {
-        position = "center",
-        hl = "DashboardFooter",
-      },
-    }
-
-    local function button(sc, txt, keybind)
-      local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
-
-      local opts = {
-        position = "center",
-        text = txt,
-        shortcut = sc,
-        cursor = 5,
-        width = 50,
-        align_shortcut = "right",
-        hl_shortcut = "AlphaButtons",
-        hl = "",
-      }
-      if keybind then
-        opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
-      end
-
-      return {
-        type = "button",
-        val = txt,
-        on_press = function()
-          local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
-          vim.api.nvim_feedkeys(key, "normal", false)
-        end,
-        opts = opts,
-      }
+    for _, button in ipairs(dashboard.section.buttons.val) do
+      button.opts.hl = "AlphaButtons"
+      button.opts.hl_shortcut = "AlphaShortcut"
     end
 
-    local buttons = {
-      type = "group",
-      val = {
-        button("SPC ff", " " .. " Find file", ":Telescope find_files <CR>"),
-        button("SPC bb", " " .. " List buffers", ":Telescope buffers <CR>"),
-        button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-        button("SPC ag", " " .. " Find text", ":Telescope live_grep <CR>"),
-        button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-        button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        button("q", " " .. " Quit", ":qa<CR>"),
-      },
-      opts = {
-        spacing = 1,
-      },
-    }
+    dashboard.section.header.opts.hl = "Keyword"
+    dashboard.section.buttons.opts.hl = "AlphaButtons"
+    dashboard.section.footer.opts.hl = "AlphaFooter"
+    dashboard.opts.layout[1].val = 6
+    return dashboard
+  end,
+  config = function(_, dashboard)
+    -- close Lazy and re-open when the dashboard is ready
+    if vim.o.filetype == "lazy" then
+      vim.cmd.close()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "AlphaReady",
+        callback = function()
+          require("lazy").show()
+        end,
+      })
+    end
 
-    local section = {
-      header = header,
-      buttons = buttons,
-      plugin_count = plugin_count,
-      heading = heading,
-      footer = footer,
-    }
+    require("alpha").setup(dashboard.opts)
 
-    local opts = {
-      layout = {
-        { type = "padding", val = 1 },
-        section.header,
-        { type = "padding", val = 1 },
-        section.heading,
-        section.plugin_count,
-        { type = "padding", val = 1 },
-        section.buttons,
-        { type = "padding", val = 1 },
-        section.footer,
-      },
-      opts = {
-        margin = 5,
-      },
-    }
-    return opts
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "LazyVimStarted",
+      callback = function()
+        local stats = require("lazy").stats()
+        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        dashboard.section.footer.val = "  Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+        pcall(vim.cmd.AlphaRedraw)
+      end,
+    })
   end,
 }
