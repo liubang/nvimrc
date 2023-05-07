@@ -290,7 +290,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
-- nvim-spectre <https://github.com/windwp/nvim-spectre>
+- nvim-spectre <https://github.com/nvim-pack/nvim-spectre>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - nvim-treesitter-textobjects <https://github.com/nvim-treesitter/nvim-treesitter-textobjects>
 - nvim-ts-context-commentstring <https://github.com/JoosepAlviste/nvim-ts-context-commentstring>
