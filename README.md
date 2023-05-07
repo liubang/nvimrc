@@ -132,7 +132,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dO` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step out                                                                                   | **n**               |
 | `<leader>dq` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Quit                                                                                       | **n**               |
 | `<leader>dU` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle ui                                                                                  | **n**               |
-| `<leader>sr` | [nvim-spectre](https://github.com/windwp/nvim-spectre.git) Replace in files (Spectre)                                                               | **n**               |
+| `<leader>sr` | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre.git) Replace in files (Spectre)                                                            | **n**               |
 | `<Leader>v`  | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment selection                                                       | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Schrink selection                                                         | **x**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                                                   | **n**               |
@@ -203,7 +203,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
-- [nvim-spectre](https://github.com/windwp/nvim-spectre)
+- [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
