@@ -8,6 +8,7 @@
 --=====================================================================
 local M = {
   "hrsh7th/nvim-cmp",
+  version = false,
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -51,13 +52,6 @@ function M.config()
   local cmp = require "cmp"
   local luasnip = require "luasnip"
 
-  vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
-  local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-  end
-
   cmp.setup {
     performance = {
       debounce = 50,
@@ -71,6 +65,9 @@ function M.config()
         col_offset = -3,
         side_padding = 0,
       },
+    },
+    completion = {
+      completeopt = "menu,menuone,noinsert",
     },
     snippet = {
       expand = function(args)
@@ -121,38 +118,12 @@ function M.config()
       ghost_text = false,
     },
     mapping = cmp.mapping.preset.insert {
-      ["<C-e>"] = cmp.mapping {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      },
+      ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm { select = true },
       ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
       ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
       ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
       ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- they way you will only jump inside the snippet region
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
     },
   }
 end
