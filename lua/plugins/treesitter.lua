@@ -11,6 +11,7 @@ return {
   "JoosepAlviste/nvim-ts-context-commentstring",
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
