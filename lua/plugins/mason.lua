@@ -3,14 +3,15 @@
 -- mason.lua -
 --
 -- Created by liubang on 2022/12/30 22:30
--- Last Modified: 2022/12/30 22:30
+-- Last Modified: 2023/05/10 21:17
 --
 --=====================================================================
 
 return {
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
+    cmd = { "Mason", "MasonUpdate" },
+    build = ":MasonUpdate",
     opts = {
       ui = {
         border = "single",
