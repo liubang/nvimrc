@@ -18,8 +18,7 @@ for _, server in ipairs {
   "texlab",
   "lua_ls",
   "tsserver",
-  "null-ls",
-  "jdtls",
+  -- "jdtls",
 } do
   require("plugins.lsp.servers." .. server).setup()
 end

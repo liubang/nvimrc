@@ -10,8 +10,6 @@
 local M = {}
 
 function M.setup()
-  require "neodev"
-
   local c = require "plugins.lsp.customs"
   require("lspconfig").lua_ls.setup(c.default {
     settings = {
