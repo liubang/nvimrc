@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup {
   spec = { import = "plugins" },
   defaults = { lazy = true },
+  concurrency = 6,
   install = {
     missing = true,
     colorscheme = { "gruvbox-material" },
@@ -31,6 +32,9 @@ require("lazy").setup {
     path = "~/workspace/vim",
     patterns = { "liubang" },
     fallback = true,
+  },
+  checker = {
+    enabled = false,
   },
   ui = { -- {{{
     border = "single",

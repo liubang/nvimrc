@@ -8,7 +8,7 @@
 --=====================================================================
 
 return {
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
@@ -29,16 +29,10 @@ return {
         "python",
         "latex",
         "lua",
-        "luap",
-        "luadoc",
         "bash",
-        "regex",
-        "query",
-        "regex",
         "yaml",
         "toml",
         "json",
-        "vue",
         "tsx",
         "javascript",
         "typescript",
@@ -79,9 +73,8 @@ return {
       }, --}}}
     },
     ---@param opts TSConfig
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    -- stylua: ignore
+    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
 }
 

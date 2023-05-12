@@ -8,19 +8,7 @@
 --=====================================================================
 return {
   { "folke/lazy.nvim", version = "*" },
-  "nvim-lua/plenary.nvim",
-  "onsails/lspkind.nvim",
-  "nvim-tree/nvim-web-devicons",
-  "williamboman/mason-lspconfig.nvim",
-  "MunifTanjim/nui.nvim",
-  {
-    "famiu/bufdelete.nvim",
-    cmd = { "Bdelete", "Bwipeout" },
-    keys = {
-      { "<Leader>bd", "<CMD>Bwipeout<CR>", mode = { "n" } },
-    },
-  },
-  { "dstein64/vim-startuptime", cmd = "StartupTime" },
+  { "nvim-lua/plenary.nvim" },
 }
 
 -- vim: fdm=marker fdl=0
