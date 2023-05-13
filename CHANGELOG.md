@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.11.0](https://github.com/liubang/nvimrc/compare/v3.10.2...v3.11.0) (2023-05-13)
+
+
+### Features
+
+* **plugins:** improve performance ([be2f5ca](https://github.com/liubang/nvimrc/commit/be2f5cacdcf03dc4486c1972aa52061a1059a66a))
+
+
+### Performance Improvements
+
+* **lazy:** disable file change detection ([cc8588f](https://github.com/liubang/nvimrc/commit/cc8588f8a43b2fe0973b48a278dcec5ced315279))
+* **mason:** updates registry contents ([993b71a](https://github.com/liubang/nvimrc/commit/993b71ad7a3c4e49542672ca4999710578a1f19f))
+* **mini.lua:** remove mini.ai keys config ([d5221a4](https://github.com/liubang/nvimrc/commit/d5221a48617b4d81431413845ba7ccddd5745061))
+* **nvim-cmp:** don't use tab to select cmp item ([0da1ee2](https://github.com/liubang/nvimrc/commit/0da1ee2ab625dca81c41e9ab56264529e133f505))
+* **nvim-spectre:** nvim-spectre repo rename ([05029f5](https://github.com/liubang/nvimrc/commit/05029f5f915d0170f2e9449affb186571056e5dc))
+* **nvim-treesitter:** use HEAD for nvim-treesitter ([0bf4d24](https://github.com/liubang/nvimrc/commit/0bf4d249cccba63c6d5c8ce11933482e00d81ec5))
+* **plugins:** reduce configuration files to shorten startup time ([73d3cd7](https://github.com/liubang/nvimrc/commit/73d3cd71a1356e17b4affb600e6977eea2aa53cf))
+* **plugins:** reduce configuration files to shorten startup time ([8f6d64b](https://github.com/liubang/nvimrc/commit/8f6d64bc0b2b2e83f443149e53d06f5706efa735))
+* **telescope.nvim:** use HEAD for telescope ([340f392](https://github.com/liubang/nvimrc/commit/340f3927eacf10893dec80adb32a5588ed42868b))
+
 ## [3.10.2](https://github.com/liubang/nvimrc/compare/v3.10.1...v3.10.2) (2023-04-21)
 
 
