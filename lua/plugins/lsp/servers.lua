@@ -9,24 +9,30 @@
 
 local c = require "plugins.lsp.customs"
 local lspconfig = require "lspconfig"
+local Job = require "plenary.job"
 
 -- {{{ clangd
-local get_default_driver = function()
-  local Job = require "plenary.job"
-  local gcc = Job:new { command = "which", args = { "g++" } }
-  local llvm = Job:new { command = "which", args = { "clang++" } }
+local function get_binary_path(bin)
+  local j = Job:new { command = "which", args = { bin } }
   local _, result = pcall(function()
-    local gcct = gcc:sync()
-    local llvmt = llvm:sync()
-    if #gcct > 0 then
-      return vim.trim(gcct[1])
-    end
-    if #llvmt > 0 then
-      return vim.trim(llvmt[1])
+    local out = j:sync()
+    if #out > 0 then
+      return vim.trim(out[1])
     end
     return nil
   end)
   return result
+end
+
+local function get_default_drivers(binaries)
+  local path_list = {}
+  for _, binary in ipairs(binaries) do
+    local path = get_binary_path(binary)
+    if path then
+      table.insert(path_list, path)
+    end
+  end
+  return table.concat(path_list, ",")
 end
 
 lspconfig.clangd.setup(c.default {
@@ -34,12 +40,13 @@ lspconfig.clangd.setup(c.default {
     "clangd",
     "--background-index",
     "-j=4",
-    "--suggest-missing-includes",
+    "--malloc-trim",
+    "--pch-storage=disk",
     "--function-arg-placeholders",
     "--clang-tidy",
     "--header-insertion=never",
     "--completion-style=detailed",
-    "--query-driver=" .. get_default_driver(),
+    "--query-driver=" .. get_default_drivers { "clang++", "clang", "gcc", "g++" },
     "--offset-encoding=utf-32",
     "--enable-config",
     "--fallback-style=google",
