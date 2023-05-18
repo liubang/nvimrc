@@ -50,8 +50,8 @@ return {
     opts = function()
       local null_ls = require "null-ls"
       local b = null_ls.builtins
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
+      local c = require "plugins.lsp.customs"
+      return c.default {
         sources = {
           b.formatting.buf,
           b.formatting.phpcsfixer,
