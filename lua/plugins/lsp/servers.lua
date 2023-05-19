@@ -40,7 +40,6 @@ lspconfig.clangd.setup(c.default {
     "clangd",
     "--background-index",
     "-j=4",
-    "--malloc-trim",
     "--pch-storage=disk",
     "--function-arg-placeholders",
     "--clang-tidy",
