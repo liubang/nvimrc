@@ -100,7 +100,7 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button("SPC ff", " " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("SPC bb", " " .. " List buffers", ":Telescope buffers <CR>"),
-        dashboard.button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+        dashboard.button("SPC rf", " " .. " Recent files", ":Telescope oldfiles <CR>"),
         dashboard.button("SPC ag", " " .. " Find text", ":Telescope live_grep <CR>"),
         dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
         dashboard.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
