@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.11.1](https://github.com/liubang/nvimrc/compare/v3.11.0...v3.11.1) (2023-05-21)
+
+
+### Bug Fixes
+
+* **clangd:** remove malloc-trim option ([c959103](https://github.com/liubang/nvimrc/commit/c959103df8bf9b1a2f55189120c6f23cd130930a))
+* **ions:** fix nerd font icons ([549f717](https://github.com/liubang/nvimrc/commit/549f717876c1abdc31e3a692ec96564ae29ba293))
+* **ions:** fix nerd font icons ([08e16aa](https://github.com/liubang/nvimrc/commit/08e16aac0f194e5c95e069558210d221a1631a36))
+* **null-ls:** fix null-ls ([f9bbd04](https://github.com/liubang/nvimrc/commit/f9bbd04e5643b5ebc5e457a934249eca89c1cd7d))
+
+
+### Performance Improvements
+
+* **clangd:** get driver list ([43b4e67](https://github.com/liubang/nvimrc/commit/43b4e67f2cf0bd2ef51c35fd1e7d10c86aaec359))
+* **health:** fix deprecated functions ([a63d3c6](https://github.com/liubang/nvimrc/commit/a63d3c6011c67f5d82cf5fa2430311536a0ede2a))
+
 ## [3.11.0](https://github.com/liubang/nvimrc/compare/v3.10.2...v3.11.0) (2023-05-13)
 
 
