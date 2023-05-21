@@ -348,11 +348,13 @@ function M.lsp_clients_format() -- {{{
     local name = lsp_names[client.name] or client.name
     clients[#clients + 1] = name
   end
-  return " " .. table.concat(clients, " 珞 ")
+  -- nf-md-lan_connect + nf-md-plus_circle_multiple_outline
+  return "󰌘  " .. table.concat(clients, " 󰐘  ")
 end -- }}}
 
 function M.mode_format() -- {{{
-  return "\u{e7c5} " .. require("lualine.utils.mode").get_mode()
+  -- nf-dev-vim
+  return " " .. require("lualine.utils.mode").get_mode()
 end -- }}}
 
 return M
