@@ -9,13 +9,15 @@
 
 vim.filetype.add { -- {{{
   filename = {
-    ["BCLOUD"] = "bzl",
+    [".clangd"] = "yaml",
+    [".clang-format"] = "yaml",
     [".bazelrc"] = "bzl",
-    ["BUILD"] = "bzl",
-    ["WORKSPACE"] = "bzl",
     [".gitignore"] = "gitconfig",
     ["go.sum"] = "gosum",
     ["go.mod"] = "gomod",
+    ["BUILD"] = "bzl",
+    ["BCLOUD"] = "bzl",
+    ["WORKSPACE"] = "bzl",
   },
   extension = {
     log = "log",
