@@ -49,6 +49,8 @@ lspconfig.clangd.setup(c.default {
     "--enable-config",
     "--fallback-style=google",
   },
+  -- disable proto type
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   init_options = {
     clangdFileStatus = true,
   },

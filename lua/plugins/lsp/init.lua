@@ -53,7 +53,6 @@ return {
       local c = require "plugins.lsp.customs"
       return c.default {
         sources = {
-          b.formatting.buf,
           b.formatting.phpcsfixer,
           b.formatting.stylua,
           b.formatting.cmake_format,
@@ -95,9 +94,6 @@ return {
           },
           b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },
-          },
-          b.diagnostics.buf.with {
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
           },
           b.diagnostics.shellcheck.with {
             method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
