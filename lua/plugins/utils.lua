@@ -14,7 +14,6 @@ return {
     "skywind3000/asynctasks.vim", -- {{{
     dependencies = {
       { "skywind3000/asyncrun.vim" },
-      { "skywind3000/asyncrun.extra" },
     },
     cmd = { "AsyncTask", "AsyncRun" },
     config = function() -- {{{
@@ -54,7 +53,7 @@ return {
       vim.g.floaterm_wintype = "float"
       vim.g.floaterm_position = "bottom"
       vim.g.floaterm_autoinsert = true
-      vim.g.floaterm_width = 0.999
+      vim.g.floaterm_width = vim.o.columns
       vim.g.floaterm_height = 0.7
       vim.g.floaterm_title = "─────  Floaterm [$1|$2] "
     end,
