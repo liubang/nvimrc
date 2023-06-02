@@ -354,7 +354,12 @@ end -- }}}
 
 function M.mode_format() -- {{{
   -- nf-dev-vim
-  return " " .. require("lualine.utils.mode").get_mode()
+  if vim.b.venn_enabled == true then
+    -- show drawing box
+    return "󰇟 " .. require("lualine.utils.mode").get_mode()
+  else
+    return " " .. require("lualine.utils.mode").get_mode()
+  end
 end -- }}}
 
 return M
