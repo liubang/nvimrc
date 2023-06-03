@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.11.2](https://github.com/liubang/nvimrc/compare/v3.11.1...v3.11.2) (2023-06-03)
+
+
+### Bug Fixes
+
+* **ions:** fix nerd font icons ([9c67b6a](https://github.com/liubang/nvimrc/commit/9c67b6a023e5812fa15a7bb605d90b7605b08212))
+
+
+### Performance Improvements
+
+* **autocmd:** add support for detecting .clangd and .clang-format file types ([16fb2b8](https://github.com/liubang/nvimrc/commit/16fb2b84b87cc02b734e61b87d986c49568bed0a))
+* **illuminate:** on large files &gt;2000 lines, enable lsp references only ([18c0ed8](https://github.com/liubang/nvimrc/commit/18c0ed838b2911a323950836e7106aa666ceb08a))
+* **lsp:** disable buf lsp ([1ae7ece](https://github.com/liubang/nvimrc/commit/1ae7ececfc95c3d18e7815cdf2099ea950d4fdc1))
+* **lsp:** some small changes ([8034bf7](https://github.com/liubang/nvimrc/commit/8034bf7fb9d0c6fbc50dee31ff6bf26137b9d77e))
+* **plugins:** add venn.nvim and sort.nvim ([bc07d30](https://github.com/liubang/nvimrc/commit/bc07d309cf3d1e994b6927dfc6582bd21be878c8))
+* **plugins:** remove asyncrun.extra ([138b75b](https://github.com/liubang/nvimrc/commit/138b75b80a1d9934d118ad5a092b1712cfeb8058))
+* **theme:** disable italic comment ([abf8d4f](https://github.com/liubang/nvimrc/commit/abf8d4f612e86f82756755566f964e22d2cf3f6f))
+* **venn.nvim:** update venn.nvim config ([4fb8800](https://github.com/liubang/nvimrc/commit/4fb8800817ba0742958984fb084c7d80e49f9fac))
+
 ## [3.11.1](https://github.com/liubang/nvimrc/compare/v3.11.0...v3.11.1) (2023-05-21)
 
 
