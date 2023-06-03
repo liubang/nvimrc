@@ -309,20 +309,22 @@ return {
       options = { -- {{{
         view = "multiwindow",
         mode = "buffers",
+        themable = true,
         numbers = "ordinal",
+        indicator = { style = "underline" },
         -- stylua: ignore
         close_command = function(n) require("mini.bufremove").delete(n, false) end,
         -- stylua: ignore
         right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
         middle_mouse_command = nil,
         buffer_close_icon = "",
-        modified_icon = "●",
+        modified_icon = "󰣕 ",
         close_icon = "",
         left_trunc_marker = "",
         right_trunc_marker = "",
-        max_name_length = 15,
-        max_prefix_length = 14,
-        tab_size = 15,
+        max_name_length = 18,
+        max_prefix_length = 15,
+        tab_size = 18,
         diagnostics = false,
         diagnostics_update_in_insert = false,
         color_icons = true,
@@ -334,10 +336,6 @@ return {
         enforce_regular_tabs = true,
         always_show_bufferline = false,
         sort_by = "insert_at_end",
-        get_element_icon = function(element)
-          local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
-          return icon, hl
-        end,
       }, -- }}}
     },
     keys = {

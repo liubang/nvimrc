@@ -17,7 +17,7 @@ vim.diagnostic.config { -- {{{
   float = {
     border = "single",
     focusable = true,
-    header = "  Diagnostics: ",
+    header = " Diagnostics: ",
     scope = "line",
     source = "always",
   },
@@ -25,10 +25,10 @@ vim.diagnostic.config { -- {{{
 
 -- {{{
 local signs = {
-  Error = "🔥",
-  Warn = "💩",
-  Info = "💬",
-  Hint = "💡",
+  Error = " ",
+  Warn = " ",
+  Info = " ",
+  Hint = " ",
 }
 
 for type, icon in pairs(signs) do
@@ -51,6 +51,8 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { 
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { -- {{{
   border = "single",
+  focusable = false,
+  relative = "cursor",
 }) -- }}}
 
 -- vim: foldmethod=marker foldlevel=0
