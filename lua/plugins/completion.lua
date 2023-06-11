@@ -23,30 +23,7 @@ return {
     config = function()
       -- vim.cmd.packadd "lspkind.nvim"
       local lspkind = require "lspkind"
-
-      -- stylua: ignore
-      lspkind.init {
-        preset = "codicons",
-        -- symbol_map = {
-          -- NONE          = "",
-          -- Array         = "",
-          -- Boolean       = "⊨",
-          -- Class         = "",
-          -- Constructor   = "",
-          -- Key           = "",
-          -- Namespace     = "",
-          -- Null          = "NULL",
-          -- Number        = "#",
-          -- Object        = "⦿",
-          -- Package       = "",
-          -- Property      = "",
-          -- Reference     = "",
-          -- Snippet       = "",
-          -- String        = "𝓐",
-          -- TypeParameter = "",
-          -- Unit          = "",
-        -- },
-      }
+      lspkind.init { preset = "codicons" }
 
       local cmp = require "cmp"
 
@@ -105,16 +82,12 @@ return {
             return kind
           end,
         },
-        view = {
-          max_height = 20,
-        },
+        view = { max_height = 20 },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        experimental = {
-          ghost_text = false,
-        },
+        experimental = { ghost_text = false },
         mapping = cmp.mapping.preset.insert {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm { select = true },
