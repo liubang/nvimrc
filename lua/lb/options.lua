@@ -60,6 +60,7 @@ vim.opt.viewoptions:append "localoptions"
 vim.opt.sessionoptions = "curdir,help,tabpages,winsize"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.splitkeep = "screen"
 vim.opt.mouse = nil
 vim.opt.laststatus = 2
 vim.opt.scrolloff = 3 -- keep 3 lines visible while scrolling

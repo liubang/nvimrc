@@ -307,9 +307,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = { -- {{{
-        view = "multiwindow",
-        mode = "buffers",
-        themable = true,
+        -- themable = true,
         numbers = "ordinal",
         indicator = { style = "underline" },
         -- stylua: ignore
@@ -322,22 +320,19 @@ return {
         close_icon = "",
         left_trunc_marker = "",
         right_trunc_marker = "",
-        max_name_length = 18,
-        max_prefix_length = 15,
-        tab_size = 18,
         diagnostics = false,
         diagnostics_update_in_insert = false,
-        color_icons = true,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        show_tab_indicators = false,
-        persist_buffer_sort = true,
-        separator_style = "thin",
-        enforce_regular_tabs = true,
-        always_show_bufferline = false,
         sort_by = "insert_at_end",
       }, -- }}}
     },
+    config = function(_, opts)
+      local bufferline = require "bufferline"
+      opts.options.style_preset = {
+        bufferline.style_preset.no_italic,
+        bufferline.style_preset.no_bold,
+      }
+      bufferline.setup(opts)
+    end,
     keys = {
       { "<Leader>1", "<CMD>BufferLineGoToBuffer 1<CR>", mode = { "n" }, desc = "Goto the 1th visible buffer" },
       { "<Leader>2", "<CMD>BufferLineGoToBuffer 2<CR>", mode = { "n" }, desc = "Goto the 2th visible buffer" },
@@ -449,6 +444,7 @@ return {
   {
     "j-hui/fidget.nvim", -- {{{
     event = { "LspAttach" },
+    tag = "legacy",
     opts = {
       text = {
         spinner = {
