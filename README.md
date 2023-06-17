@@ -35,7 +35,7 @@
 
 ## Requirements
 
-- Neovim >= **0.9.0** (needs to be built with **LuaJIT**)
+- Neovim >= **0.9.1** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
@@ -180,7 +180,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [hex.nvim](https://github.com/RaafatTurki/hex.nvim)
 - [hop.nvim](https://github.com/phaazon/hop.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
-- [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)

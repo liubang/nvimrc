@@ -21,29 +21,52 @@ return {
     },
     event = { "InsertEnter" },
     config = function()
-      -- vim.cmd.packadd "lspkind.nvim"
-      local lspkind = require "lspkind"
-      lspkind.init { preset = "codicons" }
-
       local cmp = require "cmp"
-
+      -- completion item source name abbreviations
+      -- stylua: ignore
+      local item_map = {
+        buffer                  = "BUF │",
+        path                    = "PTH │",
+        neorg                   = "NRG │",
+        nvim_lsp                = "LSP │",
+        luasnip                 = "SNP │",
+        nvim_lsp_signature_help = "",
+      }
+      -- completion item kind abbreviations
+      -- stylua: ignore
+      local kind_map = { 
+        Class         = " CLS",
+        Color         = " CLR",
+        Constant      = " CON",
+        Constructor   = " CTR",
+        Enum          = " ENM",
+        EnumMember    = " ENM",
+        Event         = " EVT",
+        Field         = " FLD",
+        File          = " FIL",
+        Folder        = " FOL",
+        Function      = " FUN",
+        Interface     = " INT",
+        Keyword       = " KEY",
+        Method        = " MTH",
+        Module        = " MOD",
+        Operator      = " OPR",
+        Property      = " PRP",
+        Reference     = " REF",
+        Snippet       = " SNP",
+        Struct        = " STR",
+        Text          = " TXT",
+        TypeParameter = " TYP",
+        Unit          = " UNT",
+        Value         = " VAL",
+        Variable      = " VAR",
+      }
       cmp.setup {
         performance = {
           debounce = 50,
           throttle = 10,
         },
-        window = {
-          documentation = false,
-          completion = cmp.config.window.bordered {
-            border = "none",
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = -3,
-            side_padding = 0,
-          },
-        },
-        completion = {
-          completeopt = "menu,menuone,noinsert",
-        },
+        completion = { keyword_length = 2, completeopt = "menu,menuone,preview" },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -69,17 +92,17 @@ return {
           { name = "latex_symbols" },
           { name = "calc" },
         },
+        window = {
+          completion = { border = "single", col_offset = 3 },
+          documentation = false,
+        },
         formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            local kind = lspkind.cmp_format {
-              mode = "symbol_text",
-              maxwidth = 80,
-            }(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. strings[1] .. " "
-            kind.menu = "    (" .. strings[2] .. ")"
-            return kind
+          fields = { "menu", "abbr", "kind" },
+          format = function(entry, item)
+            item.menu = item_map[entry.source.name] or entry.source.name
+            item.abbr = vim.trim(item.abbr):sub(1, 80)
+            item.kind = item.menu == "" and " " or kind_map[item.kind]
+            return item
           end,
         },
         view = { max_height = 20 },
@@ -90,11 +113,9 @@ return {
         experimental = { ghost_text = false },
         mapping = cmp.mapping.preset.insert {
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { select = true },
-          ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+          ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+          ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+          ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         },
       }
     end,

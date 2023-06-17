@@ -10,7 +10,7 @@
 return {
   { "nvim-tree/nvim-web-devicons" },
   { "MunifTanjim/nui.nvim" },
-  { "onsails/lspkind.nvim" },
+  -- { "onsails/lspkind.nvim" },
   -- theme
   {
     "sainnhe/gruvbox-material", -- {{{
