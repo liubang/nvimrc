@@ -35,7 +35,7 @@ return {
   { "sQVe/sort.nvim", cmd = { "Sort" }, opts = { delimiters = { ",", "|", ";", ":", "s", "t" } } },
 
   {
-    "jbyuki/venn.nvim",
+    "jbyuki/venn.nvim", -- {{{
     event = { "VeryLazy" },
     init = function()
       vim.api.nvim_create_user_command("DrawBoxToggle", function()
@@ -80,6 +80,7 @@ return {
       venn.set_arrow("right", ">")
     end,
     keys = { { "<leader>dt", ":DrawBoxToggle<CR>", desc = "Toggle venn" } },
+    -- }}}
   },
 
   {
@@ -249,6 +250,8 @@ return {
 
   {
     "nvim-pack/nvim-spectre", -- {{{
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
     -- stylua: ignore
     keys = {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
@@ -322,9 +325,6 @@ return {
         update_n_lines = "sn", -- Update `n_lines`
       },
     },
-    config = function(_, opts)
-      require("mini.surround").setup(opts)
-    end,
     -- }}}
   },
 
@@ -355,9 +355,6 @@ return {
         merge = nil,
       },
     },
-    config = function(_, opts)
-      require("mini.align").setup(opts)
-    end,
     -- }}}
   },
 
@@ -368,50 +365,6 @@ return {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
-    -- }}}
-  },
-
-  {
-    "echasnovski/mini.ai", -- {{{
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        init = function()
-          -- no need to load the plugin, since we only need its queries
-          require("lazy.core.loader").disable_rtp_plugin "nvim-treesitter-textobjects"
-        end,
-      },
-    },
-    opts = function()
-      local ai = require "mini.ai"
-      return {
-        n_lines = 500,
-        custom_textobjects = {
-          o = ai.gen_spec.treesitter({
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-          }, {}),
-          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-        },
-        mappings = {
-          -- Main textobject prefixes
-          around = "a",
-          inside = "i",
-          -- Next/last variants
-          around_next = "an",
-          inside_next = "in",
-          around_last = "al",
-          inside_last = "il",
-          -- Move cursor to corresponding edge of `a` textobject
-          goto_left = "g[",
-          goto_right = "g]",
-        },
-      }
-    end,
-    config = function(_, opts)
-      require("mini.ai").setup(opts)
-    end,
     -- }}}
   },
 }

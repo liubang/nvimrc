@@ -34,7 +34,7 @@ return {
       }
       -- completion item kind abbreviations
       -- stylua: ignore
-      local kind_map = { 
+      local kind_map = {
         Class         = " CLS",
         Color         = " CLR",
         Constant      = " CON",
@@ -122,35 +122,11 @@ return {
     -- }}}
   },
 
+  -- auto pairs
   {
-    "windwp/nvim-autopairs", -- {{{
+    "echasnovski/mini.pairs",
     event = { "InsertEnter" },
-    opts = function()
-      require("cmp").event:on(
-        "confirm_done",
-        require("nvim-autopairs.completion.cmp").on_confirm_done { map_char = { tex = "" } }
-      )
-
-      return {
-        check_ts = true,
-        ignored_next_char = "[%w%.]",
-        ts_config = {
-          lua = { "string", "source" },
-        },
-        fast_wrap = {
-          chars = { "{", "[", "(", '"', "'" },
-          pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-          offset = 0, -- Offset from pattern match
-          end_key = "$",
-          keys = "qwertyuiopzxcvbnmasdfghjkl",
-          check_comma = true,
-          highlight = "PmenuSel",
-          highlight_grey = "LineNr",
-        },
-        disable_filetype = { "TelescopePrompt", "vim" },
-      }
-    end,
-    -- }}}
+    opts = {},
   },
 }
 
