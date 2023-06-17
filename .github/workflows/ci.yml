@@ -45,7 +45,7 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: nvimrc
-          version: "Neovim >= 0.9.0"
+          version: "Neovim >= 0.9.1"
           demojify: true
           treesitter: true
       - name: Push changes
