@@ -66,7 +66,7 @@ return {
           debounce = 50,
           throttle = 10,
         },
-        completion = { keyword_length = 2, completeopt = "menu,menuone,preview" },
+        completion = { completeopt = "menu,menuone,preview" },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -113,7 +113,7 @@ return {
         experimental = { ghost_text = false },
         mapping = cmp.mapping.preset.insert {
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+          ["<CR>"] = cmp.mapping.confirm { select = true },
           ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
           ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         },
