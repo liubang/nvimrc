@@ -35,17 +35,21 @@ local function get_default_drivers(binaries)
   return table.concat(path_list, ",")
 end
 
+local luv = require "luv"
+local cpu = luv.available_parallelism()
+
 lspconfig.clangd.setup(c.default {
   cmd = {
     "clangd",
+    "--malloc-trim",
     "--background-index",
-    "-j=4",
+    "-j=" .. (cpu / 2),
+    "--pch-storage=memory",
     "--function-arg-placeholders",
     "--clang-tidy",
     "--header-insertion=never",
     "--completion-style=detailed",
     "--query-driver=" .. get_default_drivers { "clang++", "clang", "gcc", "g++" },
-    "--offset-encoding=utf-32",
     "--enable-config",
     "--fallback-style=google",
   },
