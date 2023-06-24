@@ -10,6 +10,7 @@
 local c = require "plugins.lsp.customs"
 local lspconfig = require "lspconfig"
 local Job = require "plenary.job"
+local is_mac = vim.loop.os_uname().version:match "Darwin"
 
 -- {{{ clangd
 local function get_binary_path(bin)
@@ -38,10 +39,9 @@ end
 local luv = require "luv"
 local cpu = luv.available_parallelism()
 
-lspconfig.clangd.setup(c.default {
-  cmd = {
+local function get_clangd_cmd()
+  local cmd = {
     "clangd",
-    "--malloc-trim",
     "--background-index",
     "-j=" .. (cpu / 2),
     "--pch-storage=memory",
@@ -52,7 +52,15 @@ lspconfig.clangd.setup(c.default {
     "--query-driver=" .. get_default_drivers { "clang++", "clang", "gcc", "g++" },
     "--enable-config",
     "--fallback-style=google",
-  },
+  }
+  if not is_mac then
+    table.insert(cmd, "--malloc-trim")
+  end
+  return cmd
+end
+
+lspconfig.clangd.setup(c.default {
+  cmd = get_clangd_cmd(),
   -- disable proto type
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   init_options = {
@@ -316,7 +324,6 @@ lspconfig.lua_ls.setup(c.default {
 -- }}}
 
 -- {{{ latex
-local is_mac = vim.loop.os_uname().version:match "Darwin"
 local forwardSearch = {}
 if not is_mac then
   forwardSearch = {
