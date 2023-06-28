@@ -94,9 +94,10 @@ return {
         },
         window = {
           documentation = false,
+          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
         },
         formatting = {
-          fields = { "menu", "abbr", "kind" },
+          fields = { "abbr", "kind" },
           format = function(entry, item)
             if vim.tbl_contains({ "path" }, entry.source.name) then
               local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
@@ -106,7 +107,7 @@ return {
                 return item
               end
             end
-            item.menu = item_map[entry.source.name] or entry.source.name
+            -- item.menu = item_map[entry.source.name] or entry.source.name
             item.kind = string.format("%s  %-9s", kind_icons[item.kind], item.kind)
             return item
           end,
