@@ -1,4 +1,4 @@
-*nvimrc.txt*           For Neovim >= 0.9.1           Last change: 2023 June 24
+*nvimrc.txt*           For Neovim >= 0.9.1           Last change: 2023 June 28
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -272,7 +272,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim>
 - mason-lspconfig.nvim <https://github.com/williamboman/mason-lspconfig.nvim>
 - mason.nvim <https://github.com/williamboman/mason.nvim>
-- mini.ai <https://github.com/echasnovski/mini.ai>
 - mini.align <https://github.com/echasnovski/mini.align>
 - mini.bufremove <https://github.com/echasnovski/mini.bufremove>
 - mini.surround <https://github.com/echasnovski/mini.surround>
@@ -292,7 +291,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
 - nvim-spectre <https://github.com/nvim-pack/nvim-spectre>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
-- nvim-treesitter-textobjects <https://github.com/nvim-treesitter/nvim-treesitter-textobjects>
 - nvim-ts-context-commentstring <https://github.com/JoosepAlviste/nvim-ts-context-commentstring>
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
