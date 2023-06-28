@@ -25,41 +25,41 @@ return {
       -- completion item source name abbreviations
       -- stylua: ignore
       local item_map = {
-        buffer                  = "BUF │",
-        path                    = "PTH │",
-        neorg                   = "NRG │",
-        nvim_lsp                = "LSP │",
-        luasnip                 = "SNP │",
+        buffer                  = "BUF",
+        path                    = "PTH",
+        neorg                   = "NRG",
+        nvim_lsp                = "LSP",
+        luasnip                 = "SNP",
         nvim_lsp_signature_help = "",
       }
       -- completion item kind abbreviations
       -- stylua: ignore
-      local kind_map = {
-        Class         = " CLS",
-        Color         = " CLR",
-        Constant      = " CON",
-        Constructor   = " CTR",
-        Enum          = " ENM",
-        EnumMember    = " ENM",
-        Event         = " EVT",
-        Field         = " FLD",
-        File          = " FIL",
-        Folder        = " FOL",
-        Function      = " FUN",
-        Interface     = " INT",
-        Keyword       = " KEY",
-        Method        = " MTH",
-        Module        = " MOD",
-        Operator      = " OPR",
-        Property      = " PRP",
-        Reference     = " REF",
-        Snippet       = " SNP",
-        Struct        = " STR",
-        Text          = " TXT",
-        TypeParameter = " TYP",
-        Unit          = " UNT",
-        Value         = " VAL",
-        Variable      = " VAR",
+      local kind_icons = {
+        Text          = "",
+        Method        = "",
+        Function      = "",
+        Constructor   = "",
+        Field         = "",
+        Variable      = "",
+        Class         = "",
+        Interface     = "",
+        Module        = "",
+        Property      = "",
+        Unit          = "",
+        Value         = "",
+        Enum          = "",
+        Keyword       = "",
+        Snippet       = "",
+        Color         = "",
+        File          = "",
+        Reference     = "",
+        Folder        = "",
+        EnumMember    = "",
+        Constant      = "",
+        Struct        = "",
+        Event         = "",
+        Operator      = "",
+        TypeParameter = "",
       }
       cmp.setup {
         performance = {
@@ -93,15 +93,21 @@ return {
           { name = "calc" },
         },
         window = {
-          completion = { border = "single", col_offset = 3 },
           documentation = false,
         },
         formatting = {
           fields = { "menu", "abbr", "kind" },
           format = function(entry, item)
+            if vim.tbl_contains({ "path" }, entry.source.name) then
+              local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+              if icon then
+                item.kind = icon
+                item.kind_hl_group = hl_group
+                return item
+              end
+            end
             item.menu = item_map[entry.source.name] or entry.source.name
-            item.abbr = vim.trim(item.abbr):sub(1, 80)
-            item.kind = item.menu == "" and " " or kind_map[item.kind]
+            item.kind = string.format("%s  %-9s", kind_icons[item.kind], item.kind)
             return item
           end,
         },
@@ -124,9 +130,11 @@ return {
 
   -- auto pairs
   {
-    "echasnovski/mini.pairs",
-    event = { "InsertEnter" },
-    opts = {},
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      disable_filetype = { "TelescopePrompt" },
+    },
   },
 }
 
