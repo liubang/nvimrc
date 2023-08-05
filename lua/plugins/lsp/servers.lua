@@ -70,6 +70,18 @@ lspconfig.clangd.setup(c.default {
 -- }}}
 
 -- {{{ gopls
+local get_current_gomod = function()
+  local file = io.open("go.mod", "r")
+  if file == nil then
+    return nil
+  end
+
+  local first_line = file:read()
+  local mod_name = first_line:gsub("module ", "")
+  file:close()
+  return mod_name
+end
+
 lspconfig.gopls.setup(c.default {
   -- share the gopls instance if there is one already
   cmd = { "gopls", "-remote.debug=:0" },
@@ -141,15 +153,15 @@ lspconfig.gopls.setup(c.default {
         "-**/node_modules",
         "-/tmp",
       },
-      usePlaceholders = true,
-      verboseOutput = false, -- useful for debugging when true.
+      ["local"] = get_current_gomod(),
       semanticTokens = true,
+      usePlaceholders = true,
       completeUnimported = true,
       completionDocumentation = true,
       staticcheck = true,
       gofumpt = true,
       linksInHover = true,
-      buildFlags = { "-tags=integration,e2e" },
+      buildFlags = { "-tags", "integration" },
     },
   },
 })

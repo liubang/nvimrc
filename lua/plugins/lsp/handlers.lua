@@ -23,8 +23,7 @@ vim.diagnostic.config { -- {{{
   },
 } -- }}}
 
--- {{{
-local signs = {
+local signs = { -- {{{
   Error = " ",
   Warn = " ",
   Info = " ",

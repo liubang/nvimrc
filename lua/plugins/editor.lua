@@ -182,9 +182,6 @@ return {
   {
     "iamcco/markdown-preview.nvim", -- {{{
     ft = { "markdown" },
-    enabled = function()
-      return vim.fn.executable "deno" == 0 and vim.fn.executable "npm" == 1
-    end,
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
@@ -198,31 +195,6 @@ return {
         desc = "Markdown Preview",
       },
     },
-    -- }}}
-  },
-
-  {
-    "toppair/peek.nvim", -- {{{
-    build = "deno task --quiet build:fast",
-    enabled = function()
-      return vim.fn.executable "deno" == 1
-    end,
-    ft = { "markdown" },
-    keys = {
-      {
-        "<leader>mp",
-        function()
-          local peek = require "peek"
-          if peek.is_open() then
-            peek.close()
-          else
-            peek.open()
-          end
-        end,
-        desc = "Peek (Markdown Preview)",
-      },
-    },
-    opts = { theme = "light" },
     -- }}}
   },
 
