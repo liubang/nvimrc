@@ -10,7 +10,6 @@
 return {
   { "nvim-tree/nvim-web-devicons" },
   { "MunifTanjim/nui.nvim" },
-  -- { "onsails/lspkind.nvim" },
   -- theme
   {
     "sainnhe/gruvbox-material", -- {{{
@@ -35,12 +34,12 @@ return {
 
       -- theme {{{
       vim.g.gruvbox_material_foreground = "material"
-      vim.g.gruvbox_filetype_hi_groups = 1
-      vim.g.gruvbox_plugin_hi_groups = 1
+      vim.g.gruvbox_filetype_hi_groups = 0
+      vim.g.gruvbox_plugin_hi_groups = 0
       vim.g.gruvbox_transp_bg = 1
       vim.g.gruvbox_material_enable_italic = 0
       vim.g.gruvbox_material_disable_italic_comment = 0
-      vim.g.gruvbox_material_background = "soft"
+      vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_better_performance = 1
       vim.g.gruvbox_material_disable_italic_comment = 1
       -- }}}
@@ -354,7 +353,6 @@ return {
       return {
         options = {
           icons_enabled = true,
-          theme = "gruvbox-material",
           component_separators = "",
           section_separators = "",
           always_divide_middle = true,
