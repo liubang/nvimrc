@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.9.1          Last change: 2023 August 12
+*nvimrc.txt*          For Neovim >= 0.9.1          Last change: 2023 August 13
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -264,6 +264,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - fzy-lua-native <https://github.com/romgrk/fzy-lua-native>
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
+- headlines.nvim <https://github.com/lukas-reineke/headlines.nvim>
 - hex.nvim <https://github.com/RaafatTurki/hex.nvim>
 - hop.nvim <https://github.com/phaazon/hop.nvim>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
