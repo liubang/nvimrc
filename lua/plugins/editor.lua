@@ -215,6 +215,13 @@ return {
     cmd = { "HexToggle" },
     -- }}}
   },
+  {
+    "lukas-reineke/headlines.nvim", -- {{{
+    ft = { "markdown", "org" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    opts = {},
+    -- }}}
+  },
 }
 
 -- vim: fdm=marker fdl=0

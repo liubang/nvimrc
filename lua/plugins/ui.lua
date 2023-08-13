@@ -463,6 +463,9 @@ return {
         relative = "editor",
         blend = 0,
       },
+      sources = {
+        ["null-ls"] = { ignore = true },
+      },
       fmt = {
         stack_upwards = false,
         fidget = function(fidget_name, spinner)

@@ -1,6 +1,19 @@
+" Vim syntax file
+" Language:         Generic log file
+" Maintainer:       MTDL9 <https://github.com/MTDL9>
+" Latest Revision:  2020-08-23
+
+if exists('b:current_syntax')
+  finish
+endif
+
+let s:cpo_save = &cpoptions
+set cpoptions&vim
+
+
 " Operators
 "---------------------------------------------------------------------------
-syn match logOperator display '[;,\?\:\.\<=\>\~\/\@\&\!$\%\&\+\-\|\^(){}\*#]'
+syn match logOperator display '[;,\?\:\.\<=\>\~\/\@\!$\%&\+\-\|\^(){}\*#]'
 syn match logBrackets display '[\[\]]'
 syn match logEmptyLines display '-\{3,}'
 syn match logEmptyLines display '\*\{3,}'
@@ -30,8 +43,9 @@ syn region logString      start=/'\(s \|t \| \w\)\@!/ end=/'/ end=/$/ end=/s / s
 syn match logDate '\d\{2,4}[-\/]\(\d\{2}\|Jan\|Feb\|Mar\|Apr\|May\|Jun\|Jul\|Aug\|Sep\|Oct\|Nov\|Dec\)[-\/]\d\{2,4}T\?'
 " Matches 8 digit numbers at start of line starting with 20
 syn match logDate '^20\d\{6}'
-" Matches Fri Jan 09 or Feb 11 or Apr  3
-syn match logDate '\(\(Mon\|Tue\|Wed\|Thu\|Fri\|Sat\|Sun\) \)\?\(Jan\|Feb\|Mar\|Apr\|May\|Jun\|Jul\|Aug\|Sep\|Oct\|Nov\|Dec\) [0-9 ]\d'
+" Matches Fri Jan 09 or Feb 11 or Apr  3 or Sun 3
+syn keyword logDate Mon Tue Wed Thu Fri Sat Sun Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec nextgroup=logDateDay
+syn match logDateDay '\s\{1,2}\d\{1,2}' contained
 
 " Matches 12:09:38 or 00:03:38.129Z or 01:32:12.102938 +0700
 syn match logTime '\d\{2}:\d\{2}:\d\{2}\(\.\d\{2,6}\)\?\(\s\?[-+]\d\{2,4}\|Z\)\?\>' nextgroup=logTimeZone,logSysColumns skipwhite
@@ -72,7 +86,7 @@ syn match logXmlAttribute    contained "\(\n\|\s\)\(\(\w\|-\)\+:\)\?\(\w\|-\)\+\
 syn match logXmlNamespace    contained "\(\w\|-\)\+:" contains=logOperator
 syn region logXmlComment     start=/<!--/ end=/-->/
 syn match logXmlCData        /<!\[CDATA\[.*\]\]>/
-syn match logXmlEntity       /\&\w\+;/
+syn match logXmlEntity       /&#\?\w\+;/
 
 
 " Levels
@@ -99,6 +113,7 @@ hi def link logNull Constant
 hi def link logString String
 
 hi def link logDate Identifier
+hi def link logDateDay Identifier
 hi def link logTime Function
 hi def link logTimeZone Identifier
 
@@ -136,3 +151,10 @@ hi def link logLevelNotice Character
 hi def link logLevelInfo Repeat
 hi def link logLevelDebug Debug
 hi def link logLevelTrace Comment
+
+
+
+let b:current_syntax = 'log'
+
+let &cpoptions = s:cpo_save
+unlet s:cpo_save

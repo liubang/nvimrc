@@ -177,6 +177,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
+- [headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
 - [hex.nvim](https://github.com/RaafatTurki/hex.nvim)
 - [hop.nvim](https://github.com/phaazon/hop.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)

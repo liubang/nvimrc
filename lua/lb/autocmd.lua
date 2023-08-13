@@ -20,9 +20,12 @@ vim.filetype.add { -- {{{
     ["WORKSPACE"] = "bzl",
   },
   extension = {
-    log = "log",
     thrift = "thrift",
     wiki = "markdown",
+  },
+  pattern = {
+    ["*.log"] = "log",
+    ["*_LOG"] = "log",
   },
 } -- }}}
 
