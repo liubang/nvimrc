@@ -222,6 +222,25 @@ return {
     opts = {},
     -- }}}
   },
+  {
+    "LunarVim/bigfile.nvim", -- {{{
+    lazy = false,
+    opts = {
+      filesize = 2,
+      pattern = { "*" },
+      features = {
+        "indent_blankline",
+        "illuminate",
+        "lsp",
+        "treesitter",
+        "syntax",
+        "matchparen",
+        "vimopts",
+        "filetype",
+      },
+    },
+    -- }}}
+  },
 }
 
 -- vim: fdm=marker fdl=0
