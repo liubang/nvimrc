@@ -1,0 +1,103 @@
+{
+  "coc.preferences.enableMessageDialog": true,
+  "[json][jsonc][lua][vim]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": false
+  },
+  // suggest
+  "signature.enable": true,
+  "suggest.timeout": 500,
+  "suggest.noselect": false,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.triggerCompletionWait": 50,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.labelMaxLength": 100,
+  "suggest.detailField": "abbr",
+  "signature.target": "float",
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": false,
+    "focusable": true
+  },
+  // diagnostic
+  "diagnostic.enable": true,
+  "diagnostic.infoSign": " ",
+  "diagnostic.hintSign": " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.errorSign": " ",
+  "diagnostic.format": "%message [%source]",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "diagnostic.floatConfig": {
+    "border": true,
+    "rounded": false,
+    "title": " Diagnostics: ",
+    "focusable": true
+  },
+  "inlayHint.enable": false,
+  // clangd
+  "clangd.enabled": true,
+  "clangd.arguments": [
+    "-j=4",
+    "--background-index",
+    "--pch-storage=memory",
+    "--function-arg-placeholders",
+    "--clang-tidy",
+    "--header-insertion=never",
+    "--completion-style=detailed",
+    "--enable-config",
+    "--fallback-style=google",
+    "--limit-references=500",
+    "--limit-results=50",
+    "--log=error"
+  ],
+  // go
+  "go.enable": true,
+  "go.goplsOptions": {
+    "experimentalPostfixCompletions": true,
+    "semanticTokens": true,
+    "linksInHover": false,
+    "hints": {
+      "assignVariableTypes": true,
+      "compositeLiteralFields": true,
+      "compositeLiteralTypes": true,
+      "constantValues": true,
+      "functionTypeParameters": true,
+      "parameterNames": true,
+      "rangeVariableTypes": true
+    },
+    "usePlaceholders": true,
+    "staticcheck": true
+  },
+  // python
+  "pyright.organizeimports.provider": "ruff",
+  "python.formatting.provider": "black",
+  "python.formatting.blackdHTTPHeaders": {
+    "X-Fast-Or-Safe": "fast"
+  },
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.stubPath": "~/src/python-type-stubs",
+  "pullDiagnostic.onChange": false,
+  "pullDiagnostic.onSave": true,
+  // lua
+  "lua.enable": true,
+  "Lua.format.enable": true,
+  "Lua.format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "2",
+    "quote_style": "single",
+    "max_line_length": "100",
+    "align_array_table": "true",
+    "space_around_table_field_list": "true"
+  },
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.diagnostics.globals": ["vim", "jit"]
+  // vim:ft=jsonc
+}

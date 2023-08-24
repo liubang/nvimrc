@@ -9,132 +9,78 @@
 
 return {
   {
-    "hrsh7th/nvim-cmp", -- {{{
-    version = false,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-calc",
-      "saadparwaiz1/cmp_luasnip",
-    },
-    event = { "InsertEnter" },
+    'neoclide/coc.nvim',
+    branch = 'release',
+    lazy = false,
     config = function()
-      local cmp = require "cmp"
-      -- completion item source name abbreviations
-      -- stylua: ignore
-      local item_map = {
-        buffer                  = "BUF",
-        path                    = "PTH",
-        neorg                   = "NRG",
-        nvim_lsp                = "LSP",
-        luasnip                 = "SNP",
-        nvim_lsp_signature_help = "",
+      vim.g.coc_global_extensions = {
+        'coc-dictionary',
+        'coc-snippets',
+        'coc-clangd',
+        'coc-go',
+        'coc-json',
+        'coc-xml',
+        'coc-markdownlint',
+        'coc-marketplace',
+        'coc-pairs',
+        'coc-vimlsp',
+        'coc-yank',
+        'coc-prettier',
+        'coc-sh',
+        'coc-texlab',
+        'coc-tsserver',
+        'coc-sql',
       }
-      -- completion item kind abbreviations
-      -- stylua: ignore
-      local kind_icons = {
-        Text          = "",
-        Method        = "",
-        Function      = "",
-        Constructor   = "",
-        Field         = "",
-        Variable      = "",
-        Class         = "",
-        Interface     = "",
-        Module        = "",
-        Property      = "",
-        Unit          = "",
-        Value         = "",
-        Enum          = "",
-        Keyword       = "",
-        Snippet       = "",
-        Color         = "",
-        File          = "",
-        Reference     = "",
-        Folder        = "",
-        EnumMember    = "",
-        Constant      = "",
-        Struct        = "",
-        Event         = "",
-        Operator      = "",
-        TypeParameter = "",
-      }
-      cmp.setup {
-        performance = {
-          debounce = 50,
-          throttle = 10,
-        },
-        completion = { completeopt = "menu,menuone,preview" },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
-        preselect = cmp.PreselectMode.None,
-        sources = {
-          { name = "nvim_lsp", priority = 80 },
-          { name = "luasnip", priority = 10 },
-          { name = "path", priority = 40, max_item_count = 4 },
-          {
-            name = "buffer",
-            priority = 5,
-            keywork_length = 3,
-            max_item_count = 5,
-            option = {
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end,
-            },
-          },
-          { name = "crates" },
-          { name = "latex_symbols" },
-          { name = "calc" },
-        },
-        window = {
-          documentation = false,
-          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        },
-        formatting = {
-          fields = { "abbr", "kind" },
-          format = function(entry, item)
-            if vim.tbl_contains({ "path" }, entry.source.name) then
-              local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
-              if icon then
-                item.kind = icon
-                item.kind_hl_group = hl_group
-                return item
-              end
-            end
-            -- item.menu = item_map[entry.source.name] or entry.source.name
-            item.kind = string.format("%s  %-9s", kind_icons[item.kind], item.kind)
-            return item
-          end,
-        },
-        view = { max_height = 20 },
-        confirm_opts = {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
-        experimental = { ghost_text = false },
-        mapping = cmp.mapping.preset.insert {
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { select = true },
-          ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-          ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-        },
-      }
-    end,
-    -- }}}
-  },
 
-  -- auto pairs
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      disable_filetype = { "TelescopePrompt" },
-    },
+      local keyset = vim.keymap.set
+      -- Autocomplete
+      function _G.check_back_space()
+        local col = vim.fn.col('.') - 1
+        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+      end
+
+      local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
+      keyset('i', '<TAB>',
+        'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
+        opts)
+      keyset('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+
+      keyset('i', '<cr>',
+        [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+      keyset('i', '<c-j>', '<Plug>(coc-snippets-expand-jump)')
+
+      -- GoTo code navigation
+      keyset('n', '<leader>gd', '<Plug>(coc-definition)', { silent = true })
+      keyset('n', '<leader>gD', '<Plug>(coc-declaration)', { silent = true })
+      keyset('n', '<leader>gy', '<Plug>(coc-type-definition)', { silent = true })
+      keyset('n', '<leader>gi', '<Plug>(coc-implementation)', { silent = true })
+      keyset('n', '<leader>gr', '<Plug>(coc-references)', { silent = true })
+      keyset('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
+      keyset('n', '<leader>ca', '<Plug>(coc-codeaction-cursor)', { silent = true, nowait = true })
+      keyset('n', '<leader>as', '<Plug>(coc-codeaction-source)', { silent = true, nowait = true })
+      keyset('n', '<leader>qf', '<Plug>(coc-fix-current)', { silent = true, nowait = true })
+      keyset('n', '<leader>re', '<Plug>(coc-codeaction-refactor)', { silent = true })
+      keyset('n', '<leader>cl', '<Plug>(coc-codelens-action)', { silent = true, nowait = true })
+      keyset('n', '<leader>fm', '<Plug>(coc-format)', { silent = true })
+      keyset('n', '<leader>es', ':<C-u>CocList diagnostics<cr>', { silent = true })
+      keyset('n', '<leader>ee', ":call CocAction('diagnosticPreview')<cr>", { silent = true })
+
+      -- Use K to show documentation in preview window
+      keyset('n', '<c-k>', function()
+        local cw = vim.fn.expand('<cword>')
+        if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+          vim.api.nvim_command('h ' .. cw)
+        elseif vim.api.nvim_eval('coc#rpc#ready()') then
+          vim.fn.CocActionAsync('doHover')
+        else
+          vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+        end
+      end, { silent = true })
+      -- Add `:OR` command for organize imports of the current buffer
+      vim.api.nvim_create_user_command('OrgImports',
+        "call CocActionAsync('runCommand', 'editor.action.organizeImport')",
+        {})
+    end
   },
 }
 
