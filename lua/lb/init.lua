@@ -7,19 +7,19 @@
 --
 --=====================================================================
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-require "lb.options" -- global options
-require "lb.lazy" -- plugins spec
+require 'lb.options'                  -- global options
+require 'lb.lazy'                     -- plugins spec
 
-vim.api.nvim_create_autocmd("User", { -- {{{
-  group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
-  pattern = "VeryLazy",
+vim.api.nvim_create_autocmd('User', { -- {{{
+  group = vim.api.nvim_create_augroup('LazyVim', { clear = true }),
+  pattern = 'VeryLazy',
   callback = function()
-    require "lb.autocmd" -- events
-    require "lb.commands"
-    require "lb.mappings"
+    require 'lb.autocmd' -- events
+    require 'lb.commands'
+    require 'lb.mappings'
   end,
 }) -- }}}
 

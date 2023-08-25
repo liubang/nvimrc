@@ -9,6 +9,13 @@
 
 return {
   {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {
+      disable_filetype = { 'TelescopePrompt' },
+    }
+  },
+  {
     'neoclide/coc.nvim',
     branch = 'release',
     lazy = false,
@@ -23,7 +30,6 @@ return {
         'coc-xml',
         'coc-markdownlint',
         'coc-marketplace',
-        'coc-pairs',
         'coc-vimlsp',
         'coc-yank',
         'coc-prettier',
@@ -35,7 +41,6 @@ return {
       }
 
       local keyset = vim.keymap.set
-      -- Autocomplete
       function _G.check_back_space()
         local col = vim.fn.col('.') - 1
         return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
@@ -78,10 +83,9 @@ return {
           vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
         end
       end, { silent = true })
-      -- Add `:OR` command for organize imports of the current buffer
-      vim.api.nvim_create_user_command('OrgImports',
-        "call CocActionAsync('runCommand', 'editor.action.organizeImport')",
-        {})
+
+      -- for golang
+      vim.cmd [[autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')]]
     end
   },
 }

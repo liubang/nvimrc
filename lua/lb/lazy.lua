@@ -7,30 +7,30 @@
 --
 -- =====================================================================
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup {
-  spec = { import = "plugins" },
+require('lazy').setup {
+  spec = { import = 'plugins' },
   defaults = { lazy = true },
   concurrency = 6,
   install = {
     missing = true,
-    colorscheme = { "gruvbox-material" },
+    colorscheme = { 'gruvbox-material' },
   },
   dev = {
-    path = "~/workspace/vim",
-    patterns = { "liubang" },
+    path = '~/workspace/vim',
+    patterns = { 'liubang' },
     fallback = true,
   },
   checker = {
@@ -40,40 +40,40 @@ require("lazy").setup {
     enabled = false,
   },
   ui = { -- {{{
-    border = "single",
+    border = 'single',
     -- stylua: ignore
     icons = {
-      loaded     = "●",
-      not_loaded = "○",
-      cmd        = " ",
-      config     = " ",
-      event      = "",
-      ft         = " ",
-      init       = " ",
-      keys       = " ",
-      plugin     = " ",
-      runtime    = " ",
-      source     = " ",
-      start      = "",
-      task       = " ",
-      lazy       = "鈴 ",
+      loaded     = '●',
+      not_loaded = '○',
+      cmd        = ' ',
+      config     = ' ',
+      event      = '',
+      ft         = ' ',
+      init       = ' ',
+      keys       = ' ',
+      plugin     = ' ',
+      runtime    = ' ',
+      source     = ' ',
+      start      = '',
+      task       = ' ',
+      lazy       = '鈴 ',
     },
-  }, -- }}}
+  },              -- }}}
   performance = { -- {{{
     cache = {
       enabled = true,
     },
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "rplugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
       },
     },
   }, -- }}}
@@ -81,8 +81,8 @@ require("lazy").setup {
   -- so :help works even for plugins that don't have vim docs.
   -- when the readme opens with :help it will be correctly displayed as markdown
   readme = { -- {{{
-    root = vim.fn.stdpath "state" .. "/lazy/readme",
-    files = { "README.md" },
+    root = vim.fn.stdpath 'state' .. '/lazy/readme',
+    files = { 'README.md' },
     -- only generate markdown helptags for plugins that dont have docs
     skip_if_doc_exists = true,
   }, -- }}}

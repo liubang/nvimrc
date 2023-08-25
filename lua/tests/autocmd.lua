@@ -8,8 +8,8 @@
 --=====================================================================
 
 local attach_to_buffer = function(output_bufnr, pattern, command)
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    group = vim.api.nvim_create_augroup("lb-automagic", { clear = true }),
+  vim.api.nvim_create_autocmd('BufWritePost', {
+    group = vim.api.nvim_create_augroup('lb-automagic', { clear = true }),
     pattern = pattern,
     callback = function()
       local append_data = function(_, data)
@@ -18,7 +18,7 @@ local attach_to_buffer = function(output_bufnr, pattern, command)
         end
       end
 
-      vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false, { "main.go output:" })
+      vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false, { 'main.go output:' })
       vim.fn.jobstart(command, {
         stdout_buffered = true,
         on_stdout = append_data,
@@ -28,4 +28,4 @@ local attach_to_buffer = function(output_bufnr, pattern, command)
   })
 end
 
-attach_to_buffer(28, "*.go", { "go", "run", "main.go" })
+attach_to_buffer(28, '*.go', { 'go', 'run', 'main.go' })

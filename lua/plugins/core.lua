@@ -7,8 +7,8 @@
 --
 --=====================================================================
 return {
-  { "folke/lazy.nvim", version = "*" },
-  { "nvim-lua/plenary.nvim" },
+  { 'folke/lazy.nvim',      version = '*' },
+  { 'nvim-lua/plenary.nvim' },
 }
 
 -- vim: fdm=marker fdl=0

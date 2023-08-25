@@ -8,20 +8,20 @@
 --=====================================================================
 
 local M = {}
-local is_windows = vim.loop.os_uname().version:match "Windows"
+local is_windows = vim.loop.os_uname().version:match 'Windows'
 
 math.randomseed(os.time())
 
 M.uuid = function() --{{{
-  local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+  local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
   local out
   local function subs(c)
-    local v = (((c == "x") and math.random(0, 15)) or math.random(8, 11))
-    return string.format("%x", v)
+    local v = (((c == 'x') and math.random(0, 15)) or math.random(8, 11))
+    return string.format('%x', v)
   end
-  out = template:gsub("[xy]", subs)
+  out = template:gsub('[xy]', subs)
   return out
-end --}}}
+end                --}}}
 
 local charset = {} -- Random String {{{
 for i = 48, 57 do
@@ -35,7 +35,7 @@ for i = 97, 122 do
 end
 M.random_string = function(length)
   if length == 0 then
-    return ""
+    return ''
   end
   return M.random_string(length - 1) .. charset[math.random(1, #charset)]
 end --}}}
@@ -44,7 +44,7 @@ end --}}}
 -- @param command string
 -- @return table
 M.shell = function(command) --{{{
-  local file = io.popen(command, "r")
+  local file = io.popen(command, 'r')
   local res = {}
   if file ~= nil then
     for line in file:lines() do
@@ -52,38 +52,38 @@ M.shell = function(command) --{{{
     end
   end
   return res
-end --}}}
+end                --}}}
 
 M.sep = function() -- {{{
   if is_windows then
-    return "\\"
+    return '\\'
   end
-  return "/"
-end -- }}}
+  return '/'
+end                           -- }}}
 
 M.rel_path = function(folder) -- {{{
-  local mod = "%:p"
+  local mod = '%:p'
   if folder then
-    mod = "%:p:h"
+    mod = '%:p:h'
   end
   local fpath = vim.fn.expand(mod)
   local workfolders = vim.lsp.buf.list_workspace_folders()
   if vim.fn.empty(workfolders) == 0 then
-    fpath = "." .. fpath:sub(#workfolders[1] + 1)
+    fpath = '.' .. fpath:sub(#workfolders[1] + 1)
   else
-    fpath = vim.fn.fnamemodify(vim.fn.expand(mod), ":p:.")
+    fpath = vim.fn.fnamemodify(vim.fn.expand(mod), ':p:.')
   end
   if fpath:sub(#fpath) == M.sep() then
     fpath = fpath:sub(1, #fpath - 1)
   end
   return fpath
-end -- }}}
+end                            -- }}}
 
 M.trim_whitespace = function() -- {{{
-  if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == "diff" then
+  if not vim.bo.modifiable or vim.bo.binary or vim.bo.filetype == 'diff' then
     return
   end
-  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, "DISABLE_TRIM_WHITESPACES")
+  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, 'DISABLE_TRIM_WHITESPACES')
   if ok and val then
     return
   end
@@ -91,34 +91,34 @@ M.trim_whitespace = function() -- {{{
   vim.api.nvim_command [[keeppatterns %s/\s\+$//e]]
   vim.api.nvim_command [[silent! %s#\($\n\s*\)\+\%$##]]
   vim.api.nvim_win_set_cursor(0, cursor)
-end -- }}}
+end                   -- }}}
 
 M.rtrim = function(s) -- {{{
   local n = #s
-  while n > 0 and s:find("^%s", n) do
+  while n > 0 and s:find('^%s', n) do
     n = n - 1
   end
   return s:sub(1, n)
-end -- }}}
+end                   -- }}}
 
 M.ltrim = function(s) -- {{{
-  return (s:gsub("^%s*", ""))
-end -- }}}
+  return (s:gsub('^%s*', ''))
+end                   -- }}}
 
-M.trim = function(s) -- {{{
-  return (s:gsub("^%s*(.-)%s*$", "%1"))
-end -- }}}
+M.trim = function(s)  -- {{{
+  return (s:gsub('^%s*(.-)%s*$', '%1'))
+end                   -- }}}
 
 -- @Ref https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/util.lua
 M.path = (function() -- {{{
   local function escape_wildcards(path)
-    return path:gsub("([%[%]%?%*])", "\\%1")
+    return path:gsub('([%[%]%?%*])', '\\%1')
   end
 
   local function sanitize(path)
     if is_windows then
       path = path:sub(1, 1):upper() .. path:sub(2)
-      path = path:gsub("\\", "/")
+      path = path:gsub('\\', '/')
     end
     return path
   end
@@ -129,48 +129,48 @@ M.path = (function() -- {{{
   end
 
   local function is_dir(filename)
-    return exists(filename) == "directory"
+    return exists(filename) == 'directory'
   end
 
   local function is_file(filename)
-    return exists(filename) == "file"
+    return exists(filename) == 'file'
   end
 
   local function is_fs_root(path)
     if is_windows then
-      return path:match "^%a:$"
+      return path:match '^%a:$'
     else
-      return path == "/"
+      return path == '/'
     end
   end
 
   local function is_absolute(filename)
     if is_windows then
-      return filename:match "^%a:" or filename:match "^\\\\"
+      return filename:match '^%a:' or filename:match '^\\\\'
     else
-      return filename:match "^/"
+      return filename:match '^/'
     end
   end
 
   local function dirname(path)
-    local strip_dir_pat = "/([^/]+)$"
-    local strip_sep_pat = "/$"
+    local strip_dir_pat = '/([^/]+)$'
+    local strip_sep_pat = '/$'
     if not path or #path == 0 then
       return
     end
-    local result = path:gsub(strip_sep_pat, ""):gsub(strip_dir_pat, "")
+    local result = path:gsub(strip_sep_pat, ''):gsub(strip_dir_pat, '')
     if #result == 0 then
       if is_windows then
         return path:sub(1, 2):upper()
       else
-        return "/"
+        return '/'
       end
     end
     return result
   end
 
   local function path_join(...)
-    return table.concat(vim.tbl_flatten { ... }, "/")
+    return table.concat(vim.tbl_flatten { ... }, '/')
   end
 
   -- Traverse the path calling cb along the way.
@@ -224,7 +224,7 @@ M.path = (function() -- {{{
     return dir == root
   end
 
-  local path_separator = is_windows and ";" or ":"
+  local path_separator = is_windows and ';' or ':'
 
   return {
     escape_wildcards = escape_wildcards,
@@ -240,7 +240,7 @@ M.path = (function() -- {{{
     is_descendant = is_descendant,
     path_separator = path_separator,
   }
-end)() -- }}}
+end)()                       -- }}}
 
 function M.root_pattern(...) -- {{{
   local patterns = vim.tbl_flatten { ... }
@@ -257,10 +257,10 @@ function M.root_pattern(...) -- {{{
     startpath = M.strip_archive_subpath(startpath)
     return M.search_ancestors(startpath, matcher)
   end
-end -- }}}
+end                                          -- }}}
 
 function M.search_ancestors(startpath, func) -- {{{
-  vim.validate { func = { func, "f" } }
+  vim.validate { func = { func, 'f' } }
   if func(startpath) then
     return startpath
   end
@@ -282,22 +282,22 @@ end -- }}}
 -- Other paths are returned unaltered.
 function M.strip_archive_subpath(path) -- {{{
   -- Matches regex from zip.vim / tar.vim
-  path = vim.fn.substitute(path, "zipfile://\\(.\\{-}\\)::[^\\\\].*$", "\\1", "")
-  path = vim.fn.substitute(path, "tarfile:\\(.\\{-}\\)::.*$", "\\1", "")
+  path = vim.fn.substitute(path, 'zipfile://\\(.\\{-}\\)::[^\\\\].*$', '\\1', '')
+  path = vim.fn.substitute(path, 'tarfile:\\(.\\{-}\\)::.*$', '\\1', '')
   return path
-end -- }}}
+end                           -- }}}
 
 function M.file_size_format() -- {{{
-  local file = vim.fn.expand "%:p"
+  local file = vim.fn.expand '%:p'
   if file == nil or #file == 0 then
-    return ""
+    return ''
   end
   local size = vim.fn.getfsize(file)
   if size <= 0 then
-    return ""
+    return ''
   end
 
-  local suffixes = { "B", "KB", "MB", "GB" }
+  local suffixes = { 'B', 'KB', 'MB', 'GB' }
 
   local i = 1
   while size > 1024 and i < #suffixes do
@@ -305,40 +305,40 @@ function M.file_size_format() -- {{{
     i = i + 1
   end
 
-  local format = i == 1 and "[%d%s]" or "[%.1f%s]"
+  local format = i == 1 and '[%d%s]' or '[%.1f%s]'
   return string.format(format, size, suffixes[i])
-end -- }}}
+end                   -- }}}
 
 function M.lineinfo() -- {{{
-  local line = vim.fn.line "."
-  local column = vim.fn.col "."
-  return string.format("%d:%d %s", line, column, "[%p%%]")
+  local line = vim.fn.line '.'
+  local column = vim.fn.col '.'
+  return string.format('%d:%d %s', line, column, '[%p%%]')
 end -- }}}
 
 -- stylua: ignore
 local lsp_names = { --{{{
-  ["null-ls"]             = "NLS",
-  ["diagnostics_on_open"] = "Diagnostics",
-  ["diagnostics_on_save"] = "Diagnostics",
-  clangd                  = "C++",
-  gopls                   = "Go",
-  rust_analyzer           = "Rust",
-  lua_ls                  = "Lua",
-  intelephense            = "PHP",
-  pyright                 = "Python",
-  bashls                  = "Bash",
-  dockerls                = "Docker",
-  tsserver                = "TS",
-  jsonls                  = "JSON",
-  sqls                    = "SQL",
-  texlab                  = "LaTeX",
-  taplo                   = "TOML",
-  html                    = "HTML",
-  vimls                   = "Vim",
-  yamlls                  = "YAML",
-  cssls                   = "CSS",
-  emmet_ls                = "EMMET",
-  jdtls                   = "Java",
+  ['null-ls']             = 'NLS',
+  ['diagnostics_on_open'] = 'Diagnostics',
+  ['diagnostics_on_save'] = 'Diagnostics',
+  clangd                  = 'C++',
+  gopls                   = 'Go',
+  rust_analyzer           = 'Rust',
+  lua_ls                  = 'Lua',
+  intelephense            = 'PHP',
+  pyright                 = 'Python',
+  bashls                  = 'Bash',
+  dockerls                = 'Docker',
+  tsserver                = 'TS',
+  jsonls                  = 'JSON',
+  sqls                    = 'SQL',
+  texlab                  = 'LaTeX',
+  taplo                   = 'TOML',
+  html                    = 'HTML',
+  vimls                   = 'Vim',
+  yamlls                  = 'YAML',
+  cssls                   = 'CSS',
+  emmet_ls                = 'EMMET',
+  jdtls                   = 'Java',
 }
 --}}}
 
@@ -349,16 +349,16 @@ function M.lsp_clients_format() -- {{{
     clients[#clients + 1] = name
   end
   -- nf-md-lan_connect + nf-md-plus_circle_multiple_outline
-  return "󰌘  " .. table.concat(clients, " 󰐘  ")
-end -- }}}
+  return '󰌘  ' .. table.concat(clients, ' 󰐘  ')
+end                      -- }}}
 
 function M.mode_format() -- {{{
   -- nf-dev-vim
   if vim.b.venn_enabled == true then
     -- show drawing box
-    return "󰇟 " .. require("lualine.utils.mode").get_mode()
+    return '󰇟 ' .. require('lualine.utils.mode').get_mode()
   else
-    return " " .. require("lualine.utils.mode").get_mode()
+    return ' ' .. require('lualine.utils.mode').get_mode()
   end
 end -- }}}
 

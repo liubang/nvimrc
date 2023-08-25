@@ -9,78 +9,76 @@
 
 return {
   {
-    "andymass/vim-matchup", -- {{{
-    event = { "BufReadPost", "BufNewFile" },
+    'andymass/vim-matchup', -- {{{
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       vim.g.matchup_matchparen_offscreen = {}
       vim.g.matchup_matchparen_deferred = 1
     end,
     -- }}}
   },
-
   {
-    "RRethy/vim-illuminate", -- {{{
-    event = { "BufReadPost", "BufNewFile" },
+    'RRethy/vim-illuminate', -- {{{
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       delay = 200,
       under_cursor = true,
       large_file_cutoff = 2000,
-      large_file_overrides = { providers = { "lsp" } },
+      large_file_overrides = { providers = { 'lsp' } },
     },
     config = function(_, opts)
-      require("illuminate").configure(opts)
+      require('illuminate').configure(opts)
 
       local function map(key, dir, buffer)
-        vim.keymap.set("n", key, function()
-          require("illuminate")["goto_" .. dir .. "_reference"](false)
-        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+        vim.keymap.set('n', key, function()
+          require('illuminate')['goto_' .. dir .. '_reference'](false)
+        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. ' Reference', buffer = buffer })
       end
 
-      map("]]", "next")
-      map("[[", "prev")
+      map(']]', 'next')
+      map('[[', 'prev')
 
       -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-      vim.api.nvim_create_autocmd("FileType", {
+      vim.api.nvim_create_autocmd('FileType', {
         callback = function()
           local buffer = vim.api.nvim_get_current_buf()
-          map("]]", "next", buffer)
-          map("[[", "prev", buffer)
+          map(']]', 'next', buffer)
+          map('[[', 'prev', buffer)
         end,
       })
     end,
     keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
+      { ']]', desc = 'Next Reference' },
+      { '[[', desc = 'Prev Reference' },
     },
     -- }}}
   },
-
   {
-    "danymat/neogen", -- {{{
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    'danymat/neogen', -- {{{
+    dependencies = 'nvim-treesitter/nvim-treesitter',
     opts = {
-      snippet_engine = "luasnip",
+      snippet_engine = 'luasnip',
     },
-    cmd = { "Neogen" },
+    cmd = { 'Neogen' },
     keys = {
       {
-        "<Leader>nf",
-        "<CMD>Neogen<CR>",
-        mode = { "n" },
-        desc = "Generate annotation for the function, class or other relevant type you're currently in",
+        '<Leader>nf',
+        '<CMD>Neogen<CR>',
+        mode = { 'n' },
+        desc =
+        "Generate annotation for the function, class or other relevant type you're currently in",
       },
     },
     -- }}}
   },
-
   {
-    "rainbowhxch/accelerated-jk.nvim", -- {{{
+    'rainbowhxch/accelerated-jk.nvim', -- {{{
     keys = {
-      { "j", "<Plug>(accelerated_jk_gj)", mode = { "n" }, desc = "Accelerated gj movement" },
-      { "k", "<Plug>(accelerated_jk_gk)", mode = { "n" }, desc = "Accelerated gk movement" },
+      { 'j', '<Plug>(accelerated_jk_gj)', mode = { 'n' }, desc = 'Accelerated gj movement' },
+      { 'k', '<Plug>(accelerated_jk_gk)', mode = { 'n' }, desc = 'Accelerated gk movement' },
     },
     opts = {
-      mode = "time_driven",
+      mode = 'time_driven',
       enable_deceleration = false,
       acceleration_motions = {},
       acceleration_limit = 150,
@@ -89,81 +87,81 @@ return {
     },
     -- }}}
   },
-
   {
-    "phaazon/hop.nvim", -- {{{
-    branch = "v2",
+    'phaazon/hop.nvim', -- {{{
+    branch = 'v2',
     config = true,
     keys = {
       {
-        "<Leader>kk",
+        '<Leader>kk',
         function()
-          require("hop").hint_lines()
+          require('hop').hint_lines()
         end,
-        mode = { "n" },
-        desc = "Hint the beginning of each lines currently visible in the buffer view and allow to jump to them",
+        mode = { 'n' },
+        desc =
+        'Hint the beginning of each lines currently visible in the buffer view and allow to jump to them',
       },
       {
-        "<Leader>jj",
+        '<Leader>jj',
         function()
-          require("hop").hint_lines()
+          require('hop').hint_lines()
         end,
-        mode = { "n" },
-        desc = "Hint the beginning of each lines currently visible in the buffer view and allow to jump to them",
+        mode = { 'n' },
+        desc =
+        'Hint the beginning of each lines currently visible in the buffer view and allow to jump to them',
       },
       {
-        "<Leader>ss",
+        '<Leader>ss',
         function()
-          require("hop").hint_patterns()
+          require('hop').hint_patterns()
         end,
-        mode = { "n" },
-        desc = "Annotate all matched patterns in the current window with key sequences",
+        mode = { 'n' },
+        desc = 'Annotate all matched patterns in the current window with key sequences',
       },
       {
-        "<Leader>ll",
+        '<Leader>ll',
         function()
-          require("hop").hint_words {
-            direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+          require('hop').hint_words {
+            direction = require('hop.hint').HintDirection.AFTER_CURSOR,
             -- current_line_only = true,
           }
         end,
-        mode = { "n" },
-        desc = "Annotate all words in the current line with key sequences",
+        mode = { 'n' },
+        desc = 'Annotate all words in the current line with key sequences',
       },
       {
-        "<Leader>hh",
+        '<Leader>hh',
         function()
-          require("hop").hint_words {
-            direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+          require('hop').hint_words {
+            direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
             -- current_line_only = true,
           }
         end,
-        mode = { "n" },
-        desc = "Annotate all words in the current line with key sequences",
+        mode = { 'n' },
+        desc = 'Annotate all words in the current line with key sequences',
       },
     },
     -- }}}
   },
-
   {
-    "numToStr/Comment.nvim", -- {{{
+    'numToStr/Comment.nvim', -- {{{
     dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
+      'JoosepAlviste/nvim-ts-context-commentstring',
     },
     keys = {
-      { "gc", mode = { "n", "x" }, desc = "Toggle line comment" },
-      { "gb", mode = { "n", "x" }, desc = "Toggle block comment" },
-      { "gcc", mode = "n", desc = "Toggle line comment" },
-      { "gcb", mode = "n", desc = "Toggle block comment" },
+      { 'gc',  mode = { 'n', 'x' }, desc = 'Toggle line comment' },
+      { 'gb',  mode = { 'n', 'x' }, desc = 'Toggle block comment' },
+      { 'gcc', mode = 'n',          desc = 'Toggle line comment' },
+      { 'gcb', mode = 'n',          desc = 'Toggle block comment' },
     },
     opts = function()
       -- set rust comment string
-      local ft = require "Comment.ft"
-      ft.set("rust", "///%s")
+      local ft = require 'Comment.ft'
+      ft.set('rust', '///%s')
 
       return {
         padding = true,
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
         ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
         mappings = {
           ---operator-pending mapping
@@ -178,29 +176,27 @@ return {
     end,
     -- }}}
   },
-
   {
-    "iamcco/markdown-preview.nvim", -- {{{
-    ft = { "markdown" },
+    'iamcco/markdown-preview.nvim', -- {{{
+    ft = { 'markdown' },
     build = function()
-      vim.fn["mkdp#util#install"]()
+      vim.fn['mkdp#util#install']()
     end,
     init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_filetypes = { 'markdown' }
     end,
     keys = {
       {
-        "<Leader>mp",
-        "<CMD>MarkdownPreview<CR>",
-        desc = "Markdown Preview",
+        '<Leader>mp',
+        '<CMD>MarkdownPreview<CR>',
+        desc = 'Markdown Preview',
       },
     },
     -- }}}
   },
-
   {
-    "saecki/crates.nvim", -- {{{
-    event = { "BufReadPre Cargo.toml" },
+    'saecki/crates.nvim', -- {{{
+    event = { 'BufReadPre Cargo.toml' },
     opts = {
       popup = {
         autofocus = true,
@@ -208,35 +204,34 @@ return {
     },
     -- }}}
   },
-
   {
-    "RaafatTurki/hex.nvim", -- {{{
+    'RaafatTurki/hex.nvim', -- {{{
     config = true,
-    cmd = { "HexToggle" },
+    cmd = { 'HexToggle' },
     -- }}}
   },
   {
-    "lukas-reineke/headlines.nvim", -- {{{
-    ft = { "markdown", "org" },
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    'lukas-reineke/headlines.nvim', -- {{{
+    ft = { 'markdown', 'org' },
+    dependencies = 'nvim-treesitter/nvim-treesitter',
     opts = {},
     -- }}}
   },
   {
-    "LunarVim/bigfile.nvim", -- {{{
+    'LunarVim/bigfile.nvim', -- {{{
     lazy = false,
     opts = {
       filesize = 2,
-      pattern = { "*" },
+      pattern = { '*' },
       features = {
-        "indent_blankline",
-        "illuminate",
-        "lsp",
-        "treesitter",
-        "syntax",
-        "matchparen",
-        "vimopts",
-        "filetype",
+        'indent_blankline',
+        'illuminate',
+        'lsp',
+        'treesitter',
+        'syntax',
+        'matchparen',
+        'vimopts',
+        'filetype',
       },
     },
     -- }}}

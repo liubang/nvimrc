@@ -9,64 +9,64 @@
 
 vim.filetype.add { -- {{{
   filename = {
-    [".clangd"] = "yaml",
-    [".clang-format"] = "yaml",
-    [".bazelrc"] = "bzl",
-    [".gitignore"] = "gitconfig",
-    ["go.sum"] = "gosum",
-    ["go.mod"] = "gomod",
-    ["BUILD"] = "bzl",
-    ["BCLOUD"] = "bzl",
-    ["WORKSPACE"] = "bzl",
+    ['.clangd'] = 'yaml',
+    ['.clang-format'] = 'yaml',
+    ['.bazelrc'] = 'bzl',
+    ['.gitignore'] = 'gitconfig',
+    ['go.sum'] = 'gosum',
+    ['go.mod'] = 'gomod',
+    ['BUILD'] = 'bzl',
+    ['BCLOUD'] = 'bzl',
+    ['WORKSPACE'] = 'bzl',
   },
   extension = {
-    thrift = "thrift",
-    wiki = "markdown",
+    thrift = 'thrift',
+    wiki = 'markdown',
   },
   pattern = {
-    ["*.log"] = "log",
-    ["*_LOG"] = "log",
+    ['*.log'] = 'log',
+    ['*_LOG'] = 'log',
   },
 } -- }}}
 
-local filetype_commands_group = vim.api.nvim_create_augroup("FILETYPE_COMMANDS", { clear = true })
+local filetype_commands_group = vim.api.nvim_create_augroup('FILETYPE_COMMANDS', { clear = true })
 
 -- close lspinfo popup and help,qf buffers with q {{{
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd('FileType', {
   group = filetype_commands_group,
-  pattern = { "lspinfo", "lsp-installer", "null-ls-info", "help", "qf" },
+  pattern = { 'lspinfo', 'lsp-installer', 'null-ls-info', 'help', 'qf' },
   callback = function()
-    local opts = { buffer = true, silent = true, desc = "close lspinfo popup and help,qf buffers" }
-    vim.keymap.set("n", "q", function()
+    local opts = { buffer = true, silent = true, desc = 'close lspinfo popup and help,qf buffers' }
+    vim.keymap.set('n', 'q', function()
       vim.cmd.close()
     end, opts)
   end,
-  desc = "close lspinfo popup and help,qf buffers with q",
+  desc = 'close lspinfo popup and help,qf buffers with q',
 }) -- }}}
 
-local special_settings_group = vim.api.nvim_create_augroup("SPECIAL_SETTINGS", { clear = true })
+local special_settings_group = vim.api.nvim_create_augroup('SPECIAL_SETTINGS', { clear = true })
 
 -- create missing parent directories automatically {{{
-vim.api.nvim_create_autocmd("BufNewFile", {
+vim.api.nvim_create_autocmd('BufNewFile', {
   group = special_settings_group,
   callback = function()
-    vim.api.nvim_create_autocmd("BufWritePre", {
+    vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = 0,
       once = true,
       callback = function()
-        local path = vim.fn.expand "%:h"
-        local p = require("plenary.path"):new(path)
+        local path = vim.fn.expand '%:h'
+        local p = require('plenary.path'):new(path)
         if not p:exists() then
           p:mkdir { parents = true }
         end
       end,
-      desc = "create missing parent directories automatically",
+      desc = 'create missing parent directories automatically',
     })
   end,
 }) -- }}}
 
 -- go to last loc when opening a buffer {{{
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)

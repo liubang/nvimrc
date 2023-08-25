@@ -1,9 +1,10 @@
 {
-  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.enableMessageDialog": false,
   "coc.preferences.maxFileSize": "1MB",
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnType": false,
+  "coc.preferences.floatActions": true,
   "[rust][go][json][jsonc][lua][vim][typescriptreact][javascript]": {
     "coc.preferences.formatOnSave": true
   },
@@ -11,17 +12,23 @@
     "border": true,
     "rounded": false
   },
+  "dialog.rounded": false,
   "notification.border": true,
   "notification.timeout": 3000,
+  "notification.statusLineProgress": true,
   // suggest
   "signature.enable": true,
   "suggest.timeout": 500,
   "suggest.noselect": false,
+  "suggest.enablePreselect": true,
+  "suggest.selection": "first",
+  "suggest.insertMode": "insert",
   "suggest.triggerAfterInsertEnter": false,
   "suggest.triggerCompletionWait": 50,
   "suggest.maxCompleteItemCount": 20,
   "suggest.labelMaxLength": 100,
   "suggest.detailField": "abbr",
+  "suggest.snippetsSupport": true,
   "signature.target": "float",
   "signature.floatConfig": {
     "border": true,
@@ -48,6 +55,9 @@
   },
   "inlayHint.enable": false,
   "yank.highlight.enable": false,
+  "symbol-line.icons": true,
+  "symbol-line.maxItems": 4,
+  "symbol-line.separator": " > ",
   // clangd
   "clangd.enabled": true,
   "clangd.arguments": [
@@ -65,11 +75,14 @@
     "--log=error"
   ],
   // go
-  "go.enable": true,
+  "go.goplsArgs": ["-remote.debug=:0"],
   "go.goplsOptions": {
+    "gofumpt": true,
     "experimentalPostfixCompletions": true,
     "semanticTokens": true,
     "linksInHover": false,
+    "usePlaceholders": true,
+    "staticcheck": true,
     "hints": {
       "assignVariableTypes": true,
       "compositeLiteralFields": true,
@@ -78,9 +91,7 @@
       "functionTypeParameters": true,
       "parameterNames": true,
       "rangeVariableTypes": true
-    },
-    "usePlaceholders": true,
-    "staticcheck": true
+    }
   },
   // python
   "pyright.organizeimports.provider": "ruff",

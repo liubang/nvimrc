@@ -1,6 +1,6 @@
 do
   local table = setmetatable({
-    name = "name",
+    name = 'name',
   }, {
     __index = function(t, key)
       vim.pretty_print(t)
@@ -18,12 +18,12 @@ do
   }
 
   if table.rust then
-    print "RUST OK"
+    print 'RUST OK'
   end
 
   if table.go then
-    print "GO OK"
+    print 'GO OK'
   else
-    print "GO NO"
+    print 'GO NO'
   end
 end

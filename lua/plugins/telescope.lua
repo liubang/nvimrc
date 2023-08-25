@@ -8,63 +8,68 @@
 --=====================================================================
 
 local M = {
-  "nvim-telescope/telescope.nvim",
-  cmd = "Telescope",
+  'nvim-telescope/telescope.nvim',
+  cmd = 'Telescope',
   version = false,
   dependencies = {
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-ui-select.nvim" },
-    { "skywind3000/asynctasks.vim" },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'skywind3000/asynctasks.vim' },
   },
   keys = {
-    { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" }, desc = "List files" },
-    { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" }, desc = "List recent files" },
-    { "<Leader>ag", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Grep in files" },
+    { '<Leader>ff', '<CMD>Telescope find_files<CR>', mode = { 'n' }, desc = 'List files' },
+    { '<Leader>rf', '<CMD>Telescope oldfiles<CR>',   mode = { 'n' }, desc = 'List recent files' },
+    { '<Leader>ag', '<CMD>Telescope live_grep<CR>',  mode = { 'n' }, desc = 'Grep in files' },
     {
-      "<Leader>Ag",
-      "<CMD>Telescope grep_string<CR>",
-      mode = { "n" },
-      desc = "Searches for the string under your cursor (root dir)",
+      '<Leader>Ag',
+      '<CMD>Telescope grep_string<CR>',
+      mode = { 'n' },
+      desc = 'Searches for the string under your cursor (root dir)',
     },
     {
-      "<Leader>bb",
-      "<CMD>Telescope buffers<CR>",
-      mode = { "n" },
-      desc = "Lists open buffers in current neovim instance",
+      '<Leader>bb',
+      '<CMD>Telescope buffers<CR>',
+      mode = { 'n' },
+      desc = 'Lists open buffers in current neovim instance',
     },
-    { "<Leader>ts", "<CMD>Telescope tasks<CR>", mode = { "n" }, desc = "Lists AsyncTasks for current buffer" },
+    {
+      '<Leader>ts',
+      '<CMD>Telescope tasks<CR>',
+      mode = { 'n' },
+      desc = 'Lists AsyncTasks for current buffer'
+    },
   },
 }
 
 function M.init()
   ---@diagnostic disable-next-line: duplicate-set-field
   vim.ui.select = function(...)
-    require("lazy").load { plugins = { "telescope.nvim" } }
+    require('lazy').load { plugins = { 'telescope.nvim' } }
     return vim.ui.select(...)
   end
 end
 
 function M.config()
-  local telescope = require "telescope"
-  local actions = require "telescope.actions"
+  local telescope = require 'telescope'
+  local actions = require 'telescope.actions'
 
   telescope.setup {
     defaults = { --{{{
-      prompt_prefix = "   ",
-      selection_caret = " ",
-      entry_prefix = "  ",
-      multi_icon = "",
-      set_env = { ["COLORTERM"] = "truecolor" },
+      prompt_prefix = '   ',
+      selection_caret = ' ',
+      entry_prefix = '  ',
+      multi_icon = '',
+      set_env = { ['COLORTERM'] = 'truecolor' },
       results_title = false,
-      sorting_strategy = "ascending",
-      selection_strategy = "reset",
-      layout_strategy = "horizontal",
+      sorting_strategy = 'ascending',
+      selection_strategy = 'reset',
+      layout_strategy = 'horizontal',
       use_less = true,
       border = {},
       preview = false,
       path_display = { truncate = 3 },
       layout_config = {
-        prompt_position = "top",
+        prompt_position = 'top',
         width = function(_, max_columns, _)
           return math.min(max_columns, 120)
         end,
@@ -72,7 +77,7 @@ function M.config()
           return math.min(max_lines, 28)
         end,
         horizontal = {
-          prompt_position = "top",
+          prompt_position = 'top',
           mirror = false,
           preview_width = 0.55,
           results_width = 0.8,
@@ -84,88 +89,88 @@ function M.config()
       cache = false,
       mappings = {
         i = {
-          ["<C-x>"] = false,
-          ["<C-u>"] = false,
-          ["<C-d>"] = false,
-          ["<Esc>"] = actions.close,
-          ["<C-c>"] = actions.close,
-          ["<C-s>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = actions.select_tab,
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-          ["<C-/>"] = "which_key",
+          ['<C-x>'] = false,
+          ['<C-u>'] = false,
+          ['<C-d>'] = false,
+          ['<Esc>'] = actions.close,
+          ['<C-c>'] = actions.close,
+          ['<C-s>'] = actions.select_horizontal,
+          ['<C-v>'] = actions.select_vertical,
+          ['<C-t>'] = actions.select_tab,
+          ['<C-j>'] = actions.move_selection_next,
+          ['<C-k>'] = actions.move_selection_previous,
+          ['<C-/>'] = 'which_key',
         },
         n = {
-          ["<Esc>"] = actions.close,
-          ["j"] = actions.move_selection_next,
-          ["k"] = actions.move_selection_previous,
-          ["H"] = actions.move_to_top,
-          ["M"] = actions.move_to_middle,
-          ["L"] = actions.move_to_bottom,
-          ["?"] = actions.which_key,
+          ['<Esc>'] = actions.close,
+          ['j'] = actions.move_selection_next,
+          ['k'] = actions.move_selection_previous,
+          ['H'] = actions.move_to_top,
+          ['M'] = actions.move_to_middle,
+          ['L'] = actions.move_to_bottom,
+          ['?'] = actions.which_key,
         },
       },
-    }, --}}}
+    },          --}}}
     pickers = { --{{{
       buffers = {
         sort_mru = true,
         mappings = {
-          i = { ["<c-d>"] = actions.delete_buffer },
+          i = { ['<c-d>'] = actions.delete_buffer },
         },
       },
       live_grep = { preview = true },
       grep_string = { preview = true },
-      man_pages = { sections = { "2", "3" } },
-      lsp_document_symbols = { path_display = { "hidden" } },
-      lsp_workspace_symbols = { path_display = { "shorten" } },
-    }, --}}}
+      man_pages = { sections = { '2', '3' } },
+      lsp_document_symbols = { path_display = { 'hidden' } },
+      lsp_workspace_symbols = { path_display = { 'shorten' } },
+    },             --}}}
     extensions = { --{{{
       fzf = {
         fuzzy = false,
         override_generic_sorter = true,
         override_file_sorter = true,
-        case_mode = "smart_case",
+        case_mode = 'smart_case',
       },
     }, --}}}
   }
 
-  telescope.load_extension "ui-select"
-  telescope.load_extension "fzf"
-  telescope.load_extension "bazel"
-  telescope.load_extension "tasks"
+  telescope.load_extension 'ui-select'
+  telescope.load_extension 'fzf'
+  telescope.load_extension 'bazel'
+  telescope.load_extension 'tasks'
 
   local colors = { --{{{
-    white = "#ebdbb2",
-    darker_black = "#222222",
-    black = "#282828", --  nvim bg
-    black2 = "#3c3836",
-    one_bg = "#323232",
-    one_bg2 = "#3b3b3b",
-    one_bg3 = "#434343",
-    grey = "#505050",
-    grey_fg = "#5a5a5a",
-    grey_fg2 = "#646464",
-    light_grey = "#6c6c6c",
-    red = "#ea6962",
-    baby_pink = "#ce8196",
-    pink = "#ff75a0",
-    line = "#373737", -- for lines like vertsplit
-    green = "#89b482",
-    vibrant_green = "#a9b665",
-    nord_blue = "#6f8faf",
-    blue = "#6d8dad",
-    yellow = "#d8a657",
-    sun = "#eab869",
-    purple = "#d3869b",
-    dark_purple = "#d3869b",
-    teal = "#749689",
-    orange = "#e78a4e",
-    cyan = "#89b482",
-    statusline_bg = "#2c2c2c",
-    lightbg = "#393939",
-    pmenu_bg = "#89b482",
-    folder_bg = "#6d8dad",
+    white = '#ebdbb2',
+    darker_black = '#222222',
+    black = '#282828', --  nvim bg
+    black2 = '#3c3836',
+    one_bg = '#323232',
+    one_bg2 = '#3b3b3b',
+    one_bg3 = '#434343',
+    grey = '#505050',
+    grey_fg = '#5a5a5a',
+    grey_fg2 = '#646464',
+    light_grey = '#6c6c6c',
+    red = '#ea6962',
+    baby_pink = '#ce8196',
+    pink = '#ff75a0',
+    line = '#373737', -- for lines like vertsplit
+    green = '#89b482',
+    vibrant_green = '#a9b665',
+    nord_blue = '#6f8faf',
+    blue = '#6d8dad',
+    yellow = '#d8a657',
+    sun = '#eab869',
+    purple = '#d3869b',
+    dark_purple = '#d3869b',
+    teal = '#749689',
+    orange = '#e78a4e',
+    cyan = '#89b482',
+    statusline_bg = '#2c2c2c',
+    lightbg = '#393939',
+    pmenu_bg = '#89b482',
+    folder_bg = '#6d8dad',
   } --}}}
 
   -- colors {{{
