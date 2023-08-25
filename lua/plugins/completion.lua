@@ -18,6 +18,7 @@ return {
         'coc-snippets',
         'coc-clangd',
         'coc-go',
+        'coc-pyright',
         'coc-json',
         'coc-xml',
         'coc-markdownlint',
@@ -27,6 +28,7 @@ return {
         'coc-yank',
         'coc-prettier',
         'coc-sh',
+        'coc-sumneko-lua',
         'coc-texlab',
         'coc-tsserver',
         'coc-sql',
@@ -63,7 +65,7 @@ return {
       keyset('n', '<leader>cl', '<Plug>(coc-codelens-action)', { silent = true, nowait = true })
       keyset('n', '<leader>fm', '<Plug>(coc-format)', { silent = true })
       keyset('n', '<leader>es', ':<C-u>CocList diagnostics<cr>', { silent = true })
-      keyset('n', '<leader>ee', ":call CocAction('diagnosticPreview')<cr>", { silent = true })
+      keyset('n', '<leader>ee', '<Plug>(coc-diagnostic-info)', { silent = true })
 
       -- Use K to show documentation in preview window
       keyset('n', '<c-k>', function()

@@ -1,17 +1,23 @@
 {
   "coc.preferences.enableMessageDialog": true,
-  "[json][jsonc][lua][vim]": {
+  "coc.preferences.maxFileSize": "1MB",
+  "coc.preferences.silentAutoupdate": true,
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.formatOnType": false,
+  "[rust][go][json][jsonc][lua][vim][typescriptreact][javascript]": {
     "coc.preferences.formatOnSave": true
   },
   "hover.floatConfig": {
     "border": true,
     "rounded": false
   },
+  "notification.border": true,
+  "notification.timeout": 3000,
   // suggest
   "signature.enable": true,
   "suggest.timeout": 500,
   "suggest.noselect": false,
-  "suggest.triggerAfterInsertEnter": true,
+  "suggest.triggerAfterInsertEnter": false,
   "suggest.triggerCompletionWait": 50,
   "suggest.maxCompleteItemCount": 20,
   "suggest.labelMaxLength": 100,
@@ -24,13 +30,15 @@
   },
   // diagnostic
   "diagnostic.enable": true,
+  "diagnostic.enableMessage": "jump",
   "diagnostic.infoSign": " ",
   "diagnostic.hintSign": " ",
   "diagnostic.warningSign": " ",
   "diagnostic.errorSign": " ",
   "diagnostic.format": "%message [%source]",
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": false,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
   "diagnostic.floatConfig": {
     "border": true,
@@ -39,6 +47,7 @@
     "focusable": true
   },
   "inlayHint.enable": false,
+  "yank.highlight.enable": false,
   // clangd
   "clangd.enabled": true,
   "clangd.arguments": [
@@ -86,7 +95,6 @@
   "pullDiagnostic.onChange": false,
   "pullDiagnostic.onSave": true,
   // lua
-  "lua.enable": true,
   "Lua.format.enable": true,
   "Lua.format.defaultConfig": {
     "indent_style": "space",
@@ -96,8 +104,10 @@
     "align_array_table": "true",
     "space_around_table_field_list": "true"
   },
+  "sumneko-lua.enableNvimLuaDev": true,
   "Lua.workspace.checkThirdParty": false,
   "Lua.runtime.version": "LuaJIT",
-  "Lua.diagnostics.globals": ["vim", "jit"]
+  "Lua.diagnostics.globals": ["vim", "jit"],
+  "Lua.completion.callSnippet": "Replace"
   // vim:ft=jsonc
 }
