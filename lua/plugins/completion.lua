@@ -49,6 +49,7 @@ return {
         'coc-pyright',
         'coc-json',
         'coc-xml',
+        'coc-yaml',
         'coc-markdownlint',
         'coc-marketplace',
         'coc-vimlsp',
@@ -58,7 +59,6 @@ return {
         'coc-sumneko-lua',
         'coc-texlab',
         'coc-tsserver',
-        'coc-sql',
       }
 
       function _G.check_back_space()

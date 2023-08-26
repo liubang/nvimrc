@@ -49,34 +49,6 @@ return {
     end,
     -- }}}
   },
-  -- ui
-  {
-    'rcarriga/nvim-notify', -- {{{
-    opts = {                -- {{{
-      timeout = 1000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-      -- stages = "fade",
-    }, -- }}}
-    init = function()
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'VeryLazy',
-        callback = function()
-          vim.notify = require 'notify'
-        end,
-      })
-      -- ---@diagnostic disable-next-line: duplicate-set-field
-      -- vim.notify = function(...)
-      --   require("lazy").load { plugins = { "nvim-notify" } }
-      --   return require "notify"(...)
-      -- end
-    end,
-    -- }}}
-  },
   -- dashboard
   {
     'goolord/alpha-nvim', -- {{{
@@ -143,38 +115,6 @@ return {
         end,
       })
     end,
-    -- }}}
-  },
-  -- outline
-  {
-    'stevearc/aerial.nvim', -- {{{
-    branch = 'master',
-    cmd = 'AerialToggle',
-    opts = {
-      backends = { 'lsp', 'treesitter', 'markdown' },
-      layout = {
-        default_direction = 'prefer_right',
-        placement = 'edge',
-      },
-      attach_mode = 'global', -- 'window' | 'global'
-      nerd_font = 'auto',
-      show_guides = true,
-      keymaps = {
-        ['<CR>'] = false,
-        ['o'] = 'actions.jump',
-        ['<C-j>'] = 'actions.down_and_scroll',
-        ['<C-k>'] = 'actions.up_and_scroll',
-        ['O'] = 'actions.tree_toggle',
-      },
-    },
-    keys = {
-      {
-        '<Leader>tl',
-        '<CMD>AerialToggle<CR>',
-        mode = { 'n' },
-        desc = 'Open or close the aerial window'
-      },
-    },
     -- }}}
   },
   -- file tree
@@ -549,6 +489,21 @@ return {
     end,
     -- }}}
   },
+  -- outline
+  {
+    'liuchengxu/vista.vim',
+    cmd = { 'Vista' },
+    config = function()
+      vim.g.vista_icon_indent = { '▸ ', '' }
+      vim.g.vista_default_executive = 'coc'
+      vim.g.vista_disable_statusline = 0
+      vim.g.vista_highlight_whole_line = 0
+      vim.g.vista_echo_cursor = 0
+    end,
+    keys = {
+      { '<Leader>tl', '<CMD>Vista!!<CR>', mode = { 'n' } }
+    }
+  }
 }
 
 -- vim: fdm=marker fdl=0
