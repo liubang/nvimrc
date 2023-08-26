@@ -11,9 +11,30 @@ return {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    opts = {
-      disable_filetype = { 'TelescopePrompt' },
-    }
+    config = function()
+      local npairs = require('nvim-autopairs')
+      npairs.setup({
+        disable_filetype = { 'TelescopePrompt' },
+        map_cr = false,
+      })
+      _G.MUtils = {}
+      MUtils.completion_confirm = function()
+        if vim.fn['coc#pum#visible']() ~= 0 then
+          return vim.fn['coc#pum#confirm']()
+        else
+          return npairs.autopairs_cr()
+        end
+      end
+      vim.keymap.set('i', '<CR>', 'v:lua.MUtils.completion_confirm()',
+        { expr = true, noremap = true })
+    end,
+  },
+  {
+    'honza/vim-snippets',
+    lazy = false,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. '/UltiSnips')
+    end
   },
   {
     'neoclide/coc.nvim',
@@ -40,40 +61,38 @@ return {
         'coc-sql',
       }
 
-      local keyset = vim.keymap.set
       function _G.check_back_space()
         local col = vim.fn.col('.') - 1
         return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
       end
 
       local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
-      keyset('i', '<TAB>',
+      vim.keymap.set('i', '<TAB>',
         'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
         opts)
-      keyset('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
-
-      keyset('i', '<cr>',
-        [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
-      keyset('i', '<c-j>', '<Plug>(coc-snippets-expand-jump)')
+      vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
       -- GoTo code navigation
-      keyset('n', '<leader>gd', '<Plug>(coc-definition)', { silent = true })
-      keyset('n', '<leader>gD', '<Plug>(coc-declaration)', { silent = true })
-      keyset('n', '<leader>gy', '<Plug>(coc-type-definition)', { silent = true })
-      keyset('n', '<leader>gi', '<Plug>(coc-implementation)', { silent = true })
-      keyset('n', '<leader>gr', '<Plug>(coc-references)', { silent = true })
-      keyset('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
-      keyset('n', '<leader>ca', '<Plug>(coc-codeaction-cursor)', { silent = true, nowait = true })
-      keyset('n', '<leader>as', '<Plug>(coc-codeaction-source)', { silent = true, nowait = true })
-      keyset('n', '<leader>qf', '<Plug>(coc-fix-current)', { silent = true, nowait = true })
-      keyset('n', '<leader>re', '<Plug>(coc-codeaction-refactor)', { silent = true })
-      keyset('n', '<leader>cl', '<Plug>(coc-codelens-action)', { silent = true, nowait = true })
-      keyset('n', '<leader>fm', '<Plug>(coc-format)', { silent = true })
-      keyset('n', '<leader>es', ':<C-u>CocList diagnostics<cr>', { silent = true })
-      keyset('n', '<leader>ee', '<Plug>(coc-diagnostic-info)', { silent = true })
+      vim.keymap.set('n', '<leader>gd', '<Plug>(coc-definition)', { silent = true })
+      vim.keymap.set('n', '<leader>gD', '<Plug>(coc-declaration)', { silent = true })
+      vim.keymap.set('n', '<leader>gy', '<Plug>(coc-type-definition)', { silent = true })
+      vim.keymap.set('n', '<leader>gi', '<Plug>(coc-implementation)', { silent = true })
+      vim.keymap.set('n', '<leader>gr', '<Plug>(coc-references)', { silent = true })
+      vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
+      vim.keymap.set('n', '<leader>ca', '<Plug>(coc-codeaction-cursor)',
+        { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>as', '<Plug>(coc-codeaction-source)',
+        { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>qf', '<Plug>(coc-fix-current)', { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>re', '<Plug>(coc-codeaction-refactor)', { silent = true })
+      vim.keymap.set('n', '<leader>cl', '<Plug>(coc-codelens-action)',
+        { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>fm', '<Plug>(coc-format)', { silent = true })
+      vim.keymap.set('n', '<leader>es', ':<C-u>CocList diagnostics<cr>', { silent = true })
+      vim.keymap.set('n', '<leader>ee', '<Plug>(coc-diagnostic-info)', { silent = true })
 
       -- Use K to show documentation in preview window
-      keyset('n', '<c-k>', function()
+      vim.keymap.set('n', '<c-k>', function()
         local cw = vim.fn.expand('<cword>')
         if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
           vim.api.nvim_command('h ' .. cw)

@@ -18,17 +18,20 @@
   "notification.statusLineProgress": true,
   // suggest
   "signature.enable": true,
-  "suggest.timeout": 500,
   "suggest.noselect": false,
   "suggest.enablePreselect": true,
   "suggest.selection": "first",
   "suggest.insertMode": "insert",
-  "suggest.triggerAfterInsertEnter": false,
+  "suggest.triggerAfterInsertEnter": true,
   "suggest.triggerCompletionWait": 50,
   "suggest.maxCompleteItemCount": 20,
   "suggest.labelMaxLength": 100,
   "suggest.detailField": "abbr",
   "suggest.snippetsSupport": true,
+  "suggest.pumFloatConfig": {
+    "border": false
+  },
+  "suggest.acceptSuggestionOnCommitCharacter": true,
   "signature.target": "float",
   "signature.floatConfig": {
     "border": true,
@@ -119,6 +122,9 @@
   "Lua.workspace.checkThirdParty": false,
   "Lua.runtime.version": "LuaJIT",
   "Lua.diagnostics.globals": ["vim", "jit"],
-  "Lua.completion.callSnippet": "Replace"
+  "Lua.completion.callSnippet": "Replace",
+  "snippets.trace": "error",
+  "snippets.ultisnips.enable": true,
+  "snippets.ultisnips.directories": ["UltiSnips"]
   // vim:ft=jsonc
 }
