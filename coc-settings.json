@@ -17,9 +17,9 @@
   "notification.timeout": 3000,
   "notification.statusLineProgress": true,
   // suggest
-  "signature.enable": true,
   "suggest.noselect": false,
   "suggest.enablePreselect": true,
+  "suggest.enableFloat": false,
   "suggest.selection": "first",
   "suggest.insertMode": "insert",
   "suggest.triggerAfterInsertEnter": true,
@@ -32,6 +32,8 @@
     "border": false
   },
   "suggest.acceptSuggestionOnCommitCharacter": true,
+  // signature
+  "signature.enable": true,
   "signature.target": "float",
   "signature.floatConfig": {
     "border": true,

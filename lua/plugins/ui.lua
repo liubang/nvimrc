@@ -499,6 +499,7 @@ return {
       vim.g.vista_disable_statusline = 0
       vim.g.vista_highlight_whole_line = 0
       vim.g.vista_echo_cursor = 0
+      vim.g['vista#renderer#enable_icon'] = 0
     end,
     keys = {
       { '<Leader>tl', '<CMD>Vista!!<CR>', mode = { 'n' } }

@@ -9,7 +9,6 @@
 
 return {
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
-
   {
     'skywind3000/asynctasks.vim', -- {{{
     dependencies = {
@@ -292,20 +291,6 @@ return {
     },
     -- }}}
   },
-
-  {
-    'NvChad/nvim-colorizer.lua', -- {{{
-    ft = { 'css', 'scss', 'sass', 'html', 'lua', 'markdown', 'javascript', 'typescript' },
-    opts = {
-      filetypes = { 'css', 'scss', 'sass', 'html', 'lua', 'markdown', 'javascript', 'typescript' },
-      r_default_options = {
-        mode = 'virtualtext',
-        virtualtext = '■',
-      },
-    },
-    -- }}}
-  },
-
   {
     'echasnovski/mini.surround', -- {{{
     keys = function(plugin, keys)

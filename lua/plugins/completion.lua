@@ -66,11 +66,14 @@ return {
         return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
       end
 
-      local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
-      vim.keymap.set('i', '<TAB>',
-        'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
-        opts)
-      vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+      vim.cmd [[
+      inoremap <silent><expr> <TAB>
+          \ pumvisible() ? coc#_select_confirm() :
+          \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+          \ v:lua.check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+      ]]
+      vim.cmd [[inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]]
 
       -- GoTo code navigation
       vim.keymap.set('n', '<leader>gd', '<Plug>(coc-definition)', { silent = true })
