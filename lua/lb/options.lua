@@ -147,8 +147,6 @@ vim.opt.linebreak = true
 vim.opt.foldnestmax = 3
 vim.opt.foldlevelstart = 100
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.indentexpr = "nvim_treesitter#indent()"
 --}}}
 
 -- python {{{

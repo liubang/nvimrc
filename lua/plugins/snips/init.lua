@@ -10,6 +10,7 @@
 return {
   "L3MON4D3/LuaSnip",
   build = "make install_jsregexp",
+  dependencies = { "rafamadriz/friendly-snippets" },
   opts = function()
     local types = require "luasnip.util.types"
     return {
@@ -75,15 +76,9 @@ return {
   config = function(_, opts)
     require("luasnip").setup(opts)
     require "plugins.snips.all"
-    require "plugins.snips.c"
-    require "plugins.snips.cpp"
-    require "plugins.snips.rust"
-    require "plugins.snips.go"
-    require "plugins.snips.java"
-    require "plugins.snips.lua"
-    require "plugins.snips.latex"
     require "plugins.snips.python"
     require "plugins.snips.markdown"
+    require("luasnip.loaders.from_vscode").lazy_load()
   end,
 }
 

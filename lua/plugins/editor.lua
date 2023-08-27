@@ -56,24 +56,6 @@ return {
   },
 
   {
-    "danymat/neogen", -- {{{
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {
-      snippet_engine = "luasnip",
-    },
-    cmd = { "Neogen" },
-    keys = {
-      {
-        "<Leader>nf",
-        "<CMD>Neogen<CR>",
-        mode = { "n" },
-        desc = "Generate annotation for the function, class or other relevant type you're currently in",
-      },
-    },
-    -- }}}
-  },
-
-  {
     "rainbowhxch/accelerated-jk.nvim", -- {{{
     keys = {
       { "j", "<Plug>(accelerated_jk_gj)", mode = { "n" }, desc = "Accelerated gj movement" },
@@ -147,9 +129,6 @@ return {
 
   {
     "numToStr/Comment.nvim", -- {{{
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
     keys = {
       { "gc", mode = { "n", "x" }, desc = "Toggle line comment" },
       { "gb", mode = { "n", "x" }, desc = "Toggle block comment" },
@@ -163,15 +142,8 @@ return {
 
       return {
         padding = true,
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-        ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
         mappings = {
-          ---operator-pending mapping
-          ---Includes `gcc`, `gcb`, `gc[count]{motion}` and `gb[count]{motion}`
-          ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
           basic = true,
-          ---extra mapping
-          ---Includes `gco`, `gcO`, `gcA`
           extra = false,
         },
       }
@@ -213,32 +185,6 @@ return {
     "RaafatTurki/hex.nvim", -- {{{
     config = true,
     cmd = { "HexToggle" },
-    -- }}}
-  },
-  {
-    "lukas-reineke/headlines.nvim", -- {{{
-    ft = { "markdown", "org" },
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {},
-    -- }}}
-  },
-  {
-    "LunarVim/bigfile.nvim", -- {{{
-    lazy = false,
-    opts = {
-      filesize = 2,
-      pattern = { "*" },
-      features = {
-        "indent_blankline",
-        "illuminate",
-        "lsp",
-        "treesitter",
-        "syntax",
-        "matchparen",
-        "vimopts",
-        "filetype",
-      },
-    },
     -- }}}
   },
 }

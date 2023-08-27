@@ -125,7 +125,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `sr`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Replace surrounding                                                               | **n**               |
 | `sn`         | [mini.surround](https://github.com/echasnovski/mini.surround.git) Update `MiniSurround.config.n_lines`                                              | **n**               |
 | `<leader>ft` | [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim.git) Explorer NeoTree (cwd)                                                          | **n**               |
-| `<Leader>nf` | [neogen](https://github.com/danymat/neogen.git) Generate annotation for the function, class or other relevant type you're currently in              | **n**               |
 | `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle breakpoint                                                                          | **n**               |
 | `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                                                   | **n**               |
 | `<leader>di` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step into                                                                                  | **n**               |
@@ -135,8 +134,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dq` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Quit                                                                                       | **n**               |
 | `<leader>dU` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle ui                                                                                  | **n**               |
 | `<leader>sr` | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre.git) Replace in files (Spectre)                                                            | **n**               |
-| `<Leader>v`  | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment selection                                                       | **n**               |
-| `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Schrink selection                                                         | **x**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                                                   | **n**               |
 | `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                                            | **n**               |
 | `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                                                | **n**               |
@@ -167,17 +164,16 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-calc](https://github.com/hrsh7th/cmp-calc)
-- [cmp-latex-symbols](https://github.com/kdheepak/cmp-latex-symbols)
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [cmp-path](https://github.com/hrsh7th/cmp-path)
 - [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [crates.nvim](https://github.com/saecki/crates.nvim)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
-- [headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
 - [hex.nvim](https://github.com/RaafatTurki/hex.nvim)
 - [hop.nvim](https://github.com/phaazon/hop.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -191,7 +187,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
-- [neogen](https://github.com/danymat/neogen)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
@@ -202,10 +197,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
-- [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
