@@ -173,6 +173,7 @@ return {
       close_if_last_window = true,
       enable_diagnostics = false,
       enable_git_status = true,
+      use_default_mappings = false,
       event_handlers = { -- {{{
         {
           event = "file_added",
@@ -209,8 +210,9 @@ return {
           ["<cr>"] = "open_drop",
           ["o"] = "open_drop",
           ["s"] = "open_split",
+          ["t"] = "open_tab_drop",
           ["v"] = "open_vsplit",
-          ["a"] = { "add", config = { show_path = "none" } },
+          ["a"] = { "add", config = { show_path = "relative" } },
           ["A"] = "add_directory",
           ["d"] = "delete",
           ["r"] = "rename",
