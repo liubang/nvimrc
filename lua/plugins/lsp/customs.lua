@@ -30,6 +30,7 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, bufopts)
 
+  client.server_capabilities.semanticTokensProvider = nil
   format.on_attach(client, bufnr)
 end
 
