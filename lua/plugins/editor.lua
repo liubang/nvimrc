@@ -187,6 +187,8 @@ return {
     cmd = { "HexToggle" },
     -- }}}
   },
+
+  { "skywind3000/vim-flex-bison-syntax", ft = { "yacc", "lex" } },
 }
 
 -- vim: fdm=marker fdl=0
