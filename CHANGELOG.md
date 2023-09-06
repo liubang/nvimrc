@@ -1,5 +1,40 @@
 # Changelog
 
+## [3.11.3](https://github.com/liubang/nvimrc/compare/v3.11.2...v3.11.3) (2023-09-06)
+
+
+### Bug Fixes
+
+* **treesitter:** deprecated treesitter api ([656eb71](https://github.com/liubang/nvimrc/commit/656eb71af97050156a1f458c5e9c09ba833ed426))
+
+
+### Performance Improvements
+
+* **bufferline.nvim:** update config ([bbe94a6](https://github.com/liubang/nvimrc/commit/bbe94a655a4894df25f588161230abc15bd8fb69))
+* **clangd:** update clangd config ([7e74cb2](https://github.com/liubang/nvimrc/commit/7e74cb24c3ac81f99f10a280a17975532f22988a))
+* **clangd:** update clangd config ([3fc3514](https://github.com/liubang/nvimrc/commit/3fc35142d7973cab6971c272cfba635e15316d6f))
+* **cmp.nvim:** less is more ([a817502](https://github.com/liubang/nvimrc/commit/a817502b11fdacc82cf1d05a83fd1552e46cf1b2))
+* **cmp.nvim:** update cmp config ([ebcdb1c](https://github.com/liubang/nvimrc/commit/ebcdb1c73fe8bfaf33c130cf3572ea71bd2cc4bb))
+* **cmp.nvim:** update cmp config ([d5f6385](https://github.com/liubang/nvimrc/commit/d5f6385fc583c77388648e5f84e24b97cc3bb5b7))
+* **cmp.nvim:** update cmp config ([88b68c9](https://github.com/liubang/nvimrc/commit/88b68c9892ede16acc16346835d0b3a0bb32cd69))
+* **cmp:** update cmp config ([cbb0bf5](https://github.com/liubang/nvimrc/commit/cbb0bf5cdee72772651f2b8428f65d92083e2050))
+* **hl:** add modern c/cpp syntax highlight ([7c415f5](https://github.com/liubang/nvimrc/commit/7c415f5036ba96ea896bda7f7d8915fe43ba59ef))
+* **icons:** update some icons ([f865c65](https://github.com/liubang/nvimrc/commit/f865c652863c21e7c95044cb3cfa415ed9b793ca))
+* **lsp:** disable semantic tokens ([82e96d0](https://github.com/liubang/nvimrc/commit/82e96d029d837410bebb1b76c4451d888b256952))
+* **lsp:** disable semantic tokens for clangd ([dccb4c7](https://github.com/liubang/nvimrc/commit/dccb4c7923f5f110987515946723161fbd3d90be))
+* **lsp:** update lsp config ([8f59d82](https://github.com/liubang/nvimrc/commit/8f59d820dd74c00188a0b6b16655b80eeb7f9b4b))
+* **misc:** some changes ([b2fb47e](https://github.com/liubang/nvimrc/commit/b2fb47e4f980c6fbcd1314f2e940cfdd0519388b))
+* **misc:** some changes ([542bb84](https://github.com/liubang/nvimrc/commit/542bb84306308cd8d0b5ed27295f5f02b5e04763))
+* **mix:** less is more ([ab4fe62](https://github.com/liubang/nvimrc/commit/ab4fe62f75402837ae37c80f02e9dd8ae14ecd52))
+* **mix:** less is more ([8c3273e](https://github.com/liubang/nvimrc/commit/8c3273e88ff9f3e1c0a5bfe50cb6a7fef6e42b43))
+* **neo-tree:** disable default mapping ([62e1584](https://github.com/liubang/nvimrc/commit/62e158427add4aec5334933a697b081d81eb33e5))
+* **neo-tree:** upgrade to v3.x ([8b389ec](https://github.com/liubang/nvimrc/commit/8b389ecb6efe9fdb30c691f5aece48dbc0b822c8))
+* **neo-tree:** upgrade to v3.x ([f9896b2](https://github.com/liubang/nvimrc/commit/f9896b29bf5fd00fc14c3c97c55b4ff5af2934b4))
+* **pairs:** use mini.pairs ([9b3d7e6](https://github.com/liubang/nvimrc/commit/9b3d7e6567c0d55b9d4b7df58eb8df350c59182e))
+* **syntax:** add go syntax ([5915d71](https://github.com/liubang/nvimrc/commit/5915d71c2a8815d7759eb29d5b8990daaeced10c))
+* **syntax:** add yacc and lex syntax ([5eda8e1](https://github.com/liubang/nvimrc/commit/5eda8e1db1725661952191006c326537af8417f9))
+* **theme:** use gruvbox-material-light-hard ([a29bc67](https://github.com/liubang/nvimrc/commit/a29bc6795c7dcb0562c9adf31b27a02bfe4fb121))
+
 ## [3.11.2](https://github.com/liubang/nvimrc/compare/v3.11.1...v3.11.2) (2023-06-03)
 
 
