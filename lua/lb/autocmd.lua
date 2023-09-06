@@ -7,28 +7,6 @@
 --
 --=====================================================================
 
-vim.filetype.add { -- {{{
-  filename = {
-    [".clangd"] = "yaml",
-    [".clang-format"] = "yaml",
-    [".bazelrc"] = "bzl",
-    [".gitignore"] = "gitconfig",
-    ["go.sum"] = "gosum",
-    ["go.mod"] = "gomod",
-    ["BUILD"] = "bzl",
-    ["BCLOUD"] = "bzl",
-    ["WORKSPACE"] = "bzl",
-  },
-  extension = {
-    thrift = "thrift",
-    wiki = "markdown",
-  },
-  pattern = {
-    ["*.log"] = "log",
-    ["*_LOG"] = "log",
-  },
-} -- }}}
-
 local filetype_commands_group = vim.api.nvim_create_augroup("FILETYPE_COMMANDS", { clear = true })
 
 -- close lspinfo popup and help,qf buffers with q {{{
