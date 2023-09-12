@@ -11,6 +11,7 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
+    enabled = false,
     opts = {
       expand_lines = true,
       icons = { expanded = "", collapsed = "", circular = "" },
@@ -54,6 +55,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    enabled = false,
     opts = {
       enabled = true,
       enabled_commands = true,
@@ -69,6 +71,7 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
+    enabled = false,
     config = function() require "plugins.dap.dap" end,
     cmd = {
       "DapSetLogLevel",
