@@ -13,7 +13,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_events_group,
   pattern = "*.go",
   callback = function()
-    require("lb.utils.lsp").lsp_organise_imports()
+    local client = function()
+      local clients = vim.lsp.get_active_clients()
+      for _, cl in pairs(clients) do
+        if cl.name == "gopls" then
+          return cl
+        end
+      end
+    end
+    require("plugins.lsp.utils").codeaction(client(), "", "source.organizeImports", 1000)
+    require("plugins.lsp.format").format()
   end,
 })
 

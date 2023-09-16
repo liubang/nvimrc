@@ -24,7 +24,7 @@ function M.format()
     end
     return client.name ~= "null-ls"
   end
-  vim.lsp.buf.format { bufnr = bufnr, filter = filter }
+  vim.lsp.buf.format { async = false, bufnr = bufnr, filter = filter }
 end
 
 function M.on_attach(client, bufnr)
