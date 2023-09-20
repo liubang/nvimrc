@@ -10,8 +10,8 @@ local M = {}
 
 local autoformats = {
   rust = true,
-  bzl = true,
   lua = true,
+  -- bzl = true,
 }
 
 function M.format()
