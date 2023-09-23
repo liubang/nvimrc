@@ -56,14 +56,7 @@ return {
       end,
       expr = true,
       silent = true,
-      mode = "i",
-    },
-    {
-      "<tab>",
-      function()
-        require("luasnip").jump(1)
-      end,
-      mode = "s",
+      mode = { "i", "s" },
     },
     {
       "<s-tab>",
