@@ -44,7 +44,7 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
     opts = function()
@@ -52,8 +52,8 @@ return {
       local b = null_ls.builtins
       local c = require "plugins.lsp.customs"
       return c.default {
+        debug = true,
         sources = {
-          b.formatting.phpcsfixer,
           b.formatting.stylua,
           b.formatting.cmake_format,
           b.formatting.asmfmt,
@@ -92,9 +92,7 @@ return {
               "vue",
             },
           },
-          b.formatting.shfmt.with {
-            extra_args = { "-i", "2", "-ci" },
-          },
+          b.formatting.shfmt,
           b.diagnostics.shellcheck.with {
             method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
           },
