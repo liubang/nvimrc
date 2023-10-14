@@ -304,12 +304,34 @@ require("rust-tools").setup {
 }
 -- }}}
 
+-- {{{pyright
+lspconfig.pyright.setup(c.default {
+  single_file_support = true,
+  settings = {
+    pyright = {
+      disableLanguageServices = false,
+      disableOrganizeImports = false,
+    },
+    python = {
+      analysis = {
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "basic",
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+-- }}}
+
 -- {{{ jsonls
 lspconfig.jsonls.setup(c.default {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
       validate = { enable = true },
+      format = { enable = true },
     },
   },
 })
@@ -432,30 +454,6 @@ lspconfig.vuels.setup(c.default {
 -- }}}
 
 -- {{{ yaml
-local schemas = {
-  kubernetes = {
-    "templates/*.yaml",
-    "helm/*.yaml",
-    "kube/*.yaml",
-  },
-  ["https://json.schemastore.org/clangd.json"] = ".clangd",
-  ["https://json.schemastore.org/clang-format.json"] = ".clang-format",
-  ["http://json.schemastore.org/golangci-lint.json"] = ".golangci.{yml,yaml}",
-  ["http://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yml,yaml}",
-  ["http://json.schemastore.org/github-action.json"] = ".github/action.{yml,yaml}",
-  ["http://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
-  ["http://json.schemastore.org/ansible-playbook.json"] = "playbook.{yml,yaml}",
-  ["http://json.schemastore.org/prettierrc.json"] = ".prettierrc.{yml,yaml}",
-  ["http://json.schemastore.org/stylelintrc.json"] = ".stylelintrc.{yml,yaml}",
-  ["http://json.schemastore.org/circleciconfig.json"] = ".circleci/**/*.{yml,yaml}",
-  ["http://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
-  ["http://json.schemastore.org/helmfile.json"] = "templates/**/*.{yml,yaml}",
-  ["http://json.schemastore.org/chart.json"] = "Chart.yml,yaml}",
-  ["http://json.schemastore.org/gitlab-ci.json"] = "/*lab-ci.{yml,yaml}",
-  ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "templates/**/*.{yml,yaml}",
-  ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
-}
-
 lspconfig.yamlls.setup(c.default {
   settings = {
     yaml = {
@@ -463,11 +461,7 @@ lspconfig.yamlls.setup(c.default {
       validate = true,
       hover = true,
       completion = true,
-      schemaStore = {
-        enable = true,
-        url = "https://www.schemastore.org/api/json/catalog.json",
-      },
-      schemas = schemas,
+      schemas = require("schemastore").yaml.schemas(),
     },
   },
 })
@@ -475,16 +469,17 @@ lspconfig.yamlls.setup(c.default {
 
 -- {{{ others
 for _, server in ipairs {
+  "thriftls",
   "taplo", -- for toml
   "html",
   "cssls",
   "emmet_ls", -- emmet YYDS!
-  "pyright",
   "bashls",
   "cmake",
   "vimls",
   "lemminx", -- for xml
   "intelephense",
+  "nginx_language_server",
 } do
   lspconfig[server].setup(c.default())
 end

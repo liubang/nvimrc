@@ -59,7 +59,6 @@ return {
           b.formatting.asmfmt,
           b.formatting.buildifier,
           b.formatting.fixjson,
-          b.formatting.autopep8,
           b.formatting.latexindent.with {
             args = {
               "-g",

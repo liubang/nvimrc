@@ -323,7 +323,9 @@ local lsp_names = { --{{{
   rust_analyzer           = "Rust",
   lua_ls                  = "Lua",
   intelephense            = "PHP",
+  thriftls                = "thrift",
   pyright                 = "Python",
+  pylsp                   = "pylsp",
   bashls                  = "Bash",
   dockerls                = "Docker",
   tsserver                = "TS",
@@ -337,6 +339,7 @@ local lsp_names = { --{{{
   cssls                   = "CSS",
   emmet_ls                = "EMMET",
   jdtls                   = "Java",
+  nginx_language_server   = "nginx",
 }
 --}}}
 
