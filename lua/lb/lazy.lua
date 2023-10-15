@@ -39,31 +39,14 @@ require("lazy").setup {
   change_detection = {
     enabled = false,
   },
-  ui = { -- {{{
-    border = "single",
-    -- stylua: ignore
-    icons = {
-      loaded     = "●",
-      not_loaded = "○",
-      cmd        = " ",
-      config     = " ",
-      event      = "",
-      ft         = " ",
-      init       = " ",
-      keys       = " ",
-      plugin     = " ",
-      runtime    = " ",
-      source     = " ",
-      start      = "",
-      task       = " ",
-      lazy       = "鈴 ",
-    },
-  }, -- }}}
+  ui = { border = "single" },
   performance = { -- {{{
     cache = {
       enabled = true,
     },
+    reset_packpath = true,
     rtp = {
+      reset = true,
       disabled_plugins = {
         "gzip",
         "matchit",
@@ -86,6 +69,10 @@ require("lazy").setup {
     -- only generate markdown helptags for plugins that dont have docs
     skip_if_doc_exists = true,
   }, -- }}}
+  profiling = {
+    loader = false,
+    require = false,
+  },
 }
 
 -- vim: fdm=marker fdl=0
