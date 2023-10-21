@@ -8,50 +8,50 @@
 -- =====================================================================
 
 vim.diagnostic.config { -- {{{
-  source = true,
-  signs = true,
-  virtual_text = false,
-  severity_sort = true,
-  update_in_insert = false,
-  underline = false,
-  float = {
-    border = "single",
-    focusable = true,
-    header = " Diagnostics: ",
-    scope = "line",
-    source = "always",
-  },
+    source = true,
+    signs = true,
+    virtual_text = false,
+    severity_sort = true,
+    update_in_insert = false,
+    underline = false,
+    float = {
+        border = 'single',
+        focusable = true,
+        header = ' Diagnostics: ',
+        scope = 'line',
+        source = 'always',
+    },
 } -- }}}
 
 local signs = { -- {{{
-  Error = " ",
-  Warn = " ",
-  Info = " ",
-  Hint = " ",
+    Error = ' ',
+    Warn = ' ',
+    Info = ' ',
+    Hint = ' ',
 }
 
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  local nr = "DiagnosticLineNr" .. type
-  vim.fn.sign_define(hl, {
-    text = icon,
-    texthl = hl,
-    linehl = "",
-    numhl = nr,
-  })
+    local hl = 'DiagnosticSign' .. type
+    local nr = 'DiagnosticLineNr' .. type
+    vim.fn.sign_define(hl, {
+        text = icon,
+        texthl = hl,
+        linehl = '',
+        numhl = nr,
+    })
 end
 -- }}}
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { -- {{{
-  stylize_markdown = true,
-  syntax = "lsp_markdown",
-  border = "single",
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { -- {{{
+    stylize_markdown = true,
+    syntax = 'lsp_markdown',
+    border = 'single',
 }) -- }}}
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { -- {{{
-  border = "single",
-  focusable = false,
-  relative = "cursor",
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { -- {{{
+    border = 'single',
+    focusable = false,
+    relative = 'cursor',
 }) -- }}}
 
 -- vim: foldmethod=marker foldlevel=0

@@ -7,23 +7,23 @@
 --
 --=====================================================================
 vim.filetype.add { -- {{{
-  filename = {
-    [".clangd"] = "yaml",
-    [".clang-format"] = "yaml",
-    [".bazelrc"] = "bzl",
-    [".gitignore"] = "gitconfig",
-    ["go.sum"] = "gosum",
-    ["go.mod"] = "gomod",
-    ["BUILD"] = "bzl",
-    ["BCLOUD"] = "bzl",
-    ["WORKSPACE"] = "bzl",
-  },
-  extension = {
-    thrift = "thrift",
-    wiki = "markdown",
-  },
-  pattern = {
-    ["*.log"] = "log",
-    ["*_LOG"] = "log",
-  },
+    filename = {
+        ['.clangd'] = 'yaml',
+        ['.clang-format'] = 'yaml',
+        ['.bazelrc'] = 'bzl',
+        ['.gitignore'] = 'gitconfig',
+        ['go.sum'] = 'gosum',
+        ['go.mod'] = 'gomod',
+        ['BUILD'] = 'bzl',
+        ['BCLOUD'] = 'bzl',
+        ['WORKSPACE'] = 'bzl',
+    },
+    extension = {
+        thrift = 'thrift',
+        wiki = 'markdown',
+    },
+    pattern = {
+        ['*.log'] = 'log',
+        ['*_LOG'] = 'log',
+    },
 } -- }}}
