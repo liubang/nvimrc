@@ -252,10 +252,15 @@ return {
         'nvim-pack/nvim-spectre', -- {{{
         cmd = 'Spectre',
         opts = { open_cmd = 'noswapfile vnew' },
-    -- stylua: ignore
-    keys = {
-      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-    },
+        keys = {
+            {
+                '<leader>sr',
+                function()
+                    require('spectre').open()
+                end,
+                desc = 'Replace in files (Spectre)',
+            },
+        },
         -- }}}
     },
 
@@ -273,13 +278,36 @@ return {
             ignored_buftypes = { 'NvimTree', 'Outline' },
             resize_mode = { quit_key = '<ESC>', silent = true },
         },
-    -- stylua: ignore
-    keys = {
-      { "<C-S-Up>", function() require("smart-splits").resize_up() end, mode = { "n" } },
-      { "<C-S-Down>", function() require("smart-splits").resize_down() end, mode = { "n" } },
-      { "<C-S-Left>", function() require("smart-splits").resize_left() end, mode = { "n" } },
-      { "<C-S-Right>", function() require("smart-splits").resize_right() end, mode = { "n" } },
-    },
+        keys = {
+            {
+                '<C-S-Up>',
+                function()
+                    require('smart-splits').resize_up()
+                end,
+                mode = { 'n' },
+            },
+            {
+                '<C-S-Down>',
+                function()
+                    require('smart-splits').resize_down()
+                end,
+                mode = { 'n' },
+            },
+            {
+                '<C-S-Left>',
+                function()
+                    require('smart-splits').resize_left()
+                end,
+                mode = { 'n' },
+            },
+            {
+                '<C-S-Right>',
+                function()
+                    require('smart-splits').resize_right()
+                end,
+                mode = { 'n' },
+            },
+        },
         -- }}}
     },
 
@@ -360,11 +388,22 @@ return {
 
     {
         'echasnovski/mini.bufremove', -- {{{
-    -- stylua: ignore
-    keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
-    },
+        keys = {
+            {
+                '<leader>bd',
+                function()
+                    require('mini.bufremove').delete(0, false)
+                end,
+                desc = 'Delete Buffer',
+            },
+            {
+                '<leader>bD',
+                function()
+                    require('mini.bufremove').delete(0, true)
+                end,
+                desc = 'Delete Buffer (Force)',
+            },
+        },
         -- }}}
     },
 }

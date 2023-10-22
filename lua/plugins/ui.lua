@@ -283,10 +283,12 @@ return {
                 -- themable = true,
                 numbers = 'ordinal',
                 indicator = { style = 'underline' },
-        -- stylua: ignore
-        close_command = function(n) require("mini.bufremove").delete(n, false) end,
-        -- stylua: ignore
-        right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+                close_command = function(n)
+                    require('mini.bufremove').delete(n, false)
+                end,
+                right_mouse_command = function(n)
+                    require('mini.bufremove').delete(n, false)
+                end,
                 middle_mouse_command = nil,
                 buffer_close_icon = '',
                 modified_icon = '󰣕 ',
@@ -365,11 +367,14 @@ return {
                                 return true
                             end,
                         },
-            -- stylua: ignore
-            {
-              function() return require("nvim-navic").get_location() end,
-              cond = function() return require("nvim-navic").is_available() end,
-            },
+                        {
+                            function()
+                                return require('nvim-navic').get_location()
+                            end,
+                            cond = function()
+                                return require('nvim-navic').is_available()
+                            end,
+                        },
                     },
                     lualine_x = {
                         require('lb.utils.util').lineinfo,
@@ -534,35 +539,35 @@ return {
         end,
         opts = function()
             return {
-      -- stylua: ignore
-      icons = {
-        File          = " ",
-        Module        = " ",
-        Namespace     = " ",
-        Package       = " ",
-        Class         = " ",
-        Method        = " ",
-        Property      = " ",
-        Field         = " ",
-        Constructor   = " ",
-        Enum          = " ",
-        Interface     = " ",
-        Function      = " ",
-        Variable      = " ",
-        Constant      = " ",
-        String        = " ",
-        Number        = " ",
-        Boolean       = " ",
-        Array         = " ",
-        Object        = " ",
-        Key           = " ",
-        Null          = " ",
-        EnumMember    = " ",
-        Struct        = " ",
-        Event         = " ",
-        Operator      = " ",
-        TypeParameter = " ",
-      },
+                -- stylua: ignore
+                icons = {
+                    File          = ' ',
+                    Module        = ' ',
+                    Namespace     = ' ',
+                    Package       = ' ',
+                    Class         = ' ',
+                    Method        = ' ',
+                    Property      = ' ',
+                    Field         = ' ',
+                    Constructor   = ' ',
+                    Enum          = ' ',
+                    Interface     = ' ',
+                    Function      = ' ',
+                    Variable      = ' ',
+                    Constant      = ' ',
+                    String        = ' ',
+                    Number        = ' ',
+                    Boolean       = ' ',
+                    Array         = ' ',
+                    Object        = ' ',
+                    Key           = ' ',
+                    Null          = ' ',
+                    EnumMember    = ' ',
+                    Struct        = ' ',
+                    Event         = ' ',
+                    Operator      = ' ',
+                    TypeParameter = ' ',
+                },
                 separator = ' > ',
                 depth_limit = 3,
                 highlight = true,
