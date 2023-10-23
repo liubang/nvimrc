@@ -7,6 +7,6 @@
 --
 --=====================================================================
 
-require "plugins.dap.adapters.codelldb"
-require "plugins.dap.adapters.cppdbg"
-require "plugins.dap.adapters.go"
+require 'plugins.dap.adapters.codelldb'
+require 'plugins.dap.adapters.cppdbg'
+require 'plugins.dap.adapters.go'
