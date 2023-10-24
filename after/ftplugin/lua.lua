@@ -6,7 +6,6 @@
 -- Last Modified: 2022/10/23 02:27
 --
 --=====================================================================
-
 vim.bo.shiftwidth = 2
 vim.bo.softtabstop = 2
 vim.bo.tabstop = 2
