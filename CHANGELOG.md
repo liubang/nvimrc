@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.12.0](https://github.com/liubang/nvimrc/compare/v3.11.3...v3.12.0) (2023-10-25)
+
+
+### Features
+
+* **diffview:** add diffview plugin ([2651a3a](https://github.com/liubang/nvimrc/commit/2651a3a4a7f8d884a5715c2287f5384b59ddf550))
+* **format:** change format style ([fe616c3](https://github.com/liubang/nvimrc/commit/fe616c3d6e5ef8248a837e0f88e5f8f4fcadab56))
+* **format:** change format style ([0b14933](https://github.com/liubang/nvimrc/commit/0b14933aad71c8fc9838284de2512899e914410d))
+* **format:** change format style ([2bd4aad](https://github.com/liubang/nvimrc/commit/2bd4aad963c9210a33d5b431090ccaf503094c9e))
+* **null-ls:** use none-ls instead of null-ls ([c3b94af](https://github.com/liubang/nvimrc/commit/c3b94aff2f8470fc5e38e930d0e0328951fdc36a))
+
+
+### Bug Fixes
+
+* **LuaSnip:** add friendly-snippets ([13d8126](https://github.com/liubang/nvimrc/commit/13d812683142c721cd123079b7c3a2167611a63c))
+
+
+### Performance Improvements
+
+* **dap:** disable the DAP plugin because it's hardly ever used ([f575a43](https://github.com/liubang/nvimrc/commit/f575a432c8b15756b4d0e78283034d67ae2c30a0))
+* **lazy:** update lazy config ([8423282](https://github.com/liubang/nvimrc/commit/8423282fb5dbb74a87b12c7d9915e8f02a290d74))
+* **lsp:** add range formatting keymap ([1f9eb01](https://github.com/liubang/nvimrc/commit/1f9eb01752b47d987f6bb7a859ee85c4fd36972c))
+* **lsp:** add thriftls and change pyright config ([ac2917f](https://github.com/liubang/nvimrc/commit/ac2917fa169431300d6dc042e101eb4f48b59413))
+* **lsp:** automatic formatting for go ([064ed3f](https://github.com/liubang/nvimrc/commit/064ed3f6a7268ca7547226abf6d812c80e80a113))
+* **lsp:** disable auto format for bzl ([a0b3f32](https://github.com/liubang/nvimrc/commit/a0b3f32bbe9ae145c45c046bbf7fe4f2903f5e52))
+* **luasnip:** change tab keymap ([a43329e](https://github.com/liubang/nvimrc/commit/a43329ee4233b34beea6e274222d06c6d3a5bf6a))
+* **opt:** change formatoption ([6d91b90](https://github.com/liubang/nvimrc/commit/6d91b901cf47904e64be89591e48d72f901aec92))
+
 ## [3.11.3](https://github.com/liubang/nvimrc/compare/v3.11.2...v3.11.3) (2023-09-06)
 
 
