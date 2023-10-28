@@ -7,17 +7,17 @@
 --
 --=====================================================================
 
-local util = require 'lb.utils.util'
-local root = util.root_pattern('.git', 'init.lua', 'task.ini')(vim.fn.expand '%:p')
+local util = require("lb.utils.util")
+local root = util.root_pattern(".git", "init.lua", "task.ini")(vim.fn.expand("%:p"))
 -- vim.pretty_print(vim.fn.expand "%")
-local fpath = vim.fn.expand '%:p'
+local fpath = vim.fn.expand("%:p")
 vim.pretty_print(fpath)
 vim.pretty_print(root)
 
 vim.pretty_print(fpath:find(root, 1, true))
 
-local a = '/mnt/workspace/go/process-exporter/proc'
-local b = '/mnt/workspace/go/process-exporter'
+local a = "/mnt/workspace/go/process-exporter/proc"
+local b = "/mnt/workspace/go/process-exporter"
 
 vim.pretty_print(a)
 vim.pretty_print(b)

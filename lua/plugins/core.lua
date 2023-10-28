@@ -7,9 +7,9 @@
 --
 --=====================================================================
 return {
-    { 'folke/lazy.nvim', version = '*' },
-    { 'nvim-lua/plenary.nvim' },
-    { 'tpope/vim-repeat' },
+  { "folke/lazy.nvim", version = "*" },
+  { "nvim-lua/plenary.nvim" },
+  { "tpope/vim-repeat" },
 }
 
 -- vim: fdm=marker fdl=0

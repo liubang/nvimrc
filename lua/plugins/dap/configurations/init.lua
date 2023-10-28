@@ -7,7 +7,7 @@
 --
 --=====================================================================
 
-require 'plugins.dap.configurations.cpp'
-require 'plugins.dap.configurations.c'
-require 'plugins.dap.configurations.rust'
-require 'plugins.dap.configurations.go'
+require("plugins.dap.configurations.cpp")
+require("plugins.dap.configurations.c")
+require("plugins.dap.configurations.rust")
+require("plugins.dap.configurations.go")

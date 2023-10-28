@@ -7,5 +7,5 @@
 --
 --=====================================================================
 
-local uv = require 'luv'
+local uv = require("luv")
 print(uv.available_parallelism())
