@@ -523,7 +523,7 @@ return {
         callback = function(args)
           local buffer = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client.server_capabilities.documentSymbolProvider then
+          if client.server_capabilities.documentSymbolProvider ~= nil then
             require("nvim-navic").attach(client, buffer)
           end
         end,
@@ -531,35 +531,8 @@ return {
     end,
     opts = function()
       return {
-                -- stylua: ignore
-                icons = {
-                    File          = ' ',
-                    Module        = ' ',
-                    Namespace     = ' ',
-                    Package       = ' ',
-                    Class         = ' ',
-                    Method        = ' ',
-                    Property      = ' ',
-                    Field         = ' ',
-                    Constructor   = ' ',
-                    Enum          = ' ',
-                    Interface     = ' ',
-                    Function      = ' ',
-                    Variable      = ' ',
-                    Constant      = ' ',
-                    String        = ' ',
-                    Number        = ' ',
-                    Boolean       = ' ',
-                    Array         = ' ',
-                    Object        = ' ',
-                    Key           = ' ',
-                    Null          = ' ',
-                    EnumMember    = ' ',
-                    Struct        = ' ',
-                    Event         = ' ',
-                    Operator      = ' ',
-                    TypeParameter = ' ',
-                },
+        -- stylua: ignore
+        icons = require('lb.config').kinds,
         separator = " > ",
         depth_limit = 3,
         highlight = true,

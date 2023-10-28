@@ -7,6 +7,8 @@
 --
 -- =====================================================================
 
+local config = require("lb.config")
+
 vim.diagnostic.config({ -- {{{
   source = true,
   signs = true,
@@ -23,24 +25,13 @@ vim.diagnostic.config({ -- {{{
   },
 }) -- }}}
 
-local signs = { -- {{{
-  Error = " ",
-  Warn = " ",
-  Info = " ",
-  Hint = " ",
-}
-
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  local nr = "DiagnosticLineNr" .. type
-  vim.fn.sign_define(hl, {
-    text = icon,
-    texthl = hl,
-    linehl = "",
-    numhl = nr,
-  })
-end
--- }}}
+local dia_cfg = config.lsp.diagnostic
+local hl = "DiagnosticSign"
+local nr = "DiagnosticLineNr"
+vim.fn.sign_define(hl .. "Error", { text = dia_cfg.icons.Error, texthl = hl .. "Error", numhl = nr .. "Error" })
+vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Warn", numhl = nr .. "Warn" })
+vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
+vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { -- {{{
   stylize_markdown = true,

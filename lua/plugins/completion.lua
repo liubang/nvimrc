@@ -22,35 +22,8 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-            -- completion item kind abbreviations
-            -- stylua: ignore
-            local kind_icons = {
-                Text          = '',
-                Method        = '',
-                Function      = '',
-                Constructor   = '',
-                Field         = '',
-                Variable      = '',
-                Class         = '',
-                Interface     = '',
-                Module        = '',
-                Property      = '',
-                Unit          = '',
-                Value         = '',
-                Enum          = '',
-                Keyword       = '',
-                Snippet       = '',
-                Color         = '',
-                File          = '',
-                Reference     = '',
-                Folder        = '',
-                EnumMember    = '',
-                Constant      = '',
-                Struct        = '',
-                Event         = '',
-                Operator      = '',
-                TypeParameter = '',
-            }
+      local config = require("lb.config")
+      -- completion item kind abbreviations
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -102,7 +75,7 @@ return {
                 return item
               end
             end
-            item.kind = string.format("%s  %-9s", kind_icons[item.kind], item.kind)
+            item.kind = string.format("%s  %-9s", config.kinds[item.kind], item.kind)
             return item
           end,
         },
