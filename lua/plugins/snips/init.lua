@@ -9,25 +9,19 @@
 
 return {
     'L3MON4D3/LuaSnip',
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    build = 'make install_jsregexp',
-    opts = function()
-        local types = require 'luasnip.util.types'
-        return {
-            history = true,
-            update_events = 'TextChanged,TextChangedI',
-            delete_check_events = 'TextChanged,InsertLeave',
-            -- Autosnippets:
-            enable_autosnippets = true,
-            ext_opts = {
-                [types.choiceNode] = {
-                    active = {
-                        virt_text = { { ' « ', 'Comment' } },
-                    },
-                },
-            },
-        }
-    end,
+    build = (not jit.os:find 'Windows')
+            and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
+        or nil,
+    dependencies = {
+        'rafamadriz/friendly-snippets',
+        config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+    },
+    opts = {
+        history = true,
+        delete_check_events = 'TextChanged',
+    },
     keys = {
         {
             '<C-n>',
@@ -53,7 +47,6 @@ return {
     config = function(_, opts)
         require('luasnip').setup(opts)
         require 'plugins.snips.all'
-        require('luasnip.loaders.from_vscode').lazy_load()
     end,
 }
 

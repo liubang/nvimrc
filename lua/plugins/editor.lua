@@ -73,61 +73,6 @@ return {
     },
 
     {
-        'phaazon/hop.nvim', -- {{{
-        branch = 'v2',
-        config = true,
-        keys = {
-            {
-                '<Leader>kk',
-                function()
-                    require('hop').hint_lines()
-                end,
-                mode = { 'n' },
-                desc = 'Hint the beginning of each lines currently visible in the buffer view and allow to jump to them',
-            },
-            {
-                '<Leader>jj',
-                function()
-                    require('hop').hint_lines()
-                end,
-                mode = { 'n' },
-                desc = 'Hint the beginning of each lines currently visible in the buffer view and allow to jump to them',
-            },
-            {
-                '<Leader>ss',
-                function()
-                    require('hop').hint_patterns()
-                end,
-                mode = { 'n' },
-                desc = 'Annotate all matched patterns in the current window with key sequences',
-            },
-            {
-                '<Leader>ll',
-                function()
-                    require('hop').hint_words {
-                        direction = require('hop.hint').HintDirection.AFTER_CURSOR,
-                        -- current_line_only = true,
-                    }
-                end,
-                mode = { 'n' },
-                desc = 'Annotate all words in the current line with key sequences',
-            },
-            {
-                '<Leader>hh',
-                function()
-                    require('hop').hint_words {
-                        direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-                        -- current_line_only = true,
-                    }
-                end,
-                mode = { 'n' },
-                desc = 'Annotate all words in the current line with key sequences',
-            },
-        },
-        -- }}}
-    },
-
-    {
         'numToStr/Comment.nvim', -- {{{
         keys = {
             { 'gc', mode = { 'n', 'x' }, desc = 'Toggle line comment' },
@@ -186,6 +131,60 @@ return {
         config = true,
         cmd = { 'HexToggle' },
         -- }}}
+    },
+
+    {
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        opts = {},
+        keys = {
+            {
+                's',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').jump()
+                end,
+                desc = 'Flash',
+            },
+            {
+                'r',
+                mode = 'o',
+                function()
+                    require('flash').remote()
+                end,
+                desc = 'Remote Flash',
+            },
+            {
+                '<c-s>',
+                mode = { 'c' },
+                function()
+                    require('flash').toggle()
+                end,
+                desc = 'Toggle Flash Search',
+            },
+            {
+                '<Leader>kk',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').jump {
+                        search = { mode = 'search', max_length = 0 },
+                        label = { after = { 0, 0 } },
+                        pattern = '^',
+                    }
+                end,
+            },
+            {
+                '<Leader>jj',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').jump {
+                        search = { mode = 'search', max_length = 0 },
+                        label = { after = { 0, 0 } },
+                        pattern = '^',
+                    }
+                end,
+            },
+        },
     },
 
     { 'skywind3000/vim-flex-bison-syntax', ft = { 'yacc', 'lex' } },

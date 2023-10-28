@@ -419,13 +419,13 @@ return {
             n_lines = 40,
             highlight_duration = 1000,
             mappings = {
-                add = 'sa', -- Add surrounding in Normal and Visual modes
-                delete = 'sd', -- Delete surrounding
-                find = 'sf', -- Find surrounding (to the right)
-                find_left = 'sF', -- Find surrounding (to the left)
-                highlight = 'sh', -- Highlight surrounding
-                replace = 'sr', -- Replace surrounding
-                update_n_lines = 'sn', -- Update `n_lines`
+                add = 'gsa', -- Add surrounding in Normal and Visual modes
+                delete = 'gsd', -- Delete surrounding
+                find = 'gsf', -- Find surrounding (to the right)
+                find_left = 'gsF', -- Find surrounding (to the left)
+                highlight = 'gsh', -- Highlight surrounding
+                replace = 'gsr', -- Replace surrounding
+                update_n_lines = 'gsn', -- Update `n_lines`
             },
         },
         -- }}}
