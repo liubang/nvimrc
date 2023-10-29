@@ -21,6 +21,8 @@ return {
   },
   -- stylua: ignore
   kinds = {
+		Fragment      = " ",
+		Function      = "󰊕",
     Array         = " ",
     Boolean       = " ",
     Class         = " ",
@@ -33,7 +35,6 @@ return {
     Field         = " ",
     File          = " ",
     Folder        = " ",
-    Function      = " ",
     Interface     = " ",
     Key           = " ",
     Keyword       = " ",
@@ -47,8 +48,8 @@ return {
     Package       = " ",
     Property      = " ",
     Reference     = " ",
-    String        = " ",
     Snippet       = " ",
+    String        = " ",
     Struct        = " ",
     Text          = " ",
     TypeParameter = " ",

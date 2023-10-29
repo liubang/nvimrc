@@ -42,8 +42,8 @@ local cpu = luv.available_parallelism()
 local function get_clangd_cmd()
   local cmd = {
     "clangd",
-    "--background-index",
     "-j=" .. (cpu / 2),
+    "--background-index",
     "--pch-storage=memory",
     "--function-arg-placeholders",
     "--clang-tidy",
@@ -52,8 +52,8 @@ local function get_clangd_cmd()
     "--query-driver=" .. get_default_drivers({ "clang++", "clang", "gcc", "g++" }),
     "--enable-config",
     "--fallback-style=google",
-    "--limit-references=500",
-    "--limit-results=50",
+    "--limit-references=3000",
+    "--limit-results=350",
     "--log=error",
   }
   if not is_mac then
