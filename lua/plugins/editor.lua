@@ -140,6 +140,9 @@ return {
       modes = {
         char = { enabled = false },
       },
+      search = {
+        trigger = ";",
+      },
     },
     keys = {
       {
