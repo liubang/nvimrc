@@ -1,4 +1,4 @@
-*nvimrc.txt*         For Neovim >= 0.9.4         Last change: 2023 November 16
+*nvimrc.txt*         For Neovim >= 0.9.4         Last change: 2023 November 17
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -272,7 +272,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - vim-git <https://github.com/tpope/vim-git>
 - vim-illuminate <https://github.com/RRethy/vim-illuminate>
 - vim-matchup <https://github.com/andymass/vim-matchup>
-- vim-repeat <https://github.com/tpope/vim-repeat>
 - vim-startuptime <https://github.com/dstein64/vim-startuptime>
 - wilder.nvim <https://github.com/gelguy/wilder.nvim>
 - yanky.nvim <https://github.com/gbprod/yanky.nvim>
