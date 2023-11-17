@@ -205,7 +205,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [vim-git](https://github.com/tpope/vim-git)
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
-- [vim-repeat](https://github.com/tpope/vim-repeat)
 - [vim-startuptime](https://github.com/dstein64/vim-startuptime)
 - [wilder.nvim](https://github.com/gelguy/wilder.nvim)
 - [yanky.nvim](https://github.com/gbprod/yanky.nvim)
