@@ -19,8 +19,8 @@ return {
     },
   },
   { "b0o/schemastore.nvim" },
+  -- { "jose-elias-alvarez/typescript.nvim" },
   { "simrat39/rust-tools.nvim" },
-  { "jose-elias-alvarez/typescript.nvim" },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -28,6 +28,20 @@ return {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+      {
+        "p00f/clangd_extensions.nvim",
+        opts = {
+          inlay_hints = {
+            inline = false,
+          },
+          memory_usage = {
+            border = "single",
+          },
+          symbol_info = {
+            border = "single",
+          },
+        },
+      },
     },
     config = function()
       local have_mason, mlsp = pcall(require, "mason-lspconfig")

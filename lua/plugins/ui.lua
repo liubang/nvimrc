@@ -127,7 +127,7 @@ return {
         default_direction = "prefer_right",
         placement = "edge",
       },
-      attach_mode = "global", -- 'window' | 'global'
+      attach_mode = "window", -- 'window' | 'global'
       nerd_font = "auto",
       show_guides = true,
       keymaps = {

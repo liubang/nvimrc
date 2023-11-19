@@ -32,8 +32,6 @@ return {
   -- https://github.com/ArthurSonzogni/Diagon
   { "willchao612/vim-diagon", cmd = { "Diagon" } },
 
-  { "sQVe/sort.nvim", cmd = { "Sort" }, opts = { delimiters = { ",", "|", ";", ":", "s", "t" } } },
-
   {
     "jbyuki/venn.nvim", -- {{{
     event = { "VeryLazy" },
@@ -386,18 +384,18 @@ return {
     -- }}}
   },
 
-  {
-    "NvChad/nvim-colorizer.lua", -- {{{
-    ft = { "css", "scss", "sass", "html", "lua", "markdown", "javascript", "typescript" },
-    opts = {
-      filetypes = { "css", "scss", "sass", "html", "lua", "markdown", "javascript", "typescript" },
-      r_default_options = {
-        mode = "virtualtext",
-        virtualtext = "■",
-      },
-    },
-    -- }}}
-  },
+  -- {
+  --   "NvChad/nvim-colorizer.lua", -- {{{
+  --   ft = { "css", "scss", "sass", "html", "lua", "markdown", "javascript", "typescript" },
+  --   opts = {
+  --     filetypes = { "css", "scss", "sass", "html", "lua", "markdown", "javascript", "typescript" },
+  --     r_default_options = {
+  --       mode = "virtualtext",
+  --       virtualtext = "■",
+  --     },
+  --   },
+  --   -- }}}
+  -- },
 
   {
     "echasnovski/mini.surround", -- {{{

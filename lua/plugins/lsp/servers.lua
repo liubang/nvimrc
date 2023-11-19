@@ -68,6 +68,8 @@ lspconfig.clangd.setup(c.default({
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   init_options = {
     clangdFileStatus = true,
+    usePlaceholders = true,
+    completeUnimported = true,
   },
 }))
 -- }}}
@@ -416,45 +418,45 @@ lspconfig.texlab.setup(c.default({
 -- }}}
 
 -- {{{ typescript
-require("typescript").setup({
-  server = c.default({
-    settings = {
-      completions = {
-        completeFunctionCalls = true,
-      },
-    },
-  }),
-})
+-- require("typescript").setup({
+--   server = c.default({
+--     settings = {
+--       completions = {
+--         completeFunctionCalls = true,
+--       },
+--     },
+--   }),
+-- })
 -- }}}
 
 -- {{{ vue
-lspconfig.vuels.setup(c.default({
-  settings = {
-    vetur = {
-      completion = {
-        autoImport = true,
-        useScaffoldSnippets = true,
-      },
-      format = {
-        defaultFormatter = {
-          html = "none",
-          js = "prettier",
-          ts = "prettier",
-        },
-      },
-      validation = {
-        template = true,
-        script = true,
-        style = true,
-        templateProps = true,
-        interpolation = true,
-      },
-      experimental = {
-        templateInterpolationService = true,
-      },
-    },
-  },
-}))
+-- lspconfig.vuels.setup(c.default({
+--   settings = {
+--     vetur = {
+--       completion = {
+--         autoImport = true,
+--         useScaffoldSnippets = true,
+--       },
+--       format = {
+--         defaultFormatter = {
+--           html = "none",
+--           js = "prettier",
+--           ts = "prettier",
+--         },
+--       },
+--       validation = {
+--         template = true,
+--         script = true,
+--         style = true,
+--         templateProps = true,
+--         interpolation = true,
+--       },
+--       experimental = {
+--         templateInterpolationService = true,
+--       },
+--     },
+--   },
+-- }))
 -- }}}
 
 -- {{{ yaml
