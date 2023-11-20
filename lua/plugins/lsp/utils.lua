@@ -23,7 +23,7 @@ function M.codeaction(client, action, only, wait_ms)
   for _, res in pairs(result) do
     for _, r in pairs(res.result or {}) do
       if r.edit and not vim.tbl_isempty(r.edit) then
-        vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
+        vim.lsp.util.apply_workspace_edit(r.edit, "utf-32")
       end
       if type(r.command) == "table" then
         if type(r.command) == "table" and r.command.arguments then
