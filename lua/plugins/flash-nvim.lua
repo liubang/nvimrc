@@ -11,6 +11,16 @@ return {
   "folke/flash.nvim",
   event = "VeryLazy",
   opts = {
+    labels = "asdfghjklqwertyuiopzxcvbnm",
+    label = {
+      -- allow uppercase labels
+      uppercase = true,
+      -- add a label for the first match in the current window.
+      -- you can always jump to the first match with `<CR>`
+      current = true,
+      -- for the current window, label targets closer to the cursor first
+      distance = true,
+    },
     modes = {
       char = { enabled = false },
     },
