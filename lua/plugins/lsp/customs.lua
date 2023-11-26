@@ -33,7 +33,9 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, bufopts)
 
-  client.server_capabilities.semanticTokensProvider = nil
+  if client.name == "clangd" then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
 
   format.on_attach(client, bufnr)
 end

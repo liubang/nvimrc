@@ -9,6 +9,11 @@
 return {
   { "folke/lazy.nvim", version = "*" },
   { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
+  { "MunifTanjim/nui.nvim" },
+  { "dstein64/vim-startuptime", cmd = "StartupTime" },
+  -- https://github.com/ArthurSonzogni/Diagon
+  { "willchao612/vim-diagon", cmd = { "Diagon" } },
 }
 
 -- vim: fdm=marker fdl=0

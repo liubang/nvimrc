@@ -1,6 +1,6 @@
 --=====================================================================
 --
--- completion.lua -
+-- cmp.lua -
 --
 -- Created by liubang on 2023/05/12 14:39
 -- Last Modified: 2023/05/12 14:39
@@ -42,14 +42,15 @@ return {
         },
         preselect = cmp.PreselectMode.None,
         sources = {
-          { name = "nvim_lsp", priority = 80 },
-          { name = "luasnip", priority = 10 },
-          { name = "path", priority = 40, max_item_count = 4 },
+          { name = "nvim_lsp", priority = 80, group_index = 1 },
+          { name = "luasnip", priority = 10, group_index = 2 },
+          { name = "calc", group_index = 3 },
+          { name = "path", priority = 40, group_index = 5 },
           {
             name = "buffer",
             priority = 5,
             keywork_length = 3,
-            max_item_count = 5,
+            group_index = 5,
             option = {
               get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
@@ -58,7 +59,6 @@ return {
           },
           { name = "crates" },
           { name = "latex_symbols" },
-          { name = "calc" },
         },
         sorting = {
           comparators = {
