@@ -14,11 +14,6 @@ return {
     progress = {
       ignore = { "null-ls" },
     },
-    display = {
-      render_limit = 5,
-      done_ttl = 2,
-    },
-
     notification = {
       override_vim_notify = false,
     },

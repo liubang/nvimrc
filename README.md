@@ -117,8 +117,8 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
 | `<leader>bd` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer                                           | **n**               |
 | `<leader>bD` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer (Force)                                   | **n**               |
-| `<leader>ft` | [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim.git) Explorer NeoTree (cwd)                                  | **n**               |
 | `<leader>sr` | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre.git) Replace in files (Spectre)                                    | **n**               |
+| `<leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer NvimTree (cwd)                                     | **n**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                           | **n**               |
 | `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                    | **n**               |
 | `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                        | **n**               |
@@ -150,6 +150,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-calc](https://github.com/hrsh7th/cmp-calc)
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
@@ -164,7 +165,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
-- [hex.nvim](https://github.com/RaafatTurki/hex.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
@@ -174,35 +174,30 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.align](https://github.com/echasnovski/mini.align)
 - [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
-- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
+- [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
-- [sort.nvim](https://github.com/sQVe/sort.nvim)
 - [sqlite.lua](https://github.com/kkharji/sqlite.lua)
 - [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim)
 - [undotree](https://github.com/mbbill/undotree)
 - [venn.nvim](https://github.com/jbyuki/venn.nvim)
 - [vim-caser](https://github.com/arthurxavierx/vim-caser)
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
-- [vim-flex-bison-syntax](https://github.com/skywind3000/vim-flex-bison-syntax)
 - [vim-floaterm](https://github.com/voldikss/vim-floaterm)
-- [vim-fugitive](https://github.com/tpope/vim-fugitive)
-- [vim-git](https://github.com/tpope/vim-git)
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [vim-startuptime](https://github.com/dstein64/vim-startuptime)
