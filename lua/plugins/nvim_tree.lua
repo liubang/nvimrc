@@ -18,7 +18,7 @@ return {
   },
   keys = { { "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer NvimTree (cwd)" } },
   opts = {
-    auto_reload_on_write = true,
+    auto_reload_on_write = false,
     create_in_closed_folder = false,
     disable_netrw = false,
     hijack_cursor = true,
@@ -147,7 +147,7 @@ return {
       remove_file = { close_window = true },
     },
     diagnostics = { enable = false },
-    filesystem_watchers = { enable = false, debounce_delay = 50 },
+    filesystem_watchers = { enable = false },
     git = {
       enable = true,
       ignore = false,
