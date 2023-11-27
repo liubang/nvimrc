@@ -44,7 +44,6 @@ return {
       "markdown",
       "markdown_inline",
       "json",
-      "jsonc",
     },
     fold = { enable = true },
     indent = { enable = false },
