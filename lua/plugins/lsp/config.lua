@@ -1,6 +1,6 @@
 -- =====================================================================
 --
--- handlers.lua -
+-- config.lua -
 --
 -- Created by liubang on 2021/02/10 10:06
 -- Last Modified: 2022/12/10 15:54
@@ -44,5 +44,22 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   focusable = false,
   relative = "cursor",
 }) -- }}}
+
+--
+-- auto cmd
+--
+local lsp_events_group = vim.api.nvim_create_augroup("LSP_EVENTS", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = lsp_events_group,
+  pattern = "*.go",
+  callback = function()
+    local client = function()
+      return vim.lsp.get_active_clients({ name = "gopls" })
+    end
+    require("plugins.lsp.utils").codeaction(client(), "", "source.organizeImports", 1000)
+    require("plugins.lsp.format").format()
+  end,
+})
 
 -- vim: foldmethod=marker foldlevel=0

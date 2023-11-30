@@ -19,7 +19,6 @@ return {
     },
   },
   { "b0o/schemastore.nvim" },
-  -- { "jose-elias-alvarez/typescript.nvim" },
   { "simrat39/rust-tools.nvim" },
   {
     "neovim/nvim-lspconfig",
@@ -52,9 +51,8 @@ return {
       -- 1. mason.nvim
       -- 2. mason-lspconfig.nvim
       -- Setup servers via lspconfig
-      require("plugins.lsp.handlers")
+      require("plugins.lsp.config")
       require("plugins.lsp.servers")
-      require("plugins.lsp.autocmd")
     end,
   },
   {
@@ -106,15 +104,9 @@ return {
             },
           }),
           b.formatting.shfmt,
-          b.diagnostics.shellcheck.with({
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-          }),
-          b.diagnostics.buildifier.with({
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-          }),
-          b.diagnostics.actionlint.with({
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-          }),
+          b.diagnostics.shellcheck,
+          b.diagnostics.buildifier,
+          b.diagnostics.actionlint,
           b.diagnostics.eslint_d,
         },
       })
