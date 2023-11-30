@@ -21,13 +21,14 @@ return {
     auto_reload_on_write = false,
     create_in_closed_folder = false,
     disable_netrw = false,
-    hijack_cursor = true,
+    hijack_cursor = false,
     hijack_netrw = true,
-    hijack_unnamed_buffer_when_opening = true,
     open_on_tab = false,
     respect_buf_cwd = false,
     sort_by = "name",
     sync_root_with_cwd = false,
+    prefer_startup_root = true,
+    hijack_unnamed_buffer_when_opening = false,
     view = {
       adaptive_size = false,
       centralize_selection = false,
@@ -98,7 +99,7 @@ return {
       special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "CMakeLists.txt" },
       symlink_destination = true,
       indent_markers = {
-        enable = true,
+        enable = false,
         icons = {
           corner = "└ ",
           edge = "│ ",
@@ -106,7 +107,6 @@ return {
           none = "  ",
         },
       },
-      root_folder_label = ":.:s?.*?/..?",
       icons = {
         webdev_colors = true,
         git_placement = "after",
