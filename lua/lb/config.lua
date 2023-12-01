@@ -19,9 +19,6 @@ return {
       },
     },
   },
-  ts = {
-    treesitter_highlight_max_filesize = 200 * 1024, -- 200 KB
-  },
   -- stylua: ignore
   kinds = {
 		Function      = "󰘧 ",
