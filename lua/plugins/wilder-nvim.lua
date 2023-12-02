@@ -17,11 +17,11 @@ return {
     wilder.setup({ modes = { ":", "/", "?" } })
     -- Disable Python remote plugin
     wilder.set_option("use_python_remote_plugin", 0)
-
     wilder.set_option("pipeline", {
       wilder.branch(
         wilder.cmdline_pipeline({
           fuzzy = 1,
+          use_python = 0,
           fuzzy_filter = wilder.lua_fzy_filter(),
         }),
         wilder.vim_search_pipeline()

@@ -10,7 +10,6 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
-  version = false,
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },

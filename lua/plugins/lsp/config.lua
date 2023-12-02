@@ -9,6 +9,8 @@
 
 local config = require("lb.config")
 
+vim.lsp.set_log_level("OFF")
+
 vim.diagnostic.config({ -- {{{
   source = true,
   signs = true,
