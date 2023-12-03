@@ -22,14 +22,14 @@ return {
     })
   end,
   opts = function()
+    -- stylua: ignore
     return {
-        -- stylua: ignore
-        icons = require('lb.config').kinds,
-      separator = " > ",
-      depth_limit = 3,
-      highlight = true,
+      icons                 = require('lb.config').kinds,
+      separator             = " > ",
+      depth_limit           = 3,
+      highlight             = true,
       depth_limit_indicator = "..",
-      safe_output = true,
+      safe_output           = true,
     }
   end,
   -- }}}

@@ -24,11 +24,11 @@ vim.api.nvim_create_user_command("YankFilepath", function() -- {{{
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("CopyRight", function() -- {{{
-  require("lb.utils.comment").copy_right("liubang")
+  require("lb.utils.comment").copy_right()
 end, { nargs = 0 }) -- }}}
 
-vim.api.nvim_create_user_command("CopyRightUpdate", function() -- {{{
-  require("lb.utils.comment").copy_right_update()
+vim.api.nvim_create_user_command("CopyRightApache", function() -- {{{
+  require("lb.utils.comment").copy_right_apache()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("TrimWhiteSpace", function() -- {{{

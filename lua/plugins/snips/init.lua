@@ -43,9 +43,7 @@ return {
   config = function(_, opts)
     require("luasnip").setup(opts)
     require("plugins.snips.all")
-    require("luasnip.loaders.from_vscode").lazy_load({
-      exclude = { "javascript" },
-    })
+    require("luasnip.loaders.from_vscode").lazy_load()
   end,
 }
 

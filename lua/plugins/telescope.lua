@@ -13,6 +13,7 @@ local M = {
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
+    { "debugloop/telescope-undo.nvim" },
     { "skywind3000/asynctasks.vim" },
   },
   keys = {
@@ -136,6 +137,7 @@ function M.config()
   telescope.load_extension("fzf")
   telescope.load_extension("bazel")
   telescope.load_extension("tasks")
+  telescope.load_extension("undo")
 
   local colors = { --{{{
     white = "#ebdbb2",
