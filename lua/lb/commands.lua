@@ -35,10 +35,6 @@ vim.api.nvim_create_user_command("TrimWhiteSpace", function() -- {{{
   require("lb.utils.util").trim_whitespace()
 end, { nargs = 0 }) -- }}}
 
-vim.api.nvim_create_user_command("P", function(obj) -- {{{
-  vim.pretty_print(vim.fn.luaeval(obj.args))
-end, { nargs = 1 }) -- }}}
-
 vim.api.nvim_create_user_command("DocUpdate", function() -- {{{
   require("lb.utils.doc").update()
 end, { nargs = 0 }) -- }}}

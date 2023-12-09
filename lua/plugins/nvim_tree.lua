@@ -38,17 +38,6 @@ return {
       number = false,
       relativenumber = false,
       signcolumn = "yes",
-      float = {
-        enable = false,
-        open_win_config = {
-          relative = "editor",
-          border = "rounded",
-          width = 30,
-          height = 30,
-          row = 1,
-          col = 1,
-        },
-      },
     },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
@@ -91,6 +80,7 @@ return {
       end)
     end,
     renderer = {
+      root_folder_label = false,
       add_trailing = false,
       group_empty = true,
       highlight_git = true,
@@ -100,12 +90,6 @@ return {
       symlink_destination = true,
       indent_markers = {
         enable = false,
-        icons = {
-          corner = "└ ",
-          edge = "│ ",
-          item = "│ ",
-          none = "  ",
-        },
       },
       icons = {
         webdev_colors = true,
@@ -130,8 +114,12 @@ return {
           },
           folder = {
             default = "",
-            open = "",
-            empty = "ﰊ",
+            empty = "",
+            empty_open = "",
+            open = "",
+            symlink_open = "",
+            arrow_open = "",
+            arrow_closed = "",
           },
         },
       },

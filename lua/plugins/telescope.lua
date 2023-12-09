@@ -53,6 +53,16 @@ function M.config()
 
   telescope.setup({
     defaults = { --{{{
+      vimgrep_arguments = {
+        "rg",
+        "-L",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+      },
       prompt_prefix = "   ",
       selection_caret = " ",
       entry_prefix = "  ",
@@ -65,15 +75,10 @@ function M.config()
       use_less = true,
       border = {},
       preview = false,
-      path_display = { truncate = 3 },
+      path_display = { "truncate" },
+      winblend = 0,
       layout_config = {
         prompt_position = "top",
-        width = function(_, max_columns, _)
-          return math.min(max_columns, 120)
-        end,
-        height = function(_, _, max_lines)
-          return math.min(max_lines, 28)
-        end,
         horizontal = {
           prompt_position = "top",
           mirror = false,
@@ -83,8 +88,13 @@ function M.config()
         vertical = {
           mirror = false,
         },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
       },
-      cache = false,
+      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      file_ignore_patterns = { "node_modules" },
       mappings = {
         i = {
           ["<C-x>"] = false,

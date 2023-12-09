@@ -1,24 +1,11 @@
--- =====================================================================
+--=====================================================================
 --
--- lazy.lua -
+-- plugins.lua -
 --
--- Created by liubang on 2021/04/19 11:00
--- Last Modified: 2022/12/31 22:30
+-- Created by liubang on 2023/12/09 22:41
+-- Last Modified: 2023/12/09 22:41
 --
--- =====================================================================
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+--=====================================================================
 
 require("lazy").setup({
   spec = { import = "plugins" },
@@ -39,7 +26,15 @@ require("lazy").setup({
   change_detection = {
     enabled = false,
   },
-  ui = { border = "single" },
+  ui = {
+    border = "single",
+    icons = {
+      ft = "",
+      lazy = "󰂠 ",
+      loaded = "",
+      not_loaded = "",
+    },
+  },
   performance = { -- {{{
     cache = {
       enabled = true,
@@ -48,6 +43,7 @@ require("lazy").setup({
     rtp = {
       reset = true,
       disabled_plugins = {
+        "2html_plugin",
         "gzip",
         "matchit",
         "matchparen",
@@ -57,6 +53,9 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
+        "syntax",
+        "vimball",
+        "vimballPlugin",
       },
     },
   }, -- }}}
@@ -74,5 +73,3 @@ require("lazy").setup({
     require = false,
   },
 })
-
--- vim: fdm=marker fdl=0
