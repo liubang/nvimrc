@@ -1,5 +1,41 @@
 # Changelog
 
+## [3.13.0](https://github.com/liubang/nvimrc/compare/v3.12.0...v3.13.0) (2023-12-09)
+
+
+### Features
+
+* **flash.nvim:** add flash.nvim ([5487410](https://github.com/liubang/nvimrc/commit/54874104f4c8a1733aa903274c30021623a7d326))
+* **flash.nvim:** disable flit mode ([cef50a2](https://github.com/liubang/nvimrc/commit/cef50a255498d175d648aca6de8918a1ad9b815b))
+* **vim-repeat:** remove vim-repeat ([0e1ba0f](https://github.com/liubang/nvimrc/commit/0e1ba0fe6e4446da769612423793b9557103d0d5))
+
+
+### Bug Fixes
+
+* **lsp:** fix lsp keymap ([fd288d8](https://github.com/liubang/nvimrc/commit/fd288d864a77ff440a3ee8c8a7f472fd99b43668))
+* **lsp:** removed vim.lsp.get_clients function ([f1e3c16](https://github.com/liubang/nvimrc/commit/f1e3c168b2d66d3932feecbafab3b5b656c072a1))
+* **lsp:** removed vim.lsp.get_clients function ([f2597b8](https://github.com/liubang/nvimrc/commit/f2597b880eda2d007f60088034a71fa3bf31acd2))
+* **treesitter:** sometimes error ([5386829](https://github.com/liubang/nvimrc/commit/5386829a047d0b7a691cbe4d29cbc224d1fe23f6))
+
+
+### Performance Improvements
+
+* **fidget:** upgrade to latest version ([71a9b4f](https://github.com/liubang/nvimrc/commit/71a9b4f85efa31d6d2c30264bd9173fdee548065))
+* **flash.nvim:** set trigger key ([207356f](https://github.com/liubang/nvimrc/commit/207356fabfc27ee9fe11df9e6246a355b7228bab))
+* **icon:** update icons ([a3e3bdd](https://github.com/liubang/nvimrc/commit/a3e3bdd0438ee9f62a7ad824337ab196b74f33b9))
+* **lsp:** update ([a3083ac](https://github.com/liubang/nvimrc/commit/a3083ac6fd57d888878c47dcd48b01674dabd1a4))
+* **luasnip:** fix snip ([66b0050](https://github.com/liubang/nvimrc/commit/66b0050a8885918e43449f4b6b2daa3353f41b55))
+* **mix:** some opts ([d18eb8a](https://github.com/liubang/nvimrc/commit/d18eb8a9b987e47cd9c1c3bba10921c13ddfcc05))
+* **mix:** some opts ([3a63077](https://github.com/liubang/nvimrc/commit/3a63077d9ba8e4b01fa50305d06ca0f1b2182fcc))
+* **mix:** some opts ([6e99363](https://github.com/liubang/nvimrc/commit/6e99363a09b7aa52e16373dad5e2c6ecea4ace35))
+* **mix:** some opts ([394191c](https://github.com/liubang/nvimrc/commit/394191c82f09f5fefb803740eda06fd0554c73e0))
+* **mix:** some opts ([893beac](https://github.com/liubang/nvimrc/commit/893beacd432f690d24ae81c2bd552f10b5bf553d))
+* **mix:** some opts ([ed72f58](https://github.com/liubang/nvimrc/commit/ed72f5831b575c74439d48ad15da8e4da1613ec5))
+* **nvim-tree:** disable auto_reload_on_write ([4d5e366](https://github.com/liubang/nvimrc/commit/4d5e366c8f19656d68447eff43d440c99bb5f05b))
+* **nvim-tree:** disable sync_root_with_cwd ([5b42232](https://github.com/liubang/nvimrc/commit/5b42232e16ff16ee0acd6cf20501381676913c72))
+* **nvim-tree:** use prefer_startup_root ([d42d64e](https://github.com/liubang/nvimrc/commit/d42d64e6d454f7826209158bfd09fa6460c3b672))
+* **treesitter:** remove jsonc ([becf7f8](https://github.com/liubang/nvimrc/commit/becf7f8a9de1f930c238ad8d6a54e3489a25e6dd))
+
 ## [3.12.0](https://github.com/liubang/nvimrc/compare/v3.11.3...v3.12.0) (2023-10-25)
 
 
