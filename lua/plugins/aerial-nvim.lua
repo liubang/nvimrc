@@ -11,7 +11,7 @@ return {
   "stevearc/aerial.nvim", -- {{{
   cmd = "AerialToggle",
   opts = {
-    backends = { "lsp", "markdown" },
+    backends = { "lsp", "markdown", "man" },
     layout = {
       default_direction = "prefer_right",
       placement = "edge",
@@ -19,6 +19,12 @@ return {
     attach_mode = "window", -- 'window' | 'global'
     nerd_font = "auto",
     show_guides = true,
+    guides = {
+      mid_item = "├╴",
+      last_item = "└╴",
+      nested_top = "│ ",
+      whitespace = "  ",
+    },
     keymaps = {
       ["<CR>"] = false,
       ["o"] = "actions.jump",

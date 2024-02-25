@@ -50,7 +50,14 @@ return {
     config = function()
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       if have_mason then
-        mlsp.setup({ ensure_installed = { "clangd", "gopls", "lua_ls", "rust_analyzer" } })
+        mlsp.setup({
+          ensure_installed = {
+            "clangd",
+            "gopls",
+            "lua_ls",
+            "rust_analyzer",
+          },
+        })
       end
       -- It's important that you set up the plugins in the following order:
       -- 1. mason.nvim
@@ -75,15 +82,6 @@ return {
           b.formatting.cmake_format,
           b.formatting.asmfmt,
           b.formatting.buildifier,
-          b.formatting.fixjson,
-          b.formatting.latexindent.with({
-            args = {
-              "-g",
-              "/dev/null",
-              "-y",
-              [[defaultIndent: "    "]],
-            },
-          }),
           b.formatting.prettier.with({
             filetypes = {
               "css",
@@ -99,20 +97,11 @@ return {
               "handlebars",
             },
           }),
-          b.formatting.eslint_d.with({
-            filetypes = {
-              "javascript",
-              "javascriptreact",
-              "typescript",
-              "typescriptreact",
-              "vue",
-            },
-          }),
           b.formatting.shfmt,
-          b.diagnostics.shellcheck,
+          b.code_actions.gomodifytags,
+          b.code_actions.impl,
           b.diagnostics.buildifier,
           b.diagnostics.actionlint,
-          b.diagnostics.eslint_d,
         },
       })
     end,
