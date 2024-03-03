@@ -50,6 +50,7 @@ return {
     { "<Leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", mode = { "n" }, desc = "Goto the 7th visible buffer" },
     { "<Leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", mode = { "n" }, desc = "Goto the 8th visible buffer" },
     { "<Leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", mode = { "n" }, desc = "Goto the 9th visible buffer" },
+    { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", mode = { "n" }, desc = "Delete other buffers" },
   },
   -- }}}
 }
