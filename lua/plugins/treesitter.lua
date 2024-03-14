@@ -41,6 +41,7 @@ return {
       "sql",
       "markdown",
       "markdown_inline",
+      "vimdoc",
       "json",
     },
     fold = { enable = true },
