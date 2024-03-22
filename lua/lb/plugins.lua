@@ -12,7 +12,7 @@ require("lazy").setup({
   defaults = { lazy = true },
   concurrency = 6,
   install = {
-    missing = false,
+    missing = true,
     colorscheme = { "gruvbox-material" },
   },
   dev = {

@@ -15,7 +15,7 @@ M.echo = function(str)
 end
 
 local function shell_call(args)
-  local output = fn.system(args)
+  local output = vim.fn.system(args)
   assert(vim.v.shell_error == 0, "External call failed with error code: " .. vim.v.shell_error .. "\n" .. output)
 end
 
