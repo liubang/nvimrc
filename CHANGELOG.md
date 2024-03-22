@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.13.1](https://github.com/liubang/nvimrc/compare/v3.13.0...v3.13.1) (2024-03-22)
+
+
+### Bug Fixes
+
+* **bootstrap:** Bootstrapping fails to load ([d7024e9](https://github.com/liubang/nvimrc/commit/d7024e9d049cf75dfe0876494da1bb6d4bae2bbb))
+
+
+### Performance Improvements
+
+* **alpha-nvim:** change dashboard text ([b6ad59f](https://github.com/liubang/nvimrc/commit/b6ad59f18be6e6b8fc1a43ad3489a8e4c82c62df))
+* **bufferline:** add key map ([a9a43df](https://github.com/liubang/nvimrc/commit/a9a43dff6ad9d797fb8d90d62517be53196a133a))
+* **icon:** fix icon ([9a59e27](https://github.com/liubang/nvimrc/commit/9a59e27db8b0c0cd5f6847b2f1fa8673a00d5d32))
+* **null-ls:** Deprecating builtins ([a89faba](https://github.com/liubang/nvimrc/commit/a89faba1081b0d3ea9d79f2e460570086f554fc6))
+
 ## [3.13.0](https://github.com/liubang/nvimrc/compare/v3.12.0...v3.13.0) (2023-12-09)
 
 
