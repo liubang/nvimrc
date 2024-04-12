@@ -1,4 +1,4 @@
-*nvimrc.txt*           For Neovim >= 0.9.4          Last change: 2024 March 22
+*nvimrc.txt*           For Neovim >= 0.9.4          Last change: 2024 April 12
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -8,6 +8,7 @@ Table of Contents                                   *nvimrc-table-of-contents*
   - Getting Started                                   |nvimrc-getting-started|
   - Keymaps                                                   |nvimrc-keymaps|
   - Plugins                                                   |nvimrc-plugins|
+1. Links                                                        |nvimrc-links|
 My Neovim Configuration
 
 FEATURES                                                     *nvimrc-features*
