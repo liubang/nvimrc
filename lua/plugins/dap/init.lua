@@ -1,76 +1,25 @@
---=====================================================================
+-- Copyright (c) 2024 The Authors. All rights reserved.
 --
--- init.lua -
+-- Licensed under the Apache License, Version 2.0 (the "License");
+-- you may not use this file except in compliance with the License.
+-- You may obtain a copy of the License at
 --
--- Created by liubang on 2023/02/18 21:26
--- Last Modified: 2023/02/18 21:26
+--      https://www.apache.org/licenses/LICENSE-2.0
 --
---=====================================================================
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the License for the specific language governing permissions and
+-- limitations under the License.
+
+-- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  {
-    "rcarriga/nvim-dap-ui",
-    enabled = false,
-    opts = {
-      expand_lines = true,
-      icons = { expanded = "", collapsed = "", circular = "" },
-      mappings = {
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        edit = "e",
-        repl = "r",
-        toggle = "t",
-      },
-      layouts = {
-        {
-          elements = {
-            { id = "scopes", size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "stacks", size = 0.25 },
-            { id = "watches", size = 0.25 },
-          },
-          size = 40,
-          position = "right",
-        },
-        {
-          elements = {
-            { id = "repl", size = 0.5 },
-            { id = "console", size = 0.5 },
-          },
-          size = 10,
-          position = "bottom",
-        },
-      },
-      floating = {
-        max_height = 0.9,
-        max_width = 0.5,
-        border = "single",
-        mappings = {
-          close = { "q", "<Esc>" },
-        },
-      },
-    },
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    enabled = false,
-    opts = {
-      enabled = true,
-      enabled_commands = true,
-      highlight_changed_variables = true,
-      highlight_new_as_changed = true,
-      show_stop_reason = true,
-      commented = false,
-      virt_text_pos = "eol",
-      all_frames = false,
-      virt_lines = false,
-      virt_text_win_col = nil,
-    },
-  },
+  { "nvim-neotest/nvim-nio" },
+  { "rcarriga/nvim-dap-ui" },
+  { "theHamsta/nvim-dap-virtual-text" },
   {
     "mfussenegger/nvim-dap",
-    enabled = false,
     config = function()
       require("plugins.dap.dap")
     end,

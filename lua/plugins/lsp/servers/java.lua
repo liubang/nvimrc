@@ -14,15 +14,34 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local dap = require("dap")
+local c = require("plugins.lsp.customs")
+local java = require("java")
+local lspconfig = require("lspconfig")
 
-require("plugins.dap.ui")
+java.setup({
+  java_debug_adapter = {
+    enable = true,
+  },
+  jdk = {
+    auto_install = false,
+  },
+  notifications = {
+    dap = true,
+  },
+})
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  require("dapui").open()
-  vim.api.nvim_command("DapVirtualTextEnable")
-end
-
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  vim.api.nvim_command("DapVirtualTextDisable")
-end
+lspconfig.jdtls.setup(c.default({
+  settings = {
+    java = {
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-17",
+            path = "/opt/app/java",
+            default = true,
+          },
+        },
+      },
+    },
+  },
+}))

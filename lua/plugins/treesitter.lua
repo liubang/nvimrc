@@ -33,6 +33,7 @@ return {
       "rust",
       "lua",
       "go",
+      "java",
       "python",
       "proto",
       "gomod",
