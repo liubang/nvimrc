@@ -37,6 +37,7 @@ return {
       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
     },
   },
+  { "leoluz/nvim-dap-go" },
   {
     "mfussenegger/nvim-dap",
     config = function()

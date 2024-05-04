@@ -27,6 +27,8 @@ dap.listeners.before.event_terminated["dapui_config"] = function()
   vim.api.nvim_command("DapVirtualTextDisable")
 end
 
+require("dap-go").setup()
+
 dap.adapters.codelldb = {
   type = "server",
   port = "${port}",

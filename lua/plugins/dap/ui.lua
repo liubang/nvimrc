@@ -84,8 +84,8 @@ require("dapui").setup({
         { id = "stacks", size = 0.25 },
         { id = "watches", size = 0.25 },
       },
-      size = 45,
-      position = "right",
+      size = 50,
+      position = "left",
     },
     {
       elements = {
