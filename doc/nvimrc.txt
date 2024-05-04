@@ -1,4 +1,4 @@
-*nvimrc.txt*            For Neovim >= 0.9.4           Last change: 2024 May 03
+*nvimrc.txt*            For Neovim >= 0.9.4           Last change: 2024 May 04
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -23,7 +23,7 @@ FEATURES                                                     *nvimrc-features*
 
 REQUIREMENTS                                             *nvimrc-requirements*
 
-- Neovim >= **0.9.4** (needs to be built with **LuaJIT**)
+- Neovim >= **0.9.5** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
@@ -133,6 +133,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>9    bufferline.nvim Goto the 9th visible buffer              n
 
+  <leader>bo   bufferline.nvim Delete other buffers                     n
+
   gc           Comment.nvim Toggle line comment                         n, x
 
   gb           Comment.nvim Toggle block comment                        n, x
@@ -167,6 +169,44 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>bD   mini.bufremove Delete Buffer (Force)                     n
 
+  <leader>dB   nvim-dap Breakpoint Condition                            n
+
+  <leader>db   nvim-dap Toggle Breakpoint                               n
+
+  <leader>dc   nvim-dap Continue                                        n
+
+  <leader>da   nvim-dap Run with Args                                   n
+
+  <leader>dC   nvim-dap Run to Cursor                                   n
+
+  <leader>dl   nvim-dap Run Last                                        n
+
+  <leader>di   nvim-dap Step Into                                       n
+
+  <leader>do   nvim-dap Step Out                                        n
+
+  <leader>dO   nvim-dap Step Over                                       n
+
+  <leader>dp   nvim-dap Pause                                           n
+
+  <leader>dt   nvim-dap Terminate                                       n
+
+  <leader>dj   nvim-dap Down                                            n
+
+  <leader>dk   nvim-dap Up                                              n
+
+  <leader>dg   nvim-dap Go to Line (No Execute)                         n
+
+  <leader>ds   nvim-dap Session                                         n
+
+  <leader>dr   nvim-dap Toggle REPL                                     n
+
+  <leader>dw   nvim-dap Widgets                                         n
+
+  <leader>du   nvim-dap-ui Dap UI                                       n
+
+  <leader>de   nvim-dap-ui Eval                                         n, v
+
   <leader>sr   nvim-spectre Replace in files (Spectre)                  n
 
   <leader>ft   nvim-tree.lua Explorer NvimTree (cwd)                    n
@@ -190,8 +230,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <Leader>bt   telescope.nvim Bazel test                                n
 
   <Leader>bs   telescope.nvim Bazel build                               n
-
-  <Leader>u    undotree Toggle undotree                                 n
 
   <leader>dt   venn.nvim Toggle venn                                    n
 
@@ -234,6 +272,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
+- lua-async-await <https://github.com/nvim-java/lua-async-await>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
 - markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim>
@@ -243,12 +282,22 @@ PLUGINS                                                       *nvimrc-plugins*
 - mini.bufremove <https://github.com/echasnovski/mini.bufremove>
 - mini.surround <https://github.com/echasnovski/mini.surround>
 - neodev.nvim <https://github.com/folke/neodev.nvim>
+- neogen <https://github.com/danymat/neogen>
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
 - nvim-autopairs <https://github.com/windwp/nvim-autopairs>
 - nvim-cmp <https://github.com/hrsh7th/nvim-cmp>
+- nvim-dap <https://github.com/mfussenegger/nvim-dap>
+- nvim-dap-ui <https://github.com/rcarriga/nvim-dap-ui>
+- nvim-dap-virtual-text <https://github.com/theHamsta/nvim-dap-virtual-text>
+- nvim-java <https://github.com/nvim-java/nvim-java>
+- nvim-java-core <https://github.com/nvim-java/nvim-java-core>
+- nvim-java-dap <https://github.com/nvim-java/nvim-java-dap>
+- nvim-java-refactor <https://github.com/nvim-java/nvim-java-refactor>
+- nvim-java-test <https://github.com/nvim-java/nvim-java-test>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
+- nvim-nio <https://github.com/nvim-neotest/nvim-nio>
 - nvim-spectre <https://github.com/nvim-pack/nvim-spectre>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
@@ -256,12 +305,11 @@ PLUGINS                                                       *nvimrc-plugins*
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - rust-tools.nvim <https://github.com/simrat39/rust-tools.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
-- smart-splits.nvim <https://github.com/mrjones2014/smart-splits.nvim>
 - sqlite.lua <https://github.com/kkharji/sqlite.lua>
 - telescope-fzf-native.nvim <https://github.com/nvim-telescope/telescope-fzf-native.nvim>
 - telescope-ui-select.nvim <https://github.com/nvim-telescope/telescope-ui-select.nvim>
+- telescope-undo.nvim <https://github.com/debugloop/telescope-undo.nvim>
 - telescope.nvim <https://github.com/nvim-telescope/telescope.nvim>
-- undotree <https://github.com/mbbill/undotree>
 - venn.nvim <https://github.com/jbyuki/venn.nvim>
 - vim-caser <https://github.com/arthurxavierx/vim-caser>
 - vim-diagon <https://github.com/willchao612/vim-diagon>
