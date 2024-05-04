@@ -23,12 +23,9 @@ return {
   init = function()
     vim.g.mkdp_filetypes = { "markdown" }
   end,
+  -- stylua: ignore
   keys = {
-    {
-      "<Leader>mp",
-      "<CMD>MarkdownPreview<CR>",
-      desc = "Markdown Preview",
-    },
+    { "<Leader>mp", "<CMD>MarkdownPreview<CR>", desc = "Markdown Preview" },
   },
   -- }}}
 }
