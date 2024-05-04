@@ -53,8 +53,21 @@ require("nvim-dap-virtual-text").setup({
 })
 
 require("dapui").setup({
-  expand_lines = true,
-  icons = { expanded = "", collapsed = "", circular = "" },
+  controls = {
+    element = "repl",
+    enabled = true,
+    icons = {
+      disconnect = "",
+      pause = "",
+      play = "",
+      run_last = "",
+      step_back = "",
+      step_into = "",
+      step_out = "",
+      step_over = "",
+      terminate = "",
+    },
+  },
   mappings = {
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
@@ -71,7 +84,7 @@ require("dapui").setup({
         { id = "stacks", size = 0.25 },
         { id = "watches", size = 0.25 },
       },
-      size = 40,
+      size = 45,
       position = "right",
     },
     {
@@ -79,7 +92,7 @@ require("dapui").setup({
         { id = "repl", size = 0.5 },
         { id = "console", size = 0.5 },
       },
-      size = 10,
+      size = 15,
       position = "bottom",
     },
   },

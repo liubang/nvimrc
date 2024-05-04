@@ -14,9 +14,9 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local dap = require("dap")
-
 require("plugins.dap.ui")
+
+local dap = require("dap")
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   require("dapui").open()
@@ -25,4 +25,35 @@ end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
   vim.api.nvim_command("DapVirtualTextDisable")
+end
+
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = "codelldb",
+    args = { "--port", "${port}" },
+  },
+}
+
+dap.adapters.lldb = {
+  type = "executable",
+  command = "lldb-dap",
+  name = "lldb",
+}
+
+for _, lang in ipairs({ "c", "cpp" }) do
+  dap.configurations[lang] = {
+    {
+      name = "Launch",
+      type = "lldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      end,
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+      args = {},
+    },
+  }
 end

@@ -2,7 +2,7 @@
 
 <div align="center"><p>
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.9.4-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.9.5-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
     </a>
     <a href="https://github.com/liubang/nvimrc/actions">
         <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />
@@ -35,7 +35,7 @@
 
 ## Requirements
 
-- Neovim >= **0.9.4** (needs to be built with **LuaJIT**)
+- Neovim >= **0.9.5** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
@@ -101,6 +101,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>7`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 7th visible buffer                               | **n**               |
 | `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 8th visible buffer                               | **n**               |
 | `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 9th visible buffer                               | **n**               |
+| `<leader>bo` | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Delete other buffers                                      | **n**               |
 | `gc`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                            | **n**, **x**        |
 | `gb`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle block comment                                           | **n**, **x**        |
 | `gcc`        | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                            | **n**               |
@@ -117,6 +118,25 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
 | `<leader>bd` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer                                           | **n**               |
 | `<leader>bD` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer (Force)                                   | **n**               |
+| `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Breakpoint Condition                                               | **n**               |
+| `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle Breakpoint                                                  | **n**               |
+| `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                           | **n**               |
+| `<leader>da` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run with Args                                                      | **n**               |
+| `<leader>dC` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run to Cursor                                                      | **n**               |
+| `<leader>dl` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run Last                                                           | **n**               |
+| `<leader>di` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Into                                                          | **n**               |
+| `<leader>do` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Out                                                           | **n**               |
+| `<leader>dO` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Over                                                          | **n**               |
+| `<leader>dp` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Pause                                                              | **n**               |
+| `<leader>dt` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Terminate                                                          | **n**               |
+| `<leader>dj` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Down                                                               | **n**               |
+| `<leader>dk` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Up                                                                 | **n**               |
+| `<leader>dg` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Go to Line (No Execute)                                            | **n**               |
+| `<leader>ds` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Session                                                            | **n**               |
+| `<leader>dr` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle REPL                                                        | **n**               |
+| `<leader>dw` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Widgets                                                            | **n**               |
+| `<leader>du` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Dap UI                                                           | **n**               |
+| `<leader>de` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Eval                                                             | **n**, **v**        |
 | `<leader>sr` | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre.git) Replace in files (Spectre)                                    | **n**               |
 | `<leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer NvimTree (cwd)                                     | **n**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                           | **n**               |
@@ -128,7 +148,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>br` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazl run                                             | **n**               |
 | `<Leader>bt` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazel test                                           | **n**               |
 | `<Leader>bs` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazel build                                          | **n**               |
-| `<Leader>u`  | [undotree](https://github.com/mbbill/undotree.git) Toggle undotree                                                          | **n**               |
 | `<leader>dt` | [venn.nvim](https://github.com/jbyuki/venn.nvim.git) Toggle venn                                                            | **n**               |
 | `<C-t>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Toggle floaterm                                                | **n**, **t**        |
 | `<C-n>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Create a new floaterm window                                   | **t**               |
@@ -166,6 +185,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [lua-async-await](https://github.com/nvim-java/lua-async-await)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
@@ -175,12 +195,22 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
+- [neogen](https://github.com/danymat/neogen)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
+- [nvim-java](https://github.com/nvim-java/nvim-java)
+- [nvim-java-core](https://github.com/nvim-java/nvim-java-core)
+- [nvim-java-dap](https://github.com/nvim-java/nvim-java-dap)
+- [nvim-java-refactor](https://github.com/nvim-java/nvim-java-refactor)
+- [nvim-java-test](https://github.com/nvim-java/nvim-java-test)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
+- [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -188,12 +218,11 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
-- [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
 - [sqlite.lua](https://github.com/kkharji/sqlite.lua)
 - [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
+- [telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [undotree](https://github.com/mbbill/undotree)
 - [venn.nvim](https://github.com/jbyuki/venn.nvim)
 - [vim-caser](https://github.com/arthurxavierx/vim-caser)
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
