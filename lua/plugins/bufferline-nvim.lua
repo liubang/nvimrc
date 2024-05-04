@@ -45,6 +45,7 @@ return {
       bufferline.style_preset.no_italic,
       bufferline.style_preset.no_bold,
     }
+    opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
     bufferline.setup(opts)
   end,
   keys = {

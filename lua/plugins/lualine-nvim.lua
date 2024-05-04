@@ -20,11 +20,12 @@ return {
   opts = function()
     return {
       options = {
+        theme = "auto",
+        globalstatus = true,
         icons_enabled = true,
         component_separators = "",
         section_separators = "",
         always_divide_middle = true,
-        globalstatus = true,
       },
       sections = {
         lualine_a = { require("lb.utils.util").mode_format },

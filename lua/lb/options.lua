@@ -146,6 +146,7 @@ vim.opt.linebreak = true
 vim.opt.foldnestmax = 3
 vim.opt.foldlevelstart = 100
 vim.opt.foldmethod = "expr"
+vim.opt.foldtext = 'v:lua.require("lb.utils.fold").foldtext()'
 --}}}
 
 -- python {{{
