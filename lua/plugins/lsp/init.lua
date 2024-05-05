@@ -24,7 +24,9 @@ return {
         "github:nvim-java/mason-registry",
         "github:mason-org/mason-registry",
       },
-
+      github = {
+        download_url_template = "https://mirror.ghproxy.com/https://github.com/%s/releases/download/%s/%s",
+      },
       ui = {
         border = "single",
         icons = {
