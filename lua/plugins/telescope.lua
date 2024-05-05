@@ -156,97 +156,97 @@ function M.config()
   telescope.load_extension("tasks")
   telescope.load_extension("undo")
 
-  -- local colors = { --{{{
-  --   white = "#ebdbb2",
-  --   darker_black = "#222222",
-  --   black = "#282828", --  nvim bg
-  --   black2 = "#3c3836",
-  --   one_bg = "#323232",
-  --   one_bg2 = "#3b3b3b",
-  --   one_bg3 = "#434343",
-  --   grey = "#505050",
-  --   grey_fg = "#5a5a5a",
-  --   grey_fg2 = "#646464",
-  --   light_grey = "#6c6c6c",
-  --   red = "#ea6962",
-  --   baby_pink = "#ce8196",
-  --   pink = "#ff75a0",
-  --   line = "#373737", -- for lines like vertsplit
-  --   green = "#89b482",
-  --   vibrant_green = "#a9b665",
-  --   nord_blue = "#6f8faf",
-  --   blue = "#6d8dad",
-  --   yellow = "#d8a657",
-  --   sun = "#eab869",
-  --   purple = "#d3869b",
-  --   dark_purple = "#d3869b",
-  --   teal = "#749689",
-  --   orange = "#e78a4e",
-  --   cyan = "#89b482",
-  --   statusline_bg = "#2c2c2c",
-  --   lightbg = "#393939",
-  --   pmenu_bg = "#89b482",
-  --   folder_bg = "#6d8dad",
-  -- } --}}}
+  local colors = { --{{{
+    white = "#ebdbb2",
+    darker_black = "#222222",
+    black = "#282828", --  nvim bg
+    black2 = "#3c3836",
+    one_bg = "#323232",
+    one_bg2 = "#3b3b3b",
+    one_bg3 = "#434343",
+    grey = "#505050",
+    grey_fg = "#5a5a5a",
+    grey_fg2 = "#646464",
+    light_grey = "#6c6c6c",
+    red = "#ea6962",
+    baby_pink = "#ce8196",
+    pink = "#ff75a0",
+    line = "#373737", -- for lines like vertsplit
+    green = "#89b482",
+    vibrant_green = "#a9b665",
+    nord_blue = "#6f8faf",
+    blue = "#6d8dad",
+    yellow = "#d8a657",
+    sun = "#eab869",
+    purple = "#d3869b",
+    dark_purple = "#d3869b",
+    teal = "#749689",
+    orange = "#e78a4e",
+    cyan = "#89b482",
+    statusline_bg = "#2c2c2c",
+    lightbg = "#393939",
+    pmenu_bg = "#89b482",
+    folder_bg = "#6d8dad",
+  } --}}}
 
-  -- -- colors {{{
-  -- local TelescopePrompt = { --{{{
-  --   TelescopeBorder = {
-  --     fg = colors.darker_black,
-  --     bg = colors.darker_black,
-  --   },
-  --
-  --   TelescopePromptBorder = {
-  --     fg = colors.black2,
-  --     bg = colors.black2,
-  --   },
-  --
-  --   TelescopePromptNormal = {
-  --     fg = colors.white,
-  --     bg = colors.black2,
-  --   },
-  --
-  --   TelescopePromptPrefix = {
-  --     fg = colors.red,
-  --     bg = colors.black2,
-  --   },
-  --
-  --   TelescopeNormal = { bg = colors.darker_black },
-  --
-  --   TelescopePreviewTitle = {
-  --     fg = colors.black,
-  --     bg = colors.green,
-  --   },
-  --
-  --   TelescopePromptTitle = {
-  --     fg = colors.black,
-  --     bg = colors.red,
-  --   },
-  --
-  --   TelescopeResultsTitle = {
-  --     fg = colors.darker_black,
-  --     bg = colors.darker_black,
-  --   },
-  --
-  --   TelescopeSelection = { bg = colors.black2, fg = colors.white },
-  --
-  --   TelescopeResultsDiffAdd = {
-  --     fg = colors.green,
-  --   },
-  --
-  --   TelescopeResultsDiffChange = {
-  --     fg = colors.yellow,
-  --   },
-  --
-  --   TelescopeResultsDiffDelete = {
-  --     fg = colors.red,
-  --   },
-  -- } --}}}
-  --
-  -- for hl, col in pairs(TelescopePrompt) do
-  --   vim.api.nvim_set_hl(0, hl, col)
-  -- end
-  -- -- }}}
+  -- colors {{{
+  local TelescopePrompt = { --{{{
+    TelescopeBorder = {
+      fg = colors.darker_black,
+      bg = colors.darker_black,
+    },
+
+    TelescopePromptBorder = {
+      fg = colors.black2,
+      bg = colors.black2,
+    },
+
+    TelescopePromptNormal = {
+      fg = colors.white,
+      bg = colors.black2,
+    },
+
+    TelescopePromptPrefix = {
+      fg = colors.red,
+      bg = colors.black2,
+    },
+
+    TelescopeNormal = { bg = colors.darker_black },
+
+    TelescopePreviewTitle = {
+      fg = colors.black,
+      bg = colors.green,
+    },
+
+    TelescopePromptTitle = {
+      fg = colors.black,
+      bg = colors.red,
+    },
+
+    TelescopeResultsTitle = {
+      fg = colors.darker_black,
+      bg = colors.darker_black,
+    },
+
+    TelescopeSelection = { bg = colors.black2, fg = colors.white },
+
+    TelescopeResultsDiffAdd = {
+      fg = colors.green,
+    },
+
+    TelescopeResultsDiffChange = {
+      fg = colors.yellow,
+    },
+
+    TelescopeResultsDiffDelete = {
+      fg = colors.red,
+    },
+  } --}}}
+
+  for hl, col in pairs(TelescopePrompt) do
+    vim.api.nvim_set_hl(0, hl, col)
+  end
+  -- }}}
 end
 
 return M
