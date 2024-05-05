@@ -15,10 +15,12 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
+  { "norcalli/nvim-colorizer.lua", enabled = false, event = { "VeryLazy" } },
   {
     "catppuccin/nvim",
     priority = 150,
     lazy = false,
+    enabled = false,
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
@@ -129,47 +131,25 @@ return {
         highlight_overrides = {
           all = function(colors)
             return {
-              CmpItemMenu = { fg = colors.surface2 },
+              CmpItemMenu = { fg = colors.surface1 },
               CursorLineNr = { fg = colors.text },
-              FloatBorder = { bg = colors.base, fg = colors.surface0 },
+              FloatBorder = { bg = colors.base, fg = colors.surface1 },
               GitSignsChange = { fg = colors.peach },
               LineNr = { fg = colors.overlay0 },
               LspInfoBorder = { link = "FloatBorder" },
-              NeoTreeDirectoryIcon = { fg = colors.subtext1 },
-              NeoTreeDirectoryName = { fg = colors.subtext1 },
-              NeoTreeFloatBorder = { link = "TelescopeResultsBorder" },
-              NeoTreeGitConflict = { fg = colors.red },
-              NeoTreeGitDeleted = { fg = colors.red },
-              NeoTreeGitIgnored = { fg = colors.overlay0 },
-              NeoTreeGitModified = { fg = colors.peach },
-              NeoTreeGitStaged = { fg = colors.green },
-              NeoTreeGitUnstaged = { fg = colors.red },
-              NeoTreeGitUntracked = { fg = colors.green },
-              NeoTreeIndent = { fg = colors.surface1 },
-              NeoTreeNormal = { bg = colors.mantle },
-              NeoTreeNormalNC = { bg = colors.mantle },
-              NeoTreeRootName = { fg = colors.subtext1, style = { "bold" } },
-              NeoTreeTabActive = { fg = colors.text, bg = colors.mantle },
-              NeoTreeTabInactive = { fg = colors.surface2, bg = colors.crust },
-              NeoTreeTabSeparatorActive = { fg = colors.mantle, bg = colors.mantle },
-              NeoTreeTabSeparatorInactive = { fg = colors.crust, bg = colors.crust },
-              NeoTreeWinSeparator = { fg = colors.base, bg = colors.base },
               NormalFloat = { bg = colors.base },
               Pmenu = { bg = colors.mantle, fg = "" },
               PmenuSel = { bg = colors.surface0, fg = "" },
-              VertSplit = { bg = colors.base, fg = colors.surface0 },
-              WhichKeyFloat = { bg = colors.mantle },
-              YankHighlight = { bg = colors.surface2 },
+              YankHighlight = { bg = colors.red },
+              YankyPut = { bg = colors.red },
+              YankyYanked = { bg = colors.red },
               FidgetTask = { fg = colors.subtext1 },
               FidgetTitle = { fg = colors.peach },
-
               IblIndent = { fg = colors.surface0 },
               IblScope = { fg = colors.overlay0 },
-
               Boolean = { fg = colors.mauve },
               Number = { fg = colors.mauve },
               Float = { fg = colors.mauve },
-
               PreProc = { fg = colors.mauve },
               PreCondit = { fg = colors.mauve },
               Include = { fg = colors.mauve },
@@ -180,7 +160,6 @@ return {
               Typedef = { fg = colors.red },
               Exception = { fg = colors.red },
               Statement = { fg = colors.red },
-
               Error = { fg = colors.red },
               StorageClass = { fg = colors.peach },
               Tag = { fg = colors.peach },
@@ -190,12 +169,15 @@ return {
               Title = { fg = colors.peach },
               Special = { fg = colors.yellow },
               SpecialChar = { fg = colors.yellow },
-              Type = { fg = colors.yellow, style = { "bold" } },
-              Function = { fg = colors.green, style = { "bold" } },
+              Type = {
+                fg = colors.yellow, --[[ style = { "bold" } ]]
+              },
+              Function = {
+                fg = colors.green, --[[ style = { "bold" } ]]
+              },
               Delimiter = { fg = colors.subtext1 },
               Ignore = { fg = colors.subtext1 },
               Macro = { fg = colors.teal },
-
               TSAnnotation = { fg = colors.mauve },
               TSAttribute = { fg = colors.mauve },
               TSBoolean = { fg = colors.mauve },
@@ -256,14 +238,21 @@ return {
               TSTextReference = { link = "Constant" },
               TSTitle = { link = "Title" },
               TSTodo = { link = "Todo" },
-              TSType = { fg = colors.yellow, style = { "bold" } },
-              TSTypeBuiltin = { fg = colors.yellow, style = { "bold" } },
-              TSTypeDefinition = { fg = colors.yellow, style = { "bold" } },
-              TSTypeQualifier = { fg = colors.peach, style = { "bold" } },
+              TSType = {
+                fg = colors.yellow, --[[ style = { "bold" } ]]
+              },
+              TSTypeBuiltin = {
+                fg = colors.yellow, --[[ style = { "bold" } ]]
+              },
+              TSTypeDefinition = {
+                fg = colors.yellow, --[[ style = { "bold" }  ]]
+              },
+              TSTypeQualifier = {
+                fg = colors.peach, --[[ style = { "bold" } ]]
+              },
               TSURI = { fg = colors.blue },
               TSVariable = { fg = colors.text },
               TSVariableBuiltin = { fg = colors.mauve },
-
               ["@annotation"] = { link = "TSAnnotation" },
               ["@attribute"] = { link = "TSAttribute" },
               ["@boolean"] = { link = "TSBoolean" },
@@ -376,7 +365,6 @@ return {
             return {
               IblIndent = { fg = colors.mantle },
               IblScope = { fg = colors.surface1 },
-
               LineNr = { fg = colors.surface1 },
             }
           end,
@@ -386,13 +374,13 @@ return {
       vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "none", fg = "#eedaad" })
       vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "none", fg = "#eedaad" })
       --
-      vim.api.nvim_command("colorscheme catppuccin")
+      -- vim.api.nvim_command("colorscheme catppuccin")
     end,
   },
   {
     "sainnhe/gruvbox-material", -- {{{
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
     config = function()
       vim.o.background = "dark"

@@ -29,10 +29,7 @@ return {
     highlight = {
       on_put = true,
       on_yank = true,
-      timer = 300,
-    },
-    preserve_cursor_position = {
-      enabled = true,
+      timer = 350,
     },
     ring = { storage = jit.os:find("Windows") and "shada" or "sqlite" },
   },
