@@ -1,4 +1,4 @@
-*nvimrc.txt*            For Neovim >= 0.9.4           Last change: 2024 May 05
+*nvimrc.txt*           For Neovim >= 0.10.0           Last change: 2024 May 16
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -23,7 +23,7 @@ FEATURES                                                     *nvimrc-features*
 
 REQUIREMENTS                                             *nvimrc-requirements*
 
-- Neovim >= **0.9.5** (needs to be built with **LuaJIT**)
+- Neovim >= **0.10.0** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
@@ -256,7 +256,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - asyncrun.vim <https://github.com/skywind3000/asyncrun.vim>
 - asynctasks.vim <https://github.com/skywind3000/asynctasks.vim>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
-- catppuccin <https://github.com/catppuccin/nvim>
 - clangd_extensions.nvim <https://github.com/p00f/clangd_extensions.nvim>
 - cmp-buffer <https://github.com/hrsh7th/cmp-buffer>
 - cmp-calc <https://github.com/hrsh7th/cmp-calc>
@@ -271,6 +270,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - friendly-snippets <https://github.com/rafamadriz/friendly-snippets>
 - fzy-lua-native <https://github.com/romgrk/fzy-lua-native>
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
+- gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - lua-async-await <https://github.com/nvim-java/lua-async-await>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
