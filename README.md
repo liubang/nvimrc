@@ -2,7 +2,7 @@
 
 <div align="center"><p>
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.9.5-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.10.0-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
     </a>
     <a href="https://github.com/liubang/nvimrc/actions">
         <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />
@@ -35,7 +35,7 @@
 
 ## Requirements
 
-- Neovim >= **0.9.5** (needs to be built with **LuaJIT**)
+- Neovim >= **0.10.0** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
@@ -169,7 +169,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
-- [catppuccin](https://github.com/catppuccin/nvim)
 - [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-calc](https://github.com/hrsh7th/cmp-calc)
@@ -184,6 +183,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lua-async-await](https://github.com/nvim-java/lua-async-await)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
