@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.13.2](https://github.com/liubang/nvimrc/compare/v3.13.1...v3.13.2) (2024-05-17)
+
+
+### Performance Improvements
+
+* **colorscheme:** use catppuccin ([07d7ec8](https://github.com/liubang/nvimrc/commit/07d7ec8fbe1edbdc36c49b0c3bdac6e1f239e0c6))
+* **colorscheme:** use gruvbox ([e519a33](https://github.com/liubang/nvimrc/commit/e519a337334e10ad4cc83f5cff88dde794799b6d))
+* **doc:** update neovim version ([fe65a60](https://github.com/liubang/nvimrc/commit/fe65a60092e30f2f21ee7bf9aab1bd85e7a078ca))
+* **format:** format code ([88920ec](https://github.com/liubang/nvimrc/commit/88920ec12ab74daab5f282d6fc4339ed68feafb2))
+* **git:** remove github proxy ([17678db](https://github.com/liubang/nvimrc/commit/17678dba5c4e743d81be06b9b7d22414b8a76dc0))
+* **git:** use github proxy ([437ca49](https://github.com/liubang/nvimrc/commit/437ca49c83934e912be64f49615b23955b4d30bd))
+* **git:** use github proxy ([55307af](https://github.com/liubang/nvimrc/commit/55307af91c690965fbc8051cce51b7093427b578))
+* **java:** add nvim-java ([772937a](https://github.com/liubang/nvimrc/commit/772937a2fdeb046c6e8fecc44d942e128f1cef2c))
+* **misc:** update ([44e5d36](https://github.com/liubang/nvimrc/commit/44e5d362d18055405ad3f1e6cab2c2236e07b7cc))
+
 ## [3.13.1](https://github.com/liubang/nvimrc/compare/v3.13.0...v3.13.1) (2024-03-22)
 
 
