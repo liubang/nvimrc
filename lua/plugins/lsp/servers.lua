@@ -32,9 +32,7 @@ for _, server in ipairs({
 end
 
 for _, server in ipairs({
-  -- "html",
-  -- "cssls",
-  -- "emmet_ls", -- emmet YYDS!
+  "lemminx",
   "thriftls",
   "taplo", -- for toml
   "bashls",

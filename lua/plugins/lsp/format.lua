@@ -34,30 +34,26 @@ function M.format()
   vim.lsp.buf.format({ async = false, bufnr = bufnr, filter = filter })
 end
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
-  if client.supports_method("textDocument/formatting") then
-    vim.keymap.set("n", "<Leader>fm", function()
-      M.format()
-    end, opts)
+  vim.keymap.set("n", "<Leader>fm", function()
+    M.format()
+  end, opts)
 
-    -- auto format
-    if autoformats[vim.bo[bufnr].filetype] then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
-        buffer = bufnr,
-        callback = function()
-          M.format()
-        end,
-      })
-    end
+  -- auto format
+  if autoformats[vim.bo[bufnr].filetype] then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
+      buffer = bufnr,
+      callback = function()
+        M.format()
+      end,
+    })
   end
 
-  if client.supports_method("textDocument/rangeFormatting") then
-    vim.keymap.set("v", "<Leader>fm", function()
-      M.format()
-    end, opts)
-  end
+  vim.keymap.set("v", "<Leader>fm", function()
+    M.format()
+  end, opts)
 end
 
 return M
