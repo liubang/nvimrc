@@ -37,7 +37,7 @@ lspconfig.jdtls.setup(c.default({
         runtimes = {
           {
             name = "JavaSE-17",
-            path = "/opt/app/java",
+            path = os.getenv("JAVA_HOME"),
             default = true,
           },
         },
