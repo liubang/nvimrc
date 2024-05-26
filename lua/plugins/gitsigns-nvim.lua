@@ -19,14 +19,18 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   cmd = "Gitsigns",
   opts = {
+    -- stylua: ignore
     signs = {
-      add = { text = "▌", show_count = true },
-      change = { text = "▌", show_count = true },
-      delete = { text = "▐", show_count = true },
-      topdelete = { text = "▛", show_count = true },
+      add          = { text = "▌", show_count = true },
+      change       = { text = "▌", show_count = true },
+      delete       = { text = "▐", show_count = true },
+      topdelete    = { text = "▛", show_count = true },
       changedelete = { text = "▚", show_count = true },
     },
+    update_debounce = 500,
     sign_priority = 10,
+    numhl = false,
+    signcolumn = true,
     count_chars = {
       [1] = "",
       [2] = "₂",
@@ -39,13 +43,12 @@ return {
       [9] = "₉",
       ["+"] = "₊",
     },
-    preview_config = {
-      border = "single",
-      style = "minimal",
-      relative = "cursor",
-      row = 0,
-      col = 1,
-    },
+    diff_opts = { -- {{{
+      internal = true,
+      algorithm = "patience",
+      indent_heuristic = true,
+      linematch = 60,
+    }, -- }}}
     current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     yadm = { enable = false },
   },

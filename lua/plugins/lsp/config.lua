@@ -42,17 +42,18 @@ vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Wa
 vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
 vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { -- {{{
+local popup_window = {
   stylize_markdown = true,
   syntax = "lsp_markdown",
   border = "single",
-}) -- }}}
+  width = 100,
+  height = 10,
+  max_height = 20,
+  max_width = 140,
+}
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { -- {{{
-  border = "single",
-  focusable = false,
-  relative = "cursor",
-}) -- }}}
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, popup_window)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, popup_window)
 
 --
 -- auto cmd
@@ -64,7 +65,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local client = function()
-      return vim.lsp.get_active_clients({ name = "gopls" })
+      local get_clients = (
+        vim.lsp.get_clients ~= nil and vim.lsp.get_clients -- nvim 0.10+
+        or vim.lsp.get_active_clients
+      )
+      return get_clients({ name = "gopls" })
     end
     require("plugins.lsp.utils").codeaction(client(), "", "source.organizeImports", 1000)
     require("plugins.lsp.format").format()

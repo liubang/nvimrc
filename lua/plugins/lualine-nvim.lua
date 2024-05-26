@@ -78,7 +78,11 @@ return {
               if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
                 return false
               end
-              return next(vim.lsp.get_active_clients({ bufnr = 0 })) ~= nil
+              local get_clients = (
+                vim.lsp.get_clients ~= nil and vim.lsp.get_clients -- nvim 0.10+
+                or vim.lsp.get_active_clients
+              )
+              return next(get_clients({ bufnr = 0 })) ~= nil
             end,
           },
         },

@@ -20,9 +20,28 @@ return {
   opts = {
     progress = {
       ignore = { "null-ls" },
+      display = {
+        format_message = function(msg)
+          if string.find(msg.title, "Indexing") then
+            return nil -- Ignore "Indexing..." progress messages
+          end
+          if msg.message then
+            return msg.message
+          else
+            return msg.done and "Completed" or "In progress..."
+          end
+        end,
+      },
     },
     notification = {
-      override_vim_notify = false,
+      view = {
+        stack_upwards = false, -- Display notification items from bottom to top
+      },
+      window = {
+        relative = "editor",
+        winblend = 0,
+      },
+      -- override_vim_notify = false,
     },
   },
   -- }}}
