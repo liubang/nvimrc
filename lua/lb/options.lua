@@ -68,7 +68,6 @@ vim.opt.sessionoptions = "curdir,help,tabpages,winsize"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"
-vim.opt.mouse = nil
 vim.opt.laststatus = 2
 vim.opt.scrolloff = 3 -- keep 3 lines visible while scrolling
 vim.opt.sidescrolloff = 15
@@ -126,7 +125,7 @@ vim.opt.formatoptions = "jcroqlnt" -- tcqj
 -- }}}
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.textwidth = 100
-vim.opt.colorcolumn = { "100" }
+vim.opt.colorcolumn = { "+0" }
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
