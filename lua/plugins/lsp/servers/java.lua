@@ -22,6 +22,9 @@ java.setup({
   java_debug_adapter = {
     enable = true,
   },
+  java_test = {
+    enable = true,
+  },
   jdk = {
     auto_install = false,
   },

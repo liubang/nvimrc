@@ -110,16 +110,16 @@ vim.opt.diffopt:append("indent-heuristic")
 vim.opt.diffopt:append("algorithm:patience")
 vim.opt.diffopt:append("context:3")
 vim.opt.diffopt:append("foldcolumn:1")
-vim.opt.fillchars = { -- {{{
-  vert = "│",
-  fold = "·",
-  diff = "",
-  msgsep = "‾",
-  eob = " ",
-  foldopen = "▾",
-  foldsep = "│",
-  foldclose = "▸",
-} -- }}}
+-- vim.opt.fillchars = { -- {{{
+--   vert = "│",
+--   fold = "·",
+--   diff = "",
+--   msgsep = "‾",
+--   eob = " ",
+--   foldopen = "▾",
+--   foldsep = "│",
+--   foldclose = "▸",
+-- } -- }}}
 vim.opt.synmaxcol = 2500
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
 -- }}}
@@ -132,7 +132,6 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.autoindent = true
 vim.opt.smartindent = true
--- vim.opt.cindent = true
 vim.opt.wrap = true
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -140,6 +139,7 @@ vim.opt.relativenumber = false
 vim.opt.breakindent = true
 vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 vim.opt.linebreak = true
+vim.opt.mouse = "v"
 
 -- Folding and indent {{{
 vim.opt.foldnestmax = 3
