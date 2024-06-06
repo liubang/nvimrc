@@ -59,6 +59,6 @@ return {
     venn.set_arrow("left", "<")
     venn.set_arrow("right", ">")
   end,
-  keys = { { "<leader>dt", ":DrawBoxToggle<CR>", desc = "Toggle venn" } },
+  keys = { { "<leader>vv", ":DrawBoxToggle<CR>", desc = "Toggle venn" } },
   -- }}}
 }

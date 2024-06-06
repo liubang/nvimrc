@@ -148,7 +148,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>br` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazl run                                             | **n**               |
 | `<Leader>bt` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazel test                                           | **n**               |
 | `<Leader>bs` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Bazel build                                          | **n**               |
-| `<leader>dt` | [venn.nvim](https://github.com/jbyuki/venn.nvim.git) Toggle venn                                                            | **n**               |
+| `<leader>vv` | [venn.nvim](https://github.com/jbyuki/venn.nvim.git) Toggle venn                                                            | **n**               |
 | `<C-t>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Toggle floaterm                                                | **n**, **t**        |
 | `<C-n>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Create a new floaterm window                                   | **t**               |
 | `<C-k>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto previous floaterm window                                  | **t**               |
