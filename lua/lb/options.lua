@@ -110,16 +110,16 @@ vim.opt.diffopt:append("indent-heuristic")
 vim.opt.diffopt:append("algorithm:patience")
 vim.opt.diffopt:append("context:3")
 vim.opt.diffopt:append("foldcolumn:1")
--- vim.opt.fillchars = { -- {{{
---   vert = "│",
---   fold = "·",
---   diff = "",
---   msgsep = "‾",
---   eob = " ",
---   foldopen = "▾",
---   foldsep = "│",
---   foldclose = "▸",
--- } -- }}}
+vim.opt.fillchars = { -- {{{
+  vert = "│",
+  fold = "·",
+  diff = "",
+  msgsep = "‾",
+  eob = " ",
+  foldopen = "▾",
+  foldsep = "│",
+  foldclose = "▸",
+} -- }}}
 vim.opt.synmaxcol = 2500
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
 -- }}}
