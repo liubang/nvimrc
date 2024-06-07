@@ -29,8 +29,8 @@ local bazel_finder = function(opts, title, kind)
     return
   end
 
-  local root = util.root_pattern("WORKSPACE")(vim.fn.expand("%:p"))
-  if root == "" or 0 == vim.fn.filereadable(string.format("%s/WORKSPACE", vim.fn.expand(root))) then
+  local root = util.root_pattern("WORKSPACE", "MODULE.bazel", "WORKSPACE.bzlmod")(vim.fn.expand("%:p"))
+  if root == "" then
     vim.notify(
       "The bazel command is only supported within a workspace (below a directory having a WORKSPACE file)",
       vim.log.levels.ERROR
