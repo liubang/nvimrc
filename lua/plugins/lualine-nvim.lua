@@ -53,7 +53,8 @@ return {
           {
             require("lb.utils.util").file_size_format,
             cond = function()
-              local ft = vim.api.nvim_buf_get_option(0, "filetype")
+              local ft
+              vim.api.nvim_get_option_value("filetype", { scope = "local" })
               if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
                 return false
               end
@@ -74,20 +75,16 @@ return {
           {
             require("lb.utils.util").lsp_clients_format,
             cond = function()
-              local ft = vim.api.nvim_buf_get_option(0, "filetype")
+              local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
               if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
                 return false
               end
-              local get_clients = (
-                vim.lsp.get_clients ~= nil and vim.lsp.get_clients -- nvim 0.10+
-                or vim.lsp.get_active_clients
-              )
-              return next(get_clients({ bufnr = 0 })) ~= nil
+              return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
             end,
           },
         },
         lualine_y = {
-          { "filetype", icon_only = true, colored = true },
+          -- { "filetype", icon_only = true, colored = true },
           { "encoding" },
         },
         lualine_z = {
