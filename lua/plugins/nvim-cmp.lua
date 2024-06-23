@@ -73,8 +73,9 @@ return {
           },
         },
         window = {
-          documentation = false,
-          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+          completion = {
+            scrollbar = false,
+          },
         },
         formatting = {
           fields = { "abbr", "kind" },
@@ -87,11 +88,21 @@ return {
                 return item
               end
             end
+            local max_width = 70
+            if vim.fn.strchars(item.abbr) > max_width then
+              item.abbr = vim.fn.strcharpart(item.abbr, 0, max_width) .. "..."
+            end
             item.kind = string.format("%s  %-9s", config.kinds[item.kind], item.kind)
+            -- clear item menu
+            item.menu = ""
             return item
           end,
         },
-        view = { max_height = 20 },
+        view = {
+          docs = {
+            auto_open = false,
+          },
+        },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
