@@ -20,13 +20,14 @@ local M = {
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "debugloop/telescope-undo.nvim" },
     { "skywind3000/asynctasks.vim" },
   },
   keys = {
     { "<Leader>ff", "<CMD>Telescope find_files<CR>", mode = { "n" }, desc = "List files" },
     { "<Leader>rf", "<CMD>Telescope oldfiles<CR>", mode = { "n" }, desc = "List recent files" },
-    { "<Leader>ag", "<CMD>Telescope live_grep<CR>", mode = { "n" }, desc = "Grep in files" },
+    { "<Leader>ag", "<CMD>Telescope live_grep_args<CR>", mode = { "n" }, desc = "Grep in files" },
     {
       "<Leader>Ag",
       "<CMD>Telescope grep_string<CR>",
@@ -141,6 +142,15 @@ function M.config()
       lsp_workspace_symbols = { path_display = { "shorten" } },
     }, --}}}
     extensions = { --{{{
+      live_grep_args = {
+        preview = true,
+        mappings = { -- extend mappings
+          i = {
+            ["<C-g>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
+            ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " }),
+          },
+        },
+      },
       fzf = {
         fuzzy = false,
         override_generic_sorter = true,
@@ -150,6 +160,7 @@ function M.config()
     }, --}}}
   })
 
+  telescope.load_extension("live_grep_args")
   telescope.load_extension("ui-select")
   telescope.load_extension("fzf")
   telescope.load_extension("bazel")
