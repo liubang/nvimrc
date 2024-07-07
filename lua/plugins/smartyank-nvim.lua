@@ -15,23 +15,26 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  "gbprod/yanky.nvim", -- {{{
-  dependencies = { "kkharji/sqlite.lua" },
-  keys = {
-    { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
-    { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
-    { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
-  },
+  "ibhagwan/smartyank.nvim",
+  event = { "BufReadPost" },
   opts = {
-    system_clipboard = {
-      sync_with_ring = true,
-    },
     highlight = {
-      on_put = true,
-      on_yank = true,
-      timer = 350,
+      enabled = true,
+      higroup = "IncSearch", -- highlight group of yanked text
+      timeout = 350,
     },
-    ring = { storage = jit.os:find("Windows") and "shada" or "sqlite" },
+    clipboard = {
+      enabled = true,
+    },
+    tmux = {
+      enabled = false,
+      cmd = { "tmux", "set-buffer", "-w" },
+    },
+    osc52 = {
+      enabled = true,
+      ssh_only = true,
+      silent = false,
+      echo_hl = "Directory",
+    },
   },
-  -- }}}
 }

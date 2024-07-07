@@ -109,8 +109,9 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>df` | [diffview.nvim](https://github.com/sindrets/diffview.nvim.git) File history                                                 | **n**               |
 | `<leader>dv` | [diffview.nvim](https://github.com/sindrets/diffview.nvim.git) Diff view                                                    | **n**               |
 | `s`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash                                                                 | **n**, **x**, **o** |
+| `S`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash Treesitter                                                      | **n**, **x**, **o** |
 | `r`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Remote Flash                                                          | **o**               |
-| `<c-s>`      | [flash.nvim](https://github.com/folke/flash.nvim.git) Toggle Flash Search                                                   | **c**               |
+| `R`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Treesitter Search                                                     | **o**, **x**        |
 | `<Leader>hb` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Show the line git blame in a floating window                | **n**               |
 | `<Leader>hd` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Perform a `vimdiff` on the given file                       | **n**               |
 | `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position          | **n**               |
@@ -219,8 +220,10 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
-- [sqlite.lua](https://github.com/kkharji/sqlite.lua)
+- [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
+- [spring-boot.nvim](https://github.com/JavaHello/spring-boot.nvim)
 - [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
+- [telescope-live-grep-args.nvim](https://github.com/nvim-telescope/telescope-live-grep-args.nvim)
 - [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - [telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -232,6 +235,5 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [vim-startuptime](https://github.com/dstein64/vim-startuptime)
 - [wilder.nvim](https://github.com/gelguy/wilder.nvim)
-- [yanky.nvim](https://github.com/gbprod/yanky.nvim)
 
 <!-- plugins:end -->
