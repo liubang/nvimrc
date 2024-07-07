@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.14.0](https://github.com/liubang/nvimrc/compare/v3.13.2...v3.14.0) (2024-07-07)
+
+
+### Features
+
+* **bazel:** bazel telescope extension support bzlmod ([14d366e](https://github.com/liubang/nvimrc/commit/14d366e561396a1a715c9fc02a6d704a5375eceb))
+
+
+### Bug Fixes
+
+* **gitsigns:** remove yadm ([620754b](https://github.com/liubang/nvimrc/commit/620754bf34bfd17f3d409c41d90e062e20a6f6ea))
+* **venn:** do not clear all buffer mapping ([a359c81](https://github.com/liubang/nvimrc/commit/a359c8105467dc19e60affd0143e48d5af33beba))
+* **venn:** fix duplicate key mapping ([0d3a88c](https://github.com/liubang/nvimrc/commit/0d3a88c44edf7838c641e9c78d57190745f10000))
+
+
+### Performance Improvements
+
+* **cmp:** disable menu to avoid unnecessary space ([392f258](https://github.com/liubang/nvimrc/commit/392f258f8c592dce8281db147cfbec35dffcc969))
+* **fillchars:** custom fillchars ([3625945](https://github.com/liubang/nvimrc/commit/36259457204ced3aba3b9ce3082c7621f2b1eb23))
+* **flash:** disable char mode ([544c442](https://github.com/liubang/nvimrc/commit/544c44262dc124f64f218d0b66ddac74a5429ee9))
+* **lsp:** add xml ls ([239f479](https://github.com/liubang/nvimrc/commit/239f47954a74268c245cf33405300c63c6e7b41c))
+* **lsp:** use JAVA_HOME env ([03dd45d](https://github.com/liubang/nvimrc/commit/03dd45db923e174978197d66a3032738cfc20f62))
+* **misc:** do some changes ([469e93e](https://github.com/liubang/nvimrc/commit/469e93e1772befbc701eac90e4b039f249b921df))
+* **misc:** do some changes ([28b8535](https://github.com/liubang/nvimrc/commit/28b853565cfe5ef78d4906cabd87453ac959cbd4))
+* **opt:** set mouse = v ([77d8442](https://github.com/liubang/nvimrc/commit/77d844206314ece1a5ff1fcc7876aef0d7c65ec6))
+* **plugin:** add telescope-live-grep-args ([6472391](https://github.com/liubang/nvimrc/commit/6472391da619fdec9065eca52ba102f601a2d181))
+* **plugin:** update flash and lualine config ([027e4ad](https://github.com/liubang/nvimrc/commit/027e4ad179332faec07ee8c3b7697c233664eb12))
+
 ## [3.13.2](https://github.com/liubang/nvimrc/compare/v3.13.1...v3.13.2) (2024-05-17)
 
 
