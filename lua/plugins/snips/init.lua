@@ -21,12 +21,7 @@ return {
       and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
     or nil,
   dependencies = {
-    {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
+    { "rafamadriz/friendly-snippets" },
   },
   opts = {
     history = true,
@@ -58,6 +53,7 @@ return {
   config = function(_, opts)
     require("luasnip").setup(opts)
     require("plugins.snips.all")
+    require("plugins.snips.cpp")
     require("luasnip.loaders.from_vscode").lazy_load()
   end,
 }
