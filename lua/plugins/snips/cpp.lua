@@ -37,7 +37,7 @@ local function get_class_name()
 end
 
 local snippets = {
-  s("disalbecopymove", {
+  s("disablecopymove", {
     t({ "// disable copy and move", "" }),
     f(function()
       return get_class_name()
