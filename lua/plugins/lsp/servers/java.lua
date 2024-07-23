@@ -19,6 +19,20 @@ local java = require("java")
 local lspconfig = require("lspconfig")
 
 java.setup({
+  root_markers = {
+    "settings.gradle",
+    "settings.gradle.kts",
+    "pom.xml",
+    "build.gradle",
+    "mvnw",
+    "gradlew",
+    "build.gradle",
+    "build.gradle.kts",
+    ".git",
+  },
+  spring_boot_tools = {
+    enable = true,
+  },
   java_debug_adapter = {
     enable = true,
   },
