@@ -15,7 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  "susliko/tla.nvim",
+  "liubang/tla.nvim",
   cmd = {
     "TlaInstall",
     "TlaTranslate",

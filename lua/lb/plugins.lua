@@ -23,7 +23,7 @@ require("lazy").setup({
     colorscheme = { "catppuccin", "gruvbox-material" },
   },
   dev = {
-    path = "~/workspace/vim",
+    path = "~/workspace/liubang",
     patterns = { "liubang" },
     fallback = true,
   },
