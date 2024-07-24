@@ -21,4 +21,5 @@ return {
     "TlaTranslate",
     "TlaCheck",
   },
+  opts = {},
 }
