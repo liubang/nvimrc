@@ -51,6 +51,7 @@ return {
       "markdown_inline",
       "vimdoc",
       "json",
+      "tlaplus",
     },
     fold = { enable = true },
     indent = { enable = false },

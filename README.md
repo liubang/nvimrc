@@ -227,6 +227,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - [telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [tla.nvim](https://github.com/susliko/tla.nvim)
 - [venn.nvim](https://github.com/jbyuki/venn.nvim)
 - [vim-caser](https://github.com/arthurxavierx/vim-caser)
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
