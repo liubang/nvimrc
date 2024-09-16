@@ -26,11 +26,12 @@ vim.diagnostic.config({ -- {{{
   update_in_insert = false,
   underline = false,
   float = {
-    border = "single",
+    spacing = 4,
+    border = nil,
     focusable = true,
     header = " Diagnostics: ",
     scope = "line",
-    source = "always",
+    source = true,
   },
 }) -- }}}
 
@@ -45,9 +46,9 @@ vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hi
 local popup_window = {
   stylize_markdown = true,
   syntax = "lsp_markdown",
-  border = "single",
+  border = nil,
   width = 100,
-  height = 10,
+  height = 15,
   max_height = 20,
   max_width = 140,
 }
