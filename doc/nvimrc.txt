@@ -1,4 +1,4 @@
-*nvimrc.txt*        For Neovim >= 0.10.0        Last change: 2024 September 16
+*nvimrc.txt*         For Neovim >= 0.10.0         Last change: 2024 October 03
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -171,6 +171,10 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>bD   mini.bufremove Delete Buffer (Force)                     n
 
+  <leader>mf   mini.files Open mini.files (Directory of Current File)   n
+
+  <leader>mF   mini.files Open mini.files (cwd)                         n
+
   <leader>dB   nvim-dap Breakpoint Condition                            n
 
   <leader>db   nvim-dap Toggle Breakpoint                               n
@@ -282,6 +286,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - mason.nvim <https://github.com/williamboman/mason.nvim>
 - mini.align <https://github.com/echasnovski/mini.align>
 - mini.bufremove <https://github.com/echasnovski/mini.bufremove>
+- mini.files <https://github.com/echasnovski/mini.files>
 - mini.surround <https://github.com/echasnovski/mini.surround>
 - neodev.nvim <https://github.com/folke/neodev.nvim>
 - neogen <https://github.com/danymat/neogen>
@@ -315,7 +320,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - telescope-ui-select.nvim <https://github.com/nvim-telescope/telescope-ui-select.nvim>
 - telescope-undo.nvim <https://github.com/debugloop/telescope-undo.nvim>
 - telescope.nvim <https://github.com/nvim-telescope/telescope.nvim>
-- tla.nvim <https://github.com/susliko/tla.nvim>
+- tla.nvim <https://github.com/liubang/tla.nvim>
 - venn.nvim <https://github.com/jbyuki/venn.nvim>
 - vim-caser <https://github.com/arthurxavierx/vim-caser>
 - vim-diagon <https://github.com/willchao612/vim-diagon>
