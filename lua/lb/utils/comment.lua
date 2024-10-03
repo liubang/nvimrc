@@ -57,8 +57,7 @@ local prefix_mappings = { -- {{{
 -- stylua: ignore
 local header_mappings = { -- {{{
   ["php"]    = { "<?php" },
-  ["sh"]     = { "#! /bin/sh" },
-  ["bash"]   = { "#! /usr/bin/env bash" },
+  ["sh"]     = { "#! /bin/bash" },
   ["zsh"]    = { "#! /usr/bin/env zsh" },
   ["python"] = { "#! /usr/bin/env python", "# -*- coding: utf-8 -*-" },
 } -- }}}
@@ -78,6 +77,17 @@ local comment_line = function(c, r) -- {{{
   end
   return prefix
 end -- }}}
+
+function M.add_fileheader()
+  local text = {}
+  local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+  if header_mappings[filetype] ~= nil then
+    for _, v in pairs(header_mappings[filetype]) do
+      table.insert(text, v)
+    end
+  end
+  vim.fn.append(0, text)
+end
 
 function M.copy_right() -- {{{
   local c = comment_prefix()

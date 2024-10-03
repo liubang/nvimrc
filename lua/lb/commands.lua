@@ -34,6 +34,10 @@ vim.api.nvim_create_user_command("CopyRight", function() -- {{{
   require("lb.utils.comment").copy_right()
 end, { nargs = 0 }) -- }}}
 
+vim.api.nvim_create_user_command("AddFileHeader", function() -- {{{
+  require("lb.utils.comment").add_fileheader()
+end, { nargs = 0 }) -- }}}
+
 vim.api.nvim_create_user_command("CopyRightApache", function() -- {{{
   require("lb.utils.comment").copy_right_apache()
 end, { nargs = 0 }) -- }}}

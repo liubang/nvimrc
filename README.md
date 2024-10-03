@@ -119,6 +119,8 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
 | `<leader>bd` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer                                           | **n**               |
 | `<leader>bD` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer (Force)                                   | **n**               |
+| `<leader>mf` | [mini.files](https://github.com/echasnovski/mini.files.git) Open mini.files (Directory of Current File)                     | **n**               |
+| `<leader>mF` | [mini.files](https://github.com/echasnovski/mini.files.git) Open mini.files (cwd)                                           | **n**               |
 | `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Breakpoint Condition                                               | **n**               |
 | `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle Breakpoint                                                  | **n**               |
 | `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                           | **n**               |
@@ -194,6 +196,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mini.align](https://github.com/echasnovski/mini.align)
 - [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
+- [mini.files](https://github.com/echasnovski/mini.files)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [neogen](https://github.com/danymat/neogen)
@@ -227,7 +230,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - [telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [tla.nvim](https://github.com/susliko/tla.nvim)
+- [tla.nvim](https://github.com/liubang/tla.nvim)
 - [venn.nvim](https://github.com/jbyuki/venn.nvim)
 - [vim-caser](https://github.com/arthurxavierx/vim-caser)
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
