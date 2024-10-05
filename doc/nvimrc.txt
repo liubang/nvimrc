@@ -1,4 +1,4 @@
-*nvimrc.txt*         For Neovim >= 0.10.0         Last change: 2024 October 03
+*nvimrc.txt*         For Neovim >= 0.10.0         Last change: 2024 October 05
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -23,7 +23,7 @@ FEATURES                                                     *nvimrc-features*
 
 REQUIREMENTS                                             *nvimrc-requirements*
 
-- Neovim >= **0.10.0** (needs to be built with **LuaJIT**)
+- Neovim >= **0.10.1** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
