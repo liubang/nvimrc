@@ -1,5 +1,28 @@
 # Changelog
 
+## [3.15.0](https://github.com/liubang/nvimrc/compare/v3.14.0...v3.15.0) (2024-10-05)
+
+
+### Features
+
+* **mini:** add mini files ([6ad5421](https://github.com/liubang/nvimrc/commit/6ad5421c7a94d48dfdf294e957cd46e19177aa43))
+* **misc:** add file header command ([beb7cbd](https://github.com/liubang/nvimrc/commit/beb7cbddc72a121ceebe5ab13715d1653fe6045f))
+* **tla:** support tla ([f302a68](https://github.com/liubang/nvimrc/commit/f302a6828c3988997d14c6ccf49fcdb10e5b09d3))
+
+
+### Bug Fixes
+
+* **snip:** fix wrong snip name ([d70a8a8](https://github.com/liubang/nvimrc/commit/d70a8a81782b1dabeb38659dce26c80659d631e3))
+* **tla:** fix tla do not execute setup ([cf5d331](https://github.com/liubang/nvimrc/commit/cf5d331094ef467fdef34541011fca88fada03c2))
+
+
+### Performance Improvements
+
+* **doc:** update neovim version ([a648793](https://github.com/liubang/nvimrc/commit/a64879317c20be6c451dac4ab3052ea66e8619ac))
+* **java:** update nvim-java ([66fe4aa](https://github.com/liubang/nvimrc/commit/66fe4aa37a9d0f902b0fe37fe881b6e62d400cf7))
+* **snip:** add cpp snip ([63356da](https://github.com/liubang/nvimrc/commit/63356da26f65f80ab040bcfa8f8a8c2e4dd6991d))
+* **tla:** update tla plugins ([585f326](https://github.com/liubang/nvimrc/commit/585f326c2f2f9c487af2f137671f74fc8ed6b1aa))
+
 ## [3.14.0](https://github.com/liubang/nvimrc/compare/v3.13.2...v3.14.0) (2024-07-07)
 
 
