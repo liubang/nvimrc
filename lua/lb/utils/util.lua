@@ -345,6 +345,7 @@ local lsp_names = { --{{{
   cssls                 = "CSS",
   emmet_ls              = "EMMET",
   jdtls                 = "Java",
+  bzl                   = "bzl",
   ["spring-boot"]       = "Spring",
   nginx_language_server = "nginx",
 }

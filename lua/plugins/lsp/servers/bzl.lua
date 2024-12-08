@@ -16,32 +16,10 @@
 
 local c = require("plugins.lsp.customs")
 local lspconfig = require("lspconfig")
+local util = require("lspconfig.util")
 
-for _, server in ipairs({
-  "cpp",
-  "golang",
-  "rust",
-  "java",
-  "python",
-  "lua",
-  "json",
-  "yaml",
-  "latex",
-  "bzl",
-}) do
-  require("plugins.lsp.servers." .. server)
-end
-
-for _, server in ipairs({
-  "lemminx",
-  "thriftls",
-  "taplo", -- for toml
-  "bashls",
-  "cmake",
-  "intelephense",
-  "nginx_language_server",
-}) do
-  lspconfig[server].setup(c.default())
-end
-
--- vim: fdm=marker fdl=0
+lspconfig.bzl.setup(c.default({
+  cmd = { "bzl", "lsp", "serve" },
+  filetypes = { "bzl" },
+  root_dir = util.root_pattern("WORKSPACE", "WORKSPACE.bazel", "MODULE.bazel"),
+}))
