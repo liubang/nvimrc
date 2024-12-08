@@ -1,4 +1,4 @@
-*nvimrc.txt*         For Neovim >= 0.10.0         Last change: 2024 October 05
+*nvimrc.txt*         For Neovim >= 0.10.0        Last change: 2024 December 08
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
