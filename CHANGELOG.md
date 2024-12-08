@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.15.1](https://github.com/liubang/nvimrc/compare/v3.15.0...v3.15.1) (2024-12-08)
+
+
+### Performance Improvements
+
+* **bzl:** add bzl lsp config ([8584af6](https://github.com/liubang/nvimrc/commit/8584af664c06e84141e7217cd8b42670fc12762e))
+
 ## [3.15.0](https://github.com/liubang/nvimrc/compare/v3.14.0...v3.15.0) (2024-10-05)
 
 
