@@ -44,13 +44,17 @@ local custom_attach = function(client, bufnr)
 end
 
 M.default = function(configs)
+  configs = configs or {}
+  local caps = vim.tbl_deep_extend("force", capabilities, configs.capabilities or {})
   local custom_config = {
     on_attach = custom_attach,
-    capabilities = capabilities,
+    capabilities = caps,
   }
   if configs ~= nil then
     for key, value in pairs(configs) do
-      custom_config[key] = value
+      if key ~= "capabilities" then
+        custom_config[key] = value
+      end
     end
   end
   return custom_config
