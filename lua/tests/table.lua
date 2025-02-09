@@ -1,4 +1,4 @@
--- Copyright (c) 2024 The Authors. All rights reserved.
+-- Copyright (c) 2025 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -14,11 +14,15 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
+local opts = {
+  a = "a",
+  b = "b",
+  c = {
+    a = "a",
+    b = "b",
+  },
+}
 
-lspconfig.pyright.setup(c.default({
-  single_file_support = true,
-}))
+opts = vim.tbl_deep_extend("force", opts, { a = "aa", c = { b = "bb" } })
 
-lspconfig.ruff.setup(c.default({}))
+vim.print(opts)
