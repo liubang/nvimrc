@@ -89,6 +89,7 @@ return {
   {
     "echasnovski/mini.files",
     version = "*",
+    enabled = false,
     opts = {
       content = {
         filter = nil,
