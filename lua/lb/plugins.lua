@@ -43,7 +43,7 @@ require("lazy").setup({
     },
   },
   git = {
-    url_format = "https://mirror.ghproxy.com/https://github.com/%s",
+    url_format = "https://ghfast.top/https://github.com/%s",
   },
   performance = { -- {{{
     cache = {
