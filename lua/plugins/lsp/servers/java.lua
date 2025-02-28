@@ -30,6 +30,9 @@ java.setup({
     "build.gradle.kts",
     ".git",
   },
+  lombok = {
+    version = "nightly",
+  },
   spring_boot_tools = {
     enable = true,
   },
@@ -43,7 +46,10 @@ java.setup({
     auto_install = false,
   },
   notifications = {
-    dap = true,
+    dap = false,
+  },
+  verification = {
+    invalid_order = true,
   },
 })
 
