@@ -18,6 +18,10 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = { "BufReadPre", "BufNewFile" },
+  keys = {
+    { "<C-v>", desc = "Increment Selection" },
+    { "V", desc = "Decrement Selection", mode = "x" },
+  },
   cmd = {
     "TSBufDisable",
     "TSBufEnable",
@@ -53,12 +57,30 @@ return {
       "json",
       "tlaplus",
     },
-    fold = { enable = true },
-    indent = { enable = false },
-    matchup = { enable = true },
+    fold = {
+      enable = true,
+    },
+    indent = {
+      enable = false,
+    },
+    matchup = {
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "<C-v>",
+        node_incremental = "v",
+        node_decremental = "V",
+        scope_incremental = false,
+      },
+    },
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = false,
+      -- Disable in large C++/C buffers
+      disable = function(lang, bufnr)
+        return (lang == "cpp" or lang == "c") and vim.api.nvim_buf_line_count(bufnr) > 2000
+      end,
     },
   },
   config = function(_, opts)

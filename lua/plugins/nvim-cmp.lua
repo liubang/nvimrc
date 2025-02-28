@@ -29,6 +29,7 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local config = require("lb.config")
+      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       cmp.setup({
         performance = {
           debounce = 50,
@@ -89,8 +90,8 @@ return {
               end
             end
             local max_width = 70
-            if vim.fn.strchars(item.abbr) > max_width then
-              item.abbr = vim.fn.strcharpart(item.abbr, 0, max_width) .. "..."
+            if vim.fn.strdisplaywidth(item.abbr) > max_width then
+              item.abbr = vim.fn.strcharpart(item.abbr, 0, max_width - 1) .. "…"
             end
             item.kind = string.format("%s  %-9s", config.kinds[item.kind], item.kind)
             -- clear item menu
@@ -126,15 +127,6 @@ return {
       })
     end,
     -- }}}
-  },
-
-  {
-    "windwp/nvim-autopairs", -- {{{
-    event = "InsertEnter",
-    opts = {
-      disable_filetype = { "TelescopePrompt" },
-    },
-    --- }}}
   },
 }
 
