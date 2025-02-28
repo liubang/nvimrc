@@ -17,11 +17,13 @@
 return {
   "iamcco/markdown-preview.nvim", -- {{{
   ft = { "markdown" },
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   build = function()
+    require("lazy").load({ plugins = { "markdown-preview.nvim" } })
     vim.fn["mkdp#util#install"]()
   end,
-  init = function()
-    vim.g.mkdp_filetypes = { "markdown" }
+  config = function()
+    vim.cmd([[do FileType]])
   end,
   -- stylua: ignore
   keys = {
