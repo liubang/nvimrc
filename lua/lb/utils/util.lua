@@ -377,11 +377,11 @@ end -- }}}
 
 function M.bigfile(lang, bufnr) -- {{{
   if lang == "cpp" or lang == "c" then
-    return vim.api.nvim_buf_line_count(bufnr) > 10240
+    return vim.api.nvim_buf_line_count(bufnr) > 2048
   else
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-    -- 400KB
-    if not ok or stats.size > 409600 then
+    -- 200KB
+    if not ok or stats.size > 204800 then
       return true
     end
   end
