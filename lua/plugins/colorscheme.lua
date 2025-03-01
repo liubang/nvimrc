@@ -15,7 +15,6 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  { "norcalli/nvim-colorizer.lua", enabled = false, event = { "VeryLazy" } },
   {
     "catppuccin/nvim",
     priority = 150,
@@ -384,7 +383,16 @@ return {
     priority = 1000,
     config = function()
       vim.o.background = "dark"
-      vim.o.guifont = "Operator Mono Lig:h18,Hack Nerd Font:h18"
+
+      local uv = require("luv")
+      local os = uv.os_uname().sysname
+      if os == "Linux" then
+        -- for linux
+        vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h15:h15"
+      else
+        -- for macos
+        vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h18:h18"
+      end
 
       -- neowide {{{
       vim.g.neovide_refresh_rate = 60

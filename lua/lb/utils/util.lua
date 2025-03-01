@@ -382,7 +382,7 @@ function M.bigfile(lang, bufnr) -- {{{
   else
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
     -- 400KB
-    if not ok or stats.size > 409600 then
+    if not ok or not stats or stats.size > 409600 then
       return true
     end
   end
