@@ -15,4 +15,5 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local uv = require("luv")
+vim.print(uv.os_uname().sysname)
 print(uv.available_parallelism())
