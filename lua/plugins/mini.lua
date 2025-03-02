@@ -162,6 +162,22 @@ return {
           map_split(buf_id, "<C-v>", "vertical", true)
         end,
       })
+
+      -- use :w to save filesystem change
+      vim.api.nvim_create_autocmd("User", {
+        pattern = { "MiniFilesBufferCreate", "MiniFilesBufferUpdate" },
+        callback = function(ev)
+          local buf_id = ev.data.buf_id
+          vim.schedule(function()
+            vim.api.nvim_buf_set_option(buf_id, "buftype", "acwrite")
+            vim.api.nvim_buf_set_name(buf_id, "MiniFiles_" .. buf_id)
+            vim.api.nvim_create_autocmd("BufWriteCmd", {
+              buffer = buf_id,
+              callback = MiniFiles.synchronize,
+            })
+          end)
+        end,
+      })
     end,
     keys = {
       {
