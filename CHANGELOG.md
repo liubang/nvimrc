@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.16.0](https://github.com/liubang/nvimrc/compare/v3.15.0...v3.16.0) (2025-03-02)
+
+
+### Features
+
+* **mini.files:** add mini.files ([ea6b560](https://github.com/liubang/nvimrc/commit/ea6b56018b6f079223fe41da3037623f66542b02))
+* **mini.files:** use :w to save filesystem change ([f41aa0d](https://github.com/liubang/nvimrc/commit/f41aa0da347b1b2638aa85ded697c8667d209404))
+* **oil:** add oil ([5d5d4a7](https://github.com/liubang/nvimrc/commit/5d5d4a74eded3cb83f82e6ff1024a7d204574785))
+
+
+### Bug Fixes
+
+* **guifont:** fix guifont config ([31c55b6](https://github.com/liubang/nvimrc/commit/31c55b62aad5de3fd75843c91e724ba007284a43))
+* **markdown:** fix markdown-preview install ([99f38ca](https://github.com/liubang/nvimrc/commit/99f38ca44fc4ba69c3ecbf126b31a31904ba5f59))
+* **workflows:** fix github action ([d458a9e](https://github.com/liubang/nvimrc/commit/d458a9eac9515ef905f6f6ad1e1e85ed2f91c8a7))
+
+
+### Performance Improvements
+
+* **bzl:** add bzl lsp config ([8584af6](https://github.com/liubang/nvimrc/commit/8584af664c06e84141e7217cd8b42670fc12762e))
+* **gopls:** update gpols version to latest ([c62ecde](https://github.com/liubang/nvimrc/commit/c62ecde2f9bf6b03d8923ffd13482b5911c7fcab))
+* **lsp:** python lsp ([9be261d](https://github.com/liubang/nvimrc/commit/9be261d7e1b6978a6a0204d5db62260d3fe62b8b))
+* **mix:** some change ([7712a87](https://github.com/liubang/nvimrc/commit/7712a87e3a2cf0f95f596bc8dae245aa74ca7c1e))
+* **ts:** disable treesitter in big file ([14c757a](https://github.com/liubang/nvimrc/commit/14c757a96ffce548fa81088574695e93985d43d5))
+
 ## [3.15.0](https://github.com/liubang/nvimrc/compare/v3.14.0...v3.15.0) (2024-10-05)
 
 
