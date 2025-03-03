@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.16.1](https://github.com/liubang/nvimrc/compare/v3.16.0...v3.16.1) (2025-03-03)
+
+
+### Performance Improvements
+
+* **mini.files:** change config ([0030271](https://github.com/liubang/nvimrc/commit/00302716da267d2155f448b2fd74535c55f9cd5f))
+* **mini.files:** change keymap ([9306477](https://github.com/liubang/nvimrc/commit/93064774fcf54add6ea2bf34642431d73dfc5d15))
+
 ## [3.16.0](https://github.com/liubang/nvimrc/compare/v3.15.0...v3.16.0) (2025-03-02)
 
 
