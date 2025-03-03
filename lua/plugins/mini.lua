@@ -129,7 +129,7 @@ return {
       windows = {
         preview = false,
         width_focus = 30,
-        width_nofocus = 30,
+        width_nofocus = 18,
       },
     },
     config = function(_, opts)
