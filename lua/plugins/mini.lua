@@ -181,14 +181,14 @@ return {
     end,
     keys = {
       {
-        "<leader>mf",
+        "<leader>ft",
         function()
           require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
         end,
         desc = "Open mini.files (Directory of Current File)",
       },
       {
-        "<leader>mF",
+        "<leader>fT",
         function()
           require("mini.files").open(vim.uv.cwd(), true)
         end,
