@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 March 03
+*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 March 06
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -239,7 +239,7 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>bs   telescope.nvim Bazel build                               n
 
-  <leader>vv   venn.nvim Toggle venn                                    n
+  <leader>vv   venn.nvim Toggle draw box                                n
 
   <C-t>        vim-floaterm Toggle floaterm                             n, t
 
