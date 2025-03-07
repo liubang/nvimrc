@@ -263,13 +263,9 @@ PLUGINS                                                       *nvimrc-plugins*
 - alpha-nvim <https://github.com/goolord/alpha-nvim>
 - asyncrun.vim <https://github.com/skywind3000/asyncrun.vim>
 - asynctasks.vim <https://github.com/skywind3000/asynctasks.vim>
+- blink.cmp <https://github.com/saghen/blink.cmp>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
 - clangd_extensions.nvim <https://github.com/p00f/clangd_extensions.nvim>
-- cmp-buffer <https://github.com/hrsh7th/cmp-buffer>
-- cmp-calc <https://github.com/hrsh7th/cmp-calc>
-- cmp-nvim-lsp <https://github.com/hrsh7th/cmp-nvim-lsp>
-- cmp-path <https://github.com/hrsh7th/cmp-path>
-- cmp_luasnip <https://github.com/saadparwaiz1/cmp_luasnip>
 - Comment.nvim <https://github.com/numToStr/Comment.nvim>
 - crates.nvim <https://github.com/saecki/crates.nvim>
 - diffview.nvim <https://github.com/sindrets/diffview.nvim>
@@ -296,7 +292,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - neogen <https://github.com/danymat/neogen>
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
-- nvim-cmp <https://github.com/hrsh7th/nvim-cmp>
 - nvim-dap <https://github.com/mfussenegger/nvim-dap>
 - nvim-dap-go <https://github.com/leoluz/nvim-dap-go>
 - nvim-dap-ui <https://github.com/rcarriga/nvim-dap-ui>
