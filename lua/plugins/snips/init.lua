@@ -28,28 +28,6 @@ return {
     updateevents = "TextChanged,TextChangedI",
     delete_check_events = "TextChanged",
   },
-  keys = {
-    {
-      "<C-n>",
-      function()
-        local ls = require("luasnip")
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
-      end,
-      mode = { "i", "s" },
-    },
-    {
-      "<C-p>",
-      function()
-        local ls = require("luasnip")
-        if ls.choice_active() then
-          ls.change_choice(-1)
-        end
-      end,
-      mode = { "i", "s" },
-    },
-  },
   config = function(_, opts)
     require("luasnip").setup(opts)
     require("plugins.snips.all")
