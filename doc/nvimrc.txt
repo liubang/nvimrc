@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 March 07
+*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 March 08
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -23,7 +23,7 @@ FEATURES                                                     *nvimrc-features*
 
 REQUIREMENTS                                             *nvimrc-requirements*
 
-- Neovim >= **0.10.1** (needs to be built with **LuaJIT**)
+- Neovim >= **0.10.4** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
@@ -135,14 +135,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>bo   bufferline.nvim Delete other buffers                     n
 
-  gc           Comment.nvim Toggle line comment                         n, x
-
-  gb           Comment.nvim Toggle block comment                        n, x
-
-  gcc          Comment.nvim Toggle line comment                         n
-
-  gcb          Comment.nvim Toggle block comment                        n
-
   s            flash.nvim Flash                                         n, x, o
 
   S            flash.nvim Flash Treesitter                              n, x, o
@@ -161,15 +153,21 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>hs   gitsigns.nvim Stage the hunk at the cursor position      n
 
+  <leader>sr   grug-far.nvim Search and Replace                         n, v
+
   <Leader>mp   markdown-preview.nvim Markdown Preview                   n
 
   <leader>bd   mini.bufremove Delete Buffer                             n
 
   <leader>bD   mini.bufremove Delete Buffer (Force)                     n
 
-  <leader>ft   mini.files Open mini.files (Directory of Current File)   n
+  gc           mini.comment Toggle line comment                         n, x
 
-  <leader>fT   mini.files Open mini.files (cwd)                         n
+  gcc          mini.comment Toggle line comment                         n
+
+  <leader>ft   mini.files Toggle mini.files (Directory of Current File) n
+
+  <leader>fT   mini.files Toggle mini.files (cwd)                       n
 
   <leader>dB   nvim-dap Breakpoint Condition                            n
 
@@ -208,8 +206,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <leader>du   nvim-dap-ui Dap UI                                       n
 
   <leader>de   nvim-dap-ui Eval                                         n, v
-
-  <leader>sr   nvim-spectre Replace in files (Spectre)                  n
 
   <C-v>        nvim-treesitter Increment Selection                      n
 
@@ -266,16 +262,15 @@ PLUGINS                                                       *nvimrc-plugins*
 - blink.cmp <https://github.com/saghen/blink.cmp>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
 - clangd_extensions.nvim <https://github.com/p00f/clangd_extensions.nvim>
-- Comment.nvim <https://github.com/numToStr/Comment.nvim>
-- crates.nvim <https://github.com/saecki/crates.nvim>
 - diffview.nvim <https://github.com/sindrets/diffview.nvim>
-- fidget.nvim <https://github.com/j-hui/fidget.nvim>
 - flash.nvim <https://github.com/folke/flash.nvim>
 - friendly-snippets <https://github.com/rafamadriz/friendly-snippets>
 - fzy-lua-native <https://github.com/romgrk/fzy-lua-native>
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
+- grug-far.nvim <https://github.com/MagicDuck/grug-far.nvim>
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
+- lazydev.nvim <https://github.com/folke/lazydev.nvim>
 - lua-async-await <https://github.com/nvim-java/lua-async-await>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
@@ -284,12 +279,13 @@ PLUGINS                                                       *nvimrc-plugins*
 - mason.nvim <https://github.com/williamboman/mason.nvim>
 - mini.align <https://github.com/echasnovski/mini.align>
 - mini.bufremove <https://github.com/echasnovski/mini.bufremove>
+- mini.comment <https://github.com/echasnovski/mini.comment>
 - mini.files <https://github.com/echasnovski/mini.files>
 - mini.icons <https://github.com/echasnovski/mini.icons>
 - mini.pairs <https://github.com/echasnovski/mini.pairs>
 - mini.surround <https://github.com/echasnovski/mini.surround>
-- neodev.nvim <https://github.com/folke/neodev.nvim>
 - neogen <https://github.com/danymat/neogen>
+- noice.nvim <https://github.com/folke/noice.nvim>
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
 - nvim-dap <https://github.com/mfussenegger/nvim-dap>
@@ -304,7 +300,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-nio <https://github.com/nvim-neotest/nvim-nio>
-- nvim-spectre <https://github.com/nvim-pack/nvim-spectre>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - oil.nvim <https://github.com/stevearc/oil.nvim>
