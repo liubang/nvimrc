@@ -17,7 +17,7 @@
 return {
   "saghen/blink.cmp",
   version = "*",
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "rafamadriz/friendly-snippets",
     { "L3MON4D3/LuaSnip", version = "v2.*" },
@@ -30,7 +30,14 @@ return {
     },
     snippets = { preset = "luasnip" },
     sources = {
-      default = { "lsp", "snippets", "buffer", "path" },
+      default = { "lsp", "lazydev", "snippets", "buffer", "path" },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
+      },
     },
     completion = {
       documentation = { auto_show = false },
@@ -41,7 +48,15 @@ return {
         draw = { treesitter = { "lsp" } },
       },
     },
-    cmdline = { enabled = false },
+    cmdline = {
+      enabled = false,
+      completion = { menu = { auto_show = true } },
+      keymap = {
+        ["<C-j>"] = { "select_next" },
+        ["<C-k>"] = { "select_prev" },
+        ["<CR>"] = { "accept_and_enter", "fallback" },
+      },
+    },
     fuzzy = { implementation = "prefer_rust_with_warning" },
     signature = {
       enabled = false,

@@ -1,4 +1,4 @@
--- Copyright (c) 2024 The Authors. All rights reserved.
+-- Copyright (c) 2025 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -14,13 +14,4 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-return {
-  "nvim-pack/nvim-spectre", -- {{{
-  cmd = "Spectre",
-  opts = { open_cmd = "noswapfile vnew" },
-  -- stylua: ignore
-  keys = {
-    { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-  },
-  -- }}}
-}
+vim.opt_local.colorcolumn = ""

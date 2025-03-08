@@ -18,14 +18,8 @@ return {
   "folke/flash.nvim",
   ---@type Flash.Config
   opts = {
-    modes = {
-      char = {
-        enabled = false,
-      },
-    },
-    label = {
-      style = "inline",
-    },
+    modes = { char = { enabled = false } },
+    label = { style = "inline" },
   },
   -- stylua: ignore
   keys = {

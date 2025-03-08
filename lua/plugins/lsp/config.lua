@@ -43,18 +43,18 @@ vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Wa
 vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
 vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
 
-local popup_window = {
-  stylize_markdown = true,
-  syntax = "lsp_markdown",
-  border = nil,
-  width = 100,
-  height = 15,
-  max_height = 20,
-  max_width = 140,
-}
+-- local popup_window = {
+--   stylize_markdown = true,
+--   syntax = "lsp_markdown",
+--   border = nil,
+--   width = 100,
+--   height = 15,
+--   max_height = 20,
+--   max_width = 140,
+-- }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, popup_window)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, popup_window)
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, popup_window)
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, popup_window)
 
 --
 -- auto cmd

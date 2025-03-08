@@ -35,7 +35,7 @@
 
 ## Requirements
 
-- Neovim >= **0.10.1** (needs to be built with **LuaJIT**)
+- Neovim >= **0.10.4** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
@@ -102,10 +102,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 8th visible buffer                               | **n**               |
 | `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Goto the 9th visible buffer                               | **n**               |
 | `<leader>bo` | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Delete other buffers                                      | **n**               |
-| `gc`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                            | **n**, **x**        |
-| `gb`         | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle block comment                                           | **n**, **x**        |
-| `gcc`        | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle line comment                                            | **n**               |
-| `gcb`        | [Comment.nvim](https://github.com/numToStr/Comment.nvim.git) Toggle block comment                                           | **n**               |
 | `s`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash                                                                 | **n**, **x**, **o** |
 | `S`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash Treesitter                                                      | **n**, **x**, **o** |
 | `r`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Remote Flash                                                          | **o**               |
@@ -114,11 +110,14 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>hd` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Perform a `vimdiff` on the given file                       | **n**               |
 | `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position          | **n**               |
 | `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position                       | **n**               |
+| `<leader>sr` | [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim.git) Search and Replace                                          | **n**, **v**        |
 | `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
 | `<leader>bd` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer                                           | **n**               |
 | `<leader>bD` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer (Force)                                   | **n**               |
-| `<leader>ft` | [mini.files](https://github.com/echasnovski/mini.files.git) Open mini.files (Directory of Current File)                     | **n**               |
-| `<leader>fT` | [mini.files](https://github.com/echasnovski/mini.files.git) Open mini.files (cwd)                                           | **n**               |
+| `gc`         | [mini.comment](https://github.com/echasnovski/mini.comment.git) Toggle line comment                                         | **n**, **x**        |
+| `gcc`        | [mini.comment](https://github.com/echasnovski/mini.comment.git) Toggle line comment                                         | **n**               |
+| `<leader>ft` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (Directory of Current File)                   | **n**               |
+| `<leader>fT` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (cwd)                                         | **n**               |
 | `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Breakpoint Condition                                               | **n**               |
 | `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle Breakpoint                                                  | **n**               |
 | `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                           | **n**               |
@@ -138,7 +137,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dw` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Widgets                                                            | **n**               |
 | `<leader>du` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Dap UI                                                           | **n**               |
 | `<leader>de` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Eval                                                             | **n**, **v**        |
-| `<leader>sr` | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre.git) Replace in files (Spectre)                                    | **n**               |
 | `<C-v>`      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
@@ -175,16 +173,15 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [crates.nvim](https://github.com/saecki/crates.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
-- [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - [lua-async-await](https://github.com/nvim-java/lua-async-await)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
@@ -193,12 +190,13 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mini.align](https://github.com/echasnovski/mini.align)
 - [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
+- [mini.comment](https://github.com/echasnovski/mini.comment)
 - [mini.files](https://github.com/echasnovski/mini.files)
 - [mini.icons](https://github.com/echasnovski/mini.icons)
 - [mini.pairs](https://github.com/echasnovski/mini.pairs)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
-- [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [neogen](https://github.com/danymat/neogen)
+- [noice.nvim](https://github.com/folke/noice.nvim)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
@@ -213,7 +211,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
-- [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
