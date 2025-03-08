@@ -17,29 +17,83 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  enabled = false,
+  -- enabled = false,
+  dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
-    cmdline = { enabled = false },
-    messages = { enabled = false },
-    popupmenu = { enabled = false },
-    lsp = {
-      progress = { enabled = false },
-      override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
+    cmdline = {
+      -- enabled = false,
+      format = {
+        cmdline = { icon = ">" },
+        search_down = {
+          view = "cmdline",
+        },
+        search_up = {
+          view = "cmdline",
+        },
       },
-      signature = { enabled = true },
+      view = "cmdline",
+    },
+    messages = { enabled = true },
+    popupmenu = { enabled = false },
+    notify = { enabled = false },
+    lsp = {
+      progress = { enabled = true },
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+        ["vim.lsp.util.stylize_markdown"] = false,
+        ["cmp.entry.get_documentation"] = false,
+      },
+      signature = { enabled = false },
     },
     presets = {
       bottom_search = true, -- use a classic bottom cmdline for search
-      command_palette = true, -- position the cmdline and popupmenu together
+      command_palette = false, -- position the cmdline and popupmenu together
       long_message_to_split = true, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = false, -- add a border to hover docs and signature help
     },
-  },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
+    views = {
+      confirm = {
+        backend = "popup",
+        relative = "editor",
+        focusable = false,
+        align = "center",
+        enter = false,
+        zindex = 210,
+        format = { "{confirm}" },
+        position = {
+          row = "40%",
+          col = "50%",
+        },
+        size = "auto",
+        border = {
+          style = "single",
+          padding = { 1, 3 },
+          text = {
+            top = " Confirm ",
+          },
+        },
+        win_options = {
+          winhighlight = {
+            Normal = "NoiceConfirm",
+            FloatBorder = "Comment",
+          },
+          winbar = "",
+          foldenable = false,
+        },
+      },
+    },
+    routes = {
+      {
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          cond = function(message)
+            return "null-ls" == vim.tbl_get(message.opts, "progress", "client")
+          end,
+        },
+        opts = { skip = true },
+      },
+    },
   },
 }

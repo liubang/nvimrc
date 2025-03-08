@@ -50,12 +50,23 @@ return {
   { "b0o/schemastore.nvim" },
   { "simrat39/rust-tools.nvim" },
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "LazyVim", words = { "LazyVim" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
       {
         "p00f/clangd_extensions.nvim",
         opts = {

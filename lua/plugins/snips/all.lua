@@ -24,8 +24,6 @@ local f = ls.function_node
 local c = ls.choice_node
 local F = require("luasnip.nodes.functionNode").F
 local fmta = require("luasnip.extras.fmt").fmta
-local calculate_comment_string = require("Comment.ft").calculate
-local region = require("Comment.utils").get_region
 local author = "liubang"
 
 local partial = function(func, ...)
@@ -93,8 +91,10 @@ local snippets = {
   s({ trig = "bbox" }, box({})),
 }
 
-local get_cstring = function(ctype)
-  local cstring = calculate_comment_string({ ctype = ctype, range = region() }) or ""
+local get_cstring = function()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local ref_position = { cursor[1], cursor[2] + 1 }
+  local cstring = require("mini.comment").get_commentstring(ref_position) or ""
   local cstring_table = vim.split(cstring, "%s", { plain = true, trimempty = true })
   if #cstring_table == 0 then
     return { "", "" }
@@ -103,18 +103,19 @@ local get_cstring = function(ctype)
 end
 
 local todo_snippet_nodes = function(aliases, opts)
+  _ = opts
   local aliases_nodes = vim.tbl_map(function(alias)
     return i(nil, alias)
   end, aliases)
   -- format them into the actual snippet
-  local comment_node = fmta("<> <>(" .. author .. "): <> <>", {
+  local comment_node = fmta("<><>(" .. author .. "): <> <>", {
     f(function()
-      return get_cstring(opts.ctype)[1]
+      return get_cstring()[1]
     end),
     c(1, aliases_nodes),
     i(2),
     f(function()
-      return get_cstring(opts.ctype)[2]
+      return get_cstring()[2]
     end),
   })
   return comment_node

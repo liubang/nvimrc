@@ -26,9 +26,46 @@ return {
   },
 
   {
+    "echasnovski/mini.comment",
+    keys = {
+      { "gc", mode = { "n", "x" }, desc = "Toggle line comment" },
+      { "gcc", mode = "n", desc = "Toggle line comment" },
+    },
+    opts = {
+      options = {
+        -- Function to compute custom 'commentstring' (optional)
+        custom_commentstring = nil,
+        -- Whether to ignore blank lines when commenting
+        ignore_blank_line = false,
+        -- Whether to ignore blank lines in actions and textobject
+        start_of_line = false,
+        -- Whether to force single space inner padding for comment parts
+        pad_comment_parts = true,
+      },
+      mappings = {
+        -- Toggle comment (like `gcip` - comment inner paragraph) for both
+        -- Normal and Visual modes
+        comment = "gc",
+        -- Toggle comment on current line
+        comment_line = "gcc",
+        -- Toggle comment on visual selection
+        comment_visual = "gc",
+        -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+        -- Works also in Visual mode if mapping differs from `comment_visual`
+        textobject = "gc",
+      },
+    },
+  },
+
+  {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
-    opts = { modes = { insert = true, command = false, terminal = false } },
+    opts = {
+      modes = { insert = true, command = false, terminal = false },
+      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+      skip_unbalanced = true,
+      markdown = true,
+    },
   },
 
   {
@@ -181,16 +218,20 @@ return {
       {
         "<leader>ft",
         function()
-          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+          if not MiniFiles.close() then
+            MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
+          end
         end,
-        desc = "Open mini.files (Directory of Current File)",
+        desc = "Toggle mini.files (Directory of Current File)",
       },
       {
         "<leader>fT",
         function()
-          require("mini.files").open(vim.uv.cwd(), true)
+          if not MiniFiles.close() then
+            MiniFiles.open(vim.uv.cwd(), true)
+          end
         end,
-        desc = "Open mini.files (cwd)",
+        desc = "Toggle mini.files (cwd)",
       },
     },
   },
