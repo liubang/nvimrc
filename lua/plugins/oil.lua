@@ -23,7 +23,6 @@ return {
       path = path:gsub("oil://", "")
       return "  " .. vim.fn.fnamemodify(path, ":.")
     end
-
     require("oil").setup({
       columns = { "icon" },
       keymaps = {
