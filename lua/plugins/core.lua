@@ -17,21 +17,6 @@
 return {
   { "folke/lazy.nvim", version = "*" },
   { "nvim-lua/plenary.nvim" },
-  {
-    "echasnovski/mini.icons",
-    opts = {
-      file = {
-        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
-      },
-    },
-    specs = { { "nvim-tree/nvim-web-devicons", enabled = false, optional = true } },
-    init = function()
-      package.preload["nvim-web-devicons"] = function()
-        require("mini.icons").mock_nvim_web_devicons()
-        return package.loaded["nvim-web-devicons"]
-      end
-    end,
-  },
   { "MunifTanjim/nui.nvim" },
   -- https://github.com/ArthurSonzogni/Diagon
   { "willchao612/vim-diagon", cmd = { "Diagon" } },

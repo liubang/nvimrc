@@ -16,6 +16,22 @@
 
 return {
   {
+    "echasnovski/mini.icons",
+    opts = {
+      file = {
+        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+      },
+    },
+    specs = { { "nvim-tree/nvim-web-devicons", enabled = false, optional = true } },
+    init = function()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  },
+
+  {
     "echasnovski/mini.bufremove", -- {{{
     -- stylua: ignore
     keys = {
@@ -133,11 +149,6 @@ return {
     "echasnovski/mini.files",
     version = "*",
     opts = {
-      content = {
-        filter = nil,
-        prefix = nil,
-        sort = nil,
-      },
       -- Module mappings created only inside explorer.
       -- Use `''` (empty string) to not create one.
       mappings = {
