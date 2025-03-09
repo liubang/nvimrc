@@ -16,7 +16,6 @@
 
 return {
   "jbyuki/venn.nvim", -- {{{
-  event = { "VeryLazy" },
   init = function()
     vim.api.nvim_create_user_command("DrawBoxToggle", function()
       local venn_enabled = vim.inspect(vim.b.venn_enabled)
