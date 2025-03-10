@@ -53,7 +53,6 @@ local function get_clangd_cmd()
     "--pch-storage=memory",
     "--function-arg-placeholders",
     "--clang-tidy",
-    "--clang-tidy-checks=performance-*,bugprone-*",
     "--header-insertion=never",
     "--completion-style=detailed",
     "--query-driver=" .. get_default_drivers({ "clang++", "clang", "gcc", "g++" }),
