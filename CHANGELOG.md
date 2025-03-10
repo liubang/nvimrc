@@ -1,5 +1,32 @@
 # Changelog
 
+## [3.17.0](https://github.com/liubang/nvimrc/compare/v3.16.0...v3.17.0) (2025-03-10)
+
+
+### Features
+
+* **barbecue:** remove barbecue ([8ba3856](https://github.com/liubang/nvimrc/commit/8ba385615375443b286e813a03dee7ce78c13f2b))
+* **blink:** add blink ([74bf6e7](https://github.com/liubang/nvimrc/commit/74bf6e728408a4883f5dd49dfcf3cb86453f449b))
+* **pair:** disable auto pair in command mode ([06e5489](https://github.com/liubang/nvimrc/commit/06e5489c7e1ec9ada8277df5b67b445bcd33a5cd))
+* **venn:** change keymap description ([322cc25](https://github.com/liubang/nvimrc/commit/322cc259da21a1f62ff876bc55577bb1a76dcb12))
+
+
+### Bug Fixes
+
+* **clangd:** remove deprecated flag ([f4ff48f](https://github.com/liubang/nvimrc/commit/f4ff48fa6bd721f9dd47aa5f4ab44a3fb5c824e2))
+
+
+### Performance Improvements
+
+* **blink:** fix lsp snippet missing placeholder ([9a621be](https://github.com/liubang/nvimrc/commit/9a621beaa4f9656575e4f82637662f06cbd343fc))
+* **comment:** change c/cpp commentstring ([ed395fb](https://github.com/liubang/nvimrc/commit/ed395fbb242abc512e492f36e73c3611e4e82e0f))
+* **lazy:** perf ([c2bbbf3](https://github.com/liubang/nvimrc/commit/c2bbbf3be2e1aa8c0cef93e7051487b62d4a0064))
+* **lazy:** perf ([a11dcc3](https://github.com/liubang/nvimrc/commit/a11dcc319adb6d3a10aa53bb91d71789699600db))
+* **mini.files:** change config ([0030271](https://github.com/liubang/nvimrc/commit/00302716da267d2155f448b2fd74535c55f9cd5f))
+* **mini.files:** change keymap ([9306477](https://github.com/liubang/nvimrc/commit/93064774fcf54add6ea2bf34642431d73dfc5d15))
+* **mix:** some change ([cb4e704](https://github.com/liubang/nvimrc/commit/cb4e704f23ad53a891cbeb5119529d452525c13f))
+* **noice:** disable noice ([e409f84](https://github.com/liubang/nvimrc/commit/e409f84c154c4184f5c063253c9b472ced904512))
+
 ## [3.16.0](https://github.com/liubang/nvimrc/compare/v3.15.0...v3.16.0) (2025-03-02)
 
 
