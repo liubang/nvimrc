@@ -51,9 +51,8 @@ function M.on_attach(_, bufnr)
     })
   end
 
-  vim.keymap.set("v", "<Leader>fm", function()
-    M.format()
-  end, opts)
+  -- stylua: ignore
+  vim.keymap.set("v", "<Leader>fm", function() M.format() end, opts)
 end
 
 return M

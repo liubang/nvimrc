@@ -14,10 +14,9 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local config = require("lb.config")
-
 vim.lsp.set_log_level("OFF")
 
+-- local config = require("lb.config")
 vim.diagnostic.config({ -- {{{
   source = true,
   signs = true,
@@ -35,44 +34,61 @@ vim.diagnostic.config({ -- {{{
   },
 }) -- }}}
 
-local dia_cfg = config.lsp.diagnostic
-local hl = "DiagnosticSign"
-local nr = "DiagnosticLineNr"
-vim.fn.sign_define(hl .. "Error", { text = dia_cfg.icons.Error, texthl = hl .. "Error", numhl = nr .. "Error" })
-vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Warn", numhl = nr .. "Warn" })
-vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
-vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
-
-local popup_window = {
-  stylize_markdown = true,
-  syntax = "lsp_markdown",
-  border = nil,
-  width = 100,
-  height = 15,
-  max_height = 20,
-  max_width = 140,
-}
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, popup_window)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, popup_window)
+-- local dia_cfg = config.lsp.diagnostic
+-- local hl = "DiagnosticSign"
+-- local nr = "DiagnosticLineNr"
+-- vim.fn.sign_define(hl .. "Error", { text = dia_cfg.icons.Error, texthl = hl .. "Error", numhl = nr .. "Error" })
+-- vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Warn", numhl = nr .. "Warn" })
+-- vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
+-- vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
 
 --
 -- auto cmd
 --
-local lsp_events_group = vim.api.nvim_create_augroup("LSP_EVENTS", { clear = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    local bufopts = { noremap = true, silent = true, buffer = event.buf }
+    -- common keymaps
+    vim.keymap.set("n", "<Leader>gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
+    vim.keymap.set("n", "<Leader>gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
+    vim.keymap.set("n", "<Leader>gr", "<cmd>Telescope lsp_references<CR>", bufopts)
+    vim.keymap.set("n", "<Leader>es", "<cmd>Telescope diagnostics bufnr=0<CR>", bufopts)
+    vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
+
+    vim.keymap.set("n", "<Leader>ee", function()
+      vim.diagnostic.open_float(nil, { scope = "line" })
+    end, bufopts)
+
+    vim.keymap.set("n", "<C-k>", function()
+      vim.lsp.buf.hover({
+        height = 15,
+        width = 100,
+        max_height = 20,
+        max_width = 140,
+      })
+    end, bufopts)
+    vim.keymap.set("n", "<C-h>", function()
+      vim.lsp.buf.signature_help({
+        height = 15,
+        width = 100,
+        max_height = 20,
+        max_width = 140,
+      })
+    end, bufopts)
+
+    require("plugins.lsp.format").on_attach(nil, event.buf)
+  end,
+})
+
+local group = vim.api.nvim_create_augroup("LSP_EVENTS", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = lsp_events_group,
+  group = group,
   pattern = "*.go",
   callback = function()
-    local client = function()
-      local get_clients = (
-        vim.lsp.get_clients ~= nil and vim.lsp.get_clients -- nvim 0.10+
-        or vim.lsp.get_active_clients
-      )
-      return get_clients({ name = "gopls" })
-    end
-    require("plugins.lsp.utils").codeaction(client(), "", "source.organizeImports", 1000)
+    require("lb.utils.util").codeaction(vim.lsp.get_clients({ name = "gopls" })[1], "", "source.organizeImports", 1000)
     require("plugins.lsp.format").format()
   end,
 })

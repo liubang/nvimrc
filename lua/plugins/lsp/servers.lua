@@ -20,7 +20,6 @@ local lspconfig = require("lspconfig")
 for _, server in ipairs({
   "cpp",
   "golang",
-  "rust",
   "java",
   "python",
   "lua",
