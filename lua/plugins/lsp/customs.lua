@@ -16,35 +16,11 @@
 
 local M = {}
 local capabilities = require("blink.cmp").get_lsp_capabilities()
-local format = require("plugins.lsp.format")
-
-local custom_attach = function(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  -- common keymaps
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "<Leader>gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-  vim.keymap.set("n", "<Leader>gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-  vim.keymap.set("n", "<Leader>gr", "<cmd>Telescope lsp_references<CR>", bufopts)
-
-  vim.keymap.set("n", "<Leader>ee", function()
-    vim.diagnostic.open_float(nil, { scope = "line" })
-  end, bufopts)
-
-  vim.keymap.set("n", "<Leader>es", "<cmd>Telescope diagnostics bufnr=0<CR>", bufopts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, bufopts)
-
-  format.on_attach(client, bufnr)
-end
 
 M.default = function(configs)
   configs = configs or {}
   local caps = vim.tbl_deep_extend("force", capabilities, configs.capabilities or {})
   local custom_config = {
-    on_attach = custom_attach,
     capabilities = caps,
   }
   if configs ~= nil then

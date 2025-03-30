@@ -350,14 +350,44 @@ local lsp_names = { --{{{
 }
 --}}}
 
-local get_clients = (
-  vim.lsp.get_clients ~= nil and vim.lsp.get_clients -- nvim 0.10+
-  or vim.lsp.get_active_clients
-)
+---@param client vim.lsp.Client
+---@param action string
+---@param only string
+---@param wait_ms integer
+function M.codeaction(client, action, only, wait_ms)
+  wait_ms = wait_ms or 1000
+  local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+  if only then
+    params.context = { only = { only } }
+  end
+
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  if not result or next(result) == nil then
+    return
+  end
+
+  for _, res in pairs(result) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit and not vim.tbl_isempty(r.edit) then
+        vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
+      end
+      -- if type(r.command) == "table" then
+      --   if type(r.command) == "table" and r.command.arguments then
+      --     for _, arg in pairs(r.command.arguments) do
+      --       if action == nil or arg["Fix"] == action then
+      --         client.exec_cmd(r.command)
+      --         return
+      --       end
+      --     end
+      --   end
+      -- end
+    end
+  end
+end
 
 function M.lsp_clients_format() -- {{{
   local clients = {}
-  for _, client in pairs(get_clients({ bufnr = 0 })) do
+  for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
     local name = lsp_names[client.name] or client.name
     clients[#clients + 1] = name
   end

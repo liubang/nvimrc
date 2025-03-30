@@ -29,9 +29,10 @@ return {
       },
       ui = {
         border = "single",
+        -- stylua: ignore
         icons = {
-          package_pending = " ",
-          package_installed = "󰄳 ",
+          package_pending     = " ",
+          package_installed   = "󰄳 ",
           package_uninstalled = " ",
         },
       },
@@ -48,7 +49,11 @@ return {
     },
   },
   { "b0o/schemastore.nvim" },
-  { "simrat39/rust-tools.nvim" },
+  -- {
+  --   "mrcjkb/rustaceanvim",
+  --   version = "^5", -- Recommended
+  --   lazy = false, -- This plugin is already lazy
+  -- },
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -83,23 +88,21 @@ return {
       },
     },
     config = function()
-      local have_mason, mlsp = pcall(require, "mason-lspconfig")
-      if have_mason then
-        mlsp.setup({
-          ensure_installed = {
-            "clangd",
-            "gopls",
-            "lua_ls",
-            "rust_analyzer",
-          },
-        })
-      end
+      require("mason-lspconfig").setup({
+        automatic_installation = {},
+        ensure_installed = {
+          "clangd",
+          "gopls",
+          "lua_ls",
+          "rust_analyzer",
+        },
+      })
       -- It's important that you set up the plugins in the following order:
       -- 1. mason.nvim
       -- 2. mason-lspconfig.nvim
       -- Setup servers via lspconfig
-      require("plugins.lsp.config")
-      require("plugins.lsp.servers")
+      _ = require("plugins.lsp.config")
+      _ = require("plugins.lsp.servers")
     end,
   },
   {
