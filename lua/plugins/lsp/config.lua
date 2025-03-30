@@ -16,7 +16,6 @@
 
 vim.lsp.set_log_level("OFF")
 
--- local config = require("lb.config")
 vim.diagnostic.config({ -- {{{
   source = true,
   signs = true,
@@ -33,14 +32,6 @@ vim.diagnostic.config({ -- {{{
     source = true,
   },
 }) -- }}}
-
--- local dia_cfg = config.lsp.diagnostic
--- local hl = "DiagnosticSign"
--- local nr = "DiagnosticLineNr"
--- vim.fn.sign_define(hl .. "Error", { text = dia_cfg.icons.Error, texthl = hl .. "Error", numhl = nr .. "Error" })
--- vim.fn.sign_define(hl .. "Warn", { text = dia_cfg.icons.Warn, texthl = hl .. "Warn", numhl = nr .. "Warn" })
--- vim.fn.sign_define(hl .. "Info", { text = dia_cfg.icons.Info, texthl = hl .. "Info", numhl = nr .. "Info" })
--- vim.fn.sign_define(hl .. "Hint", { text = dia_cfg.icons.Hint, texthl = hl .. "Hint", numhl = nr .. "Hint" })
 
 --
 -- auto cmd

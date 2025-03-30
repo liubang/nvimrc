@@ -114,7 +114,6 @@ return {
         debug = true,
         sources = {
           b.formatting.stylua,
-          b.formatting.cmake_format,
           b.formatting.asmfmt,
           b.formatting.buildifier,
           b.formatting.prettier.with({
