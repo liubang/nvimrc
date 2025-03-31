@@ -37,7 +37,7 @@ java.setup({
     enable = true,
   },
   java_debug_adapter = {
-    enable = true,
+    enable = false,
   },
   java_test = {
     enable = true,

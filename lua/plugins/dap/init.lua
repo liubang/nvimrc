@@ -14,6 +14,11 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+local enabled = false
+if enabled then
+  return {}
+end
+
 ---@param config {args?:string[]|fun():string[]?}
 local function get_args(config)
   local args = type(config.args) == "function" and (config.args() or {}) or config.args or {}
