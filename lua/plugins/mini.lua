@@ -40,7 +40,17 @@ return {
     },
     -- }}}
   },
-
+  {
+    "echasnovski/mini.nvim",
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    config = function()
+      require("mini.cursorword").setup({
+        delay = 100,
+      })
+      vim.api.nvim_set_hl(0, "MiniCursorword", { fg = nil, bg = "#3b3b3b" })
+      vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { fg = nil, bg = nil })
+    end,
+  },
   {
     "echasnovski/mini.comment",
     keys = {
@@ -215,7 +225,7 @@ return {
         callback = function(ev)
           local buf_id = ev.data.buf_id
           vim.schedule(function()
-            vim.api.nvim_buf_set_option(buf_id, "buftype", "acwrite")
+            vim.api.nvim_set_option_value("buftype", "acwrite", { buf = ev.data.buf_id })
             vim.api.nvim_buf_set_name(buf_id, "MiniFiles_" .. buf_id)
             vim.api.nvim_create_autocmd("BufWriteCmd", {
               buffer = buf_id,
