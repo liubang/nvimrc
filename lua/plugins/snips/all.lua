@@ -81,12 +81,6 @@ local snippets = {
   ls.s("happy", { ls.t("ヽ(´▽`)/") }),
   ls.s("sad", { ls.t("(－‸ლ)") }),
   ls.s("confused", { ls.t("(｡･ω･｡)") }),
-  ls.s({ trig = "randstr(%d+)", regTrig = true }, {
-    ls.f(function(_, snip)
-      return util.random_string(snip.captures[1])
-    end),
-    ls.i(0),
-  }),
   s({ trig = "box" }, box({ box_width = 24 })),
   s({ trig = "bbox" }, box({})),
 }
