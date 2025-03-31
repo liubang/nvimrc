@@ -156,8 +156,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<C-k>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto previous floaterm window                                  | **t**               |
 | `<C-j>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Goto next floaterm window                                      | **t**               |
 | `<C-d>`      | [vim-floaterm](https://github.com/voldikss/vim-floaterm.git) Kill floaterm                                                  | **t**               |
-| `]]`         | [vim-illuminate](https://github.com/RRethy/vim-illuminate.git) Next Reference                                               | **n**               |
-| `[[`         | [vim-illuminate](https://github.com/RRethy/vim-illuminate.git) Prev Reference                                               | **n**               |
 
 <!-- keymaps:end -->
 
@@ -174,6 +172,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
+- [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
@@ -193,10 +192,10 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.comment](https://github.com/echasnovski/mini.comment)
 - [mini.files](https://github.com/echasnovski/mini.files)
 - [mini.icons](https://github.com/echasnovski/mini.icons)
+- [mini.nvim](https://github.com/echasnovski/mini.nvim)
 - [mini.pairs](https://github.com/echasnovski/mini.pairs)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
-- [noice.nvim](https://github.com/folke/noice.nvim)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
@@ -215,7 +214,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
 - [spring-boot.nvim](https://github.com/JavaHello/spring-boot.nvim)
@@ -229,7 +228,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [vim-caser](https://github.com/arthurxavierx/vim-caser)
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
 - [vim-floaterm](https://github.com/voldikss/vim-floaterm)
-- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [wilder.nvim](https://github.com/gelguy/wilder.nvim)
 
