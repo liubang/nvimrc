@@ -30,7 +30,6 @@ return {
       end
     end,
   },
-
   {
     "echasnovski/mini.bufremove", -- {{{
     -- stylua: ignore
@@ -41,7 +40,7 @@ return {
     -- }}}
   },
   {
-    "echasnovski/mini.nvim",
+    "echasnovski/mini.cursorword",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
     config = function()
       require("mini.cursorword").setup({
