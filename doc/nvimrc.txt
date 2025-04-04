@@ -1,4 +1,4 @@
-*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 April 02
+*nvimrc.txt*          For Neovim >= 0.10.0          Last change: 2025 April 04
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -23,7 +23,7 @@ FEATURES                                                     *nvimrc-features*
 
 REQUIREMENTS                                             *nvimrc-requirements*
 
-- Neovim >= **0.10.4** (needs to be built with **LuaJIT**)
+- Neovim >= **0.11.0** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a Nerd Font <https://www.nerdfonts.com/>
 
@@ -301,7 +301,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - oil.nvim <https://github.com/stevearc/oil.nvim>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
-- render-markdown.nvim <https://github.com/MeanderingProgrammer/render-markdown.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
 - smartyank.nvim <https://github.com/ibhagwan/smartyank.nvim>
 - spring-boot.nvim <https://github.com/JavaHello/spring-boot.nvim>
