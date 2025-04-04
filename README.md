@@ -2,7 +2,7 @@
 
 <div align="center"><p>
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.10.1-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.11.0-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
     </a>
     <a href="https://github.com/liubang/nvimrc/actions">
         <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />
@@ -35,7 +35,7 @@
 
 ## Requirements
 
-- Neovim >= **0.10.4** (needs to be built with **LuaJIT**)
+- Neovim >= **0.11.0** (needs to be built with **LuaJIT**)
 - Git >= **2.19.0** (for partial clones support)
 - a [Nerd Font](https://www.nerdfonts.com/)
 
@@ -214,7 +214,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
 - [spring-boot.nvim](https://github.com/JavaHello/spring-boot.nvim)
