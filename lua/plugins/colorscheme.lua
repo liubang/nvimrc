@@ -372,8 +372,7 @@ return {
       vim.api.nvim_set_hl(0, "NavicIconsOperator", { default = true, bg = "none", fg = "#eedaad" })
       vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "none", fg = "#eedaad" })
       vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "none", fg = "#eedaad" })
-      --
-      -- vim.api.nvim_command("colorscheme catppuccin")
+      vim.api.nvim_command("colorscheme catppuccin")
     end,
   },
   {
@@ -413,7 +412,6 @@ return {
       vim.g.gruvbox_plugin_hi_groups = 0
       vim.g.gruvbox_transp_bg = 1
       vim.g.gruvbox_material_enable_italic = 0
-      vim.g.gruvbox_material_disable_italic_comment = 0
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_better_performance = 1
       vim.g.gruvbox_material_disable_italic_comment = 1
