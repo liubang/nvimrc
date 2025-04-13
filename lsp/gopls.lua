@@ -14,9 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
 local get_current_gomod = function()
   local file = io.open("go.mod", "r")
   if file == nil then
@@ -29,11 +26,10 @@ local get_current_gomod = function()
   return mod_name
 end
 
-lspconfig.gopls.setup(c.default({
+return {
   -- share the gopls instance if there is one already
   cmd = { "gopls", "-remote.debug=:0" },
   filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
-  message_level = vim.lsp.protocol.MessageType.Error,
   flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
   settings = {
     gopls = {
@@ -66,4 +62,4 @@ lspconfig.gopls.setup(c.default({
       buildFlags = { "-tags", "integration" },
     },
   },
-}))
+}

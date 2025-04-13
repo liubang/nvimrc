@@ -14,11 +14,23 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.pyright.setup(c.default({
-  single_file_support = true,
-}))
-
-lspconfig.ruff.setup(c.default({}))
+return {
+  settings = {
+    Lua = {
+      hint = {
+        arrayIndex = "Disable",
+        enable = true,
+        setType = true,
+      },
+      workspace = {
+        ignoreDir = "tmp/",
+        useGitIgnore = false,
+        maxPreload = 100000000,
+        preloadFileSize = 500000,
+        checkThirdParty = false,
+      },
+      completion = { callSnippet = "Replace" },
+      format = { enable = false },
+    },
+  },
+}

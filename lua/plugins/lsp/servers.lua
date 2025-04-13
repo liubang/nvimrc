@@ -14,33 +14,26 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
 for _, server in ipairs({
-  "cpp",
-  "golang",
-  "java",
-  "python",
-  "lua",
-  "json",
-  "yaml",
-  "latex",
+  "clangd",
+  "gopls",
+  "jdtls",
+  "pyright",
+  "lua_ls",
+  "jsonls",
+  "yamlls",
+  "texlab",
   "bzl",
-}) do
-  require("plugins.lsp.servers." .. server)
-end
-
-for _, server in ipairs({
   "lemminx",
   "thriftls",
   "taplo", -- for toml
   "bashls",
   "cmake",
+  "ruff",
   "intelephense",
   "nginx_language_server",
 }) do
-  lspconfig[server].setup(c.default())
+  vim.lsp.enable(server)
 end
 
 -- vim: fdm=marker fdl=0

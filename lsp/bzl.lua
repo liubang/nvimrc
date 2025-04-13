@@ -14,12 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-local util = require("lspconfig.util")
-
-lspconfig.bzl.setup(c.default({
-  cmd = { "bzl", "lsp", "serve" },
-  filetypes = { "bzl" },
-  root_dir = util.root_pattern("WORKSPACE", "WORKSPACE.bazel", "MODULE.bazel"),
-}))
+return {
+  root_markers = { "WORKSPACE", "WORKSPACE.bazel", "MODULE.bazel" },
+}

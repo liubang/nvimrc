@@ -14,26 +14,14 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.lua_ls.setup(c.default({
+return {
   settings = {
-    Lua = {
-      hint = {
-        arrayIndex = "Disable",
-        enable = true,
-        setType = true,
-      },
-      workspace = {
-        ignoreDir = "tmp/",
-        useGitIgnore = false,
-        maxPreload = 100000000,
-        preloadFileSize = 500000,
-        checkThirdParty = false,
-      },
-      completion = { callSnippet = "Replace" },
-      format = { enable = false },
+    yaml = {
+      format = { enable = true, singleQuote = true },
+      validate = true,
+      hover = true,
+      completion = true,
+      schemas = require("schemastore").yaml.schemas(),
     },
   },
-}))
+}
