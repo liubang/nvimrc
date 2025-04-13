@@ -60,7 +60,6 @@ return {
       library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "LazyVim", words = { "LazyVim" } },
-        { path = "snacks.nvim", words = { "Snacks" } },
         { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
@@ -111,8 +110,7 @@ return {
     opts = function()
       local null_ls = require("null-ls")
       local b = null_ls.builtins
-      local c = require("plugins.lsp.customs")
-      return c.default({
+      return {
         debug = true,
         sources = {
           b.formatting.stylua,
@@ -139,7 +137,7 @@ return {
           b.diagnostics.buildifier,
           b.diagnostics.actionlint,
         },
-      })
+      }
     end,
   },
 }

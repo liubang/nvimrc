@@ -14,23 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local M = {}
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-M.default = function(configs)
-  configs = configs or {}
-  local caps = vim.tbl_deep_extend("force", capabilities, configs.capabilities or {})
-  local custom_config = {
-    capabilities = caps,
-  }
-  if configs ~= nil then
-    for key, value in pairs(configs) do
-      if key ~= "capabilities" then
-        custom_config[key] = value
-      end
-    end
-  end
-  return custom_config
-end
-
-return M
+return {
+  single_file_support = true,
+}

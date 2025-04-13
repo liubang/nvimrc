@@ -14,19 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.jsonls.setup(c.default({
-  settings = {
-    json = {
-      validate = { enable = true },
-      format = { enable = true },
-    },
-  },
-  -- Lazy-load schemas.
-  on_new_config = function(config)
-    config.settings.json.schemas = config.settings.json.schemas or {}
-    vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
-  end,
-}))
+return {
+  root_markers = { "WORKSPACE", "WORKSPACE.bazel", "MODULE.bazel" },
+}

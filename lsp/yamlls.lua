@@ -14,10 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.yamlls.setup(c.default({
+return {
   settings = {
     yaml = {
       format = { enable = true, singleQuote = true },
@@ -27,4 +24,4 @@ lspconfig.yamlls.setup(c.default({
       schemas = require("schemastore").yaml.schemas(),
     },
   },
-}))
+}

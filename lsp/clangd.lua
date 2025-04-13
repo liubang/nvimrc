@@ -15,8 +15,6 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local Job = require("plenary.job")
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
 local is_mac = vim.loop.os_uname().version:match("Darwin")
 
 local function get_binary_path(bin)
@@ -68,7 +66,7 @@ local function get_clangd_cmd()
   return cmd
 end
 
-lspconfig.clangd.setup(c.default({
+return {
   cmd = get_clangd_cmd(),
   -- disable proto type
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
@@ -77,7 +75,4 @@ lspconfig.clangd.setup(c.default({
     usePlaceholders = true,
     completeUnimported = true,
   },
-  capabilities = {
-    offsetEncoding = { "utf-16" },
-  },
-}))
+}

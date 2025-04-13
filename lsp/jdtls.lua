@@ -14,9 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
 local java = require("java")
-local lspconfig = require("lspconfig")
 
 java.setup({
   root_markers = {
@@ -50,10 +48,12 @@ java.setup({
   },
   verification = {
     invalid_order = true,
+    duplicate_setup_calls = true,
+    invalid_mason_registry = true,
   },
 })
 
-lspconfig.jdtls.setup(c.default({
+return {
   settings = {
     java = {
       configuration = {
@@ -67,4 +67,4 @@ lspconfig.jdtls.setup(c.default({
       },
     },
   },
-}))
+}

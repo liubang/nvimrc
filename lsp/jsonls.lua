@@ -14,11 +14,16 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.pyright.setup(c.default({
-  single_file_support = true,
-}))
-
-lspconfig.ruff.setup(c.default({}))
+return {
+  settings = {
+    json = {
+      validate = { enable = true },
+      format = { enable = true },
+    },
+  },
+  -- Lazy-load schemas.
+  on_new_config = function(config)
+    config.settings.json.schemas = config.settings.json.schemas or {}
+    vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
+  end,
+}

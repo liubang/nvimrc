@@ -14,8 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
 local is_mac = vim.loop.os_uname().version:match("Darwin")
 
 local forwardSearch = {}
@@ -30,7 +28,8 @@ else
     args = { "%l", "%p", "%f" },
   }
 end
-lspconfig.texlab.setup(c.default({
+
+return {
   flags = { allow_incremental_sync = false },
   settings = {
     texlab = {
@@ -65,4 +64,4 @@ lspconfig.texlab.setup(c.default({
       -- bibtexFormatter = "texlab",
     },
   },
-}))
+}

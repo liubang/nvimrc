@@ -14,10 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local c = require("plugins.lsp.customs")
-local lspconfig = require("lspconfig")
-
-lspconfig.lua_ls.setup(c.default({
+return {
   settings = {
     Lua = {
       hint = {
@@ -36,4 +33,4 @@ lspconfig.lua_ls.setup(c.default({
       format = { enable = false },
     },
   },
-}))
+}
