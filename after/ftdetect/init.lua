@@ -29,9 +29,6 @@ vim.filetype.add({ -- {{{
   extension = {
     thrift = "thrift",
     wiki = "markdown",
-  },
-  pattern = {
-    ["*.log"] = "log",
-    ["*_LOG"] = "log",
+    log = "log",
   },
 }) -- }}}

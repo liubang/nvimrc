@@ -68,20 +68,6 @@ return {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "p00f/clangd_extensions.nvim",
-        opts = {
-          inlay_hints = {
-            inline = false,
-          },
-          memory_usage = {
-            border = "single",
-          },
-          symbol_info = {
-            border = "single",
-          },
-        },
-      },
     },
     config = function()
       require("mason-lspconfig").setup({
@@ -89,8 +75,8 @@ return {
         ensure_installed = {
           "clangd",
           "gopls",
+          "pyright",
           "lua_ls",
-          "rust_analyzer",
         },
       })
       -- It's important that you set up the plugins in the following order:
