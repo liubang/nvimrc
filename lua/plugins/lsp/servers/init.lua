@@ -19,11 +19,17 @@ for _, server in ipairs({
   "gopls",
   "jdtls",
   "pyright",
-  "lua_ls",
   "jsonls",
+  "lua_ls",
   "yamlls",
   "texlab",
   "bzl",
+}) do
+  vim.lsp.config(server, require("plugins.lsp.servers." .. server))
+  vim.lsp.enable(server)
+end
+
+vim.lsp.enable({
   "lemminx",
   "thriftls",
   "taplo", -- for toml
@@ -32,8 +38,6 @@ for _, server in ipairs({
   "ruff",
   "intelephense",
   "nginx_language_server",
-}) do
-  vim.lsp.enable(server)
-end
+})
 
 -- vim: fdm=marker fdl=0
