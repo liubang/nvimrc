@@ -75,4 +75,7 @@ return {
     usePlaceholders = true,
     completeUnimported = true,
   },
+  capabilities = {
+    offsetEncoding = { "utf-16" },
+  },
 }
