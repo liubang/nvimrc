@@ -16,14 +16,10 @@
 
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = { "Mason", "MasonUpdate" },
     build = ":MasonUpdate",
     opts = {
-      registries = {
-        "github:nvim-java/mason-registry",
-        "github:mason-org/mason-registry",
-      },
       github = {
         download_url_template = "https://ghfast.top/https://github.com/%s/releases/download/%s/%s",
       },

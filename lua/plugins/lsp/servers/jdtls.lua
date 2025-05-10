@@ -48,8 +48,13 @@ java.setup({
   },
   verification = {
     invalid_order = true,
-    duplicate_setup_calls = true,
-    invalid_mason_registry = true,
+    duplicate_setup_calls = false,
+    invalid_mason_registry = false,
+  },
+  mason = {
+    registries = {
+      "github:nvim-java/mason-registry",
+    },
   },
 })
 
