@@ -28,17 +28,22 @@ java.setup({
     "build.gradle.kts",
     ".git",
   },
+  jdtls = {
+    version = "v1.46.1",
+  },
   lombok = {
     version = "nightly",
   },
   spring_boot_tools = {
     enable = true,
+    version = "1.59.0",
   },
   java_debug_adapter = {
     enable = false,
   },
   java_test = {
     enable = true,
+    version = "0.43.0",
   },
   jdk = {
     auto_install = false,
