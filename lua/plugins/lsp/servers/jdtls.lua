@@ -29,7 +29,8 @@ java.setup({
     ".git",
   },
   jdtls = {
-    version = "v1.46.1",
+    -- version = "v1.46.1",
+    version = "v1.43.0",
   },
   lombok = {
     version = "nightly",
@@ -53,13 +54,8 @@ java.setup({
   },
   verification = {
     invalid_order = true,
+    invalid_mason_registry = true,
     duplicate_setup_calls = false,
-    invalid_mason_registry = false,
-  },
-  mason = {
-    registries = {
-      "github:nvim-java/mason-registry",
-    },
   },
 })
 
@@ -69,7 +65,7 @@ return {
       configuration = {
         runtimes = {
           {
-            name = "JavaSE-17",
+            name = "JavaSE-21",
             path = os.getenv("JAVA_HOME"),
             default = true,
           },

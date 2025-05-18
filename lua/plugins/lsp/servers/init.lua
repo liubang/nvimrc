@@ -17,7 +17,6 @@
 for _, server in ipairs({
   "clangd",
   "gopls",
-  "jdtls",
   "pyright",
   "jsonls",
   "lua_ls",

@@ -16,9 +16,13 @@
 
 return {
   {
+    "williamboman/mason-lspconfig.nvim",
+    -- version = "^1.0.0",
+  },
+  {
     "mason-org/mason.nvim",
+    -- version = "^1.0.0",
     cmd = { "Mason", "MasonUpdate" },
-    build = ":MasonUpdate",
     opts = {
       ui = {
         border = "single",
@@ -31,22 +35,7 @@ return {
       },
     },
   },
-  {
-    "nvim-java/nvim-java",
-    dependencies = {
-      "nvim-java/lua-async-await",
-      "nvim-java/nvim-java-core",
-      "nvim-java/nvim-java-test",
-      "nvim-java/nvim-java-dap",
-      "nvim-java/nvim-java-refactor",
-    },
-  },
   { "b0o/schemastore.nvim" },
-  -- {
-  --   "mrcjkb/rustaceanvim",
-  --   version = "^5", -- Recommended
-  --   lazy = false, -- This plugin is already lazy
-  -- },
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -67,7 +56,7 @@ return {
     },
     config = function()
       require("mason-lspconfig").setup({
-        automatic_installation = {},
+        automatic_enable = false,
         ensure_installed = {
           "clangd",
           "gopls",
