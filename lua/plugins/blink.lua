@@ -22,7 +22,10 @@ return {
     "rafamadriz/friendly-snippets",
     { "L3MON4D3/LuaSnip", version = "v2.*" },
   },
-  opts_extend = { "sources.default" },
+  opts_extend = {
+    "sources.completion.enabled_providers",
+    "sources.default",
+  },
   opts = {
     appearance = {
       use_nvim_cmp_as_default = true,
