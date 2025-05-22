@@ -14,51 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local java = require("java")
-
-java.setup({
-  root_markers = {
-    "settings.gradle",
-    "settings.gradle.kts",
-    "pom.xml",
-    "build.gradle",
-    "mvnw",
-    "gradlew",
-    "build.gradle",
-    "build.gradle.kts",
-    ".git",
-  },
-  jdtls = {
-    -- version = "v1.46.1",
-    version = "v1.43.0",
-  },
-  lombok = {
-    version = "nightly",
-  },
-  spring_boot_tools = {
-    enable = true,
-    version = "1.59.0",
-  },
-  java_debug_adapter = {
-    enable = false,
-  },
-  java_test = {
-    enable = true,
-    version = "0.43.0",
-  },
-  jdk = {
-    auto_install = false,
-  },
-  notifications = {
-    dap = false,
-  },
-  verification = {
-    invalid_order = true,
-    invalid_mason_registry = true,
-    duplicate_setup_calls = false,
-  },
-})
-
 return {
   settings = {
     java = {
