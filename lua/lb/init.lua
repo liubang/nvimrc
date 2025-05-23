@@ -17,18 +17,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("lb.options") -- global options
-
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-  require("lb.bootstrap").lazy(lazypath)
-end
-
-vim.opt.rtp:prepend(lazypath)
-
-require("lb.plugins")
+require("lb.options")
+require("lb.lazy")
 require("lb.autocmd")
 require("lb.commands")
 require("lb.mappings")
