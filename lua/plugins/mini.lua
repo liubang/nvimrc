@@ -82,17 +82,6 @@ return {
     },
   },
 
-  -- {
-  --   "echasnovski/mini.pairs",
-  --   event = "InsertEnter",
-  --   opts = {
-  --     modes = { insert = true, command = false, terminal = false },
-  --     skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-  --     skip_unbalanced = true,
-  --     markdown = true,
-  --   },
-  -- },
-
   {
     "echasnovski/mini.align", -- {{{
     keys = {
