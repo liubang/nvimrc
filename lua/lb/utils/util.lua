@@ -15,7 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local M = {}
-local is_windows = vim.loop.os_uname().version:match("Windows")
+local is_windows = vim.uv.os_uname().version:match("Windows")
 
 math.randomseed(os.time())
 
@@ -131,7 +131,7 @@ M.path = (function() -- {{{
   end
 
   local function exists(filename)
-    local stat = vim.loop.fs_stat(filename)
+    local stat = vim.uv.fs_stat(filename)
     return stat and stat.type or false
   end
 
@@ -177,12 +177,13 @@ M.path = (function() -- {{{
   end
 
   local function path_join(...)
-    return table.concat(vim.tbl_flatten({ ... }), "/")
+    -- return table.concat(vim.tbl_flatten({ ... }), "/")
+    return table.concat(vim.iter({ ... }):flatten():totable(), "/")
   end
 
   -- Traverse the path calling cb along the way.
   local function traverse_parents(path, cb)
-    path = vim.loop.fs_realpath(path)
+    path = vim.uv.fs_realpath(path)
     local dir = path
     -- Just in case our algo is buggy, don't infinite loop.
     for _ = 1, 100 do
@@ -208,7 +209,7 @@ M.path = (function() -- {{{
       else
         return
       end
-      if v and vim.loop.fs_realpath(v) then
+      if v and vim.uv.fs_realpath(v) then
         return v, path
       else
         return
@@ -250,7 +251,7 @@ M.path = (function() -- {{{
 end)() -- }}}
 
 function M.root_pattern(...) -- {{{
-  local patterns = vim.tbl_flatten({ ... })
+  local patterns = vim.iter({ ... }):flatten():totable()
   local function matcher(path)
     for _, pattern in ipairs(patterns) do
       for _, p in ipairs(vim.fn.glob(M.path.join(M.path.escape_wildcards(path), pattern), true, true)) do
@@ -267,7 +268,7 @@ function M.root_pattern(...) -- {{{
 end -- }}}
 
 function M.search_ancestors(startpath, func) -- {{{
-  vim.validate({ func = { func, "f" } })
+  vim.validate("func", func, "function")
   if func(startpath) then
     return startpath
   end
@@ -409,7 +410,7 @@ function M.bigfile(lang, bufnr) -- {{{
   if lang == "cpp" or lang == "c" then
     return vim.api.nvim_buf_line_count(bufnr) > 2048
   else
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
     -- 200KB
     if not ok or not stats or stats.size > 204800 then
       return true

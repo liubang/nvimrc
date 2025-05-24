@@ -118,25 +118,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `gcc`        | [mini.comment](https://ghfast.top/https://github.com/echasnovski/mini.comment) Toggle line comment                                         | **n**               |
 | `<leader>ft` | [mini.files](https://ghfast.top/https://github.com/echasnovski/mini.files) Toggle mini.files (Directory of Current File)                   | **n**               |
 | `<leader>fT` | [mini.files](https://ghfast.top/https://github.com/echasnovski/mini.files) Toggle mini.files (cwd)                                         | **n**               |
-| `<leader>dB` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Breakpoint Condition                                               | **n**               |
-| `<leader>db` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Toggle Breakpoint                                                  | **n**               |
-| `<leader>dc` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Continue                                                           | **n**               |
-| `<leader>da` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Run with Args                                                      | **n**               |
-| `<leader>dC` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Run to Cursor                                                      | **n**               |
-| `<leader>dl` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Run Last                                                           | **n**               |
-| `<leader>di` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Step Into                                                          | **n**               |
-| `<leader>do` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Step Out                                                           | **n**               |
-| `<leader>dO` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Step Over                                                          | **n**               |
-| `<leader>dp` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Pause                                                              | **n**               |
-| `<leader>dt` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Terminate                                                          | **n**               |
-| `<leader>dj` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Down                                                               | **n**               |
-| `<leader>dk` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Up                                                                 | **n**               |
-| `<leader>dg` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Go to Line (No Execute)                                            | **n**               |
-| `<leader>ds` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Session                                                            | **n**               |
-| `<leader>dr` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Toggle REPL                                                        | **n**               |
-| `<leader>dw` | [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap) Widgets                                                            | **n**               |
-| `<leader>du` | [nvim-dap-ui](https://ghfast.top/https://github.com/rcarriga/nvim-dap-ui) Dap UI                                                           | **n**               |
-| `<leader>de` | [nvim-dap-ui](https://ghfast.top/https://github.com/rcarriga/nvim-dap-ui) Eval                                                             | **n**, **v**        |
 | `<C-v>`      | [nvim-treesitter](https://ghfast.top/https://github.com/nvim-treesitter/nvim-treesitter) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://ghfast.top/https://github.com/nvim-treesitter/nvim-treesitter) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://ghfast.top/https://github.com/stevearc/oil.nvim) Open parent directory                                                  | **n**               |
@@ -168,9 +149,9 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [alpha-nvim](https://ghfast.top/https://github.com/goolord/alpha-nvim)
 - [asyncrun.vim](https://ghfast.top/https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://ghfast.top/https://github.com/skywind3000/asynctasks.vim)
+- [autoclose.nvim](https://ghfast.top/https://github.com/m4xshen/autoclose.nvim)
 - [blink.cmp](https://ghfast.top/https://github.com/saghen/blink.cmp)
 - [bufferline.nvim](https://ghfast.top/https://github.com/akinsho/bufferline.nvim)
-- [clangd_extensions.nvim](https://ghfast.top/https://github.com/p00f/clangd_extensions.nvim)
 - [diffview.nvim](https://ghfast.top/https://github.com/sindrets/diffview.nvim)
 - [fidget.nvim](https://ghfast.top/https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://ghfast.top/https://github.com/folke/flash.nvim)
@@ -185,31 +166,26 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [lualine.nvim](https://ghfast.top/https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://ghfast.top/https://github.com/L3MON4D3/LuaSnip)
 - [markdown-preview.nvim](https://ghfast.top/https://github.com/iamcco/markdown-preview.nvim)
-- [mason-lspconfig.nvim](https://ghfast.top/https://github.com/williamboman/mason-lspconfig.nvim)
-- [mason.nvim](https://ghfast.top/https://github.com/williamboman/mason.nvim)
+- [mason-lspconfig.nvim](https://ghfast.top/https://github.com/mason-org/mason-lspconfig.nvim)
+- [mason.nvim](https://ghfast.top/https://github.com/mason-org/mason.nvim)
 - [mini.align](https://ghfast.top/https://github.com/echasnovski/mini.align)
 - [mini.bufremove](https://ghfast.top/https://github.com/echasnovski/mini.bufremove)
 - [mini.comment](https://ghfast.top/https://github.com/echasnovski/mini.comment)
 - [mini.cursorword](https://ghfast.top/https://github.com/echasnovski/mini.cursorword)
 - [mini.files](https://ghfast.top/https://github.com/echasnovski/mini.files)
 - [mini.icons](https://ghfast.top/https://github.com/echasnovski/mini.icons)
-- [mini.pairs](https://ghfast.top/https://github.com/echasnovski/mini.pairs)
 - [mini.surround](https://ghfast.top/https://github.com/echasnovski/mini.surround)
 - [neogen](https://ghfast.top/https://github.com/danymat/neogen)
 - [none-ls.nvim](https://ghfast.top/https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://ghfast.top/https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://ghfast.top/https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-go](https://ghfast.top/https://github.com/leoluz/nvim-dap-go)
-- [nvim-dap-ui](https://ghfast.top/https://github.com/rcarriga/nvim-dap-ui)
-- [nvim-dap-virtual-text](https://ghfast.top/https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-java](https://ghfast.top/https://github.com/nvim-java/nvim-java)
-- [nvim-java-core](https://ghfast.top/https://github.com/nvim-java/nvim-java-core)
+- [nvim-java-core](https://github.com/Kabil777/nvim-java-core)
 - [nvim-java-dap](https://ghfast.top/https://github.com/nvim-java/nvim-java-dap)
 - [nvim-java-refactor](https://ghfast.top/https://github.com/nvim-java/nvim-java-refactor)
 - [nvim-java-test](https://ghfast.top/https://github.com/nvim-java/nvim-java-test)
 - [nvim-lspconfig](https://ghfast.top/https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://ghfast.top/https://github.com/SmiteshP/nvim-navic)
-- [nvim-nio](https://ghfast.top/https://github.com/nvim-neotest/nvim-nio)
 - [nvim-tree.lua](https://ghfast.top/https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://ghfast.top/https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://ghfast.top/https://github.com/stevearc/oil.nvim)
