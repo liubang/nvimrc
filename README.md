@@ -118,25 +118,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `gcc`        | [mini.comment](https://github.com/echasnovski/mini.comment.git) Toggle line comment                                         | **n**               |
 | `<leader>ft` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (Directory of Current File)                   | **n**               |
 | `<leader>fT` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (cwd)                                         | **n**               |
-| `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Breakpoint Condition                                               | **n**               |
-| `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle Breakpoint                                                  | **n**               |
-| `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                           | **n**               |
-| `<leader>da` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run with Args                                                      | **n**               |
-| `<leader>dC` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run to Cursor                                                      | **n**               |
-| `<leader>dl` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Run Last                                                           | **n**               |
-| `<leader>di` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Into                                                          | **n**               |
-| `<leader>do` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Out                                                           | **n**               |
-| `<leader>dO` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Step Over                                                          | **n**               |
-| `<leader>dp` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Pause                                                              | **n**               |
-| `<leader>dt` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Terminate                                                          | **n**               |
-| `<leader>dj` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Down                                                               | **n**               |
-| `<leader>dk` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Up                                                                 | **n**               |
-| `<leader>dg` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Go to Line (No Execute)                                            | **n**               |
-| `<leader>ds` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Session                                                            | **n**               |
-| `<leader>dr` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle REPL                                                        | **n**               |
-| `<leader>dw` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Widgets                                                            | **n**               |
-| `<leader>du` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Dap UI                                                           | **n**               |
-| `<leader>de` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Eval                                                             | **n**, **v**        |
 | `<C-v>`      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
@@ -168,9 +149,9 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [alpha-nvim](https://github.com/goolord/alpha-nvim)
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
+- [autoclose.nvim](https://github.com/m4xshen/autoclose.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
-- [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
@@ -185,31 +166,26 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-- [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [mason.nvim](https://github.com/williamboman/mason.nvim)
+- [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
+- [mason.nvim](https://github.com/mason-org/mason.nvim)
 - [mini.align](https://github.com/echasnovski/mini.align)
 - [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
 - [mini.comment](https://github.com/echasnovski/mini.comment)
 - [mini.cursorword](https://github.com/echasnovski/mini.cursorword)
 - [mini.files](https://github.com/echasnovski/mini.files)
 - [mini.icons](https://github.com/echasnovski/mini.icons)
-- [mini.pairs](https://github.com/echasnovski/mini.pairs)
 - [mini.surround](https://github.com/echasnovski/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
-- [nvim-java-core](https://github.com/nvim-java/nvim-java-core)
+- [nvim-java-core](https://github.com/Kabil777/nvim-java-core)
 - [nvim-java-dap](https://github.com/nvim-java/nvim-java-dap)
 - [nvim-java-refactor](https://github.com/nvim-java/nvim-java-refactor)
 - [nvim-java-test](https://github.com/nvim-java/nvim-java-test)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
-- [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://github.com/stevearc/oil.nvim)

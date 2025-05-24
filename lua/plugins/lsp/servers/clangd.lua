@@ -15,7 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local Job = require("plenary.job")
-local is_mac = vim.loop.os_uname().version:match("Darwin")
+local is_mac = vim.uv.os_uname().version:match("Darwin")
 
 local function get_binary_path(bin)
   local j = Job:new({ command = "which", args = { bin } })

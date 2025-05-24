@@ -22,7 +22,7 @@ vim.notify("This is an error message.\nSomething went wrong!", "error", {
     vim.notify("Attempting recovery.", vim.log.levels.WARN, {
       title = plugin,
     })
-    local timer = vim.loop.new_timer()
+    local timer = vim.uv.new_timer()
     timer:start(2000, 0, function()
       vim.notify({ "Fixing problem.", "Please wait..." }, "info", {
         title = plugin,
