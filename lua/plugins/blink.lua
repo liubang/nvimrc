@@ -60,7 +60,12 @@ return {
         ["<CR>"] = { "accept_and_enter", "fallback" },
       },
     },
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    fuzzy = {
+      implementation = "prefer_rust_with_warning",
+      prebuilt_binaries = {
+        ignore_version_mismatch = true,
+      },
+    },
     signature = {
       enabled = false,
       window = { show_documentation = false },
