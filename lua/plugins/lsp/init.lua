@@ -134,8 +134,6 @@ return {
               "scss",
               "less",
               "html",
-              "json",
-              "jsonc",
               "yaml",
               "markdown",
               "markdown.mdx",
