@@ -23,9 +23,16 @@ return {
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
     local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
     local lombok_path = data_dir .. "/mason/packages/lombok-nightly/lombok.jar"
-    local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
+    local launcher_files =
+      vim.fn.glob(data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", true, true)
+
+    if #launcher_files == 0 then
+      print("Launcher jar not found")
+      return
+    end
+
     local config = {
-      capabilities = blink_capabilities,
+      capabilities = require("blink.cmp").get_lsp_capabilities(),
       cmd = {
         java_bin,
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -41,7 +48,7 @@ return {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar",
+        launcher_files[1],
         "-configuration",
         data_dir .. "/mason/packages/jdtls/config_linux",
         "-data",
