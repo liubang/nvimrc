@@ -18,7 +18,6 @@ for _, server in ipairs({
   "clangd",
   "gopls",
   "pyright",
-  "jdtls",
   "jsonls",
   "lua_ls",
   "yamlls",
@@ -30,14 +29,14 @@ for _, server in ipairs({
 end
 
 vim.lsp.enable({
-  "lemminx",
-  "thriftls",
+  "lemminx", -- for xml
+  "thriftls", -- for thrift
   "taplo", -- for toml
   "bashls",
   "protols",
   "cmake",
   "ruff",
-  "intelephense",
+  "intelephense", -- for php
   "nginx_language_server",
 })
 
