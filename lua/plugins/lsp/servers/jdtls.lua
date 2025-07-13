@@ -14,18 +14,18 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-return {
-  settings = {
-    java = {
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-21",
-            path = os.getenv("JAVA_HOME"),
-            default = true,
-          },
-        },
-      },
-    },
-  },
-}
+-- return {
+--   settings = {
+--     java = {
+--       configuration = {
+--         runtimes = {
+--           {
+--             name = "JavaSE-21",
+--             path = os.getenv("JAVA_HOME"),
+--             default = true,
+--           },
+--         },
+--       },
+--     },
+--   },
+-- }
