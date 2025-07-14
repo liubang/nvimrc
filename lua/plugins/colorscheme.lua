@@ -383,7 +383,7 @@ return {
     config = function()
       vim.o.background = "dark"
 
-      local uv = require("luv")
+      local uv = vim.uv
       local os = uv.os_uname().sysname
       if os == "Linux" then
         -- for linux

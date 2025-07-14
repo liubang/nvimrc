@@ -26,6 +26,21 @@ return {
     local launcher_files =
       vim.fn.glob(data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", true, true)
 
+    local uv = vim.uv
+    local uname = uv.os_uname()
+    local os = uname.sysname
+
+    local cfg_dir = "config"
+    if os == "Linux" then
+      cfg_dir = cfg_dir .. "_linux"
+    elseif os == "Darwin" then
+      cfg_dir = cfg_dir .. "_mac"
+    end
+
+    if uname.machine == "arm64" then
+      cfg_dir = cfg_dir .. "_arm"
+    end
+
     if #launcher_files == 0 then
       print("Launcher jar not found")
       return
@@ -50,7 +65,7 @@ return {
         "-jar",
         launcher_files[1],
         "-configuration",
-        data_dir .. "/mason/packages/jdtls/config_linux",
+        data_dir .. "/mason/packages/jdtls/" .. cfg_dir,
         "-data",
         workspace_dir,
       },

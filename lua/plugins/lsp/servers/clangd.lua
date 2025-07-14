@@ -40,7 +40,7 @@ local function get_default_drivers(binaries)
   return table.concat(path_list, ",")
 end
 
-local luv = require("luv")
+local luv = vim.uv
 local cpu = luv.available_parallelism()
 
 local function get_clangd_cmd()
