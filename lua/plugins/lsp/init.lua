@@ -40,43 +40,11 @@ return {
   { "b0o/schemastore.nvim" },
   {
     "nvim-java/nvim-java",
+    ft = "java",
     config = function()
-      local java = require("java")
-
-      local override_setup = function()
-        -- Override the nvim-java setup function in order to allow following the latest dependency versions (jdtls, ...)
-        local custom_config = {
-          java_debug_adapter = {
-            enable = false,
-          },
-          jdk = {
-            auto_install = false,
-          },
-        }
-        local decomple_watch = require("java.startup.decompile-watcher")
-        local setup_wrap = require("java.startup.lspconfig-setup-wrap")
-        -- local dap_api = require("java.api.dap")
-        local global_config = require("java.config")
-        vim.api.nvim_exec_autocmds("User", { pattern = "JavaPreSetup" })
-        local config = vim.tbl_deep_extend("force", global_config, custom_config or {})
-        vim.g.nvim_java_config = config
-        vim.api.nvim_exec_autocmds("User", { pattern = "JavaSetup", data = { config = config } })
-        setup_wrap.setup(config)
-        decomple_watch.setup()
-        -- dap_api.setup_dap_on_lsp_attach()
-        vim.api.nvim_exec_autocmds("User", { pattern = "JavaPostSetup", data = { config = config } })
-      end
-
-      java.setup = override_setup
-      java.setup()
+      require("java.startup.decompile-watcher").setup()
     end,
-    dependencies = {
-      {
-        "nvim-java/nvim-java-core",
-        url = "https://github.com/Kabil777/nvim-java-core.git",
-        branch = "fix/mason-api-update",
-      },
-    },
+    dependencies = { { "nvim-java/nvim-java-core" } },
   },
   {
     "folke/lazydev.nvim",
@@ -90,7 +58,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "UIEnter" },
     dependencies = {
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",

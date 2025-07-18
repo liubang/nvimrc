@@ -77,6 +77,13 @@ return {
       },
       init_options = {},
     }
-    require("jdtls").start_or_attach(config)
+    group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = group,
+      pattern = "java",
+      callback = function(opt)
+        require("jdtls").start_or_attach(config)
+      end,
+    })
   end,
 }
