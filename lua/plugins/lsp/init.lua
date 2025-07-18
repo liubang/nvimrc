@@ -126,7 +126,7 @@ return {
       local null_ls = require("null-ls")
       local b = null_ls.builtins
       return {
-        debug = true,
+        debug = false,
         sources = {
           b.formatting.stylua,
           b.formatting.asmfmt,
