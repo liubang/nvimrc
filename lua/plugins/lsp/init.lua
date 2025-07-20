@@ -44,7 +44,15 @@ return {
     config = function()
       require("java.startup.decompile-watcher").setup()
     end,
-    dependencies = { { "nvim-java/nvim-java-core" } },
+    dependencies = {
+      "nvim-java/nvim-java-core",
+      "nvim-java/nvim-java-dap",
+      "nvim-java/nvim-java-refactor",
+      "nvim-java/nvim-java-test",
+      "nvim-java/lua-async-await",
+      "mfussenegger/nvim-dap",
+      "JavaHello/spring-boot.nvim",
+    },
   },
   {
     "folke/lazydev.nvim",

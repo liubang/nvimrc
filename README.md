@@ -2,7 +2,7 @@
 
 <div align="center"><p>
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.11.0-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.11.3-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="Neovim"/>
     </a>
     <a href="https://github.com/liubang/nvimrc/actions">
         <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />
@@ -178,12 +178,14 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [neogen](https://github.com/danymat/neogen)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+- [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
-- [nvim-java-core](https://github.com/Kabil777/nvim-java-core)
+- [nvim-java-core](https://github.com/nvim-java/nvim-java-core)
 - [nvim-java-dap](https://github.com/nvim-java/nvim-java-dap)
 - [nvim-java-refactor](https://github.com/nvim-java/nvim-java-refactor)
 - [nvim-java-test](https://github.com/nvim-java/nvim-java-test)
+- [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
