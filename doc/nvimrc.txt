@@ -1,4 +1,4 @@
-*nvimrc.txt*           For Neovim >= 0.10.0          Last change: 2025 July 18
+*nvimrc.txt*           For Neovim >= 0.10.0          Last change: 2025 July 20
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -246,12 +246,14 @@ PLUGINS                                                       *nvimrc-plugins*
 - neogen <https://github.com/danymat/neogen>
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
+- nvim-colorizer.lua <https://github.com/norcalli/nvim-colorizer.lua>
 - nvim-dap <https://github.com/mfussenegger/nvim-dap>
 - nvim-java <https://github.com/nvim-java/nvim-java>
-- nvim-java-core <https://github.com/Kabil777/nvim-java-core>
+- nvim-java-core <https://github.com/nvim-java/nvim-java-core>
 - nvim-java-dap <https://github.com/nvim-java/nvim-java-dap>
 - nvim-java-refactor <https://github.com/nvim-java/nvim-java-refactor>
 - nvim-java-test <https://github.com/nvim-java/nvim-java-test>
+- nvim-jdtls <https://github.com/mfussenegger/nvim-jdtls>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
