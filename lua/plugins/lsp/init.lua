@@ -66,11 +66,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "UIEnter" },
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
-      "nvim-java/nvim-java",
     },
     config = function()
       require("mason-lspconfig").setup({

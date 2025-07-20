@@ -76,12 +76,15 @@ return {
         java = {},
       },
       init_options = {},
+      bundles = {},
     }
-    group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
+    -- 添加 spring-boot jdtls 扩展 jar 包
+    vim.list_extend(config.bundles, require("spring_boot").java_extensions())
+    local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
       group = group,
       pattern = "java",
-      callback = function(opt)
+      callback = function(_)
         require("jdtls").start_or_attach(config)
       end,
     })

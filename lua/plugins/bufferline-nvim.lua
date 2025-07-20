@@ -16,7 +16,8 @@
 
 return {
   "akinsho/bufferline.nvim", -- {{{
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  event = { "BufReadPre", "BufAdd", "BufNewFile" },
   opts = {
     options = { -- {{{
       -- themable = true,

@@ -17,7 +17,6 @@
 return {
   "gelguy/wilder.nvim", -- {{{
   dependencies = { "romgrk/fzy-lua-native" },
-  -- enabled = false,
   event = "CmdlineEnter",
   config = function()
     local wilder = require("wilder")

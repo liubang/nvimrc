@@ -16,7 +16,7 @@
 
 return {
   "nvim-lualine/lualine.nvim", -- {{{
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufAdd", "BufNewFile" },
   opts = function()
     return {
       options = {
