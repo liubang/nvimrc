@@ -15,13 +15,13 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  "kawre/leetcode.nvim",
+  "liubang/leetcode.nvim",
   cmd = "Leet",
   opts = {
     lang = "cpp",
     cn = { -- leetcode.cn
       enabled = true,
-      translator = true,
+      translator = false,
       translate_problems = true,
     },
     storage = {
@@ -51,6 +51,14 @@ return {
           "}",
         },
       },
+    },
+    theme = {
+      easy = { fg = "#a9b665" },
+      medium = { fg = "#7daea3" },
+      hard = { fg = "#ea6962" },
+      easy_alt = { fg = "#a9b665" },
+      medium_alt = { fg = "#7daea3" },
+      hard_alt = { fg = "#ea6962" },
     },
   },
 }
