@@ -1,4 +1,4 @@
-*nvimrc.txt*           For Neovim >= 0.10.0          Last change: 2025 July 20
+*nvimrc.txt*           For Neovim >= 0.10.0          Last change: 2025 July 21
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -230,6 +230,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - lazydev.nvim <https://github.com/folke/lazydev.nvim>
+- leetcode.nvim <https://github.com/kawre/leetcode.nvim>
 - lua-async-await <https://github.com/nvim-java/lua-async-await>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
