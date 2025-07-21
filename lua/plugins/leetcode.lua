@@ -19,7 +19,7 @@ return {
   cmd = "Leet",
   opts = {
     lang = "cpp",
-    cn = { -- leetcode.cn
+    cn = {
       enabled = true,
       translator = false,
       translate_problems = true,
@@ -38,7 +38,7 @@ return {
             "#include <gtest/gtest.h>",
             "#include <vector>",
             "#include <string>",
-            "#include <iostream>",
+            "using namespace std;",
           }
         end,
         before = {
@@ -46,8 +46,9 @@ return {
         },
         after = {
           "}",
-          "TEST(Leetcode, xxx) {",
+          "TEST(Leetcode, <FILE_NAME_NOEXT>) {",
           "    Solution s;",
+          "    // run cases",
           "}",
         },
       },

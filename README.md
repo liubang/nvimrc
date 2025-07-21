@@ -162,7 +162,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim)
-- [leetcode.nvim](https://github.com/kawre/leetcode.nvim)
+- [leetcode.nvim](https://github.com/liubang/leetcode.nvim)
 - [lua-async-await](https://github.com/nvim-java/lua-async-await)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)

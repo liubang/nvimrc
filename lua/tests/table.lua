@@ -26,3 +26,8 @@ local opts = {
 opts = vim.tbl_deep_extend("force", opts, { a = "aa", c = { b = "bb" } })
 
 vim.print(opts)
+
+local str = "}\nTEST(Leetcode, <FILE_NAME_NOEXT>) { \nSolution s; \n}"
+local fn = "ok"
+
+print(str:gsub("<FILE_NAME_NOEXT>", fn))
