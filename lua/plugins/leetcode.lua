@@ -14,6 +14,8 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+local workspace = os.getenv("GIT_WORKSPACE") or vim.fn.stdpath("data")
+
 return {
   "liubang/leetcode.nvim",
   cmd = "Leet",
@@ -25,12 +27,10 @@ return {
       translate_problems = true,
     },
     storage = {
-      home = os.getenv("GIT_WORKSPACE") .. "/leetcode/src",
+      home = workspace .. "/leetcode/src",
       cache = vim.fn.stdpath("cache") .. "/leetcode",
     },
-    picker = {
-      provider = "telescope",
-    },
+    picker = { provider = "telescope" },
     injector = {
       ["cpp"] = {
         imports = function()
@@ -54,6 +54,8 @@ return {
       },
     },
     theme = {
+      normal = { fg = "#a89984" },
+      code = { fg = "#ddc7a1" },
       easy = { fg = "#a9b665" },
       medium = { fg = "#7daea3" },
       hard = { fg = "#ea6962" },
