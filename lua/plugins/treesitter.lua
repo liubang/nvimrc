@@ -14,7 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local util = require("lb.utils.util")
+-- local util = require("lb.utils.util")
 
 return {
   "nvim-treesitter/nvim-treesitter",
@@ -61,20 +61,20 @@ return {
       "tlaplus",
     },
     fold = {
-      disable = util.bigfile,
+      -- disable = util.bigfile,
       enable = true,
     },
     indent = {
-      disable = util.bigfile,
+      -- disable = util.bigfile,
       enable = false,
     },
     matchup = {
       enable = true,
-      disable = util.bigfile,
+      -- disable = util.bigfile,
     },
     incremental_selection = {
       enable = true,
-      disable = util.bigfile,
+      -- disable = util.bigfile,
       keymaps = {
         init_selection = "<C-v>",
         node_incremental = "v",
@@ -85,7 +85,7 @@ return {
     highlight = {
       enable = true,
       -- Disable in large C++/C buffers
-      disable = util.bigfile,
+      -- disable = util.bigfile,
     },
   },
   config = function(_, opts)
