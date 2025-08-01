@@ -19,8 +19,8 @@ return {
   version = "*",
   event = { "InsertEnter" },
   dependencies = {
-    "rafamadriz/friendly-snippets",
-    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    { "L3MON4D3/LuaSnip" },
+    { "archie-judd/blink-cmp-words" },
   },
   opts_extend = {
     "sources.completion.enabled_providers",
@@ -28,18 +28,13 @@ return {
   },
   opts = {
     appearance = {
-      use_nvim_cmp_as_default = true,
+      use_nvim_cmp_as_default = false,
       nerd_font_variant = "mono",
     },
     snippets = { preset = "luasnip" },
     sources = {
       default = { "lsp", "lazydev", "snippets", "buffer", "path" },
       providers = {
-        lsp = {
-          name = "LSP",
-          async = true,
-          module = "blink.cmp.sources.lsp",
-        },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
@@ -53,28 +48,26 @@ return {
         selection = { preselect = true, auto_insert = true },
       },
       menu = {
-        draw = { treesitter = { "lsp" } },
+        draw = {
+          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
+        },
       },
     },
-    cmdline = {
-      enabled = false,
-      completion = { menu = { auto_show = true } },
-      keymap = {
-        ["<C-j>"] = { "select_next" },
-        ["<C-k>"] = { "select_prev" },
-        ["<CR>"] = { "accept_and_enter", "fallback" },
-      },
-    },
+    cmdline = { enabled = false },
     fuzzy = {
       implementation = "prefer_rust_with_warning",
+      use_frecency = true,
+      use_proximity = false,
       prebuilt_binaries = {
         ignore_version_mismatch = true,
       },
+      sorts = {
+        "score", -- Primary sort: by fuzzy matching score
+        "sort_text", -- Secondary sort: by sortText field if scores are equal
+        "label", -- Tertiary sort: by label if still tied
+      },
     },
-    signature = {
-      enabled = false,
-      window = { show_documentation = false },
-    },
+    signature = { enabled = false },
     keymap = {
       preset = "enter",
       ["<Up>"] = {},

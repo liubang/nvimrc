@@ -14,26 +14,13 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local Job = require("plenary.job")
 local is_mac = vim.uv.os_uname().version:match("Darwin")
-
-local function get_binary_path(bin)
-  local j = Job:new({ command = "which", args = { bin } })
-  local _, result = pcall(function()
-    local out = j:sync()
-    if #out > 0 then
-      return vim.trim(out[1])
-    end
-    return nil
-  end)
-  return result
-end
 
 local function get_default_drivers(binaries)
   local path_list = {}
   for _, binary in ipairs(binaries) do
-    local path = get_binary_path(binary)
-    if path then
+    local path = vim.fn.exepath(binary)
+    if path ~= "" then
       table.insert(path_list, path)
     end
   end
@@ -56,8 +43,8 @@ local function get_clangd_cmd()
     "--query-driver=" .. get_default_drivers({ "clang++", "clang", "gcc", "g++" }),
     "--enable-config",
     "--fallback-style=google",
-    "--limit-references=3000",
-    "--limit-results=350",
+    "--limit-references=1000",
+    "--limit-results=300",
     "--log=error",
   }
   if not is_mac then
