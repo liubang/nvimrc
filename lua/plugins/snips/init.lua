@@ -31,7 +31,7 @@ return {
   config = function(_, opts)
     require("luasnip").setup(opts)
     require("plugins.snips.all")
-    require("plugins.snips.cpp")
+    -- require("plugins.snips.cpp")
     require("luasnip.loaders.from_vscode").lazy_load()
   end,
 }
