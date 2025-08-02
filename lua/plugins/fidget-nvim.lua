@@ -23,13 +23,14 @@ return {
       display = {
         render_limit = 16,
         done_ttl = 2,
-        done_icon = "󰦕 ",
+        done_icon = "󰄴 ",
         progress_icon = { "meter" },
       },
     },
     notification = {
       view = {
-        stack_upwards = false, -- Display notification items from bottom to top
+        -- Display notification items from bottom to top
+        stack_upwards = false,
       },
       window = {
         relative = "editor",
