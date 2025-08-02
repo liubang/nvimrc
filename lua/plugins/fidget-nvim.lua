@@ -21,16 +21,10 @@ return {
     progress = {
       ignore = { "null-ls" },
       display = {
-        format_message = function(msg)
-          if string.find(msg.title, "Indexing") then
-            return nil -- Ignore "Indexing..." progress messages
-          end
-          if msg.message then
-            return msg.message
-          else
-            return msg.done and "Completed" or "In progress..."
-          end
-        end,
+        render_limit = 16,
+        done_ttl = 2,
+        done_icon = "󰦕 ",
+        progress_icon = { "meter" },
       },
     },
     notification = {
@@ -39,9 +33,8 @@ return {
       },
       window = {
         relative = "editor",
-        winblend = 0,
+        winblend = 100,
       },
-      -- override_vim_notify = false,
     },
   },
   -- }}}
