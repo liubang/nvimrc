@@ -20,7 +20,6 @@ return {
   event = { "InsertEnter" },
   dependencies = {
     { "L3MON4D3/LuaSnip" },
-    { "archie-judd/blink-cmp-words" },
   },
   opts_extend = {
     "sources.completion.enabled_providers",
