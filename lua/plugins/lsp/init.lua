@@ -38,22 +38,22 @@ return {
     },
   },
   { "b0o/schemastore.nvim" },
-  {
-    "nvim-java/nvim-java",
-    ft = "java",
-    config = function()
-      require("java.startup.decompile-watcher").setup()
-    end,
-    dependencies = {
-      "nvim-java/nvim-java-core",
-      "nvim-java/nvim-java-dap",
-      "nvim-java/nvim-java-refactor",
-      "nvim-java/nvim-java-test",
-      "nvim-java/lua-async-await",
-      "mfussenegger/nvim-dap",
-      "JavaHello/spring-boot.nvim",
-    },
-  },
+  -- {
+  --   "nvim-java/nvim-java",
+  --   ft = "java",
+  --   config = function()
+  --     -- require("java.startup.decompile-watcher").setup()
+  --   end,
+  --   dependencies = {
+  --     "nvim-java/nvim-java-core",
+  --     "nvim-java/nvim-java-dap",
+  --     "nvim-java/nvim-java-refactor",
+  --     "nvim-java/nvim-java-test",
+  --     "nvim-java/lua-async-await",
+  --     "mfussenegger/nvim-dap",
+  --     "JavaHello/spring-boot.nvim",
+  --   },
+  -- },
   {
     "folke/lazydev.nvim",
     ft = "lua",

@@ -17,6 +17,9 @@
 return {
   "mfussenegger/nvim-jdtls",
   ft = { "java" },
+  dependencies = {
+    "JavaHello/spring-boot.nvim",
+  },
   config = function()
     local data_dir = vim.fn.stdpath("data")
     local java_bin = os.getenv("JAVA_HOME") .. "/bin/java"
