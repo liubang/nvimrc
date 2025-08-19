@@ -77,9 +77,9 @@ return {
         ensure_installed = {
           "clangd",
           "gopls",
-          "pyright",
           "lua_ls",
           "jdtls",
+          "basedpyright",
         },
       })
       -- It's important that you set up the plugins in the following order:
