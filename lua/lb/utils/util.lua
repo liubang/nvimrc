@@ -332,7 +332,9 @@ local lsp_names = { --{{{
   lua_ls                = "Lua",
   intelephense          = "PHP",
   thriftls              = "Thrift",
-  pyright               = "pyright",
+  pyright               = "Py",
+  basedpyright          = "Py",
+  ruff                  = "Ruff",
   bashls                = "Bash",
   dockerls              = "Docker",
   tsserver              = "TS",
@@ -348,7 +350,7 @@ local lsp_names = { --{{{
   jdtls                 = "Java",
   bzl                   = "bzl",
   ["spring-boot"]       = "Spring",
-  nginx_language_server = "nginx",
+  nginx_language_server = "Nginx",
 }
 --}}}
 
