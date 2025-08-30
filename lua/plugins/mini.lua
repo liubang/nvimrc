@@ -16,7 +16,7 @@
 
 return {
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {
       file = {
         [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
@@ -31,7 +31,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.bufremove", -- {{{
+    "nvim-mini/mini.bufremove", -- {{{
     -- stylua: ignore
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
@@ -40,7 +40,7 @@ return {
     -- }}}
   },
   {
-    "echasnovski/mini.cursorword",
+    "nvim-mini/mini.cursorword",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
     config = function()
       require("mini.cursorword").setup({
@@ -51,7 +51,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.comment",
+    "nvim-mini/mini.comment",
     keys = {
       { "gc", mode = { "n", "x" }, desc = "Toggle line comment" },
       { "gcc", mode = "n", desc = "Toggle line comment" },
@@ -83,7 +83,7 @@ return {
   },
 
   {
-    "echasnovski/mini.align", -- {{{
+    "nvim-mini/mini.align", -- {{{
     keys = {
       { "ga", mode = { "n", "x" } },
       { "gA", mode = { "n", "x" } },
@@ -113,7 +113,7 @@ return {
   },
 
   {
-    "echasnovski/mini.surround", -- {{{
+    "nvim-mini/mini.surround", -- {{{
     keys = function(plugin, keys)
       -- Populate the keys based on the user's options
       local opts = require("lazy.core.plugin").values(plugin, "opts", false)
@@ -144,7 +144,7 @@ return {
     -- }}}
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     version = "*",
     opts = {
       -- Module mappings created only inside explorer.

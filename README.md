@@ -112,12 +112,12 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position                       | **n**               |
 | `<leader>sr` | [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim.git) Search and Replace                                          | **n**, **v**        |
 | `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
-| `<leader>bd` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer                                           | **n**               |
-| `<leader>bD` | [mini.bufremove](https://github.com/echasnovski/mini.bufremove.git) Delete Buffer (Force)                                   | **n**               |
-| `gc`         | [mini.comment](https://github.com/echasnovski/mini.comment.git) Toggle line comment                                         | **n**, **x**        |
-| `gcc`        | [mini.comment](https://github.com/echasnovski/mini.comment.git) Toggle line comment                                         | **n**               |
-| `<leader>ft` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (Directory of Current File)                   | **n**               |
-| `<leader>fT` | [mini.files](https://github.com/echasnovski/mini.files.git) Toggle mini.files (cwd)                                         | **n**               |
+| `<leader>bd` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer                                             | **n**               |
+| `<leader>bD` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer (Force)                                     | **n**               |
+| `gc`         | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                           | **n**, **x**        |
+| `gcc`        | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                           | **n**               |
+| `<leader>ft` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (Directory of Current File)                     | **n**               |
+| `<leader>fT` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (cwd)                                           | **n**               |
 | `<C-v>`      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
@@ -150,7 +150,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
 - [autoclose.nvim](https://github.com/m4xshen/autoclose.nvim)
-- [blink-cmp-words](https://github.com/archie-judd/blink-cmp-words)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
@@ -164,29 +163,22 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - [leetcode.nvim](https://github.com/liubang/leetcode.nvim)
-- [lua-async-await](https://github.com/nvim-java/lua-async-await)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 - [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
 - [mason.nvim](https://github.com/mason-org/mason.nvim)
-- [mini.align](https://github.com/echasnovski/mini.align)
-- [mini.bufremove](https://github.com/echasnovski/mini.bufremove)
-- [mini.comment](https://github.com/echasnovski/mini.comment)
-- [mini.cursorword](https://github.com/echasnovski/mini.cursorword)
-- [mini.files](https://github.com/echasnovski/mini.files)
-- [mini.icons](https://github.com/echasnovski/mini.icons)
-- [mini.surround](https://github.com/echasnovski/mini.surround)
+- [mini.align](https://github.com/nvim-mini/mini.align)
+- [mini.bufremove](https://github.com/nvim-mini/mini.bufremove)
+- [mini.comment](https://github.com/nvim-mini/mini.comment)
+- [mini.cursorword](https://github.com/nvim-mini/mini.cursorword)
+- [mini.files](https://github.com/nvim-mini/mini.files)
+- [mini.icons](https://github.com/nvim-mini/mini.icons)
+- [mini.surround](https://github.com/nvim-mini/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
 - [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors)
-- [nvim-java](https://github.com/nvim-java/nvim-java)
-- [nvim-java-core](https://github.com/nvim-java/nvim-java-core)
-- [nvim-java-dap](https://github.com/nvim-java/nvim-java-dap)
-- [nvim-java-refactor](https://github.com/nvim-java/nvim-java-refactor)
-- [nvim-java-test](https://github.com/nvim-java/nvim-java-test)
 - [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
