@@ -20,10 +20,12 @@ return {
   opts = {
     backends = { "lsp", "markdown", "man" },
     layout = {
-      default_direction = "prefer_right",
-      placement = "edge",
+      max_width = { 40, 0.25 },
+      min_width = 16,
+      resize_to_content = true,
+      preserve_equality = true,
     },
-    attach_mode = "window", -- 'window' | 'global'
+    attach_mode = "window",
     nerd_font = "auto",
     show_guides = true,
     guides = {
@@ -38,6 +40,13 @@ return {
       ["<C-j>"] = "actions.down_and_scroll",
       ["<C-k>"] = "actions.up_and_scroll",
       ["O"] = "actions.tree_toggle",
+      ["q"] = {
+        callback = function()
+          vim.cmd("AerialClose")
+        end,
+        desc = "Close the aerial window",
+        nowait = true,
+      },
     },
   },
   keys = {
