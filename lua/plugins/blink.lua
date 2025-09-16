@@ -55,7 +55,7 @@ return {
     cmdline = { enabled = false },
     fuzzy = {
       implementation = "prefer_rust_with_warning",
-      use_frecency = true,
+      frecency = { enabled = true },
       use_proximity = false,
       prebuilt_binaries = {
         ignore_version_mismatch = true,
