@@ -111,7 +111,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position          | **n**               |
 | `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position                       | **n**               |
 | `<leader>sr` | [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim.git) Search and Replace                                          | **n**, **v**        |
-| `<Leader>mp` | [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim.git) Markdown Preview                               | **n**               |
+| `<Leader>mp` | [markview.nvim](https://github.com/OXY2DEV/markview.nvim.git) Markdown Preview                                              | **n**               |
 | `<leader>bd` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer                                             | **n**               |
 | `<leader>bD` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer (Force)                                     | **n**               |
 | `gc`         | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                           | **n**, **x**        |
@@ -165,7 +165,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [leetcode.nvim](https://github.com/liubang/leetcode.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+- [markview.nvim](https://github.com/OXY2DEV/markview.nvim)
 - [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
 - [mason.nvim](https://github.com/mason-org/mason.nvim)
 - [mini.align](https://github.com/nvim-mini/mini.align)

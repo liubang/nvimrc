@@ -18,6 +18,7 @@ return {
   {
     "OXY2DEV/markview.nvim",
     lazy = false,
+    version = "*",
     config = function()
       local presets = require("markview.presets")
 
