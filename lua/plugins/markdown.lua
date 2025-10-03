@@ -16,46 +16,38 @@
 
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    ft = { "markdown" },
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = function()
-      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-      vim.fn["mkdp#util#install"]()
-    end,
+    "OXY2DEV/markview.nvim",
+    lazy = false,
     config = function()
-      vim.cmd([[do FileType]])
+      local presets = require("markview.presets")
+
+      require("markview").setup({
+        markdown = {
+          headings = presets.headings.marker,
+          tables = presets.tables.single,
+          code_blocks = {
+            enable = true,
+            style = "block",
+            sign = false,
+            border_hl = "MarkviewCode",
+            info_hl = "MarkviewCodeInfo",
+            label_direction = "right",
+            min_width = 40,
+            pad_amount = 2,
+            pad_char = " ",
+          },
+        },
+
+        preview = {
+          enable = false,
+          icon_provider = "mini",
+          enable_hybrid_mode = false,
+        },
+      })
     end,
     -- stylua: ignore
     keys = {
-      { "<Leader>mp", "<CMD>MarkdownPreview<CR>", desc = "Markdown Preview" },
+      { "<Leader>mp", "<CMD>Markview splitOpen<CR>", desc = "Markdown Preview" },
     },
   },
-  -- {
-  --   "MeanderingProgrammer/render-markdown.nvim",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "echasnovski/mini.icons",
-  --   }, -- if you use standalone mini plugins
-  --   ft = { "markdown" },
-  --   opts = {
-  --     enabled = true,
-  --     completions = { blink = { enabled = true } },
-  --     -- Maximum file size (in MB) that this plugin will attempt to render
-  --     -- Any file larger than this will effectively be ignored
-  --     max_file_size = 2.0,
-  --     -- Milliseconds that must pass before updating marks, updates occur
-  --     -- within the context of the visible window, not the entire buffer
-  --     debounce = 100,
-  --     -- Vim modes that will show a rendered view of the markdown file
-  --     -- All other modes will be uneffected by this plugin
-  --     render_modes = { "n", "c", "t" },
-  --     -- This enables hiding any added text on the line the cursor is on
-  --     -- This does have a performance penalty as we must listen to the 'CursorMoved' event
-  --     anti_conceal = { enabled = true },
-  --     -- The level of logs to write to file: vim.fn.stdpath('state') .. '/render-markdown.log'
-  --     -- Only intended to be used for plugin development / debugging
-  --     log_level = "error",
-  --   },
-  -- },
 }
