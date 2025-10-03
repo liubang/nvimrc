@@ -155,7 +155,7 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>sr   grug-far.nvim Search and Replace                         n, v
 
-  <Leader>mp   markdown-preview.nvim Markdown Preview                   n
+  <Leader>mp   markview.nvim Markdown Preview                           n
 
   <leader>bd   mini.bufremove Delete Buffer                             n
 
@@ -233,7 +233,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - leetcode.nvim <https://github.com/liubang/leetcode.nvim>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
-- markdown-preview.nvim <https://github.com/iamcco/markdown-preview.nvim>
+- markview.nvim <https://github.com/OXY2DEV/markview.nvim>
 - mason-lspconfig.nvim <https://github.com/mason-org/mason-lspconfig.nvim>
 - mason.nvim <https://github.com/mason-org/mason.nvim>
 - mini.align <https://github.com/nvim-mini/mini.align>
