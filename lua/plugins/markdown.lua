@@ -21,7 +21,6 @@ return {
     version = "*",
     config = function()
       local presets = require("markview.presets")
-
       require("markview").setup({
         markdown = {
           headings = presets.headings.marker,
@@ -30,25 +29,24 @@ return {
             enable = true,
             style = "block",
             sign = false,
-            border_hl = "MarkviewCode",
-            info_hl = "MarkviewCodeInfo",
-            label_direction = "right",
-            min_width = 40,
-            pad_amount = 2,
-            pad_char = " ",
           },
         },
 
         preview = {
           enable = false,
           icon_provider = "mini",
-          enable_hybrid_mode = false,
         },
       })
     end,
-    -- stylua: ignore
     keys = {
-      { "<Leader>mp", "<CMD>Markview splitOpen<CR>", desc = "Markdown Preview" },
+      {
+        "<Leader>mp",
+        function()
+          vim.api.nvim_command("Markview Toggle")
+          vim.api.nvim_command("Markview splitToggle")
+        end,
+        desc = "Markdown Preview",
+      },
     },
   },
 }
