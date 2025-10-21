@@ -28,7 +28,14 @@ return {
       vim.g.vimtex_mappings_enabled = false -- Disable default mappings
       vim.g.tex_flavor = "latex" -- Set file type for TeX files
       vim.g.vimtex_compiler_method = "latexmk"
-      vim.g.vimtex_view_method = "zathura"
+
+      local uv = vim.uv
+      local os = uv.os_uname().sysname
+      if os == "Linux" then
+        vim.g.vimtex_view_method = "zathura"
+      else
+        vim.g.vimtex_view_method = "skim"
+      end
       vim.g.vimtex_compiler_latexmk_engines = {
         ["_"] = "-pdf",
         pdflatex = "-pdf",
