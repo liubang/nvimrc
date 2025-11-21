@@ -34,7 +34,7 @@ vim.lsp.enable({
   "taplo", -- for toml
   "bashls",
   "protols",
-  "cmake",
+  "neocmake",
   "ruff",
   "intelephense", -- for php
   "nginx_language_server",
