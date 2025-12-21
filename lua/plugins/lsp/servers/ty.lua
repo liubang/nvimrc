@@ -1,4 +1,4 @@
--- Copyright (c) 2024 The Authors. All rights reserved.
+-- Copyright (c) 2025 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -14,30 +14,17 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-for _, server in ipairs({
-  "clangd",
-  "gopls",
-  "ty",
-  "jsonls",
-  "lua_ls",
-  "yamlls",
-  "texlab",
-  "bzl",
-}) do
-  vim.lsp.config(server, require("plugins.lsp.servers." .. server))
-  vim.lsp.enable(server)
-end
-
-vim.lsp.enable({
-  "lemminx", -- for xml
-  "thriftls", -- for thrift
-  "taplo", -- for toml
-  "bashls",
-  "protols",
-  "neocmake",
-  "ruff",
-  "intelephense", -- for php
-  "nginx_language_server",
-})
-
--- vim: fdm=marker fdl=0
+return {
+  settings = {
+    ty = {
+      diagnosticMode = "openFilesOnly",
+      completions = {
+        autoImport = true,
+      },
+      inlayHints = {
+        variableTypes = true,
+        callArgumentNames = true,
+      },
+    },
+  },
+}
