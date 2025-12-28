@@ -19,16 +19,16 @@ local java_bin = os.getenv("SDKMAN_DIR") .. "/candidates/java/25.0.1-tem/bin/jav
 return {
   {
     "JavaHello/spring-boot.nvim",
-    ft = { "java", "yaml", "yml", "properties" },
+    ft = { "java", "yaml", "jproperties" },
     dependencies = { "mfussenegger/nvim-jdtls" },
     opts = {
-      auto_detect = true,
+      autocmd = true,
       java_cmd = java_bin,
     },
   },
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java" },
+    ft = { "java", "yaml", "jproperties" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
@@ -212,7 +212,7 @@ return {
       local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
-        pattern = "java",
+        pattern = { "java", "yaml", "jproperties" },
         callback = function(_)
           require("jdtls").start_or_attach(config)
         end,

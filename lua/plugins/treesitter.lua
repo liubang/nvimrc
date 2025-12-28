@@ -17,6 +17,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  branch = "main",
+  version = false, -- last release is way too old and doesn't work on Windows
   event = { "BufReadPre", "BufNewFile" },
   keys = {
     { "<C-v>", desc = "Increment Selection" },
@@ -39,8 +41,6 @@ return {
   },
   opts = {
     ensure_installed = {
-      -- "c",
-      -- "cpp",
       "go",
       "query",
       "rust",
@@ -83,6 +83,6 @@ return {
   config = function(_, opts)
     vim.api.nvim_set_option_value("foldmethod", "expr", {})
     vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
-    require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter").setup(opts)
   end,
 }
