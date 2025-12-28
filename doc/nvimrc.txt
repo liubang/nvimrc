@@ -169,6 +169,44 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>fT   mini.files Toggle mini.files (cwd)                       n
 
+  <leader>dB   nvim-dap Breakpoint Condition                            n
+
+  <leader>db   nvim-dap Toggle Breakpoint                               n
+
+  <leader>dc   nvim-dap Continue                                        n
+
+  <leader>da   nvim-dap Run with Args                                   n
+
+  <leader>dC   nvim-dap Run to Cursor                                   n
+
+  <leader>dl   nvim-dap Run Last                                        n
+
+  <leader>di   nvim-dap Step Into                                       n
+
+  <leader>do   nvim-dap Step Out                                        n
+
+  <leader>dO   nvim-dap Step Over                                       n
+
+  <leader>dp   nvim-dap Pause                                           n
+
+  <leader>dt   nvim-dap Terminate                                       n
+
+  <leader>dj   nvim-dap Down                                            n
+
+  <leader>dk   nvim-dap Up                                              n
+
+  <leader>dg   nvim-dap Go to Line (No Execute)                         n
+
+  <leader>ds   nvim-dap Session                                         n
+
+  <leader>dr   nvim-dap Toggle REPL                                     n
+
+  <leader>dw   nvim-dap Widgets                                         n
+
+  <leader>du   nvim-dap-ui Dap UI                                       n
+
+  <leader>de   nvim-dap-ui Eval                                         n, v
+
   <C-v>        nvim-treesitter Increment Selection                      n
 
   V            nvim-treesitter Decrement Selection                      x
@@ -246,10 +284,14 @@ PLUGINS                                                       *nvimrc-plugins*
 - neogen <https://github.com/danymat/neogen>
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
+- nvim-dap <https://github.com/mfussenegger/nvim-dap>
+- nvim-dap-ui <https://github.com/rcarriga/nvim-dap-ui>
+- nvim-dap-virtual-text <https://github.com/theHamsta/nvim-dap-virtual-text>
 - nvim-highlight-colors <https://github.com/brenoprata10/nvim-highlight-colors>
 - nvim-jdtls <https://github.com/mfussenegger/nvim-jdtls>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
+- nvim-nio <https://github.com/nvim-neotest/nvim-nio>
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - oil.nvim <https://github.com/stevearc/oil.nvim>
@@ -268,6 +310,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - vim-diagon <https://github.com/willchao612/vim-diagon>
 - vim-floaterm <https://github.com/voldikss/vim-floaterm>
 - vim-matchup <https://github.com/andymass/vim-matchup>
+- vimtex <https://github.com/lervag/vimtex>
 - wilder.nvim <https://github.com/gelguy/wilder.nvim>
 
 ==============================================================================
