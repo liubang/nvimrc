@@ -146,6 +146,7 @@ return {
   {
     "nvim-mini/mini.files",
     version = "*",
+    enabled = false,
     opts = {
       -- Module mappings created only inside explorer.
       -- Use `''` (empty string) to not create one.

@@ -23,7 +23,7 @@ return {
     "NvimTreeFindFileToggle",
     "NvimTreeRefresh",
   },
-  -- keys = { { "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer NvimTree (cwd)" } },
+  keys = { { "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer NvimTree (cwd)" } },
   opts = {
     auto_reload_on_write = false,
     create_in_closed_folder = false,
