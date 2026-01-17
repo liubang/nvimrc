@@ -19,6 +19,11 @@ local java_bin = sdkman_dir .. "/candidates/java/25.0.1-tem/bin/java"
 
 local M = {}
 
+M.get_workspace_dir = function()
+  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+  return vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
+end
+
 M.java_bin = function()
   return java_bin
 end

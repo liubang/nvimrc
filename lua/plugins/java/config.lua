@@ -17,35 +17,7 @@
 local uv = vim.uv
 local uname = uv.os_uname()
 local utils = require("plugins.java.utils")
-local data_dir = vim.fn.stdpath("data")
 local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
-
-local get_javaagent = function()
-  return jar_dir .. "/lombok.jar"
-end
-
-local get_jdtls_cfg_dir = function()
-  local cfg_dir = "config"
-  if uname.sysname == "Linux" then
-    cfg_dir = cfg_dir .. "_linux"
-  elseif uname.sysname == "Darwin" then
-    cfg_dir = cfg_dir .. "_mac"
-  end
-
-  if uname.machine == "arm64" then
-    cfg_dir = cfg_dir .. "_arm"
-  end
-  return data_dir .. "/mason/packages/jdtls/" .. cfg_dir
-end
-
-local get_launcher_files = function()
-  return vim.fn.glob(data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", true, true)[1]
-end
-
-local get_workspace_dir = function()
-  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-  return vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
-end
 
 local on_attach = function(client, bufnr)
   local jdtls = require("jdtls")
@@ -66,10 +38,8 @@ local on_attach = function(client, bufnr)
   create_command(bufnr, "JdtPickTest", with_compile(jdtls.pick_test), { nargs = 0 })
   create_command(bufnr, "JdtExtractVariable", jdtls.extract_variable, { nargs = 0 })
   create_command(bufnr, "JdtExtractConstant", jdtls.extract_constant, { nargs = 0 })
-  create_command(bufnr, "JdtExtractMethod", function()
-    jdtls.extract_method(true)
-  end, { nargs = 0 })
-
+  -- stylua: ignore
+  create_command(bufnr, "JdtExtractMethod", function() jdtls.extract_method(true) end, { nargs = 0 })
   create_command(bufnr, "JdtTestGenerate", require("jdtls.tests").generate, { nargs = 0 })
   create_command(bufnr, "JdtTestGoto", require("jdtls.tests").goto_subjects, { nargs = 0 })
   create_command(
@@ -94,31 +64,40 @@ local get_init_options = function()
     extendedClientCapabilities = require("jdtls.capabilities"),
   }
 
+  local mason = require("mason-registry")
   -- vscode-java-debug
-  local java_debug_path = data_dir .. "/mason/packages/java-debug-adapter/extension/server"
-  vim.list_extend(
-    opts.bundles,
-    vim.split(vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"), "\n")
-  )
+  if mason.has_package("java-debug-adapter") then
+    local java_debug_path = vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server/")
+    vim.list_extend(
+      opts.bundles,
+      vim.split(vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"), "\n")
+    )
+  end
 
   -- vscode-java-test
-  local java_test_path = data_dir .. "/mason/packages/java-test/extension/server"
-  for _, bundle in ipairs(vim.split(vim.fn.glob(java_test_path .. "/*.jar"), "\n")) do
-    if
-      not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
-      and not vim.endswith(bundle, "jacocoagent.jar")
-    then
-      table.insert(opts.bundles, bundle)
+  if mason.has_package("java-test") then
+    local java_test_path = vim.fn.expand("$MASON/packages/java-test/extension/server")
+    for _, bundle in ipairs(vim.split(vim.fn.glob(java_test_path .. "/*.jar"), "\n")) do
+      if
+        not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
+        and not vim.endswith(bundle, "jacocoagent.jar")
+      then
+        table.insert(opts.bundles, bundle)
+      end
     end
   end
 
   -- vscode-java-decompiler
-  local java_decoompiler_path = data_dir .. "/mason/packages/vscode-java-decompiler/extension/server"
-  vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_decoompiler_path .. "/*.jar"), "\n"))
+  if mason.has_package("vscode-java-decompiler") then
+    local java_decompiler_path = vim.fn.expand("$MASON/packages/vscode-java-decompiler/extension/server")
+    vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_decompiler_path .. "/*.jar"), "\n"))
+  end
 
   -- vscode-java-dependency
-  local java_dependency_path = data_dir .. "/mason/packages/vscode-java-dependency/extension/server"
-  vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_dependency_path .. "/*.jar"), "\n"))
+  if mason.has_package("vscode-java-dependency") then
+    local java_dependency_path = vim.fn.expand("$MASON/packages/vscode-java-dependency/extension/server")
+    vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_dependency_path .. "/*.jar"), "\n"))
+  end
 
   -- 添加 spring-boot jdtls 扩展 jar 包
   vim.list_extend(opts.bundles, require("spring_boot").java_extensions())
@@ -126,13 +105,25 @@ local get_init_options = function()
   return opts
 end
 
-local jdtls_cmd = function()
-  return {
+local jdtls_launcher = function()
+  local jdtls_config = nil
+  if uname.sysname == "Linux" then
+    jdtls_config = "/config_linux"
+  elseif uname.sysname == "Darwin" then
+    jdtls_config = "/config_mac"
+  end
+  if uname.machine == "arm64" then
+    jdtls_config = jdtls_config .. "_arm"
+  end
+  local cmd = {
     utils.java_bin(),
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dosgi.checkConfiguration=true",
+    "-Dosgi.sharedConfiguration.area=" .. vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/") .. jdtls_config),
+    "-Dosgi.sharedConfiguration.area.readOnly=true",
+    "-Dosgi.configuration.cascaded=true",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
     "-Xmx4g",
@@ -143,14 +134,15 @@ local jdtls_cmd = function()
     "java.base/java.util=ALL-UNNAMED",
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. get_javaagent(),
-    "-jar",
-    get_launcher_files(),
-    "-configuration",
-    get_jdtls_cfg_dir(),
-    "-data",
-    get_workspace_dir(),
+    "--add-opens",
+    "java.base/sun.nio.fs=ALL-UNNAMED",
   }
+  table.insert(cmd, "-javaagent:" .. jar_dir .. "lombok.jar")
+  table.insert(cmd, "-jar")
+  table.insert(cmd, vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")))
+  table.insert(cmd, "-data")
+  table.insert(cmd, utils.get_workspace_dir())
+  return cmd
 end
 
 local M = {}
@@ -164,7 +156,7 @@ end
 
 M.jdtls_config = function()
   return {
-    cmd = jdtls_cmd(),
+    cmd = jdtls_launcher(),
     capabilities = require("blink.cmp").get_lsp_capabilities(),
     root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml" }),
     on_attach = on_attach,
