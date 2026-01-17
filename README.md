@@ -116,8 +116,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>bD` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer (Force)                                     | **n**               |
 | `gc`         | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                           | **n**, **x**        |
 | `gcc`        | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                           | **n**               |
-| `<leader>ft` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (Directory of Current File)                     | **n**               |
-| `<leader>fT` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (cwd)                                           | **n**               |
 | `<leader>dB` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Breakpoint Condition                                               | **n**               |
 | `<leader>db` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle Breakpoint                                                  | **n**               |
 | `<leader>dc` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Continue                                                           | **n**               |
@@ -137,6 +135,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>dw` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Widgets                                                            | **n**               |
 | `<leader>du` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Dap UI                                                           | **n**               |
 | `<leader>de` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Eval                                                             | **n**, **v**        |
+| `<leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer NvimTree (cwd)                                     | **n**               |
 | `<C-v>`      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
@@ -191,7 +190,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.bufremove](https://github.com/nvim-mini/mini.bufremove)
 - [mini.comment](https://github.com/nvim-mini/mini.comment)
 - [mini.cursorword](https://github.com/nvim-mini/mini.cursorword)
-- [mini.files](https://github.com/nvim-mini/mini.files)
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [mini.surround](https://github.com/nvim-mini/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
