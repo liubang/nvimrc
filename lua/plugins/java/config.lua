@@ -21,7 +21,7 @@ local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
 
 local on_attach = function(client, bufnr)
   local jdtls = require("jdtls")
-  jdtls.jol_path = vim.fn.stdpath("config") .. "/data/jars/jol-cli-0.17-full.jar"
+  jdtls.jol_path = jar_dir .. "jol-cli-0.17-full.jar"
   local function with_compile(fn)
     return function()
       if vim.bo.modified then
@@ -32,19 +32,20 @@ local on_attach = function(client, bufnr)
     end
   end
   local create_command = vim.api.nvim_buf_create_user_command
-  create_command(bufnr, "JdtRunLast", with_compile(require("dap").run_last), { nargs = 0 })
-  create_command(bufnr, "JdtTestClass", with_compile(jdtls.test_class), { nargs = 0 })
-  create_command(bufnr, "JdtTestNearestMethod", with_compile(jdtls.test_nearest_method), { nargs = 0 })
-  create_command(bufnr, "JdtPickTest", with_compile(jdtls.pick_test), { nargs = 0 })
-  create_command(bufnr, "JdtExtractVariable", jdtls.extract_variable, { nargs = 0 })
-  create_command(bufnr, "JdtExtractConstant", jdtls.extract_constant, { nargs = 0 })
+  create_command(bufnr, "JavaRunLast", with_compile(require("dap").run_last), { nargs = 0 })
+  create_command(bufnr, "JavaTestClass", with_compile(jdtls.test_class), { nargs = 0 })
+  create_command(bufnr, "JavaTestNearestMethod", with_compile(jdtls.test_nearest_method), { nargs = 0 })
+  create_command(bufnr, "JavaPickTest", with_compile(jdtls.pick_test), { nargs = 0 })
+  create_command(bufnr, "JavaExtractVariable", jdtls.extract_variable, { nargs = 0 })
+  create_command(bufnr, "JavaExtractConstant", jdtls.extract_constant, { nargs = 0 })
   -- stylua: ignore
-  create_command(bufnr, "JdtExtractMethod", function() jdtls.extract_method(true) end, { nargs = 0 })
-  create_command(bufnr, "JdtTestGenerate", require("jdtls.tests").generate, { nargs = 0 })
-  create_command(bufnr, "JdtTestGoto", require("jdtls.tests").goto_subjects, { nargs = 0 })
+  create_command(bufnr, "JavaExtractMethod", function() jdtls.extract_method(true) end, { nargs = 0 })
+  create_command(bufnr, "JavaTestGenerate", require("jdtls.tests").generate, { nargs = 0 })
+  create_command(bufnr, "JavaTestGoto", require("jdtls.tests").goto_subjects, { nargs = 0 })
+  create_command(bufnr, "JavaProjects", require("java-deps").toggle_outline, { nargs = 0 })
   create_command(
     bufnr,
-    "JdtRun",
+    "JavaRun",
     with_compile(function()
       local main_config_opts = {
         verbose = false,

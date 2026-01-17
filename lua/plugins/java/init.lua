@@ -24,6 +24,20 @@ return {
     opts = cfg.spring_boot_opts(),
   },
   {
+    "JavaHello/java-deps.nvim",
+    ft = { "java", "jproperties" },
+    dependencies = { "mfussenegger/nvim-jdtls" },
+    -- stylua: ignore
+    keys = {
+      { "<Leader>jp", function() require("java-deps").toggle_outline() end, mode = { "n" } },
+    },
+    config = function()
+      require("java-deps").setup({
+        width = 50,
+      })
+    end,
+  },
+  {
     "mfussenegger/nvim-jdtls",
     ft = { "java", "jproperties" },
     dependencies = { "neovim/nvim-lspconfig" },
