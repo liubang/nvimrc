@@ -19,19 +19,19 @@ local cfg = require("plugins.java.config")
 return {
   {
     "JavaHello/spring-boot.nvim",
-    ft = { "java", "xml", "jproperties" },
+    ft = { "java", "jproperties" },
     dependencies = { "mfussenegger/nvim-jdtls" },
     opts = cfg.spring_boot_opts(),
   },
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java", "xml", "jproperties" },
+    ft = { "java", "jproperties" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
-        pattern = { "java", "xml", "jproperties" },
+        pattern = { "java", "jproperties" },
         callback = function(_)
           require("jdtls").start_or_attach(cfg.jdtls_config())
         end,

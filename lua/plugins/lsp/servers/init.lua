@@ -22,14 +22,13 @@ for _, server in ipairs({
   "lua_ls",
   "yamlls",
   "texlab",
-  "bzl",
+  "lemminx", -- for xml
 }) do
   vim.lsp.config(server, require("plugins.lsp.servers." .. server))
   vim.lsp.enable(server)
 end
 
 vim.lsp.enable({
-  "lemminx", -- for xml
   "thriftls", -- for thrift
   "taplo", -- for toml
   "bashls",
