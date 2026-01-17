@@ -165,10 +165,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   gcc          mini.comment Toggle line comment                         n
 
-  <leader>ft   mini.files Toggle mini.files (Directory of Current File) n
-
-  <leader>fT   mini.files Toggle mini.files (cwd)                       n
-
   <leader>dB   nvim-dap Breakpoint Condition                            n
 
   <leader>db   nvim-dap Toggle Breakpoint                               n
@@ -206,6 +202,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <leader>du   nvim-dap-ui Dap UI                                       n
 
   <leader>de   nvim-dap-ui Eval                                         n, v
+
+  <leader>ft   nvim-tree.lua Explorer NvimTree (cwd)                    n
 
   <C-v>        nvim-treesitter Increment Selection                      n
 
@@ -278,7 +276,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - mini.bufremove <https://github.com/nvim-mini/mini.bufremove>
 - mini.comment <https://github.com/nvim-mini/mini.comment>
 - mini.cursorword <https://github.com/nvim-mini/mini.cursorword>
-- mini.files <https://github.com/nvim-mini/mini.files>
 - mini.icons <https://github.com/nvim-mini/mini.icons>
 - mini.surround <https://github.com/nvim-mini/mini.surround>
 - neogen <https://github.com/danymat/neogen>
