@@ -47,6 +47,8 @@ local on_attach = function(client, bufnr)
   create_command(bufnr, "JavaRun", with_compile(client, bufnr, 
     function() require("jdtls.dap").setup_dap_main_class_configs({verbose = false, on_ready = require('dap')['continue']}) end), { nargs = 0 })
 
+  -- stylua: ignore
+  create_command( bufnr, "JavaTestWithProfile", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)), { nargs = 0 })
   vim.keymap.set("n", "<leader>dM", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)))
 end
 

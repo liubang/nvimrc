@@ -29,31 +29,39 @@ end
 return {
   { "nvim-neotest/nvim-nio" },
   { "theHamsta/nvim-dap-virtual-text" },
-  {
-    "rcarriga/nvim-dap-ui",
-    -- stylua: ignore
-    keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-    },
-  },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+  --     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+  --   },
+  -- },
   {
     "mfussenegger/nvim-dap",
     dependencies = { "theHamsta/nvim-dap-virtual-text" },
     config = function()
-      require("plugins.dap.dap")
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapLogPoint", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapStopped", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      local dap = require("dap")
+      dap.defaults.fallback.focus_terminal = true
+      require("nvim-dap-virtual-text").setup({})
+      -- require("plugins.dap.dap")
     end,
-    cmd = {
-      "DapSetLogLevel",
-      "DapShowLog",
-      "DapContinue",
-      "DapToggleBreakpoint",
-      "DapToggleRepl",
-      "DapStepOver",
-      "DapStepInto",
-      "DapStepOut",
-      "DapTerminate",
-    },
+    -- cmd = {
+    --   "DapSetLogLevel",
+    --   "DapShowLog",
+    --   "DapContinue",
+    --   "DapToggleBreakpoint",
+    --   "DapToggleRepl",
+    --   "DapStepOver",
+    --   "DapStepInto",
+    --   "DapStepOut",
+    --   "DapTerminate",
+    -- },
     -- stylua: ignore
     keys = {
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },

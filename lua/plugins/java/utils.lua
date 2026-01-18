@@ -92,7 +92,7 @@ M.test_with_profile = function(test_fn)
             })
             :wait()
           if result.code == 0 then
-            u.open_fn("/tmp/profile.html")
+            u.open("/tmp/profile.html")
           else
             vim.notify("Async Profiler conversion failed: " .. result.stderr, vim.log.levels.ERROR)
           end
