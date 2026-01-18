@@ -14,10 +14,28 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local M = {}
-local is_windows = vim.uv.os_uname().version:match("Windows")
-
+local uname = vim.uv.os_uname()
 math.randomseed(os.time())
+
+local M = {}
+M.is_win = uname.sysname == "Windows_NT"
+M.is_mac = uname.sysname == "Darwin"
+M.is_linux = uname.sysname == "Linux"
+
+M.is_x86 = uname.machine == "x86_64"
+M.is_arm = uname.machine == "arm64" or uname.machine == "aarch64"
+
+M.open = function(file)
+  local cmd
+  if M.is_linux then
+    cmd = "xdg-open"
+  elseif M.is_mac then
+    cmd = "open"
+  elseif M.is_win then
+    cmd = "start"
+  end
+  vim.system({ cmd, file })
+end
 
 M.uuid = function() --{{{
   local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
@@ -62,7 +80,7 @@ M.shell = function(command) --{{{
 end --}}}
 
 M.sep = function() -- {{{
-  if is_windows then
+  if M.is_win then
     return "\\"
   end
   return "/"
@@ -123,7 +141,7 @@ M.path = (function() -- {{{
   end
 
   local function sanitize(path)
-    if is_windows then
+    if M.is_win then
       path = path:sub(1, 1):upper() .. path:sub(2)
       path = path:gsub("\\", "/")
     end
@@ -144,7 +162,7 @@ M.path = (function() -- {{{
   end
 
   local function is_fs_root(path)
-    if is_windows then
+    if M.is_win then
       return path:match("^%a:$")
     else
       return path == "/"
@@ -152,7 +170,7 @@ M.path = (function() -- {{{
   end
 
   local function is_absolute(filename)
-    if is_windows then
+    if M.is_win then
       return filename:match("^%a:") or filename:match("^\\\\")
     else
       return filename:match("^/")
@@ -167,7 +185,7 @@ M.path = (function() -- {{{
     end
     local result = path:gsub(strip_sep_pat, ""):gsub(strip_dir_pat, "")
     if #result == 0 then
-      if is_windows then
+      if M.is_win then
         return path:sub(1, 2):upper()
       else
         return "/"
@@ -232,7 +250,7 @@ M.path = (function() -- {{{
     return dir == root
   end
 
-  local path_separator = is_windows and ";" or ":"
+  local path_separator = M.is_win and ";" or ":"
 
   return {
     escape_wildcards = escape_wildcards,

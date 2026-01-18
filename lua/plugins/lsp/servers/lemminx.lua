@@ -28,7 +28,7 @@ vim.fn.join(lemminx_jars, ":")
 return {
   name = "lemminx",
   cmd = {
-    require("plugins.java.utils").java_bin(),
+    require("plugins.java.utils").java_bin,
     "-cp",
     vim.fn.join(lemminx_jars, ":"),
     "org.eclipse.lemminx.XMLServerLauncher",

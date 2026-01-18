@@ -14,8 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local is_mac = vim.uv.os_uname().version:match("Darwin")
-
 local function get_default_drivers(binaries)
   local path_list = {}
   for _, binary in ipairs(binaries) do
@@ -47,7 +45,7 @@ local function get_clangd_cmd()
     "--limit-results=300",
     "--log=error",
   }
-  if not is_mac then
+  if not require("lb.utils.util").is_mac then
     table.insert(cmd, "--malloc-trim")
   end
   return cmd

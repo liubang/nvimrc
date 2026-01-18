@@ -29,9 +29,7 @@ return {
       vim.g.tex_flavor = "latex" -- Set file type for TeX files
       vim.g.vimtex_compiler_method = "latexmk"
 
-      local uv = vim.uv
-      local os = uv.os_uname().sysname
-      if os == "Linux" then
+      if require("lb.utils.util").is_linux then
         vim.g.vimtex_view_method = "zathura"
       else
         vim.g.vimtex_view_method = "skim"

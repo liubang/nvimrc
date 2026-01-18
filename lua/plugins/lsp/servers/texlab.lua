@@ -14,10 +14,9 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local is_mac = vim.uv.os_uname().version:match("Darwin")
-
 local forwardSearch = {}
-if not is_mac then
+
+if not require("lb.utils.util").is_mac then
   forwardSearch = {
     executable = "zathura",
     args = { "--synctex-forward", "%l:1:%f", "%p" },

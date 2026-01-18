@@ -14,28 +14,28 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local uv = vim.uv
-local uname = uv.os_uname()
-local utils = require("plugins.java.utils")
+local jutils = require("plugins.java.utils")
+local u = require("lb.utils.util")
 local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
+
+local with_compile = function(client, bufnr, fn)
+  return function()
+    if vim.bo.modified then
+      vim.cmd("w")
+    end
+    client.request_sync("java/buildWorkspace", false, 5000, bufnr)
+    fn()
+  end
+end
 
 local on_attach = function(client, bufnr)
   local jdtls = require("jdtls")
   jdtls.jol_path = jar_dir .. "jol-cli-0.17-full.jar"
-  local function with_compile(fn)
-    return function()
-      if vim.bo.modified then
-        vim.cmd("w")
-      end
-      client.request_sync("java/buildWorkspace", false, 5000, bufnr)
-      fn()
-    end
-  end
   local create_command = vim.api.nvim_buf_create_user_command
-  create_command(bufnr, "JavaRunLast", with_compile(require("dap").run_last), { nargs = 0 })
-  create_command(bufnr, "JavaTestClass", with_compile(jdtls.test_class), { nargs = 0 })
-  create_command(bufnr, "JavaTestNearestMethod", with_compile(jdtls.test_nearest_method), { nargs = 0 })
-  create_command(bufnr, "JavaPickTest", with_compile(jdtls.pick_test), { nargs = 0 })
+  create_command(bufnr, "JavaRunLast", with_compile(client, bufnr, require("dap").run_last), { nargs = 0 })
+  create_command(bufnr, "JavaTestClass", with_compile(client, bufnr, jdtls.test_class), { nargs = 0 })
+  create_command(bufnr, "JavaTestNearestMethod", with_compile(client, bufnr, jdtls.test_nearest_method), { nargs = 0 })
+  create_command(bufnr, "JavaPickTest", with_compile(client, bufnr, jdtls.pick_test), { nargs = 0 })
   create_command(bufnr, "JavaExtractVariable", jdtls.extract_variable, { nargs = 0 })
   create_command(bufnr, "JavaExtractConstant", jdtls.extract_constant, { nargs = 0 })
   -- stylua: ignore
@@ -43,20 +43,11 @@ local on_attach = function(client, bufnr)
   create_command(bufnr, "JavaTestGenerate", require("jdtls.tests").generate, { nargs = 0 })
   create_command(bufnr, "JavaTestGoto", require("jdtls.tests").goto_subjects, { nargs = 0 })
   create_command(bufnr, "JavaProjects", require("java-deps").toggle_outline, { nargs = 0 })
-  create_command(
-    bufnr,
-    "JavaRun",
-    with_compile(function()
-      local main_config_opts = {
-        verbose = false,
-        on_ready = require("dap")["continue"],
-      }
-      require("jdtls.dap").setup_dap_main_class_configs(main_config_opts)
-    end),
-    {
-      nargs = 0,
-    }
-  )
+  -- stylua: ignore
+  create_command(bufnr, "JavaRun", with_compile(client, bufnr, 
+    function() require("jdtls.dap").setup_dap_main_class_configs({verbose = false, on_ready = require('dap')['continue']}) end), { nargs = 0 })
+
+  vim.keymap.set("n", "<leader>dM", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)))
 end
 
 local get_init_options = function()
@@ -108,16 +99,16 @@ end
 
 local jdtls_launcher = function()
   local jdtls_config = nil
-  if uname.sysname == "Linux" then
+  if u.is_linux then
     jdtls_config = "/config_linux"
-  elseif uname.sysname == "Darwin" then
+  elseif u.is_mac then
     jdtls_config = "/config_mac"
   end
-  if uname.machine == "arm64" then
+  if u.is_arm then
     jdtls_config = jdtls_config .. "_arm"
   end
   local cmd = {
-    utils.java_bin(),
+    jutils.java_bin,
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -142,7 +133,7 @@ local jdtls_launcher = function()
   table.insert(cmd, "-jar")
   table.insert(cmd, vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")))
   table.insert(cmd, "-data")
-  table.insert(cmd, utils.get_workspace_dir())
+  table.insert(cmd, jutils.get_workspace_dir())
   return cmd
 end
 
@@ -151,7 +142,7 @@ local M = {}
 M.spring_boot_opts = function()
   return {
     autocmd = true,
-    java_cmd = utils.java_bin(),
+    java_cmd = jutils.java_bin,
   }
 end
 
@@ -164,7 +155,7 @@ M.jdtls_config = function()
     init_options = get_init_options(),
     settings = {
       java = {
-        format = { settings = utils.fmt_config() },
+        format = { settings = jutils.fmt_config() },
         autobuild = { enabled = false },
         maxConcurrentBuilds = 8,
         project = { encoding = "UTF-8" },
@@ -179,7 +170,10 @@ M.jdtls_config = function()
         contentProvider = { preferred = "fernflower" },
         saveActions = { organizeImports = true },
         sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
-        configuration = { runtimes = utils.get_sdkman_java_runtimes() },
+        configuration = {
+          maven = { userSettings = jutils.maven_settings() },
+          runtimes = jutils.runtimes(),
+        },
         import = {
           gradle = { enabled = true },
           maven = { enabled = true },

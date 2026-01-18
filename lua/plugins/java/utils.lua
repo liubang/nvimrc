@@ -14,18 +14,23 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+local u = require("lb.utils.util")
 local sdkman_dir = os.getenv("SDKMAN_DIR")
-local java_bin = sdkman_dir .. "/candidates/java/25.0.1-tem/bin/java"
 
 local M = {}
+
+M.java_bin = sdkman_dir .. "/candidates/java/25.0.1-tem/bin/java"
 
 M.get_workspace_dir = function()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
   return vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
 end
 
-M.java_bin = function()
-  return java_bin
+M.maven_settings = function()
+  if vim.fn.filereadable(vim.fn.expand("~/.m2/settings.xml")) == 1 then
+    return vim.fn.expand("~/.m2/settings.xml")
+  end
+  return ""
 end
 
 M.fmt_config = function()
@@ -40,112 +45,118 @@ M.fmt_config = function()
   return {}
 end
 
-M.get_sdkman_java_runtimes = function()
-  local runtimes = {}
-  local sdkman_java_path = vim.fn.expand(sdkman_dir .. "/candidates/java")
-
-  if vim.fn.isdirectory(sdkman_java_path) == 0 then
-    return runtimes
-  end
-
-  -- Java SE 版本命名映射
-  local java_se_names = {
-    ["1"] = "JavaSE-1.1",
-    ["2"] = "JavaSE-1.2",
-    ["3"] = "JavaSE-1.3",
-    ["4"] = "JavaSE-1.4",
-    ["5"] = "JavaSE-1.5",
-    ["6"] = "JavaSE-1.6",
-    ["7"] = "JavaSE-1.7",
-    ["8"] = "JavaSE-1.8",
+M.test_with_profile = function(test_fn)
+  local choices = {
+    "cpu,alloc=2m,lock=10ms",
+    "cpu",
+    "alloc",
+    "wall",
+    "context-switches",
+    "cycles",
+    "instructions",
+    "cache-misses",
   }
-
-  local function get_java_se_name(major_version)
-    if java_se_names[major_version] then
-      return java_se_names[major_version]
-    else
-      return "JavaSE-" .. major_version
-    end
+  local select_opts = {
+    format_item = tostring,
+  }
+  local async_profiler_home = vim.fn.stdpath("config") .. "/data/async-profiler/"
+  local async_profiler_so = async_profiler_home
+  local async_profiler_cov = async_profiler_home .. "jfr-converter.jar"
+  if u.is_linux then
+    async_profiler_so = async_profiler_so .. "async-profiler-4.2.1-linux-x64/lib/libasyncProfiler.so"
+  elseif u.is_mac then
+    async_profiler_so = async_profiler_so .. "async-profiler-4.2.1-macos/lib/libasyncProfiler.dylib"
   end
 
-  local handle = vim.loop.fs_scandir(sdkman_java_path)
-  if not handle then
-    return runtimes
-  end
-
-  local seen_paths = {}
-
-  while true do
-    local name, type = vim.loop.fs_scandir_next(handle)
-    if not name then
-      break
-    end
-
-    if (type == "directory" or type == "link") and name ~= "current" then
-      local full_path = sdkman_java_path .. "/" .. name
-      local real_path = vim.fn.resolve(full_path)
-
-      if not seen_paths[real_path] and vim.fn.executable(full_path .. "/bin/java") == 1 then
-        seen_paths[real_path] = true
-
-        -- 提取主版本号
-        local major_version = name:match("^(%d+)%.") or name:match("^(%d+)%-") or name:match("^(%d+)$")
-
-        if major_version then
-          table.insert(runtimes, {
-            name = get_java_se_name(major_version),
-            path = full_path,
-            version_string = name,
-          })
-        end
+  return function()
+    vim.ui.select(choices, select_opts, function(choice)
+      if not choice then
+        return
       end
-    end
-  end
-
-  -- 标记默认版本
-  local current_path = sdkman_java_path .. "/current"
-  if vim.fn.isdirectory(current_path) == 1 then
-    local current_real = vim.fn.resolve(current_path)
-    for _, runtime in ipairs(runtimes) do
-      if vim.fn.resolve(runtime.path) == current_real then
-        runtime.default = true
-        break
-      end
-    end
-  end
-
-  -- 选择默认版本
-  if #runtimes > 0 then
-    local has_default = false
-    for _, runtime in ipairs(runtimes) do
-      if runtime.default then
-        has_default = true
-        break
-      end
-    end
-
-    if not has_default then
-      -- 按实际版本号排序
-      table.sort(runtimes, function(a, b)
-        -- 提取纯数字版本号用于比较
-        local get_numeric_version = function(name)
-          local v1 = name:match("JavaSE%-1%.(%d+)")
-          if v1 then
-            return tonumber(v1)
+      local event = "event=" .. choice
+      local vmArgs = "-ea -agentpath:" .. async_profiler_so .. "=start,"
+      vmArgs = vmArgs .. event .. ",file=/tmp/profile.jfr"
+      test_fn({
+        config_overrides = {
+          vmArgs = vmArgs,
+          noDebug = true,
+        },
+        after_test = function()
+          local result = vim
+            .system({
+              "java",
+              "-jar",
+              async_profiler_cov,
+              "/tmp/profile.jfr",
+              "/tmp/profile.html",
+            })
+            :wait()
+          if result.code == 0 then
+            u.open_fn("/tmp/profile.html")
+          else
+            vim.notify("Async Profiler conversion failed: " .. result.stderr, vim.log.levels.ERROR)
           end
-          local v2 = name:match("JavaSE%-(%d+)")
-          if v2 then
-            return tonumber(v2)
-          end
-          return 0
-        end
-        return get_numeric_version(a.name) > get_numeric_version(b.name)
-      end)
-      runtimes[1].default = true
+        end,
+      })
+    end)
+  end
+end
+
+-- see https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+local ExecutionEnvironment = {
+  J2SE_1_5 = "J2SE-1.5",
+  JavaSE_1_6 = "JavaSE-1.6",
+  JavaSE_1_7 = "JavaSE-1.7",
+  JavaSE_1_8 = "JavaSE-1.8",
+  JavaSE_9 = "JavaSE-9",
+  JavaSE_10 = "JavaSE-10",
+  JavaSE_11 = "JavaSE-11",
+  JavaSE_12 = "JavaSE-12",
+  JavaSE_13 = "JavaSE-13",
+  JavaSE_14 = "JavaSE-14",
+  JavaSE_15 = "JavaSE-15",
+  JavaSE_16 = "JavaSE-16",
+  JavaSE_17 = "JavaSE-17",
+  JavaSE_18 = "JavaSE-18",
+  JavaSE_19 = "JavaSE-19",
+  JAVASE_20 = "JavaSE-20",
+  JAVASE_21 = "JavaSE-21",
+  JAVASE_22 = "JavaSE-22",
+  JAVASE_23 = "JavaSE-23",
+  JAVASE_24 = "JavaSE-24",
+  JAVASE_25 = "JavaSE-25",
+}
+
+local function get_java_ver_home(v, dv)
+  return vim.env["JAVA_" .. v .. "_HOME"] or dv
+end
+
+M.runtimes = function()
+  local result = {}
+  for _, value in pairs(ExecutionEnvironment) do
+    local version = vim.fn.split(value, "-")[2]
+    if string.match(version, "%.") then
+      version = vim.split(version, "%.")[2]
+    end
+    local java_home = get_java_ver_home(version)
+    local default_jdk = false
+    if java_home then
+      local java_sources = java_home .. "/lib/src.zip"
+      if ExecutionEnvironment.JavaSE_17 == value then
+        default_jdk = true
+      end
+      table.insert(result, {
+        name = value,
+        path = java_home,
+        sources = java_sources,
+        default = default_jdk,
+      })
     end
   end
-
-  return runtimes
+  if #result == 0 then
+    vim.notify("Please config Java runtimes (JAVA_17_HOME...)")
+  end
+  return result
 end
 
 return M
