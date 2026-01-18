@@ -107,8 +107,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   k            accelerated-jk.nvim Accelerated gk movement              n
 
-  <Leader>tl   aerial.nvim Open or close the aerial window              n
-
   <C-b>        asynctasks.vim Build current file                        n
 
   <C-r>        asynctasks.vim Run current file                          n
@@ -213,6 +211,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>-    oil.nvim Open parent directory                           n
 
+  <Leader>tl   outline.nvim Open or close the outline window            n
+
   <Leader>ff   telescope.nvim List files                                n
 
   <Leader>rf   telescope.nvim List recent files                         n
@@ -249,7 +249,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 PLUGINS                                                       *nvimrc-plugins*
 
 - accelerated-jk.nvim <https://github.com/rainbowhxch/accelerated-jk.nvim>
-- aerial.nvim <https://github.com/stevearc/aerial.nvim>
 - alpha-nvim <https://github.com/goolord/alpha-nvim>
 - asyncrun.vim <https://github.com/skywind3000/asyncrun.vim>
 - asynctasks.vim <https://github.com/skywind3000/asynctasks.vim>
@@ -264,6 +263,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
 - grug-far.nvim <https://github.com/MagicDuck/grug-far.nvim>
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
+- java-deps.nvim <https://github.com/JavaHello/java-deps.nvim>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - lazydev.nvim <https://github.com/folke/lazydev.nvim>
 - leetcode.nvim <https://github.com/liubang/leetcode.nvim>
@@ -292,6 +292,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - nvim-tree.lua <https://github.com/nvim-tree/nvim-tree.lua>
 - nvim-treesitter <https://github.com/nvim-treesitter/nvim-treesitter>
 - oil.nvim <https://github.com/stevearc/oil.nvim>
+- outline.nvim <https://github.com/hedyhli/outline.nvim>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
 - smartyank.nvim <https://github.com/ibhagwan/smartyank.nvim>
