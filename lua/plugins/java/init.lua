@@ -19,13 +19,13 @@ local cfg = require("plugins.java.config")
 return {
   {
     "JavaHello/spring-boot.nvim",
-    ft = { "java", "jproperties" },
+    ft = { "java", "jproperties", "xml" },
     dependencies = { "mfussenegger/nvim-jdtls" },
     opts = cfg.spring_boot_opts(),
   },
   {
     "JavaHello/java-deps.nvim",
-    ft = { "java", "jproperties" },
+    ft = { "java", "jproperties", "xml" },
     dependencies = { "mfussenegger/nvim-jdtls" },
     -- stylua: ignore
     keys = {
@@ -39,13 +39,13 @@ return {
   },
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java", "jproperties" },
+    ft = { "java", "jproperties", "xml" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
-        pattern = { "java", "jproperties" },
+        pattern = { "java", "jproperties", "xml" },
         callback = function(_)
           require("jdtls").start_or_attach(cfg.jdtls_config())
         end,
