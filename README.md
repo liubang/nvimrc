@@ -88,7 +88,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<C-Right>`  | Increase window width                                                                                                       | **n**               |
 | `j`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gj movement                       | **n**               |
 | `k`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gk movement                       | **n**               |
-| `<Leader>tl` | [aerial.nvim](https://github.com/stevearc/aerial.nvim.git) Open or close the aerial window                                  | **n**               |
 | `<C-b>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build current file                                      | **n**               |
 | `<C-r>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Run current file                                        | **n**               |
 | `<C-x>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build and run current file                              | **n**               |
@@ -140,6 +139,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
 | `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
 | `<Leader>-`  | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                                  | **n**               |
+| `<Leader>tl` | [outline.nvim](https://github.com/hedyhli/outline.nvim.git) Open or close the outline window                                | **n**               |
 | `<Leader>ff` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List files                                           | **n**               |
 | `<Leader>rf` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) List recent files                                    | **n**               |
 | `<Leader>ag` | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim.git) Grep in files                                        | **n**               |
@@ -163,7 +163,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 <!-- plugins:start -->
 
 - [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim)
-- [aerial.nvim](https://github.com/stevearc/aerial.nvim)
 - [alpha-nvim](https://github.com/goolord/alpha-nvim)
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
@@ -178,6 +177,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
+- [java-deps.nvim](https://github.com/JavaHello/java-deps.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - [leetcode.nvim](https://github.com/liubang/leetcode.nvim)
@@ -206,6 +206,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
+- [outline.nvim](https://github.com/hedyhli/outline.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
 - [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
