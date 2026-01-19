@@ -48,7 +48,7 @@ local on_attach = function(client, bufnr)
     function() require("jdtls.dap").setup_dap_main_class_configs({verbose = false, on_ready = require('dap')['continue']}) end), { nargs = 0 })
 
   -- stylua: ignore
-  create_command( bufnr, "JavaTestWithProfile", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)), { nargs = 0 })
+  create_command(bufnr, "JavaTestWithProfile", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)), { nargs = 0 })
   vim.keymap.set("n", "<leader>dM", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)))
 end
 
@@ -180,11 +180,14 @@ M.jdtls_config = function()
           gradle = { enabled = true },
           maven = { enabled = true },
           exclusions = {
-            "**/node_modules/**",
+            "**/.git/**",
+            "**/.idea/**",
+            "**/.settings/**",
             "**/.metadata/**",
+            "**/target/**",
+            "**/node_modules/**",
             "**/archetype-resources/**",
             "**/META-INF/maven/**",
-            "**/.git/**",
           },
         },
         templates = {

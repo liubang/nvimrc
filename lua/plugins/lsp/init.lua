@@ -63,7 +63,6 @@ return {
           "gopls",
           "lua_ls",
           "jdtls",
-          "basedpyright",
         },
       })
       -- It's important that you set up the plugins in the following order:
