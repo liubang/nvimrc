@@ -19,7 +19,7 @@ local sdkman_dir = os.getenv("SDKMAN_DIR")
 
 local M = {}
 
-M.java_bin = sdkman_dir .. "/candidates/java/25.0.1-tem/bin/java"
+M.java_bin = sdkman_dir .. "/candidates/java/21.0.9-tem/bin/java"
 
 M.get_workspace_dir = function()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
