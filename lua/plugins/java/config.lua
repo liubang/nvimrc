@@ -173,7 +173,7 @@ M.jdtls_config = function()
         maven = { downloadSources = true, updateSnapshots = true },
         signatureHelp = { enabled = true, description = { enabled = true } },
         contentProvider = { preferred = "fernflower" },
-        saveActions = { organizeImports = true },
+        saveActions = { organizeImports = false },
         sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
         configuration = {
           maven = { userSettings = jutils.maven_settings() },

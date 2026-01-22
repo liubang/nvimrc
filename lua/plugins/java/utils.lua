@@ -15,11 +15,10 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local u = require("lb.utils.util")
-local sdkman_dir = os.getenv("SDKMAN_DIR")
 
 local M = {}
 
-M.java_bin = sdkman_dir .. "/candidates/java/21.0.9-tem/bin/java"
+M.java_bin = os.getenv("JAVA_21_HOME") .. "/bin/java"
 
 M.get_workspace_dir = function()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
