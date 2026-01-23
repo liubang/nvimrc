@@ -20,6 +20,7 @@ return {
   opts = {
     position = "right",
     width = 25,
+    symbol_folding = { autofold_depth = 5 },
     providers = {
       priority = { "lsp", "coc", "markdown", "norg", "man" },
       lsp = {

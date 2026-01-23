@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end, bufopts)
 
-    require("plugins.lsp.format").on_attach(nil, event.buf)
+    -- require("plugins.lsp.format").on_attach(nil, event.buf)
   end,
 })
 
