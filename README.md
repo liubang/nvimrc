@@ -132,8 +132,6 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 | `<leader>ds` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Session                                                            | **n**               |
 | `<leader>dr` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Toggle REPL                                                        | **n**               |
 | `<leader>dw` | [nvim-dap](https://github.com/mfussenegger/nvim-dap.git) Widgets                                                            | **n**               |
-| `<leader>du` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Dap UI                                                           | **n**               |
-| `<leader>de` | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui.git) Eval                                                             | **n**, **v**        |
 | `<leader>ft` | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua.git) Explorer NvimTree (cwd)                                     | **n**               |
 | `<C-v>`      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Increment Selection                               | **n**               |
 | `V`          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter.git) Decrement Selection                               | **x**               |
@@ -169,6 +167,7 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [autoclose.nvim](https://github.com/m4xshen/autoclose.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
@@ -193,10 +192,8 @@ docker run -it --rm -v $(pwd):/home/neovim/workspace liubang/nvim
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [mini.surround](https://github.com/nvim-mini/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
-- [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors)
 - [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
