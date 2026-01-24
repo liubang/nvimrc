@@ -17,6 +17,7 @@
 return {
   "stevearc/conform.nvim",
   cmd = "ConformInfo",
+  lazy = false,
   -- stylua: ignore
   keys = {
     { "<leader>fm", function() require("conform").format() end, mode = { "n", "v" } },
@@ -48,10 +49,13 @@ return {
     opts.formatters_by_ft["go"] = { "gofumpt" }
     opts.formatters_by_ft["sh"] = { "shfmt" }
     opts.formatters_by_ft["sql"] = { "sleek" }
-    opts.formatters_by_ft["python"] = { "ruff" }
+    opts.formatters_by_ft["python"] = { "ruff_fix", "ruff_format" }
     opts.formatters_by_ft["bzl"] = { "buildifier" }
     opts.formatters_by_ft["c"] = { "clang-format" }
     opts.formatters_by_ft["cpp"] = { "clang-format" }
+    opts.formatters_by_ft["java"] = { "google-java-format" }
+    opts.formatters_by_ft["json"] = { "fixjson" }
+    opts.formatters_by_ft["xml"] = { "lsp" }
     opts.formatters_by_ft["_"] = { "trim_whitespace" }
     opts.formatters = {
       injected = { options = { ignore_errors = true } },
@@ -72,6 +76,14 @@ return {
       quiet = false, -- not recommended to change
       lsp_format = "fallback", -- not recommended to change
     }
+    opts.format_on_save = function(bufnr)
+      local ft = vim.bo[bufnr].filetype
+      local allow_ft = { "lua" }
+      if not vim.tbl_contains(allow_ft, ft) then
+        return
+      end
+      return { async = false }
+    end
     return opts
   end,
 }
