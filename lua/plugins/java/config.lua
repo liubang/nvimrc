@@ -29,6 +29,9 @@ local with_compile = function(client, bufnr, fn)
 end
 
 local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
+  client.server_capabilities.workspaceSymbolProvider = false
+
   local jdtls = require("jdtls")
   jdtls.jol_path = jar_dir .. "jol-cli-0.17-full.jar"
   local create_command = vim.api.nvim_buf_create_user_command
@@ -122,13 +125,15 @@ local jdtls_launcher = function()
     "-Dosgi.sharedConfiguration.area=" .. vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/") .. jdtls_config),
     "-Dosgi.sharedConfiguration.area.readOnly=true",
     "-Dosgi.configuration.cascaded=true",
-    "-Dlog.protocol=true",
-    "-Dlog.level=ALL",
-    "-Xms512m",
+    "-Dlog.protocol=false",
+    "-Dlog.level=ERROR",
+    "-Xms2g",
     "-Xmx8g",
     "-XX:+UseG1GC",
     "-XX:MaxGCPauseMillis=200",
+    "-XX:+AlwaysPreTouch",
     "-XX:+UseStringDeduplication",
+    "-XX:+UseTransparentHugePages",
     "--enable-native-access=ALL-UNNAMED",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
@@ -164,20 +169,22 @@ M.jdtls_config = function()
     init_options = get_init_options(),
     settings = {
       java = {
-        format = { settings = jutils.fmt_config() },
+        format = { enabled = true, settings = jutils.fmt_config() },
         autobuild = { enabled = false },
         maxConcurrentBuilds = 8,
         project = { encoding = "UTF-8" },
         foldingRange = { enabled = true },
         selectionRange = { enabled = true },
         inlayhints = { parameterNames = { enabled = "ALL" } },
-        referenceCodeLens = { enabled = true },
-        implementationsCodeLens = { enabled = true },
+        referencesCodeLens = { enabled = false }, -- 引用计数
+        implementationsCodeLens = { enabled = false },
+        codeLens = { enabled = false },
         eclipse = { downloadSources = true },
         maven = { downloadSources = true, updateSnapshots = true },
-        signatureHelp = { enabled = true, description = { enabled = true } },
+        signatureHelp = { enabled = false, description = { enabled = false } },
         contentProvider = { preferred = "fernflower" },
         saveActions = { organizeImports = false },
+        semanticHighlighting = { enabled = false },
         sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
         configuration = {
           maven = { userSettings = jutils.maven_settings() },

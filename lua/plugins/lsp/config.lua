@@ -33,6 +33,8 @@ vim.diagnostic.config({ -- {{{
   },
 }) -- }}}
 
+vim.lsp.handlers["textDocument/documentHighlight"] = function() end
+
 --
 -- auto cmd
 --

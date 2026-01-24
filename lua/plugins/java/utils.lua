@@ -21,8 +21,11 @@ local M = {}
 M.java_bin = os.getenv("JAVA_21_HOME") .. "/bin/java"
 
 M.get_workspace_dir = function()
-  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-  return vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
+  local config = vim.lsp.config["jdtls"]
+  local root_dir = config.root_dir or vim.fs.root(0, config.root_markers)
+  local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+  local hash = vim.fn.sha256(root_dir):sub(1, 8)
+  return vim.fn.stdpath("data") .. "/jdtls-workspaces/" .. project_name .. "-" .. hash
 end
 
 M.maven_settings = function()

@@ -53,7 +53,7 @@ return {
     opts.formatters_by_ft["bzl"] = { "buildifier" }
     opts.formatters_by_ft["c"] = { "clang-format" }
     opts.formatters_by_ft["cpp"] = { "clang-format" }
-    opts.formatters_by_ft["java"] = { "google-java-format" }
+    opts.formatters_by_ft["java"] = { "lsp" }
     opts.formatters_by_ft["json"] = { "fixjson" }
     opts.formatters_by_ft["xml"] = { "lsp" }
     opts.formatters_by_ft["dockerfile"] = { "dockerfmt" }
