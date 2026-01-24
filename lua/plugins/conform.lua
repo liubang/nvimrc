@@ -56,6 +56,7 @@ return {
     opts.formatters_by_ft["java"] = { "google-java-format" }
     opts.formatters_by_ft["json"] = { "fixjson" }
     opts.formatters_by_ft["xml"] = { "lsp" }
+    opts.formatters_by_ft["dockerfile"] = { "dockerfmt" }
     opts.formatters_by_ft["_"] = { "trim_whitespace" }
     opts.formatters = {
       injected = { options = { ignore_errors = true } },

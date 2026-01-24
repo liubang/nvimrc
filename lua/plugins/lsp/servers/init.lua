@@ -34,9 +34,9 @@ vim.lsp.enable({
   "bashls",
   "protols",
   "neocmake",
-  "ruff",
   "intelephense", -- for php
   "nginx_language_server",
+  "docker_language_server",
 })
 
 -- vim: fdm=marker fdl=0
