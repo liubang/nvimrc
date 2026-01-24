@@ -179,8 +179,8 @@ M.jdtls_config = function()
         referencesCodeLens = { enabled = false }, -- 引用计数
         implementationsCodeLens = { enabled = false },
         codeLens = { enabled = false },
-        eclipse = { downloadSources = true },
-        maven = { downloadSources = true, updateSnapshots = true },
+        eclipse = { downloadSources = false },
+        maven = { downloadSources = false, updateSnapshots = false },
         signatureHelp = { enabled = false, description = { enabled = false } },
         contentProvider = { preferred = "fernflower" },
         saveActions = { organizeImports = false },
