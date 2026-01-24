@@ -42,6 +42,8 @@ return {
     ft = { "java", "jproperties", "xml" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
+      require("plugins.java.utils").setup_jdtls_pick_one()
+      require("plugins.java.utils").setup_jdtls_pick_many()
       local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = group,

@@ -14,7 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
--- vim.lsp.set_log_level("OFF")
+-- vim.lsp.set_log_level("TRACE")
 
 vim.diagnostic.config({ -- {{{
   source = true,

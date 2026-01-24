@@ -14,7 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-if false then
+if true then
   vim.ui.input({ prompt = "Enter value for shiftwidth: " }, function(input)
     print(input)
   end)

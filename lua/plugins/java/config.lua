@@ -55,13 +55,13 @@ end
 local get_init_options = function()
   local opts = {
     bundles = {},
-    extendedClientCapabilities = require("jdtls.capabilities"),
+    extendedClientCapabilities = require("jdtls").extendedClientCapabilities,
   }
 
   local mason = require("mason-registry")
   -- vscode-java-debug
   if mason.has_package("java-debug-adapter") then
-    local java_debug_path = vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server/")
+    local java_debug_path = vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server")
     vim.list_extend(
       opts.bundles,
       vim.split(vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"), "\n")
@@ -83,7 +83,7 @@ local get_init_options = function()
 
   -- vscode-java-decompiler
   if mason.has_package("vscode-java-decompiler") then
-    local java_decompiler_path = vim.fn.expand("$MASON/packages/vscode-java-decompiler/extension/server")
+    local java_decompiler_path = vim.fn.expand("$MASON/packages/vscode-java-decompiler/server")
     vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_decompiler_path .. "/*.jar"), "\n"))
   end
 
@@ -95,6 +95,10 @@ local get_init_options = function()
 
   -- 添加 spring-boot jdtls 扩展 jar 包
   vim.list_extend(opts.bundles, require("spring_boot").java_extensions())
+
+  -- local debug_file = io.open(vim.env["HOME"] .. "/jdtls_path_check.json", "a")
+  -- debug_file:write(vim.inspect(opts.bundles))
+  -- debug_file:close()
 
   return opts
 end
@@ -178,6 +182,17 @@ M.jdtls_config = function()
         configuration = {
           maven = { userSettings = jutils.maven_settings() },
           runtimes = jutils.runtimes(),
+        },
+        codeGeneration = {
+          toString = {
+            template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+          },
+          hashCodeEquals = {
+            useJava7Objects = false,
+            useInstanceOf = true,
+          },
+          useBlocks = true,
+          addFinalForNewDeclaration = "fields",
         },
         import = {
           gradle = { enabled = true },

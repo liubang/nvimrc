@@ -158,4 +158,157 @@ M.runtimes = function()
   return result
 end
 
+M.setup_jdtls_pick_many = function()
+  local jdtls_ui = require("jdtls.ui")
+
+  jdtls_ui.pick_many = function(_, prompt, label_f, items)
+    if not items or #items == 0 then
+      return {}
+    end
+
+    label_f = label_f or function(item)
+      return item
+    end
+
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local sorters = require("telescope.sorters")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+
+    local co = coroutine.running()
+
+    pickers
+      .new({
+        layout_config = {
+          prompt_position = "top",
+          width = 0.55,
+          height = 0.55,
+          preview_cutoff = 120,
+        },
+      }, {
+        prompt_title = prompt,
+        finder = finders.new_table({
+          results = items,
+          entry_maker = function(item)
+            return {
+              value = item,
+              display = label_f(item),
+              ordinal = label_f(item),
+            }
+          end,
+        }),
+        sorter = sorters.get_fzy_sorter({}),
+        attach_mappings = function(prompt_bufnr, map)
+          local function confirm()
+            local picker = action_state.get_current_picker(prompt_bufnr)
+            local selections = picker:get_multi_selection()
+            if vim.tbl_isempty(selections) then
+              local selection = action_state.get_selected_entry()
+              if selection then
+                table.insert(selections, selection)
+              end
+            end
+
+            actions.close(prompt_bufnr)
+
+            local result = {}
+            for _, sel in ipairs(selections) do
+              table.insert(result, sel.value)
+            end
+            if co then
+              coroutine.resume(co, result)
+            end
+          end
+
+          map("i", "<C-a>", function()
+            actions.toggle_all(prompt_bufnr)
+          end)
+
+          map({ "i", "n" }, "<Esc>", function()
+            actions.close(prompt_bufnr)
+            if co then
+              coroutine.resume(co, {})
+            end
+          end)
+
+          actions.select_default:replace(confirm)
+          return true
+        end,
+      })
+      :find()
+
+    return coroutine.yield()
+  end
+end
+
+M.setup_jdtls_pick_one = function()
+  local jdtls_ui = require("jdtls.ui")
+
+  jdtls_ui.pick_one = function(items, prompt, label_fn)
+    if not items or #items == 0 then
+      return nil
+    end
+
+    -- 确保 label_fn 存在
+    label_fn = label_fn or function(item)
+      return item
+    end
+
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local actions = require("telescope.actions")
+    local sorters = require("telescope.sorters")
+    local action_state = require("telescope.actions.state")
+
+    local co = coroutine.running()
+
+    pickers
+      .new({
+        layout_config = {
+          prompt_position = "top",
+          width = 0.55,
+          height = 0.55,
+          preview_cutoff = 120,
+        },
+      }, {
+        prompt_title = prompt,
+        finder = finders.new_table({
+          results = items,
+          entry_maker = function(item)
+            return {
+              value = item,
+              display = label_fn(item),
+              ordinal = label_fn(item),
+            }
+          end,
+        }),
+        sorter = sorters.get_fzy_sorter({}),
+        attach_mappings = function(prompt_bufnr, map)
+          map("i", "<Tab>", function() end)
+          map("i", "<S-Tab>", function() end)
+          map("n", "<Tab>", function() end)
+          map("n", "<S-Tab>", function() end)
+
+          actions.select_default:replace(function()
+            local selection = action_state.get_selected_entry()
+            actions.close(prompt_bufnr)
+            if co and selection then
+              coroutine.resume(co, selection.value)
+            end
+          end)
+          vim.keymap.set({ "i", "n" }, "<Esc>", function()
+            actions.close(prompt_bufnr)
+            if co then
+              coroutine.resume(co, nil)
+            end
+          end, { buffer = prompt_bufnr })
+          return true
+        end,
+      })
+      :find()
+    return coroutine.yield()
+  end
+end
+
 return M

@@ -74,7 +74,7 @@ function M.config()
       prompt_prefix = "   ",
       selection_caret = " ",
       entry_prefix = "  ",
-      multi_icon = "",
+      multi_icon = "󰄴 ",
       set_env = { ["COLORTERM"] = "truecolor" },
       results_title = false,
       sorting_strategy = "ascending",
