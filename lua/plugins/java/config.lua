@@ -133,7 +133,11 @@ local jdtls_launcher = function()
     "-XX:MaxGCPauseMillis=200",
     "-XX:+AlwaysPreTouch",
     "-XX:+UseStringDeduplication",
-    "-XX:+UseTransparentHugePages",
+  }
+  if require("lb.utils.util").is_linux then
+    table.insert(cmd, "-XX:+UseTransparentHugePages")
+  end
+  vim.list_extend(cmd, {
     "--enable-native-access=ALL-UNNAMED",
     "--add-modules=ALL-SYSTEM",
     "--add-opens",
@@ -142,12 +146,12 @@ local jdtls_launcher = function()
     "java.base/java.lang=ALL-UNNAMED",
     "--add-opens",
     "java.base/sun.nio.fs=ALL-UNNAMED",
-  }
-  table.insert(cmd, "-javaagent:" .. jar_dir .. "lombok.jar")
-  table.insert(cmd, "-jar")
-  table.insert(cmd, vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")))
-  table.insert(cmd, "-data")
-  table.insert(cmd, jutils.get_workspace_dir())
+    "-javaagent:" .. jar_dir .. "lombok.jar",
+    "-jar",
+    vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")),
+    "-data",
+    jutils.get_workspace_dir(),
+  })
   return cmd
 end
 
