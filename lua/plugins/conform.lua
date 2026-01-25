@@ -24,6 +24,7 @@ return {
   },
   opts = function()
     local opts = { formatters_by_ft = {} }
+    local sqlfluff_config_dir = vim.fn.stdpath("config") .. "/data/sqlfluff"
     for _, ft in ipairs({
       "css",
       "graphql",
@@ -49,6 +50,8 @@ return {
     opts.formatters_by_ft["go"] = { "gofumpt" }
     opts.formatters_by_ft["sh"] = { "shfmt" }
     opts.formatters_by_ft["sql"] = { "sleek" }
+    opts.formatters_by_ft["hql"] = { "sqlfluff_hql" }
+    opts.formatters_by_ft["tql"] = { "sqlfluff_tql" }
     opts.formatters_by_ft["python"] = { "ruff_fix", "ruff_format" }
     opts.formatters_by_ft["bzl"] = { "buildifier" }
     opts.formatters_by_ft["c"] = { "clang-format" }
@@ -60,6 +63,26 @@ return {
     opts.formatters_by_ft["_"] = { "trim_whitespace" }
     opts.formatters = {
       injected = { options = { ignore_errors = true } },
+      sqlfluff_hql = {
+        command = "sqlfluff",
+        stdin = true,
+        args = {
+          "format",
+          "--config",
+          sqlfluff_config_dir .. "/hql.sqlfluff",
+          "-",
+        },
+      },
+      sqlfluff_tql = {
+        command = "sqlfluff",
+        stdin = true,
+        args = {
+          "format",
+          "--config",
+          sqlfluff_config_dir .. "/tql.sqlfluff",
+          "-",
+        },
+      },
       sleek = {
         command = "sleek",
         stdin = true,

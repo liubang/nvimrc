@@ -1,4 +1,4 @@
--- Copyright (c) 2024 The Authors. All rights reserved.
+-- Copyright (c) 2026 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -14,23 +14,4 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-vim.filetype.add({ -- {{{
-  filename = {
-    [".clangd"] = "yaml",
-    [".clang-format"] = "yaml",
-    [".bazelrc"] = "bzl",
-    [".gitignore"] = "gitconfig",
-    ["go.sum"] = "gosum",
-    ["go.mod"] = "gomod",
-    ["BUILD"] = "bzl",
-    ["BCLOUD"] = "bzl",
-    ["WORKSPACE"] = "bzl",
-  },
-  extension = {
-    thrift = "thrift",
-    wiki = "markdown",
-    log = "log",
-    hql = "hql",
-    tql = "tql",
-  },
-}) -- }}}
+vim.cmd([[runtime! syntax/sql.vim]])
