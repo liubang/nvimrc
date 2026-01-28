@@ -18,40 +18,51 @@ local cfg = require("plugins.java.config")
 
 return {
   {
-    "JavaHello/spring-boot.nvim",
+    "nvim-java/nvim-java",
     ft = { "java", "jproperties", "xml" },
-    dependencies = { "mfussenegger/nvim-jdtls" },
-    opts = cfg.spring_boot_opts(),
-  },
-  {
-    "JavaHello/java-deps.nvim",
-    ft = { "java", "jproperties", "xml" },
-    dependencies = { "mfussenegger/nvim-jdtls" },
-    -- stylua: ignore
-    keys = {
-      { "<Leader>jp", function() require("java-deps").toggle_outline() end, mode = { "n" } },
-    },
     config = function()
-      require("java-deps").setup({
-        width = 50,
+      require("java").setup({
+        jdk = { auto_install = false },
       })
+      vim.lsp.config("jdtls", cfg.jdtls_config())
+      vim.lsp.enable("jdtls")
     end,
   },
-  {
-    "mfussenegger/nvim-jdtls",
-    ft = { "java", "jproperties", "xml" },
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("plugins.java.utils").setup_jdtls_pick_one()
-      require("plugins.java.utils").setup_jdtls_pick_many()
-      local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        group = group,
-        pattern = { "java", "jproperties", "xml" },
-        callback = function(_)
-          require("jdtls").start_or_attach(cfg.jdtls_config())
-        end,
-      })
-    end,
-  },
+  -- {
+  --   "JavaHello/spring-boot.nvim",
+  --   ft = { "java", "jproperties", "xml" },
+  --   dependencies = { "mfussenegger/nvim-jdtls" },
+  --   opts = cfg.spring_boot_opts(),
+  -- },
+  -- {
+  --   "JavaHello/java-deps.nvim",
+  --   ft = { "java", "jproperties", "xml" },
+  --   dependencies = { "mfussenegger/nvim-jdtls" },
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<Leader>jp", function() require("java-deps").toggle_outline() end, mode = { "n" } },
+  --   },
+  --   config = function()
+  --     require("java-deps").setup({
+  --       width = 50,
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "mfussenegger/nvim-jdtls",
+  --   ft = { "java", "jproperties", "xml" },
+  --   dependencies = { "neovim/nvim-lspconfig" },
+  --   config = function()
+  --     require("plugins.java.utils").setup_jdtls_pick_one()
+  --     require("plugins.java.utils").setup_jdtls_pick_many()
+  --     local group = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
+  --     vim.api.nvim_create_autocmd("FileType", {
+  --       group = group,
+  --       pattern = { "java", "jproperties", "xml" },
+  --       callback = function(_)
+  --         require("jdtls").start_or_attach(cfg.jdtls_config())
+  --       end,
+  --     })
+  --   end,
+  -- },
 }

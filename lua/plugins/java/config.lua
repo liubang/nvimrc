@@ -166,11 +166,11 @@ end
 
 M.jdtls_config = function()
   return {
-    cmd = jdtls_launcher(),
-    capabilities = require("blink.cmp").get_lsp_capabilities(),
-    root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml" }),
-    on_attach = on_attach,
-    init_options = get_init_options(),
+    -- cmd = jdtls_launcher(),
+    -- capabilities = require("blink.cmp").get_lsp_capabilities(),
+    -- root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml" }),
+    -- on_attach = on_attach,
+    -- init_options = get_init_options(),
     settings = {
       java = {
         format = { enabled = true, settings = jutils.fmt_config() },
