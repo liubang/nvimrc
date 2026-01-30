@@ -18,6 +18,7 @@ return {
   "stevearc/conform.nvim",
   cmd = "ConformInfo",
   lazy = false,
+  enable = false,
   -- stylua: ignore
   keys = {
     { "<leader>fm", function() require("conform").format() end, mode = { "n", "v" } },

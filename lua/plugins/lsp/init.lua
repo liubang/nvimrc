@@ -75,7 +75,6 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
     opts = function()
