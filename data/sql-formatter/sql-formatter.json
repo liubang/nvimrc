@@ -1,0 +1,10 @@
+{
+  "language": "sql",
+  "tabWidth": 4,
+  "keywordCase": "upper",
+  "dataTypeCase": "upper",
+  "functionCase": "upper",
+  "expressionWidth": 100,
+  "newlineBeforeSemicolon": true,
+  "linesBetweenQueries": 2
+}

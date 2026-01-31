@@ -15,9 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  {
-    "mason-org/mason-lspconfig.nvim",
-  },
+  { "mason-org/mason-lspconfig.nvim" },
   {
     "mason-org/mason.nvim",
     cmd = { "Mason", "MasonUpdate" },
@@ -89,17 +87,31 @@ return {
           b.formatting.prettier.with({
             filetypes = {
               "css",
-              "scss",
-              "less",
-              "html",
-              "yaml",
-              "markdown",
-              "markdown.mdx",
               "graphql",
               "handlebars",
+              "html",
+              "javascript",
+              "javascriptreact",
+              "json",
+              "jsonc",
+              "less",
+              "markdown",
+              "markdown.mdx",
+              "scss",
+              "typescript",
+              "typescriptreact",
+              "vue",
+              "yaml",
             },
           }),
-          b.formatting.shfmt,
+          b.formatting.shfmt.with({
+            extra_args = { "-i", "4", "-ci", "-bn" },
+          }),
+          b.formatting.sql_formatter.with({
+            extra_args = {
+              "--config=" .. vim.fn.stdpath("config") .. "/data/sql-formatter/sql-formatter.json",
+            },
+          }),
           b.code_actions.gomodifytags,
           b.code_actions.impl,
           b.diagnostics.buildifier,

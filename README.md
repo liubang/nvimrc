@@ -2,7 +2,7 @@
 
 <div align="center"><p>
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.11.3-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="NeoVim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.11.6-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white" alt="NeoVim"/>
     </a>
     <a href="https://github.com/liubang/nvimrc/actions">
         <img src="https://img.shields.io/github/actions/workflow/status/liubang/nvimrc/ci.yml?style=flat-square&branch=main" alt="Build" />

@@ -24,6 +24,7 @@ local autoformats = {
 function M.format()
   local bufnr = vim.api.nvim_get_current_buf()
   local filetype = vim.bo[bufnr].filetype
+  -- 优先使用null-ls提供的formatter
   local have_nls = #require("null-ls.sources").get_available(filetype, "NULL_LS_FORMATTING") > 0
   local filter = function(client)
     if have_nls then
