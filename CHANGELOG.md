@@ -1,5 +1,50 @@
 # Changelog
 
+## [3.17.0](https://github.com/liubang/nvimrc/compare/v3.16.0...v3.17.0) (2026-02-22)
+
+
+### Features
+
+* **barbecue:** remove barbecue ([8ba3856](https://github.com/liubang/nvimrc/commit/8ba385615375443b286e813a03dee7ce78c13f2b))
+* **blink:** add blink ([74bf6e7](https://github.com/liubang/nvimrc/commit/74bf6e728408a4883f5dd49dfcf3cb86453f449b))
+* **lsp:** update ([a97e6d1](https://github.com/liubang/nvimrc/commit/a97e6d1bc99fcaa6d758df9062023622104a9522))
+* **lsp:** update ([782c667](https://github.com/liubang/nvimrc/commit/782c6677b4a14e502f8378f1889b9b4637f5a2d1))
+* **lsp:** update ([3dc6bed](https://github.com/liubang/nvimrc/commit/3dc6bed74317b9cf5ceb5c54286523cf7af4959c))
+* **lsp:** update ([0faab4a](https://github.com/liubang/nvimrc/commit/0faab4a89d5d0a1f503e8e24617abb5f319c8e2d))
+* **pair:** disable auto pair in command mode ([06e5489](https://github.com/liubang/nvimrc/commit/06e5489c7e1ec9ada8277df5b67b445bcd33a5cd))
+* **venn:** change keymap description ([322cc25](https://github.com/liubang/nvimrc/commit/322cc259da21a1f62ff876bc55577bb1a76dcb12))
+
+
+### Bug Fixes
+
+* **clangd:** remove deprecated flag ([f4ff48f](https://github.com/liubang/nvimrc/commit/f4ff48fa6bd721f9dd47aa5f4ab44a3fb5c824e2))
+* **lsp:** fix nvim-java error ([b64a285](https://github.com/liubang/nvimrc/commit/b64a285da622657b7c3d59659787a31bb37f7341))
+* **snip:** remove randomstr ([222d6a3](https://github.com/liubang/nvimrc/commit/222d6a398a645ca1178679bdf2a8aeaf1b3feda1))
+
+
+### Performance Improvements
+
+* blink.cmp set ignore_version_mismatch ([cdac86e](https://github.com/liubang/nvimrc/commit/cdac86e8ce714588e09749072de6553e76b263a6))
+* **blink:** fix lsp snippet missing placeholder ([9a621be](https://github.com/liubang/nvimrc/commit/9a621beaa4f9656575e4f82637662f06cbd343fc))
+* **changd:** change offset encoding to utf-16 ([a1e6508](https://github.com/liubang/nvimrc/commit/a1e6508edece3e28364d1344f73364b54f820ce0))
+* **comment:** change c/cpp commentstring ([ed395fb](https://github.com/liubang/nvimrc/commit/ed395fbb242abc512e492f36e73c3611e4e82e0f))
+* **jdtls:** update jdtls config ([c881944](https://github.com/liubang/nvimrc/commit/c881944c817aaf87e70dccba8adb35c35e5d50b0))
+* **jdtls:** update jdtls version ([497cce7](https://github.com/liubang/nvimrc/commit/497cce7db8ac4e98cd06cfcba010c7388cec05c1))
+* **lazy:** perf ([c2bbbf3](https://github.com/liubang/nvimrc/commit/c2bbbf3be2e1aa8c0cef93e7051487b62d4a0064))
+* **lazy:** perf ([a11dcc3](https://github.com/liubang/nvimrc/commit/a11dcc319adb6d3a10aa53bb91d71789699600db))
+* **lsp:** custom lsp config ([8c55443](https://github.com/liubang/nvimrc/commit/8c554433cdb0ad263a698e7552f108c70a335de9))
+* **mini.files:** change config ([0030271](https://github.com/liubang/nvimrc/commit/00302716da267d2155f448b2fd74535c55f9cd5f))
+* **mini.files:** change keymap ([9306477](https://github.com/liubang/nvimrc/commit/93064774fcf54add6ea2bf34642431d73dfc5d15))
+* **mix:** some change ([cb4e704](https://github.com/liubang/nvimrc/commit/cb4e704f23ad53a891cbeb5119529d452525c13f))
+* **noice:** disable noice ([e409f84](https://github.com/liubang/nvimrc/commit/e409f84c154c4184f5c063253c9b472ced904512))
+* **plugin:** add some powerful plugins ([350920c](https://github.com/liubang/nvimrc/commit/350920c482f259985ab6408669c1e1cd60dd6a66))
+* **plugin:** add some powerful plugins ([3939bd0](https://github.com/liubang/nvimrc/commit/3939bd0fd88b10ff159fa4e427e9d043bbe88a98))
+* **plugin:** remove markdown render ([8dd3de9](https://github.com/liubang/nvimrc/commit/8dd3de9c748a3bb0ffc0b1ecc59c4c5849599513))
+* **plugin:** replace vim-illuminate with mini.cursorword ([3026aa2](https://github.com/liubang/nvimrc/commit/3026aa28d3282828c4e8ce6c83df15be9923a644))
+* **plugin:** small change ([2eb1476](https://github.com/liubang/nvimrc/commit/2eb1476a73deaf3755891af93096e6dcdde91b93))
+* update clangd config ([6c6d7d5](https://github.com/liubang/nvimrc/commit/6c6d7d5f5ca9cc1b48849b77c502ec2c92ea0f14))
+* vim.loop Use vim.uv instead ([69f7fa6](https://github.com/liubang/nvimrc/commit/69f7fa630e00c0b9efb3d9d93348ac9e35f7d184))
+
 ## [3.16.0](https://github.com/liubang/nvimrc/compare/v3.15.0...v3.16.0) (2025-03-02)
 
 
