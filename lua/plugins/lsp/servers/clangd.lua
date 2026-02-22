@@ -15,6 +15,9 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local function get_default_drivers(binaries)
+  if vim.env["CLANGD_DRIVERS"] then
+    return vim.env["CLANGD_DRIVERS"]
+  end
   local path_list = {}
   for _, binary in ipairs(binaries) do
     local path = vim.fn.exepath(binary)
