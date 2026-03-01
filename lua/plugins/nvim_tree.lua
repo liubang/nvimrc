@@ -23,6 +23,7 @@ return {
     "NvimTreeFindFileToggle",
     "NvimTreeRefresh",
   },
+  enabled = false,
   keys = { { "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer NvimTree (cwd)" } },
   opts = {
     auto_reload_on_write = false,
