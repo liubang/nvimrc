@@ -31,6 +31,7 @@ end
 vim.lsp.enable({
   "thriftls", -- for thrift
   "taplo", -- for toml
+  "ts_ls",
   "bashls",
   "protols",
   "neocmake",
