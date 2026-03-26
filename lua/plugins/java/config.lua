@@ -18,7 +18,7 @@ local jutils = require("plugins.java.utils")
 local u = require("lb.utils.util")
 local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
 
-local with_compile = function(client, bufnr, fn)
+local with_compile = function(client, bufnr, fn) --- {{{
   return function()
     if vim.bo.modified then
       vim.cmd("w")
@@ -26,9 +26,9 @@ local with_compile = function(client, bufnr, fn)
     client.request_sync("java/buildWorkspace", false, 5000, bufnr)
     fn()
   end
-end
+end --- }}}
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr) --- {{{
   client.server_capabilities.semanticTokensProvider = nil
   client.server_capabilities.workspaceSymbolProvider = false
 
@@ -53,9 +53,9 @@ local on_attach = function(client, bufnr)
   -- stylua: ignore
   create_command(bufnr, "JavaTestWithProfile", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)), { nargs = 0 })
   vim.keymap.set("n", "<leader>dM", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)))
-end
+end --- }}}
 
-local get_init_options = function()
+local get_init_options = function() --- {{{
   local opts = {
     bundles = {},
     extendedClientCapabilities = require("jdtls").extendedClientCapabilities,
@@ -104,9 +104,9 @@ local get_init_options = function()
   -- debug_file:close()
 
   return opts
-end
+end --- }}}
 
-local jdtls_launcher = function()
+local jdtls_launcher = function() --- {{{
   local jdtls_config = nil
   if u.is_linux then
     jdtls_config = "/config_linux"
@@ -153,24 +153,20 @@ local jdtls_launcher = function()
     jutils.get_workspace_dir(),
   })
   return cmd
-end
+end --- }}}
 
 local M = {}
 
-M.spring_boot_opts = function()
-  return {
-    autocmd = true,
-    java_cmd = jutils.java_bin,
-  }
-end
-
 M.jdtls_config = function()
   return {
+    ----------------------------------------------------------------------------------------------
+    --- for jdtls.nvim
     -- cmd = jdtls_launcher(),
     -- capabilities = require("blink.cmp").get_lsp_capabilities(),
     -- root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml" }),
     -- on_attach = on_attach,
     -- init_options = get_init_options(),
+    ----------------------------------------------------------------------------------------------
     settings = {
       java = {
         format = { enabled = true, settings = jutils.fmt_config() },

@@ -14,22 +14,20 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
--- local cfg = require("plugins.java.config")
+local cfg = require("plugins.java.config")
 
 return {
-  -- {
-  --   "nvim-java/nvim-java",
-  --   ft = { "java", "jproperties", "xml" },
-  --   init = function()
-  --     vim.env.JAVA_HOME = vim.env["JAVA_25_HOME"]
-  --     vim.env.PATH = vim.env.JAVA_HOME .. "/bin" .. ":" .. vim.env.PATH
-  --   end,
-  --   config = function()
-  --     require("java").setup({
-  --       jdk = { auto_install = false },
-  --     })
-  --     vim.lsp.config("jdtls", cfg.jdtls_config())
-  --     vim.lsp.enable("jdtls")
-  --   end,
-  -- },
+  "nvim-java/nvim-java",
+  ft = { "java", "jproperties", "xml" },
+  init = function()
+    vim.env.JAVA_HOME = vim.env["JAVA_25_HOME"]
+    vim.env.PATH = vim.env.JAVA_HOME .. "/bin" .. ":" .. vim.env.PATH
+  end,
+  config = function()
+    require("java").setup({
+      jdk = { auto_install = false },
+    })
+    vim.lsp.config("jdtls", cfg.jdtls_config())
+    vim.lsp.enable("jdtls")
+  end,
 }
