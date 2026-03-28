@@ -48,7 +48,7 @@ local function get_clangd_cmd()
     "--limit-results=300",
     "--log=error",
   }
-  if not require("lb.utils.util").is_mac then
+  if not require("venux.utils.util").is_mac then
     table.insert(cmd, "--malloc-trim")
   end
   return cmd

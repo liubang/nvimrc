@@ -31,23 +31,23 @@ vim.api.nvim_create_user_command("YankFilepath", function() -- {{{
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("CopyRight", function() -- {{{
-  require("lb.utils.comment").copy_right()
+  require("venux.utils.comment").copy_right()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("AddFileHeader", function() -- {{{
-  require("lb.utils.comment").add_fileheader()
+  require("venux.utils.comment").add_fileheader()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("CopyRightApache", function() -- {{{
-  require("lb.utils.comment").copy_right_apache()
+  require("venux.utils.comment").copy_right_apache()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("TrimWhiteSpace", function() -- {{{
-  require("lb.utils.util").trim_whitespace()
+  require("venux.utils.util").trim_whitespace()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("DocUpdate", function() -- {{{
-  require("lb.utils.doc").update()
+  require("venux.utils.doc").update()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("Tasks", function() -- {{{

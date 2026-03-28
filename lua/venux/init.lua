@@ -17,10 +17,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("lb.options")
-require("lb.lazy")
-require("lb.autocmd")
-require("lb.commands")
-require("lb.mappings")
+require("venux.options")
+require("venux.lazy")
+require("venux.autocmd")
+require("venux.commands")
+require("venux.mappings")
 
 -- vim: fdm=marker fdl=0

@@ -29,7 +29,7 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local config = require("lb.config")
+      local config = require("venux.config")
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       cmp.setup({
         performance = {

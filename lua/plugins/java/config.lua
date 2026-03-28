@@ -15,7 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local jutils = require("plugins.java.utils")
-local u = require("lb.utils.util")
+local u = require("venux.utils.util")
 local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
 
 local with_compile = function(client, bufnr, fn) --- {{{
@@ -134,7 +134,7 @@ local jdtls_launcher = function() --- {{{
     "-XX:+AlwaysPreTouch",
     "-XX:+UseStringDeduplication",
   }
-  if require("lb.utils.util").is_linux then
+  if require("venux.utils.util").is_linux then
     table.insert(cmd, "-XX:+UseTransparentHugePages")
   end
   vim.list_extend(cmd, {

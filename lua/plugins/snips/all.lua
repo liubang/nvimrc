@@ -15,7 +15,7 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local ls = require("luasnip")
-local util = require("lb.utils.util")
+local util = require("venux.utils.util")
 -- some shorthands...
 local s = ls.snippet
 local t = ls.text_node
