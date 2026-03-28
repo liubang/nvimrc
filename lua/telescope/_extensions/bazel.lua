@@ -39,10 +39,11 @@ local bazel_finder = function(opts, title, kind)
   end
 
   opts = opts or {}
+  local query = kind == "" and 'kind(".* rule", //...)' or string.format('kind("%s rule", //...)', kind)
   local find_command = {
     "bazel",
     "query",
-    string.format('kind("%s rule", //...)', kind),
+    query,
     "--keep_going",
     "--noshow_progress",
     "--output=label",
@@ -56,7 +57,7 @@ local bazel_finder = function(opts, title, kind)
         actions.select_default:replace(function()
           local selection = actions_state.get_selected_entry()
           actions.close(prompt_bufnr)
-          if selection.value ~= "" then
+          if selection and selection.value ~= "" then
             local cmd = "AsyncRun -mode=term -pos=floaterm"
             if kind:match("test") ~= nil then
               cmd = string.format("%s bazel test %s", cmd, selection.value)
