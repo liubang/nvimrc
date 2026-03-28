@@ -28,7 +28,7 @@ return {
         always_divide_middle = true,
       },
       sections = {
-        lualine_a = { require("lb.utils.util").mode_format },
+        lualine_a = { require("venux.utils.util").mode_format },
         lualine_b = {
           { "branch", icon = "\u{e725}" },
           { "diff" },
@@ -51,7 +51,7 @@ return {
             end,
           },
           {
-            require("lb.utils.util").file_size_format,
+            require("venux.utils.util").file_size_format,
             cond = function()
               local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
               if ft == "alpha" or ft == "NvimTree" or ft == "Outline" then
@@ -70,9 +70,9 @@ return {
           },
         },
         lualine_x = {
-          require("lb.utils.util").lineinfo,
+          require("venux.utils.util").lineinfo,
           {
-            require("lb.utils.util").lsp_clients_format,
+            require("venux.utils.util").lsp_clients_format,
             cond = function()
               local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
               if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then

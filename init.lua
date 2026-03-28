@@ -14,4 +14,4 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-require("lb")
+require("venux")

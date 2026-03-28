@@ -383,7 +383,7 @@ return {
     config = function()
       vim.o.background = "dark"
 
-      local u = require("lb.utils.util")
+      local u = require("venux.utils.util")
       if u.is_linux then
         -- for linux
         vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h15:h15"

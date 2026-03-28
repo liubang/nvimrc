@@ -16,7 +16,7 @@
 
 local forwardSearch = {}
 
-if not require("lb.utils.util").is_mac then
+if not require("venux.utils.util").is_mac then
   forwardSearch = {
     executable = "zathura",
     args = { "--synctex-forward", "%l:1:%f", "%p" },

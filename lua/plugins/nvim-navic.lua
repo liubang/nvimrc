@@ -31,7 +31,7 @@ return {
   opts = function()
     -- stylua: ignore
     return {
-      icons                 = require('lb.config').kinds,
+      icons                 = require('venux.config').kinds,
       separator             = " > ",
       depth_limit           = 3,
       highlight             = true,

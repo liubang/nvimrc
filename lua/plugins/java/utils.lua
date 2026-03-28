@@ -14,7 +14,7 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local u = require("lb.utils.util")
+local u = require("venux.utils.util")
 
 local M = {}
 

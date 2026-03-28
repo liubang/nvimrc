@@ -20,7 +20,7 @@ local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local sorters = require("telescope.sorters")
 local telescope = require("telescope")
-local util = require("lb.utils.util")
+local util = require("venux.utils.util")
 
 local bazel_finder = function(opts, title, kind)
   -- check if bazel installed
