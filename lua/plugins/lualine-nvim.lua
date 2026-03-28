@@ -53,8 +53,7 @@ return {
           {
             require("lb.utils.util").file_size_format,
             cond = function()
-              local ft
-              vim.api.nvim_get_option_value("filetype", { scope = "local" })
+              local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
               if ft == "alpha" or ft == "NvimTree" or ft == "Outline" then
                 return false
               end

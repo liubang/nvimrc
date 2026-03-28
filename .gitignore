@@ -5,3 +5,4 @@ undo
 lazy-lock.json
 .luarc.json
 *.log
+.nvimlog

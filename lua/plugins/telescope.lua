@@ -42,7 +42,7 @@ local M = {
     },
     { "<Leader>ts", "<CMD>Telescope tasks<CR>", mode = { "n" }, desc = "Lists AsyncTasks for current buffer" },
     { "<Leader>br", "<CMD>BazelRun<CR>", mode = { "n" }, desc = "Bazl run" },
-    { "<Leader>bt", "<CMD>BazelTest<CR>", mode = { "n" }, desc = "Bazel test" },
+    { "<Leader>bt", "<CMD>BazelTests<CR>", mode = { "n" }, desc = "Bazel test" },
     { "<Leader>bs", "<CMD>BazelBuild<CR>", mode = { "n" }, desc = "Bazel build" },
   },
 }

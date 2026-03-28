@@ -377,6 +377,9 @@ local lsp_names = { --{{{
 ---@param only string
 ---@param wait_ms integer
 function M.codeaction(client, action, only, wait_ms)
+  if not client then
+    return
+  end
   wait_ms = wait_ms or 1000
   local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
   if only then

@@ -14,16 +14,27 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local get_current_gomod = function()
-  local file = io.open("go.mod", "r")
+local get_module_name = function(root_dir)
+  if not root_dir or root_dir == "" then
+    return nil
+  end
+
+  local gomod = root_dir .. "/go.mod"
+  local file = io.open(gomod, "r")
   if file == nil then
     return nil
   end
 
-  local first_line = file:read()
-  local mod_name = first_line:gsub("module ", "")
+  for line in file:lines() do
+    local mod_name = line:match("^module%s+(.+)$")
+    if mod_name then
+      file:close()
+      return mod_name
+    end
+  end
+
   file:close()
-  return mod_name
+  return nil
 end
 
 return {
@@ -31,6 +42,11 @@ return {
   cmd = { "gopls", "-remote.debug=:0" },
   filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
   flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
+  on_new_config = function(config, root_dir)
+    config.settings = config.settings or {}
+    config.settings.gopls = config.settings.gopls or {}
+    config.settings.gopls["local"] = get_module_name(root_dir)
+  end,
   settings = {
     gopls = {
       analyses = {
@@ -50,7 +66,7 @@ return {
         run_vulncheck_exp = true,
         upgrade_dependency = true,
       },
-      ["local"] = get_current_gomod(),
+      ["local"] = nil,
       semanticTokens = true,
       usePlaceholders = true,
       completeUnimported = true,
