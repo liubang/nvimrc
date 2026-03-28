@@ -21,8 +21,8 @@ local autoformats = {
   lua = true,
 }
 
-function M.format()
-  local bufnr = vim.api.nvim_get_current_buf()
+function M.format(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
   local filetype = vim.bo[bufnr].filetype
   -- 优先使用null-ls提供的formatter
   local have_nls = #require("null-ls.sources").get_available(filetype, "NULL_LS_FORMATTING") > 0
@@ -36,9 +36,14 @@ function M.format()
 end
 
 function M.on_attach(_, bufnr)
+  if vim.b[bufnr].lsp_format_attached then
+    return
+  end
+  vim.b[bufnr].lsp_format_attached = true
+
   local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "<Leader>fm", function()
-    M.format()
+    M.format(bufnr)
   end, opts)
 
   -- auto format
@@ -47,13 +52,13 @@ function M.on_attach(_, bufnr)
       group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
       buffer = bufnr,
       callback = function()
-        M.format()
+        M.format(bufnr)
       end,
     })
   end
 
   -- stylua: ignore
-  vim.keymap.set("v", "<Leader>fm", function() M.format() end, opts)
+  vim.keymap.set("v", "<Leader>fm", function() M.format(bufnr) end, opts)
 end
 
 return M

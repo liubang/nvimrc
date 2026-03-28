@@ -14,8 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local cfg = require("plugins.java.config")
-
 return {
   "nvim-java/nvim-java",
   ft = { "java", "jproperties", "xml" },
@@ -24,10 +22,13 @@ return {
     vim.env.PATH = vim.env.JAVA_HOME .. "/bin" .. ":" .. vim.env.PATH
   end,
   config = function()
+    local defaults = require("plugins.lsp.defaults")
+    local cfg = require("plugins.java.config")
+
     require("java").setup({
       jdk = { auto_install = false },
     })
-    vim.lsp.config("jdtls", cfg.jdtls_config())
-    vim.lsp.enable("jdtls")
+
+    defaults.enable("jdtls", cfg.jdtls_config())
   end,
 }
