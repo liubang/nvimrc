@@ -14,6 +14,8 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+local defaults = require("plugins.lsp.defaults")
+
 for _, server in ipairs({
   "clangd",
   "gopls",
@@ -24,11 +26,10 @@ for _, server in ipairs({
   "texlab",
   "lemminx", -- for xml
 }) do
-  vim.lsp.config(server, require("plugins.lsp.servers." .. server))
-  vim.lsp.enable(server)
+  defaults.enable(server, require("plugins.lsp.servers." .. server))
 end
 
-vim.lsp.enable({
+for _, server in ipairs({
   "thriftls", -- for thrift
   "taplo", -- for toml
   "ts_ls",
@@ -38,6 +39,8 @@ vim.lsp.enable({
   "intelephense", -- for php
   "nginx_language_server",
   "docker_language_server",
-})
+}) do
+  defaults.enable(server)
+end
 
 -- vim: fdm=marker fdl=0
