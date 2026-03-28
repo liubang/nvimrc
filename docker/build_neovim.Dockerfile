@@ -30,6 +30,7 @@ RUN apt-get update &&  \
     gcc-10             \
     git                \
     cmake              \
+    curl               \
     gettext            \
     libtool-bin        \
     locales            \
