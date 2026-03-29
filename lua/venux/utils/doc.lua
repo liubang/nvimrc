@@ -47,7 +47,7 @@ local keymaps = function()
 
   do
     group = "General"
-    dofile(root .. "/lua/lb/mappings.lua")
+    dofile(root .. "/lua/venux/mappings.lua")
   end
 
   -- reset vim.keymap.set function
