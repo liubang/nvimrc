@@ -14,14 +14,38 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local actions = require("telescope.actions")
-local finders = require("telescope.finders")
-local pickers = require("telescope.pickers")
-local sorters = require("telescope.sorters")
-local state = require("telescope.actions.state")
-local telescope = require("telescope")
+local function get_telescope_modules()
+  local ok, actions = pcall(require, "telescope.actions")
+  if not ok then
+    return nil
+  end
+
+  local finders = require("telescope.finders")
+  local pickers = require("telescope.pickers")
+  local sorters = require("telescope.sorters")
+  local state = require("telescope.actions.state")
+
+  return {
+    actions = actions,
+    finders = finders,
+    pickers = pickers,
+    sorters = sorters,
+    state = state,
+  }
+end
 
 local tasks = function(opts)
+  local telescope_modules = get_telescope_modules()
+  if not telescope_modules then
+    vim.notify("telescope.nvim is not available", vim.log.levels.ERROR)
+    return
+  end
+
+  local actions = telescope_modules.actions
+  local finders = telescope_modules.finders
+  local pickers = telescope_modules.pickers
+  local sorters = telescope_modules.sorters
+  local state = telescope_modules.state
   local tasks = vim.api.nvim_call_function("asynctasks#source", { math.floor(vim.o.columns * 48 / 100) })
   if vim.tbl_isempty(tasks) then
     return
@@ -60,6 +84,13 @@ local tasks = function(opts)
       end,
     })
     :find()
+end
+
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+  return {
+    exports = { tasks = tasks },
+  }
 end
 
 return telescope.register_extension({

@@ -22,9 +22,6 @@ for _, bundle in ipairs(vim.split(vim.fn.glob(lemminx_home .. "/*.jar"), "\n")) 
   table.insert(lemminx_jars, bundle)
 end
 
--- note: linux and maxos
-vim.fn.join(lemminx_jars, ":")
-
 return {
   name = "lemminx",
   cmd = {

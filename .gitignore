@@ -6,3 +6,4 @@ lazy-lock.json
 .luarc.json
 *.log
 .nvimlog
+after/syntax/**/gruvbox_material.vim

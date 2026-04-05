@@ -18,7 +18,8 @@ local u = require("venux.utils.util")
 
 local M = {}
 
-M.java_bin = os.getenv("JAVA_21_HOME") .. "/bin/java"
+local java_21_home = os.getenv("JAVA_21_HOME")
+M.java_bin = java_21_home and (java_21_home .. "/bin/java") or "java"
 
 M.get_workspace_dir = function()
   local config = vim.lsp.config["jdtls"]
