@@ -14,7 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local util = require("venux.utils.util")
-local root = util.root_pattern(".git", "init.lua", "task.ini")(vim.fn.expand("%:p"))
+local root = vim.fs.root(vim.fn.expand("%:p"), { ".git", "init.lua", "task.ini" })
 vim.print(root)
-vim.print(util.path.join("a", "b", "c"))
+vim.print(vim.fs.joinpath("a", "b", "c"))

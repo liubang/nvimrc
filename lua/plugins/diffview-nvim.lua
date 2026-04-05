@@ -19,7 +19,7 @@ return {
   cmd = {
     "DiffviewOpen",
     "DiffviewClose",
-    "DiffviewFilepistory",
+    "DiffviewFileHistory",
     "DiffviewFocusFiles",
     "DiffviewToggleFiles",
     "DiffviewRefresh",

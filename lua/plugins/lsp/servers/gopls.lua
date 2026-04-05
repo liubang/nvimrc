@@ -39,7 +39,7 @@ end
 
 return {
   -- share the gopls instance if there is one already
-  cmd = { "gopls", "-remote.debug=:0" },
+  cmd = { "gopls" },
   filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
   flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
   on_new_config = function(config, root_dir)

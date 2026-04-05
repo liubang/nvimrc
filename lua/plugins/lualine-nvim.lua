@@ -47,7 +47,7 @@ return {
             },
             cond = function()
               local f = vim.fn.expand("%:p")
-              return f:len() <= 6 or f:sub(0, 6) ~= "jdt://"
+              return f:len() <= 6 or f:sub(1, 6) ~= "jdt://"
             end,
           },
           {

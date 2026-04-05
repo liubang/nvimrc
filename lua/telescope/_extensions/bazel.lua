@@ -20,8 +20,6 @@ local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local sorters = require("telescope.sorters")
 local telescope = require("telescope")
-local util = require("venux.utils.util")
-
 local bazel_finder = function(opts, title, kind)
   -- check if bazel installed
   if vim.fn.executable("bazel") ~= 1 then
@@ -29,8 +27,8 @@ local bazel_finder = function(opts, title, kind)
     return
   end
 
-  local root = util.root_pattern("WORKSPACE", "MODULE.bazel", "WORKSPACE.bzlmod")(vim.fn.expand("%:p"))
-  if root == "" then
+  local root = vim.fs.root(vim.fn.expand("%:p"), { "WORKSPACE", "MODULE.bazel", "WORKSPACE.bzlmod" })
+  if not root then
     vim.notify(
       "The bazel command is only supported within a workspace (below a directory having a WORKSPACE file)",
       vim.log.levels.ERROR
