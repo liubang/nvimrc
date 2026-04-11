@@ -57,10 +57,9 @@ vim.api.nvim_create_autocmd("BufNewFile", {
       buffer = 0,
       once = true,
       callback = function()
-        local path = vim.fn.expand("%:h")
-        local p = require("plenary.path"):new(path)
-        if not p:exists() then
-          p:mkdir({ parents = true })
+        local path = vim.fn.expand("%:p:h")
+        if path ~= "" and vim.fn.isdirectory(path) == 0 then
+          vim.fn.mkdir(path, "p")
         end
       end,
       desc = "create missing parent directories automatically",

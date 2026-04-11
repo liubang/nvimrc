@@ -17,7 +17,8 @@
 return {
   {
     "OXY2DEV/markview.nvim",
-    lazy = false,
+    ft = { "markdown", "mdx", "quarto" },
+    cmd = { "Markview" },
     version = "*",
     config = function()
       local presets = require("markview.presets")

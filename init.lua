@@ -14,4 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+vim.loader.enable()
+
 require("venux")

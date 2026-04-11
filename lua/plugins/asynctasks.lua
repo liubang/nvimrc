@@ -23,7 +23,7 @@ return {
   config = function() -- {{{
     vim.g.asyncrun_bell = 1
     vim.g.asyncrun_rootmarks = { ".svn", ".git", ".root", "build.xml" }
-    vim.g.asynctasks_term_pos = "floaterm"
+    vim.g.asynctasks_term_pos = "toggleterm"
   end, -- }}}
   keys = {
     { "<C-b>", "<CMD>AsyncTask file-build<CR>", mode = { "n" }, desc = "Build current file" },

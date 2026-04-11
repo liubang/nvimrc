@@ -56,7 +56,7 @@ local bazel_finder = function(opts, title, kind)
           local selection = actions_state.get_selected_entry()
           actions.close(prompt_bufnr)
           if selection and selection.value ~= "" then
-            local cmd = "AsyncRun -mode=term -pos=floaterm"
+            local cmd = "AsyncRun -mode=term -pos=toggleterm"
             if kind:match("test") ~= nil then
               cmd = string.format("%s bazel test %s", cmd, selection.value)
             elseif kind:match("binary") ~= nil then
