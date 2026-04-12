@@ -10,6 +10,10 @@
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " ==============================================================================
 
+if get(g:, "venux_disable_legacy_c_family_syntax", 1)
+    finish
+endif
+
 
 " Highlight additional keywords in the comments
 syn keyword cTodo contained BUG NOTE

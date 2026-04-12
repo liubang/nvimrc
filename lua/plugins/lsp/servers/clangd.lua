@@ -30,11 +30,32 @@ end
 
 local luv = vim.uv
 local cpu = luv.available_parallelism()
+local large_cpp_filetypes = {
+  c = true,
+  cpp = true,
+  objc = true,
+  objcpp = true,
+  cuda = true,
+}
+
+local function is_large_cpp_buffer(buf)
+  local filetype = vim.bo[buf].filetype
+  if not large_cpp_filetypes[filetype] then
+    return false
+  end
+
+  local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+  if ok and stat and stat.size and stat.size > 256 * 1024 then
+    return true
+  end
+
+  return vim.api.nvim_buf_line_count(buf) > 5000
+end
 
 local function get_clangd_cmd()
   local cmd = {
     "clangd",
-    "-j=" .. (cpu / 2),
+    "-j=" .. math.max(1, math.floor(cpu / 2)),
     "--background-index",
     "--pch-storage=memory",
     "--function-arg-placeholders",
@@ -90,6 +111,10 @@ return {
     offsetEncoding = { "utf-8", "utf-16" },
   },
   on_attach = function(client, buf)
+    if is_large_cpp_buffer(buf) then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
     vim.api.nvim_buf_create_user_command(buf, "ClangdSwitchSourceHeader", function()
       switch_source_header(client, buf)
     end, {

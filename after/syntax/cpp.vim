@@ -10,6 +10,10 @@
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " ==============================================================================
 
+if get(g:, "venux_disable_legacy_c_family_syntax", 1)
+    finish
+endif
+
 " C++ attributes {{{1
 if get(g:, 'cpp_attributes_highlight', 0)
     syntax region cppAttribute matchgroup=cppAttributeBrackets start='\[\[' end=']]' contains=cString

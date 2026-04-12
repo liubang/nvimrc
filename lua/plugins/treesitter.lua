@@ -39,47 +39,72 @@ return {
     "TSUpdate",
     "TSUpdateSync",
   },
-  opts = {
-    ensure_installed = {
-      "go",
-      "query",
-      "rust",
-      "lua",
-      "java",
-      "python",
-      "proto",
-      "gomod",
-      "gosum",
-      "gowork",
-      "sql",
-      "markdown",
-      "markdown_inline",
-      "vimdoc",
-      "json",
-      "tlaplus",
-    },
-    fold = {
-      enable = true,
-    },
-    indent = {
-      enable = false,
-    },
-    matchup = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<C-v>",
-        node_incremental = "v",
-        node_decremental = "V",
-        scope_incremental = false,
+  opts = (function()
+    local large_cpp_filetypes = {
+      c = true,
+      cpp = true,
+      objc = true,
+      objcpp = true,
+      cuda = true,
+    }
+
+    local function disable_highlight(_, buf)
+      local filetype = vim.bo[buf].filetype
+      if not large_cpp_filetypes[filetype] then
+        return false
+      end
+
+      local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stat and stat.size and stat.size > 256 * 1024 then
+        return true
+      end
+
+      return vim.api.nvim_buf_line_count(buf) > 5000
+    end
+
+    return {
+      ensure_installed = {
+        "go",
+        "query",
+        "rust",
+        "lua",
+        "java",
+        "python",
+        "proto",
+        "gomod",
+        "gosum",
+        "gowork",
+        "sql",
+        "markdown",
+        "markdown_inline",
+        "vimdoc",
+        "json",
+        "tlaplus",
       },
-    },
-    highlight = {
-      enable = true,
-    },
-  },
+      fold = {
+        enable = true,
+      },
+      indent = {
+        enable = false,
+      },
+      matchup = {
+        enable = true,
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-v>",
+          node_incremental = "v",
+          node_decremental = "V",
+          scope_incremental = false,
+        },
+      },
+      highlight = {
+        enable = true,
+        disable = disable_highlight,
+      },
+    }
+  end)(),
   config = function(_, opts)
     vim.api.nvim_set_option_value("foldmethod", "expr", {})
     vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
