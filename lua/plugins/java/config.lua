@@ -15,158 +15,45 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 local jutils = require("plugins.java.utils")
-local u = require("venux.utils.util")
-local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
-
-local with_compile = function(client, bufnr, fn) --- {{{
-  return function()
-    if vim.bo.modified then
-      vim.cmd("w")
-    end
-    client.request_sync("java/buildWorkspace", false, 5000, bufnr)
-    fn()
-  end
-end --- }}}
 
 local on_attach = function(client, bufnr) --- {{{
   client.server_capabilities.semanticTokensProvider = nil
   client.server_capabilities.workspaceSymbolProvider = false
 
-  local jdtls = require("jdtls")
-  jdtls.jol_path = jar_dir .. "jol-cli-0.17-full.jar"
-  local create_command = vim.api.nvim_buf_create_user_command
-  create_command(bufnr, "JavaRunLast", with_compile(client, bufnr, require("dap").run_last), { nargs = 0 })
-  create_command(bufnr, "JavaTestClass", with_compile(client, bufnr, jdtls.test_class), { nargs = 0 })
-  create_command(bufnr, "JavaTestNearestMethod", with_compile(client, bufnr, jdtls.test_nearest_method), { nargs = 0 })
-  create_command(bufnr, "JavaPickTest", with_compile(client, bufnr, jdtls.pick_test), { nargs = 0 })
-  create_command(bufnr, "JavaExtractVariable", jdtls.extract_variable, { nargs = 0 })
-  create_command(bufnr, "JavaExtractConstant", jdtls.extract_constant, { nargs = 0 })
-  -- stylua: ignore
-  create_command(bufnr, "JavaExtractMethod", function() jdtls.extract_method(true) end, { nargs = 0 })
-  create_command(bufnr, "JavaTestGenerate", require("jdtls.tests").generate, { nargs = 0 })
-  create_command(bufnr, "JavaTestGoto", require("jdtls.tests").goto_subjects, { nargs = 0 })
-  create_command(bufnr, "JavaProjects", require("java-deps").toggle_outline, { nargs = 0 })
-  -- stylua: ignore
-  create_command(bufnr, "JavaRun", with_compile(client, bufnr, 
-    function() require("jdtls.dap").setup_dap_main_class_configs({verbose = false, on_ready = require('dap')['continue']}) end), { nargs = 0 })
-
-  -- stylua: ignore
-  create_command(bufnr, "JavaTestWithProfile", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)), { nargs = 0 })
-  vim.keymap.set("n", "<leader>dM", with_compile(client, bufnr, jutils.test_with_profile(jdtls.test_nearest_method)))
-end --- }}}
-
-local get_init_options = function() --- {{{
-  local opts = {
-    bundles = {},
-    extendedClientCapabilities = require("jdtls").extendedClientCapabilities,
-  }
-
-  local mason = require("mason-registry")
-  -- vscode-java-debug
-  if mason.has_package("java-debug-adapter") then
-    local java_debug_path = vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server")
-    vim.list_extend(
-      opts.bundles,
-      vim.split(vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"), "\n")
-    )
-  end
-
-  -- vscode-java-test
-  if mason.has_package("java-test") then
-    local java_test_path = vim.fn.expand("$MASON/packages/java-test/extension/server")
-    for _, bundle in ipairs(vim.split(vim.fn.glob(java_test_path .. "/*.jar"), "\n")) do
-      if
-        not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
-        and not vim.endswith(bundle, "jacocoagent.jar")
-      then
-        table.insert(opts.bundles, bundle)
-      end
+  local function run_cmd(cmd)
+    return function()
+      vim.cmd(cmd)
     end
   end
 
-  -- vscode-java-decompiler
-  if mason.has_package("vscode-java-decompiler") then
-    local java_decompiler_path = vim.fn.expand("$MASON/packages/vscode-java-decompiler/server")
-    vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_decompiler_path .. "/*.jar"), "\n"))
+  local function code_action(only)
+    return function()
+      vim.lsp.buf.code_action({
+        context = { only = { only } },
+        apply = true,
+      })
+    end
   end
 
-  -- vscode-java-dependency
-  if mason.has_package("vscode-java-dependency") then
-    local java_dependency_path = vim.fn.expand("$MASON/packages/vscode-java-dependency/extension/server")
-    vim.list_extend(opts.bundles, vim.split(vim.fn.glob(java_dependency_path .. "/*.jar"), "\n"))
-  end
-
-  -- 添加 spring-boot jdtls 扩展 jar 包
-  vim.list_extend(opts.bundles, require("spring_boot").java_extensions())
-
-  -- local debug_file = io.open(vim.env["HOME"] .. "/jdtls_path_check.json", "a")
-  -- debug_file:write(vim.inspect(opts.bundles))
-  -- debug_file:close()
-
-  return opts
-end --- }}}
-
-local jdtls_launcher = function() --- {{{
-  local jdtls_config = nil
-  if u.is_linux then
-    jdtls_config = "/config_linux"
-  elseif u.is_mac then
-    jdtls_config = "/config_mac"
-  end
-  if u.is_arm then
-    jdtls_config = jdtls_config .. "_arm"
-  end
-  local cmd = {
-    jutils.java_bin,
-    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "-Dosgi.bundles.defaultStartLevel=4",
-    "-Declipse.product=org.eclipse.jdt.ls.core.product",
-    "-Dosgi.checkConfiguration=true",
-    "-Dosgi.sharedConfiguration.area=" .. vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/") .. jdtls_config),
-    "-Dosgi.sharedConfiguration.area.readOnly=true",
-    "-Dosgi.configuration.cascaded=true",
-    "-Dlog.protocol=false",
-    "-Dlog.level=ERROR",
-    "-Xms2g",
-    "-Xmx8g",
-    "-XX:+UseG1GC",
-    "-XX:MaxGCPauseMillis=200",
-    "-XX:+AlwaysPreTouch",
-    "-XX:+UseStringDeduplication",
-  }
-  if require("venux.utils.util").is_linux then
-    table.insert(cmd, "-XX:+UseTransparentHugePages")
-  end
-  vim.list_extend(cmd, {
-    "--enable-native-access=ALL-UNNAMED",
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens",
-    "java.base/java.util=ALL-UNNAMED",
-    "--add-opens",
-    "java.base/java.lang=ALL-UNNAMED",
-    "--add-opens",
-    "java.base/sun.nio.fs=ALL-UNNAMED",
-    "-javaagent:" .. jar_dir .. "lombok.jar",
-    "-jar",
-    vim.fn.glob(vim.fn.expand("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")),
-    "-data",
-    jutils.get_workspace_dir(),
-  })
-  return cmd
+  local opts = { buffer = bufnr, silent = true }
+  vim.keymap.set("n", "<leader>jb", run_cmd("JavaBuildBuildWorkspace"), vim.tbl_extend("force", opts, { desc = "Java build workspace" }))
+  vim.keymap.set("n", "<leader>jc", run_cmd("JavaBuildCleanWorkspace"), vim.tbl_extend("force", opts, { desc = "Java clean workspace" }))
+  vim.keymap.set("n", "<leader>jr", run_cmd("JavaRunnerRunMain"), vim.tbl_extend("force", opts, { desc = "Java run main" }))
+  vim.keymap.set("n", "<leader>jR", run_cmd("JavaRunnerStopMain"), vim.tbl_extend("force", opts, { desc = "Java stop main" }))
+  vim.keymap.set("n", "<leader>jl", run_cmd("JavaRunnerToggleLogs"), vim.tbl_extend("force", opts, { desc = "Java toggle logs" }))
+  vim.keymap.set("n", "<leader>jt", run_cmd("JavaTestRunCurrentMethod"), vim.tbl_extend("force", opts, { desc = "Java test current method" }))
+  vim.keymap.set("n", "<leader>jT", run_cmd("JavaTestDebugCurrentMethod"), vim.tbl_extend("force", opts, { desc = "Java debug current method" }))
+  vim.keymap.set("n", "<leader>ja", run_cmd("JavaTestRunAllTests"), vim.tbl_extend("force", opts, { desc = "Java run all tests" }))
+  vim.keymap.set("n", "<leader>jA", run_cmd("JavaTestDebugAllTests"), vim.tbl_extend("force", opts, { desc = "Java debug all tests" }))
+  vim.keymap.set("n", "<leader>jp", run_cmd("JavaProfile"), vim.tbl_extend("force", opts, { desc = "Java profiles" }))
+  vim.keymap.set("n", "<leader>jo", code_action("source.organizeImports"), vim.tbl_extend("force", opts, { desc = "Java organize imports" }))
 end --- }}}
 
 local M = {}
 
 M.jdtls_config = function()
   return {
-    ----------------------------------------------------------------------------------------------
-    --- for jdtls.nvim
-    -- cmd = jdtls_launcher(),
-    -- capabilities = require("blink.cmp").get_lsp_capabilities(),
-    -- root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml" }),
-    -- on_attach = on_attach,
-    -- init_options = get_init_options(),
-    ----------------------------------------------------------------------------------------------
+    on_attach = on_attach,
     settings = {
       java = {
         format = { enabled = true, settings = jutils.fmt_config() },

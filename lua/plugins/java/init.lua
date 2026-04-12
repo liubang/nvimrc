@@ -16,7 +16,7 @@
 
 return {
   "nvim-java/nvim-java",
-  ft = { "java", "jproperties", "xml" },
+  ft = { "java", "jproperties" },
   init = function()
     vim.env.JAVA_HOME = vim.env["JAVA_25_HOME"]
     vim.env.PATH = vim.env.JAVA_HOME .. "/bin" .. ":" .. vim.env.PATH
