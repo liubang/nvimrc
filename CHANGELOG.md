@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.17.1](https://github.com/liubang/nvimrc/compare/v3.17.0...v3.17.1) (2026-04-12)
+
+
+### Bug Fixes
+
+* address config review findings ([e0253ca](https://github.com/liubang/nvimrc/commit/e0253ca349fc5971afd84e1cd69034d453d274a2))
+* clean generated files and harden plugin config ([44fdc8c](https://github.com/liubang/nvimrc/commit/44fdc8c0c984048dcb4596e5d1195cd881177702))
+
+
+### Performance Improvements
+
+* modernize terminal workflow and lazy-load more plugins ([839a5e0](https://github.com/liubang/nvimrc/commit/839a5e009c952f5c75a29df639c59f615a2094d8))
+* optimize c++ workflows for large codebases ([3d5fb13](https://github.com/liubang/nvimrc/commit/3d5fb130d3a8b1b3108548f04bcf4802c9cbd786))
+
 ## [3.17.0](https://github.com/liubang/nvimrc/compare/v3.16.0...v3.17.0) (2026-02-27)
 
 
