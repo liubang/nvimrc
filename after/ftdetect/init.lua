@@ -32,5 +32,6 @@ vim.filetype.add({ -- {{{
     log = "log",
     hql = "hql",
     tql = "tql",
+    flux = "flux",
   },
 }) -- }}}
