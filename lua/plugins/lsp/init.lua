@@ -80,6 +80,7 @@ return {
       local b = null_ls.builtins
       return {
         debug = false,
+        on_attach = require("plugins.lsp.defaults").on_attach,
         sources = {
           b.formatting.stylua,
           b.formatting.asmfmt,
