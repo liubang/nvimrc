@@ -33,6 +33,7 @@ for _, server in ipairs({
   "thriftls", -- for thrift
   "taplo", -- for toml
   "ts_ls",
+  "eslint",
   "bashls",
   "protols",
   "neocmake",
