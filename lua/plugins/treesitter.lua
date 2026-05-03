@@ -122,13 +122,22 @@ return {
     end
 
     -- 大文件降级为 indent fold，小文件用 treesitter foldexpr
+    -- foldmethod/foldexpr 是 window-local 选项，必须用 win= 而非 buf=
     local function set_fold(buf)
+      local wins = vim.fn.win_findbuf(buf)
+      if #wins == 0 then
+        return
+      end
       if is_large_file(buf) then
-        vim.api.nvim_set_option_value("foldmethod", "indent", { buf = buf })
-        vim.api.nvim_set_option_value("foldexpr", "", { buf = buf })
+        for _, win in ipairs(wins) do
+          vim.api.nvim_set_option_value("foldmethod", "indent", { win = win })
+          vim.api.nvim_set_option_value("foldexpr", "", { win = win })
+        end
       else
-        vim.api.nvim_set_option_value("foldmethod", "expr", { buf = buf })
-        vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", { buf = buf })
+        for _, win in ipairs(wins) do
+          vim.api.nvim_set_option_value("foldmethod", "expr", { win = win })
+          vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", { win = win })
+        end
       end
     end
 
