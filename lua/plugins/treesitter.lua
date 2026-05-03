@@ -39,27 +39,26 @@ return {
     "TSUpdate",
     "TSUpdateSync",
   },
+  init = function()
+    -- 大文件判断阈值（统一在顶层定义，opts 和 config 共用）
+    vim.g.ts_max_filesize = 256 * 1024 -- 256 KB
+    vim.g.ts_max_lines = 5000
+  end,
   opts = (function()
-    local large_cpp_filetypes = {
-      c = true,
-      cpp = true,
-      objc = true,
-      objcpp = true,
-      cuda = true,
-    }
-
-    local function disable_highlight(_, buf)
-      local filetype = vim.bo[buf].filetype
-      if not large_cpp_filetypes[filetype] then
-        return false
-      end
-
+    local function is_large_file(buf)
+      local max_size = vim.g.ts_max_filesize or (256 * 1024)
+      local max_lines = vim.g.ts_max_lines or 5000
+      -- 优先用文件大小判断（attach 时文件已在磁盘，stat 更可靠）
       local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stat and stat.size and stat.size > 256 * 1024 then
+      if ok and stat and stat.size and stat.size > max_size then
         return true
       end
+      return vim.api.nvim_buf_line_count(buf) > max_lines
+    end
 
-      return vim.api.nvim_buf_line_count(buf) > 5000
+    -- 所有文件类型都应用大文件保护
+    local function disable_on_large(_, buf)
+      return is_large_file(buf)
     end
 
     return {
@@ -81,14 +80,18 @@ return {
         "json",
         "tlaplus",
       },
+      -- fold 由 config 里的 autocmd 手动管理，避免与 foldexpr 双重控制
       fold = {
-        enable = true,
+        enable = false,
       },
       indent = {
         enable = false,
       },
       matchup = {
         enable = true,
+        -- 大文件禁用 matchup treesitter 集成，防止卡顿
+        disable = disable_on_large,
+        disable_virtual_text = true,
       },
       incremental_selection = {
         enable = true,
@@ -101,13 +104,39 @@ return {
       },
       highlight = {
         enable = true,
-        disable = disable_highlight,
+        disable = disable_on_large,
       },
     }
   end)(),
   config = function(_, opts)
-    vim.api.nvim_set_option_value("foldmethod", "expr", {})
-    vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
     require("nvim-treesitter").setup(opts)
+
+    local function is_large_file(buf)
+      local max_size = vim.g.ts_max_filesize or (256 * 1024)
+      local max_lines = vim.g.ts_max_lines or 5000
+      local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stat and stat.size and stat.size > max_size then
+        return true
+      end
+      return vim.api.nvim_buf_line_count(buf) > max_lines
+    end
+
+    -- 大文件降级为 indent fold，小文件用 treesitter foldexpr
+    local function set_fold(buf)
+      if is_large_file(buf) then
+        vim.api.nvim_set_option_value("foldmethod", "indent", { buf = buf })
+        vim.api.nvim_set_option_value("foldexpr", "", { buf = buf })
+      else
+        vim.api.nvim_set_option_value("foldmethod", "expr", { buf = buf })
+        vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", { buf = buf })
+      end
+    end
+
+    vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+      group = vim.api.nvim_create_augroup("TreesitterFold", { clear = true }),
+      callback = function(ev)
+        set_fold(ev.buf)
+      end,
+    })
   end,
 }
