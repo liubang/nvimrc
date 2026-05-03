@@ -59,10 +59,11 @@ for i = 97, 122 do
   table.insert(charset, string.char(i))
 end
 M.random_string = function(length)
-  if length == 0 then
-    return ""
+  local result = {}
+  for _ = 1, length do
+    result[#result + 1] = charset[math.random(1, #charset)]
   end
-  return M.random_string(length - 1) .. charset[math.random(1, #charset)]
+  return table.concat(result)
 end --}}}
 
 ---Runs the command in shell.

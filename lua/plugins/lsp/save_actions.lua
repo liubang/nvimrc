@@ -31,6 +31,10 @@ function M.setup()
     group = group,
     pattern = vim.tbl_keys(save_actions),
     callback = function(event)
+      if vim.b[event.buf].lsp_save_action_attached then
+        return
+      end
+      vim.b[event.buf].lsp_save_action_attached = true
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = group,
         buffer = event.buf,

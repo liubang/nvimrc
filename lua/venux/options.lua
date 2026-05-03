@@ -36,7 +36,7 @@ vim.opt.swapfile = false
 vim.opt.shiftround = true
 vim.opt.timeout = true
 vim.opt.ttimeout = true
-vim.opt.updatetime = 120
+vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
 vim.opt.redrawtime = 1500
@@ -104,7 +104,7 @@ vim.opt.wildoptions = "pum"
 vim.opt.wildmode = { "longest:full", "list", "full" }
 vim.opt.wildignorecase = true
 vim.opt.wildcharm = vim.fn.char2nr("	") -- tab
-vim.opt.shada = "!,'10000,<1000,s100,h,f1,:100000,@10000,/1000"
+vim.opt.shada = "!,'1000,<200,s100,h,f1,:5000,@1000,/500"
 vim.opt.inccommand = "nosplit"
 vim.opt.diffopt:append("indent-heuristic")
 vim.opt.diffopt:append("algorithm:patience")

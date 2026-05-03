@@ -69,6 +69,7 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 
 -- go to last loc when opening a buffer {{{
 vim.api.nvim_create_autocmd("BufReadPost", {
+  group = special_settings_group,
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -79,6 +80,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 }) -- }}}
 
 vim.api.nvim_create_autocmd("QuitPre", {
+  group = special_settings_group,
   callback = function()
     local tree_wins = {}
     local floating_wins = {}
