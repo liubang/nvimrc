@@ -16,38 +16,15 @@
 
 return {
   {
-    "OXY2DEV/markview.nvim",
-    ft = { "markdown", "mdx", "quarto" },
-    cmd = { "Markview" },
-    version = "*",
-    config = function()
-      local presets = require("markview.presets")
-      require("markview").setup({
-        markdown = {
-          headings = presets.headings.marker,
-          tables = presets.tables.single,
-          code_blocks = {
-            enable = true,
-            style = "block",
-            sign = false,
-          },
-        },
-
-        preview = {
-          enable = false,
-          icon_provider = "mini",
-        },
-      })
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
+    ft = { "markdown" },
     keys = {
-      {
-        "<Leader>mp",
-        function()
-          vim.api.nvim_command("Markview Toggle")
-          vim.api.nvim_command("Markview splitToggle")
-        end,
-        desc = "Markdown Preview",
-      },
+      { "<Leader>mp", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
     },
   },
 }
