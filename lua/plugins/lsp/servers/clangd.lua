@@ -62,7 +62,6 @@ local function get_clangd_cmd()
     "--clang-tidy",
     "--header-insertion=never",
     "--completion-style=detailed",
-    "--query-driver=" .. get_default_drivers({ "clang++", "clang", "gcc", "g++" }),
     "--enable-config",
     "--fallback-style=google",
     "--limit-references=1000",
@@ -71,6 +70,7 @@ local function get_clangd_cmd()
   }
   if not require("venux.utils.util").is_mac then
     table.insert(cmd, "--malloc-trim")
+    table.insert(cmd, "--query-driver=" .. get_default_drivers({ "clang++", "clang", "gcc", "g++" }))
   end
   return cmd
 end
