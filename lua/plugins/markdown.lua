@@ -16,15 +16,37 @@
 
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+    "toppair/peek.nvim",
+    cmd = { "PeekOpen", "PeekClose" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup({
+        auto_load = true,
+        close_on_bdelete = true,
+        syntax = true,
+        theme = "light",
+        update_on_change = true,
+        app = "browser", -- 'webview', 'browser', string or a table of strings
+        filetype = { "markdown" }, -- list of filetypes to recognize as markdown
+        throttle_at = 200000,
+        throttle_time = "auto",
+      })
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
-    ft = { "markdown" },
     keys = {
-      { "<Leader>mp", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
+      {
+        "<Leader>mp",
+        function()
+          local peek = require("peek")
+          if peek.is_open() then
+            peek.close()
+          else
+            peek.open()
+          end
+        end,
+        desc = "Markdown Preview",
+      },
     },
   },
 }
