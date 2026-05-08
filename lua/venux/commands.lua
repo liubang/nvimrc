@@ -31,15 +31,11 @@ vim.api.nvim_create_user_command("YankFilepath", function() -- {{{
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("CopyRight", function() -- {{{
-  require("venux.utils.comment").copy_right()
+  require("venux.utils.comment").copy_right_apache()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("AddFileHeader", function() -- {{{
   require("venux.utils.comment").add_fileheader()
-end, { nargs = 0 }) -- }}}
-
-vim.api.nvim_create_user_command("CopyRightApache", function() -- {{{
-  require("venux.utils.comment").copy_right_apache()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("TrimWhiteSpace", function() -- {{{

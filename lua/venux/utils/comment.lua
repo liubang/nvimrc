@@ -22,16 +22,11 @@ M.opts = {
 }
 
 function M.setup(opts)
-  if opts.author then
-    M.opts.author = opts.author
-  end
-  if opts.email then
-    M.opts.email = opts.email
-  end
+  M.opts = vim.tbl_deep_extend("force", M.opts, opts or {})
 end
 
 -- stylua: ignore
-local prefix_mappings = { -- {{{
+local prefix_mappings = {
   ["c"]               = "//",
   ["cpp"]             = "//",
   ["rust"]            = "//",
@@ -52,98 +47,70 @@ local prefix_mappings = { -- {{{
   ["typescript"]      = "//",
   ["javascriptreact"] = "//",
   ["typescriptreact"] = "//",
-} -- }}}
+}
 
 -- stylua: ignore
-local header_mappings = { -- {{{
+local shebang_mappings = {
   ["php"]    = { "<?php" },
   ["sh"]     = { "#! /bin/bash" },
   ["zsh"]    = { "#! /usr/bin/env zsh" },
   ["python"] = { "#! /usr/bin/env python", "# -*- coding: utf-8 -*-" },
-} -- }}}
+}
 
-local comment_prefix = function() -- {{{
-  local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-  if prefix_mappings[filetype] ~= nil then
-    return prefix_mappings[filetype]
-  end
-  return "#"
-end -- }}}
+local function get_filetype()
+  return vim.api.nvim_get_option_value("filetype", { buf = 0 })
+end
 
-local comment_line = function(c, r) -- {{{
-  local prefix = comment_prefix()
-  while string.len(prefix) < r do
-    prefix = prefix .. c
+local function get_prefix(ft)
+  return prefix_mappings[ft] or "#"
+end
+
+local function prepend_shebang(text, ft)
+  local shebang = shebang_mappings[ft]
+  if shebang then
+    for _, line in ipairs(shebang) do
+      text[#text + 1] = line
+    end
   end
-  return prefix
-end -- }}}
+end
 
 function M.add_fileheader()
   local text = {}
-  local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-  if header_mappings[filetype] ~= nil then
-    for _, v in pairs(header_mappings[filetype]) do
-      table.insert(text, v)
-    end
+  prepend_shebang(text, get_filetype())
+  if #text > 0 then
+    vim.fn.append(0, text)
   end
-  vim.fn.append(0, text)
 end
 
-function M.copy_right() -- {{{
-  local c = comment_prefix()
-  local complete = comment_line("=", 71)
-  local filename = vim.fn.expand("%:t")
-  local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-  local t = os.date("%Y/%m/%d %H:%M")
-  local text = {}
-  if header_mappings[filetype] ~= nil then
-    for _, v in pairs(header_mappings[filetype]) do
-      table.insert(text, v)
-    end
-  end
-  table.insert(text, complete)
-  table.insert(text, c)
-  table.insert(text, c .. " " .. filename .. " -")
-  table.insert(text, c)
-  table.insert(text, c .. " Created by " .. M.opts.author .. " on " .. t)
-  table.insert(text, c .. " Last Modified: " .. t)
-  table.insert(text, c)
-  table.insert(text, complete)
-  vim.fn.append(0, text)
-end -- }}}
-
-function M.copy_right_update() -- {{{
-  local pos = vim.api.nvim_win_get_cursor(0)
-  local n = math.min(10, vim.fn.line("$"))
-  local timestamp = os.date("%Y/%m/%d %H:%M")
-  vim.cmd("keepjumps silent execute '1," .. n .. "s%^.*Last Modified:\\s*\\zs.*\\ze.*$%" .. timestamp .. "%e'")
-  vim.api.nvim_win_set_cursor(0, pos)
-  -- clear last search pattern register
-  vim.cmd([[let @/=""]])
-end -- }}}
-
 function M.copy_right_apache()
-  local c = comment_prefix()
+  local ft = get_filetype()
+  local c = get_prefix(ft)
+  local now = os.date("*t")
+  local year = tostring(now.year)
+  local created = string.format("%04d/%02d/%02d %02d:%02d", now.year, now.month, now.day, now.hour, now.min)
+
   local text = {}
-  table.insert(text, c .. " Copyright (c) " .. os.date("%Y") .. " The Authors. All rights reserved.")
-  table.insert(text, c)
-  table.insert(text, c .. ' Licensed under the Apache License, Version 2.0 (the "License");')
-  table.insert(text, c .. " you may not use this file except in compliance with the License.")
-  table.insert(text, c .. " You may obtain a copy of the License at")
-  table.insert(text, c)
-  table.insert(text, c .. "      https://www.apache.org/licenses/LICENSE-2.0")
-  table.insert(text, c)
-  table.insert(text, c .. " Unless required by applicable law or agreed to in writing, software")
-  table.insert(text, c .. ' distributed under the License is distributed on an "AS IS" BASIS,')
-  table.insert(text, c .. " WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.")
-  table.insert(text, c .. " See the License for the specific language governing permissions and")
-  table.insert(text, c .. " limitations under the License.")
-  table.insert(text, "")
-  table.insert(text, string.format("%s Authors: %s (%s)", c, M.opts.author, M.opts.email))
-  table.insert(text, "")
+  prepend_shebang(text, ft)
+
+  text[#text + 1] = c .. " Copyright (c) " .. year .. " The Authors. All rights reserved."
+  text[#text + 1] = c
+  text[#text + 1] = c .. ' Licensed under the Apache License, Version 2.0 (the "License");'
+  text[#text + 1] = c .. " you may not use this file except in compliance with the License."
+  text[#text + 1] = c .. " You may obtain a copy of the License at"
+  text[#text + 1] = c
+  text[#text + 1] = c .. "      https://www.apache.org/licenses/LICENSE-2.0"
+  text[#text + 1] = c
+  text[#text + 1] = c .. " Unless required by applicable law or agreed to in writing, software"
+  text[#text + 1] = c .. ' distributed under the License is distributed on an "AS IS" BASIS,'
+  text[#text + 1] = c .. " WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."
+  text[#text + 1] = c .. " See the License for the specific language governing permissions and"
+  text[#text + 1] = c .. " limitations under the License."
+  text[#text + 1] = ""
+  text[#text + 1] = string.format("%s Authors: %s (%s)", c, M.opts.author, M.opts.email)
+  text[#text + 1] = string.format("%s Created: %s", c, created)
+  text[#text + 1] = ""
+
   vim.fn.append(0, text)
 end
 
 return M
-
--- vim: fdm=marker fdl=0
