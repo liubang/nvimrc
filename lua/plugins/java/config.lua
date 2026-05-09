@@ -36,6 +36,7 @@ local on_attach = function(client, bufnr) --- {{{
   end
 
   local opts = { buffer = bufnr, silent = true }
+  -- stylua: ignore start
   vim.keymap.set("n", "<leader>jb", run_cmd("JavaBuildBuildWorkspace"), vim.tbl_extend("force", opts, { desc = "Java build workspace" }))
   vim.keymap.set("n", "<leader>jc", run_cmd("JavaBuildCleanWorkspace"), vim.tbl_extend("force", opts, { desc = "Java clean workspace" }))
   vim.keymap.set("n", "<leader>jr", run_cmd("JavaRunnerRunMain"), vim.tbl_extend("force", opts, { desc = "Java run main" }))
@@ -47,6 +48,7 @@ local on_attach = function(client, bufnr) --- {{{
   vim.keymap.set("n", "<leader>jA", run_cmd("JavaTestDebugAllTests"), vim.tbl_extend("force", opts, { desc = "Java debug all tests" }))
   vim.keymap.set("n", "<leader>jp", run_cmd("JavaProfile"), vim.tbl_extend("force", opts, { desc = "Java profiles" }))
   vim.keymap.set("n", "<leader>jo", code_action("source.organizeImports"), vim.tbl_extend("force", opts, { desc = "Java organize imports" }))
+  -- stylua: ignore end
 end --- }}}
 
 local M = {}

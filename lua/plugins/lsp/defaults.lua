@@ -52,7 +52,7 @@ function M.on_attach(_, bufnr)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<Leader>es", "<cmd>Telescope diagnostics bufnr=0<CR>", bufopts)
   vim.keymap.set("n", "<Leader>ee", function()
-    vim.diagnostic.open_float(nil, { scope = "line" })
+    vim.diagnostic.open_float({ scope = "line" })
   end, bufopts)
 
   local winopts = { height = 15, width = 100, max_height = 20, max_width = 140 }
