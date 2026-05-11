@@ -13,11 +13,16 @@
 -- limitations under the License.
 
 -- Authors: liubang (it.liubang@gmail.com)
+-- Created: 2026/05/12 01:03
 
--- 如果你使用的是 Treesitter 语法高亮
--- 强制将 hql 关联到 sql 解析器
 if pcall(require, "nvim-treesitter.parsers") then
-  vim.treesitter.language.register("sql", "hql")
+  -- filetype=tla 使用 tlaplus parser
+  vim.treesitter.language.register("tlaplus", "tla")
   -- 启用 treesitter 高亮
-  pcall(vim.treesitter.start, 0, "sql")
+  pcall(vim.treesitter.start, 0, "tlaplus")
 end
+
+-- TLA+ 单行注释是 \*
+vim.bo.commentstring = "\\* %s"
+-- 可选：开启 conceal，方便把部分符号显示得更数学化
+vim.opt_local.conceallevel = 2

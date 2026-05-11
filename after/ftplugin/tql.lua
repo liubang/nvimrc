@@ -18,4 +18,6 @@
 -- 强制将 tql 关联到 sql 解析器
 if pcall(require, "nvim-treesitter.parsers") then
   vim.treesitter.language.register("sql", "tql")
+  -- 启用 treesitter 高亮
+  pcall(vim.treesitter.start, 0, "sql")
 end
