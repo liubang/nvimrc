@@ -29,7 +29,7 @@ return {
         app = "browser", -- 'webview', 'browser', string or a table of strings
         filetype = { "markdown" }, -- list of filetypes to recognize as markdown
         throttle_at = 200000,
-        throttle_time = "auto",
+        throttle_time = 100,
       })
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
