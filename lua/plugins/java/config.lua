@@ -60,7 +60,7 @@ M.jdtls_config = function()
       java = {
         format = { enabled = true, settings = jutils.fmt_config() },
         autobuild = { enabled = false },
-        maxConcurrentBuilds = 8,
+        maxConcurrentBuilds = 4,
         project = { encoding = "UTF-8" },
         foldingRange = { enabled = true },
         selectionRange = { enabled = true },
