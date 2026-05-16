@@ -178,7 +178,8 @@ function M.open(prompt, values, opts)
     noautocmd = true,
   })
 
-  vim.wo[win].winhl = "Normal:VenuxMultiSelectNormal,FloatBorder:VenuxMultiSelectBorder,FloatTitle:VenuxMultiSelectTitle"
+  vim.wo[win].winhl =
+    "Normal:VenuxMultiSelectNormal,FloatBorder:VenuxMultiSelectBorder,FloatTitle:VenuxMultiSelectTitle"
   vim.wo[win].cursorline = false
   vim.wo[win].wrap = false
   vim.wo[win].scrolloff = 0

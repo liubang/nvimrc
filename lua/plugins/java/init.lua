@@ -67,7 +67,8 @@ return {
         local spring_dir = spring_plugin and spring_plugin.dir or ""
         if spring_dir ~= "" then
           -- `--is-ancestor affc5d1 HEAD` exits 0 if the fix is included, non-zero otherwise
-          local result = vim.system({ "git", "-C", spring_dir, "merge-base", "--is-ancestor", "affc5d1", "HEAD" }):wait()
+          local result =
+            vim.system({ "git", "-C", spring_dir, "merge-base", "--is-ancestor", "affc5d1", "HEAD" }):wait()
           if result.code ~= 0 then
             local spring_util = require("spring_boot.util")
             spring_util.execute_command = function(client, command, param, callback)
