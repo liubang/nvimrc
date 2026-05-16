@@ -26,7 +26,7 @@ return {
         syntax = true,
         theme = "light",
         update_on_change = true,
-        app = "browser", -- 'webview', 'browser', string or a table of strings
+        app = "webview", -- 'webview', 'browser', string or a table of strings
         filetype = { "markdown" }, -- list of filetypes to recognize as markdown
         throttle_at = 200000,
         throttle_time = 100,
