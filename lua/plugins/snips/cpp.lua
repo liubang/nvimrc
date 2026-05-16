@@ -18,11 +18,9 @@ local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
 local f = ls.function_node
-local ts_utils = require("nvim-treesitter.ts_utils")
-
 local function get_class_name()
   local bufnr = vim.api.nvim_get_current_buf()
-  local curr = ts_utils.get_node_at_cursor()
+  local curr = vim.treesitter.get_node()
   local expr = curr
   while expr do
     if expr:type() == "class_specifier" or expr:type() == "struct_specifier" then

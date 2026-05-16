@@ -14,10 +14,6 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
--- 如果你使用的是 Treesitter 语法高亮
--- 强制将 tql 关联到 sql 解析器
-if pcall(require, "nvim-treesitter.parsers") then
-  vim.treesitter.language.register("sql", "tql")
-  -- 启用 treesitter 高亮
-  pcall(vim.treesitter.start, 0, "sql")
-end
+-- 将 tql 关联到 sql 解析器，使用内置 treesitter
+vim.treesitter.language.register("sql", "tql")
+pcall(vim.treesitter.start, 0, "sql")

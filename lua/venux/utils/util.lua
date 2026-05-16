@@ -67,17 +67,14 @@ M.random_string = function(length)
 end --}}}
 
 ---Runs the command in shell.
--- @param command string
--- @return table
+---@param command string
+---@return string[]
 M.shell = function(command) --{{{
-  local file = io.popen(command, "r")
-  local res = {}
-  if file ~= nil then
-    for line in file:lines() do
-      table.insert(res, line)
-    end
+  local result = vim.system({ "sh", "-c", command }, { text = true }):wait()
+  if result.code ~= 0 or not result.stdout then
+    return {}
   end
-  return res
+  return vim.split(result.stdout, "\n", { trimempty = true })
 end --}}}
 
 M.sep = function() -- {{{

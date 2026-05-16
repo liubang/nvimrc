@@ -15,12 +15,9 @@
 -- Authors: liubang (it.liubang@gmail.com)
 -- Created: 2026/05/12 01:03
 
-if pcall(require, "nvim-treesitter.parsers") then
-  -- filetype=tla 使用 tlaplus parser
-  vim.treesitter.language.register("tlaplus", "tla")
-  -- 启用 treesitter 高亮
-  pcall(vim.treesitter.start, 0, "tlaplus")
-end
+-- filetype=tla 使用 tlaplus parser
+vim.treesitter.language.register("tlaplus", "tla")
+pcall(vim.treesitter.start, 0, "tlaplus")
 
 -- TLA+ 单行注释是 \*
 vim.bo.commentstring = "\\* %s"
