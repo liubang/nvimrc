@@ -21,6 +21,9 @@ return {
   "romus204/tree-sitter-manager.nvim",
   cmd = { "TSManager" },
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    { "mason-org/mason-lspconfig.nvim" },
+  },
   keys = {
     { "<C-v>", desc = "Treesitter Increment Selection" },
     { "V", desc = "Treesitter Decrement Selection", mode = "x" },
