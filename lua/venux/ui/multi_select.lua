@@ -193,61 +193,74 @@ function M.open(prompt, values, opts)
     vim.cmd.redraw()
   end
 
-  render()
+  --- Cleanup: close window and buffer.
+  local function cleanup()
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_win_close(win, true)
+    end
+    if vim.api.nvim_buf_is_valid(buf) then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+    vim.cmd.redraw()
+  end
 
-  -- Event loop
+  -- ── Event loop (wrapped in pcall to guarantee cleanup) ──
   local cancelled = false
-  while true do
-    local ok, code = pcall(vim.fn.getchar)
-    if not ok then
-      cancelled = true
-      break
-    end
 
-    local ch = type(code) == "number" and vim.fn.nr2char(code) or code
-    if ch == "" then
-      -- noop
-    elseif ch == "\27" or ch == "q" then
-      cancelled = true
-      break
-    elseif ch == "\r" then
-      break
-    elseif ch == " " then
-      checked[cursor] = not checked[cursor]
-      render()
-    elseif ch == "j" or ch == "\x80kd" then
-      cursor = cursor < #labels and cursor + 1 or 1
-      render()
-    elseif ch == "k" or ch == "\x80ku" then
-      cursor = cursor > 1 and cursor - 1 or #labels
-      render()
-    elseif ch == "a" then
-      for i = 1, #checked do
-        checked[i] = true
-      end
-      render()
-    elseif ch == "n" then
-      for i = 1, #checked do
-        checked[i] = false
-      end
-      render()
-    elseif ch == "g" then
-      cursor = 1
-      render()
-    elseif ch == "G" then
-      cursor = #labels
-      render()
-    end
-  end
+  local loop_ok, loop_err = pcall(function()
+    render()
 
-  -- Cleanup
-  if vim.api.nvim_win_is_valid(win) then
-    vim.api.nvim_win_close(win, true)
+    while true do
+      local ok, code = pcall(vim.fn.getchar)
+      if not ok then
+        cancelled = true
+        break
+      end
+
+      local ch = type(code) == "number" and vim.fn.nr2char(code) or code
+      if ch == "" then
+        -- noop
+      elseif ch == "\27" or ch == "q" then
+        cancelled = true
+        break
+      elseif ch == "\r" then
+        break
+      elseif ch == " " then
+        checked[cursor] = not checked[cursor]
+        render()
+      elseif ch == "j" or ch == "\x80kd" then
+        cursor = cursor < #labels and cursor + 1 or 1
+        render()
+      elseif ch == "k" or ch == "\x80ku" then
+        cursor = cursor > 1 and cursor - 1 or #labels
+        render()
+      elseif ch == "a" then
+        for i = 1, #checked do
+          checked[i] = true
+        end
+        render()
+      elseif ch == "n" then
+        for i = 1, #checked do
+          checked[i] = false
+        end
+        render()
+      elseif ch == "g" then
+        cursor = 1
+        render()
+      elseif ch == "G" then
+        cursor = #labels
+        render()
+      end
+    end
+  end)
+
+  -- Always cleanup, even if the event loop errored
+  cleanup()
+
+  -- Re-raise if the loop errored (after cleanup)
+  if not loop_ok then
+    error(loop_err, 0)
   end
-  if vim.api.nvim_buf_is_valid(buf) then
-    vim.api.nvim_buf_delete(buf, { force = true })
-  end
-  vim.cmd.redraw()
 
   if cancelled then
     return nil
