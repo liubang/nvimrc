@@ -25,6 +25,7 @@ for _, server in ipairs({
   "yamlls",
   "texlab",
   "lemminx", -- for xml
+  "flux_ls",
 }) do
   defaults.enable(server, require("plugins.lsp.servers." .. server))
 end
