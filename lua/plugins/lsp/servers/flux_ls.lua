@@ -16,7 +16,9 @@
 -- Created: 2026/05/18 01:12
 
 return {
-  cmd = { "flux-ls" },
+  cmd = {
+    vim.fn.expand("~/workspace/liubang/playground/bazel-bin/cpp/pl/flux/contrib/lsp/flux-ls"),
+  },
   filetypes = { "flux" },
   root_markers = { ".git" },
 }

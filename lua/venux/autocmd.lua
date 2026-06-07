@@ -24,7 +24,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "gitsigns-blame",
     "grug-far",
     "notify",
-    "notify",
     "tsplayground",
     "lspinfo",
     "lsp-installer",
