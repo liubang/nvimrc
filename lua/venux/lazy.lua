@@ -37,7 +37,7 @@ require("lazy").setup({
   concurrency = 6,
   install = {
     missing = true,
-    colorscheme = { "catppuccin", "gruvbox-material" },
+    colorscheme = { "gruvbox-material" },
   },
   dev = {
     path = "~/workspace/liubang",
