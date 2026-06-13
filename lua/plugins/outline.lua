@@ -27,6 +27,57 @@ return {
         blacklist_clients = { "spring-boot" },
       },
     },
+    -- Use Nerd Font icons matching blink.cmp's style (all Nerd Font glyphs, no mixed Unicode/emoji)
+    symbols = {
+      icon_source = nil, -- don't use lspkind
+      -- Use mini.icons for a consistent Nerd Font (nf-cod-*) icon set
+      icon_fetcher = function(kind, bufnr, symbol)
+        local ok, mini_icons = pcall(require, "mini.icons")
+        if ok then
+          local icon = mini_icons.get("lsp", kind:lower())
+          if icon and icon ~= "" then
+            return icon
+          end
+        end
+        return nil -- fall through to symbols.icons below
+      end,
+      icons = {
+        -- Fallback icons — all Nerd Font glyphs matching blink.cmp style
+        File = { icon = "󰈔", hl = "Identifier" },
+        Module = { icon = "󰅩", hl = "Include" },
+        Namespace = { icon = "󰅪", hl = "Include" },
+        Package = { icon = "󰏗", hl = "Include" },
+        Class = { icon = "󱡠", hl = "Type" },
+        Method = { icon = "󰊕", hl = "Function" },
+        Property = { icon = "󰖷", hl = "Identifier" },
+        Field = { icon = "󰜢", hl = "Identifier" },
+        Constructor = { icon = "󰒓", hl = "Special" },
+        Enum = { icon = "󰦨", hl = "Type" },
+        Interface = { icon = "󱡠", hl = "Type" },
+        Function = { icon = "󰊕", hl = "Function" },
+        Variable = { icon = "󰆦", hl = "Constant" },
+        Constant = { icon = "󰏿", hl = "Constant" },
+        String = { icon = "󰉿", hl = "String" },
+        Number = { icon = "󰎞", hl = "Number" },
+        Boolean = { icon = "󰨙", hl = "Boolean" },
+        Array = { icon = "󰅪", hl = "Constant" },
+        Object = { icon = "󰅩", hl = "Type" },
+        Key = { icon = "󰌆", hl = "Type" },
+        Null = { icon = "󰟢", hl = "Type" },
+        EnumMember = { icon = "󰦨", hl = "Identifier" },
+        Struct = { icon = "󱡠", hl = "Structure" },
+        Event = { icon = "󱐋", hl = "Type" },
+        Operator = { icon = "󰪚", hl = "Identifier" },
+        TypeParameter = { icon = "󰬛", hl = "Identifier" },
+        Component = { icon = "󰅴", hl = "Function" },
+        Fragment = { icon = "󰅴", hl = "Constant" },
+        -- ccls extras
+        TypeAlias = { icon = "󰝒", hl = "Type" },
+        Parameter = { icon = "󰆦", hl = "Identifier" },
+        StaticMethod = { icon = "󰊕", hl = "Function" },
+        Macro = { icon = "󰌁", hl = "Function" },
+      },
+    },
   },
   keys = {
     { "<Leader>tl", "<CMD>Outline<CR>", mode = { "n" }, desc = "Open or close the outline window" },

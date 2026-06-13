@@ -16,20 +16,23 @@
 
 return {
   "saghen/blink.cmp",
-  version = "*",
   event = { "InsertEnter" },
   dependencies = {
-    { "L3MON4D3/LuaSnip" },
+    "saghen/blink.lib",
+    "L3MON4D3/LuaSnip",
   },
+  build = function()
+    require("blink.cmp").build():pwait()
+  end,
   opts_extend = {
     "sources.completion.enabled_providers",
     "sources.default",
   },
   opts = {
-    appearance = {
-      use_nvim_cmp_as_default = false,
-      nerd_font_variant = "mono",
-    },
+    -- appearance = {
+    --   use_nvim_cmp_as_default = false,
+    --   nerd_font_variant = "mono",
+    -- },
     snippets = { preset = "luasnip" },
     sources = {
       default = { "lsp", "lazydev", "snippets", "buffer", "path" },
@@ -43,6 +46,7 @@ return {
     },
     completion = {
       documentation = { auto_show = false },
+      ghost_text = { enabled = false },
       list = {
         selection = { preselect = true, auto_insert = true },
       },
@@ -54,7 +58,7 @@ return {
     },
     cmdline = { enabled = false },
     fuzzy = {
-      implementation = "prefer_rust_with_warning",
+      implementation = "rust",
       frecency = { enabled = true },
       use_proximity = false,
       prebuilt_binaries = {
