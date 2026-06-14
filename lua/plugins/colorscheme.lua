@@ -15,37 +15,34 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
+  -- Default: everforest
   {
-    "sainnhe/gruvbox-material", -- {{{
+    "sainnhe/everforest",
     lazy = false,
-    enabled = true,
     priority = 1000,
     config = function()
       vim.o.background = "dark"
 
-      local u = require("venux.utils.util")
-      if u.is_linux then
-        -- for linux
-        vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h15:h15"
-      else
-        -- for macos
-        vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h18:h18"
-      end
+      -- everforest
+      vim.g.everforest_background = "hard"
+      vim.g.everforest_better_performance = 1
+      vim.g.everforest_enable_italic = 0
+      vim.g.everforest_disable_italic_comment = 1
 
-      -- neowide {{{
-      vim.g.neovide_refresh_rate = 60
-      vim.g.neovide_cursor_vfx_mode = "railgun"
-      vim.g.neovide_no_idle = true
-      vim.g.neovide_cursor_animation_length = 0.03
-      vim.g.neovide_cursor_trail_length = 0.05
-      vim.g.neovide_cursor_antialiasing = true
-      vim.g.neovide_cursor_vfx_opacity = 200.0
-      vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
-      vim.g.neovide_cursor_vfx_particle_speed = 20.0
-      vim.g.neovide_cursor_vfx_particle_density = 5.0
-      -- }}}
+      vim.cmd.colorscheme("everforest")
 
-      -- theme {{{
+      vim.api.nvim_create_user_command("Everforest", function()
+        vim.cmd.colorscheme("everforest")
+      end, { desc = "Switch to everforest colorscheme" })
+    end,
+  },
+
+  -- Alternative: gruvbox-material — switch with :Gruvbox
+  {
+    "sainnhe/gruvbox-material",
+    lazy = true,
+    cmd = "Gruvbox",
+    config = function()
       vim.g.gruvbox_material_foreground = "material"
       vim.g.gruvbox_filetype_hi_groups = 0
       vim.g.gruvbox_plugin_hi_groups = 0
@@ -54,10 +51,11 @@ return {
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_better_performance = 1
       vim.g.gruvbox_material_disable_italic_comment = 1
-      -- }}}
-
       vim.cmd.colorscheme("gruvbox-material")
+
+      vim.api.nvim_create_user_command("Gruvbox", function()
+        vim.cmd.colorscheme("gruvbox-material")
+      end, { desc = "Switch to gruvbox-material colorscheme", force = true })
     end,
   },
 }
--- vim: fdm=marker fdl=0
