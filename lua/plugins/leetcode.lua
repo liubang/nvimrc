@@ -30,7 +30,7 @@ return {
       home = workspace .. "/leetcode/src",
       cache = vim.fn.stdpath("cache") .. "/leetcode",
     },
-    picker = { provider = "telescope" },
+    picker = { provider = "snacks-picker" },
     injector = {
       ["cpp"] = {
         imports = function()

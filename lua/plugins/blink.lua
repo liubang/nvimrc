@@ -29,10 +29,6 @@ return {
     "sources.default",
   },
   opts = {
-    -- appearance = {
-    --   use_nvim_cmp_as_default = false,
-    --   nerd_font_variant = "mono",
-    -- },
     snippets = { preset = "luasnip" },
     sources = {
       default = { "lsp", "lazydev", "snippets", "buffer", "path" },
@@ -59,16 +55,6 @@ return {
     cmdline = { enabled = false },
     fuzzy = {
       implementation = "rust",
-      frecency = { enabled = true },
-      use_proximity = false,
-      prebuilt_binaries = {
-        ignore_version_mismatch = true,
-      },
-      sorts = {
-        "score", -- Primary sort: by fuzzy matching score
-        "sort_text", -- Secondary sort: by sortText field if scores are equal
-        "label", -- Tertiary sort: by label if still tied
-      },
     },
     signature = { enabled = false },
     keymap = {

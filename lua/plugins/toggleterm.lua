@@ -20,15 +20,7 @@ return {
   cmd = { "ToggleTerm", "TermExec", "TermNew", "TermSelect" },
   keys = {
     { "<C-t>", "<CMD>ToggleTerm direction=float<CR>", desc = "Toggle float terminal" },
-    { "<Leader>tt", "<CMD>TermSelect<CR>", desc = "Select terminal" },
-    { "<Leader>tf", "<CMD>ToggleTerm direction=float<CR>", desc = "Toggle float terminal" },
     { "<Leader>th", "<CMD>ToggleTerm direction=horizontal<CR>", desc = "Toggle horizontal terminal" },
-    {
-      "<C-n>",
-      vim.api.nvim_replace_termcodes("<C-\\><C-N><CMD>TermNew direction=float<CR>", true, true, true),
-      mode = { "t" },
-      desc = "Create float terminal",
-    },
     {
       "<C-t>",
       vim.api.nvim_replace_termcodes("<C-\\><C-N><CMD>ToggleTerm direction=float<CR>", true, true, true),
@@ -62,6 +54,14 @@ return {
     close_on_exit = false,
     auto_scroll = true,
     shade_terminals = false,
+    on_open = function(term)
+      if term.window and vim.api.nvim_win_is_valid(term.window) then
+        vim.api.nvim_set_option_value("number", false, { win = term.window })
+        vim.api.nvim_set_option_value("relativenumber", false, { win = term.window })
+        vim.api.nvim_set_option_value("signcolumn", "no", { win = term.window })
+        vim.api.nvim_set_option_value("foldcolumn", "0", { win = term.window })
+      end
+    end,
     float_opts = {
       border = "single",
       width = function()

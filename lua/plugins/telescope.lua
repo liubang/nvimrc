@@ -16,6 +16,7 @@
 
 local M = {
   "nvim-telescope/telescope.nvim",
+  enabled = false, -- migrated to snacks.nvim
   cmd = "Telescope",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },

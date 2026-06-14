@@ -47,19 +47,19 @@ vim.api.nvim_create_user_command("DocUpdate", function() -- {{{
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("Tasks", function() -- {{{
-  require("telescope").extensions.tasks.tasks()
+  require("snacks.tasks").tasks()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("BazelBuild", function() -- {{{
-  require("telescope").extensions.bazel.bazel_build()
+  require("snacks.bazel").build()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("BazelRun", function() -- {{{
-  require("telescope").extensions.bazel.bazel_run()
+  require("snacks.bazel").run()
 end, { nargs = 0 }) -- }}}
 
 vim.api.nvim_create_user_command("BazelTests", function() -- {{{
-  require("telescope").extensions.bazel.bazel_tests()
+  require("snacks.bazel").test()
 end, { nargs = 0 }) -- }}}
 
 -- vim: fdm=marker fdl=0

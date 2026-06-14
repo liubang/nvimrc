@@ -16,6 +16,7 @@
 
 return {
   "goolord/alpha-nvim", -- {{{
+  enabled = false, -- migrated to snacks.nvim dashboard
   event = "VimEnter",
   cmd = "Alpha",
   dependencies = { "echasnovski/mini.icons" },
