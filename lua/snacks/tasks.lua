@@ -34,8 +34,8 @@ function M.tasks()
   for i = 1, #tasks do
     local t = tasks[i]
     table.insert(entries, {
-      name = t[1],  -- task name
-      cmd = t[2],   -- task command
+      name = t[1], -- task name
+      cmd = t[2], -- task command
       text = table.concat(t, " | "),
       value = t[1],
     })
