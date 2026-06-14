@@ -1,5 +1,35 @@
 # Changelog
 
+## [3.18.0](https://github.com/liubang/nvimrc/compare/v3.17.0...v3.18.0) (2026-06-14)
+
+
+### Features
+
+* **lsp:** add flux language server configuration ([b138200](https://github.com/liubang/nvimrc/commit/b13820086546ad988d4cc24e42e16bf262050d26))
+* migrate from telescope.nvim to snacks.nvim ([61b2de8](https://github.com/liubang/nvimrc/commit/61b2de8f5b765a5bb55cfb82ab6a11862f44a8c2))
+* **outline:** use Nerd Font icons consistent with blink.cmp style ([e50161e](https://github.com/liubang/nvimrc/commit/e50161e5df7f763d7690fa099497a14546e22cbe))
+* **plugins:** replace markdown-preview.nvim with peek.nvim ([5e807e8](https://github.com/liubang/nvimrc/commit/5e807e86abbc0fdf9d6798b03abb79d94f6fc63d))
+* **ui:** review fixes + multi_select test - Fix backspace detection in listbox/textbox search (code==128 -&gt; ch==\127/\x80kb) - Fix UTF-8 safe backspace in search pattern (sub -&gt; strcharpart) - Wrap event loops in pcall for context_menu/listbox/multi_select/textbox - Fix confirm VenuxConfirmHotkeyOn highlight (link ignores underline attr) - Add test_multi_select.lua with 6 test scenarios ([e538121](https://github.com/liubang/nvimrc/commit/e53812102afd2b3893a342598832d45da294cdf2))
+
+
+### Bug Fixes
+
+* address config review findings ([e0253ca](https://github.com/liubang/nvimrc/commit/e0253ca349fc5971afd84e1cd69034d453d274a2))
+* clean generated files and harden plugin config ([44fdc8c](https://github.com/liubang/nvimrc/commit/44fdc8c0c984048dcb4596e5d1195cd881177702))
+* **comment:** idempotent CopyRight with anchor-based header replacement ([5cf8284](https://github.com/liubang/nvimrc/commit/5cf8284eec07e24ed53d657d8fa815762ce6d825))
+* **dashboard:** use percentage-based row for screen-adaptive positioning ([52d18df](https://github.com/liubang/nvimrc/commit/52d18df27fa299a76a2c252d9fe2a4903c76ea82))
+* remove deprecated nil arg in vim.diagnostic.open_float and apply stylua formatting ([ac44818](https://github.com/liubang/nvimrc/commit/ac44818a23198e207bce26f5f3c6705b99968f79))
+* **terminal:** unify terminal management — single toggleterm, no Terminal hijack ([dff9f98](https://github.com/liubang/nvimrc/commit/dff9f98a6987aee083d186b58b4db881e6d85308))
+* **treesitter:** use win= for window-local fold options in set_fold ([b4f60b0](https://github.com/liubang/nvimrc/commit/b4f60b03327a71af5780df59b50d5c57f3bdc9a8))
+
+
+### Performance Improvements
+
+* fix performance and stability issues from code review ([8a1159d](https://github.com/liubang/nvimrc/commit/8a1159d342a197c27531e0a653bd063ceec7e4f4))
+* modernize terminal workflow and lazy-load more plugins ([839a5e0](https://github.com/liubang/nvimrc/commit/839a5e009c952f5c75a29df639c59f615a2094d8))
+* optimize c++ workflows for large codebases ([3d5fb13](https://github.com/liubang/nvimrc/commit/3d5fb130d3a8b1b3108548f04bcf4802c9cbd786))
+* **treesitter:** improve large file protection and fold fallback ([de06ba7](https://github.com/liubang/nvimrc/commit/de06ba75f3cc5c2d7fadd9acf2d5f9ab34e95320))
+
 ## [3.17.0](https://github.com/liubang/nvimrc/compare/v3.16.0...v3.17.0) (2026-02-27)
 
 
