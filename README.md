@@ -144,8 +144,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<C-Down>`   | Decrease window height                                                                                              | **n**               |
 | `<C-Left>`   | Decrease window width                                                                                               | **n**               |
 | `<C-Right>`  | Increase window width                                                                                               | **n**               |
-| `j`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gj movement               | **n**               |
-| `k`          | [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim.git) Accelerated gk movement               | **n**               |
 | `<C-b>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build current file                              | **n**               |
 | `<C-r>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Run current file                                | **n**               |
 | `<C-x>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build and run current file                      | **n**               |
@@ -198,6 +196,9 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>gf` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git files                                                   | **n**               |
 | `<Leader>gs` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git status                                                  | **n**               |
 | `<Leader>gl` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git log                                                     | **n**               |
+| `<Leader>gL` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git log (current file)                                      | **n**               |
+| `<Leader>gh` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git log (current line)                                      | **n**               |
+| `<Leader>gv` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git diff (hunks)                                            | **n**               |
 | `<Leader>gb` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git branches                                                | **n**               |
 | `<C-t>`      | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Toggle float terminal                             | **n**, **t**        |
 | `<Leader>th` | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Toggle horizontal terminal                        | **n**               |
@@ -213,18 +214,15 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 
 <!-- plugins:start -->
 
-- [accelerated-jk.nvim](https://github.com/rainbowhxch/accelerated-jk.nvim)
 - [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 - [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim)
 - [autoclose.nvim](https://github.com/m4xshen/autoclose.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [blink.lib](https://github.com/saghen/blink.lib)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [fzy-lua-native](https://github.com/romgrk/fzy-lua-native)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim)
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
@@ -265,6 +263,5 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [vim-diagon](https://github.com/willchao612/vim-diagon)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [vimtex](https://github.com/lervag/vimtex)
-- [wilder.nvim](https://github.com/gelguy/wilder.nvim)
 
 <!-- plugins:end -->

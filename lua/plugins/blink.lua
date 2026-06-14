@@ -38,6 +38,14 @@ return {
           module = "lazydev.integrations.blink",
           score_offset = 100,
         },
+        cmdline = {
+          min_keyword_length = function(ctx)
+            if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+              return 3
+            end
+            return 0
+          end,
+        },
       },
     },
     completion = {
@@ -52,7 +60,10 @@ return {
         },
       },
     },
-    cmdline = { enabled = false },
+    cmdline = {
+      enabled = true,
+      keymap = { preset = "cmdline" },
+    },
     fuzzy = {
       implementation = "rust",
     },

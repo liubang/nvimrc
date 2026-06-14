@@ -1,4 +1,3 @@
--- stylua: ignore
 -- Copyright (c) 2026 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +25,7 @@ return {
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
-      row = math.floor(vim.o.lines * 0.2), 
+      row = math.floor(vim.o.lines * 0.2),
       preset = {
         header = [[
  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
@@ -39,6 +38,7 @@ return {
    ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░
          ░    ░  ░    ░ ░        ░   ░         ░
                                 ░                  ]],
+        -- stylua: ignore
         keys = {
           { icon = " ", key = "f", desc = "Find file", action = ":lua Snacks.picker.files()" },
           { icon = " ", key = "b", desc = "List buffers", action = ":lua Snacks.picker.buffers()" },
@@ -91,7 +91,17 @@ return {
         git_log = { layout = { hidden = {} } },
         git_log_line = { layout = { hidden = {} } },
         git_log_file = { layout = { hidden = {} } },
-        git_diff = { layout = { hidden = {} } },
+        git_diff = {
+          layout = { hidden = {} },
+          win = {
+            input = {
+              keys = {
+                ["<Tab>"] = { "git_stage", mode = { "n", "i" } },
+                ["<C-r>"] = { "git_restore", mode = { "n", "i" }, nowait = true },
+              },
+            },
+          },
+        },
       },
       win = {
         input = {
@@ -113,8 +123,8 @@ return {
     statuscolumn = { enabled = false },
     words = { enabled = false },
   },
+  -- stylua: ignore
   keys = {
-    -- stylua: ignore
     -- Core pickers (mirroring telescope keymaps)
     { "<Leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
     { "<Leader>rf", function() Snacks.picker.recent() end, desc = "Recent files" },
@@ -143,6 +153,9 @@ return {
     { "<Leader>gf", function() Snacks.picker.git_files() end, desc = "Git files" },
     { "<Leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
     { "<Leader>gl", function() Snacks.picker.git_log() end, desc = "Git log" },
+    { "<Leader>gL", function() Snacks.picker.git_log_file({ follow = true }) end, desc = "Git log (current file)" },
+    { "<Leader>gh", function() Snacks.picker.git_log_line({ follow = true }) end, desc = "Git log (current line)" },
+    { "<Leader>gv", function() Snacks.picker.git_diff() end, desc = "Git diff (hunks)" },
     { "<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
   },
   config = function(_, opts)
