@@ -1,5 +1,5 @@
 *nvimrc.txt*
-                             For Neovim >= 0.10.0    Last change: 2026 June 13
+                             For Neovim >= 0.10.0    Last change: 2026 June 14
 
 ==============================================================================
 Table of Contents                                   *nvimrc-table-of-contents*
@@ -124,212 +124,195 @@ evolves.
 KEYMAPS                                                       *nvimrc-keymaps*
 
   ------------------------------------------------------------------------------
-  Key          Description                                              Mode
-  ------------ -------------------------------------------------------- --------
-  n            Next search result                                       n, x, o
+  Key          Description                                             Mode
+  ------------ ------------------------------------------------------- ---------
+  n            Next search result                                      n, x, o
 
-  N            Previous search result                                   n, x, o
+  N            Previous search result                                  n, x, o
 
-  <S-j>        Move lines down                                          n, x
+  <S-j>        Move lines down                                         n, x
 
-  <S-k>        Move lines up                                            n, x
+  <S-k>        Move lines up                                           n, x
 
-  <Esc><Esc>   Clear hlsearch                                           n
+  <Esc><Esc>   Clear hlsearch                                          n
 
-  /            Search in visually selected region                       x
+  /            Search in visually selected region                      x
 
-  <            Keep the visually selected area when indenting           x
+  <            Keep the visually selected area when indenting          x
 
-  >            Keep the visually selected area when indenting           x
+  >            Keep the visually selected area when indenting          x
 
-  p            Replace the selection without overwriting the default    x
-               register                                                 
+  p            Replace the selection without overwriting the default   x
+               register                                                
 
-  <Leader>bp   Previous                                                 n
+  <Leader>bp   Previous                                                n
 
-  <Leader>bn   Next                                                     n
+  <Leader>bn   Next                                                    n
 
-  <Leader>bf   First                                                    n
+  <Leader>bf   First                                                   n
 
-  <Leader>bl   Last                                                     n
+  <Leader>bl   Last                                                    n
 
-  <Leader>ww   Toggle between open windows                              n
+  <Leader>ww   Toggle between open windows                             n
 
-  <leader>wd   Delete window                                            n
+  <leader>wd   Delete window                                           n
 
-  <Leader>wh   Move to the left window                                  n
+  <Leader>wh   Move to the left window                                 n
 
-  <Leader>wl   Move to the right window                                 n
+  <Leader>wl   Move to the right window                                n
 
-  <Leader>wj   Move to the bottom window                                n
+  <Leader>wj   Move to the bottom window                               n
 
-  <Leader>wk   Move to the top window                                   n
+  <Leader>wk   Move to the top window                                  n
 
-  <Leader>ws   Split window horizontally                                n
+  <Leader>ws   Split window horizontally                               n
 
-  <Leader>wv   Split window vertically                                  n
+  <Leader>wv   Split window vertically                                 n
 
-  <C-Up>       Increase window height                                   n
+  <C-Up>       Increase window height                                  n
 
-  <C-Down>     Decrease window height                                   n
+  <C-Down>     Decrease window height                                  n
 
-  <C-Left>     Decrease window width                                    n
+  <C-Left>     Decrease window width                                   n
 
-  <C-Right>    Increase window width                                    n
+  <C-Right>    Increase window width                                   n
 
-  j            accelerated-jk.nvim Accelerated gj movement              n
+  j            accelerated-jk.nvim Accelerated gj movement             n
 
-  k            accelerated-jk.nvim Accelerated gk movement              n
+  k            accelerated-jk.nvim Accelerated gk movement             n
 
-  <C-b>        asynctasks.vim Build current file                        n
+  <C-b>        asynctasks.vim Build current file                       n
 
-  <C-r>        asynctasks.vim Run current file                          n
+  <C-r>        asynctasks.vim Run current file                         n
 
-  <C-x>        asynctasks.vim Build and run current file                n
+  <C-x>        asynctasks.vim Build and run current file               n
 
-  <Leader>1    bufferline.nvim Go to visible buffer 1                   n
+  <Leader>1    bufferline.nvim Go to visible buffer 1                  n
 
-  <Leader>2    bufferline.nvim Go to visible buffer 2                   n
+  <Leader>2    bufferline.nvim Go to visible buffer 2                  n
 
-  <Leader>3    bufferline.nvim Go to visible buffer 3                   n
+  <Leader>3    bufferline.nvim Go to visible buffer 3                  n
 
-  <Leader>4    bufferline.nvim Go to visible buffer 4                   n
+  <Leader>4    bufferline.nvim Go to visible buffer 4                  n
 
-  <Leader>5    bufferline.nvim Go to visible buffer 5                   n
+  <Leader>5    bufferline.nvim Go to visible buffer 5                  n
 
-  <Leader>6    bufferline.nvim Go to visible buffer 6                   n
+  <Leader>6    bufferline.nvim Go to visible buffer 6                  n
 
-  <Leader>7    bufferline.nvim Go to visible buffer 7                   n
+  <Leader>7    bufferline.nvim Go to visible buffer 7                  n
 
-  <Leader>8    bufferline.nvim Go to visible buffer 8                   n
+  <Leader>8    bufferline.nvim Go to visible buffer 8                  n
 
-  <Leader>9    bufferline.nvim Go to visible buffer 9                   n
+  <Leader>9    bufferline.nvim Go to visible buffer 9                  n
 
-  <leader>bo   bufferline.nvim Delete other buffers                     n
+  <leader>bo   bufferline.nvim Delete other buffers                    n
 
-  s            flash.nvim Flash                                         n, x, o
+  s            flash.nvim Flash                                        n, x, o
 
-  S            flash.nvim Flash Treesitter                              n, x, o
+  S            flash.nvim Flash Treesitter                             n, x, o
 
-  r            flash.nvim Remote Flash                                  o
+  r            flash.nvim Remote Flash                                 o
 
-  R            flash.nvim Treesitter Search                             o, x
+  R            flash.nvim Treesitter Search                            o, x
 
-  <Leader>hb   gitsigns.nvim Show the line git blame in a floating      n
-               window                                                   
+  <Leader>hb   gitsigns.nvim Show the line git blame in a floating     n
+               window                                                  
 
-  <Leader>hd   gitsigns.nvim Perform a vimdiff on the given file        n
+  <Leader>hd   gitsigns.nvim Perform a vimdiff on the given file       n
 
-  <Leader>hr   gitsigns.nvim Reset the lines of the hunk at the cursor  n
-               position                                                 
+  <Leader>hr   gitsigns.nvim Reset the lines of the hunk at the cursor n
+               position                                                
 
-  <Leader>hs   gitsigns.nvim Stage the hunk at the cursor position      n
+  <Leader>hs   gitsigns.nvim Stage the hunk at the cursor position     n
 
-  <leader>sr   grug-far.nvim Search and Replace                         n, v
+  <leader>sr   grug-far.nvim Search and Replace                        n, v
 
-  <leader>bd   mini.bufremove Delete Buffer                             n
+  <leader>bd   mini.bufremove Delete Buffer                            n
 
-  <leader>bD   mini.bufremove Delete Buffer (Force)                     n
+  <leader>bD   mini.bufremove Delete Buffer (Force)                    n
 
-  gc           mini.comment Toggle line comment                         n, x
+  gc           mini.comment Toggle line comment                        n, x
 
-  gcc          mini.comment Toggle line comment                         n
+  gcc          mini.comment Toggle line comment                        n
 
-  <leader>ft   mini.files Toggle mini.files (Directory of Current File) n
+  <leader>ft   mini.files Toggle mini.files (Directory of Current      n
+               File)                                                   
 
-  <leader>fT   mini.files Toggle mini.files (cwd)                       n
+  <leader>fT   mini.files Toggle mini.files (cwd)                      n
 
-  <leader>dB   nvim-dap Breakpoint Condition                            n
+  -            oil.nvim Open parent directory                          n
 
-  <leader>db   nvim-dap Toggle Breakpoint                               n
+  <Leader>-    oil.nvim Open parent directory                          n
 
-  <leader>dc   nvim-dap Continue                                        n
+  <Leader>tl   outline.nvim Open or close the outline window           n
 
-  <leader>da   nvim-dap Run with Args                                   n
+  <Leader>mp   peek.nvim Markdown Preview                              n
 
-  <leader>dC   nvim-dap Run to Cursor                                   n
+  <Leader>ff   snacks.nvim Find files                                  n
 
-  <leader>dl   nvim-dap Run Last                                        n
+  <Leader>rf   snacks.nvim Recent files                                n
 
-  <leader>di   nvim-dap Step Into                                       n
+  <Leader>ag   snacks.nvim Live grep in files                          n
 
-  <leader>do   nvim-dap Step Out                                        n
+  <Leader>Ag   snacks.nvim Search for string under cursor              n, x
 
-  <leader>dO   nvim-dap Step Over                                       n
+  <Leader>bb   snacks.nvim List open buffers                           n
 
-  <leader>dp   nvim-dap Pause                                           n
+  <Leader>gd   snacks.nvim Goto definition                             n
 
-  <leader>dt   nvim-dap Terminate                                       n
+  <Leader>gi   snacks.nvim Goto implementation                         n
 
-  <leader>dj   nvim-dap Down                                            n
+  <Leader>gr   snacks.nvim Goto references                             n
 
-  <leader>dk   nvim-dap Up                                              n
+  <Leader>gD   snacks.nvim Goto declaration                            n
 
-  <leader>dg   nvim-dap Go to Line (No Execute)                         n
+  <Leader>gy   snacks.nvim Goto type definition                        n
 
-  <leader>ds   nvim-dap Session                                         n
+  <Leader>es   snacks.nvim Buffer diagnostics                          n
 
-  <leader>dr   nvim-dap Toggle REPL                                     n
+  <Leader>eS   snacks.nvim Workspace diagnostics                       n
 
-  <leader>dw   nvim-dap Widgets                                         n
+  <Leader>br   snacks.nvim Bazel run                                   n
 
-  -            oil.nvim Open parent directory                           n
+  <Leader>bt   snacks.nvim Bazel test                                  n
 
-  <Leader>-    oil.nvim Open parent directory                           n
+  <Leader>bs   snacks.nvim Bazel build                                 n
 
-  <Leader>tl   outline.nvim Open or close the outline window            n
+  <Leader>ts   snacks.nvim AsyncTasks                                  n
 
-  <Leader>mp   peek.nvim Markdown Preview                               n
+  <Leader>sb   snacks.nvim Buffer lines                                n
 
-  <Leader>ff   telescope.nvim List files                                n
+  <Leader>gf   snacks.nvim Git files                                   n
 
-  <Leader>rf   telescope.nvim List recent files                         n
+  <Leader>gs   snacks.nvim Git status                                  n
 
-  <Leader>ag   telescope.nvim Grep in files                             n
+  <Leader>gl   snacks.nvim Git log                                     n
 
-  <Leader>Ag   telescope.nvim Searches for the string under your cursor n
-               (root dir)                                               
+  <Leader>gb   snacks.nvim Git branches                                n
 
-  <Leader>bb   telescope.nvim Lists open buffers in current neovim      n
-               instance                                                 
+  <C-t>        toggleterm.nvim Toggle float terminal                   n, t
 
-  <Leader>ts   telescope.nvim Lists AsyncTasks for current buffer       n
+  <Leader>th   toggleterm.nvim Toggle horizontal terminal              n
 
-  <Leader>br   telescope.nvim Bazl run                                  n
+  <C-j>        toggleterm.nvim Select terminal                         t
 
-  <Leader>bt   telescope.nvim Bazel test                                n
+  <C-d>        toggleterm.nvim Close terminal window                   t
 
-  <Leader>bs   telescope.nvim Bazel build                               n
+  <C-v>        tree-sitter-manager.nvim Treesitter Increment Selection n
 
-  <C-t>        toggleterm.nvim Toggle float terminal                    n, t
+  V            tree-sitter-manager.nvim Treesitter Decrement Selection x
 
-  <Leader>tt   toggleterm.nvim Select terminal                          n
-
-  <Leader>tf   toggleterm.nvim Toggle float terminal                    n
-
-  <Leader>th   toggleterm.nvim Toggle horizontal terminal               n
-
-  <C-n>        toggleterm.nvim Create float terminal                    t
-
-  <C-j>        toggleterm.nvim Select terminal                          t
-
-  <C-d>        toggleterm.nvim Close terminal window                    t
-
-  <C-v>        tree-sitter-manager.nvim Treesitter Increment Selection  n
-
-  V            tree-sitter-manager.nvim Treesitter Decrement Selection  x
-
-  <leader>vv   venn.nvim Toggle draw box                                n
+  <leader>vv   venn.nvim Toggle draw box                               n
   ------------------------------------------------------------------------------
 
 PLUGINS                                                       *nvimrc-plugins*
 
 - accelerated-jk.nvim <https://github.com/rainbowhxch/accelerated-jk.nvim>
-- alpha-nvim <https://github.com/goolord/alpha-nvim>
 - asyncrun.vim <https://github.com/skywind3000/asyncrun.vim>
 - asynctasks.vim <https://github.com/skywind3000/asynctasks.vim>
 - autoclose.nvim <https://github.com/m4xshen/autoclose.nvim>
 - blink.cmp <https://github.com/saghen/blink.cmp>
+- blink.lib <https://github.com/saghen/blink.lib>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
 - diffview.nvim <https://github.com/sindrets/diffview.nvim>
 - fidget.nvim <https://github.com/j-hui/fidget.nvim>
@@ -357,7 +340,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
 - nvim-dap <https://github.com/mfussenegger/nvim-dap>
-- nvim-dap-virtual-text <https://github.com/theHamsta/nvim-dap-virtual-text>
 - nvim-highlight-colors <https://github.com/brenoprata10/nvim-highlight-colors>
 - nvim-java <https://github.com/nvim-java/nvim-java>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
@@ -369,12 +351,8 @@ PLUGINS                                                       *nvimrc-plugins*
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
 - smartyank.nvim <https://github.com/ibhagwan/smartyank.nvim>
+- snacks.nvim <https://github.com/folke/snacks.nvim>
 - spring-boot.nvim <https://github.com/JavaHello/spring-boot.nvim>
-- telescope-fzf-native.nvim <https://github.com/nvim-telescope/telescope-fzf-native.nvim>
-- telescope-live-grep-args.nvim <https://github.com/nvim-telescope/telescope-live-grep-args.nvim>
-- telescope-ui-select.nvim <https://github.com/nvim-telescope/telescope-ui-select.nvim>
-- telescope-undo.nvim <https://github.com/debugloop/telescope-undo.nvim>
-- telescope.nvim <https://github.com/nvim-telescope/telescope.nvim>
 - tla.nvim <https://github.com/liubang/tla.nvim>
 - toggleterm.nvim <https://github.com/akinsho/toggleterm.nvim>
 - tree-sitter-manager.nvim <https://github.com/romus204/tree-sitter-manager.nvim>
