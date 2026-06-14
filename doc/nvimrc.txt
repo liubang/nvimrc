@@ -177,10 +177,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <C-Right>    Increase window width                                   n
 
-  j            accelerated-jk.nvim Accelerated gj movement             n
-
-  k            accelerated-jk.nvim Accelerated gk movement             n
-
   <C-b>        asynctasks.vim Build current file                       n
 
   <C-r>        asynctasks.vim Run current file                         n
@@ -288,6 +284,12 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>gl   snacks.nvim Git log                                     n
 
+  <Leader>gL   snacks.nvim Git log (current file)                      n
+
+  <Leader>gh   snacks.nvim Git log (current line)                      n
+
+  <Leader>gv   snacks.nvim Git diff (hunks)                            n
+
   <Leader>gb   snacks.nvim Git branches                                n
 
   <C-t>        toggleterm.nvim Toggle float terminal                   n, t
@@ -307,18 +309,15 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
 PLUGINS                                                       *nvimrc-plugins*
 
-- accelerated-jk.nvim <https://github.com/rainbowhxch/accelerated-jk.nvim>
 - asyncrun.vim <https://github.com/skywind3000/asyncrun.vim>
 - asynctasks.vim <https://github.com/skywind3000/asynctasks.vim>
 - autoclose.nvim <https://github.com/m4xshen/autoclose.nvim>
 - blink.cmp <https://github.com/saghen/blink.cmp>
 - blink.lib <https://github.com/saghen/blink.lib>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
-- diffview.nvim <https://github.com/sindrets/diffview.nvim>
 - fidget.nvim <https://github.com/j-hui/fidget.nvim>
 - flash.nvim <https://github.com/folke/flash.nvim>
 - friendly-snippets <https://github.com/rafamadriz/friendly-snippets>
-- fzy-lua-native <https://github.com/romgrk/fzy-lua-native>
 - gitsigns.nvim <https://github.com/lewis6991/gitsigns.nvim>
 - grug-far.nvim <https://github.com/MagicDuck/grug-far.nvim>
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
@@ -359,7 +358,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - vim-diagon <https://github.com/willchao612/vim-diagon>
 - vim-matchup <https://github.com/andymass/vim-matchup>
 - vimtex <https://github.com/lervag/vimtex>
-- wilder.nvim <https://github.com/gelguy/wilder.nvim>
 
 ==============================================================================
 1. Links                                                        *nvimrc-links*
