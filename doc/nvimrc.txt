@@ -227,10 +227,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>sr   grug-far.nvim Search and Replace                        n, v
 
-  <leader>bd   mini.bufremove Delete Buffer                            n
-
-  <leader>bD   mini.bufremove Delete Buffer (Force)                    n
-
   gc           mini.comment Toggle line comment                        n, x
 
   gcc          mini.comment Toggle line comment                        n
@@ -257,6 +253,10 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <Leader>Ag   snacks.nvim Search for string under cursor              n, x
 
   <Leader>bb   snacks.nvim List open buffers                           n
+
+  <leader>bd   snacks.nvim Delete buffer                               n
+
+  <leader>bD   snacks.nvim Delete buffer (force)                       n
 
   <Leader>gd   snacks.nvim Goto definition                             n
 
@@ -330,7 +330,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - mason-lspconfig.nvim <https://github.com/mason-org/mason-lspconfig.nvim>
 - mason.nvim <https://github.com/mason-org/mason.nvim>
 - mini.align <https://github.com/nvim-mini/mini.align>
-- mini.bufremove <https://github.com/nvim-mini/mini.bufremove>
 - mini.comment <https://github.com/nvim-mini/mini.comment>
 - mini.cursorword <https://github.com/nvim-mini/mini.cursorword>
 - mini.files <https://github.com/nvim-mini/mini.files>
@@ -350,7 +349,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - peek.nvim <https://github.com/toppair/peek.nvim>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
 - schemastore.nvim <https://github.com/b0o/schemastore.nvim>
-- smartyank.nvim <https://github.com/ibhagwan/smartyank.nvim>
 - snacks.nvim <https://github.com/folke/snacks.nvim>
 - spring-boot.nvim <https://github.com/JavaHello/spring-boot.nvim>
 - tla.nvim <https://github.com/liubang/tla.nvim>
