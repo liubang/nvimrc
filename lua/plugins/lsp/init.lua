@@ -71,56 +71,6 @@ return {
       _ = require("plugins.lsp.servers")
     end,
   },
-  {
-    "nvimtools/none-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
-    opts = function()
-      local null_ls = require("null-ls")
-      local b = null_ls.builtins
-      return {
-        debug = false,
-        on_attach = require("plugins.lsp.defaults").on_attach,
-        sources = {
-          b.formatting.stylua,
-          b.formatting.asmfmt,
-          b.formatting.buildifier,
-          b.formatting.prettier.with({
-            filetypes = {
-              "css",
-              "graphql",
-              "handlebars",
-              "html",
-              "javascript",
-              "javascriptreact",
-              "json",
-              "jsonc",
-              "less",
-              "markdown",
-              "markdown.mdx",
-              "scss",
-              "typescript",
-              "typescriptreact",
-              "vue",
-              "yaml",
-            },
-          }),
-          b.formatting.shfmt.with({
-            extra_args = { "-i", "4", "-ci", "-bn" },
-          }),
-          b.formatting.sql_formatter.with({
-            extra_args = {
-              "--config=" .. vim.fn.stdpath("config") .. "/data/sql-formatter/sql-formatter.json",
-            },
-          }),
-          b.code_actions.gomodifytags,
-          b.code_actions.impl,
-          b.diagnostics.buildifier,
-          b.diagnostics.actionlint,
-        },
-      }
-    end,
-  },
 }
 
 -- vim: fdm=marker fdl=0

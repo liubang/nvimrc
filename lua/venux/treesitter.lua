@@ -58,6 +58,10 @@ local function setup_fold()
     group = vim.api.nvim_create_augroup("TreesitterFold", { clear = true }),
     callback = function(ev)
       local buf = ev.buf
+      -- snacks.bigfile 已接管，跳过
+      if vim.bo[buf].filetype == "bigfile" then
+        return
+      end
       local wins = vim.fn.win_findbuf(buf)
       if #wins == 0 then
         return

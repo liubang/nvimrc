@@ -163,7 +163,6 @@ end -- }}}
 
 -- stylua: ignore
 local lsp_names = { --{{{
-  ["null-ls"]           = "NLS",
   clangd                = "CC",
   gopls                 = "Go",
   rust_analyzer         = "Rust",

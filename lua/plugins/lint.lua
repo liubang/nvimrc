@@ -1,4 +1,4 @@
--- Copyright (c) 2024 The Authors. All rights reserved.
+-- Copyright (c) 2026 The Authors. All rights reserved.
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -13,7 +13,21 @@
 -- limitations under the License.
 
 -- Authors: liubang (it.liubang@gmail.com)
+-- Created: 2026/06/14 16:58
 
-require("plugins.lsp.defaults").setup()
-
--- vim: foldmethod=marker foldlevel=0
+return {
+  "mfussenegger/nvim-lint",
+  event = { "BufReadPre", "BufNewFile" },
+  config = function()
+    require("lint").linters_by_ft = {
+      bzl = { "buildifier" },
+      yaml = { "actionlint" },
+    }
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+      group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
+      callback = function()
+        require("lint").try_lint()
+      end,
+    })
+  end,
+}

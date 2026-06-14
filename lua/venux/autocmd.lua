@@ -21,13 +21,11 @@ vim.api.nvim_create_autocmd("FileType", {
   group = filetype_commands_group,
   pattern = {
     "checkhealth",
-    "gitsigns-blame",
     "grug-far",
     "notify",
     "tsplayground",
     "lspinfo",
     "lsp-installer",
-    "null-ls-info",
     "help",
     "qf",
   },

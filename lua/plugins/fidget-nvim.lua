@@ -19,7 +19,7 @@ return {
   event = { "LspAttach" },
   opts = {
     progress = {
-      ignore = { "null-ls" },
+      ignore = {},
       display = {
         render_limit = 16,
         done_ttl = 2,

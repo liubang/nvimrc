@@ -44,37 +44,20 @@ end
 function M.on_attach(_, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-  vim.keymap.set("n", "<Leader>gd", function()
-    Snacks.picker.lsp_definitions()
-  end, bufopts)
-  vim.keymap.set("n", "<Leader>gi", function()
-    Snacks.picker.lsp_implementations()
-  end, bufopts)
-  vim.keymap.set("n", "<Leader>gr", function()
-    Snacks.picker.lsp_references()
-  end, bufopts)
-  vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "<Leader>gy", function()
-    Snacks.picker.lsp_type_definitions()
-  end, bufopts)
+  -- stylua: ignore start
+  vim.keymap.set("n", "<Leader>gd", function() Snacks.picker.lsp_definitions() end, bufopts)
+  vim.keymap.set("n", "<Leader>gi", function() Snacks.picker.lsp_implementations() end, bufopts)
+  vim.keymap.set("n", "<Leader>gr", function() Snacks.picker.lsp_references() end, bufopts)
+  vim.keymap.set("n", "<Leader>gD", function() Snacks.picker.lsp_declarations() end, bufopts)
+  vim.keymap.set("n", "<Leader>gy", function() Snacks.picker.lsp_type_definitions() end, bufopts)
   vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<Leader>es", function()
-    Snacks.picker.diagnostics_buffer()
-  end, bufopts)
-  vim.keymap.set("n", "<Leader>ee", function()
-    vim.diagnostic.open_float({ scope = "line" })
-  end, bufopts)
-
-  local winopts = { height = 15, width = 100, max_height = 20, max_width = 140 }
-  vim.keymap.set("n", "<C-k>", function()
-    vim.lsp.buf.hover(winopts)
-  end, bufopts)
-  vim.keymap.set("n", "<C-h>", function()
-    vim.lsp.buf.signature_help(winopts)
-  end, bufopts)
-
-  require("plugins.lsp.format").on_attach(nil, bufnr)
+  vim.keymap.set("n", "<Leader>es", function() Snacks.picker.diagnostics_buffer() end, bufopts)
+  vim.keymap.set("n", "<Leader>ee", function() vim.diagnostic.open_float({ scope = "line" }) end, bufopts)
+  vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.hover({ height = 15, width = 100, max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
+  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help({ height = 15, width = 100, max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
+  vim.keymap.set("n", "<Leader>eS", function() Snacks.picker.diagnostics() end, bufopts)
+  -- stylua: ignore end
 end
 
 function M.extend(server_opts)
@@ -110,7 +93,7 @@ function M.setup()
     underline = false,
     float = {
       spacing = 4,
-      border = "single",
+      border = "rounded",
       focusable = true,
       header = { " Diagnostics ", "Title" },
       max_width = 80,

@@ -133,14 +133,6 @@ return {
     { "<Leader>bb", function() Snacks.picker.buffers({ sort_lastused = true }) end, desc = "List open buffers" },
     { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
     { "<leader>bD", function() Snacks.bufdelete({ force = true }) end, desc = "Delete buffer (force)" },
-    -- LSP
-    { "<Leader>gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition" },
-    { "<Leader>gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },
-    { "<Leader>gr", function() Snacks.picker.lsp_references() end, desc = "Goto references" },
-    { "<Leader>gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto declaration" },
-    { "<Leader>gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto type definition" },
-    { "<Leader>es", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
-    { "<Leader>eS", function() Snacks.picker.diagnostics() end, desc = "Workspace diagnostics" },
     -- Bazel (custom)
     { "<Leader>br", function() require("snacks.bazel").run() end, desc = "Bazel run" },
     { "<Leader>bt", function() require("snacks.bazel").test() end, desc = "Bazel test" },

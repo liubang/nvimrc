@@ -27,10 +27,12 @@ return {
       topdelete    = { text = "▛", show_count = true },
       changedelete = { text = "▚", show_count = true },
     },
-    update_debounce = 500,
+    update_debounce = 200,
     sign_priority = 10,
     numhl = false,
     signcolumn = true,
+    max_file_length = 40000,
+    watch_gitdir = { follow_files = true },
     count_chars = {
       [1] = "",
       [2] = "₂",
@@ -53,10 +55,10 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<Leader>hb", function() require("gitsigns").blame_line({ full = true }) end, desc = "Show the line git blame in a floating window" },
-    { "<Leader>hd", function() require("gitsigns").diffthis() end, desc = "Perform a `vimdiff` on the given file" },
-    { "<Leader>hr", function() require("gitsigns").reset_hunk() end, desc = "Reset the lines of the hunk at the cursor position" },
+    { "]h", function() require("gitsigns").nav_hunk("next") end, desc = "Next hunk" },
+    { "[h", function() require("gitsigns").nav_hunk("prev") end, desc = "Prev hunk" },
     { "<Leader>hs", function() require("gitsigns").stage_hunk() end, desc = "Stage the hunk at the cursor position" },
+    { "<Leader>hr", function() require("gitsigns").reset_hunk() end, desc = "Reset the lines of the hunk at the cursor position" },
   },
   -- }}}
 }
