@@ -157,21 +157,21 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 8                            | **n**               |
 | `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 9                            | **n**               |
 | `<leader>bo` | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Delete other buffers                              | **n**               |
+| `<Leader>fm` | [conform.nvim](https://github.com/stevearc/conform.nvim.git) Format buffer                                          | **n**, **v**        |
 | `s`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash                                                         | **n**, **x**, **o** |
 | `S`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash Treesitter                                              | **n**, **x**, **o** |
 | `r`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Remote Flash                                                  | **o**               |
 | `R`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Treesitter Search                                             | **o**, **x**        |
-| `<Leader>hb` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Show the line git blame in a floating window        | **n**               |
-| `<Leader>hd` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Perform a `vimdiff` on the given file               | **n**               |
-| `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position  | **n**               |
+| `]h`         | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Next hunk                                           | **n**               |
+| `[h`         | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Prev hunk                                           | **n**               |
 | `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position               | **n**               |
+| `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position  | **n**               |
 | `<leader>sr` | [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim.git) Search and Replace                                  | **n**, **v**        |
 | `gc`         | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                   | **n**, **x**        |
 | `gcc`        | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                   | **n**               |
+| `-`          | [mini.files](https://github.com/nvim-mini/mini.files.git) Open mini.files (parent directory)                        | **n**               |
 | `<leader>ft` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (Directory of Current File)             | **n**               |
 | `<leader>fT` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (cwd)                                   | **n**               |
-| `-`          | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                          | **n**               |
-| `<Leader>-`  | [oil.nvim](https://github.com/stevearc/oil.nvim.git) Open parent directory                                          | **n**               |
 | `<Leader>tl` | [outline.nvim](https://github.com/hedyhli/outline.nvim.git) Open or close the outline window                        | **n**               |
 | `<Leader>mp` | [peek.nvim](https://github.com/toppair/peek.nvim.git) Markdown Preview                                              | **n**               |
 | `<Leader>ff` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Find files                                                  | **n**               |
@@ -181,13 +181,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>bb` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) List open buffers                                           | **n**               |
 | `<leader>bd` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Delete buffer                                               | **n**               |
 | `<leader>bD` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Delete buffer (force)                                       | **n**               |
-| `<Leader>gd` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto definition                                             | **n**               |
-| `<Leader>gi` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto implementation                                         | **n**               |
-| `<Leader>gr` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto references                                             | **n**               |
-| `<Leader>gD` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto declaration                                            | **n**               |
-| `<Leader>gy` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto type definition                                        | **n**               |
-| `<Leader>es` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Buffer diagnostics                                          | **n**               |
-| `<Leader>eS` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Workspace diagnostics                                       | **n**               |
 | `<Leader>br` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Bazel run                                                   | **n**               |
 | `<Leader>bt` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Bazel test                                                  | **n**               |
 | `<Leader>bs` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Bazel build                                                 | **n**               |
@@ -200,10 +193,7 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>gh` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git log (current line)                                      | **n**               |
 | `<Leader>gv` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git diff (hunks)                                            | **n**               |
 | `<Leader>gb` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Git branches                                                | **n**               |
-| `<C-t>`      | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Toggle float terminal                             | **n**, **t**        |
-| `<Leader>th` | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Toggle horizontal terminal                        | **n**               |
-| `<C-j>`      | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Select terminal                                   | **t**               |
-| `<C-d>`      | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Close terminal window                             | **t**               |
+| `<C-t>`      | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim.git) Toggle terminal                                   | **n**               |
 | `<C-v>`      | [tree-sitter-manager.nvim](https://github.com/romus204/tree-sitter-manager.nvim.git) Treesitter Increment Selection | **n**               |
 | `V`          | [tree-sitter-manager.nvim](https://github.com/romus204/tree-sitter-manager.nvim.git) Treesitter Decrement Selection | **x**               |
 | `<leader>vv` | [venn.nvim](https://github.com/jbyuki/venn.nvim.git) Toggle draw box                                                | **n**               |
@@ -220,6 +210,7 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [blink.lib](https://github.com/saghen/blink.lib)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
@@ -228,7 +219,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim)
-- [leetcode.nvim](https://github.com/liubang/leetcode.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
@@ -240,15 +230,14 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [mini.surround](https://github.com/nvim-mini/mini.surround)
 - [neogen](https://github.com/danymat/neogen)
-- [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
-- [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [outline.nvim](https://github.com/hedyhli/outline.nvim)
 - [peek.nvim](https://github.com/toppair/peek.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)

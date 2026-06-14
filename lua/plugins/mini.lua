@@ -150,7 +150,7 @@ return {
         mark_set = "m",
         reset = "<BS>",
         reveal_cwd = "@",
-        show_help = "g?",
+        show_help = "?",
         synchronize = "=",
         trim_left = "<",
         trim_right = ">",
@@ -190,6 +190,12 @@ return {
       end
 
       vim.api.nvim_create_autocmd("User", {
+        pattern = "MiniFilesActionRename",
+        callback = function(event)
+          Snacks.rename.on_rename_file(event.data.from, event.data.to)
+        end,
+      })
+      vim.api.nvim_create_autocmd("User", {
         pattern = "MiniFilesBufferCreate",
         callback = function(args)
           local buf_id = args.data.buf_id
@@ -215,6 +221,13 @@ return {
       })
     end,
     keys = {
+      {
+        "-",
+        function()
+          MiniFiles.open(vim.fn.expand("%:p:h"), false)
+        end,
+        desc = "Open mini.files (parent directory)",
+      },
       {
         "<leader>ft",
         function()
