@@ -203,6 +203,8 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <leader>bo   bufferline.nvim Delete other buffers                    n
 
+  <Leader>fm   conform.nvim Format buffer                              n, v
+
   s            flash.nvim Flash                                        n, x, o
 
   S            flash.nvim Flash Treesitter                             n, x, o
@@ -211,15 +213,14 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   R            flash.nvim Treesitter Search                            o, x
 
-  <Leader>hb   gitsigns.nvim Show the line git blame in a floating     n
-               window                                                  
+  ]h           gitsigns.nvim Next hunk                                 n
 
-  <Leader>hd   gitsigns.nvim Perform a vimdiff on the given file       n
+  [h           gitsigns.nvim Prev hunk                                 n
+
+  <Leader>hs   gitsigns.nvim Stage the hunk at the cursor position     n
 
   <Leader>hr   gitsigns.nvim Reset the lines of the hunk at the cursor n
                position                                                
-
-  <Leader>hs   gitsigns.nvim Stage the hunk at the cursor position     n
 
   <leader>sr   grug-far.nvim Search and Replace                        n, v
 
@@ -227,14 +228,12 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   gcc          mini.comment Toggle line comment                        n
 
+  -            mini.files Open mini.files (parent directory)           n
+
   <leader>ft   mini.files Toggle mini.files (Directory of Current      n
                File)                                                   
 
   <leader>fT   mini.files Toggle mini.files (cwd)                      n
-
-  -            oil.nvim Open parent directory                          n
-
-  <Leader>-    oil.nvim Open parent directory                          n
 
   <Leader>tl   outline.nvim Open or close the outline window           n
 
@@ -253,20 +252,6 @@ KEYMAPS                                                       *nvimrc-keymaps*
   <leader>bd   snacks.nvim Delete buffer                               n
 
   <leader>bD   snacks.nvim Delete buffer (force)                       n
-
-  <Leader>gd   snacks.nvim Goto definition                             n
-
-  <Leader>gi   snacks.nvim Goto implementation                         n
-
-  <Leader>gr   snacks.nvim Goto references                             n
-
-  <Leader>gD   snacks.nvim Goto declaration                            n
-
-  <Leader>gy   snacks.nvim Goto type definition                        n
-
-  <Leader>es   snacks.nvim Buffer diagnostics                          n
-
-  <Leader>eS   snacks.nvim Workspace diagnostics                       n
 
   <Leader>br   snacks.nvim Bazel run                                   n
 
@@ -292,13 +277,7 @@ KEYMAPS                                                       *nvimrc-keymaps*
 
   <Leader>gb   snacks.nvim Git branches                                n
 
-  <C-t>        toggleterm.nvim Toggle float terminal                   n, t
-
-  <Leader>th   toggleterm.nvim Toggle horizontal terminal              n
-
-  <C-j>        toggleterm.nvim Select terminal                         t
-
-  <C-d>        toggleterm.nvim Close terminal window                   t
+  <C-t>        toggleterm.nvim Toggle terminal                         n
 
   <C-v>        tree-sitter-manager.nvim Treesitter Increment Selection n
 
@@ -315,6 +294,7 @@ PLUGINS                                                       *nvimrc-plugins*
 - blink.cmp <https://github.com/saghen/blink.cmp>
 - blink.lib <https://github.com/saghen/blink.lib>
 - bufferline.nvim <https://github.com/akinsho/bufferline.nvim>
+- conform.nvim <https://github.com/stevearc/conform.nvim>
 - fidget.nvim <https://github.com/j-hui/fidget.nvim>
 - flash.nvim <https://github.com/folke/flash.nvim>
 - friendly-snippets <https://github.com/rafamadriz/friendly-snippets>
@@ -323,7 +303,6 @@ PLUGINS                                                       *nvimrc-plugins*
 - gruvbox-material <https://github.com/sainnhe/gruvbox-material>
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - lazydev.nvim <https://github.com/folke/lazydev.nvim>
-- leetcode.nvim <https://github.com/liubang/leetcode.nvim>
 - lualine.nvim <https://github.com/nvim-lualine/lualine.nvim>
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>
 - mason-lspconfig.nvim <https://github.com/mason-org/mason-lspconfig.nvim>
@@ -335,15 +314,14 @@ PLUGINS                                                       *nvimrc-plugins*
 - mini.icons <https://github.com/nvim-mini/mini.icons>
 - mini.surround <https://github.com/nvim-mini/mini.surround>
 - neogen <https://github.com/danymat/neogen>
-- none-ls.nvim <https://github.com/nvimtools/none-ls.nvim>
 - nui.nvim <https://github.com/MunifTanjim/nui.nvim>
 - nvim-dap <https://github.com/mfussenegger/nvim-dap>
 - nvim-highlight-colors <https://github.com/brenoprata10/nvim-highlight-colors>
 - nvim-java <https://github.com/nvim-java/nvim-java>
+- nvim-lint <https://github.com/mfussenegger/nvim-lint>
 - nvim-lspconfig <https://github.com/neovim/nvim-lspconfig>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-nio <https://github.com/nvim-neotest/nvim-nio>
-- oil.nvim <https://github.com/stevearc/oil.nvim>
 - outline.nvim <https://github.com/hedyhli/outline.nvim>
 - peek.nvim <https://github.com/toppair/peek.nvim>
 - plenary.nvim <https://github.com/nvim-lua/plenary.nvim>
