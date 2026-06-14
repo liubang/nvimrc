@@ -102,4 +102,12 @@ vim.api.nvim_create_autocmd("QuitPre", {
   end,
 })
 
+-- yank highlight (replaces smartyank.nvim)
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = special_settings_group,
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+  end,
+})
+
 -- vim: fdm=marker fdl=0

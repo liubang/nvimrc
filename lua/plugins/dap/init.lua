@@ -19,7 +19,6 @@
 
 return {
   { "nvim-neotest/nvim-nio" },
-  { "theHamsta/nvim-dap-virtual-text", enabled = false },
   {
     "mfussenegger/nvim-dap",
     dependencies = { "nvim-neotest/nvim-nio" },

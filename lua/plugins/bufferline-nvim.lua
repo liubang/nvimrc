@@ -24,10 +24,10 @@ return {
       numbers = "ordinal",
       indicator = { style = "underline" },
       close_command = function(n)
-        require("mini.bufremove").delete(n, false)
+        Snacks.bufdelete(n)
       end,
       right_mouse_command = function(n)
-        require("mini.bufremove").delete(n, false)
+        Snacks.bufdelete(n)
       end,
       middle_mouse_command = nil,
       buffer_close_icon = "󰅚",

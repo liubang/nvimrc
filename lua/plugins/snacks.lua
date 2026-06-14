@@ -121,6 +121,8 @@ return {
     { "<Leader>ag", function() Snacks.picker.grep({ hidden = true, ignored = true, need_search = false }) end, desc = "Live grep in files" },
     { "<Leader>Ag", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Search for string under cursor" },
     { "<Leader>bb", function() Snacks.picker.buffers({ sort_lastused = true }) end, desc = "List open buffers" },
+    { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
+    { "<leader>bD", function() Snacks.bufdelete({ force = true }) end, desc = "Delete buffer (force)" },
     -- LSP
     { "<Leader>gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition" },
     { "<Leader>gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },

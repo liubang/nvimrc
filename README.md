@@ -168,8 +168,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>hr` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Reset the lines of the hunk at the cursor position  | **n**               |
 | `<Leader>hs` | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim.git) Stage the hunk at the cursor position               | **n**               |
 | `<leader>sr` | [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim.git) Search and Replace                                  | **n**, **v**        |
-| `<leader>bd` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer                                     | **n**               |
-| `<leader>bD` | [mini.bufremove](https://github.com/nvim-mini/mini.bufremove.git) Delete Buffer (Force)                             | **n**               |
 | `gc`         | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                   | **n**, **x**        |
 | `gcc`        | [mini.comment](https://github.com/nvim-mini/mini.comment.git) Toggle line comment                                   | **n**               |
 | `<leader>ft` | [mini.files](https://github.com/nvim-mini/mini.files.git) Toggle mini.files (Directory of Current File)             | **n**               |
@@ -183,6 +181,8 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<Leader>ag` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Live grep in files                                          | **n**               |
 | `<Leader>Ag` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Search for string under cursor                              | **n**, **x**        |
 | `<Leader>bb` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) List open buffers                                           | **n**               |
+| `<leader>bd` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Delete buffer                                               | **n**               |
+| `<leader>bD` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Delete buffer (force)                                       | **n**               |
 | `<Leader>gd` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto definition                                             | **n**               |
 | `<Leader>gi` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto implementation                                         | **n**               |
 | `<Leader>gr` | [snacks.nvim](https://github.com/folke/snacks.nvim.git) Goto references                                             | **n**               |
@@ -236,7 +236,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
 - [mason.nvim](https://github.com/mason-org/mason.nvim)
 - [mini.align](https://github.com/nvim-mini/mini.align)
-- [mini.bufremove](https://github.com/nvim-mini/mini.bufremove)
 - [mini.comment](https://github.com/nvim-mini/mini.comment)
 - [mini.cursorword](https://github.com/nvim-mini/mini.cursorword)
 - [mini.files](https://github.com/nvim-mini/mini.files)
@@ -256,7 +255,6 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [peek.nvim](https://github.com/toppair/peek.nvim)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [schemastore.nvim](https://github.com/b0o/schemastore.nvim)
-- [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
 - [spring-boot.nvim](https://github.com/JavaHello/spring-boot.nvim)
 - [tla.nvim](https://github.com/liubang/tla.nvim)
