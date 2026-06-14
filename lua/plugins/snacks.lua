@@ -26,7 +26,7 @@ return {
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
-      row = 12,
+      row = math.floor(vim.o.lines * 0.2), 
       preset = {
         header = [[
  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
