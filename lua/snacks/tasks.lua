@@ -17,14 +17,9 @@
 
 local M = {}
 
----@param opts? table
-function M.tasks(opts)
-  opts = opts or {}
-
-  -- Ensure asynctasks.vim is loaded (it's lazy-loaded)
+function M.tasks()
   require("lazy").load({ plugins = { "asynctasks.vim" } })
 
-  ---@type table[]
   local ok, tasks = pcall(vim.api.nvim_call_function, "asynctasks#source", { math.floor(vim.o.columns * 48 / 100) })
   if not ok then
     vim.notify("Failed to load asynctasks", vim.log.levels.ERROR)
@@ -35,16 +30,14 @@ function M.tasks(opts)
     return
   end
 
-  -- Build entries: each task is a list of fields, joined with " | "
   local entries = {}
   for i = 1, #tasks do
-    local current_task = table.concat(tasks[i], " | ")
+    local t = tasks[i]
     table.insert(entries, {
-      task = tasks[i],
-      text = current_task, -- required: used by the matcher for filtering/searching
-      value = current_task,
-      name = tasks[i][1],
-      display = current_task,
+      name = t[1],  -- task name
+      cmd = t[2],   -- task command
+      text = table.concat(t, " | "),
+      value = t[1],
     })
   end
 
@@ -52,15 +45,14 @@ function M.tasks(opts)
     title = "AsyncTasks",
     items = entries,
     format = function(item, _picker)
-      return { { item.display, "SnacksPickerLabel" } }
+      return { { item.text, "SnacksPickerLabel" } }
     end,
     confirm = function(picker, item)
       picker:close()
       if not item or not item.name then
         return
       end
-      local cmd = table.concat({ "AsyncTask", item.name }, " ")
-      vim.cmd(cmd)
+      vim.cmd(string.format([[TermExec cmd='%s' direction=horizontal go_back=0]], item.cmd))
     end,
   })
 end

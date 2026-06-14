@@ -19,42 +19,24 @@ return {
   version = "*",
   cmd = { "ToggleTerm", "TermExec", "TermNew", "TermSelect" },
   keys = {
-    { "<C-t>", "<CMD>ToggleTerm direction=float<CR>", desc = "Toggle float terminal" },
-    { "<Leader>th", "<CMD>ToggleTerm direction=horizontal<CR>", desc = "Toggle horizontal terminal" },
-    {
-      "<C-t>",
-      vim.api.nvim_replace_termcodes("<C-\\><C-N><CMD>ToggleTerm direction=float<CR>", true, true, true),
-      mode = { "t" },
-      desc = "Toggle float terminal",
-    },
-    {
-      "<C-j>",
-      vim.api.nvim_replace_termcodes("<C-\\><C-N><CMD>TermSelect<CR>", true, true, true),
-      mode = { "t" },
-      desc = "Select terminal",
-    },
-    {
-      "<C-d>",
-      vim.api.nvim_replace_termcodes("<C-\\><C-N><CMD>close<CR>", true, true, true),
-      mode = { "t" },
-      desc = "Close terminal window",
-    },
+    { "<C-t>", "<CMD>ToggleTerm<CR>", desc = "Toggle terminal" },
   },
   opts = {
-    open_mapping = nil,
-    size = function(term)
-      if term.direction == "horizontal" then
-        return math.max(12, math.floor(vim.o.lines * 0.25))
-      end
-    end,
-    direction = "float",
+    size = math.floor(vim.o.lines * 0.55),
+    direction = "horizontal",
     start_in_insert = true,
     insert_mappings = true,
-    persist_mode = true,
-    close_on_exit = false,
+    persist_mode = false,
+    close_on_exit = true,
     auto_scroll = true,
     shade_terminals = false,
     on_open = function(term)
+      if term.bufnr and vim.api.nvim_buf_is_valid(term.bufnr) then
+        vim.keymap.set("t", "<C-t>", "<C-\\><C-N>:ToggleTerm<CR>", {
+          buffer = term.bufnr,
+          desc = "Toggle terminal",
+        })
+      end
       if term.window and vim.api.nvim_win_is_valid(term.window) then
         vim.api.nvim_set_option_value("number", false, { win = term.window })
         vim.api.nvim_set_option_value("relativenumber", false, { win = term.window })
@@ -62,21 +44,5 @@ return {
         vim.api.nvim_set_option_value("foldcolumn", "0", { win = term.window })
       end
     end,
-    float_opts = {
-      border = "single",
-      width = function()
-        return vim.o.columns
-      end,
-      height = function()
-        return math.floor(vim.o.lines * 0.7)
-      end,
-      row = function()
-        local height = math.floor(vim.o.lines * 0.7)
-        return vim.o.lines - height - 3
-      end,
-      col = 0,
-      title = " Floaterm ",
-      title_pos = "center",
-    },
   },
 }
