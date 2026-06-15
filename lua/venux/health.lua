@@ -27,7 +27,7 @@ end -- }}}
 
 M.check = function() -- {{{
   health.start("Checking nvim configuration requirements")
-  check_executable("yarn", "yarn", "Refer to https://classic.yarnpkg.com/en/docs/install")
+  -- check_executable("yarn", "yarn", "Refer to https://classic.yarnpkg.com/en/docs/install")
   check_executable("rg", "ripgrep", "Refer to https://github.com/BurntSushi/ripgrep#installation")
 end -- }}}
 

@@ -93,4 +93,8 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 vim.keymap.set("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true))
 -- }}}
 
+-- accelerated j/k {{{
+require("venux.utils.accelerated_jk").setup()
+-- }}}
+
 -- vim: fdm=marker fdl=0

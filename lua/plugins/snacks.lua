@@ -18,8 +18,7 @@
 return {
   "folke/snacks.nvim",
   priority = 1000,
-  lazy = true,
-  event = "VeryLazy",
+  lazy = false,
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
