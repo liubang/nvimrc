@@ -22,7 +22,7 @@ return {
     {
       "<Leader>fm",
       function()
-        require("conform").format({ async = true })
+        require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       mode = { "n", "v" },
       desc = "Format buffer",
@@ -37,9 +37,9 @@ return {
         if gopls then
           require("venux.utils.util").codeaction(gopls, "", "source.organizeImports", 1000)
         end
-        return { timeout_ms = 500, lsp_format = "prefer" }
+        return { timeout_ms = 500, lsp_format = "fallback" }
       end
-      if ft == "lua" or ft == "rust" then
+      if ft == "lua" then
         return { timeout_ms = 500, lsp_format = "fallback" }
       end
     end,
