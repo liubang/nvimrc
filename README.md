@@ -144,19 +144,11 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 | `<C-Down>`   | Decrease window height                                                                                              | **n**               |
 | `<C-Left>`   | Decrease window width                                                                                               | **n**               |
 | `<C-Right>`  | Increase window width                                                                                               | **n**               |
+| `j`          | Accelerated j                                                                                                       | **n**, **x**, **o** |
+| `k`          | Accelerated k                                                                                                       | **n**, **x**, **o** |
 | `<C-b>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build current file                              | **n**               |
 | `<C-r>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Run current file                                | **n**               |
 | `<C-x>`      | [asynctasks.vim](https://github.com/skywind3000/asynctasks.vim.git) Build and run current file                      | **n**               |
-| `<Leader>1`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 1                            | **n**               |
-| `<Leader>2`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 2                            | **n**               |
-| `<Leader>3`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 3                            | **n**               |
-| `<Leader>4`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 4                            | **n**               |
-| `<Leader>5`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 5                            | **n**               |
-| `<Leader>6`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 6                            | **n**               |
-| `<Leader>7`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 7                            | **n**               |
-| `<Leader>8`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 8                            | **n**               |
-| `<Leader>9`  | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Go to visible buffer 9                            | **n**               |
-| `<leader>bo` | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim.git) Delete other buffers                              | **n**               |
 | `<Leader>fm` | [conform.nvim](https://github.com/stevearc/conform.nvim.git) Format buffer                                          | **n**, **v**        |
 | `s`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash                                                         | **n**, **x**, **o** |
 | `S`          | [flash.nvim](https://github.com/folke/flash.nvim.git) Flash Treesitter                                              | **n**, **x**, **o** |
@@ -209,8 +201,8 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [autoclose.nvim](https://github.com/m4xshen/autoclose.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [blink.lib](https://github.com/saghen/blink.lib)
-- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
+- [everforest](https://github.com/sainnhe/everforest)
 - [fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
@@ -229,6 +221,7 @@ The `Keymaps` and `Plugins` sections below are generated from the actual configu
 - [mini.files](https://github.com/nvim-mini/mini.files)
 - [mini.icons](https://github.com/nvim-mini/mini.icons)
 - [mini.surround](https://github.com/nvim-mini/mini.surround)
+- [mini.tabline](https://github.com/nvim-mini/mini.tabline)
 - [neogen](https://github.com/danymat/neogen)
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)

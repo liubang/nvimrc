@@ -248,4 +248,10 @@ return {
       },
     },
   },
+
+  {
+    "nvim-mini/mini.tabline",
+    event = { "BufReadPre", "BufAdd", "BufNewFile" },
+    opts = {},
+  },
 }
