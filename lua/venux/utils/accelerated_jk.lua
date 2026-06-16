@@ -36,7 +36,7 @@ local M = {}
 
 local defaults = {
   acceleration_limit = 150,
-  acceleration_table = { 5, 10, 14, 18, 21, 24, 26, 28 },
+  acceleration_table = { 2, 4, 6, 8, 10, 12, 14, 16 },
 }
 
 -- ===========================================================================
