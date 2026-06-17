@@ -65,7 +65,7 @@ return {
       keymap = { preset = "cmdline" },
     },
     fuzzy = {
-      implementation = "rust",
+      implementation = "prefer_rust_with_warning",
     },
     signature = { enabled = false },
     keymap = {

@@ -141,6 +141,7 @@ return {
     { "<Leader>ts", function() require("snacks.tasks").tasks() end, desc = "AsyncTasks" },
     -- Additional pickers
     { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer lines" },
+    { "<Leader>sk", function() Snacks.picker.keymaps() end, desc = "Search keymaps" },
     -- Git
     { "<Leader>gf", function() Snacks.picker.git_files() end, desc = "Git files" },
     { "<Leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
@@ -148,7 +149,8 @@ return {
     { "<Leader>gL", function() Snacks.picker.git_log_file({ follow = true }) end, desc = "Git log (current file)" },
     { "<Leader>gh", function() Snacks.picker.git_log_line({ follow = true }) end, desc = "Git log (current line)" },
     { "<Leader>gv", function() Snacks.picker.git_diff() end, desc = "Git diff (hunks)" },
-    { "<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
+    { "<Leader>gb", function() Snacks.git.blame_line() end, desc = "Git blame (current line)" },
+    { "<Leader>gB", function() Snacks.picker.git_branches() end, desc = "Git branches" },
   },
   config = function(_, opts)
     local snacks = require("snacks")
