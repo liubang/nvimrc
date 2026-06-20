@@ -29,9 +29,11 @@ return {
     delete_check_events = "TextChanged",
   },
   config = function(_, opts)
-    require("luasnip").setup(opts)
-    require("plugins.snips.all")
-    -- require("plugins.snips.cpp")
+    local ls = require("luasnip")
+    ls.setup(opts)
+    ls.add_snippets("all", require("plugins.snips.all"), { priority = 2000 })
+    ls.add_snippets("cpp", require("plugins.snips.cpp"), { priority = 2000 })
+    ls.add_snippets("lua", require("plugins.snips.lua"), { priority = 2000 })
     require("luasnip.loaders.from_vscode").lazy_load()
   end,
 }

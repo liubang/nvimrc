@@ -34,77 +34,72 @@ local function get_class_name()
   return vim.treesitter.get_node_text(expr:child(1), bufnr)
 end
 
+local function copy_move_snippet(trig, action, comment_label)
+  return s(trig, {
+    t({ "// " .. comment_label .. " copy and move", "" }),
+    f(function()
+      local cn = get_class_name()
+      if cn == "" then
+        return ""
+      end
+      return {
+        cn .. "(const " .. cn .. "&) = " .. action .. ";",
+        cn .. "(" .. cn .. "&&) = " .. action .. ";",
+        cn .. "& operator=(const " .. cn .. "&) = " .. action .. ";",
+        cn .. "& operator=(" .. cn .. "&&) = " .. action .. ";",
+      }
+    end),
+  })
+end
+
+local is_header = function()
+  return vim.fn.expand("%:e"):match("^h") ~= nil
+end
+
+local has_pragma_once = function()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  for _, line in ipairs(lines) do
+    if line:match("^#pragma once") then
+      return true
+    end
+  end
+  return false
+end
+
 local snippets = {
-  s("disablecopymove", {
-    t({ "// disable copy and move", "" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "(const " }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "&) = delete;", "" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "(" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "&&) = delete;", "" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "& operator=(const " }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "&) = delete;", "" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "& operator=(" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "&&) = delete;", "" }),
+  s("cfoff", {
+    t({ "// clang-format off" }),
   }),
-  s("defaultcopymove", {
-    t({ "// default copy and move", "" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "(const " }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "&) = default;", "" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "(" }),
-    f(function()
-      return get_class_name()
-    end, {}, {}),
-    t({ "&&) = default;", "" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "& operator=(const " }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "&) = default;", "" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "& operator=(" }),
-    f(function()
-      return get_class_name()
-    end),
-    t({ "&&) = default;", "" }),
+  s("cfon", {
+    t({ "// clang-format on" }),
   }),
+  s("noline", {
+    t({ "// NOLINTNEXTLINE" }),
+  }),
+  s("nolint", {
+    t({ "// NOLINT" }),
+  }),
+  s("nodisc", {
+    t({ "[[nodiscard]]" }),
+  }),
+  s("munused", {
+    t({ "[[maybe_unused]]" }),
+  }),
+  s("fall", {
+    t({ "[[fallthrough]]" }),
+  }),
+  s({ trig = "once", dscr = "#pragma once (header only)" }, {
+    t({ "#pragma once", "" }),
+  }, {
+    condition = function()
+      return is_header() and not has_pragma_once()
+    end,
+    show_condition = function()
+      return is_header() and not has_pragma_once()
+    end,
+  }),
+  copy_move_snippet("disablecopymove", "delete", "disable"),
+  copy_move_snippet("defaultcopymove", "default", "default"),
 }
 
-ls.add_snippets("cpp", snippets)
+return snippets
