@@ -34,7 +34,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_multi_select")
 ---@field format_item? fun(item: any): string  Display formatter
 ---@field title? string                        Window title (default: " Select ")
 ---@field default_checked? boolean             Initial check state (default: true)
----@field border? string|string[]              Border style (default: "single")
+---@field border? string|string[]              Border style (default: "rounded")
 ---@field min_width? number                    Minimum width ratio 0-1 (default: 0.35)
 ---@field max_width? number                    Maximum width ratio 0-1 (default: 0.6)
 ---@field max_height? number                   Maximum height ratio 0-1 (default: 0.8)
@@ -127,7 +127,7 @@ function M.open(prompt, values, opts)
   local format_item = opts.format_item
   local title = opts.title or " Select "
   local default_checked = opts.default_checked ~= false
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local min_width = opts.min_width or 0.35
   local max_width = opts.max_width or 0.6
   local max_height = opts.max_height or 0.8

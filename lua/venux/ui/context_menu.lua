@@ -47,7 +47,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_context_menu")
 
 ---@class ContextMenuOpts
 ---@field title? string                 Window title
----@field border? string|string[]       Border style (default: "single")
+---@field border? string|string[]       Border style (default: "rounded")
 ---@field position? "cursor"|"center"   Where to show the menu (default: "cursor")
 ---@field ignore_case? boolean          Case-insensitive hotkey matching (default: true)
 
@@ -321,7 +321,7 @@ function M.open(items, opts)
 
   opts = opts or {}
   local title = opts.title
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local position = opts.position or "cursor"
   local ignore_case = opts.ignore_case ~= false
 

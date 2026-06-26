@@ -45,7 +45,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_listbox")
 
 ---@class ListboxOpts
 ---@field title? string           Window title
----@field border? string|string[] Border style (default: "single")
+---@field border? string|string[] Border style (default: "rounded")
 ---@field w? number               Fixed width (auto-calculated if omitted)
 ---@field h? number               Fixed height (auto-calculated if omitted, clamped to editor)
 ---@field max_height? number      Max height ratio 0-1 (default: 0.7)
@@ -218,7 +218,7 @@ function M.open(items, opts)
 
   opts = opts or {}
   local title = opts.title
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local max_height = opts.max_height or 0.7
   local ignore_case = opts.ignore_case ~= false
   local init_index = opts.index or 0

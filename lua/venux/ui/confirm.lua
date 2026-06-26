@@ -37,7 +37,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_confirm")
 ---@class ConfirmOpts
 ---@field choices? string[]|string   Button labels; "&" marks hotkey (default: { "&OK" })
 ---@field title? string              Window title (default: " Confirm ")
----@field border? string|string[]    Border style (default: "single")
+---@field border? string|string[]    Border style (default: "rounded")
 ---@field default? number            1-based index of initially focused button (default: 1)
 
 -- ════════════════════════════════════════════════════════════════════
@@ -181,7 +181,7 @@ end
 function M.open(prompt, opts)
   opts = opts or {}
   local title = opts.title or " Confirm "
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local default_idx = opts.default or 1
 
   setup_highlights()

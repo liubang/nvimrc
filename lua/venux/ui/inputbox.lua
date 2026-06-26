@@ -36,7 +36,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_inputbox")
 
 ---@class InputboxOpts
 ---@field title? string              Window title (default: " Input ")
----@field border? string|string[]    Border style (default: "single")
+---@field border? string|string[]    Border style (default: "rounded")
 ---@field text? string               Default text in the input field
 ---@field w? number                  Fixed width (auto-calculated if omitted)
 ---@field history? string            History key for persistent history across calls
@@ -115,7 +115,7 @@ local history_store = {}
 function M.open(prompt, opts)
   opts = opts or {}
   local title = opts.title or " Input "
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local default_text = opts.text or ""
   local strict = opts.strict ~= false
   local history_key = opts.history

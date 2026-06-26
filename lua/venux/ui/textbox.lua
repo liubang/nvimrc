@@ -36,7 +36,7 @@ local ns = vim.api.nvim_create_namespace("venux_ui_textbox")
 
 ---@class TextboxOpts
 ---@field title? string              Window title
----@field border? string|string[]    Border style (default: "single")
+---@field border? string|string[]    Border style (default: "rounded")
 ---@field w? number                  Fixed width (auto-calculated if omitted)
 ---@field h? number                  Fixed height (auto-calculated if omitted)
 ---@field max_width? number          Max width ratio 0-1 (default: 0.8)
@@ -104,7 +104,7 @@ function M.open(lines, opts)
 
   opts = opts or {}
   local title = opts.title
-  local border = opts.border or "single"
+  local border = opts.border or "rounded"
   local max_width = opts.max_width or 0.8
   local max_height = opts.max_height or 0.7
   local min_width = opts.min_width or 20
