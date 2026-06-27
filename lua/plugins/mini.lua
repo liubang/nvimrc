@@ -232,7 +232,11 @@ return {
         "<leader>ft",
         function()
           if not MiniFiles.close() then
-            MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
+            local path = vim.api.nvim_buf_get_name(0)
+            if path == "" or vim.fn.filereadable(path) == 0 then
+              path = vim.uv.cwd()
+            end
+            MiniFiles.open(path, true)
           end
         end,
         desc = "Toggle mini.files (Directory of Current File)",
