@@ -62,4 +62,8 @@ vim.api.nvim_create_user_command("BazelTests", function() -- {{{
   require("snacks.bazel").test()
 end, { nargs = 0 }) -- }}}
 
+vim.api.nvim_create_user_command("KeyFinder", function() -- {{{
+  require("venux.utils.keyfinder").open()
+end, { nargs = 0 }) -- }}}
+
 -- vim: fdm=marker fdl=0

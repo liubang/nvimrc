@@ -93,6 +93,12 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 vim.keymap.set("t", "<Esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true))
 -- }}}
 
+-- keyfinder {{{
+vim.keymap.set("n", "<Leader>?", function()
+  require("venux.utils.keyfinder").open()
+end, { desc = "KeyFinder" })
+-- }}}
+
 -- accelerated j/k {{{
 require("venux.utils.accelerated_jk").setup()
 -- }}}
