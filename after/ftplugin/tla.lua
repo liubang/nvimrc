@@ -13,13 +13,22 @@
 -- limitations under the License.
 
 -- Authors: liubang (it.liubang@gmail.com)
--- Created: 2026/05/12 01:03
 
 -- filetype=tla 使用 tlaplus parser
 vim.treesitter.language.register("tlaplus", "tla")
-pcall(vim.treesitter.start, 0, "tlaplus")
 
 -- TLA+ 单行注释是 \*
 vim.bo.commentstring = "\\* %s"
 -- 可选：开启 conceal，方便把部分符号显示得更数学化
 vim.opt_local.conceallevel = 2
+
+-- Buffer-local commands (lazy-loaded: tla module only required on first use)
+local function lazy(fn)
+  return function()
+    require("venux.utils.tla")[fn]()
+  end
+end
+
+vim.api.nvim_buf_create_user_command(0, "TlaInstall", lazy("install"), { desc = "Install tla2tools.jar" })
+vim.api.nvim_buf_create_user_command(0, "TlaCheck", lazy("check"), { desc = "Run TLC model checker" })
+vim.api.nvim_buf_create_user_command(0, "TlaTranslate", lazy("translate"), { desc = "Translate PlusCal to TLA+" })
