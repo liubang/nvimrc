@@ -121,13 +121,17 @@ function M.install()
         return
       end
       vim.notify("[TLA+] Downloading tla2tools.jar...", vim.log.levels.INFO)
-      vim.system({ "curl", "-sSL", "-o", jar, url }, {}, vim.schedule_wrap(function(dl)
-        if dl.code == 0 then
-          vim.notify(("[TLA+] Installed tla2tools %s"):format(rel.tag_name or "unknown"), vim.log.levels.INFO)
-        else
-          vim.notify("[TLA+] Download failed", vim.log.levels.ERROR)
-        end
-      end))
+      vim.system(
+        { "curl", "-sSL", "-o", jar, url },
+        {},
+        vim.schedule_wrap(function(dl)
+          if dl.code == 0 then
+            vim.notify(("[TLA+] Installed tla2tools %s"):format(rel.tag_name or "unknown"), vim.log.levels.INFO)
+          else
+            vim.notify("[TLA+] Download failed", vim.log.levels.ERROR)
+          end
+        end)
+      )
     end)
   )
 end
@@ -139,9 +143,12 @@ function M.check()
   end
   send(build("tlc2.TLC", {
     f,
-    "-tool", "-modelcheck",
-    "-coverage", "1",
-    "-config", (f:gsub("%.tla$", ".cfg")),
+    "-tool",
+    "-modelcheck",
+    "-coverage",
+    "1",
+    "-config",
+    (f:gsub("%.tla$", ".cfg")),
   }))
 end
 
