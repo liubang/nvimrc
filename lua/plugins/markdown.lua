@@ -16,33 +16,25 @@
 
 return {
   {
-    "toppair/peek.nvim",
-    cmd = { "PeekOpen", "PeekClose" },
-    build = "deno task --quiet build:fast",
+    "liubang/folio.nvim",
+    dir = "~/workspace/liubang/folio.nvim",
+    cmd = { "FolioPreview", "FolioClose" },
+    build = "make build",
     config = function()
-      require("peek").setup({
-        auto_load = true,
-        close_on_bdelete = true,
-        syntax = true,
-        theme = "light",
-        update_on_change = true,
-        app = "webview", -- 'webview', 'browser', string or a table of strings
-        filetype = { "markdown" }, -- list of filetypes to recognize as markdown
-        throttle_at = 200000,
-        throttle_time = 100,
+      require("folio").setup({
+        binary = vim.fn.expand("~/workspace/liubang/folio.nvim/build/folio"),
+        filetypes = { "markdown" },
       })
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
     keys = {
       {
         "<Leader>mp",
         function()
-          local peek = require("peek")
-          if peek.is_open() then
-            peek.close()
+          local mp = require("folio")
+          if mp.is_open() then
+            mp.close()
           else
-            peek.open()
+            mp.open()
           end
         end,
         desc = "Markdown Preview",
