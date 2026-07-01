@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.19.0](https://github.com/liubang/nvimrc/compare/v3.18.0...v3.19.0) (2026-07-01)
+
+
+### Features
+
+* add KeyFinder — fuzzy-searchable command palette for keymaps and commands ([45b46d9](https://github.com/liubang/nvimrc/commit/45b46d960ab852a0b76cc1543a1a9bebbfca4413))
+* **core:** add accelerated j/k movement ([d778094](https://github.com/liubang/nvimrc/commit/d778094714cfad2b2436a960bdfde9790526e458))
+* replace peek.nvim with folio.nvim ([38d4edb](https://github.com/liubang/nvimrc/commit/38d4edb66969eccefde83ee72414e75b95cd6ad6))
+* **snacks:** add keymaps picker and git blame, soften blink.cmp rust fallback ([75d90bf](https://github.com/liubang/nvimrc/commit/75d90bfd3fdee72635d1ebbe3078f8aa70a30033))
+* **snips:** add clang-format, stylua, clang-tidy, C++ attribute snippets ([97175ca](https://github.com/liubang/nvimrc/commit/97175cad0854f933e7d27e326bb24dd575c1a12b))
+* **tla:** replace tla.nvim plugin with built-in TLA+ utilities ([f39664e](https://github.com/liubang/nvimrc/commit/f39664ebae5e89c062f1e833fff11b9cbf0e04a6))
+* **venux:** change floating window border default from single to rounded ([f27b975](https://github.com/liubang/nvimrc/commit/f27b9750d375629362e9cbf470520f3bde68c087))
+
+
+### Bug Fixes
+
+* **mini.files:** fallback to cwd when buffer has no valid file path ([e3559ab](https://github.com/liubang/nvimrc/commit/e3559ab7c49c798b5d388c73820a3cea8210008f))
+* **snacks:** correct off-by-one in tasks.ini command parsing ([019ec02](https://github.com/liubang/nvimrc/commit/019ec021d5219490a2aef1b88c89cbfa701c9f50))
+
 ## [3.18.0](https://github.com/liubang/nvimrc/compare/v3.17.0...v3.18.0) (2026-06-14)
 
 
