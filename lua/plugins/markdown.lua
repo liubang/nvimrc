@@ -15,30 +15,24 @@
 -- Authors: liubang (it.liubang@gmail.com)
 
 return {
-  {
-    "liubang/folio.nvim",
-    dir = "~/workspace/liubang/folio.nvim",
-    cmd = { "FolioPreview", "FolioClose" },
-    build = "make build",
-    config = function()
-      require("folio").setup({
-        binary = vim.fn.expand("~/workspace/liubang/folio.nvim/build/folio"),
-        filetypes = { "markdown" },
-      })
-    end,
-    keys = {
-      {
-        "<Leader>mp",
-        function()
-          local mp = require("folio")
-          if mp.is_open() then
-            mp.close()
-          else
-            mp.open()
-          end
-        end,
-        desc = "Markdown Preview",
-      },
+  "liubang/folio.nvim",
+  cmd = { "FolioPreview", "FolioClose" },
+  build = "make build",
+  opts = {
+    filetypes = { "markdown" },
+  },
+  keys = {
+    {
+      "<Leader>mp",
+      function()
+        local mp = require("folio")
+        if mp.is_open() then
+          mp.close()
+        else
+          mp.open()
+        end
+      end,
+      desc = "Markdown Preview",
     },
   },
 }
