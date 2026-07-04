@@ -14,6 +14,12 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-require("plugins.lsp.defaults").setup()
+local M = {}
+
+function M.setup()
+  require("plugins.lsp.defaults").setup()
+end
+
+return M
 
 -- vim: foldmethod=marker foldlevel=0

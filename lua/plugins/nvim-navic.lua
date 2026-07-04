@@ -18,7 +18,9 @@ return {
   "SmiteshP/nvim-navic", -- {{{
   init = function()
     vim.g.navic_silence = true
+    local group = vim.api.nvim_create_augroup("NavicLspAttach", { clear = true })
     vim.api.nvim_create_autocmd("LspAttach", {
+      group = group,
       callback = function(args)
         local buffer = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)

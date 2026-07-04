@@ -16,33 +16,39 @@
 
 local defaults = require("plugins.lsp.defaults")
 
-for _, server in ipairs({
-  "clangd",
-  "gopls",
-  "basedpyright",
-  "jsonls",
-  "lua_ls",
-  "yamlls",
-  "texlab",
-  "lemminx", -- for xml
-  "flux_ls",
-}) do
-  defaults.enable(server, require("plugins.lsp.servers." .. server))
+local M = {}
+
+function M.setup()
+  for _, server in ipairs({
+    "clangd",
+    "gopls",
+    "basedpyright",
+    "jsonls",
+    "lua_ls",
+    "yamlls",
+    "texlab",
+    "lemminx", -- for xml
+    "flux_ls",
+  }) do
+    defaults.enable(server, require("plugins.lsp.servers." .. server))
+  end
+
+  for _, server in ipairs({
+    "thriftls", -- for thrift
+    "taplo", -- for toml
+    "ts_ls",
+    "eslint",
+    "bashls",
+    "protols",
+    "neocmake",
+    "intelephense", -- for php
+    "nginx_language_server",
+    "docker_language_server",
+  }) do
+    defaults.enable(server)
+  end
 end
 
-for _, server in ipairs({
-  "thriftls", -- for thrift
-  "taplo", -- for toml
-  "ts_ls",
-  "eslint",
-  "bashls",
-  "protols",
-  "neocmake",
-  "intelephense", -- for php
-  "nginx_language_server",
-  "docker_language_server",
-}) do
-  defaults.enable(server)
-end
+return M
 
 -- vim: fdm=marker fdl=0

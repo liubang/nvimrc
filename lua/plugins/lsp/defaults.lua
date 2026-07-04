@@ -26,10 +26,6 @@ local function get_capabilities()
   return vim.lsp.protocol.make_client_capabilities()
 end
 
-local function merge_capabilities(server_capabilities)
-  return vim.tbl_deep_extend("force", get_capabilities(), server_capabilities or {})
-end
-
 local function compose_on_attach(default_on_attach, server_on_attach)
   if not server_on_attach then
     return default_on_attach
@@ -67,7 +63,6 @@ function M.extend(server_opts)
     capabilities = get_capabilities(),
   }, server_opts)
 
-  merged.capabilities = merge_capabilities(server_opts.capabilities)
   merged.on_attach = compose_on_attach(M.on_attach, server_opts.on_attach)
 
   return merged

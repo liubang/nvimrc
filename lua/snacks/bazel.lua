@@ -20,7 +20,7 @@ local M = {}
 local function get_bazel_root()
   local path = vim.api.nvim_buf_get_name(0)
   if path == "" then
-    path = vim.loop.cwd()
+    path = vim.uv.cwd()
   end
   return vim.fs.root(path, {
     "MODULE.bazel",

@@ -67,8 +67,8 @@ return {
       -- 1. mason.nvim
       -- 2. mason-lspconfig.nvim
       -- Setup servers via lspconfig
-      _ = require("plugins.lsp.config")
-      _ = require("plugins.lsp.servers")
+      require("plugins.lsp.config").setup()
+      require("plugins.lsp.servers").setup()
     end,
   },
 }

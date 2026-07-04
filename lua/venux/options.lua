@@ -163,7 +163,7 @@ end
 vim.opt.clipboard = "unnamedplus"
 
 -- GUI settings {{{
-local uv = vim.uv or vim.loop
+local uv = vim.uv
 local uname = uv.os_uname()
 if uname.sysname == "Linux" then
   vim.o.guifont = "Operator Mono Lig,Hack Nerd Font:h15:h15"
