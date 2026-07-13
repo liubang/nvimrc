@@ -24,7 +24,7 @@ return {
       callback = function(args)
         local buffer = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.documentSymbolProvider ~= nil then
+        if client and client.server_capabilities.documentSymbolProvider then
           require("nvim-navic").attach(client, buffer)
         end
       end,

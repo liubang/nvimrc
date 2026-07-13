@@ -59,6 +59,7 @@ M.check = function()
   -- ── Formatters (conform.nvim) ─────────────────────────────────────
   check_group("Checking formatters", {
     { bin = "stylua",            name = "StyLua",      advice = "Refer to https://github.com/JohnnyMorganz/StyLua#installation", severity = "warn" },
+    { bin = "goimports",         name = "goimports",   advice = "Run `go install golang.org/x/tools/cmd/goimports@latest`", severity = "warn" },
     { bin = "gofumpt",           name = "gofumpt",     advice = "Run `go install mvdan.cc/gofumpt@latest`", severity = "warn" },
     { bin = "shfmt",             name = "shfmt",       advice = "Refer to https://github.com/mvdan/sh#shfmt", severity = "warn" },
     { bin = "prettier",          name = "prettier",    advice = "Run `npm install -g prettier`", severity = "warn" },

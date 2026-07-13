@@ -19,8 +19,11 @@ return {
     "nvim-java/nvim-java",
     ft = { "java", "jproperties" },
     init = function()
-      vim.env.JAVA_HOME = vim.env["JAVA_25_HOME"]
-      vim.env.PATH = vim.env.JAVA_HOME .. "/bin" .. ":" .. vim.env.PATH
+      local java_home = vim.env.JAVA_25_HOME
+      if java_home and java_home ~= "" then
+        vim.env.JAVA_HOME = java_home
+        vim.env.PATH = java_home .. "/bin:" .. (vim.env.PATH or "")
+      end
     end,
     config = function()
       local defaults = require("plugins.lsp.defaults")

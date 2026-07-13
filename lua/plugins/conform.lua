@@ -33,11 +33,7 @@ return {
     format_on_save = function(bufnr)
       local ft = vim.bo[bufnr].filetype
       if ft == "go" then
-        local gopls = vim.lsp.get_clients({ bufnr = bufnr, name = "gopls" })[1]
-        if gopls then
-          require("venux.utils.util").codeaction(gopls, "", "source.organizeImports", 1000)
-        end
-        return { timeout_ms = 500, lsp_format = "fallback" }
+        return { timeout_ms = 1000, lsp_format = "fallback" }
       end
       if ft == "lua" then
         return { timeout_ms = 500, lsp_format = "fallback" }
@@ -47,7 +43,7 @@ return {
       lua = { "stylua" },
       asm = { "asmfmt" },
       bzl = { "buildifier" },
-      go = { "gofumpt" },
+      go = { "goimports", "gofumpt", stop_after_first = false },
       css = { "prettier" },
       graphql = { "prettier" },
       handlebars = { "prettier" },

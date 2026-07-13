@@ -18,6 +18,13 @@ local defaults = require("plugins.lsp.defaults")
 
 local M = {}
 
+local function enable(server, server_opts)
+  local ok, err = pcall(defaults.enable, server, server_opts)
+  if not ok then
+    vim.notify(("Failed to enable LSP server %s: %s"):format(server, err), vim.log.levels.ERROR)
+  end
+end
+
 function M.setup()
   for _, server in ipairs({
     "clangd",
@@ -30,7 +37,12 @@ function M.setup()
     "lemminx", -- for xml
     "flux_ls",
   }) do
-    defaults.enable(server, require("plugins.lsp.servers." .. server))
+    local ok, server_opts = pcall(require, "plugins.lsp.servers." .. server)
+    if ok then
+      enable(server, server_opts)
+    else
+      vim.notify(("Failed to load LSP server %s: %s"):format(server, server_opts), vim.log.levels.ERROR)
+    end
   end
 
   for _, server in ipairs({
@@ -45,7 +57,7 @@ function M.setup()
     "nginx_language_server",
     "docker_language_server",
   }) do
-    defaults.enable(server)
+    enable(server)
   end
 end
 

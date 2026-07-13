@@ -99,7 +99,6 @@ function M.setup()
     },
   })
 
-  vim.lsp.handlers["textDocument/documentHighlight"] = function() end
 end
 
 return M

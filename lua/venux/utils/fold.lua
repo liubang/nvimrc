@@ -66,7 +66,11 @@ local function foldtext() --{{{
   end
 
   local icon = ""
-  local fillcharcount = vim.bo.textwidth - #line_text + add
+  local target_width = vim.bo.textwidth
+  if target_width <= 0 then
+    target_width = vim.api.nvim_win_get_width(0)
+  end
+  local fillcharcount = math.max(0, target_width - vim.fn.strdisplaywidth(line_text) + add)
   local folded_line_num = vim.v.foldend - vim.v.foldstart
   return table.concat({
     "»»",

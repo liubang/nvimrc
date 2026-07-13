@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: panvimdoc
-        uses: kdheepak/panvimdoc@main
+        uses: kdheepak/panvimdoc@1f9433df889d4ab3daa5ea52c7069cb489ad47d6
         with:
           vimdoc: nvimrc
           version: "Neovim >= 0.11.0"

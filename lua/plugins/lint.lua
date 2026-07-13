@@ -25,7 +25,13 @@ return {
     }
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
       group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
-      callback = function()
+      callback = function(event)
+        if vim.bo[event.buf].filetype == "yaml" then
+          local path = vim.fs.normalize(vim.api.nvim_buf_get_name(event.buf))
+          if not path:find("/.github/workflows/", 1, true) then
+            return
+          end
+        end
         require("lint").try_lint()
       end,
     })
