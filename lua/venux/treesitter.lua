@@ -142,9 +142,9 @@ local function setup_incremental_selection()
     end,
   })
 
-  vim.keymap.set("n", "<C-v>", start_or_increment, { desc = "Treesitter Increment Selection" })
-  vim.keymap.set("x", "v", start_or_increment, { desc = "Treesitter Increment Selection" })
-  vim.keymap.set("x", "V", decrement, { desc = "Treesitter Decrement Selection" })
+  vim.keymap.set("n", "<Leader>i", start_or_increment, { desc = "Treesitter Increment Selection" })
+  vim.keymap.set("x", "<Leader>i", start_or_increment, { desc = "Treesitter Increment Selection" })
+  vim.keymap.set("x", "<Leader>I", decrement, { desc = "Treesitter Decrement Selection" })
 end
 
 --- 初始化内置 treesitter 相关配置

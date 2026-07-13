@@ -25,8 +25,9 @@ return {
     { "mason-org/mason-lspconfig.nvim" },
   },
   keys = {
-    { "<C-v>", desc = "Treesitter Increment Selection" },
-    { "V", desc = "Treesitter Decrement Selection", mode = "x" },
+    { "<Leader>i", desc = "Treesitter Increment Selection" },
+    { "<Leader>i", desc = "Treesitter Increment Selection", mode = "x" },
+    { "<Leader>I", desc = "Treesitter Decrement Selection", mode = "x" },
   },
   config = function(_, opts)
     require("tree-sitter-manager").setup(opts)

@@ -31,7 +31,14 @@ local function get_bazel_root()
 end
 
 local function run_in_toggleterm(cmd, cwd)
-  vim.cmd(string.format([[TermExec cmd='cd %s && %s' direction=horizontal go_back=0]], cwd, cmd))
+  local Terminal = require("toggleterm.terminal").Terminal
+  Terminal:new({
+    cmd = cmd,
+    dir = cwd,
+    direction = "horizontal",
+    hidden = true,
+    close_on_exit = false,
+  }):open()
 end
 
 ---@param title string
@@ -65,35 +72,39 @@ local function bazel_finder(title, kind, action)
     "--output=label",
   }
 
-  Snacks.picker({
-    title = title,
-    finder = function(_opts, _ctx)
-      local output = vim.fn.systemlist(find_command, root)
-      local items = {}
-      for _, line in ipairs(output) do
-        local clean = line:gsub("\27%[[%d;]*%a", "")
-        if clean ~= "" then
-          items[#items + 1] = {
-            text = clean,
-            value = clean,
-          }
-        end
-      end
-      return items
-    end,
-    format = function(item, _picker)
-      return { { item.value, "SnacksPickerLabel" } }
-    end,
-    confirm = function(picker, item)
-      picker:close()
-      if not item or not item.value or item.value == "" then
+  vim.system(find_command, { cwd = root, text = true }, function(result)
+    vim.schedule(function()
+      if result.code ~= 0 and (not result.stdout or result.stdout == "") then
+        local message = vim.trim(result.stderr or "bazel query failed")
+        vim.notify(message, vim.log.levels.ERROR)
         return
       end
-      local target = item.value
-      local cmd = string.format("bazel %s %s", action, target)
-      run_in_toggleterm(cmd, root)
-    end,
-  })
+
+      local items = {}
+      for line in (result.stdout or ""):gmatch("[^\r\n]+") do
+        local clean = line:gsub("\27%[[%d;]*%a", "")
+        if clean ~= "" then
+          items[#items + 1] = { text = clean, value = clean }
+        end
+      end
+
+      Snacks.picker({
+        title = title,
+        items = items,
+        format = function(item, _picker)
+          return { { item.value, "SnacksPickerLabel" } }
+        end,
+        confirm = function(picker, item)
+          picker:close()
+          if not item or not item.value or item.value == "" then
+            return
+          end
+          local cmd = string.format("bazel %s %s", action, vim.fn.shellescape(item.value))
+          run_in_toggleterm(cmd, root)
+        end,
+      })
+    end)
+  end)
 end
 
 function M.build()

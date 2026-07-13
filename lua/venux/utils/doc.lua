@@ -42,16 +42,17 @@ local keymaps = function()
     end
   end
 
-  -- hack vim.keymap.set
+  -- Collect mappings without installing them. Always restore the global API,
+  -- even when evaluating the mappings file fails.
   vim.keymap.set = map
-
-  do
-    group = "General"
+  group = "General"
+  local ok, err = xpcall(function()
     dofile(root .. "/lua/venux/mappings.lua")
-  end
-
-  -- reset vim.keymap.set function
+  end, debug.traceback)
   vim.keymap.set = keymap_set
+  if not ok then
+    error(err, 0)
+  end
 
   do
     group = "Plugins"

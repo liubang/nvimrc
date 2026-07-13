@@ -27,7 +27,7 @@ return {
     start_in_insert = true,
     insert_mappings = true,
     persist_mode = false,
-    close_on_exit = true,
+    close_on_exit = false,
     auto_scroll = true,
     shade_terminals = false,
     on_open = function(term)

@@ -34,10 +34,9 @@ function M.tasks()
   for i = 1, #tasks do
     local t = tasks[i]
     table.insert(entries, {
-      name = t[1], -- task name
-      cmd = t[3], -- task command
+      name = vim.trim(t[1]),
       text = table.concat(t, " | "),
-      value = t[1],
+      value = vim.trim(t[1]),
     })
   end
 
@@ -52,7 +51,7 @@ function M.tasks()
       if not item or not item.name then
         return
       end
-      vim.cmd(string.format([[TermExec cmd='%s' direction=horizontal go_back=0]], item.cmd))
+      vim.api.nvim_cmd({ cmd = "AsyncTask", args = { item.name } }, {})
     end,
   })
 end

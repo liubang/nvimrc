@@ -1,25 +1,28 @@
 local M = {}
 
-function M.runner(opts)
-  local cwd = opts.cwd or vim.fn.getcwd()
-  local cmd = string.format("cd '%s' && %s\n", cwd, opts.cmd)
+local function is_true(value)
+  return value == true or value == 1 or value == "1"
+end
 
-  local function send()
-    local term = require("toggleterm.terminal")
-    local id = term.get_focused_id()
-    if not id then
-      return
-    end
-    local t = term.get(id)
-    if t and t.job_id then
-      vim.api.nvim_chan_send(t.job_id, cmd)
-    end
+function M.runner(opts)
+  local Terminal = require("toggleterm.terminal").Terminal
+  local cwd = opts.cwd
+  if not cwd or cwd == "" then
+    cwd = vim.fn.getcwd()
   end
 
-  if not opts.silent then
-    vim.cmd("ToggleTerm direction=horizontal")
-    vim.cmd("startinsert")
-    vim.defer_fn(send, 200)
+  local terminal = Terminal:new({
+    cmd = opts.cmd,
+    dir = cwd,
+    direction = "horizontal",
+    hidden = true,
+    close_on_exit = false,
+  })
+
+  if is_true(opts.silent) then
+    terminal:spawn()
+  else
+    terminal:open()
   end
 end
 
