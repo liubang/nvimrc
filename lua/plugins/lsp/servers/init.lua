@@ -36,6 +36,7 @@ function M.setup()
     "texlab",
     "lemminx", -- for xml
     "flux_ls",
+    "rust_analyzer", -- rust-analyzer 由 rustup 管理，不走 mason
   }) do
     local ok, server_opts = pcall(require, "plugins.lsp.servers." .. server)
     if ok then
