@@ -19,8 +19,8 @@ return {
     "nvim-java/nvim-java",
     ft = { "java", "jproperties" },
     init = function()
-      local java_home = vim.env.JAVA_25_HOME
-      if java_home and java_home ~= "" then
+      local java_home = require("plugins.java.utils").java_home
+      if java_home then
         vim.env.JAVA_HOME = java_home
         vim.env.PATH = java_home .. "/bin:" .. (vim.env.PATH or "")
       end
@@ -28,6 +28,7 @@ return {
     config = function()
       local defaults = require("plugins.lsp.defaults")
       local cfg = require("plugins.java.config")
+      local jutils = require("plugins.java.utils")
 
       --- Walk up from the current buffer's directory to find the nearest
       --- build file (pom.xml / build.gradle / build.gradle.kts), then check
@@ -58,7 +59,7 @@ return {
       end
 
       require("java").setup({
-        jdk = { auto_install = false },
+        jdk = { auto_install = false, path = jutils.java_home },
         spring_boot_tools = { enable = is_spring_boot_project() },
       })
 

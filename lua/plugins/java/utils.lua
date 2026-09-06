@@ -16,8 +16,8 @@
 
 local M = {}
 
-local java_25_home = os.getenv("JAVA_25_HOME")
-M.java_bin = java_25_home and (java_25_home .. "/bin/java") or "java"
+M.java_home = os.getenv("JAVA_25_HOME")
+M.java_bin = M.java_home and (M.java_home .. "/bin/java") or "java"
 
 M.maven_settings = function()
   if vim.fn.filereadable(vim.fn.expand("~/.m2/settings.xml")) == 1 then
