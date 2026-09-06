@@ -16,7 +16,31 @@
 
 local M = {}
 
-M.java_home = os.getenv("JAVA_25_HOME")
+local function java_home_valid(home)
+  if not home or home == "" then
+    return false
+  end
+  return vim.uv.fs_stat(home .. "/bin/java") ~= nil
+end
+
+--- Resolve the JDK 25 home used to run jdtls / lemminx / java tooling.
+--- Prefer JAVA_25_HOME; if it is unset or points to a removed install,
+--- fall back to mise's current temurin-25 install (dynamic, no hardcoded path).
+local function resolve_java_home()
+  local env_home = os.getenv("JAVA_25_HOME")
+  if java_home_valid(env_home) then
+    return env_home
+  end
+
+  local ok, out = pcall(vim.fn.systemlist, { "mise", "where", "java@temurin-25" })
+  if ok and out and out[1] and java_home_valid(out[1]) then
+    return out[1]
+  end
+
+  return env_home
+end
+
+M.java_home = resolve_java_home()
 M.java_bin = M.java_home and (M.java_home .. "/bin/java") or "java"
 
 M.maven_settings = function()
