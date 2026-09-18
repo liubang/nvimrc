@@ -44,50 +44,105 @@ end
 M.check = function()
   -- ── Core ──────────────────────────────────────────────────────────
   check_group("Checking core requirements", {
-    { bin = "rg",     name = "ripgrep",  advice = "Refer to https://github.com/BurntSushi/ripgrep#installation" },
-    { bin = "git",    name = "git",      advice = "Refer to https://git-scm.com/downloads" },
-    { bin = "curl",   name = "curl",     advice = "Refer to https://curl.se/download.html", severity = "warn" },
+    { bin = "rg", name = "ripgrep", advice = "Refer to https://github.com/BurntSushi/ripgrep#installation" },
+    { bin = "git", name = "git", advice = "Refer to https://git-scm.com/downloads" },
+    { bin = "curl", name = "curl", advice = "Refer to https://curl.se/download.html", severity = "warn" },
   })
 
   -- ── LSP servers (ensure_installed via mason) ──────────────────────
   check_group("Checking LSP servers", {
     { bin = "clangd", name = "clangd", advice = "Install via mason (:Mason) or system package", severity = "warn" },
-    { bin = "gopls",  name = "gopls",  advice = "Run `go install golang.org/x/tools/gopls@latest`", severity = "warn" },
+    { bin = "gopls", name = "gopls", advice = "Run `go install golang.org/x/tools/gopls@latest`", severity = "warn" },
     { bin = "lua_ls", name = "lua-language-server", advice = "Install via mason (:Mason)", severity = "warn" },
   })
 
   -- ── Formatters (conform.nvim) ─────────────────────────────────────
   check_group("Checking formatters", {
-    { bin = "stylua",            name = "StyLua",      advice = "Refer to https://github.com/JohnnyMorganz/StyLua#installation", severity = "warn" },
-    { bin = "goimports",         name = "goimports",   advice = "Run `go install golang.org/x/tools/cmd/goimports@latest`", severity = "warn" },
-    { bin = "gofumpt",           name = "gofumpt",     advice = "Run `go install mvdan.cc/gofumpt@latest`", severity = "warn" },
-    { bin = "shfmt",             name = "shfmt",       advice = "Refer to https://github.com/mvdan/sh#shfmt", severity = "warn" },
-    { bin = "prettier",          name = "prettier",    advice = "Run `npm install -g prettier`", severity = "warn" },
-    { bin = "buildifier",        name = "buildifier",  advice = "Refer to https://github.com/bazelbuild/buildtools", severity = "warn" },
-    { bin = "sql-formatter",     name = "sql-formatter", advice = "Run `npm install -g sql-formatter`", severity = "warn" },
-    { bin = "asmfmt",            name = "asmfmt",      advice = "Refer to https://github.com/klauspost/asmfmt", severity = "warn" },
+    {
+      bin = "stylua",
+      name = "StyLua",
+      advice = "Refer to https://github.com/JohnnyMorganz/StyLua#installation",
+      severity = "warn",
+    },
+    {
+      bin = "goimports",
+      name = "goimports",
+      advice = "Run `go install golang.org/x/tools/cmd/goimports@latest`",
+      severity = "warn",
+    },
+    {
+      bin = "gofumpt",
+      name = "gofumpt",
+      advice = "Run `go install mvdan.cc/gofumpt@latest`",
+      severity = "warn",
+    },
+    {
+      bin = "shfmt",
+      name = "shfmt",
+      advice = "Refer to https://github.com/mvdan/sh#shfmt",
+      severity = "warn",
+    },
+    { bin = "prettier", name = "prettier", advice = "Run `npm install -g prettier`", severity = "warn" },
+    {
+      bin = "buildifier",
+      name = "buildifier",
+      advice = "Refer to https://github.com/bazelbuild/buildtools",
+      severity = "warn",
+    },
+    {
+      bin = "sql-formatter",
+      name = "sql-formatter",
+      advice = "Run `npm install -g sql-formatter`",
+      severity = "warn",
+    },
+    {
+      bin = "asmfmt",
+      name = "asmfmt",
+      advice = "Refer to https://github.com/klauspost/asmfmt",
+      severity = "warn",
+    },
   })
 
   -- ── Linters (nvim-lint) ───────────────────────────────────────────
   check_group("Checking linters", {
-    { bin = "buildifier", name = "buildifier (lint)", advice = "Refer to https://github.com/bazelbuild/buildtools", severity = "warn" },
-    { bin = "actionlint", name = "actionlint",        advice = "Refer to https://github.com/rhysd/actionlint", severity = "warn" },
+    {
+      bin = "buildifier",
+      name = "buildifier (lint)",
+      advice = "Refer to https://github.com/bazelbuild/buildtools",
+      severity = "warn",
+    },
+    {
+      bin = "actionlint",
+      name = "actionlint",
+      advice = "Refer to https://github.com/rhysd/actionlint",
+      severity = "warn",
+    },
   })
 
   -- ── Build / task tools ────────────────────────────────────────────
   check_group("Checking build & task tools", {
     { bin = "bazel", name = "bazel", advice = "Refer to https://bazel.build/install", severity = "warn" },
-    { bin = "make",  name = "make",  advice = "Install via system package manager", severity = "warn" },
+    { bin = "make", name = "make", advice = "Install via system package manager", severity = "warn" },
   })
 
   -- ── Language-specific toolchains ──────────────────────────────────
   check_group("Checking language toolchains", {
-    { bin = "java",     name = "java",     advice = "Set JAVA_17_HOME / JAVA_21_HOME / JAVA_25_HOME", severity = "warn" },
-    { bin = "go",       name = "go",       advice = "Refer to https://go.dev/doc/install", severity = "warn" },
-    { bin = "node",     name = "node",     advice = "Refer to https://nodejs.org/", severity = "warn" },
-    { bin = "python3",  name = "python3",  advice = "Refer to https://www.python.org/", severity = "warn" },
-    { bin = "latexmk",  name = "latexmk",  advice = "Install texlive or mactex", severity = "warn" },
-    { bin = "tree-sitter", name = "tree-sitter CLI", advice = "Refer to https://github.com/tree-sitter/tree-sitter", severity = "warn" },
+    {
+      bin = "java",
+      name = "java",
+      advice = "Set JAVA_17_HOME / JAVA_21_HOME / JAVA_25_HOME",
+      severity = "warn",
+    },
+    { bin = "go", name = "go", advice = "Refer to https://go.dev/doc/install", severity = "warn" },
+    { bin = "node", name = "node", advice = "Refer to https://nodejs.org/", severity = "warn" },
+    { bin = "python3", name = "python3", advice = "Refer to https://www.python.org/", severity = "warn" },
+    { bin = "latexmk", name = "latexmk", advice = "Install texlive or mactex", severity = "warn" },
+    {
+      bin = "tree-sitter",
+      name = "tree-sitter CLI",
+      advice = "Refer to https://github.com/tree-sitter/tree-sitter",
+      severity = "warn",
+    },
   })
 end
 

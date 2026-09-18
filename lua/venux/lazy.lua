@@ -17,14 +17,16 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
-  local result = vim.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  }, { text = true }):wait()
+  local result = vim
+    .system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable",
+      lazypath,
+    }, { text = true })
+    :wait()
   if result.code ~= 0 then
     error(("Failed to install lazy.nvim at %s:\n%s"):format(lazypath, vim.trim(result.stderr or "unknown error")))
   end
