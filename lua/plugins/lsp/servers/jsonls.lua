@@ -14,16 +14,17 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
+-- NOTE: on_new_config is a legacy nvim-lspconfig callback and is silently
+-- ignored by vim.lsp.config (0.11+), so schemas are injected eagerly here.
+-- schemastore.nvim is a data-only plugin, loading it is cheap.
+local schemas = require("schemastore").json.schemas()
+
 return {
   settings = {
     json = {
+      schemas = schemas,
       validate = { enable = true },
       format = { enable = true },
     },
   },
-  -- Lazy-load schemas.
-  on_new_config = function(config)
-    config.settings.json.schemas = config.settings.json.schemas or {}
-    vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
-  end,
 }

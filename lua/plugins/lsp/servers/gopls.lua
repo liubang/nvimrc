@@ -41,11 +41,14 @@ return {
   -- share the gopls instance if there is one already
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
-  flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
-  on_new_config = function(config, root_dir)
+  -- NOTE: on_new_config is a legacy nvim-lspconfig callback and is silently
+  -- ignored by vim.lsp.config (0.11+). Use before_init instead, where
+  -- config.root_dir is already resolved and settings mutations still make
+  -- it into the initialize request.
+  before_init = function(_, config)
     config.settings = config.settings or {}
     config.settings.gopls = config.settings.gopls or {}
-    config.settings.gopls["local"] = get_module_name(root_dir)
+    config.settings.gopls["local"] = get_module_name(config.root_dir)
   end,
   settings = {
     gopls = {
@@ -66,7 +69,6 @@ return {
         run_vulncheck_exp = true,
         upgrade_dependency = true,
       },
-      ["local"] = nil,
       semanticTokens = true,
       usePlaceholders = true,
       completeUnimported = true,

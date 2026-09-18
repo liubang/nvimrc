@@ -16,7 +16,7 @@
 
 return {
   "lewis6991/gitsigns.nvim", -- {{{
-  event = { "BufReadPre" },
+  event = { "BufReadPre", "BufNewFile" },
   cmd = "Gitsigns",
   opts = {
     -- stylua: ignore

@@ -16,7 +16,11 @@
 
 return {
   "saghen/blink.cmp",
-  event = { "InsertEnter" },
+  -- NOTE: intentionally no `event`. plugins.lsp.defaults requires blink.cmp at
+  -- BufReadPre (to inject LSP capabilities before any client initializes), so
+  -- lazy.nvim's require hook loads it on first file open anyway. Declaring
+  -- InsertEnter here would be misleading.
+
   dependencies = {
     "saghen/blink.lib",
     "L3MON4D3/LuaSnip",
@@ -25,7 +29,6 @@ return {
     require("blink.cmp").build():pwait()
   end,
   opts_extend = {
-    "sources.completion.enabled_providers",
     "sources.default",
   },
   opts = {

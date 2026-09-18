@@ -30,12 +30,9 @@ return {
     vim.fn.join(lemminx_jars, ":"),
     "org.eclipse.lemminx.XMLServerLauncher",
   },
-  settings = {
-    lemminx = {},
-  },
   filetypes = { "xml", "xsd", "xsl", "xslt", "svg" },
   root_dir = function(bufnr, on_dir)
+    -- root_dir always falls back to cwd, which also covers single files
     on_dir(vim.fs.root(bufnr, { ".git" }) or vim.uv.cwd())
   end,
-  single_file_support = true,
 }

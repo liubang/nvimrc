@@ -100,7 +100,7 @@ M.runtimes = function()
     end
     local java_home = get_java_ver_home(version)
     local default_jdk = false
-    if java_home then
+    if java_home_valid(java_home) then
       local java_sources = java_home .. "/lib/src.zip"
       if ExecutionEnvironment.JavaSE_17 == value then
         default_jdk = true

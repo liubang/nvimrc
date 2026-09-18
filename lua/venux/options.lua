@@ -17,14 +17,12 @@
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 vim.opt.shortmess:append("filmnrxoOtTAIc")
-vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 vim.opt.termguicolors = true
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.modeline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hidden = true
 vim.opt.cmdheight = 1
 vim.opt.showcmd = false
 vim.opt.showmode = false

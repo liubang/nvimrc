@@ -29,7 +29,6 @@ else
 end
 
 return {
-  flags = { allow_incremental_sync = false },
   settings = {
     texlab = {
       rootDirectory = nil,

@@ -50,8 +50,8 @@ function M.on_attach(_, bufnr)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<Leader>es", function() Snacks.picker.diagnostics_buffer() end, bufopts)
   vim.keymap.set("n", "<Leader>ee", function() vim.diagnostic.open_float({ scope = "line" }) end, bufopts)
-  vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.hover({ height = 15, width = 100, max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
-  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help({ height = 15, width = 100, max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
+  vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.hover({ max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
+  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help({ max_height = 20, max_width = 140, border = "rounded" }) end, bufopts)
   vim.keymap.set("n", "<Leader>eS", function() Snacks.picker.diagnostics() end, bufopts)
   -- stylua: ignore end
 end
@@ -98,7 +98,6 @@ function M.setup()
       suffix = " ",
     },
   })
-
 end
 
 return M

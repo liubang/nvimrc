@@ -258,10 +258,12 @@ function M.bigfile(lang, bufnr) -- {{{
     return vim.api.nvim_buf_line_count(bufnr) > 10240
   else
     local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-    -- 400KB
-    if not ok or not stats or stats.size > 409600 then
-      return true
+    -- Unsaved/scratch buffers have no backing file; they are not big files.
+    if not ok or not stats then
+      return false
     end
+    -- 400KB
+    return stats.size > 409600
   end
   return false
 end -- }}}

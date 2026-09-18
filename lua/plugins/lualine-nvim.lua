@@ -53,11 +53,7 @@ return {
           {
             require("venux.utils.util").file_size_format,
             cond = function()
-              local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
-              if ft == "alpha" or ft == "NvimTree" or ft == "Outline" then
-                return false
-              end
-              return true
+              return vim.api.nvim_get_option_value("filetype", { scope = "local" }) ~= "Outline"
             end,
           },
           {
@@ -74,10 +70,6 @@ return {
           {
             require("venux.utils.util").lsp_clients_format,
             cond = function()
-              local ft = vim.api.nvim_get_option_value("filetype", { scope = "local" })
-              if ft == "alpha" or ft == "NvimTree" or ft == "aerial" then
-                return false
-              end
               return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
             end,
           },
@@ -106,7 +98,6 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      extensions = { "nvim-tree" },
     }
   end,
   -- }}}

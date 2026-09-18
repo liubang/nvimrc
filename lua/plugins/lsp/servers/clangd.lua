@@ -100,13 +100,6 @@ return {
     usePlaceholders = true,
     completeUnimported = true,
   },
-  settings = {
-    clangd = {
-      Completion = {
-        CodePatterns = "NONE",
-      },
-    },
-  },
   capabilities = {
     offsetEncoding = { "utf-8", "utf-16" },
   },
