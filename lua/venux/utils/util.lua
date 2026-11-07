@@ -26,15 +26,7 @@ M.is_x86 = uname.machine == "x86_64"
 M.is_arm = uname.machine == "arm64" or uname.machine == "aarch64"
 
 M.open = function(file)
-  local cmd
-  if M.is_linux then
-    cmd = "xdg-open"
-  elseif M.is_mac then
-    cmd = "open"
-  elseif M.is_win then
-    cmd = "start"
-  end
-  vim.system({ cmd, file })
+  vim.ui.open(file)
 end
 
 M.uuid = function() --{{{
@@ -70,7 +62,12 @@ end --}}}
 ---@param command string
 ---@return string[]
 M.shell = function(command) --{{{
-  local result = vim.system({ "sh", "-c", command }, { text = true }):wait()
+  local shell, flag = "sh", "-c"
+  if M.is_win then
+    shell = vim.env.COMSPEC or "cmd.exe"
+    flag = "/c"
+  end
+  local result = vim.system({ shell, flag, command }, { text = true }):wait()
   if result.code ~= 0 or not result.stdout then
     return {}
   end
@@ -113,7 +110,10 @@ M.trim_whitespace = function() -- {{{
   local cursor = vim.api.nvim_win_get_cursor(0)
   vim.api.nvim_command([[keeppatterns %s/\s\+$//e]])
   vim.api.nvim_command([[silent! %s#\($\n\s*\)\+\%$##]])
-  vim.api.nvim_win_set_cursor(0, cursor)
+  local row = math.min(cursor[1], vim.api.nvim_buf_line_count(0))
+  local line = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1] or ""
+  local col = math.min(cursor[2], math.max(#line - 1, 0))
+  vim.api.nvim_win_set_cursor(0, { row, col })
 end -- }}}
 
 M.rtrim = function(s) -- {{{

@@ -74,9 +74,38 @@ local function prepend_shebang(text, ft)
   end
 end
 
+---Return the number of existing prologue lines that must stay at the file start.
+---@param lines string[]
+---@param ft string
+---@return integer
+local function prologue_size(lines, ft)
+  local first = lines[1]
+  if not first then
+    return 0
+  end
+  if ft == "php" and first:find("<?php", 1, true) == 1 then
+    return 1
+  end
+  if first:match("^#!") then
+    if ft == "python" and lines[2] and lines[2]:match("coding[:=]%s*[-%w_.]+") then
+      return 2
+    end
+    return 1
+  end
+  if ft == "python" and first:match("coding[:=]%s*[-%w_.]+") then
+    return 1
+  end
+  return 0
+end
+
 function M.add_fileheader()
+  local ft = get_filetype()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, 2, true)
+  if prologue_size(lines, ft) > 0 then
+    return
+  end
   local text = {}
-  prepend_shebang(text, get_filetype())
+  prepend_shebang(text, ft)
   if #text > 0 then
     vim.fn.append(0, text)
   end
@@ -160,7 +189,7 @@ function M.copy_right_apache()
   local scan = math.min(100, total)
   local lines = vim.api.nvim_buf_get_lines(buf, 0, scan, true)
 
-  local has_shebang = #lines > 0 and lines[1]:match("^#!")
+  local prologue = prologue_size(lines, ft)
 
   -- Locate anchor: "Copyright (c)" — unique enough to identify a generated header
   local anchor -- 1-indexed line number
@@ -177,7 +206,7 @@ function M.copy_right_apache()
     -- Backward: walk up from the anchor, include only blank lines.
     -- Stop at the first non-blank line (shebang, code, or user comment).
     local head_start = anchor
-    while head_start > 1 do
+    while head_start > prologue + 1 do
       if vim.trim(lines[head_start - 1]) == "" then
         head_start = head_start - 1
       else
@@ -206,9 +235,9 @@ function M.copy_right_apache()
       end
     end
 
-    -- Build replacement header (without duplicating an existing shebang)
+    -- Build replacement header without duplicating an existing prologue.
     local new_header = {}
-    if not has_shebang then
+    if prologue == 0 then
       prepend_shebang(new_header, ft)
     end
     vim.list_extend(new_header, build_apache_header(c, old_created))
@@ -217,14 +246,14 @@ function M.copy_right_apache()
     vim.api.nvim_buf_set_lines(buf, head_start - 1, head_end - 1, true, new_header)
     vim.notify("Apache header updated.", vim.log.levels.INFO)
   else
-    -- ── No existing header: insert after shebang or at file start ─────────
+    -- ── No existing header: insert after the prologue or at file start ────
     local new_header = {}
-    if not has_shebang then
+    if prologue == 0 then
       prepend_shebang(new_header, ft)
     end
     vim.list_extend(new_header, build_apache_header(c))
 
-    local insert_at = has_shebang and 1 or 0
+    local insert_at = prologue
     vim.api.nvim_buf_set_lines(buf, insert_at, insert_at, true, new_header)
     vim.notify("Apache header added.", vim.log.levels.INFO)
   end

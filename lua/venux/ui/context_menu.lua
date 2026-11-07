@@ -288,28 +288,6 @@ local function cursor_move(selection, current, direction)
   return selection[new_pos]
 end
 
---- Compute window position near cursor, clamped to editor bounds.
----@param w number window width
----@param h number window height
----@return number row, number col (0-based, relative to editor)
-local function position_near_cursor(w, h)
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local winpos = vim.api.nvim_win_get_position(0)
-  local row = winpos[1] + cursor[1]
-  local col = winpos[2] + cursor[2]
-
-  -- Clamp to editor bounds (account for border: +2)
-  local max_row = vim.o.lines - h - 4
-  local max_col = vim.o.columns - w - 3
-  if row > max_row then
-    row = math.max(0, max_row)
-  end
-  if col > max_col then
-    col = math.max(0, max_col)
-  end
-  return row, col
-end
-
 --- Open a context menu. Blocks via getchar() loop.
 ---@param items (ContextMenuItem|string)[] Menu item definitions
 ---@param opts? ContextMenuOpts
@@ -364,14 +342,25 @@ function M.open(items, opts)
   local buf = vim.api.nvim_create_buf(false, true)
   vim.bo[buf].bufhidden = "wipe"
 
-  -- Compute position
+  -- Clamp both the float and its border to the editor. screenpos() returns
+  -- actual screen cells, accounting for scrolling, wrapping, and wide text.
+  local has_border = border ~= "none" and border ~= ""
+  local border_w, border_h = has_border and 2 or 0, has_border and 2 or 0
+  win_w = math.min(win_w, math.max(1, vim.o.columns - border_w))
+  win_h = math.min(win_h, math.max(1, vim.o.lines - border_h - vim.o.cmdheight))
+  local total_w, total_h = win_w + border_w, win_h + border_h
   local row, col
   if position == "center" then
-    row = math.floor((vim.o.lines - win_h) / 2)
-    col = math.floor((vim.o.columns - win_w) / 2)
+    row = math.floor((vim.o.lines - total_h) / 2)
+    col = math.floor((vim.o.columns - total_w) / 2)
   else
-    row, col = position_near_cursor(win_w, win_h)
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local screen = vim.fn.screenpos(0, cursor[1], cursor[2] + 1)
+    row = screen.row
+    col = screen.col - 1
   end
+  row = math.max(0, math.min(row, vim.o.lines - total_h))
+  col = math.max(0, math.min(col, vim.o.columns - total_w))
 
   -- Create float window
   local win_opts = {

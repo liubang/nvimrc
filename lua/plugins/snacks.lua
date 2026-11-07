@@ -157,8 +157,15 @@ return {
     snacks.setup(opts)
     -- Override vim.ui.select with snacks (replaces telescope-ui-select)
     vim.ui.select = snacks.picker.select
-    -- Dashboard highlights matching alpha-nvim look
-    vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { link = "Keyword" })
-    vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "Identifier" })
+    -- Reapply dashboard highlights after every colorscheme change.
+    local function set_dashboard_highlights()
+      vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { link = "Keyword" })
+      vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "Identifier" })
+    end
+    set_dashboard_highlights()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("VenuxSnacksDashboardHighlights", { clear = true }),
+      callback = set_dashboard_highlights,
+    })
   end,
 }

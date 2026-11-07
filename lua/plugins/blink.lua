@@ -16,10 +16,9 @@
 
 return {
   "saghen/blink.cmp",
-  -- NOTE: intentionally no `event`. plugins.lsp.defaults requires blink.cmp at
-  -- BufReadPre (to inject LSP capabilities before any client initializes), so
-  -- lazy.nvim's require hook loads it on first file open anyway. Declaring
-  -- InsertEnter here would be misleading.
+  -- BufReadPre loads blink before LSP clients initialize so they receive its
+  -- capabilities; the other events also cover insert and cmdline-only sessions.
+  event = { "BufReadPre", "InsertEnter", "CmdlineEnter" },
 
   dependencies = {
     "saghen/blink.lib",

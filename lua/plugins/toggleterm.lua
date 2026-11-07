@@ -17,7 +17,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  cmd = { "ToggleTerm", "TermExec", "TermNew", "TermSelect" },
+  cmd = { "ToggleTerm", "TermExec", "TermSelect" },
   keys = {
     { "<C-t>", "<CMD>ToggleTerm<CR>", desc = "Toggle terminal" },
   },

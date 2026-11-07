@@ -1,0 +1,7 @@
+# Exclude local metadata, credentials, and editor state from image layers.
+.*
+
+# Exclude development-only files from the runtime image.
+docker
+scratch
+static

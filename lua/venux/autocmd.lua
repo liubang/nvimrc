@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd("close")
         pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
       end, {
-        buffer = event.buf,
+        buf = event.buf,
         silent = true,
         desc = "Quit buffer",
       })
@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   group = special_settings_group,
   callback = function()
     vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = 0,
+      buf = 0,
       once = true,
       callback = function()
         local path = vim.fn.expand("%:p:h")
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = special_settings_group,
   callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+    vim.hl.on_yank({ higroup = "IncSearch", timeout = 200 })
   end,
 })
 

@@ -14,21 +14,14 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
-local lemminx_jars = {}
-local jar_dir = vim.fn.stdpath("config") .. "/data/jars/"
-local lemminx_home = jar_dir .. "lemminx"
-
-for _, bundle in ipairs(vim.split(vim.fn.glob(lemminx_home .. "/*.jar"), "\n")) do
-  table.insert(lemminx_jars, bundle)
-end
+local lemminx_jar = vim.fn.stdpath("config") .. "/data/jars/lemminx/org.eclipse.lemminx-uber.jar"
 
 return {
   name = "lemminx",
   cmd = {
     require("plugins.java.utils").java_bin,
-    "-cp",
-    vim.fn.join(lemminx_jars, ":"),
-    "org.eclipse.lemminx.XMLServerLauncher",
+    "-jar",
+    lemminx_jar,
   },
   filetypes = { "xml", "xsd", "xsl", "xslt", "svg" },
   root_dir = function(bufnr, on_dir)

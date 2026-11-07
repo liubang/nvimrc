@@ -50,8 +50,16 @@ M.maven_settings = function()
   return ""
 end
 
-M.fmt_config = function()
-  local fmt_path = vim.uv.cwd() .. "/eclipse-formatter.xml"
+M.fmt_config = function(root_dir)
+  local root = root_dir
+  if root == nil then
+    root = vim.uv.cwd()
+  end
+  if not root or root == "" then
+    return {}
+  end
+
+  local fmt_path = root .. "/eclipse-formatter.xml"
   local has_fmt = vim.uv.fs_stat(fmt_path)
   if has_fmt then
     return {

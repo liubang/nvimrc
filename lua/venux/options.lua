@@ -102,7 +102,7 @@ vim.opt.wildoptions = "pum"
 vim.opt.wildmode = { "longest:full", "list", "full" }
 vim.opt.wildignorecase = true
 vim.opt.wildcharm = vim.fn.char2nr("	") -- tab
-vim.opt.shada = "!,'1000,<200,s100,h,f1,:5000,@1000,/500"
+vim.opt.shada:append({ "r/tmp/", "r/private/" })
 vim.opt.inccommand = "nosplit"
 vim.opt.diffopt:append("indent-heuristic")
 vim.opt.diffopt:append("algorithm:patience")

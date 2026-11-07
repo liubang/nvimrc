@@ -34,6 +34,28 @@ local function is_large_file(buf)
   return vim.api.nvim_buf_line_count(buf) > MAX_LINES
 end
 
+-- Fold 设置：小文件使用 treesitter foldexpr，大文件用 indent
+---@param buf integer
+local function set_fold(buf)
+  -- snacks.bigfile 已接管，跳过
+  if vim.bo[buf].filetype == "bigfile" then
+    return
+  end
+
+  local wins = vim.fn.win_findbuf(buf)
+  if #wins == 0 then
+    return
+  end
+
+  local large_file = is_large_file(buf)
+  local foldmethod = large_file and "indent" or "expr"
+  local foldexpr = large_file and "" or "v:lua.vim.treesitter.foldexpr()"
+  for _, win in ipairs(wins) do
+    vim.api.nvim_set_option_value("foldmethod", foldmethod, { win = win })
+    vim.api.nvim_set_option_value("foldexpr", foldexpr, { win = win })
+  end
+end
+
 -- 大文件降级：禁用 treesitter highlight，fold 回退为 indent
 local function setup_large_file_protection()
   vim.api.nvim_create_autocmd("FileType", {
@@ -42,109 +64,33 @@ local function setup_large_file_protection()
       local buf = ev.buf
       if is_large_file(buf) then
         vim.treesitter.stop(buf)
-        local wins = vim.fn.win_findbuf(buf)
-        for _, win in ipairs(wins) do
-          vim.api.nvim_set_option_value("foldmethod", "indent", { win = win })
-          vim.api.nvim_set_option_value("foldexpr", "", { win = win })
-        end
+        set_fold(buf)
       end
     end,
   })
 end
 
--- Fold 设置：小文件使用 treesitter foldexpr，大文件用 indent
 local function setup_fold()
-  vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+  vim.api.nvim_create_autocmd({ "BufWinEnter", "BufReadPost", "BufNewFile" }, {
     group = vim.api.nvim_create_augroup("TreesitterFold", { clear = true }),
     callback = function(ev)
-      local buf = ev.buf
-      -- snacks.bigfile 已接管，跳过
-      if vim.bo[buf].filetype == "bigfile" then
-        return
-      end
-      local wins = vim.fn.win_findbuf(buf)
-      if #wins == 0 then
-        return
-      end
-      if is_large_file(buf) then
-        for _, win in ipairs(wins) do
-          vim.api.nvim_set_option_value("foldmethod", "indent", { win = win })
-          vim.api.nvim_set_option_value("foldexpr", "", { win = win })
-        end
-      else
-        for _, win in ipairs(wins) do
-          vim.api.nvim_set_option_value("foldmethod", "expr", { win = win })
-          vim.api.nvim_set_option_value("foldexpr", "v:lua.vim.treesitter.foldexpr()", { win = win })
-        end
-      end
+      set_fold(ev.buf)
     end,
   })
 end
 
--- 基于 treesitter 节点的增量选择
+-- 使用 Neovim 0.12 内置实现维护基于 treesitter 节点的增量选择
 local function setup_incremental_selection()
-  local ns_node = nil -- 当前选中的节点
-
-  --- 将节点范围设置为 visual 选区
-  ---@param node TSNode
-  local function select_node(node)
-    local sr, sc, er, ec = node:range()
-    -- range() 返回 0-indexed, end 是 exclusive
-    -- 转换为 1-indexed 行号，end col 转为 inclusive
-    if ec == 0 then
-      -- 节点结束在行首，实际末尾在上一行的行尾
-      er = er - 1
-      ec = #vim.api.nvim_buf_get_lines(0, er, er + 1, true)[1]
-    else
-      ec = ec - 1
+  local function select(target)
+    return function()
+      vim.treesitter.select(target, vim.v.count1)
     end
-    vim.fn.setpos("'<", { 0, sr + 1, sc + 1, 0 })
-    vim.fn.setpos("'>", { 0, er + 1, ec + 1, 0 })
-    vim.cmd("normal! gv")
   end
 
-  local function start_or_increment()
-    local buf = vim.api.nvim_get_current_buf()
-    if ns_node == nil then
-      -- 初始选择：获取光标下的最小节点
-      ns_node = vim.treesitter.get_node({ bufnr = buf })
-      if not ns_node then
-        return
-      end
-    else
-      -- 扩展到父节点
-      local parent = ns_node:parent()
-      if parent then
-        ns_node = parent
-      end
-    end
-    select_node(ns_node)
-  end
-
-  local function decrement()
-    if ns_node == nil then
-      return
-    end
-    -- 尝试获取第一个命名子节点作为缩小选择
-    local child = ns_node:named_child(0)
-    if child then
-      ns_node = child
-    end
-    select_node(ns_node)
-  end
-
-  -- 退出 visual mode 时重置节点状态
-  vim.api.nvim_create_autocmd("ModeChanged", {
-    group = vim.api.nvim_create_augroup("TreesitterIncrementalSelection", { clear = true }),
-    pattern = "[vV\x16]*:n",
-    callback = function()
-      ns_node = nil
-    end,
-  })
-
-  vim.keymap.set("n", "<Leader>i", start_or_increment, { desc = "Treesitter Increment Selection" })
-  vim.keymap.set("x", "<Leader>i", start_or_increment, { desc = "Treesitter Increment Selection" })
-  vim.keymap.set("x", "<Leader>I", decrement, { desc = "Treesitter Decrement Selection" })
+  local select_parent = select("parent")
+  vim.keymap.set("n", "<Leader>i", select_parent, { desc = "Treesitter Increment Selection" })
+  vim.keymap.set("x", "<Leader>i", select_parent, { desc = "Treesitter Increment Selection" })
+  vim.keymap.set("x", "<Leader>I", select("child"), { desc = "Treesitter Decrement Selection" })
 end
 
 --- 初始化内置 treesitter 相关配置

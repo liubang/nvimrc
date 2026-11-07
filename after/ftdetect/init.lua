@@ -19,7 +19,6 @@ vim.filetype.add({ -- {{{
     [".clangd"] = "yaml",
     [".clang-format"] = "yaml",
     [".bazelrc"] = "bzl",
-    [".gitignore"] = "gitconfig",
     ["go.sum"] = "gosum",
     ["go.mod"] = "gomod",
     ["BUILD"] = "bzl",

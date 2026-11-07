@@ -97,7 +97,7 @@ function M.install()
   local jar = tla2tools_path()
   vim.notify("[TLA+] Fetching latest release info...", vim.log.levels.INFO)
   vim.system(
-    { "curl", "-sSL", "https://api.github.com/repos/tlaplus/tlaplus/releases/latest" },
+    { "curl", "-f", "-sSL", "https://api.github.com/repos/tlaplus/tlaplus/releases/latest" },
     { text = true },
     vim.schedule_wrap(function(out)
       if out.code ~= 0 or not out.stdout then
@@ -121,15 +121,31 @@ function M.install()
         return
       end
       vim.notify("[TLA+] Downloading tla2tools.jar...", vim.log.levels.INFO)
+      local fd, tmp, err = vim.uv.fs_mkstemp(jar .. ".tmp.XXXXXX")
+      if not fd then
+        vim.notify(("[TLA+] Failed to create temporary download: %s"):format(err or "unknown error"), vim.log.levels.ERROR)
+        return
+      end
+      vim.uv.fs_close(fd)
       vim.system(
-        { "curl", "-sSL", "-o", jar, url },
+        { "curl", "-f", "-sSL", "-o", tmp, url },
         {},
         vim.schedule_wrap(function(dl)
-          if dl.code == 0 then
-            vim.notify(("[TLA+] Installed tla2tools %s"):format(rel.tag_name or "unknown"), vim.log.levels.INFO)
-          else
+          if dl.code ~= 0 then
+            vim.uv.fs_unlink(tmp)
             vim.notify("[TLA+] Download failed", vim.log.levels.ERROR)
+            return
           end
+          local ok, err = vim.uv.fs_rename(tmp, jar)
+          if not ok then
+            vim.uv.fs_unlink(tmp)
+            vim.notify(
+              ("[TLA+] Failed to install tla2tools.jar: %s"):format(err or "rename failed"),
+              vim.log.levels.ERROR
+            )
+            return
+          end
+          vim.notify(("[TLA+] Installed tla2tools %s"):format(rel.tag_name or "unknown"), vim.log.levels.INFO)
         end)
       )
     end)

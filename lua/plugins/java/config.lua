@@ -53,12 +53,21 @@ end --- }}}
 
 local M = {}
 
+local function before_init(_, config)
+  local settings = vim.deepcopy(config.settings or {})
+  settings.java = settings.java or {}
+  settings.java.format = settings.java.format or {}
+  settings.java.format.settings = jutils.fmt_config(config.root_dir)
+  config.settings = settings
+end
+
 M.jdtls_config = function()
   return {
+    before_init = before_init,
     on_attach = on_attach,
     settings = {
       java = {
-        format = { enabled = true, settings = jutils.fmt_config() },
+        format = { enabled = true },
         autobuild = { enabled = false },
         maxConcurrentBuilds = 4,
         project = { encoding = "UTF-8" },
@@ -66,14 +75,12 @@ M.jdtls_config = function()
         selectionRange = { enabled = true },
         inlayHints = { parameterNames = { enabled = "all" } },
         referencesCodeLens = { enabled = false }, -- 引用计数
-        implementationsCodeLens = { enabled = false },
-        codeLens = { enabled = false },
+        implementationCodeLens = "none",
         eclipse = { downloadSources = false },
         maven = { downloadSources = false, updateSnapshots = false },
         signatureHelp = { enabled = false, description = { enabled = false } },
-        contentProvider = { preferred = "cfr" },
+        contentProvider = { preferred = "fernflowerContentProvider" },
         saveActions = { organizeImports = false },
-        semanticHighlighting = { enabled = false },
         sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
         configuration = {
           maven = { userSettings = jutils.maven_settings() },
@@ -85,7 +92,7 @@ M.jdtls_config = function()
           },
           hashCodeEquals = {
             useJava7Objects = false,
-            useInstanceOf = true,
+            useInstanceof = true,
           },
           useBlocks = true,
           addFinalForNewDeclaration = "fields",

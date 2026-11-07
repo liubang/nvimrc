@@ -405,7 +405,8 @@ function M.open(prompt, opts)
         local word_start = vim.fn.match(trimmed, "\\k\\+$")
         local delete_count
         if word_start >= 0 then
-          delete_count = vim.fn.strchars(before) - word_start
+          local char_start = vim.fn.strchars(vim.fn.strpart(trimmed, 0, word_start))
+          delete_count = vim.fn.strchars(before) - char_start
         else
           -- No keyword chars found; delete trailing whitespace only
           delete_count = vim.fn.strchars(before) - vim.fn.strchars(trimmed)
@@ -417,7 +418,7 @@ function M.open(prompt, opts)
       else
         -- Printable character
         local byte = ch:byte(1)
-        if byte and byte >= 0x20 and byte ~= 0x7f then
+        if byte and byte >= 0x20 and byte ~= 0x7f and byte ~= 0x80 then
           rl_insert(rl, ch)
           render()
         end

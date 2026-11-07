@@ -14,16 +14,13 @@
 
 -- Authors: liubang (it.liubang@gmail.com)
 
--- Parser 管理：tree-sitter-manager.nvim（nvim-treesitter 停更后的轻量替代）
+-- Parser 管理：tree-sitter-manager.nvim（Neovim 0.12 内置 Treesitter 的轻量 parser 管理器）
 -- 提供 :TSManager 交互式 TUI 界面安装/删除/更新 parser
 -- 需要系统安装：tree-sitter CLI、git、C 编译器
 return {
   "romus204/tree-sitter-manager.nvim",
   cmd = { "TSManager" },
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    { "mason-org/mason-lspconfig.nvim" },
-  },
   keys = {
     { "<Leader>i", desc = "Treesitter Increment Selection" },
     { "<Leader>i", desc = "Treesitter Increment Selection", mode = "x" },
@@ -37,7 +34,6 @@ return {
     ensure_installed = {
       "go",
       "rust",
-      "lua",
       "python",
       "java",
       "json",
@@ -48,12 +44,9 @@ return {
       "sql",
       "regex",
       "tlaplus",
-      "query",
-      "markdown",
-      "markdown_inline",
-      "vimdoc",
     },
-    auto_install = true,
+    auto_install = false,
+    noauto_install = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
     highlight = true,
   },
 }

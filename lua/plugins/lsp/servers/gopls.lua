@@ -40,7 +40,7 @@ end
 return {
   -- share the gopls instance if there is one already
   cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
+  filetypes = { "go", "gomod", "gowork", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
   -- NOTE: on_new_config is a legacy nvim-lspconfig callback and is silently
   -- ignored by vim.lsp.config (0.11+). Use before_init instead, where
   -- config.root_dir is already resolved and settings mutations still make
@@ -57,22 +57,17 @@ return {
         -- leeave most of them to default
         -- shadow = true,
         -- unusedvariable = true,
-        useany = true,
       },
       -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
       codelenses = {
         generate = true, -- show the `go generate` lens.
-        gc_details = true, -- Show a code lens toggling the display of gc's choices.
         test = true,
         tidy = true,
         regenerate_cgo = true,
-        run_vulncheck_exp = true,
         upgrade_dependency = true,
       },
       semanticTokens = true,
       usePlaceholders = true,
-      completeUnimported = true,
-      completionDocumentation = true,
       staticcheck = true,
       gofumpt = true,
       linksInHover = true,

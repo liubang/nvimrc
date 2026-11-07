@@ -22,7 +22,6 @@ return {
     opts = {
       registries = {
         "github:mason-org/mason-registry",
-        "github:nvim-java/mason-registry",
       },
       ui = {
         border = "single",
@@ -60,7 +59,6 @@ return {
           "clangd",
           "gopls",
           "lua_ls",
-          "jdtls",
         },
       })
       -- It's important that you set up the plugins in the following order:

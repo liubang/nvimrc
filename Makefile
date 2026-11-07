@@ -23,7 +23,8 @@ HAVE_DOCKER_BUILDX := $(shell docker buildx version >/dev/null 2>&1 && echo 1)
 IMAGE_NAMESPACE ?= liubang
 CONTEXT ?= .
 PLATFORMS ?= linux/amd64,linux/arm64
-LOCAL_PLATFORMS ?= linux/amd64
+LOCAL_ARCH := $(shell uname -m | sed -e 's/^x86_64$$/amd64/' -e 's/^aarch64$$/arm64/')
+LOCAL_PLATFORMS ?= linux/$(LOCAL_ARCH)
 PROGRESS ?= auto
 PUSH ?= 1
 LOAD ?= 0
@@ -57,14 +58,14 @@ endif
 NO_CACHE_FLAG := $(if $(filter 1 true yes on,$(NO_CACHE)),--no-cache,)
 PROGRESS_FLAG := $(if $(PROGRESS),--progress $(PROGRESS),)
 
-ifeq ($(filter 1 true yes on,$(PUSH)),)
 ifeq ($(CONTAINER),docker)
+ifeq ($(filter 1 true yes on,$(PUSH)),)
 OUTPUT_FLAG := $(if $(filter 1 true yes on,$(LOAD)),--load,)
 else
-OUTPUT_FLAG :=
+OUTPUT_FLAG := --push
 endif
 else
-OUTPUT_FLAG := --push
+OUTPUT_FLAG :=
 endif
 
 ifneq ($(filter 1 true yes on,$(PUSH)),)
@@ -81,10 +82,14 @@ endif
 endif
 endif
 
-.PHONY: help check build build-local neovim neovim-local print-%
+.PHONY: help check dry-run build build-local neovim neovim-local print-%
+
+define reject_podman_push
+$(if $(and $(filter podman,$(CONTAINER)),$(filter 1 true yes on,$(PUSH))),$(error Podman PUSH=1 is not supported by this Makefile. Use PUSH=0 for a local build or CONTAINER=docker to push.))
+endef
 
 define build_image
-	$(BUILD_CMD) $(NO_CACHE_FLAG) $(OUTPUT_FLAG) $(PROGRESS_FLAG) --platform $(4) -t $(1) -f $(2) $(strip $(3)) $(CONTEXT)
+	$(call reject_podman_push)$(BUILD_CMD) $(NO_CACHE_FLAG) $(OUTPUT_FLAG) $(PROGRESS_FLAG) --platform $(4) -t $(1) -f $(2) $(strip $(3)) $(CONTEXT)
 endef
 
 help: ## Show available targets and overridable variables
@@ -103,6 +108,7 @@ help: ## Show available targets and overridable variables
 	@printf "  NEOVIM_IMAGE=%s\n" "$(NEOVIM_IMAGE)"
 
 check: ## Validate the selected container toolchain and key variables
+	$(call reject_podman_push)
 	@printf "Using container engine: %s\n" "$(CONTAINER)"
 	@printf "Build command: %s\n" "$(BUILD_CMD)"
 	@printf "Output mode: %s\n" "$(if $(OUTPUT_FLAG),$(OUTPUT_FLAG),local cache only)"
@@ -110,6 +116,9 @@ check: ## Validate the selected container toolchain and key variables
 	@printf "Runtime image: %s\n" "$(NVIM_IMAGE)"
 	@printf "Base image: %s\n" "$(NEOVIM_IMAGE)"
 	@if [ "$(CONTAINER)" = "docker" ]; then docker buildx version >/dev/null; fi
+
+dry-run: ## Print the runtime build command without executing it
+	@$(MAKE) --no-print-directory --dry-run build
 
 build: ## Build the runtime image using the configured output mode
 	$(call build_image,$(NVIM_IMAGE),docker/Dockerfile,,$(PLATFORMS))
@@ -119,7 +128,7 @@ build-local: ## Build the runtime image for local use without pushing
 
 neovim: ## Build and push the base Neovim image (requires NVIM_TAG)
 ifndef NVIM_TAG
-	$(error NVIM_TAG is required, e.g. make neovim NVIM_TAG=0.11.6)
+	$(error NVIM_TAG is required, e.g. make neovim NVIM_TAG=0.12.6)
 endif
 	$(call build_image,$(NEOVIM_IMAGE),docker/build_neovim.Dockerfile,--build-arg NVIM_TAG=$(NVIM_TAG),$(PLATFORMS))
 

@@ -16,7 +16,7 @@
 
 return {
   "liubang/folio.nvim",
-  cmd = { "FolioPreview", "FolioClose" },
+  cmd = { "FolioPreview", "FolioClose", "FolioCloseAll" },
   build = "make build",
   opts = {
     filetypes = { "markdown" },

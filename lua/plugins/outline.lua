@@ -18,8 +18,10 @@ return {
   "hedyhli/outline.nvim",
   cmd = { "Outline" },
   opts = {
-    position = "right",
-    width = 25,
+    outline_window = {
+      position = "right",
+      width = 25,
+    },
     symbol_folding = { autofold_depth = 5 },
     providers = {
       priority = { "lsp", "coc", "markdown", "norg", "man" },

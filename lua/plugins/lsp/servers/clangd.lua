@@ -32,7 +32,9 @@ local luv = vim.uv
 local cpu = luv.available_parallelism()
 local large_cpp_filetypes = {
   c = true,
+  ["c.doxygen"] = true,
   cpp = true,
+  ["cpp.doxygen"] = true,
   objc = true,
   objcpp = true,
   cuda = true,
@@ -94,7 +96,7 @@ end
 return {
   cmd = get_clangd_cmd(),
   -- disable proto type
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  filetypes = { "c", "c.doxygen", "cpp", "cpp.doxygen", "objc", "objcpp", "cuda" },
   init_options = {
     clangdFileStatus = true,
     usePlaceholders = true,
@@ -105,7 +107,7 @@ return {
   },
   on_attach = function(client, buf)
     if is_large_cpp_buffer(buf) then
-      client.server_capabilities.semanticTokensProvider = nil
+      vim.lsp.semantic_tokens.enable(false, { bufnr = buf })
     end
 
     vim.api.nvim_buf_create_user_command(buf, "ClangdSwitchSourceHeader", function()
@@ -115,16 +117,16 @@ return {
       desc = "clangd: Switch Between Source and Header File",
     })
     vim.keymap.set("n", "grs", "<Cmd>ClangdSwitchSourceHeader<CR>", {
-      buffer = buf,
+      buf = buf,
       desc = "clangd: Switch Between Source and Header File",
     })
 
     vim.api.nvim_create_autocmd("LspDetach", {
       group = vim.api.nvim_create_augroup("conf_lsp_attach_detach", { clear = false }),
-      buffer = buf,
+      buf = buf,
       callback = function(args)
         if args.data.client_id == client.id then
-          vim.keymap.del("n", "grs", { buffer = buf })
+          vim.keymap.del("n", "grs", { buf = buf })
           vim.api.nvim_buf_del_user_command(buf, "ClangdSwitchSourceHeader")
           return true -- Delete this autocmd.
         end

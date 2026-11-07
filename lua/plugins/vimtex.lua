@@ -17,7 +17,7 @@
 return {
   {
     "lervag/vimtex",
-    ft = { "tex", "bib", "cls" },
+    lazy = false,
     init = function()
       vim.g.vimtex_indent_enabled = false -- Disable auto-indent from Vimtex
       vim.g.tex_indent_items = false -- Disable indent for enumerate
@@ -34,16 +34,6 @@ return {
       else
         vim.g.vimtex_view_method = "skim"
       end
-      vim.g.vimtex_compiler_latexmk_engines = {
-        ["_"] = "-pdf",
-        pdflatex = "-pdf",
-        dvipdfex = "-pdfdvi",
-        lualatex = "-lualatex",
-        xelatex = "-xelatex",
-        ["context (pdftex)"] = "-pdf -pdflatex=texexec",
-        ["context (luatex)"] = "-pdf -pdflatex=context",
-        ["context (xetex)"] = "-pdf -pdflatex=texexec --xtx",
-      }
       vim.g.vimtex_compiler_latexmk = {
         build_dir = "build",
         options = {

@@ -17,8 +17,9 @@
 return {
   settings = {
     basedpyright = {
+      disableOrganizeImports = true,
       analysis = {
-        ignorePatterns = { "*.pyi" },
+        ignore = { "**/*.pyi" },
         diagnosticSeverityOverrides = {
           reportCallIssue = "warning",
           reportUnreachable = "warning",
@@ -27,7 +28,6 @@ return {
         },
         diagnosticMode = "openFilesOnly",
         typeCheckingMode = "basic",
-        disableOrganizeImports = true,
       },
     },
   },

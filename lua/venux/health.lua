@@ -53,7 +53,12 @@ M.check = function()
   check_group("Checking LSP servers", {
     { bin = "clangd", name = "clangd", advice = "Install via mason (:Mason) or system package", severity = "warn" },
     { bin = "gopls", name = "gopls", advice = "Run `go install golang.org/x/tools/gopls@latest`", severity = "warn" },
-    { bin = "lua_ls", name = "lua-language-server", advice = "Install via mason (:Mason)", severity = "warn" },
+    {
+      bin = "lua-language-server",
+      name = "lua-language-server",
+      advice = "Install via mason (:Mason)",
+      severity = "warn",
+    },
   })
 
   -- ── Formatters (conform.nvim) ─────────────────────────────────────

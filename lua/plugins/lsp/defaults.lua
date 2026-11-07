@@ -26,19 +26,20 @@ local function get_capabilities()
   return vim.lsp.protocol.make_client_capabilities()
 end
 
-local function compose_on_attach(default_on_attach, server_on_attach)
-  if not server_on_attach then
-    return default_on_attach
-  end
-
+local function compose_on_attach(upstream_on_attach, server_on_attach)
   return function(client, bufnr)
-    default_on_attach(client, bufnr)
-    server_on_attach(client, bufnr)
+    if upstream_on_attach then
+      upstream_on_attach(client, bufnr)
+    end
+    M.on_attach(client, bufnr)
+    if server_on_attach then
+      server_on_attach(client, bufnr)
+    end
   end
 end
 
 function M.on_attach(_, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  local bufopts = { noremap = true, silent = true, buf = bufnr }
 
   -- stylua: ignore start
   vim.keymap.set("n", "<Leader>gd", function() Snacks.picker.lsp_definitions() end, bufopts)
@@ -56,20 +57,22 @@ function M.on_attach(_, bufnr)
   -- stylua: ignore end
 end
 
-function M.extend(server_opts)
+function M.extend(server_opts, upstream_on_attach)
   server_opts = server_opts or {}
 
   local merged = vim.tbl_deep_extend("force", {
     capabilities = get_capabilities(),
   }, server_opts)
 
-  merged.on_attach = compose_on_attach(M.on_attach, server_opts.on_attach)
+  merged.on_attach = compose_on_attach(upstream_on_attach, server_opts.on_attach)
 
   return merged
 end
 
 function M.enable(server, server_opts)
-  vim.lsp.config(server, M.extend(server_opts))
+  local upstream = vim.lsp.config[server]
+  local upstream_on_attach = upstream and upstream.on_attach or nil
+  vim.lsp.config(server, M.extend(server_opts, upstream_on_attach))
   vim.lsp.enable(server)
 end
 

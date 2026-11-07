@@ -168,53 +168,55 @@ return {
       },
     },
     config = function(_, opts)
-      require("mini.files").setup(opts)
-      local map_split = function(buf_id, lhs, direction, close_on_file)
+      local mini_files = require("mini.files")
+      mini_files.setup(opts)
+      local map_split = function(buf, lhs, direction, close_on_file)
         local rhs = function()
           local new_target_window
-          local cur_target_window = require("mini.files").get_explorer_state().target_window
+          local cur_target_window = mini_files.get_explorer_state().target_window
           if cur_target_window ~= nil then
             vim.api.nvim_win_call(cur_target_window, function()
               vim.cmd("belowright " .. direction .. " split")
               new_target_window = vim.api.nvim_get_current_win()
             end)
-            require("mini.files").set_target_window(new_target_window)
-            require("mini.files").go_in({ close_on_file = close_on_file })
+            mini_files.set_target_window(new_target_window)
+            mini_files.go_in({ close_on_file = close_on_file })
           end
         end
         local desc = "Open in " .. direction .. " split"
         if close_on_file then
           desc = desc .. " and close"
         end
-        vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
+        vim.keymap.set("n", lhs, rhs, { buffer = buf, desc = desc })
       end
 
+      local group = vim.api.nvim_create_augroup("VenuxMiniFiles", { clear = true })
       vim.api.nvim_create_autocmd("User", {
-        pattern = "MiniFilesActionRename",
-        callback = function(event)
-          Snacks.rename.on_rename_file(event.data.from, event.data.to)
-        end,
-      })
-      vim.api.nvim_create_autocmd("User", {
+        group = group,
         pattern = "MiniFilesBufferCreate",
         callback = function(args)
-          local buf_id = args.data.buf_id
-          map_split(buf_id, "<C-s>", "horizontal", true)
-          map_split(buf_id, "<C-v>", "vertical", true)
+          local buf = args.data.buf_id
+          map_split(buf, "<C-s>", "horizontal", true)
+          map_split(buf, "<C-v>", "vertical", true)
         end,
       })
 
       -- use :w to save filesystem change
       vim.api.nvim_create_autocmd("User", {
-        pattern = { "MiniFilesBufferCreate", "MiniFilesBufferUpdate" },
+        group = group,
+        pattern = "MiniFilesBufferCreate",
         callback = function(ev)
-          local buf_id = ev.data.buf_id
+          local buf = ev.data.buf_id
           vim.schedule(function()
-            vim.api.nvim_set_option_value("buftype", "acwrite", { buf = ev.data.buf_id })
-            vim.api.nvim_buf_set_name(buf_id, "MiniFiles_" .. buf_id)
+            if not vim.api.nvim_buf_is_valid(buf) then
+              return
+            end
+            vim.api.nvim_set_option_value("buftype", "acwrite", { buf = buf })
+            vim.api.nvim_buf_set_name(buf, "MiniFiles_" .. buf)
             vim.api.nvim_create_autocmd("BufWriteCmd", {
-              buffer = buf_id,
-              callback = MiniFiles.synchronize,
+              group = vim.api.nvim_create_augroup("VenuxMiniFilesWrite" .. buf, { clear = true }),
+              buffer = buf,
+              callback = mini_files.synchronize,
             })
           end)
         end,

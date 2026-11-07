@@ -26,6 +26,7 @@ RUN apt update &&                          \
     npm                                    \
     python3                                \
     python3-pip                            \
+    python3-venv                           \
     autoconf                               \
     automake                               \
     make                                   \
@@ -52,23 +53,20 @@ RUN groupdel users                                              \
              -r -g neovim                                       \
              neovim
 
+COPY --chown=neovim:neovim . "${HOME}/.config/nvim/"
+
 USER neovim
-ENV PYTHON3_HOST_PROG="/usr/bin/python3"
+ENV PYTHON3_HOST_PROG="${HOME}/.venv/bin/python"
 ENV PATH=/opt/app/nvim/bin:$PATH
 
-RUN mkdir -p $HOME/.config &&                                                        \
-    mkdir -p $HOME/workspace &&                                                      \
-    cd $HOME &&                                                                      \
-    git clone --depth 1  https://github.com/liubang/nvimrc.git $HOME/.config/nvim && \
-    rm -rf $HOME/.config/nvim/.github &&                                             \
-    rm -rf $HOME/.config/nvim/.git &&                                                \
-    rm -rf $HOME/.config/nvim/static &&                                              \
-    rm -rf $HOME/.config/nvim/scratch &&                                             \
-    rm -rf $HOME/.config/nvim/docker &&                                              \
-    pip install --user pynvim &&                                                     \
-    go env -w GO111MODULE=on &&                                                      \
-    go env -w GOPATH=$HOME/.go &&                                                    \
-    nvim --headless +'Lazy! sync' +qa
+RUN mkdir -p $HOME/workspace &&             \
+    python3 -m venv $HOME/.venv &&          \
+    $PYTHON3_HOST_PROG -m pip install --no-cache-dir pynvim && \
+    go env -w GO111MODULE=on &&             \
+    go env -w GOPATH=$HOME/.go &&                    \
+    nvim --headless +'Lazy! sync'                     \
+      "+lua local ok, err = pcall(function() assert(not require('lazy.manage.checker').has_errors(), 'plugin synchronization failed') end); if not ok then vim.api.nvim_err_writeln(err); vim.cmd('cquit') end" \
+      +qa
 
 WORKDIR $HOME/workspace
 

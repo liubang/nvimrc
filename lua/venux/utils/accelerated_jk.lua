@@ -64,6 +64,7 @@ local function Accelerator(limit, tbl)
     end,
     reset = function()
       step = 0
+      prev = 0
     end,
   }
 end

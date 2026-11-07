@@ -281,13 +281,12 @@ end
 ---@return snacks.picker.finder.Item[]
 local function collect()
   local items = {} ---@type snacks.picker.finder.Item[]
-  local seen = {} ---@type table<string, boolean>
+  local seen = {} ---@type table<string, integer>
 
   -- built-in keymaps
   for _, entry in ipairs(BUILTINS) do
     local mode, lhs, desc = entry[1], entry[2], entry[3]
     local key = mode .. ":" .. lhs
-    seen[key] = true
     items[#items + 1] = {
       text = mode .. " " .. lhs .. " " .. desc,
       kind = "builtin",
@@ -296,6 +295,7 @@ local function collect()
       display_lhs = lhs,
       desc = desc,
     }
+    seen[key] = #items
   end
 
   -- user keymaps (buffer-local first, then global; override builtins in seen)
@@ -309,19 +309,23 @@ local function collect()
       local desc = m.desc or ""
       if desc ~= "" and not lhs:find("<Plug>", 1, true) and lhs ~= "" then
         local key = mode .. ":" .. lhs
-        if not seen[key] then
-          seen[key] = true
-          local display_lhs = prettify(lhs)
-          items[#items + 1] = {
-            text = mode .. " " .. display_lhs .. " " .. desc,
-            kind = "key",
-            mode = mode,
-            lhs = lhs,
-            display_lhs = display_lhs,
-            desc = desc,
-            callback = m.callback,
-            rhs = m.rhs,
-          }
+        local display_lhs = prettify(lhs)
+        local item = {
+          text = mode .. " " .. display_lhs .. " " .. desc,
+          kind = "key",
+          mode = mode,
+          lhs = lhs,
+          display_lhs = display_lhs,
+          desc = desc,
+          callback = m.callback,
+          rhs = m.rhs,
+        }
+        local existing = seen[key]
+        if not existing then
+          items[#items + 1] = item
+          seen[key] = #items
+        elseif items[existing].kind == "builtin" then
+          items[existing] = item
         end
       end
     end

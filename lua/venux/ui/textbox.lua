@@ -168,7 +168,7 @@ function M.open(lines, opts)
   vim.wo[win].wrap = show_wrap
   vim.wo[win].scrolloff = 0
   vim.wo[win].signcolumn = "no"
-  vim.wo[win].cursorline = true
+  vim.wo[win].cursorline = init_cursor > 0
 
   if show_number then
     vim.wo[win].number = true
@@ -180,12 +180,11 @@ function M.open(lines, opts)
   end
 
   -- Initial position
-  if init_index > 1 then
-    pcall(vim.api.nvim_win_set_cursor, win, { math.min(init_index, #lines), 0 })
-  end
-  if init_cursor > 0 then
-    pcall(vim.api.nvim_win_set_cursor, win, { math.min(init_cursor, #lines), 0 })
-  end
+  local topline = math.max(1, math.min(init_index, #lines))
+  local cursorline = init_cursor > 0 and math.min(init_cursor, #lines) or topline
+  vim.api.nvim_win_call(win, function()
+    vim.fn.winrestview({ lnum = cursorline, col = 0, topline = topline })
+  end)
 
   vim.cmd.redraw()
 

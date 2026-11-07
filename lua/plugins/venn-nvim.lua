@@ -16,37 +16,7 @@
 
 return {
   "jbyuki/venn.nvim", -- {{{
-  init = function()
-    vim.api.nvim_create_user_command("DrawBoxToggle", function()
-      local venn_enabled = vim.inspect(vim.b.venn_enabled)
-      if venn_enabled == "nil" then
-        vim.b.venn_enabled = true
-        vim.cmd([[setlocal ve=all]])
-        vim.keymap.set("n", "H", "<C-v>h:VBox<CR>", { buffer = true })
-        vim.keymap.set("n", "J", "<C-v>j:VBox<CR>", { buffer = true })
-        vim.keymap.set("n", "K", "<C-v>k:VBox<CR>", { buffer = true })
-        vim.keymap.set("n", "L", "<C-v>l:VBox<CR>", { buffer = true })
-        -- Draw a single line box or arrow.
-        vim.keymap.set("x", "f", ":VBox<CR>", { buffer = true })
-        -- Draw a double line box or arrow.
-        vim.keymap.set("x", "d", ":VBoxD<CR>", { buffer = true })
-        -- Draw a heavy line box or arrow.
-        vim.keymap.set("x", "F", ":VBoxH<CR>", { buffer = true })
-        vim.keymap.set("x", "o", ":VBoxO<CR>", { buffer = true })
-      else
-        vim.cmd([[setlocal ve=]])
-        vim.keymap.del("n", "H", { buffer = true })
-        vim.keymap.del("n", "J", { buffer = true })
-        vim.keymap.del("n", "K", { buffer = true })
-        vim.keymap.del("n", "L", { buffer = true })
-        vim.keymap.del("x", "f", { buffer = true })
-        vim.keymap.del("x", "F", { buffer = true })
-        vim.keymap.del("x", "d", { buffer = true })
-        vim.keymap.del("x", "o", { buffer = true })
-        vim.b.venn_enabled = nil
-      end
-    end, { nargs = 0 })
-  end,
+  cmd = "DrawBoxToggle",
   config = function()
     local venn = require("venn")
     venn.set_line({ "s", "s", " ", " " }, "|")
@@ -64,6 +34,86 @@ return {
     venn.set_arrow("down", "v")
     venn.set_arrow("left", "<")
     venn.set_arrow("right", ">")
+
+    local mappings = {
+      { "n", "H", "<C-v>h:VBox<CR>" },
+      { "n", "J", "<C-v>j:VBox<CR>" },
+      { "n", "K", "<C-v>k:VBox<CR>" },
+      { "n", "L", "<C-v>l:VBox<CR>" },
+      -- Draw a single line box or arrow.
+      { "x", "f", ":VBox<CR>" },
+      -- Draw a double line box or arrow.
+      { "x", "d", ":VBoxD<CR>" },
+      -- Draw a heavy line box or arrow.
+      { "x", "F", ":VBoxH<CR>" },
+      { "x", "o", ":VBoxO<CR>" },
+    }
+    local states = {}
+
+    vim.api.nvim_create_autocmd("BufWipeout", {
+      group = vim.api.nvim_create_augroup("VenuxVenn", { clear = true }),
+      callback = function(args)
+        local state = states[args.buf]
+        if state then
+          for win, virtualedit in pairs(state.windows) do
+            if vim.api.nvim_win_is_valid(win) then
+              vim.api.nvim_win_call(win, function()
+                vim.opt_local.virtualedit = virtualedit
+              end)
+            end
+          end
+        end
+        states[args.buf] = nil
+      end,
+    })
+
+    vim.api.nvim_create_user_command("DrawBoxToggle", function()
+      local buf = vim.api.nvim_get_current_buf()
+      if vim.b[buf].venn_enabled then
+        local state = states[buf]
+        if state then
+          for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+            local virtualedit = state.windows[win]
+            if virtualedit == nil then
+              virtualedit = state.virtualedit
+            end
+            vim.api.nvim_win_call(win, function()
+              vim.opt_local.virtualedit = virtualedit
+            end)
+          end
+          for _, map in ipairs(mappings) do
+            vim.keymap.del(map[1], map[2], { buffer = buf })
+          end
+          for _, saved in ipairs(state.maps) do
+            vim.fn.mapset(saved.mode, false, saved.map)
+          end
+          states[buf] = nil
+        end
+        vim.b[buf].venn_enabled = nil
+        return
+      end
+
+      local state = {
+        virtualedit = vim.opt_local.virtualedit:get(),
+        windows = {},
+        maps = {},
+      }
+      for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+        state.windows[win] = vim.wo[win].virtualedit
+      end
+      for _, map in ipairs(mappings) do
+        local existing = vim.fn.maparg(map[2], map[1], false, true)
+        if existing.buffer == 1 then
+          table.insert(state.maps, { mode = map[1], map = existing })
+        end
+      end
+      states[buf] = state
+      vim.b[buf].venn_enabled = true
+      vim.opt_local.virtualedit = "all"
+      for _, map in ipairs(mappings) do
+        vim.keymap.set(map[1], map[2], map[3], { buffer = buf })
+      end
+    end, { nargs = 0, desc = "Toggle draw box" })
   end,
   keys = { { "<leader>vv", ":DrawBoxToggle<CR>", desc = "Toggle draw box" } },
   -- }}}

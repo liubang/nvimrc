@@ -1,6 +1,7 @@
 name: CI
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -17,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        neovim: [v0.11.6, nightly]
+        neovim: [v0.12.6, nightly]
     continue-on-error: ${{ matrix.neovim == 'nightly' }}
     needs: stylua
     runs-on: ubuntu-latest
@@ -35,6 +36,47 @@ jobs:
         run: |
           nvim --version
           nvim --headless -u tests/minimal_init.lua -c "PlenaryBustedDirectory tests/spec { minimal_init = 'tests/minimal_init.lua', sequential = true }"
+  smoke:
+    name: Full configuration smoke test
+    needs: stylua
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          version: v0.12.6
+          neovim: true
+      - name: Install plugins and start the full configuration
+        env:
+          GIT_TERMINAL_PROMPT: 0
+          XDG_CONFIG_HOME: /tmp/nvim-smoke/config
+          XDG_DATA_HOME: /tmp/nvim-smoke/data
+          XDG_STATE_HOME: /tmp/nvim-smoke/state
+          XDG_CACHE_HOME: /tmp/nvim-smoke/cache
+        run: |
+          mkdir -p "$XDG_CONFIG_HOME"
+          ln -s "$GITHUB_WORKSPACE" "$XDG_CONFIG_HOME/nvim"
+          timeout 300 nvim --headless "+Lazy! install" \
+            "+lua local ok, err = pcall(function() assert(not require('lazy.manage.checker').has_errors(), 'plugin installation failed') end); if not ok then vim.api.nvim_err_writeln(err); vim.cmd('cquit') end" \
+            "+qa"
+          timeout 60 nvim --headless \
+            "+lua local ok, err = pcall(function() assert(vim.fn.exists(':Lazy') == 2, 'lazy.nvim did not load'); assert(vim.g.mapleader == ' ', 'full configuration did not load') end); if not ok then vim.api.nvim_err_writeln(err); vim.cmd('cquit') end" \
+            "+qa"
+  docker-build:
+    name: Docker runtime build (no push)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          push: false
+          context: .
+          file: ./docker/Dockerfile
+          platforms: linux/amd64
+          tags: liubang/nvim:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
   docs:
     runs-on: ubuntu-latest
     needs: tests
@@ -45,7 +87,7 @@ jobs:
         uses: kdheepak/panvimdoc@1f9433df889d4ab3daa5ea52c7069cb489ad47d6
         with:
           vimdoc: nvimrc
-          version: "Neovim >= 0.11.0"
+          version: "Neovim >= 0.12.0"
           demojify: true
           treesitter: true
       - name: Push changes
@@ -61,6 +103,8 @@ jobs:
     needs:
       - docs
       - tests
+      - smoke
+      - docker-build
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
