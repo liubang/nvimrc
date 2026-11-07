@@ -6,3 +6,4 @@ undo
 *.log
 .nvimlog
 after/syntax/**/gruvbox_material.vim
+/lazy-lock.json
