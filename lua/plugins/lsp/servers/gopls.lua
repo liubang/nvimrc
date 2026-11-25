@@ -52,12 +52,6 @@ return {
   end,
   settings = {
     gopls = {
-      analyses = {
-        -- check analyzers for default values
-        -- leeave most of them to default
-        -- shadow = true,
-        -- unusedvariable = true,
-      },
       -- more settings: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
       codelenses = {
         generate = true, -- show the `go generate` lens.
